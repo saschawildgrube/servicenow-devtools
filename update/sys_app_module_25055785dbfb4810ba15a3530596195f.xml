@@ -8,33 +8,33 @@
         <hint/>
         <homepage/>
         <image/>
-        <link_type>DIRECT</link_type>
+        <link_type>SEPARATOR</link_type>
         <map_page/>
-        <mobile_title>Script Editor Macros</mobile_title>
+        <mobile_title>Lib</mobile_title>
         <mobile_view_name>Mobile</mobile_view_name>
         <name/>
-        <order>910</order>
+        <order>900</order>
         <override_menu_roles>false</override_menu_roles>
-        <query>syntax_editor_macro_list.do</query>
+        <query/>
         <report/>
         <roles/>
         <sys_class_name>sys_app_module</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2020-03-05 15:57:07</sys_created_on>
+        <sys_created_on>2020-03-25 14:59:06</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
-        <sys_id>0872283adbdfc410ba15a35305961985</sys_id>
+        <sys_id>25055785dbfb4810ba15a3530596195f</sys_id>
         <sys_mod_count>1</sys_mod_count>
-        <sys_name>Script Editor Macros</sys_name>
+        <sys_name>Code</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
-        <sys_update_name>sys_app_module_0872283adbdfc410ba15a35305961985</sys_update_name>
+        <sys_update_name>sys_app_module_25055785dbfb4810ba15a3530596195f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-03-25 15:02:51</sys_updated_on>
+        <sys_updated_on>2020-03-25 15:03:07</sys_updated_on>
         <timeline_page/>
-        <title>Script Editor Macros</title>
+        <title>Code</title>
         <uncancelable>false</uncancelable>
         <view_name/>
         <window_name/>
