@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <copied_from/>
+        <description>Run Server Side Validation Script</description>
+        <display_name>Run Server Side Script</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>1</order>
+        <snapshot/>
+        <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-03-20 14:28:44</sys_created_on>
+        <sys_id>fa3d11efdb6b4010ba15a35305961923</sys_id>
+        <sys_mod_count>11</sys_mod_count>
+        <sys_name>Run Server Side Script</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_step_fa3d11efdb6b4010ba15a35305961923</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-03-20 15:58:08</sys_updated_on>
+        <table/>
+        <test display_value="DevTools - GetValue">ea0dd9afdb6b4010ba15a35305961935</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=fa3d11efdb6b4010ba15a35305961923"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>fa3d11efdb6b4010ba15a35305961923</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-03-20 14:28:44</sys_created_on>
+        <sys_id>084e9523dbab4010ba15a3530596190b</sys_id>
+        <sys_mod_count>11</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-03-20 15:58:08</sys_updated_on>
+        <value>var strLog = '';&#13;
+function Log(strText)&#13;
+{&#13;
+	strLog = strLog + "\n" + strText;&#13;
+}&#13;
+(function(outputs, steps, stepResult, assertEqual) {&#13;
+&#13;
+	var bResult = true;&#13;
+	&#13;
+	function TestCase_GetValue(&#13;
+		vInputObject,&#13;
+		vInputKey1,&#13;
+		vInputKey2,&#13;
+		vInputKey3,&#13;
+		vInputKey4,&#13;
+		vInputKey5,&#13;
+		vInputKey6,&#13;
+		vExpected)&#13;
+	{&#13;
+		Log('TestCase_GetValue');&#13;
+		//Log('Input object: '+RenderValue(vInputObject));&#13;
+		Log('Input object: '+vInputObject);&#13;
+		Log('Input key1: '+vInputKey1);&#13;
+		Log('Input key2: '+vInputKey2);&#13;
+		Log('Input key3: '+vInputKey3);&#13;
+		Log('Input key4: '+vInputKey4);&#13;
+		Log('Input key5: '+vInputKey5);&#13;
+		Log('Input key6: '+vInputKey6);&#13;
+		Log('Expected: '+vExpected);&#13;
+		var vResult = GetValue(&#13;
+			vInputObject,&#13;
+			vInputKey1,&#13;
+			vInputKey2,&#13;
+			vInputKey3,&#13;
+			vInputKey4,&#13;
+			vInputKey5,&#13;
+			vInputKey6);&#13;
+		Log('Result  : '+vResult);&#13;
+//		Log('Result  : '+RenderValue(vResult));&#13;
+		if (vResult != vExpected)&#13;
+		{&#13;
+			bResult = false;&#13;
+			Log('Test case FAILED');&#13;
+		}&#13;
+		Log('');&#13;
+	}&#13;
+	&#13;
+	TestCase_GetValue(&#13;
+		null,&#13;
+		null, // key 1&#13;
+		null, // key 2&#13;
+		null, // key 3&#13;
+		null, // key 4&#13;
+		null, // key 5&#13;
+		null, // key 6&#13;
+		null);&#13;
+	&#13;
+	var vObject = {&#13;
+		hello: 'world',&#13;
+		thunder: 'storm'&#13;
+	};&#13;
+	TestCase_GetValue(&#13;
+		vObject,&#13;
+		'hello', // key 1&#13;
+		null, // key 2&#13;
+		null, // key 3&#13;
+		null, // key 4&#13;
+		null, // key 5&#13;
+		null, // key 6&#13;
+		'world');&#13;
+	TestCase_GetValue(&#13;
+		vObject,&#13;
+		'hello2', // key 1&#13;
+		null, // key 2&#13;
+		null, // key 3&#13;
+		null, // key 4&#13;
+		null, // key 5&#13;
+		null, // key 6&#13;
+		null);&#13;
+	&#13;
+	vObject =&#13;
+	{&#13;
+		node1:&#13;
+		{&#13;
+			value: 'value1',&#13;
+			node11:&#13;
+			{&#13;
+				value: 'value11'&#13;
+			},&#13;
+			node12:&#13;
+			{&#13;
+				value: 'value12'&#13;
+			}&#13;
+		}&#13;
+	};&#13;
+	&#13;
+	TestCase_GetValue(&#13;
+		vObject,&#13;
+		'node1', // key 1&#13;
+		'node11', // key 2&#13;
+		'value', // key 3&#13;
+		null, // key 4&#13;
+		null, // key 5&#13;
+		null, // key 6&#13;
+		'value11');&#13;
+	TestCase_GetValue(&#13;
+		vObject,&#13;
+		'node666', // key 1&#13;
+		'node11', // key 2&#13;
+		null, // key 3&#13;
+		null, // key 4&#13;
+		null, // key 5&#13;
+		null, // key 6&#13;
+		null);&#13;
+	TestCase_GetValue(&#13;
+		vObject,&#13;
+		'node1', // key 1&#13;
+		'node11', // key 2&#13;
+		'node111', // key 3&#13;
+		null, // key 4&#13;
+		null, // key 5&#13;
+		null, // key 6&#13;
+		null);&#13;
+&#13;
+&#13;
+	stepResult.setOutputMessage(strLog);&#13;
+	return bResult;&#13;
+	&#13;
+})(outputs, steps, stepResult, assertEqual);</value>
+        <variable display_value="">989d9e235324220002c6435723dc3484</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>fa3d11efdb6b4010ba15a35305961923</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-03-20 14:28:44</sys_created_on>
+        <sys_id>404e9523dbab4010ba15a3530596190b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-03-20 14:28:44</sys_updated_on>
+        <value>3.1</value>
+        <variable display_value="">42f2564b73031300440211d8faf6a777</variable>
+    </sys_variable_value>
+</record_update>

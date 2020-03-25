@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_template">
+    <sys_template action="DELETE">
+        <active>true</active>
+        <global>false</global>
+        <group/>
+        <link_element/>
+        <name>Example</name>
+        <next/>
+        <next_child/>
+        <roles/>
+        <short_description>Defines the default assignment group for incidents</short_description>
+        <show_on_template_bar>true</show_on_template_bar>
+        <stand_alone>false</stand_alone>
+        <sys_class_name>sys_template</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-02-27 11:35:37</sys_created_on>
+        <sys_id>4843e7581b578450a89720a8ec4bcb42</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Example</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_template_4843e7581b578450a89720a8ec4bcb42</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-02-27 11:35:37</sys_updated_on>
+        <table>incident</table>
+        <template>assignment_group=ebc8da19db152200b8b4f8ecbf9619bd^EQ</template>
+        <user display_value="System Administrator">6816f79cc0a8016401c5a33be04be441</user>
+        <view/>
+    </sys_template>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>8bbd52e6db1a8cd02f68c59705961990</instance_id>
+        <instance_name>empswildgrube1</instance_name>
+        <name>sys_template_4843e7581b578450a89720a8ec4bcb42</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_template"><sys_template action="INSERT_OR_UPDATE"><active>true</active><global>false</global><group/><link_element/><name>Example</name><next/><next_child/><roles/><short_description>Defines the default assignment group for incidents</short_description><show_on_template_bar>true</show_on_template_bar><stand_alone>false</stand_alone><sys_class_name>sys_template</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2020-02-27 11:35:37</sys_created_on><sys_id>4843e7581b578450a89720a8ec4bcb42</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Example</sys_name><sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package><sys_policy/><sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope><sys_update_name>sys_template_4843e7581b578450a89720a8ec4bcb42</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-02-27 11:35:37</sys_updated_on><table>incident</table><template>assignment_group=ebc8da19db152200b8b4f8ecbf9619bd^EQ</template><user display_value="System Administrator">6816f79cc0a8016401c5a33be04be441</user><view/></sys_template></record_update>]]></payload>
+        <payload_hash>1763919872</payload_hash>
+        <record_name>Example</record_name>
+        <reverted_from/>
+        <source>de89f6901bd38450a89720a8ec4bcbff</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-02-27 11:35:37</sys_created_on>
+        <sys_id>31a36f581b578450a89720a8ec4bcb16</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>170866e40d10000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-02-27 11:35:37</sys_updated_on>
+        <type>Template</type>
+        <update_guid>b5a32b587f5784505e5025aab3f543f4</update_guid>
+        <update_guid_history>b5a32b587f5784505e5025aab3f543f4:1763919872</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-02-27 14:35:54</sys_created_on>
+        <sys_db_object display_value="" name="sys_template">sys_template</sys_db_object>
+        <sys_id>0a49c02e92f14fc0806e152a49eba400</sys_id>
+        <sys_metadata>4843e7581b578450a89720a8ec4bcb42</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Example</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sys_template_4843e7581b578450a89720a8ec4bcb42</sys_update_name>
+        <sys_update_version display_value="sys_template_4843e7581b578450a89720a8ec4bcb42">31a36f581b578450a89720a8ec4bcb16</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-02-27 14:35:54</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

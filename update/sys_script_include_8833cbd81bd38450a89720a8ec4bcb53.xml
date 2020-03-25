@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.ParseDateTime</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Parses a string and returns a time value.</description>
+        <name>ParseDateTime</name>
+        <script><![CDATA[function ParseDateTime(strDateTime)
+{
+	var dateResult = new Date();
+
+	var strYear = strDateTime.substr(0,4);
+	var strMonth = strDateTime.substr(5,2);
+	var strDay = strDateTime.substr(8,2);
+
+	dateResult.setFullYear(parseInt(strYear));
+	dateResult.setMonth(parseInt(strMonth));
+	dateResult.setDate(parseInt(strDay));
+
+	if (strDateTime.length >= 19)
+	{
+		var strHour = strDateTime.substr(11,2);
+		var strMinute = strDateTime.substr(14,2);
+		var strSecond = strDateTime.substr(17,2);
+
+		dateResult.setHours(parseInt(strHour));
+		dateResult.setMinutes(parseInt(strMinute));
+		dateResult.setSeconds(parseInt(strSecond));
+	}
+	return dateResult.getTime();
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-02-27 09:14:13</sys_created_on>
+        <sys_id>8833cbd81bd38450a89720a8ec4bcb53</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>ParseDateTime</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_8833cbd81bd38450a89720a8ec4bcb53</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-02-27 09:14:13</sys_updated_on>
+    </sys_script_include>
+</record_update>

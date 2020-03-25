@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.HttpRequest</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Performs a single http request.</description>
+        <name>HttpRequest</name>
+        <script><![CDATA[function HttpRequest(strURL)
+{
+	var http = new sn_ws.RESTMessageV2();
+	http.setHttpMethod("get");
+	http.setEndpoint(strURL);
+	var response = http.execute();
+	return response.getBody();
+}
+
+
+
+	/*	
+try { 
+ var r = new sn_ws.RESTMessageV2('x_417170_incident.Heartbeat', 'Send Heartbeat');
+
+//override authentication profile 
+//authentication type ='basic'/ 'oauth2'
+//r.setAuthenticationProfile(authentication type, profile name);
+
+//set a MID server name if one wants to run the message on MID
+//r.setMIDServer('MY_MID_SERVER');
+
+//if the message is configured to communicate through ECC queue, either
+//by setting a MID server or calling executeAsync, one needs to set skip_sensor
+//to true. Otherwise, one may get an intermittent error that the response body is null
+//r.setEccParameter('skip_sensor', true);
+
+ var response = r.execute();
+ var responseBody = response.getBody();
+ var httpStatus = response.getStatusCode();
+}
+catch(ex) {
+ var message = ex.message;
+}
+*/	
+	/*
+	http = new XMLHttpRequest();
+	http.open('GET',strURL,false);
+	http.send();
+	*/
+
+	/*
+var client = new Packages.org.apache.commons.httpclient.HttpClient();
+var post = new Packages.org.apache.commons.httpclient.methods.PostMethod(strURL);
+//post.addParameter("parameter_name", "parameter value");
+var returnCode = client.executeMethod(post);
+var output = "" + post.getResponseBodyAsString();	
+*/	]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-02-27 09:10:34</sys_created_on>
+        <sys_id>be520f981bd38450a89720a8ec4bcbab</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>HttpRequest</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_be520f981bd38450a89720a8ec4bcbab</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-02-27 09:10:34</sys_updated_on>
+    </sys_script_include>
+</record_update>
