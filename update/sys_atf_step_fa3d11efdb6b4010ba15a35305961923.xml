@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-03-20 14:28:44</sys_created_on>
         <sys_id>fa3d11efdb6b4010ba15a35305961923</sys_id>
-        <sys_mod_count>11</sys_mod_count>
+        <sys_mod_count>14</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_fa3d11efdb6b4010ba15a35305961923</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-03-20 15:58:08</sys_updated_on>
+        <sys_updated_on>2020-03-27 13:38:43</sys_updated_on>
         <table/>
         <test display_value="DevTools - GetValue">ea0dd9afdb6b4010ba15a35305961935</test>
         <timeout/>
@@ -36,17 +36,20 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-03-20 14:28:44</sys_created_on>
         <sys_id>084e9523dbab4010ba15a3530596190b</sys_id>
-        <sys_mod_count>11</sys_mod_count>
+        <sys_mod_count>14</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-03-20 15:58:08</sys_updated_on>
+        <sys_updated_on>2020-03-27 13:38:43</sys_updated_on>
         <value>var strLog = '';&#13;
 function Log(strText)&#13;
 {&#13;
 	strLog = strLog + "\n" + strText;&#13;
 }&#13;
-(function(outputs, steps, stepResult, assertEqual) {&#13;
+(function(outputs, steps, stepResult, assertEqual)&#13;
+ {&#13;
 &#13;
 	var bResult = true;&#13;
+	&#13;
+	var RenderValue = x_snc_devtools.RenderValue;&#13;
 	&#13;
 	function TestCase_GetValue(&#13;
 		vInputObject,&#13;
@@ -59,8 +62,8 @@ function Log(strText)&#13;
 		vExpected)&#13;
 	{&#13;
 		Log('TestCase_GetValue');&#13;
-		//Log('Input object: '+RenderValue(vInputObject));&#13;
-		Log('Input object: '+vInputObject);&#13;
+		Log('Input object: '+RenderValue(vInputObject,0));&#13;
+		//Log('Input object: '+vInputObject);&#13;
 		Log('Input key1: '+vInputKey1);&#13;
 		Log('Input key2: '+vInputKey2);&#13;
 		Log('Input key3: '+vInputKey3);&#13;

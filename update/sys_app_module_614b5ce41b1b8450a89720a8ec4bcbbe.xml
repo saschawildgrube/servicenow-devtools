@@ -13,9 +13,9 @@
         <mobile_title>Debug Options</mobile_title>
         <mobile_view_name>Mobile</mobile_view_name>
         <name/>
-        <order>500</order>
+        <order>502</order>
         <override_menu_roles>false</override_menu_roles>
-        <query>system_properties_ui.do?sysparm_title=DevTools&amp;sysparm_category=DevTools</query>
+        <query>system_properties_ui.do?sysparm_title=Instance%20Debug%20Options&amp;sysparm_category=devtools.instance</query>
         <report/>
         <roles/>
         <sys_class_name>sys_app_module</sys_class_name>
@@ -24,17 +24,17 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>614b5ce41b1b8450a89720a8ec4bcbbe</sys_id>
-        <sys_mod_count>3</sys_mod_count>
-        <sys_name>Options</sys_name>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>Instance Debug Options</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_app_module_614b5ce41b1b8450a89720a8ec4bcbbe</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-02-28 09:25:07</sys_updated_on>
+        <sys_updated_on>2020-03-27 15:39:37</sys_updated_on>
         <timeline_page/>
-        <title>Options</title>
+        <title>Instance Debug Options</title>
         <uncancelable>false</uncancelable>
         <view_name/>
         <window_name/>

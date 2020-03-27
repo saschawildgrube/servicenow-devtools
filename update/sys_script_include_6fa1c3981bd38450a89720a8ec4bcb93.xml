@@ -9,27 +9,25 @@
         <name>Debug</name>
         <script><![CDATA[function Debug(strText)
 {
-	if (Log != undefined)
+	var bLog = gs.getProperty('x_snc_devtools.debug.log');
+	if (bLog == false)
 	{
-		Log(strText);
+		return;
 	}
-	else
-	{
-		gs.info(strText);
-	}
+	gs.info(strText);
 }
 ]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 09:07:47</sys_created_on>
         <sys_id>6fa1c3981bd38450a89720a8ec4bcb93</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>Debug</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_6fa1c3981bd38450a89720a8ec4bcb93</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-03-05 15:01:29</sys_updated_on>
+        <sys_updated_on>2020-03-27 15:30:14</sys_updated_on>
     </sys_script_include>
 </record_update>

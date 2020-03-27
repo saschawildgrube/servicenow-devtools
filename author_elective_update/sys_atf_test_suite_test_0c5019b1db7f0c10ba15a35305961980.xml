@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_test_suite_test">
+    <sys_atf_test_suite_test action="DELETE">
+        <abort_on_failure>false</abort_on_failure>
+        <order/>
+        <sys_class_name>sys_atf_test_suite_test</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-03-27 13:14:44</sys_created_on>
+        <sys_id>0c5019b1db7f0c10ba15a35305961980</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>c35059b1db7f0c10ba15a353059619e9</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_test_suite_test_0c5019b1db7f0c10ba15a35305961980</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-03-27 13:14:44</sys_updated_on>
+        <test display_value="DevTools - Debug">c35059b1db7f0c10ba15a353059619e9</test>
+        <test_suite display_value="DevTools">4a8550391b5b8850a89720a8ec4bcbd9</test_suite>
+    </sys_atf_test_suite_test>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>8bbd52e6db1a8cd02f68c59705961990</instance_id>
+        <instance_name>empswildgrube1</instance_name>
+        <name>sys_atf_test_suite_test_0c5019b1db7f0c10ba15a35305961980</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_test_suite_test"><sys_atf_test_suite_test action="INSERT_OR_UPDATE"><abort_on_failure>false</abort_on_failure><order/><sys_class_name>sys_atf_test_suite_test</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2020-03-27 13:14:44</sys_created_on><sys_id>0c5019b1db7f0c10ba15a35305961980</sys_id><sys_mod_count>0</sys_mod_count><sys_name>c35059b1db7f0c10ba15a353059619e9</sys_name><sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package><sys_policy/><sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope><sys_update_name>sys_atf_test_suite_test_0c5019b1db7f0c10ba15a35305961980</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-03-27 13:14:44</sys_updated_on><test display_value="DevTools - Debug">c35059b1db7f0c10ba15a353059619e9</test><test_suite display_value="DevTools">4a8550391b5b8850a89720a8ec4bcbd9</test_suite></sys_atf_test_suite_test></record_update>]]></payload>
+        <payload_hash>-2086774930</payload_hash>
+        <record_name>c35059b1db7f0c10ba15a353059619e9</record_name>
+        <reverted_from/>
+        <source>de89f6901bd38450a89720a8ec4bcbff</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-03-27 13:14:44</sys_created_on>
+        <sys_id>1c7099b1db7f0c10ba15a353059619d8</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1711c216a9a0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-03-27 13:14:44</sys_updated_on>
+        <type>Test Suite Test</type>
+        <update_guid>547099b1a77f0c10023e045336888ad8</update_guid>
+        <update_guid_history>547099b1a77f0c10023e045336888ad8:-2086774930</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-03-27 14:18:40</sys_created_on>
+        <sys_db_object display_value="" name="sys_atf_test_suite_test">sys_atf_test_suite_test</sys_db_object>
+        <sys_id>8e4224f75f67498091c0d63ab1e30e40</sys_id>
+        <sys_metadata>0c5019b1db7f0c10ba15a35305961980</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>c35059b1db7f0c10ba15a353059619e9</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sys_atf_test_suite_test_0c5019b1db7f0c10ba15a35305961980</sys_update_name>
+        <sys_update_version display_value="sys_atf_test_suite_test_0c5019b1db7f0c10ba15a35305961980">1c7099b1db7f0c10ba15a353059619d8</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-03-27 14:18:40</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

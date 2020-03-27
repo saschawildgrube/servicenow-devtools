@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties_category_m2m">
     <sys_properties_category_m2m action="INSERT_OR_UPDATE">
-        <category display_value="DevTools">c23c90681b1b8450a89720a8ec4bcb8f</category>
-        <order>500</order>
+        <category display_value="devtools.instance">c23c90681b1b8450a89720a8ec4bcb8f</category>
+        <order>301</order>
         <property display_value="com.glide.hub.flow_engine.listener_trace" name="com.glide.hub.flow_engine.listener_trace">e73a03b40b23130008af2d1437673ac5</property>
         <sys_class_name>sys_properties_category_m2m</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-03-06 11:46:43</sys_created_on>
         <sys_id>d6e27ccbdb5f0810ba15a35305961966</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>com.glide.hub.flow_engine.listener_trace.DevTools</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_properties_category_m2m_d6e27ccbdb5f0810ba15a35305961966</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-03-06 11:46:43</sys_updated_on>
+        <sys_updated_on>2020-03-27 12:36:20</sys_updated_on>
     </sys_properties_category_m2m>
 </record_update>

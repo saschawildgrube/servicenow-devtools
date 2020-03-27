@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="DELETE">
+        <active>true</active>
+        <copied_from/>
+        <description>Run Server Side Validation Script</description>
+        <display_name>Run Server Side Script</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>1</order>
+        <snapshot/>
+        <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-03-27 13:15:12</sys_created_on>
+        <sys_id>5c805db1db7f0c10ba15a3530596198e</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>Run Server Side Script</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_step_5c805db1db7f0c10ba15a3530596198e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-03-27 13:59:07</sys_updated_on>
+        <table/>
+        <test display_value="DevTools - Debug">c35059b1db7f0c10ba15a353059619e9</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="DELETE" query="document_key=5c805db1db7f0c10ba15a3530596198e"/>
+    <sys_variable_value action="DELETE">
+        <document>sys_atf_step</document>
+        <document_key>5c805db1db7f0c10ba15a3530596198e</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-03-27 13:15:12</sys_created_on>
+        <sys_id>9780d9b1db7f0c10ba15a35305961905</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-03-27 13:59:07</sys_updated_on>
+        <value>var strLog = '';&#13;
+function Log(strText)&#13;
+{&#13;
+	strLog = strLog + "\n" + strText;&#13;
+}&#13;
+(function(outputs, steps, stepResult, assertEqual)&#13;
+{&#13;
+&#13;
+	var bResult = true;&#13;
+	&#13;
+	var Debug = x_snc_devtools.Debug;&#13;
+	var RenderValue = x_snc_devtools.RenderValue;&#13;
+	&#13;
+	/*&#13;
+	Log('outputs: '+RenderValue(outputs,0));&#13;
+	Log('steps: '+RenderValue(steps,0));&#13;
+	Log('stepResult: '+RenderValue(stepResult,0));&#13;
+	Log('assertEqual: '+RenderValue(assertEqual,0));&#13;
+	*/&#13;
+	&#13;
+	function TestCase_Debug(vInput)&#13;
+	{&#13;
+		Log('TestCase_Debug');&#13;
+		//Log('input: '+vInput);&#13;
+		Debug(vInput);&#13;
+		//Log('Expected: '+strExpected);&#13;
+		//Log('Result  : '+strResult);&#13;
+		/*if (strResult != strExpected)&#13;
+		{&#13;
+			bResult = false;&#13;
+			Log('Test case FAILED');&#13;
+		}*/&#13;
+		Log('');&#13;
+	}&#13;
+	&#13;
+	TestCase_Debug('DevTools - Test - Hello World');&#13;
+	&#13;
+	stepResult.setOutputMessage(strLog);&#13;
+	return bResult;&#13;
+	&#13;
+})(outputs, steps, stepResult, assertEqual);&#13;
+&#13;
+	</value>
+        <variable display_value="">989d9e235324220002c6435723dc3484</variable>
+    </sys_variable_value>
+    <sys_variable_value action="DELETE">
+        <document>sys_atf_step</document>
+        <document_key>5c805db1db7f0c10ba15a3530596198e</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-03-27 13:15:12</sys_created_on>
+        <sys_id>d380d9b1db7f0c10ba15a35305961905</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-03-27 13:15:12</sys_updated_on>
+        <value>3.1</value>
+        <variable display_value="">42f2564b73031300440211d8faf6a777</variable>
+    </sys_variable_value>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>8bbd52e6db1a8cd02f68c59705961990</instance_id>
+        <instance_name>empswildgrube1</instance_name>
+        <name>sys_atf_step_5c805db1db7f0c10ba15a3530596198e</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step"><sys_atf_step action="INSERT_OR_UPDATE"><active>true</active><copied_from/><description>Run Server Side Validation Script</description><display_name>Run Server Side Script</display_name><inputs/><mugshots_cache_json/><notes/><order>1</order><snapshot/><step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config><sys_class_name>sys_atf_step</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2020-03-27 13:15:12</sys_created_on><sys_id>5c805db1db7f0c10ba15a3530596198e</sys_id><sys_mod_count>6</sys_mod_count><sys_name>Run Server Side Script</sys_name><sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package><sys_policy/><sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope><sys_update_name>sys_atf_step_5c805db1db7f0c10ba15a3530596198e</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-03-27 13:59:07</sys_updated_on><table/><test display_value="DevTools - Debug">c35059b1db7f0c10ba15a353059619e9</test><timeout/><warning_message/></sys_atf_step><sys_variable_value action="delete_multiple" query="document_key=5c805db1db7f0c10ba15a3530596198e"/><sys_variable_value action="INSERT_OR_UPDATE"><document>sys_atf_step</document><document_key>5c805db1db7f0c10ba15a3530596198e</document_key><order>200</order><sys_class_name>sys_variable_value</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2020-03-27 13:15:12</sys_created_on><sys_id>9780d9b1db7f0c10ba15a35305961905</sys_id><sys_mod_count>6</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-03-27 13:59:07</sys_updated_on><value>var strLog = '';&#13;
+function Log(strText)&#13;
+{&#13;
+	strLog = strLog + "\n" + strText;&#13;
+}&#13;
+(function(outputs, steps, stepResult, assertEqual)&#13;
+{&#13;
+&#13;
+	var bResult = true;&#13;
+	&#13;
+	var Debug = x_snc_devtools.Debug;&#13;
+	var RenderValue = x_snc_devtools.RenderValue;&#13;
+	&#13;
+	/*&#13;
+	Log('outputs: '+RenderValue(outputs,0));&#13;
+	Log('steps: '+RenderValue(steps,0));&#13;
+	Log('stepResult: '+RenderValue(stepResult,0));&#13;
+	Log('assertEqual: '+RenderValue(assertEqual,0));&#13;
+	*/&#13;
+	&#13;
+	function TestCase_Debug(vInput)&#13;
+	{&#13;
+		Log('TestCase_Debug');&#13;
+		//Log('input: '+vInput);&#13;
+		Debug(vInput);&#13;
+		//Log('Expected: '+strExpected);&#13;
+		//Log('Result  : '+strResult);&#13;
+		/*if (strResult != strExpected)&#13;
+		{&#13;
+			bResult = false;&#13;
+			Log('Test case FAILED');&#13;
+		}*/&#13;
+		Log('');&#13;
+	}&#13;
+	&#13;
+	TestCase_Debug('DevTools - Test - Hello World');&#13;
+	&#13;
+	stepResult.setOutputMessage(strLog);&#13;
+	return bResult;&#13;
+	&#13;
+})(outputs, steps, stepResult, assertEqual);&#13;
+&#13;
+	</value><variable display_value="">989d9e235324220002c6435723dc3484</variable></sys_variable_value><sys_variable_value action="INSERT_OR_UPDATE"><document>sys_atf_step</document><document_key>5c805db1db7f0c10ba15a3530596198e</document_key><order>100</order><sys_class_name>sys_variable_value</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2020-03-27 13:15:12</sys_created_on><sys_id>d380d9b1db7f0c10ba15a35305961905</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-03-27 13:15:12</sys_updated_on><value>3.1</value><variable display_value="">42f2564b73031300440211d8faf6a777</variable></sys_variable_value></record_update>]]></payload>
+        <payload_hash>-730605696</payload_hash>
+        <record_name>Run Server Side Script</record_name>
+        <reverted_from/>
+        <source>de89f6901bd38450a89720a8ec4bcbff</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-03-27 13:59:07</sys_created_on>
+        <sys_id>aa9ad531dbbf0c10ba15a353059619a6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1711c4a0f640000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-03-27 13:59:07</sys_updated_on>
+        <type>Test Step</type>
+        <update_guid>269ad5310dbf0c100bfeb8aa0d31c0a6</update_guid>
+        <update_guid_history>269ad5310dbf0c100bfeb8aa0d31c0a6:-730605696,8c58dd3d767f0c10e0d36464e115945b:1455990250,e5f71d3daa7f0c1001acef52bef80ff4:-936164296,fdb459396b7f0c10b04f31895812318c:1845153142,36a351f5127f0c10eec5ebc854915aee:1652060210,a76399b5f57f0c104757aa98889de942:1821442790,5f80d9b10d7f0c10c84d1c6e6052a006:-367916237</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-03-27 14:18:40</sys_created_on>
+        <sys_db_object display_value="" name="sys_atf_step">sys_atf_step</sys_db_object>
+        <sys_id>8604dad4de9c4640ab587b40a5f13a40</sys_id>
+        <sys_metadata>5c805db1db7f0c10ba15a3530596198e</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Run Server Side Script</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sys_atf_step_5c805db1db7f0c10ba15a3530596198e</sys_update_name>
+        <sys_update_version display_value="sys_atf_step_5c805db1db7f0c10ba15a3530596198e">aa9ad531dbbf0c10ba15a353059619a6</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-03-27 14:18:40</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

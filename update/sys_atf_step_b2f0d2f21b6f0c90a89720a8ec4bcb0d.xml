@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-03-18 10:18:51</sys_created_on>
         <sys_id>b2f0d2f21b6f0c90a89720a8ec4bcb0d</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_b2f0d2f21b6f0c90a89720a8ec4bcb0d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-03-18 10:26:29</sys_updated_on>
+        <sys_updated_on>2020-03-27 15:20:33</sys_updated_on>
         <table/>
         <test display_value="DevTools - ParseJson">dcc05eb21b6f0c90a89720a8ec4bcb64</test>
         <timeout/>
@@ -50,15 +50,16 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-03-18 10:18:51</sys_created_on>
         <sys_id>c4e116361b6f0c90a89720a8ec4bcb28</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-03-18 10:26:29</sys_updated_on>
+        <sys_updated_on>2020-03-27 15:20:33</sys_updated_on>
         <value>var strLog = '';&#13;
 function Log(strText)&#13;
 {&#13;
 	strLog = strLog + "\n" + strText;&#13;
 }&#13;
-(function(outputs, steps, stepResult, assertEqual) {&#13;
+(function(outputs, steps, stepResult, assertEqual)&#13;
+{&#13;
 &#13;
 	var bResult = true;&#13;
 	var ParseJson = x_snc_devtools.ParseJson;&#13;
@@ -82,7 +83,7 @@ function Log(strText)&#13;
 	TestCase_ParseJson(false,false);&#13;
 	TestCase_ParseJson('{}',{});&#13;
 	TestCase_ParseJson('{ "hello": "world" }', { hello: 'world' } );&#13;
-	&#13;
+&#13;
 	&#13;
 	stepResult.setOutputMessage(strLog);&#13;
 	return bResult;&#13;

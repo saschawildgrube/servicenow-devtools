@@ -9,21 +9,30 @@
         <name>RenderValue</name>
         <script><![CDATA[function RenderValue(vValue, nLevel)
 {
-	if (nLevel == undefined)
-	{
-		nLevel = 0;
-	}
+	nLevel = parseInt(nLevel);
 	var strLevel = '___';
 	strLevel = strLevel.repeat(nLevel);
-	var strOutput = '';
+	
 	var bIsObject = vValue instanceof Object;
 	var strTypeOf = typeof vValue;
+
+	if (vValue == undefined)
+	{
+		return 'undefined';
+	}
+	if (vValue == null)
+	{
+		return 'null';
+	}
+
+	var strOutput = '';
+	
 	if (Array.isArray(vValue))
 	{
 		strOutput += '\n';
 		vValue.forEach( function(vElement,nKey)
 		{
-			strOutput += strLevel+'['+nKey+'] = '+RenderValue(vElement,nLevel+1)+'\n';
+			strOutput += strLevel+'['+nKey+']: '+RenderValue(vElement,nLevel+1)+'\n';
 		});
 	}
 	else if (bIsObject || (strTypeOf == 'object'))
@@ -31,7 +40,7 @@
 		strOutput += '\n';
 		Object.keys(vValue).forEach( function(strKey)
 		{
-			strOutput += strLevel+'["'+strKey+'"] = '+RenderValue(vValue[strKey],nLevel+1)+'\n';
+			strOutput += strLevel+'["'+strKey+'"]: '+RenderValue(vValue[strKey],nLevel+1)+'\n';
 		});
 	}
 	else
@@ -44,13 +53,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 09:04:23</sys_created_on>
         <sys_id>a6e04b581bd38450a89720a8ec4bcbc8</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_name>RenderValue</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_a6e04b581bd38450a89720a8ec4bcbc8</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-03-20 15:54:37</sys_updated_on>
+        <sys_updated_on>2020-03-27 13:46:00</sys_updated_on>
     </sys_script_include>
 </record_update>
