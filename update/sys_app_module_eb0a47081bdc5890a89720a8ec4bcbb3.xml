@@ -15,7 +15,7 @@
         <name>sys_scope_privilege</name>
         <order>1010</order>
         <override_menu_roles>false</override_menu_roles>
-        <query/>
+        <query>sysparm_view_forced=true</query>
         <report/>
         <roles/>
         <sys_class_name>sys_app_module</sys_class_name>
@@ -24,7 +24,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>eb0a47081bdc5890a89720a8ec4bcbb3</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name>Cross Scope Privileges</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -32,7 +32,7 @@
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_app_module_eb0a47081bdc5890a89720a8ec4bcbb3</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-04-16 08:15:48</sys_updated_on>
+        <sys_updated_on>2020-04-16 13:08:46</sys_updated_on>
         <timeline_page/>
         <title>Cross Scope Privileges</title>
         <uncancelable>false</uncancelable>
