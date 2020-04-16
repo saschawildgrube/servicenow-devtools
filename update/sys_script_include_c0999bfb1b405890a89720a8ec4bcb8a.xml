@@ -5,7 +5,7 @@
         <api_name>x_snc_devtools.RenderDateTime</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description/>
+        <description>Render a time value as a string in the following format: "YYYY-MM-DD hh:mm:ss" (24 hours format)</description>
         <name>RenderDateTime</name>
         <script><![CDATA[function RenderDateTime(value)
 {
@@ -24,13 +24,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-04-15 14:37:22</sys_created_on>
         <sys_id>c0999bfb1b405890a89720a8ec4bcb8a</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>RenderDateTime</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_c0999bfb1b405890a89720a8ec4bcb8a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-04-15 14:43:35</sys_updated_on>
+        <sys_updated_on>2020-04-16 09:32:31</sys_updated_on>
     </sys_script_include>
 </record_update>
