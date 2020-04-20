@@ -29,18 +29,23 @@
 	
 	if (Array.isArray(vValue))
 	{
-		strOutput += '\n';
-		vValue.forEach( function(vElement,nKey)
+		if (vValue.length == 0)
 		{
-			strOutput += strLevel+'['+nKey+']: '+RenderValue(vElement,nLevel+1)+'\n';
-		});
+			strOutput += strLevel+'[]';
+		}
+		else
+		{
+			vValue.forEach( function(vElement,nKey)
+			{
+				strOutput += '\n'+strLevel+'['+nKey+']: '+RenderValue(vElement,nLevel+1);
+			});
+		}
 	}
 	else if (bIsObject || (strTypeOf == 'object'))
 	{
-		strOutput += '\n';
 		Object.keys(vValue).forEach( function(strKey)
 		{
-			strOutput += strLevel+'["'+strKey+'"]: '+RenderValue(vValue[strKey],nLevel+1)+'\n';
+			strOutput += '\n'+strLevel+'["'+strKey+'"]: '+RenderValue(vValue[strKey],nLevel+1);
 		});
 	}
 	else
@@ -53,13 +58,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 09:04:23</sys_created_on>
         <sys_id>a6e04b581bd38450a89720a8ec4bcbc8</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_mod_count>11</sys_mod_count>
         <sys_name>RenderValue</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_a6e04b581bd38450a89720a8ec4bcbc8</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-03-27 13:46:00</sys_updated_on>
+        <sys_updated_on>2020-04-20 15:23:00</sys_updated_on>
     </sys_script_include>
 </record_update>
