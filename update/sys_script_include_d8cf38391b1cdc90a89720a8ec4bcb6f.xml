@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.GetGroupsFromUser</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>GetGroupsFromUser</name>
+        <script><![CDATA[function GetGroupsFromUser(strUserSysId)
+{
+	strUserSysId = ''+strUserSysId;
+	var aGroups = [];
+	var grUser = new GlideRecord('sys_user');
+	if (grUser.get(strUserSysId) == null)
+	{
+		return aGroups;
+	}
+	var grUserGroups = new GlideRecord('sys_user_grmember');
+	grUserGroups.addQuery('user','=',strUserSysId);
+	grUserGroups.query();
+	while(grUserGroups.next())
+	{
+		aGroups.push(grUserGroups.getValue('group'));
+	}
+	return aGroups;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-04-21 08:37:28</sys_created_on>
+        <sys_id>d8cf38391b1cdc90a89720a8ec4bcb6f</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>GetGroupsFromUser</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_d8cf38391b1cdc90a89720a8ec4bcb6f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-04-21 09:11:19</sys_updated_on>
+    </sys_script_include>
+</record_update>
