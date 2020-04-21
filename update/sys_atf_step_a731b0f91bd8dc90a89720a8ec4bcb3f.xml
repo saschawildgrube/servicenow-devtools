@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-04-21 07:34:27</sys_created_on>
         <sys_id>a731b0f91bd8dc90a89720a8ec4bcb3f</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_a731b0f91bd8dc90a89720a8ec4bcb3f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-04-21 07:34:27</sys_updated_on>
+        <sys_updated_on>2020-04-21 12:26:50</sys_updated_on>
         <table/>
         <test display_value="DevTools - IsEqual">720130f91bd8dc90a89720a8ec4bcb01</test>
         <timeout/>
@@ -36,9 +36,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-04-21 07:34:27</sys_created_on>
         <sys_id>97423cf91bd8dc90a89720a8ec4bcb67</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-04-21 07:34:27</sys_updated_on>
+        <sys_updated_on>2020-04-21 12:26:50</sys_updated_on>
         <value>var strLog = '';&#13;
 function Log(strText)&#13;
 {&#13;
@@ -48,13 +48,14 @@ function Log(strText)&#13;
 {&#13;
 	var bResult = true;&#13;
 	&#13;
-	function TestCase_IsEqual(vInput1, vInput2, vExpected)&#13;
+	function TestCase_IsEqual(vInput1, vInput2, bIgnoreOrder, vExpected)&#13;
 	{&#13;
 		Log('TestCase_IsEqual');&#13;
 		Log('Input1: '+RenderValue(vInput1));&#13;
 		Log('Input2: '+RenderValue(vInput2));&#13;
+		Log('bIgnoreOrder: '+RenderValue(bIgnoreOrder));&#13;
 		Log('Expected: '+RenderValue(vExpected));&#13;
-		var vResult = IsEqual(vInput1,vInput2);&#13;
+		var vResult = IsEqual(vInput1,vInput2,bIgnoreOrder);&#13;
 		Log('Result  : '+vResult);&#13;
 		if (vResult != vExpected)&#13;
 		{&#13;
@@ -64,24 +65,27 @@ function Log(strText)&#13;
 		Log('');&#13;
 	}&#13;
 	&#13;
-	TestCase_IsEqual(null,false,false);&#13;
+	TestCase_IsEqual(null,false,false,false);&#13;
 	&#13;
-	TestCase_IsEqual(true,true,true);&#13;
-	TestCase_IsEqual(true,false,false);&#13;
+	TestCase_IsEqual(true,true,false,true);&#13;
+	TestCase_IsEqual(true,false,false,false);&#13;
 &#13;
-	TestCase_IsEqual(42,42,true);&#13;
-	TestCase_IsEqual(43,42,false);&#13;
+	TestCase_IsEqual(42,42,false,true);&#13;
+	TestCase_IsEqual(43,42,false,false);&#13;
 	&#13;
-	TestCase_IsEqual('','',true);&#13;
-	TestCase_IsEqual('Alpha','Alpha',true);&#13;
-	TestCase_IsEqual('Alpha','Beta',false);&#13;
+	TestCase_IsEqual('','',false,true);&#13;
+	TestCase_IsEqual('Alpha','Alpha',false,true);&#13;
+	TestCase_IsEqual('Alpha','Beta',false,false);&#13;
 &#13;
-	TestCase_IsEqual([],[],true);&#13;
-	TestCase_IsEqual(['Alpha'],['Alpha'],true);&#13;
-	TestCase_IsEqual(['Alpha'],['Beta'],false);&#13;
-	TestCase_IsEqual(['Alpha','Beta'],['Alpha','Beta'],true);&#13;
-	TestCase_IsEqual(['Alpha'],['Alpha','Beta'],false);&#13;
-	TestCase_IsEqual(['Alpha','Beta'],['Alpha'],false);&#13;
+	TestCase_IsEqual([],[],false,true);&#13;
+	TestCase_IsEqual(['Alpha'],['Alpha'],false,true);&#13;
+	TestCase_IsEqual(['Alpha'],['Beta'],false,false);&#13;
+	TestCase_IsEqual(['Alpha','Beta'],['Alpha','Beta'],false,true);&#13;
+	TestCase_IsEqual(['Alpha'],['Alpha','Beta'],false,false);&#13;
+	TestCase_IsEqual(['Alpha','Beta'],['Alpha'],false,false);&#13;
+&#13;
+	TestCase_IsEqual(['Alpha','Beta'],['Beta','Alpha'],true,true);&#13;
+&#13;
 	&#13;
 	stepResult.setOutputMessage(strLog);&#13;
 	return bResult;&#13;

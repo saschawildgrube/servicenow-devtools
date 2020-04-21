@@ -7,21 +7,21 @@
         <inputs/>
         <mugshots_cache_json/>
         <notes/>
-        <order>1</order>
+        <order>8</order>
         <snapshot/>
         <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
         <sys_class_name>sys_atf_step</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-04-21 08:39:46</sys_created_on>
         <sys_id>55e009791b1cdc90a89720a8ec4bcb9a</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>38</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_55e009791b1cdc90a89720a8ec4bcb9a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-04-21 09:05:18</sys_updated_on>
+        <sys_updated_on>2020-04-21 12:24:31</sys_updated_on>
         <table/>
         <test display_value="DevTools - GetGroupsFromUser">a2c0c5791b1cdc90a89720a8ec4bcbc1</test>
         <timeout/>
@@ -36,9 +36,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-04-21 08:39:46</sys_created_on>
         <sys_id>844109791b1cdc90a89720a8ec4bcbe2</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>24</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-04-21 09:05:18</sys_updated_on>
+        <sys_updated_on>2020-04-21 12:24:31</sys_updated_on>
         <value>var strLog = '';&#13;
 function Log(strText)&#13;
 {&#13;
@@ -56,7 +56,7 @@ function Log(strText)&#13;
 		Log('Expected: '+RenderValue(vExpected));&#13;
 		var vResult = GetGroupsFromUser(vInput);&#13;
 		Log('Result  : '+RenderValue(vResult));&#13;
-		if (!IsEqual(vResult,vExpected))&#13;
+		if (!IsEqual(vResult,vExpected,true))&#13;
 		{&#13;
 			bResult = false;&#13;
 			Log('Test case FAILED');&#13;
@@ -64,15 +64,23 @@ function Log(strText)&#13;
 		Log('');&#13;
 	}&#13;
 	&#13;
+	&#13;
+	var stepUserA = steps('9e9ac1f11b5cdc90a89720a8ec4bcbfa');&#13;
+	var strUserA = steps('9e9ac1f11b5cdc90a89720a8ec4bcbfa').user.toString();&#13;
+	var strUserAB = steps('993a41f11b5cdc90a89720a8ec4bcb13').user.toString();&#13;
+	var strGroupA = steps('708981b11b5cdc90a89720a8ec4bcbeb').record_id.toString();&#13;
+	var strGroupB = steps('4e6ac1f11b5cdc90a89720a8ec4bcbd4').record_id.toString();&#13;
+&#13;
+	&#13;
 	TestCase_GetGroupsFromUser('',[]);&#13;
 	&#13;
-	// ALICE is member of TEAM-ALPHA &#13;
-	TestCase_GetGroupsFromUser('18f9f4a1db9c50d0ba15a353059619a0',['1f0afca1db9c50d0ba15a3530596195f']);&#13;
+	Log('User A is member of group A');&#13;
+	TestCase_GetGroupsFromUser(strUserA,[strGroupA]);&#13;
 	&#13;
-	// George Washington is member of US Presidents Group 1 and 2&#13;
+	Log('User AB is member of group A and group B');&#13;
 	TestCase_GetGroupsFromUser(&#13;
-		'67484bb0eb32010045e1a5115206fee6',&#13;
-		['1be289a1eb32010045e1a5115206fea1','69928da1eb32010045e1a5115206fee8']);&#13;
+		strUserAB,&#13;
+		[strGroupA,strGroupB]);&#13;
 		&#13;
 	stepResult.setOutputMessage(strLog);&#13;
 	return bResult;&#13;
