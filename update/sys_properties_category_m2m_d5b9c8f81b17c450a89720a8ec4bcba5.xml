@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties_category_m2m">
     <sys_properties_category_m2m action="INSERT_OR_UPDATE">
-        <category display_value="devtools.instance">c23c90681b1b8450a89720a8ec4bcb8f</category>
+        <category display_value="devtools.instance.debug">c23c90681b1b8450a89720a8ec4bcb8f</category>
         <order>201</order>
         <property display_value="sn_atf.schedule.enabled" name="sn_atf.schedule.enabled">c232794153c3220064a5c2e5dec58783</property>
         <sys_class_name>sys_properties_category_m2m</sys_class_name>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties_category_m2m">
     <sys_properties_category_m2m action="INSERT_OR_UPDATE">
-        <category display_value="devtools.instance">c23c90681b1b8450a89720a8ec4bcb8f</category>
+        <category display_value="devtools.instance.debug">c23c90681b1b8450a89720a8ec4bcb8f</category>
         <order>200</order>
         <property display_value="sn_atf.runner.enabled" name="sn_atf.runner.enabled">99ca5ab55b1022001f80efe5f0f91a05</property>
         <sys_class_name>sys_properties_category_m2m</sys_class_name>
