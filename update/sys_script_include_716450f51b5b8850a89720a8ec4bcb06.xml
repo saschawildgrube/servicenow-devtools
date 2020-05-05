@@ -5,7 +5,7 @@
         <api_name>x_snc_devtools.GetType</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Returns the type of a value</description>
+        <description>Returns the type of a value.</description>
         <name>GetType</name>
         <script><![CDATA[function GetType(vValue)
 {
@@ -13,7 +13,6 @@
 	// https://docs.servicenow.com/bundle/madrid-application-development/page/script/javascript-tools/reference/r_IsJavaObject.html
 	
 	var strType = typeof vValue;
-	Debug('GetType(): typeof: '+strType);
 	if (strType == 'undefined')
 	{
 		return 'undefined';
@@ -39,13 +38,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-03-02 12:22:24</sys_created_on>
         <sys_id>716450f51b5b8850a89720a8ec4bcb06</sys_id>
-        <sys_mod_count>19</sys_mod_count>
+        <sys_mod_count>21</sys_mod_count>
         <sys_name>GetType</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_716450f51b5b8850a89720a8ec4bcb06</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-04-29 09:08:06</sys_updated_on>
+        <sys_updated_on>2020-05-05 09:34:30</sys_updated_on>
     </sys_script_include>
 </record_update>

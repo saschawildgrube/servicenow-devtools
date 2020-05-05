@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_fix">
+    <sys_script_fix action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <before>false</before>
+        <description/>
+        <flush_cache>false</flush_cache>
+        <name>Install</name>
+        <record_for_rollback>false</record_for_rollback>
+        <run_once>true</run_once>
+        <script><![CDATA[function InstallGlobalSystemProperty(strName, strType, strDescription)
+{
+	var grSP = new GlideRecord('sys_properties');
+	grSP.addQuery('name','=',GetStringValue(strName));
+	grSP.query();
+	if (grSP.next())
+	{
+		return grSP.getValue('sys_id');
+	}
+	
+	var grSP = new GlideRecord('sys_properties');
+	grSP.newRecord();
+	grSP.name = GetStringValue(strName);
+	grSP.type = GetStringValue(strType);
+	grSP.description = GetStringValue(strDescription);
+	grSP.sys_scope = 'global';
+	var strSysID = grSP.insert();	
+
+	return strSysID;
+}
+
+function InstallSystemPropertyCategoryMapping(strSystemPropertyCategory, strSystemProperty, nOrder)
+{
+	var grSPC = new GlideRecord('sys_properties_category');
+	grSPC.addQuery('name','=',GetStringValue(strSystemPropertyCategory));
+	grSPC.query();
+	if (grSPC.next() == false)
+	{
+		return false;
+	}
+	var strSystemPropertyCategorySysId = grSPC.getValue('sys_id');
+	
+	var grSP = new GlideRecord('sys_properties');
+	grSP.addQuery('name','=',GetStringValue(strSystemProperty));
+	grSP.query();
+	if (grSP.next() == false)
+	{
+		return false;
+	}
+	var strSystemPropertySysId = grSP.getValue('sys_id');
+
+	
+	var grSPCM2 = new GlideRecord('sys_properties_category_m2m');
+	grSPCM2.addQuery('property','=',strSystemPropertySysId);
+	grSPCM2.addQuery('category','=',strSystemPropertyCategorySysId);
+	grSPCM2.query();
+	if (grSPCM2.next())
+	{
+		return grSPCM2.getValue('sys_id');
+	}	
+	
+	var grSPCM2 = new GlideRecord('sys_properties_category_m2m');
+	grSPCM2.newRecord();
+	grSPCM2.category = strSystemPropertyCategorySysId;
+	grSPCM2.property = strSystemPropertySysId;
+	grSPCM2.order = nOrder;
+	//grSPCM2.sys_scope = 'global';
+	var strSysID = grSPCM2.insert();	
+
+	return strSysID;
+}
+
+function Install()
+{
+	var strSystemPropertySysId = InstallGlobalSystemProperty(
+		'com.glide.apps.include_my_deletes',
+		'boolean',
+		'Controls if the author_elective_update folder should be added into a code repository');
+
+	if (strSystemPropertySysId != false)
+	{
+		Log('DevTools: Install: System property com.glide.apps.include_my_deletes has been installed successfully.');
+	}
+	else
+	{
+		Log('DevTools: Install: Error while installing system property com.glide.apps.include_my_deletes.');
+	}
+
+	var strSystemPropertyCategoryMappingSysId = InstallSystemPropertyCategoryMapping(
+		'devtools.instance.deployment',
+		'com.glide.apps.include_my_deletes',
+		100);
+
+	if (strSystemPropertyCategoryMappingSysId != false)
+	{
+		Log('DevTools: Install: System property category mapping for com.glide.apps.include_my_deletes has been installed successfully.');
+	}
+	else
+	{
+		Log('DevTools: Install: Error while installing system property category mapping for com.glide.apps.include_my_deletes.');
+	}
+}
+
+Install();]]></script>
+        <sys_class_name>sys_script_fix</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-05-05 08:42:37</sys_created_on>
+        <sys_id>690809d21ba81c10a89720a8ec4bcbfc</sys_id>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_name>Install</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_fix_690809d21ba81c10a89720a8ec4bcbfc</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-05-05 10:09:52</sys_updated_on>
+        <unloadable>false</unloadable>
+    </sys_script_fix>
+</record_update>
