@@ -24,8 +24,12 @@
 	grSP.type = GetStringValue(strType);
 	grSP.description = GetStringValue(strDescription);
 	grSP.sys_scope = 'global';
-	var strSysID = grSP.insert();	
-
+	var strSysID = GetStringValue(grSP.insert());
+	if (strSysID == '')
+	{
+		return false;
+	}
+	
 	return strSysID;
 }
 
@@ -65,7 +69,11 @@ function InstallSystemPropertyCategoryMapping(strSystemPropertyCategory, strSyst
 	grSPCM2.property = strSystemPropertySysId;
 	grSPCM2.order = nOrder;
 	//grSPCM2.sys_scope = 'global';
-	var strSysID = grSPCM2.insert();	
+	var strSysID = GetStringValue(grSPCM2.insert());
+	if (strSysID == '')
+	{
+		return false;
+	}
 
 	return strSysID;
 }
@@ -106,14 +114,14 @@ Install();]]></script>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-05 08:42:37</sys_created_on>
         <sys_id>690809d21ba81c10a89720a8ec4bcbfc</sys_id>
-        <sys_mod_count>13</sys_mod_count>
+        <sys_mod_count>14</sys_mod_count>
         <sys_name>Install DevTools</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_fix_690809d21ba81c10a89720a8ec4bcbfc</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-05-08 12:36:12</sys_updated_on>
+        <sys_updated_on>2020-05-08 12:50:34</sys_updated_on>
         <unloadable>false</unloadable>
     </sys_script_fix>
 </record_update>
