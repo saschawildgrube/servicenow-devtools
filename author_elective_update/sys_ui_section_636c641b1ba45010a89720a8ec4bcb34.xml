@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_section action="DELETE" caption="" section_id="636c641b1ba45010a89720a8ec4bcb34" sys_domain="global" table="sys_script_fix" version="3" view="devtools.install">
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>name</element>
+            <position>0</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2020-05-08 09:15:23</sys_created_on>
+            <sys_id>3b6c641b1ba45010a89720a8ec4bcb35</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="sys_script_fix" sys_domain="global" view="NULL">636c641b1ba45010a89720a8ec4bcb34</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2020-05-08 09:15:23</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>active</element>
+            <position>1</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2020-05-08 09:15:23</sys_created_on>
+            <sys_id>336c641b1ba45010a89720a8ec4bcb36</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="sys_script_fix" sys_domain="global" view="NULL">636c641b1ba45010a89720a8ec4bcb34</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2020-05-08 09:15:23</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>unloadable</element>
+            <position>2</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2020-05-08 09:15:23</sys_created_on>
+            <sys_id>b36c641b1ba45010a89720a8ec4bcb36</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="sys_script_fix" sys_domain="global" view="NULL">636c641b1ba45010a89720a8ec4bcb34</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2020-05-08 09:15:23</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.split</element>
+            <position>3</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2020-05-08 09:15:23</sys_created_on>
+            <sys_id>376c641b1ba45010a89720a8ec4bcb36</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="sys_script_fix" sys_domain="global" view="NULL">636c641b1ba45010a89720a8ec4bcb34</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2020-05-08 09:15:23</sys_updated_on>
+            <sys_user/>
+            <type>.split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>sys_scope</element>
+            <position>4</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2020-05-08 09:15:23</sys_created_on>
+            <sys_id>b76c641b1ba45010a89720a8ec4bcb36</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="sys_script_fix" sys_domain="global" view="NULL">636c641b1ba45010a89720a8ec4bcb34</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2020-05-08 09:15:23</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>run_once</element>
+            <position>5</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2020-05-08 09:15:23</sys_created_on>
+            <sys_id>3b6c641b1ba45010a89720a8ec4bcb36</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="sys_script_fix" sys_domain="global" view="NULL">636c641b1ba45010a89720a8ec4bcb34</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2020-05-08 09:15:23</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>flush_cache</element>
+            <position>6</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2020-05-08 09:15:23</sys_created_on>
+            <sys_id>bb6c641b1ba45010a89720a8ec4bcb36</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="sys_script_fix" sys_domain="global" view="NULL">636c641b1ba45010a89720a8ec4bcb34</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2020-05-08 09:15:23</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>before</element>
+            <position>7</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2020-05-08 09:15:23</sys_created_on>
+            <sys_id>3f6c641b1ba45010a89720a8ec4bcb36</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="sys_script_fix" sys_domain="global" view="NULL">636c641b1ba45010a89720a8ec4bcb34</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2020-05-08 09:15:23</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.end_split</element>
+            <position>8</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2020-05-08 09:15:23</sys_created_on>
+            <sys_id>bf6c641b1ba45010a89720a8ec4bcb36</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="sys_script_fix" sys_domain="global" view="NULL">636c641b1ba45010a89720a8ec4bcb34</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2020-05-08 09:15:23</sys_updated_on>
+            <sys_user/>
+            <type>.end_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>description</element>
+            <position>9</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2020-05-08 09:15:23</sys_created_on>
+            <sys_id>336c641b1ba45010a89720a8ec4bcb37</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="sys_script_fix" sys_domain="global" view="NULL">636c641b1ba45010a89720a8ec4bcb34</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2020-05-08 09:15:23</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>script</element>
+            <position>10</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2020-05-08 09:15:23</sys_created_on>
+            <sys_id>b36c641b1ba45010a89720a8ec4bcb37</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="sys_script_fix" sys_domain="global" view="NULL">636c641b1ba45010a89720a8ec4bcb34</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2020-05-08 09:15:23</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_section action="DELETE">
+            <caption/>
+            <header>false</header>
+            <name>sys_script_fix</name>
+            <roles/>
+            <sys_class_name>sys_ui_section</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2020-05-08 09:15:23</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>636c641b1ba45010a89720a8ec4bcb34</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>sys_script_fix</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+            <sys_update_name>sys_ui_section_636c641b1ba45010a89720a8ec4bcb34</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2020-05-08 09:15:23</sys_updated_on>
+            <sys_user/>
+            <title>false</title>
+            <view/>
+            <view_name/>
+        </sys_ui_section>
+    </sys_ui_section>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>8bbd52e6db1a8cd02f68c59705961990</instance_id>
+        <instance_name>empswildgrube1</instance_name>
+        <name>sys_ui_section_636c641b1ba45010a89720a8ec4bcb34</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update><sys_ui_section caption="" section_id="636c641b1ba45010a89720a8ec4bcb34" sys_domain="global" table="sys_script_fix" version="3" view="devtools.install"><sys_ui_element action="INSERT_OR_UPDATE"><element>name</element><position>0</position><sys_created_by>admin</sys_created_by><sys_created_on>2020-05-08 09:15:23</sys_created_on><sys_id>3b6c641b1ba45010a89720a8ec4bcb35</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="sys_script_fix" sys_domain="global" view="NULL">636c641b1ba45010a89720a8ec4bcb34</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-05-08 09:15:23</sys_updated_on><sys_user/><type/></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>active</element><position>1</position><sys_created_by>admin</sys_created_by><sys_created_on>2020-05-08 09:15:23</sys_created_on><sys_id>336c641b1ba45010a89720a8ec4bcb36</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="sys_script_fix" sys_domain="global" view="NULL">636c641b1ba45010a89720a8ec4bcb34</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-05-08 09:15:23</sys_updated_on><sys_user/><type/></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>unloadable</element><position>2</position><sys_created_by>admin</sys_created_by><sys_created_on>2020-05-08 09:15:23</sys_created_on><sys_id>b36c641b1ba45010a89720a8ec4bcb36</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="sys_script_fix" sys_domain="global" view="NULL">636c641b1ba45010a89720a8ec4bcb34</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-05-08 09:15:23</sys_updated_on><sys_user/><type/></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>.split</element><position>3</position><sys_created_by>admin</sys_created_by><sys_created_on>2020-05-08 09:15:23</sys_created_on><sys_id>376c641b1ba45010a89720a8ec4bcb36</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="sys_script_fix" sys_domain="global" view="NULL">636c641b1ba45010a89720a8ec4bcb34</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-05-08 09:15:23</sys_updated_on><sys_user/><type>.split</type></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>sys_scope</element><position>4</position><sys_created_by>admin</sys_created_by><sys_created_on>2020-05-08 09:15:23</sys_created_on><sys_id>b76c641b1ba45010a89720a8ec4bcb36</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="sys_script_fix" sys_domain="global" view="NULL">636c641b1ba45010a89720a8ec4bcb34</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-05-08 09:15:23</sys_updated_on><sys_user/><type/></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>run_once</element><position>5</position><sys_created_by>admin</sys_created_by><sys_created_on>2020-05-08 09:15:23</sys_created_on><sys_id>3b6c641b1ba45010a89720a8ec4bcb36</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="sys_script_fix" sys_domain="global" view="NULL">636c641b1ba45010a89720a8ec4bcb34</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-05-08 09:15:23</sys_updated_on><sys_user/><type/></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>flush_cache</element><position>6</position><sys_created_by>admin</sys_created_by><sys_created_on>2020-05-08 09:15:23</sys_created_on><sys_id>bb6c641b1ba45010a89720a8ec4bcb36</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="sys_script_fix" sys_domain="global" view="NULL">636c641b1ba45010a89720a8ec4bcb34</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-05-08 09:15:23</sys_updated_on><sys_user/><type/></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>before</element><position>7</position><sys_created_by>admin</sys_created_by><sys_created_on>2020-05-08 09:15:23</sys_created_on><sys_id>3f6c641b1ba45010a89720a8ec4bcb36</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="sys_script_fix" sys_domain="global" view="NULL">636c641b1ba45010a89720a8ec4bcb34</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-05-08 09:15:23</sys_updated_on><sys_user/><type/></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>.end_split</element><position>8</position><sys_created_by>admin</sys_created_by><sys_created_on>2020-05-08 09:15:23</sys_created_on><sys_id>bf6c641b1ba45010a89720a8ec4bcb36</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="sys_script_fix" sys_domain="global" view="NULL">636c641b1ba45010a89720a8ec4bcb34</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-05-08 09:15:23</sys_updated_on><sys_user/><type>.end_split</type></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>description</element><position>9</position><sys_created_by>admin</sys_created_by><sys_created_on>2020-05-08 09:15:23</sys_created_on><sys_id>336c641b1ba45010a89720a8ec4bcb37</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="sys_script_fix" sys_domain="global" view="NULL">636c641b1ba45010a89720a8ec4bcb34</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-05-08 09:15:23</sys_updated_on><sys_user/><type/></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>script</element><position>10</position><sys_created_by>admin</sys_created_by><sys_created_on>2020-05-08 09:15:23</sys_created_on><sys_id>b36c641b1ba45010a89720a8ec4bcb37</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="NULL" display_value="" name="sys_script_fix" sys_domain="global" view="NULL">636c641b1ba45010a89720a8ec4bcb34</sys_ui_section><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-05-08 09:15:23</sys_updated_on><sys_user/><type/></sys_ui_element><sys_ui_section action="INSERT_OR_UPDATE"><caption/><header>false</header><name>sys_script_fix</name><roles/><sys_class_name>sys_ui_section</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2020-05-08 09:15:23</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>636c641b1ba45010a89720a8ec4bcb34</sys_id><sys_mod_count>0</sys_mod_count><sys_name>sys_script_fix</sys_name><sys_overrides/><sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package><sys_policy/><sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope><sys_update_name>sys_ui_section_636c641b1ba45010a89720a8ec4bcb34</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-05-08 09:15:23</sys_updated_on><sys_user/><title>false</title><view/><view_name/></sys_ui_section></sys_ui_section></record_update>]]></payload>
+        <payload_hash>83268507</payload_hash>
+        <record_name>Fix Script</record_name>
+        <reverted_from/>
+        <source>a71d0edcdbec5410ba15a3530596190a</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-05-08 09:15:23</sys_created_on>
+        <sys_id>bb6ca41b1ba45010a89720a8ec4bcbec</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>171f391636b0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-05-08 09:15:23</sys_updated_on>
+        <type>Form Layout</type>
+        <update_guid>376ca41be3a45010001c1c373aedbeec</update_guid>
+        <update_guid_history>376ca41be3a45010001c1c373aedbeec:83268507</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-05-08 09:54:43</sys_created_on>
+        <sys_db_object display_value="" name="sys_ui_section">sys_ui_section</sys_db_object>
+        <sys_id>0c8810848fd647d5954df6d48ec70751</sys_id>
+        <sys_metadata>636c641b1ba45010a89720a8ec4bcb34</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>sys_script_fix</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent display_value="Sys Script Fix">ad1022261b120010a89720a8ec4bcb6d</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sys_ui_section_636c641b1ba45010a89720a8ec4bcb34</sys_update_name>
+        <sys_update_version display_value="sys_ui_section_636c641b1ba45010a89720a8ec4bcb34">bb6ca41b1ba45010a89720a8ec4bcbec</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-05-08 09:54:43</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

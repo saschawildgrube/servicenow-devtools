@@ -32,7 +32,8 @@
 		<li>Install the application</li>
 		<li>Enable create operations on table &#160;<a href="/sys_db_object.do?sys_id=sys_properties&amp;sysparm_refkey=name" target="_blank">sys_properties</a>&#160; for all applications.</li>
 		<li>Enable create operation on table&#160;<a href="/sys_db_object.do?sys_id=sys_properties_category_m2m&amp;sysparm_refkey=name" target="_blank">sys_properties_category_m2m</a>&#160;for all applications.</li>
-		<li>Run the Fix Script "Install"</li>
+		<li>Go to the "Install Script" module and run the fix script.</li>
+		<li>Go to the "Install Log" module and check for error messages.</li>
 	</ol>
 	
 </div>	
@@ -43,13 +44,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>20</sys_mod_count>
+        <sys_mod_count>21</sys_mod_count>
         <sys_name>Start</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-05-05 09:57:52</sys_updated_on>
+        <sys_updated_on>2020-05-08 10:11:13</sys_updated_on>
     </sys_ui_page>
 </record_update>

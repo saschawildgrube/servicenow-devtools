@@ -2,9 +2,10 @@
     <sys_script_fix action="INSERT_OR_UPDATE">
         <active>true</active>
         <before>false</before>
-        <description/>
+        <description>This script installs helpful components:&#13;
+1. The system property com.glide.apps.include_my_deletes</description>
         <flush_cache>false</flush_cache>
-        <name>Install</name>
+        <name>Install DevTools</name>
         <record_for_rollback>false</record_for_rollback>
         <run_once>true</run_once>
         <script><![CDATA[function InstallGlobalSystemProperty(strName, strType, strDescription)
@@ -105,14 +106,14 @@ Install();]]></script>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-05 08:42:37</sys_created_on>
         <sys_id>690809d21ba81c10a89720a8ec4bcbfc</sys_id>
-        <sys_mod_count>10</sys_mod_count>
-        <sys_name>Install</sys_name>
+        <sys_mod_count>13</sys_mod_count>
+        <sys_name>Install DevTools</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_fix_690809d21ba81c10a89720a8ec4bcbfc</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-05-05 10:09:52</sys_updated_on>
+        <sys_updated_on>2020-05-08 12:36:12</sys_updated_on>
         <unloadable>false</unloadable>
     </sys_script_fix>
 </record_update>
