@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.TestDataAPI</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>TestDataAPI</name>
+        <script><![CDATA[var TestDataAPI = Class.create();
+TestDataAPI.prototype =
+{
+	initialize:function(strPrefix)
+	{
+		this.m_strPrefix = ''+strPrefix;
+	},
+	
+	Log:function(strFunctionName, vValue)
+	{
+		Log('TestDataAPI.'+strFunctionName+'(): '+GetStringValue(vValue));
+	},
+	
+	GetPrefix:function()
+	{
+		return this.m_strPrefix;
+	},
+	
+	CreateUser:function(strName, aRoles)
+	{
+		this.Log('CreateUser',strName+' '+RenderValue(aRoles));
+		strName = ''+strName;
+		strPrefix = this.GetPrefix();
+		if (Array.isArray(aRoles) == false)
+		{
+			aRoles = [];
+		}
+		var grUser = new GlideRecord('sys_user');
+		var strUserSysId = null;
+		var bDeleted = true;
+		if (grUser.get('user_name',strPrefix+strName))
+		{
+			strUserSysId = grUser.getValue('sys_id');
+			bDeleted = grUser.deleteRecord();
+		}
+		if (bDeleted == true || strUserSysId == null)
+		{
+			grUser.newRecord();
+			grUser.user_name = strPrefix+strName;
+			grUser.first_name = strPrefix+strName;
+			strUserSysId = grUser.insert();
+		}
+
+		if (strUserSysId != null)
+		{
+			var grUserHasRole = new GlideRecord("sys_user_has_role");
+			aRoles.forEach(function(strRole)
+			{
+				if (strRole != '')
+				{
+					var grUserRole = new GlideRecord('sys_user_role');
+					grUserRole.addQuery('name','=',strRole);
+					grUserRole.query();
+					if (grUserRole.getRowCount() == 1)
+					{
+						if (grUserRole.next())
+						{						
+							grUserHasRole.initialize();
+							grUserHasRole.role = grUserRole.sys_id;
+							grUserHasRole.user = strUserSysId;
+							grUserHasRole.insert();
+						}
+					}
+
+				}
+			});
+		}
+	},
+	
+	CreateGroup:function(strName, aUserNames)
+	{	
+		this.Log('CreateTestGroup',strName+' '+RenderValue(aUserNames));
+		strName = ''+strName;
+		strPrefix = this.GetPrefix();
+		if (Array.isArray(aUserNames) == false)
+		{
+			aUserNames = [];
+		}
+		var grGroupToDelete = new GlideRecord('sys_user_group');
+		grGroupToDelete.addQuery('name','=',strPrefix+strName);
+		grGroupToDelete.query();
+		grGroupToDelete.deleteMultiple();
+
+		var grGroup = new GlideRecord('sys_user_group');
+		grGroup.newRecord();
+		grGroup.name = strPrefix+strName;
+		var strGroupSysId = grGroup.insert();
+		this.Log('CreateTestGroup','grGroup.insert returned: '+strGroupSysId);
+
+		if (strGroupSysId != null)
+		{
+			var grGroupMember = new GlideRecord('sys_user_grmember');
+			aUserNames.forEach(function(strUserName)
+			{
+				if (strUserName != '')
+				{
+					var grUser = new GlideRecord("sys_user");
+					if (grUser.get('user_name',strPrefix+strUserName))
+					{						
+						grGroupMember.initialize();
+						grGroupMember.group = strGroupSysId;
+						grGroupMember.user = grUser.sys_id;
+						grGroupMember.insert();
+					}
+
+				}
+			});
+		}		
+	},
+	
+	
+	CreateIncident:function(strName, strCallerUserName, strAssignmentGroupName)
+	{
+		this.Log('CreateIncident',strName+' '+strCallerUserName+' '+strAssignmentGroupName);		
+		
+		var strPrefix = this.GetPrefix(); 
+		strName = ''+strName;
+		strCallerUserName = ''+strCallerUserName;
+		strAssignmentGroupName = ''+strAssignmentGroupName;
+
+
+		var grIncidentToDelete = new GlideRecord('incident');
+		grIncidentToDelete.addQuery('short_description','=',strPrefix+strName);
+		grIncidentToDelete.query();
+		grIncidentToDelete.deleteMultiple();
+
+		var strCallerUserSysId = '';
+		if (strCallerUserName != '')
+		{
+			var grUser = new GlideRecord("sys_user");
+			if (grUser.get('user_name',strPrefix+strCallerUserName))
+			{
+				strCallerUserSysId = grUser.sys_id;
+			}
+		}		
+		
+		var strAssignmentGroupSysId = '';
+		if (strAssignmentGroupName != '')
+		{
+			var grGroup = new GlideRecord("sys_user_group");
+			if (grGroup.get('name',strPrefix+strAssignmentGroupName))
+			{
+				strAssignmentGroupSysId = grGroup.sys_id;
+			}
+		}
+		
+		var grIncident = new GlideRecord('incident');
+		grIncident.newRecord();
+		grIncident.short_description = strPrefix+strName;
+		grIncident.caller_id = strCallerUserSysId;
+		grIncident.assignment_group = strAssignmentGroupSysId;
+		var strIncidentSysId = grIncident.insert();
+		this.Log('CreateIncident','grIncident.insert returned: '+strIncidentSysId);		
+	},
+	
+	
+	CreateChangeRequest:function(strName, strOpenedByUserName, strAssignmentGroupName)
+	{
+		this.Log('CreateChange',strName+' '+strOpenedByUserName+' '+strAssignmentGroupName);		
+		
+		var strPrefix = this.GetPrefix(); 
+		strName = ''+strName;
+		strOpenedByUserName = ''+strOpenedByUserName;
+		strAssignmentGroupName = ''+strAssignmentGroupName;
+
+
+		var grChangeRequestToDelete = new GlideRecord('change_request');
+		grChangeRequestToDelete.addQuery('short_description','=',strPrefix+strName);
+		grChangeRequestToDelete.query();
+		grChangeRequestToDelete.deleteMultiple();
+
+		var strOpenedByUserSysId = '';
+		if (strOpenedByUserName != '')
+		{
+			var grUser = new GlideRecord("sys_user");
+			if (grUser.get('user_name',strPrefix+strOpenedByUserName))
+			{
+				strOpenedByUserSysId = grUser.sys_id;
+			}
+		}		
+		
+		var strAssignmentGroupSysId = '';
+		if (strAssignmentGroupName != '')
+		{
+			var grGroup = new GlideRecord("sys_user_group");
+			if (grGroup.get('name',strPrefix+strAssignmentGroupName))
+			{
+				strAssignmentGroupSysId = grGroup.sys_id;
+			}
+		}
+		
+		var grChangeRequest = new GlideRecord('change_request');
+		grChangeRequest.newRecord();
+		grChangeRequest.short_description = strPrefix+strName;
+		grChangeRequest.opened_by = strOpenedByUserSysId;
+		grChangeRequest.assignment_group = strAssignmentGroupSysId;
+		var strChangeRequestSysId = grChangeRequest.insert();
+		this.Log('CreateIncident','grChangeRequest.insert returned: '+strChangeRequestSysId);		
+	},
+	
+	type: 'TestDataAPI'
+	
+	
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-05-13 14:53:39</sys_created_on>
+        <sys_id>1796abb01b78d410a89720a8ec4bcb1e</sys_id>
+        <sys_mod_count>22</sys_mod_count>
+        <sys_name>TestDataAPI</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_1796abb01b78d410a89720a8ec4bcb1e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-05-13 17:00:44</sys_updated_on>
+    </sys_script_include>
+</record_update>

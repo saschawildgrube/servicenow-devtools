@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <copied_from/>
+        <description>Run Server Side Validation Script</description>
+        <display_name>Run Server Side Script</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes>Create the test users, groups and incidents</notes>
+        <order>1</order>
+        <snapshot/>
+        <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-05-13 15:00:25</sys_created_on>
+        <sys_id>697a27b41b78d410a89720a8ec4bcb1e</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>Run Server Side Script</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_step_697a27b41b78d410a89720a8ec4bcb1e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-05-13 17:13:00</sys_updated_on>
+        <table/>
+        <test display_value="DevTools - TestDataAPI">820a6f741b78d410a89720a8ec4bcb44</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=697a27b41b78d410a89720a8ec4bcb1e"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>697a27b41b78d410a89720a8ec4bcb1e</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-05-13 15:00:26</sys_created_on>
+        <sys_id>3e5b63f41b78d410a89720a8ec4bcb22</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-05-13 17:13:00</sys_updated_on>
+        <value>var strLog = '';&#13;
+function Log(strText)&#13;
+{&#13;
+	strLog = strLog + "\n" + strText;&#13;
+}&#13;
+(function(outputs, steps, stepResult, assertEqual)&#13;
+{&#13;
+	var bResult = true;&#13;
+	&#13;
+	function TestCase_GetPrefix(testdata, vExpected)&#13;
+	{&#13;
+		Log('TestCase_GetPrefix');&#13;
+		Log('Expected: '+vExpected);&#13;
+		var vResult = testdata.GetPrefix();&#13;
+		Log('Result  : '+vResult);&#13;
+		if (vResult != vExpected)&#13;
+		{&#13;
+			bResult = false;&#13;
+			Log('Test case FAILED');&#13;
+		}&#13;
+		Log('');&#13;
+	}&#13;
+&#13;
+	var testdata = new TestDataAPI('_ATF_DEVTOOLS_');&#13;
+	&#13;
+	TestCase_GetPrefix(testdata,'_ATF_DEVTOOLS_');&#13;
+	&#13;
+	testdata.CreateUser('ALICE',['itil']);&#13;
+	testdata.CreateGroup('ALPHA',['ALICE']);&#13;
+	testdata.CreateIncident('OUTAGE','ALICE','ALPHA');&#13;
+	testdata.CreateChangeRequest('RELEASE','ALICE','ALPHA');&#13;
+&#13;
+	&#13;
+	stepResult.setOutputMessage(strLog);&#13;
+	return bResult;&#13;
+	&#13;
+})(outputs, steps, stepResult, assertEqual);</value>
+        <variable display_value="">989d9e235324220002c6435723dc3484</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>697a27b41b78d410a89720a8ec4bcb1e</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-05-13 15:00:26</sys_created_on>
+        <sys_id>be5be3b41b78d410a89720a8ec4bcbde</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-05-13 15:00:26</sys_updated_on>
+        <value>3.1</value>
+        <variable display_value="">42f2564b73031300440211d8faf6a777</variable>
+    </sys_variable_value>
+</record_update>
