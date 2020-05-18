@@ -18,7 +18,7 @@ TestDataAPI.prototype =
 	Log:function(strFunctionName, vValue)
 	{
 		var GetStringValue = x_snc_devtools.GetStringValue;
-		Log('TestDataAPI.'+strFunctionName+'(): '+GetStringValue(vValue));
+		Debug('TestDataAPI.'+strFunctionName+'(): '+GetStringValue(vValue));
 	},
 
 	SetPrefix:function(strPrefix)
@@ -57,30 +57,34 @@ TestDataAPI.prototype =
 			strUserSysId = grUser.insert();
 		}
 
-		if (strUserSysId != null)
+		if (strUserSysId == null)
 		{
-			var grUserHasRole = new GlideRecord("sys_user_has_role");
-			aRoles.forEach(function(strRole)
-			{
-				if (strRole != '')
-				{
-					var grUserRole = new GlideRecord('sys_user_role');
-					grUserRole.addQuery('name','=',strRole);
-					grUserRole.query();
-					if (grUserRole.getRowCount() == 1)
-					{
-						if (grUserRole.next())
-						{						
-							grUserHasRole.initialize();
-							grUserHasRole.role = grUserRole.sys_id;
-							grUserHasRole.user = strUserSysId;
-							grUserHasRole.insert();
-						}
-					}
-
-				}
-			});
+			this.Log('CreateUser','Failed to create user '+strName+'!');
+			return null;
 		}
+		this.Log('CreateUser','User '+strName+' has been created.');
+		
+		var grUserHasRole = new GlideRecord("sys_user_has_role");
+		aRoles.forEach(function(strRole)
+		{
+			if (strRole != '')
+			{
+				var grUserRole = new GlideRecord('sys_user_role');
+				grUserRole.addQuery('name','=',strRole);
+				grUserRole.query();
+				if (grUserRole.getRowCount() == 1)
+				{
+					if (grUserRole.next())
+					{						
+						grUserHasRole.initialize();
+						grUserHasRole.role = grUserRole.sys_id;
+						grUserHasRole.user = strUserSysId;
+						grUserHasRole.insert();
+					}
+				}
+
+			}
+		});
 		return strUserSysId;
 	},
 	
@@ -103,27 +107,30 @@ TestDataAPI.prototype =
 		grGroup.newRecord();
 		grGroup.name = strPrefix+strName;
 		var strGroupSysId = grGroup.insert();
-		this.Log('CreateTestGroup','grGroup.insert returned: '+strGroupSysId);
 
-		if (strGroupSysId != null)
+		if (strGroupSysId == null)
 		{
-			var grGroupMember = new GlideRecord('sys_user_grmember');
-			aUserNames.forEach(function(strUserName)
+			this.Log('CreateGroup','Failed to create group '+strName+'!');
+			return null;
+		}
+		this.Log('CreateGroup','Group '+strName+' has been created.');		
+		
+		var grGroupMember = new GlideRecord('sys_user_grmember');
+		aUserNames.forEach(function(strUserName)
+		{
+			if (strUserName != '')
 			{
-				if (strUserName != '')
-				{
-					var grUser = new GlideRecord("sys_user");
-					if (grUser.get('user_name',strPrefix+strUserName))
-					{						
-						grGroupMember.initialize();
-						grGroupMember.group = strGroupSysId;
-						grGroupMember.user = grUser.sys_id;
-						grGroupMember.insert();
-					}
-
+				var grUser = new GlideRecord("sys_user");
+				if (grUser.get('user_name',strPrefix+strUserName))
+				{						
+					grGroupMember.initialize();
+					grGroupMember.group = strGroupSysId;
+					grGroupMember.user = grUser.sys_id;
+					grGroupMember.insert();
 				}
-			});
-		}	
+
+			}
+		});
 		return strGroupSysId;
 	},
 	
@@ -169,7 +176,13 @@ TestDataAPI.prototype =
 		grIncident.caller_id = strCallerUserSysId;
 		grIncident.assignment_group = strAssignmentGroupSysId;
 		var strIncidentSysId = grIncident.insert();
-		this.Log('CreateIncident','grIncident.insert returned: '+strIncidentSysId);		
+		
+		if (strIncidentSysId == null)
+		{
+			this.Log('CreateIncident','Failed to create incident '+strName+'!');
+			return null;
+		}
+		this.Log('CreateIncident','Incident '+strName+' has been created.');				
 		return strIncidentSysId;
 	},
 	
@@ -215,7 +228,12 @@ TestDataAPI.prototype =
 		grChangeRequest.opened_by = strOpenedByUserSysId;
 		grChangeRequest.assignment_group = strAssignmentGroupSysId;
 		var strChangeRequestSysId = grChangeRequest.insert();
-		this.Log('CreateChangeRequest','grChangeRequest.insert returned: '+strChangeRequestSysId);		
+		if (strChangeRequestSysId == null)
+		{
+			this.Log('CreateChangeRequest','Failed to create change request '+strChangeRequestSysId+'!');
+			return null;
+		}
+		this.Log('CreateChangeRequest','Change request '+strName+' has been created.');			
 		return strChangeRequestSysId;
 	},
 	
@@ -227,13 +245,13 @@ TestDataAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-13 14:53:39</sys_created_on>
         <sys_id>1796abb01b78d410a89720a8ec4bcb1e</sys_id>
-        <sys_mod_count>29</sys_mod_count>
+        <sys_mod_count>31</sys_mod_count>
         <sys_name>TestDataAPI</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_1796abb01b78d410a89720a8ec4bcb1e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-05-18 07:31:56</sys_updated_on>
+        <sys_updated_on>2020-05-18 07:50:10</sys_updated_on>
     </sys_script_include>
 </record_update>
