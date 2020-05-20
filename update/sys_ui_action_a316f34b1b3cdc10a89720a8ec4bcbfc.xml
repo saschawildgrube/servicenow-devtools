@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_action">
     <sys_ui_action action="INSERT_OR_UPDATE">
-        <action_name>list</action_name>
+        <action_name>test_rerun</action_name>
         <active>true</active>
-        <client>false</client>
+        <client>true</client>
         <client_script_v2><![CDATA[function onClick(g_form) {
 
 }]]></client_script_v2>
-        <comments>Show the "List" button to navigate back to the record's list view.  </comments>
-        <condition/>
+        <comments>Rerun a test directly from the test results screen.</comments>
+        <condition>sn_atf.AutomatedTestingFramework.isRunnerEnabled() &amp;&amp; current.test.active </condition>
         <form_action>true</form_action>
         <form_button>true</form_button>
         <form_button_v2>false</form_button_v2>
         <form_context_menu>true</form_context_menu>
         <form_link>false</form_link>
         <form_menu_button_v2>false</form_menu_button_v2>
-        <form_style>unstyled</form_style>
+        <form_style>primary</form_style>
         <hint/>
-        <isolate_script>false</isolate_script>
+        <isolate_script>true</isolate_script>
         <list_action>false</list_action>
         <list_banner_button>false</list_banner_button>
         <list_button>false</list_button>
@@ -25,31 +25,45 @@
         <list_link>false</list_link>
         <list_save_with_form_button>false</list_save_with_form_button>
         <list_style/>
-        <name>List</name>
-        <onclick/>
-        <order>9999</order>
-        <script><![CDATA[var strUrl = current.getTableName() + "_list.do?";
-gs.setRedirect(strUrl);]]></script>
+        <name>Rerun Test</name>
+        <onclick>pickABrowser()</onclick>
+        <order>0</order>
+        <script><![CDATA[//  !((new GlideImpersonate()).isImpersonating())  && GlideMobileExtensions.getDeviceType() == 'doctype'
+
+function pickABrowser(tableName, newStepFormTitle, stepQuery)
+{
+	var sysId = g_form.getValue('test');
+	
+	var dialog = new GlideModal("atf_pick_a_browser");
+	dialog.setPreference("test_sys_id", sysId);
+	dialog.setWidth("600");
+	dialog.setTitle(new GwtMessage().getMessage("Pick a Browser"));
+	dialog.setPreference("focusTrap", true);
+	dialog.setPreference("table_name", tableName);
+	dialog.setPreference("new_step_form_title", newStepFormTitle);
+	dialog.setPreference("step_query", stepQuery);
+	dialog.render();
+}]]></script>
         <show_insert>true</show_insert>
         <show_multiple_update>false</show_multiple_update>
         <show_query>false</show_query>
         <show_update>true</show_update>
         <sys_class_name>sys_ui_action</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2020-05-20 14:45:21</sys_created_on>
+        <sys_created_on>2020-05-20 15:37:46</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
-        <sys_id>d29ae78f1bf8dc10a89720a8ec4bcbd6</sys_id>
-        <sys_mod_count>2</sys_mod_count>
-        <sys_name>List</sys_name>
+        <sys_id>a316f34b1b3cdc10a89720a8ec4bcbfc</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>Rerun Test</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
-        <sys_update_name>sys_ui_action_d29ae78f1bf8dc10a89720a8ec4bcbd6</sys_update_name>
+        <sys_update_name>sys_ui_action_a316f34b1b3cdc10a89720a8ec4bcbfc</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-05-20 15:42:14</sys_updated_on>
-        <table>global</table>
+        <sys_updated_on>2020-05-20 15:44:14</sys_updated_on>
+        <table>sys_atf_test_result</table>
         <ui11_compatible>true</ui11_compatible>
         <ui16_compatible>false</ui16_compatible>
     </sys_ui_action>
