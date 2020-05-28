@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <copied_from/>
+        <description>Run Server Side Validation Script</description>
+        <display_name>Run Server Side Script</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>4</order>
+        <snapshot/>
+        <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-05-28 08:17:24</sys_created_on>
+        <sys_id>601e53a9dbc5d010ba15a35305961940</sys_id>
+        <sys_mod_count>14</sys_mod_count>
+        <sys_name>Run Server Side Script</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_step_601e53a9dbc5d010ba15a35305961940</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-05-28 08:37:41</sys_updated_on>
+        <table/>
+        <test display_value="DevTools - GetRecordFromTestStep">8edd9f69dbc5d010ba15a353059619a0</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=601e53a9dbc5d010ba15a35305961940"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>601e53a9dbc5d010ba15a35305961940</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-05-28 08:17:24</sys_created_on>
+        <sys_id>9dfe53a9dbc5d010ba15a35305961995</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-05-28 08:37:41</sys_updated_on>
+        <value>var strLog = '';&#13;
+function Log(strText)&#13;
+{&#13;
+	strLog = strLog + "\n" + strText;&#13;
+}&#13;
+(function(outputs, steps, stepResult, assertEqual)&#13;
+{&#13;
+	var bResult = true;&#13;
+	&#13;
+	function FunctionXXX(vInput)&#13;
+	{&#13;
+		return 'Hello '+vInput;&#13;
+	}&#13;
+&#13;
+	function TestCase_GetRecordFromTestStep(vInputSysId, vInputTable, vExpected)&#13;
+	{&#13;
+		Log('TestCase_GetRecordFromTestStep ');&#13;
+		Log('Input SysId: '+vInputSysId);&#13;
+		Log('Input table: '+vInputTable);&#13;
+		Log('Expected: '+RenderValue(vExpected));&#13;
+		var vResultSysId = GetRecordFromTestStep(vInputSysId);&#13;
+		var vResult = false;&#13;
+		var gr = new GlideRecord(vInputTable);&#13;
+		if (gr.get(vResultSysId))&#13;
+		{&#13;
+			vResult = true;&#13;
+		}&#13;
+		&#13;
+		Log('Result  : '+RenderValue(vResult));&#13;
+		if (vResult != vExpected)&#13;
+		{&#13;
+			bResult = false;&#13;
+			Log('Test case FAILED');&#13;
+		}&#13;
+		Log('');&#13;
+	}&#13;
+	&#13;
+	TestCase_GetRecordFromTestStep(false,'x_snc_devtools_test',false);&#13;
+	TestCase_GetRecordFromTestStep('','x_snc_devtools_test',false);&#13;
+	TestCase_GetRecordFromTestStep('ce4f97e9dbc5d010ba15a35305961937','x_snc_devtools_test',true);&#13;
+	TestCase_GetRecordFromTestStep('5d13e7eddbc5d010ba15a353059619c6','x_snc_devtools_test',true);&#13;
+	TestCase_GetRecordFromTestStep('72632feddbc5d010ba15a3530596197e','x_snc_devtools_test',false);&#13;
+	&#13;
+	&#13;
+	stepResult.setOutputMessage(strLog);&#13;
+	return bResult;&#13;
+	&#13;
+})(outputs, steps, stepResult, assertEqual);</value>
+        <variable display_value="">989d9e235324220002c6435723dc3484</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>601e53a9dbc5d010ba15a35305961940</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-05-28 08:17:24</sys_created_on>
+        <sys_id>d5fe53a9dbc5d010ba15a35305961995</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-05-28 08:17:24</sys_updated_on>
+        <value>3.1</value>
+        <variable display_value="">42f2564b73031300440211d8faf6a777</variable>
+    </sys_variable_value>
+</record_update>

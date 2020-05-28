@@ -5,15 +5,30 @@
         <api_name>x_snc_devtools.GetRecordFromTestStep</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description/>
+        <description>Returns the sys_id of the record that has been created or found in the given test step.</description>
         <name>GetRecordFromTestStep</name>
         <script><![CDATA[function GetRecordFromTestStep(strStepSysId)
 {
-	if (steps === undefined)
+	if (steps == undefined)
 	{
 		Debug('GetRecordFromTestStep: steps is undefined');
 		return false;
 	}
+	if (strStepSysId == undefined)
+	{
+		Debug('GetRecordFromTestStep: strStepSysId is undefined');
+		return false;
+	}
+	if (typeof strStepSysId != 'string') 
+	{
+		Debug('GetRecordFromTestStep: strStepSysId is not a string');
+		return false;
+	}
+	if (strStepSysId == '') 
+	{
+		Debug('GetRecordFromTestStep: strStepSysId is an empty string');
+		return false;
+	}	
 	var step = steps(strStepSysId);
 	if (step === undefined)
 	{
@@ -46,13 +61,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-26 13:53:00</sys_created_on>
         <sys_id>2b08d645db455010ba15a35305961945</sys_id>
-        <sys_mod_count>10</sys_mod_count>
+        <sys_mod_count>15</sys_mod_count>
         <sys_name>GetRecordFromTestStep</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_2b08d645db455010ba15a35305961945</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-05-26 14:39:21</sys_updated_on>
+        <sys_updated_on>2020-05-28 08:38:38</sys_updated_on>
     </sys_script_include>
 </record_update>
