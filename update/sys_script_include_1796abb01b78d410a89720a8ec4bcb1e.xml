@@ -185,6 +185,71 @@ TestDataAPI.prototype =
 		this.Log('CreateIncident','Incident '+strName+' has been created.');				
 		return strIncidentSysId;
 	},
+
+	
+	CreateIncidentTask:function(strParentName, strName, strOpenedByUserName, strAssignmentGroupName)
+	{
+		this.Log('CreateIncidentTask',strParentName+' '+strName+' '+strOpenedByUserName+' '+strAssignmentGroupName);		
+		
+		var strPrefix = this.GetPrefix(); 
+		strParentName = ''+strParentName;
+		strName = ''+strName;
+		strOpenedByUserName = ''+strOpenedByUserName;
+		strAssignmentGroupName = ''+strAssignmentGroupName;
+
+		var strShortDescription = strPrefix+strParentName+'_'+strName;
+		
+		var grIncidentTaskToDelete = new GlideRecord('incident_task');
+		grIncidentTaskToDelete.addQuery('short_description','=',strShortDescription);
+		grIncidentTaskToDelete.query();
+		grIncidentTaskToDelete.deleteMultiple();
+
+		var strOpenedByUserSysId = '';
+		if (strOpenedByUserName != '')
+		{
+			var grUser = new GlideRecord('sys_user');
+			if (grUser.get('user_name',strPrefix+strOpenedByUserName))
+			{
+				strOpenedByUserSysId = grUser.sys_id;
+			}
+		}		
+		
+		var strAssignmentGroupSysId = '';
+		if (strAssignmentGroupName != '')
+		{
+			var grGroup = new GlideRecord('sys_user_group');
+			if (grGroup.get('name',strPrefix+strAssignmentGroupName))
+			{
+				strAssignmentGroupSysId = grGroup.sys_id;
+			}
+		}
+		
+		var strIncidentSysId = '';
+		if (strParentName != '')
+		{
+			var grIncident = new GlideRecord('incident');
+			if (grIncident.get('short_description',strPrefix+strParentName))
+			{
+				strIncidentSysId = grIncident.sys_id;
+			}
+		}	
+		
+		var grIncidentTask = new GlideRecord('incident_task');
+		grIncidentTask.newRecord();
+		grIncidentTask.incident = strIncidentSysId;
+		grIncidentTask.short_description = strShortDescription;
+		grIncidentTask.opened_by = strOpenedByUserSysId;
+		grIncidentTask.assignment_group = strAssignmentGroupSysId;
+		var strIncidentTaskSysId = grIncidentTask.insert();
+		
+		if (strIncidentTaskSysId == null)
+		{
+			this.Log('CreateIncidentTask','Failed to create incident task '+strName+'!');
+			return null;
+		}
+		this.Log('CreateIncidentTask','Incident '+strName+' has been created.');				
+		return strIncidentTaskSysId;
+	},
 	
 	
 	CreateChangeRequest:function(strName, strOpenedByUserName, strAssignmentGroupName)
@@ -237,6 +302,14 @@ TestDataAPI.prototype =
 		return strChangeRequestSysId;
 	},
 	
+	CreateChangeTask:function(strParentName, strName, strOpenedByUserName, strAssignmentGroupName)
+	{
+		this.Log('CreateIncidentTask',strParentName+' '+strName+' '+strOpenedByUserName+' '+strAssignmentGroupName);		
+		return '';
+	},
+		
+
+	
 	type: 'TestDataAPI'
 	
 	
@@ -245,13 +318,13 @@ TestDataAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-13 14:53:39</sys_created_on>
         <sys_id>1796abb01b78d410a89720a8ec4bcb1e</sys_id>
-        <sys_mod_count>31</sys_mod_count>
+        <sys_mod_count>36</sys_mod_count>
         <sys_name>TestDataAPI</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_1796abb01b78d410a89720a8ec4bcb1e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-05-18 07:50:10</sys_updated_on>
+        <sys_updated_on>2020-06-08 12:55:20</sys_updated_on>
     </sys_script_include>
 </record_update>

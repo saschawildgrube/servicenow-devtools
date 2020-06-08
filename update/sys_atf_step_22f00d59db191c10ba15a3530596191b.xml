@@ -2,8 +2,8 @@
     <sys_atf_step action="INSERT_OR_UPDATE">
         <active>true</active>
         <copied_from/>
-        <description>Validate there is at least one record in 'change_request' matching query:
-Short description starts with _ATF_DEVTOOLS_RELEASE
+        <description>Validate there is at least one record in 'incident_task' matching query:
+Short description = _ATF_DEVTOOLS_OUTAGE_TASK1
 and Opened by = {{Step 2: Record Query.First record}}
 and Assignment group = {{Step 4: Record Query.First record}}
 With a failure timeout of 5 Seconds</description>
@@ -11,107 +11,107 @@ With a failure timeout of 5 Seconds</description>
         <inputs/>
         <inputs/>
         <mugshots_cache_json/>
-        <notes>Check for change request RELEASE</notes>
-        <order>8</order>
+        <notes>Check for incident task OUTAGE_TASK1</notes>
+        <order>7</order>
         <snapshot/>
         <step_config display_value="Record Query">0270b8005f30220012b44adb7f46666a</step_config>
         <sys_class_name>sys_atf_step</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2020-05-13 16:54:28</sys_created_on>
-        <sys_id>b7d48ccd1bb8d410a89720a8ec4bcb71</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_created_on>2020-06-08 12:24:55</sys_created_on>
+        <sys_id>22f00d59db191c10ba15a3530596191b</sys_id>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name>Record Query</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
-        <sys_update_name>sys_atf_step_b7d48ccd1bb8d410a89720a8ec4bcb71</sys_update_name>
+        <sys_update_name>sys_atf_step_22f00d59db191c10ba15a3530596191b</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-06-08 12:24:56</sys_updated_on>
-        <table>change_request</table>
+        <sys_updated_on>2020-06-08 12:26:35</sys_updated_on>
+        <table>incident_task</table>
         <test display_value="DevTools - TestDataAPI">820a6f741b78d410a89720a8ec4bcb44</test>
         <timeout>1970-01-01 00:00:05</timeout>
         <warning_message/>
     </sys_atf_step>
-    <sys_variable_value action="delete_multiple" query="document_key=b7d48ccd1bb8d410a89720a8ec4bcb71"/>
+    <sys_variable_value action="delete_multiple" query="document_key=22f00d59db191c10ba15a3530596191b"/>
     <sys_variable_value action="INSERT_OR_UPDATE">
         <document>sys_atf_step</document>
-        <document_key>b7d48ccd1bb8d410a89720a8ec4bcb71</document_key>
+        <document_key>22f00d59db191c10ba15a3530596191b</document_key>
         <order>300</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2020-05-13 16:54:28</sys_created_on>
-        <sys_id>0d754ccd1bb8d410a89720a8ec4bcbd0</sys_id>
+        <sys_created_on>2020-06-08 12:24:56</sys_created_on>
+        <sys_id>26118d59db191c10ba15a35305961986</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-05-13 16:54:28</sys_updated_on>
-        <value>change_request</value>
+        <sys_updated_on>2020-06-08 12:24:56</sys_updated_on>
+        <value>incident_task</value>
         <variable display_value="">6fe5f8405f30220012b44adb7f4666e4</variable>
     </sys_variable_value>
     <sys_variable_value action="INSERT_OR_UPDATE">
         <document>sys_atf_step</document>
-        <document_key>b7d48ccd1bb8d410a89720a8ec4bcb71</document_key>
-        <order>200</order>
-        <sys_class_name>sys_variable_value</sys_class_name>
-        <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2020-05-13 16:54:28</sys_created_on>
-        <sys_id>45754ccd1bb8d410a89720a8ec4bcbd0</sys_id>
-        <sys_mod_count>0</sys_mod_count>
-        <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-05-13 16:54:28</sys_updated_on>
-        <value>records_match_query</value>
-        <variable display_value="">dd091e22675003007ba405225685ef69</variable>
-    </sys_variable_value>
-    <sys_variable_value action="INSERT_OR_UPDATE">
-        <document>sys_atf_step</document>
-        <document_key>b7d48ccd1bb8d410a89720a8ec4bcb71</document_key>
+        <document_key>22f00d59db191c10ba15a3530596191b</document_key>
         <order>100</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2020-05-13 16:54:28</sys_created_on>
-        <sys_id>49754ccd1bb8d410a89720a8ec4bcbd0</sys_id>
+        <sys_created_on>2020-06-08 12:24:56</sys_created_on>
+        <sys_id>62118d59db191c10ba15a35305961986</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-05-13 16:54:28</sys_updated_on>
+        <sys_updated_on>2020-06-08 12:24:56</sys_updated_on>
         <value>1</value>
         <variable display_value="">9459c28673103300f660eeadfff6a7dd</variable>
     </sys_variable_value>
     <sys_variable_value action="INSERT_OR_UPDATE">
         <document>sys_atf_step</document>
-        <document_key>b7d48ccd1bb8d410a89720a8ec4bcb71</document_key>
+        <document_key>22f00d59db191c10ba15a3530596191b</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-06-08 12:24:56</sys_created_on>
+        <sys_id>aa118d59db191c10ba15a35305961985</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-06-08 12:24:56</sys_updated_on>
+        <value>records_match_query</value>
+        <variable display_value="">dd091e22675003007ba405225685ef69</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>22f00d59db191c10ba15a3530596191b</document_key>
         <order>400</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2020-05-13 16:54:28</sys_created_on>
-        <sys_id>cd754ccd1bb8d410a89720a8ec4bcbd0</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_created_on>2020-06-08 12:24:56</sys_created_on>
+        <sys_id>e6118d59db191c10ba15a35305961986</sys_id>
+        <sys_mod_count>2</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-05-13 16:54:28</sys_updated_on>
-        <value>short_descriptionSTARTSWITH_ATF_DEVTOOLS_RELEASE^opened_by={{step['ff71fb3c1b78d410a89720a8ec4bcbf7'].first_record}}^assignment_group={{step['d173bbbc1b78d410a89720a8ec4bcb0e'].first_record}}^EQ</value>
+        <sys_updated_on>2020-06-08 12:26:35</sys_updated_on>
+        <value>short_description=_ATF_DEVTOOLS_OUTAGE_TASK1^opened_by={{step['ff71fb3c1b78d410a89720a8ec4bcbf7'].first_record}}^assignment_group={{step['d173bbbc1b78d410a89720a8ec4bcb0e'].first_record}}^EQ</value>
         <variable display_value="">cf167c405f30220012b44adb7f46660d</variable>
     </sys_variable_value>
-    <sys_element_mapping action="delete_multiple" query="id=b7d48ccd1bb8d410a89720a8ec4bcb71"/>
+    <sys_element_mapping action="delete_multiple" query="id=22f00d59db191c10ba15a3530596191b"/>
     <sys_element_mapping action="INSERT_OR_UPDATE">
         <field>enforce_security</field>
-        <id>b7d48ccd1bb8d410a89720a8ec4bcb71</id>
+        <id>22f00d59db191c10ba15a3530596191b</id>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2020-05-13 16:54:28</sys_created_on>
-        <sys_id>01754ccd1bb8d410a89720a8ec4bcbd0</sys_id>
+        <sys_created_on>2020-06-08 12:24:56</sys_created_on>
+        <sys_id>62118d59db191c10ba15a35305961985</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-05-13 16:54:28</sys_updated_on>
+        <sys_updated_on>2020-06-08 12:24:56</sys_updated_on>
         <table>var__m_atf_input_variable_0270b8005f30220012b44adb7f46666a</table>
         <value/>
     </sys_element_mapping>
     <sys_element_mapping action="INSERT_OR_UPDATE">
         <field>field_values</field>
-        <id>b7d48ccd1bb8d410a89720a8ec4bcb71</id>
+        <id>22f00d59db191c10ba15a3530596191b</id>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2020-05-13 16:54:28</sys_created_on>
-        <sys_id>c1754ccd1bb8d410a89720a8ec4bcbd0</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_created_on>2020-06-08 12:24:56</sys_created_on>
+        <sys_id>2a118d59db191c10ba15a35305961985</sys_id>
+        <sys_mod_count>2</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-05-13 16:54:28</sys_updated_on>
+        <sys_updated_on>2020-06-08 12:26:35</sys_updated_on>
         <table>var__m_atf_input_variable_0270b8005f30220012b44adb7f46666a</table>
-        <value>short_descriptionSTARTSWITH_ATF_DEVTOOLS_RELEASE^opened_by={{step['ff71fb3c1b78d410a89720a8ec4bcbf7'].first_record}}^assignment_group={{step['d173bbbc1b78d410a89720a8ec4bcb0e'].first_record}}^EQ</value>
+        <value>short_description=_ATF_DEVTOOLS_OUTAGE_TASK1^opened_by={{step['ff71fb3c1b78d410a89720a8ec4bcbf7'].first_record}}^assignment_group={{step['d173bbbc1b78d410a89720a8ec4bcb0e'].first_record}}^EQ</value>
     </sys_element_mapping>
 </record_update>
