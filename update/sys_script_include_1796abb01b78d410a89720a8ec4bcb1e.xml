@@ -33,12 +33,16 @@ TestDataAPI.prototype =
 	
 	CreateUser:function(strName, aRoles)
 	{
+		var GetStringValue = x_snc_devtools.GetStringValue;
+		var GetArrayValue = x_snc_devtools.GetArrayValue;
+		
 		strName = GetStringValue(strName);
 		aRoles = GetArrayValue(aRoles); 
 		
 		this.Log('CreateUser',strName+' '+RenderValue(aRoles));
 		
 		strPrefix = this.GetPrefix();
+		
 		var grUser = new GlideRecord('sys_user');
 		var strUserSysId = null;
 		var bDeleted = true;
@@ -89,13 +93,16 @@ TestDataAPI.prototype =
 	CreateGroup:function(strName, aUserNames)
 	{	
 		var RenderValue = x_snc_devtools.RenderValue;
+		var GetStringValue = x_snc_devtools.GetStringValue;
+		var GetArrayValue = x_snc_devtools.GetArrayValue;
+
+		strName = GetStringValue(strName);
+		aUserNames = GetArrayValue(aUserNames);
+		
 		this.Log('CreateGroup',strName+' '+RenderValue(aUserNames));
-		strName = ''+strName;
-		strPrefix = this.GetPrefix();
-		if (Array.isArray(aUserNames) == false)
-		{
-			aUserNames = [];
-		}
+	
+		var strPrefix = this.GetPrefix();
+		
 		var grGroupToDelete = new GlideRecord('sys_user_group');
 		grGroupToDelete.addQuery('name','=',strPrefix+strName);
 		grGroupToDelete.query();
@@ -135,13 +142,15 @@ TestDataAPI.prototype =
 	
 	CreateIncident:function(strName, strCallerUserName, strAssignmentGroupName)
 	{
-		this.Log('CreateIncident',strName+' '+strCallerUserName+' '+strAssignmentGroupName);		
-		
-		var strPrefix = this.GetPrefix(); 
-		strName = ''+strName;
-		strCallerUserName = ''+strCallerUserName;
-		strAssignmentGroupName = ''+strAssignmentGroupName;
+		var GetStringValue = x_snc_devtools.GetStringValue;
 
+		strName = GetStringValue(strName);
+		strCallerUserName = GetStringValue(strCallerUserName);
+		strAssignmentGroupName = GetStringValue(strAssignmentGroupName);
+
+		this.Log('CreateIncident',strName+' '+strCallerUserName+' '+strAssignmentGroupName);		
+
+		var strPrefix = this.GetPrefix(); 
 
 		var grIncidentToDelete = new GlideRecord('incident');
 		grIncidentToDelete.addQuery('short_description','=',strPrefix+strName);
@@ -187,13 +196,16 @@ TestDataAPI.prototype =
 	
 	CreateIncidentTask:function(strParentName, strName, strOpenedByUserName, strAssignmentGroupName)
 	{
+		var GetStringValue = x_snc_devtools.GetStringValue;
+
+		strParentName = GetStringValue(strParentName);
+		strName = GetStringValue(strName);
+		strOpenedByUserName = GetStringValue(strOpenedByUserName);
+		strAssignmentGroupName = GetStringValue(strAssignmentGroupName);
+		
 		this.Log('CreateIncidentTask',strParentName+' '+strName+' '+strOpenedByUserName+' '+strAssignmentGroupName);		
 		
 		var strPrefix = this.GetPrefix(); 
-		strParentName = ''+strParentName;
-		strName = ''+strName;
-		strOpenedByUserName = ''+strOpenedByUserName;
-		strAssignmentGroupName = ''+strAssignmentGroupName;
 
 		var strShortDescription = strPrefix+strParentName+'_'+strName;
 		
@@ -252,13 +264,15 @@ TestDataAPI.prototype =
 	
 	CreateChangeRequest:function(strName, strOpenedByUserName, strAssignmentGroupName)
 	{
+		var GetStringValue = x_snc_devtools.GetStringValue;
+
+		strName = GetStringValue(strName);
+		strOpenedByUserName = GetStringValue(strOpenedByUserName);
+		strAssignmentGroupName = GetStringValue(strAssignmentGroupName);
+		
 		this.Log('CreateChangeRequest',strName+' '+strOpenedByUserName+' '+strAssignmentGroupName);		
 		
 		var strPrefix = this.GetPrefix(); 
-		strName = ''+strName;
-		strOpenedByUserName = ''+strOpenedByUserName;
-		strAssignmentGroupName = ''+strAssignmentGroupName;
-
 
 		var grChangeRequestToDelete = new GlideRecord('change_request');
 		grChangeRequestToDelete.addQuery('short_description','=',strPrefix+strName);
@@ -302,13 +316,16 @@ TestDataAPI.prototype =
 	
 	CreateChangeTask:function(strParentName, strName, strOpenedByUserName, strAssignmentGroupName)
 	{
+		var GetStringValue = x_snc_devtools.GetStringValue;
+		
+		strParentName = GetStringValue(strParentName);
+		strName = GetStringValue(strName);
+		strOpenedByUserName = GetStringValue(strOpenedByUserName);
+		strAssignmentGroupName = GetStringValue(strAssignmentGroupName);
+		
 		this.Log('CreateChangeTask',strParentName+' '+strName+' '+strOpenedByUserName+' '+strAssignmentGroupName);		
 		
 		var strPrefix = this.GetPrefix(); 
-		strParentName = ''+strParentName;
-		strName = ''+strName;
-		strOpenedByUserName = ''+strOpenedByUserName;
-		strAssignmentGroupName = ''+strAssignmentGroupName;
 
 		var strShortDescription = strPrefix+strParentName+'_'+strName;
 		
@@ -364,6 +381,126 @@ TestDataAPI.prototype =
 		return strChangeTaskSysId;
 	},
 		
+	CreateProblem:function(strName, strOpenerUserName, strAssignmentGroupName)
+	{
+		var GetStringValue = x_snc_devtools.GetStringValue;
+
+		strName = GetStringValue(strName);
+		strOpenerUserName = GetStringValue(strOpenerUserName);
+		strAssignmentGroupName = GetStringValue(strAssignmentGroupName);
+
+		this.Log('CreateProblem',strName+' '+strOpenerUserName+' '+strAssignmentGroupName);		
+		
+		var strPrefix = this.GetPrefix(); 
+
+
+		var grProblemToDelete = new GlideRecord('problem');
+		grProblemToDelete.addQuery('short_description','=',strPrefix+strName);
+		grProblemToDelete.query();
+		grProblemToDelete.deleteMultiple();
+
+		var strOpenerUserSysId = '';
+		if (strOpenerUserName != '')
+		{
+			var grUser = new GlideRecord("sys_user");
+			if (grUser.get('user_name',strPrefix+strOpenerUserName))
+			{
+				strOpenerUserSysId = grUser.sys_id;
+			}
+		}		
+		
+		var strAssignmentGroupSysId = '';
+		if (strAssignmentGroupName != '')
+		{
+			var grGroup = new GlideRecord("sys_user_group");
+			if (grGroup.get('name',strPrefix+strAssignmentGroupName))
+			{
+				strAssignmentGroupSysId = grGroup.sys_id;
+			}
+		}
+		
+		var grProblem = new GlideRecord('problem');
+		grProblem.newRecord();
+		grProblem.short_description = strPrefix+strName;
+		grProblem.assignment_group = strAssignmentGroupSysId;
+		var strProblemSysId = grProblem.insert();
+		
+		if (strProblemSysId == null)
+		{
+			this.Log('CreateProblem','Failed to create problem '+strName+'!');
+			return null;
+		}
+		this.Log('CreateProblem','Problem '+strName+' has been created.');				
+		return strProblemSysId;
+	},
+
+	
+	CreateIncidentTask:function(strParentName, strName, strOpenedByUserName, strAssignmentGroupName)
+	{
+		var GetStringValue = x_snc_devtools.GetStringValue;
+		
+		strParentName = GetStringValue(strParentName);
+		strName = GetStringValue(strName);
+		strOpenedByUserName = GetStringValue(strOpenedByUserName);
+		strAssignmentGroupName = GetStringValue(strAssignmentGroupName);
+
+		this.Log('CreateProblemTask',strParentName+' '+strName+' '+strOpenedByUserName+' '+strAssignmentGroupName);		
+		
+		var strPrefix = this.GetPrefix(); 
+
+		var strShortDescription = strPrefix+strParentName+'_'+strName;
+		
+		var grProblemTaskToDelete = new GlideRecord('problem_task');
+		grProblemTaskToDelete.addQuery('short_description','=',strShortDescription);
+		grProblemTaskToDelete.query();
+		grProblemTaskToDelete.deleteMultiple();
+
+		var strOpenedByUserSysId = '';
+		if (strOpenedByUserName != '')
+		{
+			var grUser = new GlideRecord('sys_user');
+			if (grUser.get('user_name',strPrefix+strOpenedByUserName))
+			{
+				strOpenedByUserSysId = grUser.sys_id;
+			}
+		}		
+		
+		var strAssignmentGroupSysId = '';
+		if (strAssignmentGroupName != '')
+		{
+			var grGroup = new GlideRecord('sys_user_group');
+			if (grGroup.get('name',strPrefix+strAssignmentGroupName))
+			{
+				strAssignmentGroupSysId = grGroup.sys_id;
+			}
+		}
+		
+		var strProblemSysId = '';
+		if (strParentName != '')
+		{
+			var grProblem = new GlideRecord('problem');
+			if (grProblem.get('short_description',strPrefix+strParentName))
+			{
+				strProblemSysId = grIncident.sys_id;
+			}
+		}	
+		
+		var grProblemTask = new GlideRecord('problem_task');
+		grProblemTask.newRecord();
+		grProblemTask.problem = strProblemSysId;
+		grProblemTask.short_description = strShortDescription;
+		grProblemTask.opened_by = strOpenedByUserSysId;
+		grProblemTask.assignment_group = strAssignmentGroupSysId;
+		var strProblemTaskSysId = grIncidentTask.insert();
+		
+		if (strProblemTaskSysId == null)
+		{
+			this.Log('CreateProblemTask','Failed to create problem task '+strName+'!');
+			return null;
+		}
+		this.Log('CreateProblemTask','Problem '+strName+' has been created.');				
+		return strProblemTaskSysId;
+	},
 
 	
 	type: 'TestDataAPI'
@@ -374,13 +511,13 @@ TestDataAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-13 14:53:39</sys_created_on>
         <sys_id>1796abb01b78d410a89720a8ec4bcb1e</sys_id>
-        <sys_mod_count>38</sys_mod_count>
+        <sys_mod_count>40</sys_mod_count>
         <sys_name>TestDataAPI</sys_name>
-        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
-        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_1796abb01b78d410a89720a8ec4bcb1e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-06-18 09:29:42</sys_updated_on>
+        <sys_updated_on>2020-07-02 08:52:00</sys_updated_on>
     </sys_script_include>
 </record_update>
