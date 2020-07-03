@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_fix">
-    <sys_script_fix action="INSERT_OR_UPDATE">
-        <active>false</active>
-        <before>false</before>
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.Install</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
         <description>This script installs helpful components:&#13;
 1. The system property com.glide.apps.include_my_deletes</description>
-        <flush_cache>false</flush_cache>
-        <name>Install DevTools</name>
-        <record_for_rollback>false</record_for_rollback>
-        <run_once>true</run_once>
+        <name>Install</name>
         <script><![CDATA[function InstallGlobalSystemProperty(strName, strType, strDescription)
 {
 	var grSP = new GlideRecord('sys_properties');
@@ -107,22 +107,18 @@ function Install()
 	{
 		Log('DevTools: Install: Error while installing system property category mapping for com.glide.apps.include_my_deletes.');
 	}
-}
-
-Install();
-]]></script>
-        <sys_class_name>sys_script_fix</sys_class_name>
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2020-05-05 08:42:37</sys_created_on>
-        <sys_id>690809d21ba81c10a89720a8ec4bcbfc</sys_id>
-        <sys_mod_count>16</sys_mod_count>
-        <sys_name>Install DevTools</sys_name>
+        <sys_created_on>2020-07-03 21:35:10</sys_created_on>
+        <sys_id>339e63591b719050a89720a8ec4bcb3f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Install</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy/>
+        <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
-        <sys_update_name>sys_script_fix_690809d21ba81c10a89720a8ec4bcbfc</sys_update_name>
+        <sys_update_name>sys_script_include_339e63591b719050a89720a8ec4bcb3f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-06-23 15:16:30</sys_updated_on>
-        <unloadable>false</unloadable>
-    </sys_script_fix>
+        <sys_updated_on>2020-07-03 21:35:10</sys_updated_on>
+    </sys_script_include>
 </record_update>

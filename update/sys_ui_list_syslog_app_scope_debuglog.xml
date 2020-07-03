@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update>
-    <sys_ui_list parent="" relationship="" sys_domain="global" table="syslog_app_scope" version="2" view="debuglog">
+    <sys_ui_list parent="" relationship="" sys_domain="global" table="syslog_app_scope" version="2" view="devtoolsdebuglog">
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>sequence</element>
@@ -55,7 +55,7 @@
             <sys_updated_by>admin</sys_updated_by>
             <sys_updated_on>2020-04-16 12:59:13</sys_updated_on>
             <sys_user/>
-            <view display_value="DebugLog" name="debuglog">6bac0494dbdc1c90ba15a353059619db</view>
+            <view display_value="DevTools Debug Log" name="devtoolsdebuglog">6bac0494dbdc1c90ba15a353059619db</view>
             <view_name/>
         </sys_ui_list>
     </sys_ui_list>

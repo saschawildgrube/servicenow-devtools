@@ -55,7 +55,7 @@
             <sys_updated_by>admin</sys_updated_by>
             <sys_updated_on>2020-05-08 09:40:24</sys_updated_on>
             <sys_user/>
-            <view display_value="DevToolsInstall" name="devtoolsinstall">b6bc681b1ba45010a89720a8ec4bcba3</view>
+            <view display_value="DevTools Install" name="devtoolsinstall">b6bc681b1ba45010a89720a8ec4bcba3</view>
             <view_name/>
         </sys_ui_list>
     </sys_ui_list>
