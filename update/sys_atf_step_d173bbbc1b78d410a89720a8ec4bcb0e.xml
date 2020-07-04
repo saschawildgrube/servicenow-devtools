@@ -3,27 +3,27 @@
         <active>true</active>
         <copied_from/>
         <description>Validate there is at least one record in 'sys_user_group' matching query:
-Name = _ATF_DEVTOOLS_ALPHA
+Name = _ATF_DEVTOOLS_TEAM_1
 With a failure timeout of 5 Seconds</description>
         <display_name>Record Query</display_name>
         <inputs/>
         <mugshots_cache_json/>
-        <notes>Check for group ALPHA</notes>
-        <order>4</order>
+        <notes>Check for group TEAM_1</notes>
+        <order>5</order>
         <snapshot/>
         <step_config display_value="Record Query">0270b8005f30220012b44adb7f46666a</step_config>
         <sys_class_name>sys_atf_step</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-13 15:36:18</sys_created_on>
         <sys_id>d173bbbc1b78d410a89720a8ec4bcb0e</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>Record Query</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_d173bbbc1b78d410a89720a8ec4bcb0e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-05-13 15:38:25</sys_updated_on>
+        <sys_updated_on>2020-07-04 10:39:29</sys_updated_on>
         <table>sys_user_group</table>
         <test display_value="DevTools - TestDataAPI">820a6f741b78d410a89720a8ec4bcb44</test>
         <timeout>1970-01-01 00:00:05</timeout>
@@ -80,10 +80,10 @@ With a failure timeout of 5 Seconds</description>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-13 15:36:18</sys_created_on>
         <sys_id>d893f3fc1b78d410a89720a8ec4bcb2a</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-05-13 15:36:18</sys_updated_on>
-        <value>name=_ATF_DEVTOOLS_ALPHA^EQ</value>
+        <sys_updated_on>2020-07-04 10:33:34</sys_updated_on>
+        <value>name=_ATF_DEVTOOLS_TEAM_1^EQ</value>
         <variable display_value="">cf167c405f30220012b44adb7f46660d</variable>
     </sys_variable_value>
 </record_update>

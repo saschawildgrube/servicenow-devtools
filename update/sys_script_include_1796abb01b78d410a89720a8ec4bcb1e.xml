@@ -140,15 +140,16 @@ TestDataAPI.prototype =
 	},
 	
 	
-	CreateIncident:function(strName, strCallerUserName, strAssignmentGroupName)
+	CreateIncident:function(strName, strOpenedByUserName, strCallerUserName, strAssignmentGroupName)
 	{
 		var GetStringValue = x_snc_devtools.GetStringValue;
 
 		strName = GetStringValue(strName);
+		strOpenedByUserName = GetStringValue(strOpenedByUserName);
 		strCallerUserName = GetStringValue(strCallerUserName);
 		strAssignmentGroupName = GetStringValue(strAssignmentGroupName);
 
-		this.Log('CreateIncident',strName+' '+strCallerUserName+' '+strAssignmentGroupName);		
+		this.Log('CreateIncident',strName+' by '+strOpenedByUserName+' for '+strCallerUserName+', assign to '+strAssignmentGroupName);		
 
 		var strPrefix = this.GetPrefix(); 
 
@@ -157,6 +158,16 @@ TestDataAPI.prototype =
 		grIncidentToDelete.query();
 		grIncidentToDelete.deleteMultiple();
 
+		var strOpenedByUserSysId = '';
+		if (strOpenedByUserName != '')
+		{
+			var grUser = new GlideRecord("sys_user");
+			if (grUser.get('user_name',strPrefix+strOpenedByUserName))
+			{
+				strOpenedByUserSysId = grUser.sys_id;
+			}
+		}				
+		
 		var strCallerUserSysId = '';
 		if (strCallerUserName != '')
 		{
@@ -180,6 +191,7 @@ TestDataAPI.prototype =
 		var grIncident = new GlideRecord('incident');
 		grIncident.newRecord();
 		grIncident.short_description = strPrefix+strName;
+		grIncident.opened_by = strOpenedByUserSysId;
 		grIncident.caller_id = strCallerUserSysId;
 		grIncident.assignment_group = strAssignmentGroupSysId;
 		var strIncidentSysId = grIncident.insert();
@@ -262,15 +274,16 @@ TestDataAPI.prototype =
 	},
 	
 	
-	CreateChangeRequest:function(strName, strOpenedByUserName, strAssignmentGroupName)
+	CreateChangeRequest:function(strName, strOpenedByUserName, strRequestedByUserName, strAssignmentGroupName)
 	{
 		var GetStringValue = x_snc_devtools.GetStringValue;
 
 		strName = GetStringValue(strName);
 		strOpenedByUserName = GetStringValue(strOpenedByUserName);
+		strRequestedByUserName = GetStringValue(strRequestedByUserName);
 		strAssignmentGroupName = GetStringValue(strAssignmentGroupName);
 		
-		this.Log('CreateChangeRequest',strName+' '+strOpenedByUserName+' '+strAssignmentGroupName);		
+		this.Log('CreateChangeRequest',strName+' by '+strOpenedByUserName+' for '+strRequestedByUserName+', assign to '+strAssignmentGroupName);		
 		
 		var strPrefix = this.GetPrefix(); 
 
@@ -289,6 +302,16 @@ TestDataAPI.prototype =
 			}
 		}		
 		
+		var strRequestedByUserSysId = '';
+		if (strRequestedByUserName != '')
+		{
+			var grUser = new GlideRecord("sys_user");
+			if (grUser.get('user_name',strPrefix+strRequestedByUserName))
+			{
+				strRequestedByUserSysId = grUser.sys_id;
+			}
+		}	
+		
 		var strAssignmentGroupSysId = '';
 		if (strAssignmentGroupName != '')
 		{
@@ -303,6 +326,7 @@ TestDataAPI.prototype =
 		grChangeRequest.newRecord();
 		grChangeRequest.short_description = strPrefix+strName;
 		grChangeRequest.opened_by = strOpenedByUserSysId;
+		grChangeRequest.requested_by = strRequestedByUserSysId;
 		grChangeRequest.assignment_group = strAssignmentGroupSysId;
 		var strChangeRequestSysId = grChangeRequest.insert();
 		if (strChangeRequestSysId == null)
@@ -381,15 +405,15 @@ TestDataAPI.prototype =
 		return strChangeTaskSysId;
 	},
 		
-	CreateProblem:function(strName, strOpenerUserName, strAssignmentGroupName)
+	CreateProblem:function(strName, strOpenedByUserName, strAssignmentGroupName)
 	{
 		var GetStringValue = x_snc_devtools.GetStringValue;
 
 		strName = GetStringValue(strName);
-		strOpenerUserName = GetStringValue(strOpenerUserName);
+		strOpenedByUserName = GetStringValue(strOpenedByUserName);
 		strAssignmentGroupName = GetStringValue(strAssignmentGroupName);
 
-		this.Log('CreateProblem',strName+' '+strOpenerUserName+' '+strAssignmentGroupName);		
+		this.Log('CreateProblem',strName+' by '+strOpenedByUserName+', assigned to '+strAssignmentGroupName);		
 		
 		var strPrefix = this.GetPrefix(); 
 
@@ -399,13 +423,13 @@ TestDataAPI.prototype =
 		grProblemToDelete.query();
 		grProblemToDelete.deleteMultiple();
 
-		var strOpenerUserSysId = '';
-		if (strOpenerUserName != '')
+		var strOpenedByUserSysId = '';
+		if (strOpenedByUserName != '')
 		{
 			var grUser = new GlideRecord("sys_user");
-			if (grUser.get('user_name',strPrefix+strOpenerUserName))
+			if (grUser.get('user_name',strPrefix+strOpenedByUserName))
 			{
-				strOpenerUserSysId = grUser.sys_id;
+				strOpenedByUserSysId = grUser.sys_id;
 			}
 		}		
 		
@@ -422,6 +446,7 @@ TestDataAPI.prototype =
 		var grProblem = new GlideRecord('problem');
 		grProblem.newRecord();
 		grProblem.short_description = strPrefix+strName;
+		grProblem.opened_by = strOpenedByUserSysId;
 		grProblem.assignment_group = strAssignmentGroupSysId;
 		var strProblemSysId = grProblem.insert();
 		
@@ -444,7 +469,7 @@ TestDataAPI.prototype =
 		strOpenedByUserName = GetStringValue(strOpenedByUserName);
 		strAssignmentGroupName = GetStringValue(strAssignmentGroupName);
 
-		this.Log('CreateProblemTask',strParentName+' '+strName+' '+strOpenedByUserName+' '+strAssignmentGroupName);		
+		this.Log('CreateProblemTask',strParentName+' '+strName+' by '+strOpenedByUserName+', assigned to '+strAssignmentGroupName);		
 		
 		var strPrefix = this.GetPrefix(); 
 
@@ -491,7 +516,7 @@ TestDataAPI.prototype =
 		grProblemTask.short_description = strShortDescription;
 		grProblemTask.opened_by = strOpenedByUserSysId;
 		grProblemTask.assignment_group = strAssignmentGroupSysId;
-		var strProblemTaskSysId = grIncidentTask.insert();
+		var strProblemTaskSysId = grProblemTask.insert();
 		
 		if (strProblemTaskSysId == null)
 		{
@@ -568,13 +593,13 @@ TestDataAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-13 14:53:39</sys_created_on>
         <sys_id>1796abb01b78d410a89720a8ec4bcb1e</sys_id>
-        <sys_mod_count>42</sys_mod_count>
+        <sys_mod_count>47</sys_mod_count>
         <sys_name>TestDataAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_1796abb01b78d410a89720a8ec4bcb1e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-07-02 15:48:25</sys_updated_on>
+        <sys_updated_on>2020-07-04 10:48:19</sys_updated_on>
     </sys_script_include>
 </record_update>

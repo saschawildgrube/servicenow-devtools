@@ -6,7 +6,7 @@
         <display_name>Run Server Side Script</display_name>
         <inputs/>
         <mugshots_cache_json/>
-        <notes>Create test users, groups, incidents, incident tasks, change requests and change tasks</notes>
+        <notes>Create test data</notes>
         <order>1</order>
         <snapshot/>
         <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-13 15:00:25</sys_created_on>
         <sys_id>697a27b41b78d410a89720a8ec4bcb1e</sys_id>
-        <sys_mod_count>12</sys_mod_count>
+        <sys_mod_count>16</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_697a27b41b78d410a89720a8ec4bcb1e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-06-09 11:54:17</sys_updated_on>
+        <sys_updated_on>2020-07-04 10:38:12</sys_updated_on>
         <table/>
         <test display_value="DevTools - TestDataAPI">820a6f741b78d410a89720a8ec4bcb44</test>
         <timeout/>
@@ -36,9 +36,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-13 15:00:26</sys_created_on>
         <sys_id>3e5b63f41b78d410a89720a8ec4bcb22</sys_id>
-        <sys_mod_count>9</sys_mod_count>
+        <sys_mod_count>12</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-06-09 11:54:17</sys_updated_on>
+        <sys_updated_on>2020-07-04 10:38:12</sys_updated_on>
         <value>var strLog = '';&#13;
 function Log(strText)&#13;
 {&#13;
@@ -66,12 +66,24 @@ function Log(strText)&#13;
 	&#13;
 	TestCase_GetPrefix(testdata,'_ATF_DEVTOOLS_');&#13;
 	&#13;
-	testdata.CreateUser('ALICE',['itil']);&#13;
-	testdata.CreateGroup('ALPHA',['ALICE']);&#13;
-	testdata.CreateIncident('OUTAGE','ALICE','ALPHA');&#13;
-	testdata.CreateIncidentTask('OUTAGE','TASK_1','ALICE','ALPHA');&#13;
-	testdata.CreateChangeRequest('RELEASE','ALICE','ALPHA');&#13;
-	testdata.CreateChangeTask('RELEASE','TASK_1','ALICE','ALPHA');&#13;
+	testdata.CreateUser('CALLER',[]);&#13;
+	testdata.CreateUser('REQUESTER',[]);&#13;
+	testdata.CreateUser('OPENER',['itil']);&#13;
+	testdata.CreateUser('APPROVER',['approver']);&#13;
+	testdata.CreateGroup('TEAM_1',['OPENER']);&#13;
+	testdata.CreateIncident('INCIDENT_1','OPENER','CALLER','TEAM_1');&#13;
+	testdata.CreateIncidentTask('INCIDENT_1','TASK_1','OPENER','TEAM_1');&#13;
+	testdata.CreateChangeRequest('CHANGE_REQUEST_1','OPENER','REQUESTER','TEAM_1');&#13;
+	testdata.CreateChangeTask('CHANGE_REQUEST_1','TASK_1','OPENER','TEAM_1');&#13;
+	testdata.CreateProblem('PROBLEM_1','OPENER','TEAM_1');&#13;
+	testdata.CreateProblemTask('PROBLEM_1','TASK_1','OPENER','TEAM_1');&#13;
+	&#13;
+	//testdata.CreateRequest('REQUEST_1','OPENER','REQUESTER','');&#13;
+	//testdata.CreateRequestItem('REQUEST_1','ITEM_1','OPENER','');&#13;
+&#13;
+	//testdata.CreateApproval('','ITEM_1','ALICE','');&#13;
+&#13;
+	&#13;
 &#13;
 	&#13;
 	stepResult.setOutputMessage(strLog);&#13;
