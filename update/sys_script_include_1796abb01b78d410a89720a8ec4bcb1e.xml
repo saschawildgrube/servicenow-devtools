@@ -528,34 +528,43 @@ TestDataAPI.prototype =
 	},
 	
 	
-	/*
-	CreateRequest:function(strName, strOpenerUserName, strRequestedForUserName, strAssignmentGroupName)
+	CreateRequest:function(strName, strOpenedByUserName, strRequestedForUserName, strAssignmentGroupName)
 	{
 		var GetStringValue = x_snc_devtools.GetStringValue;
 
 		strName = GetStringValue(strName);
-		strOpenerUserName = GetStringValue(strOpenerUserName);
+		strOpenedByUserName = GetStringValue(strOpenedByUserName);
+		strRequestedForUserName = GetStringValue(strRequestedForUserName);
 		strAssignmentGroupName = GetStringValue(strAssignmentGroupName);
-
-		this.Log('CreateProblem',strName+' '+strOpenerUserName+' '+strAssignmentGroupName);		
+		
+		this.Log('CreateRequest',strName+' by '+strOpenedByUserName+' for '+strRequestedForUserName+', assign to '+strAssignmentGroupName);		
 		
 		var strPrefix = this.GetPrefix(); 
 
+		var grRequestToDelete = new GlideRecord('sc_request');
+		grRequestToDelete.addQuery('short_description','=',strPrefix+strName);
+		grRequestToDelete.query();
+		grRequestToDelete.deleteMultiple();
 
-		var grProblemToDelete = new GlideRecord('problem');
-		grProblemToDelete.addQuery('short_description','=',strPrefix+strName);
-		grProblemToDelete.query();
-		grProblemToDelete.deleteMultiple();
-
-		var strOpenerUserSysId = '';
-		if (strOpenerUserName != '')
+		var strOpenedByUserSysId = '';
+		if (strOpenedByUserName != '')
 		{
 			var grUser = new GlideRecord("sys_user");
-			if (grUser.get('user_name',strPrefix+strOpenerUserName))
+			if (grUser.get('user_name',strPrefix+strOpenedByUserName))
 			{
-				strOpenerUserSysId = grUser.sys_id;
+				strOpenedByUserSysId = grUser.sys_id;
 			}
 		}		
+		
+		var strRequestedForUserSysId = '';
+		if (strRequestedForUserName != '')
+		{
+			var grUser = new GlideRecord("sys_user");
+			if (grUser.get('user_name',strPrefix+strRequestedForUserName))
+			{
+				strRequestedForUserSysId = grUser.sys_id;
+			}
+		}	
 		
 		var strAssignmentGroupSysId = '';
 		if (strAssignmentGroupName != '')
@@ -567,21 +576,22 @@ TestDataAPI.prototype =
 			}
 		}
 		
-		var grProblem = new GlideRecord('problem');
-		grProblem.newRecord();
-		grProblem.short_description = strPrefix+strName;
-		grProblem.assignment_group = strAssignmentGroupSysId;
-		var strProblemSysId = grProblem.insert();
-		
-		if (strProblemSysId == null)
+		var grRequest = new GlideRecord('sc_request');
+		grRequest.newRecord();
+		grRequest.short_description = strPrefix+strName;
+		grRequest.opened_by = strOpenedByUserSysId;
+		grRequest.requested_for = strRequestedForUserSysId;
+		grRequest.assignment_group = strAssignmentGroupSysId;
+		var strRequestSysId = grRequest.insert();
+		if (strRequestSysId == null)
 		{
-			this.Log('CreateProblem','Failed to create problem '+strName+'!');
+			this.Log('CreateRequest','Failed to create request '+strRequestSysId+'!');
 			return null;
 		}
-		this.Log('CreateProblem','Problem '+strName+' has been created.');				
-		return strProblemSysId;
+		this.Log('CreateRequest','Request '+strName+' has been created.');			
+		return strRequestSysId;
+		
 	},
-	*/
 	
 
 	
@@ -593,13 +603,13 @@ TestDataAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-13 14:53:39</sys_created_on>
         <sys_id>1796abb01b78d410a89720a8ec4bcb1e</sys_id>
-        <sys_mod_count>47</sys_mod_count>
+        <sys_mod_count>52</sys_mod_count>
         <sys_name>TestDataAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_1796abb01b78d410a89720a8ec4bcb1e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-07-04 10:48:19</sys_updated_on>
+        <sys_updated_on>2020-07-04 12:27:53</sys_updated_on>
     </sys_script_include>
 </record_update>
