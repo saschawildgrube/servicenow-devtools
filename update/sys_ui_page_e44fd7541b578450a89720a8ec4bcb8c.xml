@@ -35,12 +35,22 @@
 	<p>To use the full potential of DevTools perform the following steps:</p>
 	<ol>
 		<li>Install the application</li>
-		<li>Enable create operations on table &#160;<a href="/sys_db_object.do?sys_id=sys_properties&amp;sysparm_refkey=name" target="_blank">sys_properties</a>&#160; for all applications.</li>
-		<li>Enable create operations on table&#160;<a href="/sys_db_object.do?sys_id=sys_properties_category_m2m&amp;sysparm_refkey=name" target="_blank">sys_properties_category_m2m</a>&#160;for all applications.</li>
-		<li>Enable create, update and delete operations on table&#160;<a href="/sys_db_object.do?sys_id=sys_user_group&amp;sysparm_refkey=name" target="_blank">sys_user_group</a>&#160;for all applications.</li>
-		<li>Enable delete operations on table&#160;<a href="/sys_db_object.do?sys_id=incident&amp;sysparm_refkey=name" target="_blank">incident</a>&#160;for all applications.</li>
-		<li>Enable delete operations on table&#160;<a href="/sys_db_object.do?sys_id=change_request&amp;sysparm_refkey=name" target="_blank">change_request</a>&#160;for all applications.</li>
-		<li>Go to the "Install Script" module and run the fix script.</li>
+		<li>Enable create, read, write and delete operations for all applications on the following tables:
+			<ol>
+				<li><a href="/sys_db_object.do?sys_id=sys_properties&amp;sysparm_refkey=name" target="_blank">sys_properties</a></li>
+				<li><a href="/sys_db_object.do?sys_id=sys_properties_category_m2m&amp;sysparm_refkey=name" target="_blank">sys_properties_category_m2m</a></li>
+				<li><a href="/sys_db_object.do?sys_id=sys_user_group&amp;sysparm_refkey=name" target="_blank">sys_user_group</a></li>
+				<li><a href="/sys_db_object.do?sys_id=incident&amp;sysparm_refkey=name" target="_blank">incident</a></li>
+				<li><a href="/sys_db_object.do?sys_id=incident_task&amp;sysparm_refkey=name" target="_blank">incident_task</a></li>
+				<li><a href="/sys_db_object.do?sys_id=change_request&amp;sysparm_refkey=name" target="_blank">change_request</a></li>
+				<li><a href="/sys_db_object.do?sys_id=change_task&amp;sysparm_refkey=name" target="_blank">change_task</a></li>
+				<li><a href="/sys_db_object.do?sys_id=problem&amp;sysparm_refkey=name" target="_blank">problem</a></li>
+				<li><a href="/sys_db_object.do?sys_id=problem_task&amp;sysparm_refkey=name" target="_blank">problem_task</a></li>
+				<li><a href="/sys_db_object.do?sys_id=sc_request&amp;sysparm_refkey=name" target="_blank">sc_request</a></li>
+			</ol>
+		</li>
+		
+		<li>Go to the "Install Script" module and execute the script.</li>
 		<li>Go to the "Install Log" module and check for error messages.</li>
 		<li>Go to&#160;<a href="/system_properties_ui.do?sysparm_title=Instance%20Debug%20Options&amp;sysparm_category=devtools.instance.debug" target="_blank">Instance Debug Options</a>&#160;and activate the ATF test execution (if not set already).</li>
 		<li>Run the&#160;<a href="/sys_atf_test_suite.do?sys_id=4a8550391b5b8850a89720a8ec4bcbd9&amp;sysparm_view=DevTools&amp;sysparm_view_forced=true" target="_blank">DevTools Test Suite</a></li>
@@ -48,7 +58,8 @@
 	<h2>Release Notes</h2>
 	<h3>1.2.0 - TODO</h3>
 	<ol>
-		<li>Refactoring of several function in TestDataAPI. Caller and Opener users can now explicitly set.</li>
+		<li>Added TestDataAPI.CreateRequest() and extended the ATF test "DevTools - TestDataAPI"</li>
+		<li>Refactoring of several functions in TestDataAPI. Caller and Opener users can now explicitly set.</li>
 	</ol>	
 	<h3>1.1.0 - 2020-07-03</h3>
 	<ol>
@@ -65,13 +76,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>37</sys_mod_count>
+        <sys_mod_count>43</sys_mod_count>
         <sys_name>Start</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-07-04 10:53:17</sys_updated_on>
+        <sys_updated_on>2020-07-04 12:40:14</sys_updated_on>
     </sys_ui_page>
 </record_update>
