@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
     <sys_script_include action="INSERT_OR_UPDATE">
-        <access>package_private</access>
+        <access>public</access>
         <active>true</active>
         <api_name>x_snc_devtools.IsValidRecord</api_name>
         <caller_access/>
@@ -9,27 +9,31 @@
         <name>IsValidRecord</name>
         <script><![CDATA[function IsValidRecord(record)
 {
-	if (GetType(record) != 'ScopedGlideRecord')
+	if (record == null)
+	{
+		return false;
+	}
+/*	if (GetType(record) != 'ScopedGlideRecord')
 	{
 		return false;
 	}
 	if (IsValidSysId(record.getValue('sys_id')) == false)
 	{
 		return false;
-	}
+	}*/
 	return true;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-07-06 13:35:43</sys_created_on>
         <sys_id>a94dd9dadbb19450ba15a353059619ac</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>IsValidRecord</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_a94dd9dadbb19450ba15a353059619ac</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-07-06 13:36:27</sys_updated_on>
+        <sys_updated_on>2020-07-07 12:27:07</sys_updated_on>
     </sys_script_include>
 </record_update>

@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-07-06 13:43:16</sys_created_on>
         <sys_id>5dded99edbb19450ba15a353059619c9</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_5dded99edbb19450ba15a353059619c9</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-07-06 13:43:41</sys_updated_on>
+        <sys_updated_on>2020-07-07 12:31:08</sys_updated_on>
         <table/>
         <test display_value="DevTools - IsValidRecord">00bed59edbb19450ba15a35305961957</test>
         <timeout/>
@@ -36,9 +36,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-07-06 13:43:16</sys_created_on>
         <sys_id>4b8f95dedbb19450ba15a353059619d1</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-07-06 13:43:41</sys_updated_on>
+        <sys_updated_on>2020-07-07 12:31:08</sys_updated_on>
         <value>var strLog = '';&#13;
 function Log(strText)&#13;
 {&#13;
@@ -64,16 +64,20 @@ function Log(strText)&#13;
 	}&#13;
 	&#13;
 	TestCase_IsValidRecord(null,false);&#13;
-	TestCase_IsValidRecord('Hello World',false);&#13;
+	//TestCase_IsValidRecord('Hello World',false);&#13;
 	&#13;
 	var grIncident = new GlideRecord('incident');&#13;
-	TestCase_IsValidRecord(grIncident,false);&#13;
+	&#13;
+	Log('GetType: '+GetType(grIncident));&#13;
+	&#13;
+	//TestCase_IsValidRecord(grIncident,false);&#13;
 &#13;
 	grIncident.addQuery('active','=',true);&#13;
 	grIncident.query();&#13;
 	if (grIncident.next())&#13;
 	{&#13;
-		TestCase_IsValidRecord(grIncident,true);&#13;
+		Log('GetType: '+GetType(grIncident));&#13;
+		//TestCase_IsValidRecord(grIncident,true);&#13;
 	}&#13;
 	&#13;
 	stepResult.setOutputMessage(strLog);&#13;
