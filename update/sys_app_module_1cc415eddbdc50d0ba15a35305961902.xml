@@ -15,7 +15,7 @@
         <name>syslog_client_trans_det</name>
         <order>104</order>
         <override_menu_roles>false</override_menu_roles>
-        <query>syslog_list.do?sysparm_view=DevTools&amp;sysparm_view_forced=true&amp;sysparm_order=sys_created_on&amp;sysparm_order_direction=desc&amp;sysparm_query=sys_created_onONToday@javascript:gs.beginningOfToday()@javascript:gs.endOfToday()^source=Evaluator^messageNOT LIKE"referrerpolicy" is not defined^messageNOT LIKEdevstudio_config.xml</query>
+        <query>syslog_list.do?sysparm_view=DevTools&amp;sysparm_view_forced=true&amp;sysparm_order=sys_created_on&amp;sysparm_order_direction=desc&amp;sysparm_query=sys_created_on&gt;javascript:gs.beginningOfLast30Minutes()^source=Evaluator^messageNOT LIKE"referrerpolicy" is not defined^messageNOT LIKEdevstudio_config.xml</query>
         <report/>
         <roles/>
         <sys_class_name>sys_app_module</sys_class_name>
@@ -24,7 +24,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>1cc415eddbdc50d0ba15a35305961902</sys_id>
-        <sys_mod_count>9</sys_mod_count>
+        <sys_mod_count>11</sys_mod_count>
         <sys_name>Evaluator Log</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -32,7 +32,7 @@
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_app_module_1cc415eddbdc50d0ba15a35305961902</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-07-05 16:20:23</sys_updated_on>
+        <sys_updated_on>2020-08-14 18:23:13</sys_updated_on>
         <timeline_page/>
         <title>Evaluator Log</title>
         <uncancelable>false</uncancelable>
