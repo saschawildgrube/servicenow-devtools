@@ -12,19 +12,6 @@
 	">
 	<h1>DevTools</h1> 
 	<p>Welcome to the DevTools - created and maintained by&#160;<a href="mailto:sascha.wildgrube@servicenow.com">Sascha Wildgrube</a>.</p>
-	<p>
-		<b>ServiceNow ressources</b>&#160;&#160;
-		<a href="https://developer.servicenow.com" target="_blank">developer</a>&#160;|&#160;
-		<a href="https://community.servicenow.com" target="_blank">community</a>&#160;|&#160;
-		<a href="https://docs.servicenow.com" target="_blank">docs</a>&#160;|&#160;
-		<a href="http://designsystem.servicenow.com" target="_blank">designsystem.servicenow.com</a>&#160;
-	</p>
-	<p>
-		<b>Useful tools</b>&#160;&#160;
-		<a href="https://chrome.google.com/webstore/detail/sn-utils-tools-for-servic/jgaodbdddndbaijmcljdbglhpdhnjobg?hl=en-US" target="_blank">SNUtils Chrome Extension</a>&#160;|&#160;
-		<a href="https://developer.servicenow.com/connect.do#!/share/contents/9650888_xplore_developer_toolkit?v=4.05" target="_blank">Xplore Developer Toolkit</a>&#160;|&#160;
-		<a href="https://developer.servicenow.com/connect.do#!/share/contents/4214057_run_test_from_atf_test_results?v=1&amp;t=PRODUCT_DETAILS" target="_blank">Run Test From ATF Test Results</a>&#160;
-	</p>
 	
 	<h2>System Requirements</h2>
 	<ul>
@@ -61,6 +48,8 @@
 		<li>Added the "Transaction Log" module.</li>
 		<li>"Evaluator Log", "Debug Log" and "App Log" modules only show the last 30 minutes.</li>
 		<li>Added the "Storage Column Aliases" module.</li>
+		<li>RenderValue() can now work properly with nested objects.</li>
+		<li>A testcase has been added for GetType() to check for the type of a ScopedGlideElement.</li>
 	</ol>
 	<h3>1.2.2 - 2020-08-02</h3>
 	<ol>
@@ -91,13 +80,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>52</sys_mod_count>
+        <sys_mod_count>54</sys_mod_count>
         <sys_name>Start</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-08-19 10:09:57</sys_updated_on>
+        <sys_updated_on>2020-08-21 10:42:36</sys_updated_on>
     </sys_ui_page>
 </record_update>
