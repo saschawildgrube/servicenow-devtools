@@ -13,10 +13,10 @@
 	{
 		return false;
 	}
-	if (GetType(record) != 'ScopedGlideRecord')
+/*	if (GetType(record) != 'ScopedGlideRecord')
 	{
 		return false;
-	}
+	}*/
 /*	if (IsValidSysId(record.getValue('sys_id')) == false)
 	{
 		return false;
@@ -27,13 +27,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-07-06 13:35:43</sys_created_on>
         <sys_id>a94dd9dadbb19450ba15a353059619ac</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_name>IsValidRecord</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_a94dd9dadbb19450ba15a353059619ac</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-09-07 12:28:49</sys_updated_on>
+        <sys_updated_on>2020-09-07 12:44:10</sys_updated_on>
     </sys_script_include>
 </record_update>
