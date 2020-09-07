@@ -64,7 +64,7 @@ TestDataAPI.prototype =
 			this.Log('CreateUser','Failed to create user '+strName+'!');
 			return null;
 		}
-		this.Log('CreateUser','User '+strName+' has been created.');
+		this.Log('CreateUser','User '+strName+' has been created. sys_id='+strUserSysId);
 		
 		var grUserHasRole = new GlideRecord("sys_user_has_role");
 		aRoles.forEach(function(strRole)
@@ -118,7 +118,7 @@ TestDataAPI.prototype =
 			this.Log('CreateGroup','Failed to create group '+strName+'!');
 			return null;
 		}
-		this.Log('CreateGroup','Group '+strName+' has been created.');		
+		this.Log('CreateGroup','Group '+strName+' has been created. sys_id='+strGroupSysId);		
 		
 		var grGroupMember = new GlideRecord('sys_user_grmember');
 		aUserNames.forEach(function(strUserName)
@@ -201,7 +201,7 @@ TestDataAPI.prototype =
 			this.Log('CreateIncident','Failed to create incident '+strName+'!');
 			return null;
 		}
-		this.Log('CreateIncident','Incident '+strName+' has been created.');				
+		this.Log('CreateIncident','Incident '+strName+' has been created. sys_id='+strIncidentSysId);				
 		return strIncidentSysId;
 	},
 
@@ -269,7 +269,7 @@ TestDataAPI.prototype =
 			this.Log('CreateIncidentTask','Failed to create incident task '+strName+'!');
 			return null;
 		}
-		this.Log('CreateIncidentTask','Incident '+strName+' has been created.');				
+		this.Log('CreateIncidentTask','Incident '+strName+' has been created. sys_id='+strIncidentTaskSysId);				
 		return strIncidentTaskSysId;
 	},
 	
@@ -334,7 +334,7 @@ TestDataAPI.prototype =
 			this.Log('CreateChangeRequest','Failed to create change request '+strChangeRequestSysId+'!');
 			return null;
 		}
-		this.Log('CreateChangeRequest','Change request '+strName+' has been created.');			
+		this.Log('CreateChangeRequest','Change request '+strName+' has been created. sys_id='+strChangeRequestSysId);			
 		return strChangeRequestSysId;
 	},
 	
@@ -401,7 +401,7 @@ TestDataAPI.prototype =
 			this.Log('CreateChangeTask','Failed to create change task '+strName+'!');
 			return null;
 		}
-		this.Log('CreateChangeTask','Change task '+strName+' has been created.');				
+		this.Log('CreateChangeTask','Change task '+strName+' has been created. sys_id='+strChangeTaskSysId);				
 		return strChangeTaskSysId;
 	},
 		
@@ -455,7 +455,7 @@ TestDataAPI.prototype =
 			this.Log('CreateProblem','Failed to create problem '+strName+'!');
 			return null;
 		}
-		this.Log('CreateProblem','Problem '+strName+' has been created.');				
+		this.Log('CreateProblem','Problem '+strName+' has been created. sys_id='+strProblemSysId);				
 		return strProblemSysId;
 	},
 
@@ -523,7 +523,7 @@ TestDataAPI.prototype =
 			this.Log('CreateProblemTask','Failed to create problem task '+strName+'!');
 			return null;
 		}
-		this.Log('CreateProblemTask','Problem '+strName+' has been created.');				
+		this.Log('CreateProblemTask','Problem '+strName+' has been created. sys_id='+strProblemTaskSysId);				
 		return strProblemTaskSysId;
 	},
 	
@@ -588,7 +588,7 @@ TestDataAPI.prototype =
 			this.Log('CreateRequest','Failed to create request '+strRequestSysId+'!');
 			return null;
 		}
-		this.Log('CreateRequest','Request '+strName+' has been created.');			
+		this.Log('CreateRequest','Request '+strName+' has been created. sys_id='+strRequestSysId);			
 		return strRequestSysId;
 		
 	},
@@ -603,13 +603,13 @@ TestDataAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-13 14:53:39</sys_created_on>
         <sys_id>1796abb01b78d410a89720a8ec4bcb1e</sys_id>
-        <sys_mod_count>53</sys_mod_count>
+        <sys_mod_count>54</sys_mod_count>
         <sys_name>TestDataAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_1796abb01b78d410a89720a8ec4bcb1e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-07-05 17:40:00</sys_updated_on>
+        <sys_updated_on>2020-09-07 13:22:25</sys_updated_on>
     </sys_script_include>
 </record_update>
