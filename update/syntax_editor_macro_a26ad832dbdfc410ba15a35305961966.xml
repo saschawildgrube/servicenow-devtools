@@ -7,14 +7,14 @@ Replace "FunctionXXX" by the function you want to test and adapt the input and e
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-03-05 15:21:25</sys_created_on>
         <sys_id>a26ad832dbdfc410ba15a35305961966</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_name>testscript</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>syntax_editor_macro_a26ad832dbdfc410ba15a35305961966</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-03-27 12:23:51</sys_updated_on>
+        <sys_updated_on>2020-09-09 14:03:08</sys_updated_on>
         <text>var strLog = '';&#13;
 function Log(strText)&#13;
 {&#13;
@@ -22,6 +22,8 @@ function Log(strText)&#13;
 }&#13;
 (function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
+	var RenderValue = x_snc_devtools.RenderValue;&#13;
+&#13;
 	var bResult = true;&#13;
 	&#13;
 	function FunctionXXX(vInput)&#13;
@@ -32,10 +34,10 @@ function Log(strText)&#13;
 	function TestCase_FunctionXXX(vInput, vExpected)&#13;
 	{&#13;
 		Log('TestCase_FunctionXXX');&#13;
-		Log('Input: '+vInput);&#13;
-		Log('Expected: '+vExpected);&#13;
+		Log('Input: '+RenderValue(vInput));&#13;
+		Log('Expected: '+RenderValue(vExpected));&#13;
 		var vResult = FunctionXXX(vInput);&#13;
-		Log('Result  : '+vResult);&#13;
+		Log('Result  : '+RenderValue(vResult));&#13;
 		if (vResult != vExpected)&#13;
 		{&#13;
 			bResult = false;&#13;
