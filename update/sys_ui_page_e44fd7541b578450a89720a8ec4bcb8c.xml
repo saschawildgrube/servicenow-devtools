@@ -19,15 +19,16 @@
 	<h2>Reference</h2>
 	<g2:evaluate var="jvar_strScriptIncludes" jelly="true">
 		var grSSI = new GlideRecord('sys_script_include');
-		grSSI.addEncodedQuery("sys_scope=d689f6901bd38450a89720a8ec4bcbfd");
+		grSSI.addQuery('sys_scope','=','d689f6901bd38450a89720a8ec4bcbfd');
+		grSSI.addQuery('access','=','public');
 		grSSI.orderBy('name');
 		grSSI.query();
 
 		var strScriptIncludes = '';
 		while (grSSI.next())
 		{
-			strScriptIncludes =
-				strScriptIncludes + '<p><b>'+grSSI.getValue('name')+'</b>&#160;'+grSSI.getValue('description')+'</p>';
+			var strDescription = HtmlEncode(grSSI.getValue('description'));
+			strScriptIncludes = strScriptIncludes + '<p><b>'+grSSI.getValue('name')+'</b>&#160;'+strDescription+'</p>';
 		}
 		strScriptIncludes;	
 	</g2:evaluate>
@@ -73,8 +74,9 @@
 	<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>	
 	
 	<h2>Release Notes</h2>
-	<h3>1.2.5 - TODO</h3>
+	<h3>1.3.0 - TODO</h3>
 	<ol>
+		<li>Added function HtmlEncode()</li>
 		<li>Parts of the documentation is generated automatically based on record descriptions.</li>
 	</ol>
 	<h3>1.2.4 - 2020-09-10</h3>
@@ -126,13 +128,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>101</sys_mod_count>
+        <sys_mod_count>105</sys_mod_count>
         <sys_name>Start</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-09-15 16:04:30</sys_updated_on>
+        <sys_updated_on>2020-09-16 12:52:00</sys_updated_on>
     </sys_ui_page>
 </record_update>
