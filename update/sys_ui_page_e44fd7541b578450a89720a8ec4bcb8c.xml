@@ -76,9 +76,10 @@
 	<h2>Release Notes</h2>
 	<h3>1.3.0 - TODO</h3>
 	<ol>
+		<li>Added class TransactionCacheAPI.</li>
 		<li>Added function HtmlEncode().</li>
 		<li>Added function GetKeys().</li>
-		<li>Parts of the documentation is generated automatically based on record descriptions.</li>
+		<li>Part of the documentation is generated automatically based on record descriptions.</li>
 	</ol>
 	<h3>1.2.4 - 2020-09-10</h3>
 	<ol>
@@ -129,13 +130,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>106</sys_mod_count>
+        <sys_mod_count>107</sys_mod_count>
         <sys_name>Start</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-09-23 11:03:23</sys_updated_on>
+        <sys_updated_on>2020-09-23 12:45:15</sys_updated_on>
     </sys_ui_page>
 </record_update>
