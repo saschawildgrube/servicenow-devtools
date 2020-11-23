@@ -64,6 +64,8 @@
 	
 	
 	<h2>Reference</h2>
+	
+	<h3>Script includes</h3>
 	<g2:evaluate var="jvar_strScriptIncludes" jelly="true">
 		var grSSI = new GlideRecord('sys_script_include');
 		grSSI.addQuery('sys_scope','=','d689f6901bd38450a89720a8ec4bcbfd');
@@ -81,6 +83,37 @@
 	</g2:evaluate>
 	<g2:no_escape>$[jvar_strScriptIncludes]</g2:no_escape>
 	
+	
+	<h3>Test step configurations</h3>
+	<p>DevTools contains the following customized test step configurations:</p>
+	
+	<ul>
+	<g2:evaluate var="jvar_strHTML" jelly="true">
+		var HtmlEncode = x_snc_devtools.HtmlEncode;
+		var grSC = new GlideRecord('sys_atf_step_config');
+		grSC.addQuery('sys_scope','=','d689f6901bd38450a89720a8ec4bcbfd');
+		grSC.orderBy('name');
+		grSC.query();
+
+		var strHTML = '';
+		while (grSC.next())
+		{
+			strHTML += '<li>';
+			strHTML += '<a href="/sys_atf_step_config.do?sys_id=' ;
+			strHTML += grSC.sys_id;
+			strHTML += '">';
+			strHTML += grSC.getValue('name');
+			strHTML += '</a>&#160;';
+			strHTML += grSC.getValue('html_description');
+			strHTML += '</li>';
+		}
+		strHTML;	
+	</g2:evaluate>
+	<g2:no_escape>$[jvar_strHTML]</g2:no_escape>
+	</ul>		
+	
+	
+	
 	<h2>License</h2>
 	<p>Copyright 2020 by Sascha Wildgrube</p>
 	<p>Licensed under the Apache License, Version 2.0 (the "License")</p>
@@ -89,9 +122,10 @@
 	<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>	
 	
 	<h2>Release Notes</h2>
-	<h3>1.4.1 - WORK IN PROGRESS</h3>
+	<h3>1.5.0 - WORK IN PROGRESS</h3>
 	<ol>
-		<li>TODO</li>
+		<li>Added test step configuration "DevTools - Check scoped app sanity"</li>
+		<li>Added test step configuration "DevTools - Check table cross scope access"</li>
 	</ol>
 	<h3>1.4.0 - 2020-11-16</h3>
 	<ol>
@@ -154,13 +188,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>120</sys_mod_count>
+        <sys_mod_count>124</sys_mod_count>
         <sys_name>Start</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-11-16 15:53:41</sys_updated_on>
+        <sys_updated_on>2020-11-23 14:16:45</sys_updated_on>
     </sys_ui_page>
 </record_update>
