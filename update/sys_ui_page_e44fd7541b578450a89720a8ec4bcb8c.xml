@@ -45,6 +45,7 @@
 			<ol>
 				<li><a href="/sys_db_object.do?sys_id=sys_properties&amp;sysparm_refkey=name" target="_blank">sys_properties</a></li>
 				<li><a href="/sys_db_object.do?sys_id=sys_properties_category_m2m&amp;sysparm_refkey=name" target="_blank">sys_properties_category_m2m</a></li>
+				<li><a href="/sys_db_object.do?sys_id=sys_user&amp;sysparm_refkey=name" target="_blank">sys_user</a></li>
 				<li><a href="/sys_db_object.do?sys_id=sys_user_group&amp;sysparm_refkey=name" target="_blank">sys_user_group</a></li>
 				<li><a href="/sys_db_object.do?sys_id=incident&amp;sysparm_refkey=name" target="_blank">incident</a></li>
 				<li><a href="/sys_db_object.do?sys_id=incident_task&amp;sysparm_refkey=name" target="_blank">incident_task</a></li>
@@ -86,7 +87,6 @@
 	
 	<h3>Test step configurations</h3>
 	<p>DevTools contains the following customized test step configurations:</p>
-	
 	<ul>
 	<g2:evaluate var="jvar_strHTML" jelly="true">
 		var HtmlEncode = x_snc_devtools.HtmlEncode;
@@ -129,6 +129,7 @@
 		<li>Added test step configurations to the documentation.</li>
 		<li>Added test "DevTools - Installation" to check if all relevant tables are configured according to the installation guide.</li>
 		<li>Added test "DevTools - App Sanity" to check if the app sanity is ok.</li>
+		<li>Added table sys_user to the list of tables which need full cross scope access.</li>
 	</ol>
 	<h3>1.4.0 - 2020-11-16</h3>
 	<ol>
@@ -191,13 +192,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>125</sys_mod_count>
+        <sys_mod_count>128</sys_mod_count>
         <sys_name>Start</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-11-23 15:10:17</sys_updated_on>
+        <sys_updated_on>2020-11-23 15:27:41</sys_updated_on>
     </sys_ui_page>
 </record_update>
