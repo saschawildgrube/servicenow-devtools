@@ -9,10 +9,10 @@
         <description_generator><![CDATA[function generateDescription()
 {
 	var GetStringValue = x_snc_devtools.GetStringValue;
-	var strAppSysId = GetStringValue(step.inputs.u_app);
+	var strAppSysId = GetStringValue(step.inputs.u_application);
 	var grApp = new GlideRecord('sys_app');
+
 	var strAppName = 'App not found!';
-	var strDescription = 'Error: App not found!';
 	if (grApp.get(strAppSysId))
 	{
 		strAppName = grApp.getValue('name') + ' ' + grApp.getValue('version');
@@ -22,7 +22,7 @@
 }
 generateDescription();
 ]]></description_generator>
-        <html_description><![CDATA[<p>Performs a sanity check on a scoped app. E.g. it checks if all contained system properties are not set private and all tests have an empty copy_from field.</p>]]></html_description>
+        <html_description><![CDATA[<p>Performs a sanity check on a scoped app. E.g. it checks if all contained system properties are not set private and all tests have an empty copied_from field.</p>]]></html_description>
         <icon>icon-article-document</icon>
         <inputs/>
         <name>DevTools - Check scoped app sanity</name>
@@ -35,15 +35,63 @@ generateDescription();
 	var GetBoolValue = x_snc_devtools.GetBoolValue;
 	var StringRemoveCharacters = x_snc_devtools.StringRemoveCharacters;
 	
-	stepResult.setSuccess();
-
-	var strAppSysId = inputs.u_app;
-	var strAppName = 'TODO';
+	var bResult = true;
+	var strMessage = '';
 	
-	var strMessage = 'DevTools - Check scoped app sanity: '+strAppName+'\n';
+	var strAppSysId = inputs.u_application;
+	
+	var strAppSysId = GetStringValue(inputs.u_application);
+	var grApp = new GlideRecord('sys_app');
+
+	if (grApp.get(strAppSysId) == false)
+	{
+		var bResult = false;
+		strMessage += 'App not found. Invalid sys_id: '+strAppSysId+'\n';
+	}
+	else
+	{
+		strAppName = grApp.getValue('name') + ' ' + grApp.getValue('version');
+		strMessage += 'Performing sanity checks on the scoped app: "'+strAppName+'"\n';
+
+		// Check sys_properties
+		var grSysProp = new GlideRecord('sys_properties');
+		grSysProp.addQuery('sys_scope','=',strAppSysId);
+		grSysProp.query();
+		while (grSysProp.next())
+		{
+			strMessage += 'Checking system property: "'+GetStringValue(grSysProp.getValue('name'))+'"\n';
+			if (GetBoolValue(grSysProp.getValue('is_private')) == true)
+			{
+				bResult = false;
+				strMessage += 'Failed: is_private is set to true.\n';
+			}
+		}
+		
+		
+		// Check sys_atf_test
+		var grSysAtfTest = new GlideRecord('sys_atf_test');
+		grSysAtfTest.addQuery('sys_scope','=',strAppSysId);
+		grSysAtfTest.query();
+		while (grSysAtfTest.next())
+		{
+			strMessage += 'Checking ATF test: "'+GetStringValue(grSysAtfTest.getValue('name'))+'"\n';
+			if (GetBoolValue(grSysAtfTest.getValue('copied_from')) != '')
+			{
+				bResult = false;
+				strMessage += 'Failed: copied_from should NOT be empty.\n';
+			}
+		}
+		
+		
+		
+		
+		
+		
+	}
+	
+	
 	
 	/*
-	var strMessage = 'DevTools Check cross scope access for table: ['+strTable+']\n';
 
 	var gr = new GlideRecord('sys_db_object');
 
@@ -67,6 +115,15 @@ generateDescription();
 	}
 */
 	
+	
+	if (bResult == true)
+	{
+		stepResult.setSuccess();
+	}
+	else
+	{
+		stepResult.setFailed();
+	}
 	stepResult.setOutputMessage(strMessage);
 	
 	
@@ -77,15 +134,15 @@ generateDescription();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-11-23 13:28:01</sys_created_on>
         <sys_id>786a921f1b6c2090a89720a8ec4bcbc9</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>10</sys_mod_count>
         <sys_name>DevTools - Check scoped app sanity</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_config_786a921f1b6c2090a89720a8ec4bcbc9</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-11-23 13:48:24</sys_updated_on>
-        <template_reminder>Blubb</template_reminder>
+        <sys_updated_on>2020-11-23 15:05:50</sys_updated_on>
+        <template_reminder>TBD</template_reminder>
         <type display_value="Test Step" name="sys_atf_step">0d462a261b160010a89720a8ec4bcb8a</type>
         <wizard_redirect/>
     </sys_atf_step_config>
