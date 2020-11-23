@@ -14,9 +14,9 @@
             <sys_id>e191f7bc1bb11050a89720a8ec4bcbcb</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_name>Value</sys_name>
-            <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+            <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
             <sys_policy/>
-            <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+            <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
             <sys_update_name>sys_documentation_x_snc_devtools_test_value_en</sys_update_name>
             <sys_updated_by>admin</sys_updated_by>
             <sys_updated_on>2020-04-23 12:36:12</sys_updated_on>
