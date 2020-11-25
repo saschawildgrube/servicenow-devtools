@@ -24,7 +24,7 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2020-11-23 14:38:22</sys_updated_on>
         <table/>
-        <test display_value="DevTools - App Sanity">428a6adf1bac2090a89720a8ec4bcba2</test>
+        <test display_value="DevTools - App sanity">428a6adf1bac2090a89720a8ec4bcba2</test>
         <timeout/>
         <warning_message/>
     </sys_atf_step>

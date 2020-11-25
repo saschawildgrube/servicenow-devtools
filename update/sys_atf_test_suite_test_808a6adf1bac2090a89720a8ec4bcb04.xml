@@ -14,7 +14,7 @@
         <sys_update_name>sys_atf_test_suite_test_808a6adf1bac2090a89720a8ec4bcb04</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2020-11-23 14:37:59</sys_updated_on>
-        <test display_value="DevTools - App Sanity">428a6adf1bac2090a89720a8ec4bcba2</test>
+        <test display_value="DevTools - App sanity">428a6adf1bac2090a89720a8ec4bcba2</test>
         <test_suite display_value="DevTools">4a8550391b5b8850a89720a8ec4bcbd9</test_suite>
     </sys_atf_test_suite_test>
 </record_update>
