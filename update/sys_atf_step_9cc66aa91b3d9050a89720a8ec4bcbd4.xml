@@ -9,21 +9,21 @@ With a failure timeout of 5 Seconds</description>
         <inputs/>
         <mugshots_cache_json/>
         <notes>Check for user REQUESTER</notes>
-        <order>5</order>
+        <order>14</order>
         <snapshot/>
         <step_config display_value="Record Query">0270b8005f30220012b44adb7f46666a</step_config>
         <sys_class_name>sys_atf_step</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-07-04 10:58:56</sys_created_on>
         <sys_id>9cc66aa91b3d9050a89720a8ec4bcbd4</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>18</sys_mod_count>
         <sys_name>Record Query</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_9cc66aa91b3d9050a89720a8ec4bcbd4</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-07-04 10:58:56</sys_updated_on>
+        <sys_updated_on>2020-11-30 08:51:35</sys_updated_on>
         <table>sys_user</table>
         <test display_value="DevTools - TestDataAPI">820a6f741b78d410a89720a8ec4bcb44</test>
         <timeout>1970-01-01 00:00:05</timeout>
