@@ -29,14 +29,16 @@
 	<h2>Features</h2>
 	<p>DevTools contains a number of&#160;<b>script includes</b>&#160;with useful javascript functions and classes like a GetType() function that realy works. A few&#160;<b>UI improvements</b>&#160;like the Re-Test button in the test result form and&#160;<b>shortcuts</b>&#160;to various - sometimes hidden - views and system properties in your instance.</p>
 
+	<h2>Disclaimer</h2>
+	<p>DevTools is NOT an officially supported ServiceNow product.</p>
+	<p>DevTools does NOT come with any kind of warranty. If you use it, you own it!</p>
+	
 	<h2>System Requirements</h2>
 	<ul>
 		<li>Madrid, New York, Orlando or Paris</li>
 	</ul>
 	
-	<h3>Disclaimer</h3>
-	<p>DevTools is NOT an officially supported ServiceNow product.</p>
-	<p>DevTools does NOT come with any kind of warranty. If you use it, you own it!</p>
+
 	
 	<h2>Installation</h2>
 	<p>To use the full potential of DevTools perform the following steps:</p>
@@ -45,6 +47,7 @@
 		<li>Paris or later: Add credentials to access GitHub (Use "Basic Auth")</li> 
 		<li>Install the application by importing it from source control in Studio.</li>
 		<li>Switch to global scope</li>
+		<li>Note that the following steps might be considered as a breach of security guidelines and should be validated with those who are responsible for security within the instance!</li>
 		<li>In order to run the installation script which configures new system property categories enable create, read, write and delete operations for all applications on the following tables:
 			<ol>
 				<li><a href="/sys_db_object.do?sys_id=sys_properties&amp;sysparm_refkey=name" target="_blank">sys_properties</a></li>
@@ -128,7 +131,7 @@
 	
 	
 	<h2>License</h2>
-	<p>Copyright 2020 by Sascha Wildgrube</p>
+	<p>Copyright 2020-2021 by Sascha Wildgrube</p>
 	<p>Licensed under the Apache License, Version 2.0 (the "License")</p>
 	<p>You may not DevTools except in compliance with the License.</p>
 	<p>You may obtain a copy of the License at: <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">http://www.apache.org/licenses/LICENSE-2.0</a></p>
@@ -139,6 +142,7 @@
 	<h3>1.6.0 - TODO</h3>
 	<ol>
 		<li>Added function IsTableCrossScopeAccessible() to check if applications from other scopes can perform read, create, update and delete operations on the given table.</li>
+		<li>Added function RunScriptInGlobalScope() to run a script in the global scope from within a scoped application. Note that the function required full cross scope access to the sys_script_include table.</li>
 		<li>IsEqual() now uses type strict comparison and will no longer return true in case of IsEqual(1,"1").</li>
 		<li>The "Rerun Test" button has been renamed to "Run Test" and is now available on all forms that directly refer to an ATF test (including test steps).</li> 
 		<li>The ATF tests TestDataAPI and GetGroupsFromUser now make use of the "DevTools - IsTableCrossScopeAccessible" test step configuration to check if the croos scope access to the tables is configured.</li>
@@ -215,13 +219,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>137</sys_mod_count>
+        <sys_mod_count>141</sys_mod_count>
         <sys_name>Start</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-11-30 10:19:48</sys_updated_on>
+        <sys_updated_on>2021-01-05 15:03:53</sys_updated_on>
     </sys_ui_page>
 </record_update>
