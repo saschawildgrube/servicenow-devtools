@@ -139,6 +139,11 @@
 	
 	<h2>Release Notes</h2>
 
+	<h3>1.6.1 - TODO</h3>
+	<ol>
+		<li></li>
+	</ol>
+	
 	<h3>1.6.0 - 2021-01-14</h3>
 	<ol>
 		<li>Added function IsTableCrossScopeAccessible() to check if applications from other scopes can perform read, create, update and delete operations on the given table.</li>
@@ -146,7 +151,7 @@
 		<li>IsEqual() now uses type strict comparison and will no longer return true in case of IsEqual(1,"1").</li>
 		<li>The "Rerun Test" button has been renamed to "Run Test" and is now available on all forms that directly refer to an ATF test (including test steps).</li> 
 		<li>The ATF tests TestDataAPI and GetGroupsFromUser now make use of the "DevTools - IsTableCrossScopeAccessible" test step configuration to check if the croos scope access to the tables is configured.</li>
-		<li>The ATF test Installation now checks if the system property glide.record.legacy_cross_scope_access_policy_in_script is set to true to avoid cross scope access policy errors. Refer to <a target="_blank" href="https://support.servicenow.com/kb?id=kb_article_view&amp;sys_kb_id=db973947db18eb48feb1a851ca9619b4">KB0711970</a>.</li>
+		<li>The ATF test Installation now checks if the system property glide.record.legacy_cross_scope_access_policy_in_script is set to true to avoid cross scope access policy errors. Refer to&#160;<a target="_blank" href="https://support.servicenow.com/kb?id=kb_article_view&amp;sys_kb_id=db973947db18eb48feb1a851ca9619b4">KB0711970</a>.</li>
 	</ol>
 
 	
@@ -220,13 +225,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>143</sys_mod_count>
+        <sys_mod_count>145</sys_mod_count>
         <sys_name>Start</sys_name>
-        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
-        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-01-14 16:16:32</sys_updated_on>
+        <sys_updated_on>2021-01-14 17:00:29</sys_updated_on>
     </sys_ui_page>
 </record_update>
