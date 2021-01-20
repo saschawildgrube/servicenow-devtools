@@ -11,16 +11,8 @@
 	padding-left: 20px;
 	">
 	<g2:evaluate var="jvar_strTitle" jelly="true">
-		var grApp = new GlideRecord('sys_app');
-		grApp.addQuery('sys_id','=','d689f6901bd38450a89720a8ec4bcbfd');
-		grApp.query();
-
-		var strTitle = '';
-		while (grApp.next())
-		{
-			strTitle = '<h1>'+grApp.getValue('name')+' '+grApp.getValue('version')+'</h1>';
-		}
-		strTitle;	
+		var docapi = new DocumentationAPI('d689f6901bd38450a89720a8ec4bcbfd');
+		docapi.RenderHeader();
 	</g2:evaluate>
 	<g2:no_escape>$[jvar_strTitle]</g2:no_escape>	
 	
@@ -83,52 +75,11 @@
 	<h2>Reference</h2>
 	
 	<h3>Script includes</h3>
-	<g2:evaluate var="jvar_strScriptIncludes" jelly="true">
-		var grSSI = new GlideRecord('sys_script_include');
-		grSSI.addQuery('sys_scope','=','d689f6901bd38450a89720a8ec4bcbfd');
-		grSSI.addQuery('access','=','public');
-		grSSI.orderBy('name');
-		grSSI.query();
-
-		var strScriptIncludes = '';
-		while (grSSI.next())
-		{
-			var strDescription = HtmlEncode(grSSI.getValue('description'));
-			strScriptIncludes = strScriptIncludes + '<p><b>'+grSSI.getValue('name')+'</b>&#160;'+strDescription+'</p>';
-		}
-		strScriptIncludes;	
-	</g2:evaluate>
-	<g2:no_escape>$[jvar_strScriptIncludes]</g2:no_escape>
-	
+	<g2:no_escape>$[docapi.RenderScriptIncludes()]</g2:no_escape>
 	
 	<h3>Test step configurations</h3>
 	<p>DevTools contains the following customized test step configurations:</p>
-	<ul>
-	<g2:evaluate var="jvar_strHTML" jelly="true">
-		var HtmlEncode = x_snc_devtools.HtmlEncode;
-		var grSC = new GlideRecord('sys_atf_step_config');
-		grSC.addQuery('sys_scope','=','d689f6901bd38450a89720a8ec4bcbfd');
-		grSC.orderBy('name');
-		grSC.query();
-
-		var strHTML = '';
-		while (grSC.next())
-		{
-			strHTML += '<li>';
-			strHTML += '<a href="/sys_atf_step_config.do?sys_id=' ;
-			strHTML += grSC.sys_id;
-			strHTML += '">';
-			strHTML += grSC.getValue('name');
-			strHTML += '</a>&#160;';
-			strHTML += grSC.getValue('html_description');
-			strHTML += '</li>';
-		}
-		strHTML;	
-	</g2:evaluate>
-	<g2:no_escape>$[jvar_strHTML]</g2:no_escape>
-	</ul>		
-	
-	
+	<g2:no_escape>$[docapi.RenderTestStepConfigurations()]</g2:no_escape>
 	
 	<h2>License</h2>
 	<p>Copyright 2020-2021 by Sascha Wildgrube</p>
@@ -141,7 +92,7 @@
 
 	<h3>1.7.1 - TODO</h3>
 	<ol>
-		<li></li>
+		<li>Added the DocumentationAPI class to render HTML segments of a documentation page.</li>
 	</ol>
 
 	
@@ -238,13 +189,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>159</sys_mod_count>
+        <sys_mod_count>166</sys_mod_count>
         <sys_name>Start</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-01-20 15:08:14</sys_updated_on>
+        <sys_updated_on>2021-01-20 15:55:18</sys_updated_on>
     </sys_ui_page>
 </record_update>
