@@ -32,6 +32,105 @@ DocumentationAPI.prototype = {
 		return '<h1>'+this.m_strAppName+' '+this.m_strAppVersion+'</h1>';
 	},
 	
+	RenderCopyright: function(nCopyrightYear, strCopyrightHolder)
+	{
+		var strYear = '';
+		nCopyrightYear = GetIntegerValue(nCopyrightYear);
+		strCopyrightHolder = GetStringValue(strCopyrightHolder);
+		var nCurrentYear = GetIntegerValue(new Date().getFullYear());
+		if (nCurrentYear == nCopyrightYear)
+		{
+			strYear = GetStringValue(nCopyrightYear);
+		}
+		else
+		{
+			strYear = GetStringValue(nCopyrightYear)+'-'+GetStringValue(nCurrentYear);
+		}
+		return '<p>Copyright '+strYear+' by '+strCopyrightHolder+'</p>';
+	},
+	
+	RenderLicense: function()
+	{
+		var strLicense = '';
+		
+		strLicense += '<p>Licensed under the Apache License, Version 2.0 (the "License")</p>';
+		strLicense += '<p>You may not use DevTools except in compliance with the License.</p>';
+		strLicense += '<p>You may obtain a copy of the License at: <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">http://www.apache.org/licenses/LICENSE-2.0</a></p>';
+		strLicense += '<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>';
+		return strLicense;
+	},
+	
+	RenderRoles: function()
+	{
+		if (this.m_bInit == false)
+		{
+			return this.RenderError();
+		}	
+		var grUR = new GlideRecord('sys_user_role');
+		grUR.addQuery('sys_scope','=',this.m_strAppSysId);
+		grUR.orderBy('name');
+		grUR.query();
+
+		var strHTML = '<ul>';
+		while (grUR.next())
+		{
+			strHTML += '<li>';
+			strHTML += '<b>' ;
+			strHTML += grUR.getValue('name');
+			strHTML += '</b>&#160;';
+			strHTML += grUR.getValue('description');
+			strHTML += '</li>';
+		}
+		strHTML += '</ul>';
+		return strHTML;			
+	},
+	
+	RenderProperties: function()
+	{
+		if (this.m_bInit == false)
+		{
+			return this.RenderError();
+		}	
+		var grSP = new GlideRecord('sys_properties');
+		grSP.addQuery('sys_scope','=',this.m_strAppSysId);
+		grSP.orderBy('name');
+		grSP.query();
+
+		var strHTML = '<ul>';
+		while (grSP.next())
+		{
+			var strDescription = HtmlEncode(grSP.getValue('description'));
+			strHTML += '<li><b>'+grSP.getValue('name')+'</b>&#160;'+strDescription+'</li>';
+		}
+		strHTML += '</ul>';
+		return strHTML;	
+	},
+	
+	RenderEvents: function()
+	{
+		if (this.m_bInit == false)
+		{
+			return this.RenderError();
+		}	
+		var grEvent = new GlideRecord('sysevent_register');
+		grEvent.addQuery('sys_scope','=',this.m_strAppSysId);
+		grEvent.orderBy('event_name');
+		grEvent.query();
+
+		var strHTML = '<ul>';
+		while (grEvent.next())
+		{
+			strHTML += '<li>';
+			strHTML += '<b>' ;
+			strHTML += grEvent.getValue('event_name');
+			strHTML += '</b>&#160;';
+			strHTML += grEvent.getValue('description');
+			strHTML += '</li>';
+		}
+		strHTML += '</ul>';
+		return strHTML;			
+	},
+	
 	RenderScriptIncludes: function()
 	{
 		if (this.m_bInit == false)
@@ -91,13 +190,13 @@ DocumentationAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-01-20 15:26:20</sys_created_on>
         <sys_id>98912146db31e490ba15a353059619b6</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_mod_count>14</sys_mod_count>
         <sys_name>DocumentationAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_98912146db31e490ba15a353059619b6</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-01-20 15:55:10</sys_updated_on>
+        <sys_updated_on>2021-01-21 08:58:30</sys_updated_on>
     </sys_script_include>
 </record_update>
