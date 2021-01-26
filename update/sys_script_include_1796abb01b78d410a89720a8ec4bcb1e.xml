@@ -17,13 +17,11 @@ TestDataAPI.prototype =
 	
 	Log:function(strContext, vValue)
 	{
-		var GetStringValue = x_snc_devtools.GetStringValue;
 		Log('TestDataAPI: '+strContext+': '+GetStringValue(vValue));
 	},
 
 	Debug:function(strContext, vValue)
 	{
-		var GetStringValue = x_snc_devtools.GetStringValue;
 		Debug('TestDataAPI: '+strContext+': '+GetStringValue(vValue));
 	},
 
@@ -40,9 +38,7 @@ TestDataAPI.prototype =
 	
 	CreateUser:function(strName, aRoles)
 	{
-		var GetStringValue = x_snc_devtools.GetStringValue;
-		var GetArrayValue = x_snc_devtools.GetArrayValue;
-		
+	
 		strName = GetStringValue(strName);
 		aRoles = GetArrayValue(aRoles); 
 		
@@ -74,35 +70,40 @@ TestDataAPI.prototype =
 		this.Debug('CreateUser','User '+strName+' has been created. sys_id='+strUserSysId);
 		
 		var grUserHasRole = new GlideRecord("sys_user_has_role");
-		aRoles.forEach(function(strRole)
+		//aRoles.forEach(function(strRole)
+		for (var nRole = 0; nRole < aRoles.length; nRole++)
 		{
+			var strRole = aRoles[nRole];
 			if (strRole != '')
 			{
 				var grUserRole = new GlideRecord('sys_user_role');
-				grUserRole.addQuery('name','=',strRole);
+				grUserRole.addQuery('name','=',strPrefix+strRole);
 				grUserRole.query();
-				if (grUserRole.getRowCount() == 1)
+				if (grUserRole.getRowCount() == 0)
 				{
+					this.Debug('CreateUser','Trying without prefix');
+					grUserRole = new GlideRecord('sys_user_role');
+					grUserRole.addQuery('name','=',strRole);
+					grUserRole.query();
+				}
+				if (grUserRole.getRowCount() == 1)
+				{					
 					if (grUserRole.next())
-					{						
+					{		
+						this.Debug('CreateUser','Adding role: '+strRole);
 						grUserHasRole.initialize();
 						grUserHasRole.role = grUserRole.sys_id;
 						grUserHasRole.user = strUserSysId;
 						grUserHasRole.insert();
 					}
 				}
-
 			}
-		});
+		}
 		return strUserSysId;
 	},
 	
 	CreateGroup:function(strName, aUserNames)
 	{	
-		var RenderValue = x_snc_devtools.RenderValue;
-		var GetStringValue = x_snc_devtools.GetStringValue;
-		var GetArrayValue = x_snc_devtools.GetArrayValue;
-
 		strName = GetStringValue(strName);
 		aUserNames = GetArrayValue(aUserNames);
 		
@@ -145,6 +146,36 @@ TestDataAPI.prototype =
 		});
 		return strGroupSysId;
 	},
+	
+	CreateRole:function(strName)
+	{	
+		strName = GetStringValue(strName);
+		
+		this.Debug('CreateRole',strName);
+	
+		var strPrefix = this.GetPrefix();
+		
+		var grRoleToDelete = new GlideRecord('sys_user_role');
+		grRoleToDelete.addQuery('name','=',strPrefix+strName);
+		grRoleToDelete.query();
+		grRoleToDelete.deleteMultiple();
+
+		var grRole = new GlideRecord('sys_user_role');
+		grRole.newRecord();
+		grRole.name = strPrefix+strName;
+		//grRole.state = 'active';
+		var strRoleSysId = grRole.insert();
+
+		if (strRoleSysId == null)
+		{
+			this.Debug('CreateRole','Failed to create role '+strName+'!');
+			return null;
+		}
+		this.Debug('CreateRole','Role '+strName+' has been created. sys_id='+strRoleSysId);		
+		
+		return strRoleSysId;
+	},
+		
 	
 	
 	CreateIncident:function(strName, strOpenedByUserName, strCallerUserName, strAssignmentGroupName)
@@ -610,13 +641,13 @@ TestDataAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-13 14:53:39</sys_created_on>
         <sys_id>1796abb01b78d410a89720a8ec4bcb1e</sys_id>
-        <sys_mod_count>58</sys_mod_count>
+        <sys_mod_count>68</sys_mod_count>
         <sys_name>TestDataAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_1796abb01b78d410a89720a8ec4bcb1e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-09-23 12:16:46</sys_updated_on>
+        <sys_updated_on>2021-01-26 17:19:29</sys_updated_on>
     </sys_script_include>
 </record_update>
