@@ -7,17 +7,18 @@
         <endpoint>x_snc_devtools_Start.do</endpoint>
         <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
 <j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
-<div style="
-	padding-left: 20px;
-	">
+<div style="padding-left: 20px;">
+<span style="visibility: hidden;">_CUT_HERE_</span>
 	<g2:no_escape>$[
 		var docapi = new DocumentationAPI('d689f6901bd38450a89720a8ec4bcbfd');
 		docapi.RenderHeader();
 	]</g2:no_escape>
 	
+	<g:breakpoint />
+	
 	<p>Welcome to the DevTools - created and maintained by&#160;<a href="mailto:sascha.wildgrube@servicenow.com">Sascha Wildgrube</a>.</p>
 	
-	<h2>Features</h2>
+	<h2>Features</h2> 
 	<p>DevTools contains a number of&#160;<b>script includes</b>&#160;with useful javascript functions and classes like a GetType() function that realy works. A few&#160;<b>UI improvements</b>&#160;like the Re-Test button in the test result form and&#160;<b>shortcuts</b>&#160;to various - sometimes hidden - views and system properties in your instance.</p>
 
 	<h2>Disclaimer</h2>
@@ -34,7 +35,7 @@
 	<h2>Installation</h2>
 	<p>To use the full potential of DevTools perform the following steps:</p>
 	<ol>
-		<li>Fork this repository: <a href="https://github.com/saschawildgrube/servicenow-devtools" target="_blank">https://github.com/saschawildgrube/servicenow-devtools</a></li>
+		<li>Fork this repository:&#160;<a href="https://github.com/saschawildgrube/servicenow-devtools" target="_blank">https://github.com/saschawildgrube/servicenow-devtools</a></li>
 		<li>Paris or later: Add credentials to access GitHub (Use "Basic Auth")</li> 
 		<li>Install the application by importing it from source control in Studio.</li>
 		<li>Switch to global scope</li>
@@ -184,8 +185,9 @@
 		<li>The install script is now a scheduled script that can be run on demand instead of a fix script that runs automatically.</li>
 	</ol>	
 	<h3>1.0.0 - 2020-06-23</h3>
-	<p>First baselined version</p>	
-</div>	
+	<p>First baselined version</p>
+<span style="visibility: hidden;">_CUT_HERE_</span>
+</div>
 </j:jelly>]]></html>
         <name>Start</name>
         <processing_script/>
@@ -193,13 +195,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>174</sys_mod_count>
+        <sys_mod_count>211</sys_mod_count>
         <sys_name>Start</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-01-26 17:08:04</sys_updated_on>
+        <sys_updated_on>2021-01-28 07:52:40</sys_updated_on>
     </sys_ui_page>
 </record_update>
