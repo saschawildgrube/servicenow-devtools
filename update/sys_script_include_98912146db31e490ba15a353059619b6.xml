@@ -157,13 +157,23 @@ DocumentationAPI.prototype = {
 		grSSI.orderBy('name');
 		grSSI.query();
 
-		var strScriptIncludes = '';
+		var strHTML = '<ul>';
 		while (grSSI.next())
 		{
 			var strDescription = HtmlEncode(grSSI.getValue('description'));
-			strScriptIncludes = strScriptIncludes + '<p><b>'+grSSI.getValue('name')+'</b>&#160;'+strDescription+'</p>';
+			
+			
+			strHTML += '<li>';
+			strHTML += '<a href="/sys_script_include.do?sys_id=' ;
+			strHTML += grSSI.sys_id;
+			strHTML += '">';
+			strHTML += grSSI.getValue('name');
+			strHTML += '</a>&#160;';
+			strHTML += '<p>'+strDescription+'</p>';
+			strHTML += '</li>';		
 		}
-		return strScriptIncludes;
+		strHTML += '</ul>';
+		return strHTML;
 	},
 	
 	RenderTestStepConfigurations: function()
@@ -193,6 +203,16 @@ DocumentationAPI.prototype = {
 		return strHTML;	
 	},
 	
+	RenderInstallationInstructionsImportFromSourceControl: function(strAppName, strRepoURL)
+	{
+		var strHTML = '';
+		strHTML +=	'<li>To install '+strAppName+'. Create an account on&#160;<a href="https://github.com/" target="_blank">GitHub</a>&#160;(if not done already).</li>';
+		strHTML +=	'<li>Paris or later: Add&#160;<a href="/discovery_credentials_list.do" target="_blank">credentials</a>&#160;to access GitHub (Use "Basic Auth").</li>'; 
+		strHTML +=	'<li>Fork the repository&#160;<a href="'+strRepoURL+'" target="_blank">'+strRepoURL+'</a>.</li>';
+		strHTML +=	'<li>Go to&#160;<a href="/$studio.do" target="_blank">Studio</a>&#160;and import the '+strAppName+' application from source control.</li>';
+		return strHTML;
+	},
+	
 	RenderError: function()
 	{
 		return '<p style="color:red">ERROR: DocumentationAPI is not initialized!</p>';
@@ -204,13 +224,13 @@ DocumentationAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-01-20 15:26:20</sys_created_on>
         <sys_id>98912146db31e490ba15a353059619b6</sys_id>
-        <sys_mod_count>30</sys_mod_count>
+        <sys_mod_count>39</sys_mod_count>
         <sys_name>DocumentationAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_98912146db31e490ba15a353059619b6</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-01-27 16:54:05</sys_updated_on>
+        <sys_updated_on>2021-02-09 11:42:21</sys_updated_on>
     </sys_script_include>
 </record_update>
