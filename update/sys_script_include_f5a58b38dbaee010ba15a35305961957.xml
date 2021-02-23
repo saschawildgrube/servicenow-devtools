@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.AppSanity</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Performs a number of changes to a scoped app's assets to maintain applicaton sanity. E.g. the function removes the copied_from attribute in atf tests.&#13;
+This function requires the RunScriptInGlobalScope() function.</description>
+        <name>AppSanity</name>
+        <script><![CDATA[function AppSanity(strAppSysId)
+{
+	strAppSysId = GetStringValue(strAppSysId);
+	var grSA = new GlideRecord('sys_scope');
+	if (grSA.get(strAppSysId) == false)
+	{
+		return false;
+	}
+	
+	var strScript = '';
+	
+	strScript += "var strAppSysId = x_snc_devtools.GetStringValue(param1);";
+	strScript += "var grSAT = new GlideRecord('sys_atf_test');";
+	strScript += "grSAT.addQuery('sys_scope','=',strAppSysId);";
+	strScript += "grSAT.query();";
+	strScript += "while (grSAT.next())";
+	strScript += "{";
+	strScript += "   grSAT.copied_from='';";
+	strScript += "   grSAT.update();";
+	strScript += "}";
+	strScript += "return true;";
+
+
+	return RunScriptInGlobalScope(strScript,strAppSysId);
+
+
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-02-23 08:18:05</sys_created_on>
+        <sys_id>f5a58b38dbaee010ba15a35305961957</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>AppSanity</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_f5a58b38dbaee010ba15a35305961957</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-02-23 08:28:46</sys_updated_on>
+    </sys_script_include>
+</record_update>
