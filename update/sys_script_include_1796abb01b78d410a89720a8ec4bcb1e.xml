@@ -42,7 +42,7 @@ TestDataAPI.prototype =
 		strName = GetStringValue(strName);
 		aRoles = GetArrayValue(aRoles); 
 		
-		this.Debug('CreateUser',strName+' '+RenderValue(aRoles));
+		//this.Debug('CreateUser',strName+' '+RenderValue(aRoles));
 		
 		strPrefix = this.GetPrefix();
 		
@@ -64,10 +64,10 @@ TestDataAPI.prototype =
 
 		if (strUserSysId == null)
 		{
-			this.Debug('CreateUser','Failed to create user '+strName+'!');
+			//this.Debug('CreateUser','Failed to create user '+strName+'!');
 			return null;
 		}
-		this.Debug('CreateUser','User '+strName+' has been created. sys_id='+strUserSysId);
+		//this.Debug('CreateUser','User '+strName+' has been created. sys_id='+strUserSysId);
 		
 		var grUserHasRole = new GlideRecord("sys_user_has_role");
 		//aRoles.forEach(function(strRole)
@@ -107,7 +107,7 @@ TestDataAPI.prototype =
 		strName = GetStringValue(strName);
 		aUserNames = GetArrayValue(aUserNames);
 		
-		this.Debug('CreateGroup',strName+' '+RenderValue(aUserNames));
+		//this.Debug('CreateGroup',strName+' '+RenderValue(aUserNames));
 	
 		var strPrefix = this.GetPrefix();
 		
@@ -123,10 +123,10 @@ TestDataAPI.prototype =
 
 		if (strGroupSysId == null)
 		{
-			this.Debug('CreateGroup','Failed to create group '+strName+'!');
+			//this.Debug('CreateGroup','Failed to create group '+strName+'!');
 			return null;
 		}
-		this.Debug('CreateGroup','Group '+strName+' has been created. sys_id='+strGroupSysId);		
+		//this.Debug('CreateGroup','Group '+strName+' has been created. sys_id='+strGroupSysId);		
 		
 		var grGroupMember = new GlideRecord('sys_user_grmember');
 		aUserNames.forEach(function(strUserName)
@@ -151,7 +151,7 @@ TestDataAPI.prototype =
 	{	
 		strName = GetStringValue(strName);
 		
-		this.Debug('CreateRole',strName);
+		//this.Debug('CreateRole',strName);
 	
 		var strPrefix = this.GetPrefix();
 		
@@ -168,10 +168,10 @@ TestDataAPI.prototype =
 
 		if (strRoleSysId == null)
 		{
-			this.Debug('CreateRole','Failed to create role '+strName+'!');
+			//this.Debug('CreateRole','Failed to create role '+strName+'!');
 			return null;
 		}
-		this.Debug('CreateRole','Role '+strName+' has been created. sys_id='+strRoleSysId);		
+		//this.Debug('CreateRole','Role '+strName+' has been created. sys_id='+strRoleSysId);		
 		
 		return strRoleSysId;
 	},
@@ -187,7 +187,7 @@ TestDataAPI.prototype =
 		strCallerUserName = GetStringValue(strCallerUserName);
 		strAssignmentGroupName = GetStringValue(strAssignmentGroupName);
 
-		this.Debug('CreateIncident',strName+' by '+strOpenedByUserName+' for '+strCallerUserName+', assign to '+strAssignmentGroupName);		
+		//this.Debug('CreateIncident',strName+' by '+strOpenedByUserName+' for '+strCallerUserName+', assign to '+strAssignmentGroupName);		
 
 		var strPrefix = this.GetPrefix(); 
 
@@ -236,10 +236,10 @@ TestDataAPI.prototype =
 		
 		if (strIncidentSysId == null)
 		{
-			this.Debug('CreateIncident','Failed to create incident '+strName+'!');
+			//this.Debug('CreateIncident','Failed to create incident '+strName+'!');
 			return null;
 		}
-		this.Debug('CreateIncident','Incident '+strName+' has been created. sys_id='+strIncidentSysId);				
+		//this.Debug('CreateIncident','Incident '+strName+' has been created. sys_id='+strIncidentSysId);				
 		return strIncidentSysId;
 	},
 
@@ -253,7 +253,7 @@ TestDataAPI.prototype =
 		strOpenedByUserName = GetStringValue(strOpenedByUserName);
 		strAssignmentGroupName = GetStringValue(strAssignmentGroupName);
 		
-		this.Debug('CreateIncidentTask',strParentName+' '+strName+' '+strOpenedByUserName+' '+strAssignmentGroupName);		
+		//this.Debug('CreateIncidentTask',strParentName+' '+strName+' '+strOpenedByUserName+' '+strAssignmentGroupName);		
 		
 		var strPrefix = this.GetPrefix(); 
 
@@ -304,10 +304,10 @@ TestDataAPI.prototype =
 		
 		if (strIncidentTaskSysId == null)
 		{
-			this.Debug('CreateIncidentTask','Failed to create incident task '+strName+'!');
+			//this.Debug('CreateIncidentTask','Failed to create incident task '+strName+'!');
 			return null;
 		}
-		this.Debug('CreateIncidentTask','Incident '+strName+' has been created. sys_id='+strIncidentTaskSysId);				
+		//this.Debug('CreateIncidentTask','Incident '+strName+' has been created. sys_id='+strIncidentTaskSysId);				
 		return strIncidentTaskSysId;
 	},
 	
@@ -321,7 +321,7 @@ TestDataAPI.prototype =
 		strRequestedByUserName = GetStringValue(strRequestedByUserName);
 		strAssignmentGroupName = GetStringValue(strAssignmentGroupName);
 		
-		this.Debug('CreateChangeRequest',strName+' by '+strOpenedByUserName+' for '+strRequestedByUserName+', assign to '+strAssignmentGroupName);		
+		//this.Debug('CreateChangeRequest',strName+' by '+strOpenedByUserName+' for '+strRequestedByUserName+', assign to '+strAssignmentGroupName);		
 		
 		var strPrefix = this.GetPrefix(); 
 
@@ -369,10 +369,10 @@ TestDataAPI.prototype =
 		var strChangeRequestSysId = grChangeRequest.insert();
 		if (strChangeRequestSysId == null)
 		{
-			this.Debug('CreateChangeRequest','Failed to create change request '+strChangeRequestSysId+'!');
+			//this.Debug('CreateChangeRequest','Failed to create change request '+strChangeRequestSysId+'!');
 			return null;
 		}
-		this.Debug('CreateChangeRequest','Change request '+strName+' has been created. sys_id='+strChangeRequestSysId);			
+		//this.Debug('CreateChangeRequest','Change request '+strName+' has been created. sys_id='+strChangeRequestSysId);			
 		return strChangeRequestSysId;
 	},
 	
@@ -385,7 +385,7 @@ TestDataAPI.prototype =
 		strOpenedByUserName = GetStringValue(strOpenedByUserName);
 		strAssignmentGroupName = GetStringValue(strAssignmentGroupName);
 		
-		this.Debug('CreateChangeTask',strParentName+' '+strName+' '+strOpenedByUserName+' '+strAssignmentGroupName);		
+		//this.Debug('CreateChangeTask',strParentName+' '+strName+' '+strOpenedByUserName+' '+strAssignmentGroupName);		
 		
 		var strPrefix = this.GetPrefix(); 
 
@@ -436,10 +436,10 @@ TestDataAPI.prototype =
 		
 		if (strChangeTaskSysId == null)
 		{
-			this.Debug('CreateChangeTask','Failed to create change task '+strName+'!');
+			//this.Debug('CreateChangeTask','Failed to create change task '+strName+'!');
 			return null;
 		}
-		this.Debug('CreateChangeTask','Change task '+strName+' has been created. sys_id='+strChangeTaskSysId);				
+		//this.Debug('CreateChangeTask','Change task '+strName+' has been created. sys_id='+strChangeTaskSysId);				
 		return strChangeTaskSysId;
 	},
 		
@@ -451,7 +451,7 @@ TestDataAPI.prototype =
 		strOpenedByUserName = GetStringValue(strOpenedByUserName);
 		strAssignmentGroupName = GetStringValue(strAssignmentGroupName);
 
-		this.Debug('CreateProblem',strName+' by '+strOpenedByUserName+', assigned to '+strAssignmentGroupName);		
+		//this.Debug('CreateProblem',strName+' by '+strOpenedByUserName+', assigned to '+strAssignmentGroupName);		
 		
 		var strPrefix = this.GetPrefix(); 
 
@@ -490,10 +490,10 @@ TestDataAPI.prototype =
 		
 		if (strProblemSysId == null)
 		{
-			this.Debug('CreateProblem','Failed to create problem '+strName+'!');
+			//this.Debug('CreateProblem','Failed to create problem '+strName+'!');
 			return null;
 		}
-		this.Debug('CreateProblem','Problem '+strName+' has been created. sys_id='+strProblemSysId);				
+		//this.Debug('CreateProblem','Problem '+strName+' has been created. sys_id='+strProblemSysId);				
 		return strProblemSysId;
 	},
 
@@ -507,7 +507,7 @@ TestDataAPI.prototype =
 		strOpenedByUserName = GetStringValue(strOpenedByUserName);
 		strAssignmentGroupName = GetStringValue(strAssignmentGroupName);
 
-		this.Debug('CreateProblemTask',strParentName+' '+strName+' by '+strOpenedByUserName+', assigned to '+strAssignmentGroupName);		
+		//this.Debug('CreateProblemTask',strParentName+' '+strName+' by '+strOpenedByUserName+', assigned to '+strAssignmentGroupName);		
 		
 		var strPrefix = this.GetPrefix(); 
 
@@ -558,10 +558,10 @@ TestDataAPI.prototype =
 		
 		if (strProblemTaskSysId == null)
 		{
-			this.Debug('CreateProblemTask','Failed to create problem task '+strName+'!');
+			//this.Debug('CreateProblemTask','Failed to create problem task '+strName+'!');
 			return null;
 		}
-		this.Debug('CreateProblemTask','Problem '+strName+' has been created. sys_id='+strProblemTaskSysId);				
+		//this.Debug('CreateProblemTask','Problem '+strName+' has been created. sys_id='+strProblemTaskSysId);				
 		return strProblemTaskSysId;
 	},
 	
@@ -575,7 +575,7 @@ TestDataAPI.prototype =
 		strRequestedForUserName = GetStringValue(strRequestedForUserName);
 		strAssignmentGroupName = GetStringValue(strAssignmentGroupName);
 		
-		this.Debug('CreateRequest',strName+' by '+strOpenedByUserName+' for '+strRequestedForUserName+', assign to '+strAssignmentGroupName);		
+		//this.Debug('CreateRequest',strName+' by '+strOpenedByUserName+' for '+strRequestedForUserName+', assign to '+strAssignmentGroupName);		
 		
 		var strPrefix = this.GetPrefix(); 
 
@@ -623,10 +623,10 @@ TestDataAPI.prototype =
 		var strRequestSysId = grRequest.insert();
 		if (strRequestSysId == null)
 		{
-			this.Debug('CreateRequest','Failed to create request '+strRequestSysId+'!');
+			//this.Debug('CreateRequest','Failed to create request '+strRequestSysId+'!');
 			return null;
 		}
-		this.Debug('CreateRequest','Request '+strName+' has been created. sys_id='+strRequestSysId);			
+		//this.Debug('CreateRequest','Request '+strName+' has been created. sys_id='+strRequestSysId);			
 		return strRequestSysId;
 		
 	},
@@ -641,13 +641,13 @@ TestDataAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-13 14:53:39</sys_created_on>
         <sys_id>1796abb01b78d410a89720a8ec4bcb1e</sys_id>
-        <sys_mod_count>68</sys_mod_count>
+        <sys_mod_count>69</sys_mod_count>
         <sys_name>TestDataAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_1796abb01b78d410a89720a8ec4bcb1e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-01-26 17:19:29</sys_updated_on>
+        <sys_updated_on>2021-02-24 09:34:14</sys_updated_on>
     </sys_script_include>
 </record_update>
