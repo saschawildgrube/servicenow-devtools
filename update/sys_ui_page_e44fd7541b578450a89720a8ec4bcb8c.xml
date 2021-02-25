@@ -20,8 +20,7 @@
 	<p>DevTools contains a number of&#160;<b>script includes</b>&#160;with useful javascript functions and classes like a GetType() function that realy works. A few&#160;<b>UI improvements</b>&#160;like the Re-Test button in the test result form and&#160;<b>shortcuts</b>&#160;to various - sometimes hidden - views and system properties in your instance.</p>
 
 	<h2>Disclaimer</h2>
-	<p>DevTools is NOT an officially supported ServiceNow product.</p>
-	<p>DevTools does NOT come with any kind of warranty. If you use it, you own it!</p>
+	<g2:no_escape>$[docapi.RenderDisclaimer()]</g2:no_escape>	
 	
 	<h2>System Requirements</h2>
 	<ul>
@@ -38,7 +37,6 @@
 				'DevTools',
 				'https://github.com/saschawildgrube/servicenow-devtools');
 		]</g2:no_escape>
-
 		<li>Switch to global scope</li>
 		<li>Note that the following steps might be considered as a breach of security guidelines and should be validated with those who are responsible for security within the instance!</li>
 		<li>In order to run the installation script which configures new system property categories enable create, read, write and delete operations for all applications on the following tables:
@@ -110,6 +108,7 @@
 		<li>Added function TestDataAPI::CreateRole() to create a role for testing purposes.</li>
 		<li>TestDataAPI::CreateUser() now also accepts the name of a role without the prefix.</li>
 		<li>Added function DocumentationAPI::RenderInstallationInstructionsImportFromSourceControl() to render installation instructions for importing an application from source control.</li>
+		<li>Added function DocumentationAPI::RenderDisclaimer().</li>
 		<li>Improved the rendering of script include documentation in DocumentationAPI::RenderScriptIncludes().</li> 
 		<li>Added missing description to the DocumentationAPI script include.</li>
 		<li>Test step configuration "DevTools - Check scoped app sanity" now checks if the app's short_description is empty.</li>
@@ -215,13 +214,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>237</sys_mod_count>
+        <sys_mod_count>241</sys_mod_count>
         <sys_name>Start</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-02-25 15:05:02</sys_updated_on>
+        <sys_updated_on>2021-02-25 15:20:21</sys_updated_on>
     </sys_ui_page>
 </record_update>
