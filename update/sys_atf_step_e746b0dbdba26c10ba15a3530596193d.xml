@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-03-02 16:15:48</sys_created_on>
         <sys_id>e746b0dbdba26c10ba15a3530596193d</sys_id>
-        <sys_mod_count>13</sys_mod_count>
+        <sys_mod_count>14</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_e746b0dbdba26c10ba15a3530596193d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-03-02 18:29:05</sys_updated_on>
+        <sys_updated_on>2021-03-02 20:24:01</sys_updated_on>
         <table/>
         <test display_value="DevTools - IsObject">8e26fc9bdba26c10ba15a35305961966</test>
         <timeout/>
@@ -36,9 +36,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-03-02 16:15:48</sys_created_on>
         <sys_id>a36634dbdba26c10ba15a35305961930</sys_id>
-        <sys_mod_count>13</sys_mod_count>
+        <sys_mod_count>14</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-03-02 18:29:05</sys_updated_on>
+        <sys_updated_on>2021-03-02 20:24:01</sys_updated_on>
         <value>var strLog = '';&#13;
 function Log(strText)&#13;
 {&#13;
@@ -69,6 +69,8 @@ function Log(strText)&#13;
 	&#13;
 	TestCase_IsObject(undefined,false);&#13;
 	TestCase_IsObject(null,false);&#13;
+	TestCase_IsObject(false,false);&#13;
+	TestCase_IsObject(true,false);&#13;
 	TestCase_IsObject(42,false);&#13;
 	TestCase_IsObject('Hello World',false);&#13;
 	TestCase_IsObject([],false);&#13;
