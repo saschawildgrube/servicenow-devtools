@@ -38,7 +38,7 @@
 				'https://github.com/saschawildgrube/servicenow-devtools');
 		]</g2:no_escape>
 		<li>Switch to global scope</li>
-		<li>Create a new update set to capture all changes related to the DevTools installation.</li>
+		<li>Create a new update set in the global scope to capture all changes related to the DevTools installation.</li>
 		<li>Note that the following steps might be considered as a breach of security guidelines and should be validated with those who are responsible for security within the instance!</li>
 		<li>Set the system property&#160;<a href="/nav_to.do?uri=sys_properties.do?sys_id=9e52826587120300cf2d5fb736cb0b7f" target="_blank">glide.record.legacy_cross_scope_access_policy_in_script</a>&#160;to true.</li>
 		<li>In order to run the installation script which configures new system property categories enable create, read, write and delete operations for all applications on the following tables:
@@ -68,7 +68,7 @@
 		</li>
 		<li>Go to the "Install Script" module and execute the script.</li>
 		<li>Go to the "Install Log" module and check for error messages. In case of errors, wait a few minutes and retry. The access changes to the tables might take a few minutes to be effective.</li>
-		<li>Set the update set to to complete.</li>
+		<li>Set the update set in the global scope to to complete.</li>
 		<li>Go to&#160;"<a href="/system_properties_ui.do?sysparm_title=Instance%20Debug%20Options&amp;sysparm_category=devtools.instance.debug" target="_blank">Instance Debug Options</a>"&#160;and activate the ATF test execution (if not set already).</li>
 		<li>Run the&#160;<a href="/sys_atf_test_suite.do?sys_id=4a8550391b5b8850a89720a8ec4bcbd9&amp;sysparm_view=DevTools&amp;sysparm_view_forced=true" target="_blank">DevTools Test Suite</a></li>
 		<li>In case of errors:
@@ -99,6 +99,7 @@
 
 	<h3>1.11.0 - TODO</h3>
 	<ol>
+		<li>Added the IsObject() function. Incredible how unintutive it is to distinguish objects from other types in JavaScript.</li>
 		<li>Improved installation intructions.</li>
 	</ol>
 	
@@ -227,13 +228,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>253</sys_mod_count>
+        <sys_mod_count>255</sys_mod_count>
         <sys_name>Start</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-03-01 10:56:16</sys_updated_on>
+        <sys_updated_on>2021-03-02 18:31:45</sys_updated_on>
     </sys_ui_page>
 </record_update>

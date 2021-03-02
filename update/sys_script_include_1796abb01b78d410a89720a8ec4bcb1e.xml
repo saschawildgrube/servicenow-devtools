@@ -24,7 +24,11 @@ TestDataAPI.prototype =
 	{
 		Debug('TestDataAPI: '+strContext+': '+GetStringValue(vValue));
 	},
-
+	
+	DebugAllData:function(strContext)
+	{
+		this.Debug(strContext,RenderValue(this.GetAllData()));
+	},
 	
 	SetPrefix:function(strPrefix)
 	{
@@ -34,6 +38,16 @@ TestDataAPI.prototype =
 	GetPrefix:function()
 	{
 		return this.m_strPrefix;
+	},
+	
+	GetAllData:function()
+	{
+		var result = {};
+		
+		result.sys_user = this.GetAllUsers();
+		result.sys_user_group = this.GetAllGroups();
+		
+		return result;
 	},
 	
 	CreateUser:function(strName, aRoles)
@@ -102,6 +116,21 @@ TestDataAPI.prototype =
 		return strUserSysId;
 	},
 	
+	GetAllUsers:function()
+	{
+		var aUsers = [];
+		var strPrefix = this.GetPrefix();
+		
+		var grUser = new GlideRecord('sys_user');
+		grUser.addQuery('name','STARTSWITH',strPrefix);
+		grUser.query();
+		while (grUser.next())
+		{
+			aUsers.push(Clone(grUser));
+		}
+		return aUsers;
+	},
+	
 	CreateGroup:function(strName, aUserNames)
 	{	
 		strName = GetStringValue(strName);
@@ -146,6 +175,21 @@ TestDataAPI.prototype =
 		});
 		return strGroupSysId;
 	},
+	
+	GetAllGroups:function()
+	{
+		var aGroups = [];
+		var strPrefix = this.GetPrefix();
+		
+		var grGroup = new GlideRecord('sys_user_group');
+		grGroup.addQuery('name','STARTSWITH',strPrefix);
+		grGroup.query();
+		while (grGroup.next())
+		{
+			aGroups.push(grGroup);
+		}
+		return aGroups;
+	},	
 	
 	CreateRole:function(strName)
 	{	
@@ -641,13 +685,13 @@ TestDataAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-13 14:53:39</sys_created_on>
         <sys_id>1796abb01b78d410a89720a8ec4bcb1e</sys_id>
-        <sys_mod_count>70</sys_mod_count>
+        <sys_mod_count>74</sys_mod_count>
         <sys_name>TestDataAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_1796abb01b78d410a89720a8ec4bcb1e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-02-24 09:42:51</sys_updated_on>
+        <sys_updated_on>2021-03-02 15:27:45</sys_updated_on>
     </sys_script_include>
 </record_update>
