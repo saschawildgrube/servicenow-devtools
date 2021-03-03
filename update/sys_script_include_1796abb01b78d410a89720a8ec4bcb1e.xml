@@ -47,7 +47,16 @@ TestDataAPI.prototype =
 		result.sys_user = this.GetAllUsers();
 		result.sys_user_group = this.GetAllGroups();
 		result.sys_user_role = this.GetAllRoles();
-		
+		result.incident = this.GetAllIncidents();
+		result.incident_task = this.GetAllIncidentTasks();
+		result.problem = this.GetAllProblems();
+		result.problem_task = this.GetAllProblemTasks();
+		result.change_request = this.GetAllChangeRequests();
+		result.change_task = this.GetAllChangeTasks();
+		result.sc_request = this.GetAllRequests();
+		//result.sc_req_item = this.GetAllRequestedItems();
+		//result.sc_task = this.GetAllRequestTasks();
+
 		return result;
 	},
 	
@@ -124,6 +133,7 @@ TestDataAPI.prototype =
 		
 		var grUser = new GlideRecord('sys_user');
 		grUser.addQuery('name','STARTSWITH',strPrefix);
+		grUser.orderBy('name');
 		grUser.query();
 		while (grUser.next())
 		{
@@ -184,6 +194,7 @@ TestDataAPI.prototype =
 		
 		var grGroup = new GlideRecord('sys_user_group');
 		grGroup.addQuery('name','STARTSWITH',strPrefix);
+		grGroup.orderBy('name');
 		grGroup.query();
 		while (grGroup.next())
 		{
@@ -228,6 +239,7 @@ TestDataAPI.prototype =
 		
 		var grRole = new GlideRecord('sys_user_role');
 		grRole.addQuery('name','STARTSWITH',strPrefix);
+		grRole.orderBy('name');
 		grRole.query();
 		while (grRole.next())
 		{
@@ -301,6 +313,21 @@ TestDataAPI.prototype =
 		return strIncidentSysId;
 	},
 
+	GetAllIncidents:function()
+	{
+		var aIncidents = [];
+		var strPrefix = this.GetPrefix();
+		
+		var grIncident = new GlideRecord('incident');
+		grIncident.addQuery('short_description','STARTSWITH',strPrefix);
+		grIncident.orderBy('short_description');
+		grIncident.query();
+		while (grIncident.next())
+		{
+			aIncidents.push(Clone(grIncident));
+		}
+		return aIncidents;
+	},
 	
 	CreateIncidentTask:function(strParentName, strName, strOpenedByUserName, strAssignmentGroupName)
 	{
@@ -369,6 +396,21 @@ TestDataAPI.prototype =
 		return strIncidentTaskSysId;
 	},
 	
+	GetAllIncidentTasks:function()
+	{
+		var aIncidentTasks = [];
+		var strPrefix = this.GetPrefix();
+		
+		var grIncidentTask = new GlideRecord('incident_task');
+		grIncidentTask.addQuery('short_description','STARTSWITH',strPrefix);
+		grIncidentTask.orderBy('short_description');
+		grIncidentTask.query();
+		while (grIncidentTask.next())
+		{
+			aIncidentTasks.push(Clone(grIncidentTask));
+		}
+		return aIncidentTasks;
+	},	
 	
 	CreateChangeRequest:function(strName, strOpenedByUserName, strRequestedByUserName, strAssignmentGroupName)
 	{
@@ -433,6 +475,22 @@ TestDataAPI.prototype =
 		//this.Debug('CreateChangeRequest','Change request '+strName+' has been created. sys_id='+strChangeRequestSysId);			
 		return strChangeRequestSysId;
 	},
+		
+	GetAllChangeRequests:function()
+	{
+		var aResult = [];
+		var strPrefix = this.GetPrefix();
+		
+		var grChangeRequests = new GlideRecord('change_request');
+		grChangeRequests.addQuery('short_description','STARTSWITH',strPrefix);
+		grChangeRequests.orderBy('short_description');
+		grChangeRequests.query();
+		while (grChangeRequests.next())
+		{
+			aResult.push(Clone(grChangeRequests));
+		}
+		return aResult;
+	},		
 	
 	CreateChangeTask:function(strParentName, strName, strOpenedByUserName, strAssignmentGroupName)
 	{
@@ -500,6 +558,22 @@ TestDataAPI.prototype =
 		//this.Debug('CreateChangeTask','Change task '+strName+' has been created. sys_id='+strChangeTaskSysId);				
 		return strChangeTaskSysId;
 	},
+	
+	GetAllChangeTasks:function()
+	{
+		var aChangeTasks = [];
+		var strPrefix = this.GetPrefix();
+		
+		var grChangeTasks = new GlideRecord('change_task');
+		grChangeTasks.addQuery('short_description','STARTSWITH',strPrefix);
+		grChangeTasks.orderBy('short_description');
+		grChangeTasks.query();
+		while (grChangeTasks.next())
+		{
+			aChangeTasks.push(Clone(grChangeTasks));
+		}
+		return aChangeTasks;
+	},		
 		
 	CreateProblem:function(strName, strOpenedByUserName, strAssignmentGroupName)
 	{
@@ -555,6 +629,21 @@ TestDataAPI.prototype =
 		return strProblemSysId;
 	},
 
+	GetAllProblems:function()
+	{
+		var aProblems = [];
+		var strPrefix = this.GetPrefix();
+		
+		var grProblem = new GlideRecord('problem');
+		grProblem.addQuery('problem_statement','STARTSWITH',strPrefix);
+		grProblem.orderBy('problem_statement');
+		grProblem.query();
+		while (grProblem.next())
+		{
+			aProblems.push(Clone(grProblem));
+		}
+		return aProblems;
+	},		
 	
 	CreateProblemTask:function(strParentName, strName, strOpenedByUserName, strAssignmentGroupName)
 	{
@@ -623,6 +712,21 @@ TestDataAPI.prototype =
 		return strProblemTaskSysId;
 	},
 	
+	GetAllProblemTasks:function()
+	{
+		var aResult = [];
+		var strPrefix = this.GetPrefix();
+		
+		var grProblemTask = new GlideRecord('problem_task');
+		grProblemTask.addQuery('short_description','STARTSWITH',strPrefix);
+		grProblemTask.orderBy('short_description');
+		grProblemTask.query();
+		while (grProblemTask.next())
+		{
+			aResult.push(Clone(grProblemTask));
+		}
+		return aResult;
+	},		
 	
 	CreateRequest:function(strName, strOpenedByUserName, strRequestedForUserName, strAssignmentGroupName)
 	{
@@ -689,7 +793,21 @@ TestDataAPI.prototype =
 		
 	},
 	
-
+	GetAllRequests:function()
+	{
+		var aResult = [];
+		var strPrefix = this.GetPrefix();
+		
+		var grRequests = new GlideRecord('sc_request');
+		grRequests.addQuery('short_description','STARTSWITH',strPrefix);
+		grRequests.orderBy('short_description');
+		grRequests.query();
+		while (grRequests.next())
+		{
+			aResult.push(Clone(grRequests));
+		}
+		return aResult;
+	},		
 	
 	type: 'TestDataAPI'
 	
@@ -699,13 +817,13 @@ TestDataAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-13 14:53:39</sys_created_on>
         <sys_id>1796abb01b78d410a89720a8ec4bcb1e</sys_id>
-        <sys_mod_count>76</sys_mod_count>
+        <sys_mod_count>83</sys_mod_count>
         <sys_name>TestDataAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_1796abb01b78d410a89720a8ec4bcb1e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-03-02 18:37:05</sys_updated_on>
+        <sys_updated_on>2021-03-03 14:07:07</sys_updated_on>
     </sys_script_include>
 </record_update>
