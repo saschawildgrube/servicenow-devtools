@@ -7,8 +7,9 @@
         <client_callable>false</client_callable>
         <description>Render any value as a string. In case of objects, the keys are displayed in alphabetical order. In case of arrays, the elements are displayed in the given order.</description>
         <name>RenderValue</name>
-        <script><![CDATA[function RenderValue(vValue, nLevel)
+        <script><![CDATA[function RenderValue(vValue, bHideEmpty, nLevel)
 {
+	bHideEmpty = GetBoolValue(bHideEmpty);
 	nLevel = GetIntegerValue(nLevel);
 	var strLevel = '___';
 	strLevel = strLevel.repeat(nLevel);
@@ -39,7 +40,7 @@
 		{
 			vValue.forEach( function(vElement,nKey)
 			{
-				strOutput += '\n'+strLevel+'['+nKey+']: '+RenderValue(vElement,nLevel+1);
+				strOutput += '\n'+strLevel+'['+nKey+']: '+RenderValue(vElement,bHideEmpty,nLevel+1);
 			});
 		}
 		return strOutput;
@@ -73,10 +74,12 @@
 				aKeys.sort();
 				aKeys.forEach( function(strKey)
 				{
-					//strOutput += '\n'+strLevel+'["'+strKey+'"]: '+RenderValue(vValue.getValue(strKey),nLevel+1);
-
-					// ...so we use array syntax in all cases:
-					strOutput += '\n'+strLevel+'["'+strKey+'"]: '+RenderValue(vValue[strKey],nLevel+1);
+					var strValue = RenderValue(vValue[strKey],bHideEmpty,nLevel+1);
+					if (bHideEmpty == false || strValue != '')
+					{
+						strOutput += '\n'+strLevel+'["'+strKey+'"]: '+strValue;
+					}
+					
 				});
 			}
 		//}
@@ -89,13 +92,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 09:04:23</sys_created_on>
         <sys_id>a6e04b581bd38450a89720a8ec4bcbc8</sys_id>
-        <sys_mod_count>30</sys_mod_count>
+        <sys_mod_count>33</sys_mod_count>
         <sys_name>RenderValue</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_a6e04b581bd38450a89720a8ec4bcbc8</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-03-02 20:20:37</sys_updated_on>
+        <sys_updated_on>2021-03-03 15:23:39</sys_updated_on>
     </sys_script_include>
 </record_update>

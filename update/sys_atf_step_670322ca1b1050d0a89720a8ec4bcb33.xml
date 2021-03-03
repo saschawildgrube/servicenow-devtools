@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-04-22 10:27:07</sys_created_on>
         <sys_id>670322ca1b1050d0a89720a8ec4bcb33</sys_id>
-        <sys_mod_count>21</sys_mod_count>
+        <sys_mod_count>29</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_670322ca1b1050d0a89720a8ec4bcb33</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-03-02 20:18:32</sys_updated_on>
+        <sys_updated_on>2021-03-03 15:24:24</sys_updated_on>
         <table/>
         <test display_value="DevTools - RenderValue">7ce22e8a1b1050d0a89720a8ec4bcbdb</test>
         <timeout/>
@@ -50,9 +50,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-04-22 10:27:07</sys_created_on>
         <sys_id>d263ae8a1b1050d0a89720a8ec4bcb96</sys_id>
-        <sys_mod_count>21</sys_mod_count>
+        <sys_mod_count>29</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-03-02 20:18:32</sys_updated_on>
+        <sys_updated_on>2021-03-03 15:24:24</sys_updated_on>
         <value>var strLog = '';&#13;
 function Log(strText)&#13;
 {&#13;
@@ -66,8 +66,8 @@ function Log(strText)&#13;
 	{&#13;
 		Log('TestCase_RenderValue');&#13;
 		Log('GetType(): '+GetType(vInput));&#13;
-		Log('Input: '+vInput);&#13;
-		Log('Expected: '+vExpected);&#13;
+		Log('Input: '+RenderValue(vInput));&#13;
+		Log('Expected: '+GetStringValue(vExpected));&#13;
 		var vResult = RenderValue(vInput);&#13;
 		Log('Result  : '+vResult);&#13;
 		if (vResult != vExpected)&#13;
@@ -77,6 +77,22 @@ function Log(strText)&#13;
 		}&#13;
 		Log('');&#13;
 	}&#13;
+	&#13;
+	function TestCase_RenderValueHideEmpty(vInput, vExpected)&#13;
+	{&#13;
+		Log('TestCase_RenderValueHideEmpty');&#13;
+		Log('GetType(): '+GetType(vInput));&#13;
+		Log('Input: '+RenderValue(vInput));&#13;
+		Log('Expected: '+GetStringValue(vExpected));&#13;
+		var vResult = RenderValue(vInput,true);&#13;
+		Log('Result  : '+vResult);&#13;
+		if (vResult != vExpected)&#13;
+		{&#13;
+			bResult = false;&#13;
+			Log('Test case FAILED');&#13;
+		}&#13;
+		Log('');&#13;
+	}	&#13;
 	&#13;
 	TestCase_RenderValue(null,'null');&#13;
 	TestCase_RenderValue('','');&#13;
@@ -115,7 +131,40 @@ function Log(strText)&#13;
 		+'\n["sys_updated_on"]: '&#13;
 		+'\n["value"]: Hello World'&#13;
 		);&#13;
+	&#13;
+	TestCase_RenderValueHideEmpty({},'{}');&#13;
+	TestCase_RenderValueHideEmpty(&#13;
+		{&#13;
+			'key1': 'Hello',&#13;
+			'key2': 'World'&#13;
+		},&#13;
+		'\n["key1"]: Hello'&#13;
+		+'\n["key2"]: World');&#13;
+	TestCase_RenderValueHideEmpty(&#13;
+		{&#13;
+			'key1': 'Hello',&#13;
+			'key2': ''&#13;
+		},&#13;
+		'\n["key1"]: Hello');&#13;
+	&#13;
+	TestCase_RenderValueHideEmpty(&#13;
+		{&#13;
+			'Level1':&#13;
+				{&#13;
+					'Level2': 'Test',&#13;
+					'Empty': ''&#13;
+				}&#13;
+		},&#13;
+		'\n["Level1"]: '&#13;
+		+'\n___["Level2"]: Test'&#13;
+		);	&#13;
 		&#13;
+	TestCase_RenderValueHideEmpty(gr,''&#13;
+		+'\n["sys_meta"]: null'&#13;
+		+'\n["sys_mod_count"]: 0'&#13;
+		+'\n["value"]: Hello World'&#13;
+		);&#13;
+	&#13;
 	stepResult.setOutputMessage(strLog);&#13;
 	return bResult;&#13;
 	&#13;
