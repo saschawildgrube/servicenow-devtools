@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.Merge</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Merges two objects.</description>
+        <name>Merge</name>
+        <script><![CDATA[function Merge(vValue1, vValue2)
+{
+	if (IsObject(vValue1) == false)
+	{
+		return false;
+	}
+	if (IsObject(vValue2) == false)
+	{
+		return false;
+	}
+
+	var oMerge = Clone(vValue1);
+
+	var aKeys = Object.keys(vValue2);
+	aKeys.forEach( function(strKey)
+	{
+		if (vValue1[strKey] == undefined)
+		{
+			oMerge[strKey] = vValue2[strKey];
+		}
+		else if (IsObject(vValue1[strKey]) == false)
+		{
+			oMerge[strKey] = vValue2[strKey];
+		}
+		else
+		{
+			oMerge[strKey] = Merge(vValue1[strKey],vValue2[strKey]);
+		}
+	});		
+	return oMerge;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-03-17 20:51:12</sys_created_on>
+        <sys_id>88550b88dbcb6c10ba15a353059619a6</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>Merge</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_88550b88dbcb6c10ba15a353059619a6</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-03-17 21:15:42</sys_updated_on>
+    </sys_script_include>
+</record_update>
