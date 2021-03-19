@@ -6,39 +6,53 @@
         <display_name>Run Server Side Script</display_name>
         <inputs/>
         <mugshots_cache_json/>
-        <notes>Checking the nMaxRecords restriction</notes>
-        <order>1</order>
+        <notes>Checking the time nMaxSeconds restriction</notes>
+        <order>2</order>
         <snapshot/>
         <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
         <sys_class_name>sys_atf_step</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2021-03-18 15:18:15</sys_created_on>
-        <sys_id>67820790db4fac10ba15a3530596192d</sys_id>
-        <sys_mod_count>16</sys_mod_count>
+        <sys_created_on>2021-03-19 14:41:54</sys_created_on>
+        <sys_id>f1834c78db432050ba15a353059619d1</sys_id>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
-        <sys_update_name>sys_atf_step_67820790db4fac10ba15a3530596192d</sys_update_name>
+        <sys_update_name>sys_atf_step_f1834c78db432050ba15a353059619d1</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-03-19 14:51:36</sys_updated_on>
+        <sys_updated_on>2021-03-19 14:48:32</sys_updated_on>
         <table/>
         <test display_value="DevTools - RecordBulkProcessor">72520390db4fac10ba15a35305961926</test>
         <timeout/>
         <warning_message/>
     </sys_atf_step>
-    <sys_variable_value action="delete_multiple" query="document_key=67820790db4fac10ba15a3530596192d"/>
+    <sys_variable_value action="delete_multiple" query="document_key=f1834c78db432050ba15a353059619d1"/>
     <sys_variable_value action="INSERT_OR_UPDATE">
         <document>sys_atf_step</document>
-        <document_key>67820790db4fac10ba15a3530596192d</document_key>
+        <document_key>f1834c78db432050ba15a353059619d1</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-03-19 14:41:54</sys_created_on>
+        <sys_id>42f38c78db432050ba15a3530596197f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-03-19 14:41:54</sys_updated_on>
+        <value>3.1</value>
+        <variable display_value="">42f2564b73031300440211d8faf6a777</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>f1834c78db432050ba15a353059619d1</document_key>
         <order>200</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2021-03-18 15:18:15</sys_created_on>
-        <sys_id>28b28790db4fac10ba15a35305961973</sys_id>
-        <sys_mod_count>15</sys_mod_count>
+        <sys_created_on>2021-03-19 14:41:54</sys_created_on>
+        <sys_id>4af38c78db432050ba15a3530596197f</sys_id>
+        <sys_mod_count>2</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-03-19 14:51:36</sys_updated_on>
+        <sys_updated_on>2021-03-19 14:48:32</sys_updated_on>
         <value>var strLog = '';&#13;
 function Log(strText)&#13;
 {&#13;
@@ -97,12 +111,13 @@ function Log(strText)&#13;
 	// Prepare test data&#13;
 	for (var nIndex = 0; nIndex &lt; 10; nIndex++)&#13;
 	{&#13;
-		testdata.CreateTestItem('TEST1_'+nIndex,'VALUE-'+nIndex);&#13;
+		testdata.CreateTestItem('TEST2_'+nIndex,'VALUE-'+nIndex);&#13;
 	}&#13;
 	&#13;
 	// RecordProcessor&#13;
 	function CallbackRecordProcessor(grRecord)&#13;
 	{&#13;
+		Sleep(3);&#13;
 		var strValue = GetStringValue(grRecord.getValue('value'));&#13;
 		if (strValue != strValue.toLowerCase())&#13;
 		{&#13;
@@ -120,92 +135,25 @@ function Log(strText)&#13;
 	&#13;
 	Log(RenderValue(testdata.GetAllTestItems()));&#13;
 	&#13;
-	// Test 1: out of 10, process 2&#13;
+	// Process all 10 records, but only allow for one second to run&#13;
 	var grRecords = new GlideRecord('x_snc_devtools_test');&#13;
 	grRecords.addQuery('name','STARTSWITH',testdata.GetPrefix());&#13;
 	TestCase_RecordBulkProcessor(&#13;
 		grRecords,&#13;
 		CallbackRecordProcessor,&#13;
 		'processed',&#13;
-		2, &#13;
-		10,&#13;
+		10, &#13;
+		1,&#13;
 		CallbackLog,&#13;
 		1,&#13;
-		2);&#13;
+		1);&#13;
 	&#13;
 	Log(RenderValue(testdata.GetAllTestItems()));&#13;
-	&#13;
-	Sleep(2);&#13;
-	&#13;
-	// Test 2: out of the same 10, process 5 more, so we should have changed 7 in total&#13;
-	var grRecords = new GlideRecord('x_snc_devtools_test');&#13;
-	grRecords.addQuery('name','STARTSWITH',testdata.GetPrefix());&#13;
-	TestCase_RecordBulkProcessor(&#13;
-		grRecords,&#13;
-		CallbackRecordProcessor,&#13;
-		'processed',&#13;
-		5,&#13;
-		10,&#13;
-		CallbackLog,&#13;
-		1,&#13;
-		5);	&#13;
-&#13;
-	Log(RenderValue(testdata.GetAllTestItems()));&#13;
-	&#13;
-	Sleep(2);&#13;
-	&#13;
-	// Test 3: out of the same 10, process 5 more, which means that all 10 have been processed once and 2 for a second time.&#13;
-	var grRecords = new GlideRecord('x_snc_devtools_test');&#13;
-	grRecords.addQuery('name','STARTSWITH',testdata.GetPrefix());&#13;
-	TestCase_RecordBulkProcessor(&#13;
-		grRecords,&#13;
-		CallbackRecordProcessor,&#13;
-		'processed',&#13;
-		5,&#13;
-		10,&#13;
-		CallbackLog,&#13;
-		1,&#13;
-		3);	&#13;
-	&#13;
-	Log(RenderValue(testdata.GetAllTestItems()));&#13;
-	&#13;
-	Sleep(2);&#13;
-	&#13;
-	// Test 4: Process 5 more - no changes expected&#13;
-	var grRecords = new GlideRecord('x_snc_devtools_test');&#13;
-	grRecords.addQuery('name','STARTSWITH',testdata.GetPrefix());&#13;
-	TestCase_RecordBulkProcessor(&#13;
-		grRecords,&#13;
-		CallbackRecordProcessor,&#13;
-		'processed',&#13;
-		5,&#13;
-		10,&#13;
-		CallbackLog,&#13;
-		1,&#13;
-		0);		&#13;
-	&#13;
-	Log(RenderValue(testdata.GetAllTestItems()));&#13;
-	&#13;
-	Sleep(2);&#13;
 	&#13;
 	stepResult.setOutputMessage(strLog);&#13;
 	return bResult;&#13;
 	&#13;
 })(outputs, steps, stepResult, assertEqual);</value>
         <variable display_value="">989d9e235324220002c6435723dc3484</variable>
-    </sys_variable_value>
-    <sys_variable_value action="INSERT_OR_UPDATE">
-        <document>sys_atf_step</document>
-        <document_key>67820790db4fac10ba15a3530596192d</document_key>
-        <order>100</order>
-        <sys_class_name>sys_variable_value</sys_class_name>
-        <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2021-03-18 15:18:15</sys_created_on>
-        <sys_id>ecb24390db4fac10ba15a3530596191a</sys_id>
-        <sys_mod_count>0</sys_mod_count>
-        <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-03-18 15:18:15</sys_updated_on>
-        <value>3.1</value>
-        <variable display_value="">42f2564b73031300440211d8faf6a777</variable>
     </sys_variable_value>
 </record_update>

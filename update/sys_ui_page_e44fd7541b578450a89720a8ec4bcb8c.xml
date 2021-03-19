@@ -97,19 +97,25 @@
 	
 	<h2>Release Notes</h2>
 
-	<h3>1.11.0 - TODO</h3>
+	<h3>1.11.0 - 2021-03-19</h3>
 	<ol>
 		<li>Madrid is no longer supported.</li>
+		<li>Added function RecordBulkProcessor()  to process large amounts of records using a callback function.</li>
 		<li>Added the function Clone() to clone objects. This is to heal the JavaScript inherent design flaw around object references instead of copies.</li>
 		<li>Added the function Merge() to merge two objects.</li>
 		<li>Added function RecordSetValue() to set a single field value on a given record.</li>  
 		<li>Added function IsObject() to distinguish objects from other types.</li>
 		<li>Added function IsValidTable() since the TableUtils script include is not accessible from a scoped app.</li> 
+		<li>Added function RenderDateTime() since Javascript has no built-in function to render an ISO date/time string.</li>
+		<li>Added function Sleep() to do nothing for a set amount of seconds.</li>
 		<li>RenderValue() now has a second parameter "bHideEmpty". If set to true, empty values in objects are ignored - leading to better readable output.</li>
 		<li>RenderValue() sorts keys of objects alphabetically. However the keys "name", "short_description", "number" and "sys_id" will always lead the pack.</li>
 		<li>RenderValue() now displays empty objects as "{}".</li>
 		<li>IsEqual() can now compare objects.</li>
 		<li>TestDataAPI: Added function GetAllData() and corresponding functions for each supported record type GetAllIncidents(), GetAllProblems(), etc.</li>
+		<li>TestDataAPI: Added function CreateTestItem() and GetAllTestItems() to manage entries in the table x_snc_devtools_test which is used for testing.</li>
+		<li>ParseDateTime() is now more resilient against incorrect input.</li>
+		<li>The test step configuration "DevTools - Check scoped app sanity" now checks for empty descriptions in publicly accessible script includes.</li> 
 		<li>Improved installation intructions.</li>
 	</ol>
 	
@@ -238,13 +244,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>266</sys_mod_count>
+        <sys_mod_count>271</sys_mod_count>
         <sys_name>Start</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-03-19 09:59:44</sys_updated_on>
+        <sys_updated_on>2021-03-19 15:02:25</sys_updated_on>
     </sys_ui_page>
 </record_update>
