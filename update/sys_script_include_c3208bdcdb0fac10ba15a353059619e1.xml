@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.RecordBulkProcessor</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>RecordBulkProcessor</name>
+        <script><![CDATA[function RecordBulkProcessor(grRecords,callbackRecordProcessor,strFieldDateTime,nBatchSize,nMaxBatches,nMaxSeconds,callbackLog,nLogFrequency)
+{
+	var GetStringValue = x_snc_devtools.GetStringValue;
+	var RenderValue = x_snc_devtools.RenderValue;
+	var GetIntegerValue = x_snc_devtools.GetIntegerValue;
+	var GetBoolValue = x_snc_devtools.GetBoolValue;
+	var IsValidRecord = x_snc_devtools.IsValidRecord;
+	var GetType = x_snc_devtools.GetType;
+
+	if (IsValidRecord(grRecords) != true)
+	{
+		return false;
+	}
+	
+	if (GetType(callbackRecordProcessor) != 'function')
+	{
+		return false;
+	}
+	
+	strFieldDateTime = GetStringValue(strFieldDateTime);
+	
+	nBatchSize = GetIntegerValue(nBatchSize);
+	if (nBatchSize == 0)
+	{
+		nBatchSize = 1000;
+	}
+	
+	nMaxBatches = GetIntegerValue(nMaxBatches);
+	if (nMaxBatches == 0)
+	{
+		nMaxBatches = 10;
+	}
+	
+	nMaxSeconds = GetIntegerValue(nMaxSeconds);
+	if (nMaxSeconds == 0)
+	{
+		nMaxSeconds = 3600;
+	}
+
+	if (GetType(callbackLog) != 'function')
+	{
+		callbackLog = null;
+	}
+	
+	nLogFrequency = GetIntegerValue(nLogFrequency);
+	if (nLogFrequency == 0)
+	{
+		nLogFrequency = 1000;
+	}
+	
+	function Log(strText)
+	{
+		if (callbackLog == null)
+		{
+			x_snc_devtools.Log(strText);
+		}
+		else
+		{
+			callbackLog(strText);
+		}
+	}
+
+	
+	grRecords.orderByDesc(strFieldDateTime);
+	grRecords.setLimit(nBatchSize);
+	
+	var nTotalRecordsChanged = 0;
+	var nTotalRecordsProcessed = 0;
+	var nBatchCount = 0;
+
+	var bContinue = true;
+	while (bContinue == true)
+	{
+		nBatchCount++;
+		
+		var nTimeStamp = new Date().getTime();
+		Debug(RenderValue(nTimeStamp));
+		
+		//grRecords.setValue(strFieldDateTime,nTimeStamp);
+		grRecords.setValue(strFieldDateTime,'2021-03-18 12:00:0'+GetStringValue(nBatchCount));
+		
+		grRecords.updateMultiple();
+		
+		grRecords.query();
+		
+		Debug('Records found: '+grRecords.getRowCount());
+		
+		while (grRecords.next())
+		{
+			var bChanged = callbackRecordProcessor(grRecords);
+			nTotalRecordsProcessed++;
+			if (bChanged == true)
+			{
+				grRecords.update();
+				nTotalRecordsChanged++;
+			}
+			
+		}
+				
+		if (nBatchCount >= nMaxBatches)
+		{
+			bContinue = false;
+		}
+	}
+	
+	var strLog = 'Changed '+nTotalRecordsChanged+' out of '+nTotalRecordsProcessed+' processed records.';
+	Log(strLog);	
+	
+	
+	/*
+
+		
+		if (nLogFrequency > 0 && nCurrentRows >= nLogFrequency)
+		{
+			var strLog = '';
+			if (nWindowSize == 0)
+			{
+				strLog = 'Starting to process '+nCurrentRows+' record(s) in '+strCurrentClassName+'.';
+			}
+			else
+			{
+				strLog = 'Starting to process '+(nLastRecord-nFirstRecord)+' of '+nCurrentRows+' record(s) in '+strCurrentClassName+'.';
+				strLog += '\n(Records '+nFirstRecord+' to '+nLastRecord+' / Window size = '+nWindowSize+' / Window index: '+nWindowIndex+' / Window border: '+nWindowBorderSize+')';
+
+			}
+			Log(strLog);
+		}
+		
+		var nCurrentRow = 1;
+		var nCurrentChanges = 0;
+		
+			if (nCurrentRow > 0 && nLogFrequency > 0)
+			{
+				if (nCurrentRow % nLogFrequency == 0)
+				{
+					var strLog = 'Processing record '+nCurrentRow+' of '+nCurrentRows+' in '+strCurrentClassName+' and made '+nCurrentChanges+' changes so far.';
+					Log(strLog);
+				}
+			}
+			nCurrentRow++;
+		}
+
+		
+		if (nLogFrequency > 0 && nCurrentRows >= nLogFrequency && aGlideRecordFilters.length > 1)
+		{
+			var strLog = 'Processed '+nCurrentRows+' record(s) in '+strCurrentClassName+' and made '+nCurrentChanges+' changes.';
+			Log(strLog);
+		}
+	}
+
+	var strLog = 'END\n';
+	}
+	strLog += 'Changed '+nTotalRecordsChanged+' out of '+nTotalRecordsProcessed+' processed records.';
+
+	Log(strLog);
+	
+*/
+	
+	return nTotalRecordsChanged;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-03-18 15:15:16</sys_created_on>
+        <sys_id>c3208bdcdb0fac10ba15a353059619e1</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>RecordBulkProcessor</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_c3208bdcdb0fac10ba15a353059619e1</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-03-18 20:40:34</sys_updated_on>
+    </sys_script_include>
+</record_update>

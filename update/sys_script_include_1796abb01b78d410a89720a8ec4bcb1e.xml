@@ -43,7 +43,8 @@ TestDataAPI.prototype =
 	GetAllData:function()
 	{
 		var result = {};
-		
+
+		//result.x_snc_devtools_test = this.GetAllTestItems();
 		result.sys_user = this.GetAllUsers();
 		result.sys_user_group = this.GetAllGroups();
 		result.sys_user_role = this.GetAllRoles();
@@ -56,9 +57,58 @@ TestDataAPI.prototype =
 		result.sc_request = this.GetAllRequests();
 		//result.sc_req_item = this.GetAllRequestedItems();
 		//result.sc_task = this.GetAllRequestTasks();
-
 		return result;
 	},
+	
+
+	CreateTestItem:function(strName, strValue)
+	{
+		strName = GetStringValue(strName);
+		strValue = GetStringValue(strValue);
+		var strPrefix = this.GetPrefix();
+		
+		var grTestItem = new GlideRecord('x_snc_devtools_test');
+		var strSysId = null;
+		var bDeleted = true;
+		if (grTestItem.get('name','=',strPrefix+strName))
+		{
+			strSysId = grTestItem.getValue('sys_id');
+			bDeleted = grTestItem.deleteRecord();
+		}
+		if (bDeleted == true || strSysId == null)
+		{
+			grTestItem.newRecord();
+			grTestItem.name = strPrefix+strName;
+			grTestItem.value = strValue;
+			strSysId = grTestItem.insert();
+		}
+
+		if (strSysId == null)
+		{
+			//this.Debug('CreateUser','Failed to create user '+strName+'!');
+			return null;
+		}
+		//this.Debug('CreateUser','User '+strName+' has been created. sys_id='+strUserSysId);
+		
+		return strSysId;
+	},
+	
+	GetAllTestItems:function()
+	{
+		var aResult = [];
+		var strPrefix = this.GetPrefix();
+		
+		var grTestItem = new GlideRecord('x_snc_devtools_test');
+		grTestItem.addQuery('name','STARTSWITH',strPrefix);
+		grTestItem.orderBy('name');
+		grTestItem.query();
+		while (grTestItem.next())
+		{
+			aResult.push(Clone(grTestItem));
+		}
+		return aResult;
+	},
+	
 	
 	CreateUser:function(strName, aRoles)
 	{
@@ -817,13 +867,13 @@ TestDataAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-13 14:53:39</sys_created_on>
         <sys_id>1796abb01b78d410a89720a8ec4bcb1e</sys_id>
-        <sys_mod_count>85</sys_mod_count>
+        <sys_mod_count>89</sys_mod_count>
         <sys_name>TestDataAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_1796abb01b78d410a89720a8ec4bcb1e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-03-03 14:17:31</sys_updated_on>
+        <sys_updated_on>2021-03-18 20:32:32</sys_updated_on>
     </sys_script_include>
 </record_update>

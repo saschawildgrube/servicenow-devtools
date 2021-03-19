@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.StopWatch</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>StopWatch</name>
+        <script><![CDATA[var StopWatch = Class.create();
+StopWatch.prototype = {
+    initialize: function()
+	{
+		//this.Reset();
+    },
+	
+
+    type: 'StopWatch'
+};
+
+/*
+
+	class CStopWatch
+	{
+		private $m_timeStart;
+		private $m_timeStop;
+		private $m_fTotalSeconds;
+		
+		function __construct()
+		{
+			$this->Reset();
+		}
+		
+		function Reset()
+		{
+			$this->m_timeStart = 0;
+			$this->m_timeStop = 0;
+			$this->m_fTotalSeconds = 0;
+		}
+		
+		function Start()
+		{
+			$this->m_timeStart = GetTimeNow();
+			$this->m_timeStop = 0;
+		}
+		
+		function Stop()
+		{
+			$this->m_timeStop = GetTimeNow();
+			$this->m_fTotalSeconds += $this->GetSeconds();
+		}
+		
+		function GetSeconds()
+		{
+			if ($this->m_timeStart == 0)
+			{
+				return 0;
+			}
+			if ($this->m_timeStop == 0)
+			{
+				return GetTimeNow() - $this->m_timeStart;
+			}
+			else
+			{
+				return $this->m_timeStop - $this->m_timeStart;
+			}
+		}
+		
+		function GetTotalSeconds()
+		{
+			if ($this->m_timeStart == 0)
+			{
+				return 0;
+			}
+			if ($this->m_timeStop == 0)
+			{
+				return GetTimeNow() - $this->m_timeStart + $this->m_fTotalSeconds;
+			}
+			else
+			{
+				return $this->m_fTotalSeconds;
+			}
+		}
+		
+		function GetStart()
+		{
+			return $this->m_timeStart;
+		}
+		
+		function GetStop()
+		{
+			return $this->m_timeStop;
+		}
+	}
+
+*/]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-03-18 16:57:12</sys_created_on>
+        <sys_id>a3f89358db8fac10ba15a3530596198f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>StopWatch</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_a3f89358db8fac10ba15a3530596198f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-03-18 16:57:12</sys_updated_on>
+    </sys_script_include>
+</record_update>
