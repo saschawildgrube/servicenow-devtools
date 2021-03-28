@@ -5,9 +5,80 @@
         <api_name>x_snc_devtools.GetGroupsFromUser</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Returns all groups of a given user.</description>
+        <description>Returns all groups of a given user. An additional filter can be applied to the groups to be returned.</description>
         <name>GetGroupsFromUser</name>
-        <script><![CDATA[function GetGroupsFromUser(strUserSysId)
+        <script><![CDATA[function GetGroupsFromUser(strUserSysId,strFilterQuery)
+{
+	function Debug(strText)
+	{
+		x_snc_datasilos.Debug('GetGroupsFromUser: '+strUserSysId+': '+strText);
+	}
+	
+	var GetStringValue = x_snc_devtools.GetStringValue;
+	var RenderValue = x_snc_devtools.RenderValue;	
+	
+	strUserSysId = GetStringValue(strUserSysId);
+	strFilterQuery = GetStringValue(strFilterQuery);
+	
+	var aGroups = [];
+	
+	if (gs.getUser().getID() == strUserSysId)
+	{
+		aGroups = gs.getUser().getMyGroups();
+	}
+	else
+	{
+		var grUserGroups = new GlideRecord('sys_user_grmember');
+		grUserGroups.addQuery('user','=',strUserSysId);
+		grUserGroups.query();
+		while(grUserGroups.next())
+		{
+			var strGroupSysId = GetStringValue(grUserGroups.getValue('group'));
+			if (strGroupSysId != '')
+			{
+				aGroups.push(strGroupSysId);
+			}
+		}
+	}
+		
+	if (aGroups.length == 0)
+	{
+		return aGroups;
+	}
+	
+	if (strFilterQuery == '')
+	{
+		return aGroups;
+	}
+
+	var grGroups = new GlideRecord('sys_user_group');
+	grGroups.addEncodedQuery(strFilterQuery);
+	
+	for (var nIndex = 0; nIndex < aGroups.length; nIndex++)
+	{
+		if (nIndex == 0)
+		{
+			var query = grGroups.addQuery('sys_id',aGroups[nIndex]);
+		}
+		else
+		{
+			query.addOrCondition('sys_id',aGroups[nIndex]);
+		}
+	}
+	grGroups.query();
+	
+	var aGroupsFiltered = [];
+	while (grGroups.next())
+	{
+		var strGroupSysId = GetStringValue(grGroups.getValue('sys_id'));
+		if (strGroupSysId != '')
+		{
+			aGroupsFiltered.push(strGroupSysId);
+		}
+	}
+	return aGroupsFiltered;
+}
+/*function GetGroupsFromUser(strUserSysId)
 {
 	strUserSysId = GetStringValue(strUserSysId);
 	var aGroups = [];
@@ -28,18 +99,18 @@
 		}
 	}
 	return aGroups;
-}]]></script>
+}*/]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-04-21 08:37:28</sys_created_on>
         <sys_id>d8cf38391b1cdc90a89720a8ec4bcb6f</sys_id>
-        <sys_mod_count>9</sys_mod_count>
+        <sys_mod_count>10</sys_mod_count>
         <sys_name>GetGroupsFromUser</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_d8cf38391b1cdc90a89720a8ec4bcb6f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-06-19 19:45:47</sys_updated_on>
+        <sys_updated_on>2021-03-28 14:42:03</sys_updated_on>
     </sys_script_include>
 </record_update>

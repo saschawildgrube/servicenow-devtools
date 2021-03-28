@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-04-21 08:39:46</sys_created_on>
         <sys_id>55e009791b1cdc90a89720a8ec4bcb9a</sys_id>
-        <sys_mod_count>76</sys_mod_count>
+        <sys_mod_count>78</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_55e009791b1cdc90a89720a8ec4bcb9a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-11-30 08:46:24</sys_updated_on>
+        <sys_updated_on>2021-03-28 14:47:40</sys_updated_on>
         <table/>
         <test display_value="DevTools - GetGroupsFromUser">a2c0c5791b1cdc90a89720a8ec4bcbc1</test>
         <timeout/>
@@ -36,9 +36,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-04-21 08:39:46</sys_created_on>
         <sys_id>844109791b1cdc90a89720a8ec4bcbe2</sys_id>
-        <sys_mod_count>32</sys_mod_count>
+        <sys_mod_count>34</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-05-26 13:54:18</sys_updated_on>
+        <sys_updated_on>2021-03-28 14:47:40</sys_updated_on>
         <value>var strLog = '';&#13;
 function Log(strText)&#13;
 {&#13;
@@ -49,13 +49,14 @@ function Log(strText)&#13;
 	var bResult = true;&#13;
 	&#13;
 &#13;
-	function TestCase_GetGroupsFromUser(vInput, vExpected)&#13;
+	function TestCase_GetGroupsFromUser(vInputUser, vInputFilter, vExpected)&#13;
 	{&#13;
 		Log('TestCase_GetGroupsFromUser');&#13;
-		Log('Input: '+RenderValue(vInput));&#13;
-		Log('Expected: '+RenderValue(vExpected));&#13;
-		var vResult = GetGroupsFromUser(vInput);&#13;
-		Log('Result  : '+RenderValue(vResult));&#13;
+		Log('Input User  : '+RenderValue(vInputUser));&#13;
+		Log('Input Filter: '+RenderValue(vInputFilter));&#13;
+		Log('Expected    : '+RenderValue(vExpected));&#13;
+		var vResult = GetGroupsFromUser(vInputUser,vInputFilter);&#13;
+		Log('Result      : '+RenderValue(vResult));&#13;
 		if (!IsEqual(vResult,vExpected,true))&#13;
 		{&#13;
 			bResult = false;&#13;
@@ -72,19 +73,27 @@ function Log(strText)&#13;
 	var strGroupBeta = GetRecordFromTestStep('40a6dac1db455010ba15a353059619e0');&#13;
 	&#13;
 	Log('An empty user is not member of any groups');&#13;
-	TestCase_GetGroupsFromUser('',[]);&#13;
+	TestCase_GetGroupsFromUser('','',[]);&#13;
 	&#13;
 	Log('User Alice is member of group Alpha');&#13;
-	TestCase_GetGroupsFromUser(strUserAlice,[strGroupAlpha]);&#13;
+	TestCase_GetGroupsFromUser(strUserAlice,'',[strGroupAlpha]);&#13;
 &#13;
 	Log('User Bob is member of group Beta');&#13;
-	TestCase_GetGroupsFromUser(strUserBob,[strGroupBeta]);&#13;
+	TestCase_GetGroupsFromUser(strUserBob,'',[strGroupBeta]);&#13;
 	&#13;
 	Log('User Charlie is member of group Alpha and group Beta');&#13;
 	TestCase_GetGroupsFromUser(&#13;
 		strUserCharlie,&#13;
+		'',&#13;
 		[strGroupAlpha,strGroupBeta]);&#13;
-		&#13;
+&#13;
+	Log('User Charlie is member of group Alpha and group Beta, but we filter groups for "Alpha"');&#13;
+	TestCase_GetGroupsFromUser(&#13;
+		strUserCharlie,&#13;
+		'nameCONTAINSAlpha',&#13;
+		[strGroupAlpha]);&#13;
+&#13;
+	&#13;
 	stepResult.setOutputMessage(strLog);&#13;
 	return bResult;&#13;
 	&#13;
