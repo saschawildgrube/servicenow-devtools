@@ -106,6 +106,7 @@
 		<li>Added function BusinessRuleGetOperation() to return the operation (of a business rule) based on the provided record.</li>
 		<li>Debug() can now display the current transaction runtime in milliseconds. The new property x_snc_devtools.debug.log.transaction_runtime controls if the transaction runtime should be included or not.</li> 
 		<li>RenderValue() has been improved: In case of a GlideRecord, the table name, sys_id and number (if available) are displayed on top and a selected choice of fields leads the list of values despite the alphabetical order.</li>
+		<li>The test step configuration "DevTools - Check scoped app sanity" now checks scheduled jobs for only technical users or the system admin serve as the run_as user.</li>
 		<li>Added module "Query Log" to track invalid queries.</li>
 		<li>The module "Outbox" is renamed to "Outbox or Sent" and also displays sent mails.</li>
 		<li>Improved column order in module "Storage Column Aliases".</li>
@@ -278,13 +279,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>294</sys_mod_count>
+        <sys_mod_count>295</sys_mod_count>
         <sys_name>start</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-04-15 12:59:19</sys_updated_on>
+        <sys_updated_on>2021-04-15 14:34:30</sys_updated_on>
     </sys_ui_page>
 </record_update>
