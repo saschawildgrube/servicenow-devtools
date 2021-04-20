@@ -26,9 +26,7 @@
 	<ul>
 		<li>New York, Orlando, Paris or Quebec</li>
 	</ul>
-	
-
-	
+		
 	<h2>Installation</h2>
 	<p>To use the full potential of DevTools perform the following steps:</p>
 	<ol>
@@ -102,6 +100,7 @@
 		<li>Added function RenderBytes() to return a user friendly number of bytes using KB, MB and GB where appropriate.</li>
 		<li>Added function RecordDelete() to delete a single record based on a table name and the record sys id.</li>
 		<li>RecordBulkProcessor() now detects if updating a record fails and aborts the processing. If the update fails the maintenance date time field cannot be updated and the function would retry the same record until thresholds are reached.</li>
+		<li>Added test "DevTools - Test data sanity" to check if all test data has been cleaned up in previous test runs.</li>
 	</ol>
 
 	
@@ -287,13 +286,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>300</sys_mod_count>
+        <sys_mod_count>302</sys_mod_count>
         <sys_name>start</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-04-20 12:03:43</sys_updated_on>
+        <sys_updated_on>2021-04-20 12:14:45</sys_updated_on>
     </sys_ui_page>
 </record_update>
