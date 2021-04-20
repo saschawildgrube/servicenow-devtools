@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.RenderBytes</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns a user friendly number of bytes using KB, MB and GB where appropriate.</description>
+        <name>RenderBytes</name>
+        <script><![CDATA[function RenderBytes(nBytes)
+{
+	if (GetType(nBytes) != 'number' && GetType(nBytes) != 'ScopedGlideElement')
+	{
+		return '';
+	}
+	nBytes = GetIntegerValue(nBytes);
+	if (nBytes < 0)
+	{
+		return '';
+	}
+	if (nBytes == 1)
+	{
+		return '1 Byte';
+	}
+	if (nBytes < 1024)
+	{
+		return nBytes + ' Bytes';
+	}
+	var nKB =  nBytes / 1024;
+	if (nKB < 1024)
+	{
+		return nKB.toFixed(0) + ' KB';
+	}
+	var nMB = nKB / 1024;
+	if (nMB < 1024)
+	{
+		return nMB.toFixed(1) + ' MB';
+	}
+	var nGB = nMB / 1024;
+	return nGB.toFixed(2) + ' GB';
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-04-20 06:45:28</sys_created_on>
+        <sys_id>0508877e1ba3a010f28a0d81ec4bcbf0</sys_id>
+        <sys_mod_count>12</sys_mod_count>
+        <sys_name>RenderBytes</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_0508877e1ba3a010f28a0d81ec4bcbf0</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-04-20 07:22:38</sys_updated_on>
+    </sys_script_include>
+</record_update>
