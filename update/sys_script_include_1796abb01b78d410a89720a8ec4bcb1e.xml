@@ -112,11 +112,12 @@ TestDataAPI.prototype =
 	},
 	
 	
-	CreateUser:function(strName, aRoles)
+	CreateUser:function(strName, aRoles, bTechnical)
 	{
 	
 		strName = GetStringValue(strName);
 		aRoles = GetArrayValue(aRoles); 
+		bTechnical = GetBoolValue(bTechnical);
 		
 		//this.Debug('CreateUser',strName+' '+RenderValue(aRoles));
 		
@@ -135,6 +136,10 @@ TestDataAPI.prototype =
 			grUser.newRecord();
 			grUser.user_name = strPrefix+strName;
 			grUser.first_name = strPrefix+strName;
+			if (bTechnical == true)
+			{
+				grUser.web_service_access_only = true;
+			}
 			strUserSysId = grUser.insert();
 		}
 
@@ -869,13 +874,13 @@ TestDataAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-13 14:53:39</sys_created_on>
         <sys_id>1796abb01b78d410a89720a8ec4bcb1e</sys_id>
-        <sys_mod_count>93</sys_mod_count>
+        <sys_mod_count>94</sys_mod_count>
         <sys_name>TestDataAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_1796abb01b78d410a89720a8ec4bcb1e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-03-19 13:47:14</sys_updated_on>
+        <sys_updated_on>2021-04-26 15:18:44</sys_updated_on>
     </sys_script_include>
 </record_update>
