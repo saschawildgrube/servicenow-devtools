@@ -99,8 +99,10 @@
 	<ol>
 		<li>Added function IsTechnicalUser() to check if a given user is a technical user (i.e. web_service_access_only is set to true).</li>
 		<li>Added function IsProperty() to check if a given system property exists.</li>
+		<li>Added function AppSetProperty() to set a DevTools system property to a value.</li> 
 		<li>GetGroupsFromUser() now checks for an empty user sys id. If an empty sys id was provided and for whatever reasons the sys_user_grmember has records with an empty sys_id, the associated groups would then be returned.</li>
 		<li>Added view "DevTools" for scheduled jobs to show the "Run as" field.</li>
+		<li>Renamed internal function SetDefaults() to AppSetDefaults().</li>
 	</ol>
 	
 	<h3>1.14.0 - 2021-04-20</h3>
@@ -109,7 +111,7 @@
 		<li>Added function RecordDelete() to delete a single record based on a table name and the record sys id.</li>
 		<li>RecordBulkProcessor() now detects if updating a record fails and aborts the processing. If the update fails the maintenance date time field cannot be updated and the function would retry the same record until thresholds are reached.</li>
 		<li>Added test "DevTools - Test data sanity" to check if all test data has been cleaned up in previous test runs.</li>
-		<li>Added internal function SetDefaults() to set all system DevTools system properties to their default values.</li> 
+		<li>Added internal function SetDefaults() to set all DevTools system properties to their default values.</li> 
 	</ol>
 
 	
@@ -295,13 +297,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>309</sys_mod_count>
+        <sys_mod_count>311</sys_mod_count>
         <sys_name>start</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-04-26 10:46:18</sys_updated_on>
+        <sys_updated_on>2021-04-26 11:47:13</sys_updated_on>
     </sys_ui_page>
 </record_update>
