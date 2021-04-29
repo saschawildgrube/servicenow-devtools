@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <copied_from/>
+        <description>Run Server Side Validation Script</description>
+        <display_name>Run Server Side Script</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>1</order>
+        <snapshot/>
+        <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-04-29 13:38:31</sys_created_on>
+        <sys_id>810ef2b5db3b2010bc44d844ca96192d</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>Run Server Side Script</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_step_810ef2b5db3b2010bc44d844ca96192d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-04-29 15:44:44</sys_updated_on>
+        <table/>
+        <test display_value="DevTools - UserImpersonate">bded72b5db3b2010bc44d844ca961953</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=810ef2b5db3b2010bc44d844ca96192d"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>810ef2b5db3b2010bc44d844ca96192d</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-04-29 13:38:31</sys_created_on>
+        <sys_id>15aef6b5db3b2010bc44d844ca96198d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-04-29 13:38:31</sys_updated_on>
+        <value>3.1</value>
+        <variable display_value="">42f2564b73031300440211d8faf6a777</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>810ef2b5db3b2010bc44d844ca96192d</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-04-29 13:38:31</sys_created_on>
+        <sys_id>5daef6b5db3b2010bc44d844ca96198d</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-04-29 15:44:44</sys_updated_on>
+        <value>var strLog = '';&#13;
+function Log(strText)&#13;
+{&#13;
+	strLog = strLog + "\n" + strText;&#13;
+}&#13;
+(function(outputs, steps, stepResult, assertEqual)&#13;
+{&#13;
+	var RenderValue = x_snc_devtools.RenderValue;&#13;
+&#13;
+	var bResult = true;&#13;
+	&#13;
+	function TestCase_UserImpersonate(vInput, vExpected)&#13;
+	{&#13;
+		Log('TestCase_UserImpersonate');&#13;
+		Log('Input: '+RenderValue(vInput));&#13;
+		Log('Expected: '+RenderValue(vExpected));&#13;
+		var vResult = UserImpersonate(vInput);&#13;
+		Log('Result  : '+RenderValue(vResult));&#13;
+		if (vResult != vExpected)&#13;
+		{&#13;
+			bResult = false;&#13;
+			Log('Test case FAILED');&#13;
+		}&#13;
+		Log('');&#13;
+	}&#13;
+	&#13;
+	var testdata = new TestDataAPI('_ATF_DEVTOOLS_');&#13;
+	&#13;
+	var strUserCurrent = gs.getUserID();&#13;
+	var strUser1 = testdata.CreateUser('1',[]);&#13;
+	var strUser2 = testdata.CreateUser('2',[]);&#13;
+	var strUser3 = testdata.CreateUser('3',[]);&#13;
+	&#13;
+	/*&#13;
+	var glideImp = new GlideImpersonate(); &#13;
+	glideImp.impersonate(strUser1);&#13;
+	*/&#13;
+	&#13;
+	TestCase_UserImpersonate(strUser1,gs.getUserID());&#13;
+	TestCase_UserImpersonate(strUser2,strUser1);&#13;
+	TestCase_UserImpersonate(strUser3,strUser2);&#13;
+	&#13;
+	UserImpersonate(strUserCurrent);&#13;
+	&#13;
+	// com.glide.automated_testing_framework.runner.step.ImpersonationStepRunner&#13;
+		&#13;
+	stepResult.setOutputMessage(strLog);&#13;
+	return bResult;&#13;
+	&#13;
+})(outputs, steps, stepResult, assertEqual);</value>
+        <variable display_value="">989d9e235324220002c6435723dc3484</variable>
+    </sys_variable_value>
+</record_update>
