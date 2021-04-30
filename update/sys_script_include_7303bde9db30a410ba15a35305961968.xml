@@ -11,7 +11,7 @@
 {
 	function Debug(strText)   
 	{
-		//x_snc_devtools.Debug('RunScriptInGlobalScope: '+strText);
+		x_snc_devtools.Debug('RunScriptInGlobalScope: '+strText);
 	}
 	function CreateTempScriptInclude(strName,strScript)
 	{
@@ -40,8 +40,8 @@
 		}
 	}
 	
-	
 	var strName = 'DevTools_TemporaryFunction';
+	//var strName2 = 'DevTools_TemporaryFunction_'+GetStringValue(GlideSecureRandomUtil.getSecureRandomLong());
 
 	strScript = 
 		"function "+strName+"(param1,param2,param3,param4,param5)"
@@ -52,7 +52,25 @@
 	CreateTempScriptInclude(strName,strScript);
 	
 	var vReturnValue = false;
-	var TemporaryFunction = global.DevTools_TemporaryFunction;
+
+	var TemporaryFunction = null;
+
+	TemporaryFunction = global.DevTools_TemporaryFunction;
+	
+	Debug(RenderValue(TemporaryFunction));
+	
+	//TemporaryFunction = Clone(global.DevTools_TemporaryFunction);
+	
+	//var strEval = 'TemporaryFunction = global.'+strName+';';
+	//eval(strEval);
+
+	//var SetTemporaryFunction = Function('TemporaryFunction = global.'+strName+';');
+	//SetTemporaryFunction();
+	
+	//var SetTemporaryFunction = 'function () { TemporaryFunction = global.'+strName+'; }'.parseFunction();
+	//SetTemporaryFunction();
+		
+	
 	var strType = x_snc_devtools.GetType(TemporaryFunction);
 	if (strType != 'function')
 	{
@@ -67,19 +85,21 @@
 	}
 
 	DeleteTempScriptInclude(strName);
+	//global.DevTools_TemporaryFunction = null;
+	
 	return vReturnValue;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-11-30 10:24:01</sys_created_on>
         <sys_id>7303bde9db30a410ba15a35305961968</sys_id>
-        <sys_mod_count>11</sys_mod_count>
+        <sys_mod_count>27</sys_mod_count>
         <sys_name>RunScriptInGlobalScope</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_7303bde9db30a410ba15a35305961968</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-04-30 07:44:24</sys_updated_on>
+        <sys_updated_on>2021-04-30 14:27:43</sys_updated_on>
     </sys_script_include>
 </record_update>
