@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-04-22 10:27:07</sys_created_on>
         <sys_id>670322ca1b1050d0a89720a8ec4bcb33</sys_id>
-        <sys_mod_count>42</sys_mod_count>
+        <sys_mod_count>48</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_670322ca1b1050d0a89720a8ec4bcb33</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-04-30 13:58:22</sys_updated_on>
+        <sys_updated_on>2021-05-04 12:33:31</sys_updated_on>
         <table/>
         <test display_value="DevTools - RenderValue">7ce22e8a1b1050d0a89720a8ec4bcbdb</test>
         <timeout/>
@@ -50,9 +50,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-04-22 10:27:07</sys_created_on>
         <sys_id>d263ae8a1b1050d0a89720a8ec4bcb96</sys_id>
-        <sys_mod_count>42</sys_mod_count>
+        <sys_mod_count>48</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-04-30 13:58:22</sys_updated_on>
+        <sys_updated_on>2021-05-04 12:33:31</sys_updated_on>
         <value>var strLog = '';&#13;
 function Log(strText)&#13;
 {&#13;
@@ -122,7 +122,7 @@ function Log(strText)&#13;
 	gr.name = 'Test';&#13;
 	gr.value = 'Hello World';&#13;
 	TestCase_RenderValue(gr,&#13;
-		'x_snc_devtools_test:'&#13;
+		'\nx_snc_devtools_test:'&#13;
 		+'\n["name"]: Test'&#13;
 		+'\n["processed"]: '&#13;
 		+'\n["sys_created_by"]: '&#13;
@@ -135,19 +135,48 @@ function Log(strText)&#13;
 		+'\n["sys_updated_on"]: '&#13;
 		+'\n["value"]: Hello World'&#13;
 		);&#13;
-&#13;
-	&#13;
 	TestCase_RenderValueHideEmpty(gr,&#13;
-		'x_snc_devtools_test:'&#13;
+		'\nx_snc_devtools_test:'&#13;
 		+'\n["name"]: Test'&#13;
 		+'\n["sys_meta"]: null'&#13;
 		+'\n["sys_mod_count"]: 0'&#13;
 		+'\n["value"]: Hello World'&#13;
 		);	&#13;
 	&#13;
+	// Nested GlideRecords&#13;
+	TestCase_RenderValue(&#13;
+		{&#13;
+			'record1': gr&#13;
+		},&#13;
+		'\n["record1"]: '&#13;
+		+'\n___x_snc_devtools_test:'&#13;
+		+'\n___["name"]: Test'&#13;
+		+'\n___["processed"]: '&#13;
+		+'\n___["sys_created_by"]: '&#13;
+		+'\n___["sys_created_on"]: '&#13;
+		+'\n___["sys_id"]: '&#13;
+		+'\n___["sys_meta"]: null'&#13;
+		+'\n___["sys_mod_count"]: 0'&#13;
+		+'\n___["sys_tags"]: '&#13;
+		+'\n___["sys_updated_by"]: '&#13;
+		+'\n___["sys_updated_on"]: '&#13;
+		+'\n___["value"]: Hello World'&#13;
+		);&#13;
+	TestCase_RenderValueHideEmpty(&#13;
+		{&#13;
+			'record1': gr&#13;
+		},&#13;
+		'\n["record1"]: '&#13;
+		+'\n___x_snc_devtools_test:'&#13;
+		+'\n___["name"]: Test'&#13;
+		+'\n___["sys_meta"]: null'&#13;
+		+'\n___["sys_mod_count"]: 0'&#13;
+		+'\n___["value"]: Hello World'&#13;
+		);		&#13;
+	&#13;
 	var strSysId = gr.insert();&#13;
 	TestCase_RenderValue(gr,&#13;
-		'x_snc_devtools_test: '+strSysId+':'&#13;
+		'\nx_snc_devtools_test: '+strSysId+':'&#13;
 		+'\n["name"]: Test'&#13;
 		+'\n["processed"]: '&#13;
 		+'\n["sys_created_by"]: '+gr.sys_created_by&#13;
@@ -193,22 +222,23 @@ function Log(strText)&#13;
 	TestCase_RenderValue(&#13;
 		{&#13;
 			alpha: 'Alpha',&#13;
-			sys_id: 'sys_id',&#13;
+			sys_id: '0815abcd',&#13;
 			beta: 'Beta',&#13;
-			name: 'name',&#13;
+			name: 'Name',&#13;
 			gamma: 'Gamma',&#13;
-			short_description: 'short_description',&#13;
+			short_description: 'Short Description',&#13;
 			delta: 'Delta',&#13;
-			number: 'number'&#13;
-		},''&#13;
+			number: 'TEST1234'&#13;
+		},&#13;
+		'\nTEST1234: 0815abcd: '&#13;
+		+'\n["name"]: Name'&#13;
+		+'\n["short_description"]: Short Description'&#13;
 		+'\n["alpha"]: Alpha'&#13;
 		+'\n["beta"]: Beta'&#13;
 		+'\n["delta"]: Delta'&#13;
 		+'\n["gamma"]: Gamma'&#13;
-		+'\n["name"]: name'&#13;
-		+'\n["number"]: number'		&#13;
-		+'\n["short_description"]: short_description'&#13;
-		+'\n["sys_id"]: sys_id'&#13;
+		+'\n["number"]: TEST1234'		&#13;
+		+'\n["sys_id"]: 0815abcd'&#13;
 		);&#13;
 	&#13;
 /*	&#13;
