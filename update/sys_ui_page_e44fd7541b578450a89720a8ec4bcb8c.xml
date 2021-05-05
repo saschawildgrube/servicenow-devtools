@@ -104,6 +104,7 @@
 		<li>Added function UserImpersonate() which allows to impersonate a user from within a scoped application!</li>
 		<li>Added function GetRecord() to serve as a shorthand to get a GlideRecord object for a record in a given table, identified by a sys_id.</li>
 		<li>Added function GetRandomNumericToken() to create a pseudo-random numeric token string of a given length.</li>
+		<li>Added function UserAddRole() to add a role to a user if the user doesn't have the role already.</li>
 		<li>RunScriptInGlobalScope() did not work correctly if different scripts were provided within one transaction. It would always execute the first script during a transaction. This has been fixed. Please note that within a provided script, result values must now be set using "result =" instead of "return".</li>
 		<li>RenderValue() now treats any object that has the sys_id key in the same way as a real GlideRecord object.</li>
 		<li>GetGroupsFromUser() now checks for an empty user sys id. If an empty sys id was provided and for whatever reasons the sys_user_grmember has records with an empty sys_id, the associated groups would then be returned.</li>
@@ -304,13 +305,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>318</sys_mod_count>
+        <sys_mod_count>319</sys_mod_count>
         <sys_name>start</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-05-05 10:12:04</sys_updated_on>
+        <sys_updated_on>2021-05-05 11:52:09</sys_updated_on>
     </sys_ui_page>
 </record_update>
