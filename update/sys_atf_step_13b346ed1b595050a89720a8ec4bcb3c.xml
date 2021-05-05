@@ -14,7 +14,7 @@ With a failure timeout of 5 Seconds</description>
         <notes>Check for change task CHANGE_REQUEST_1_TASK_1</notes>
         <order>19</order>
         <snapshot/>
-        <step_config display_value="Record Query">0270b8005f30220012b44adb7f46666a</step_config>
+        <step_config display_value="Record Query (Deprecated)">0270b8005f30220012b44adb7f46666a</step_config>
         <sys_class_name>sys_atf_step</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-06-09 11:55:36</sys_created_on>

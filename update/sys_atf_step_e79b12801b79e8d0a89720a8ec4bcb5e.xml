@@ -13,7 +13,7 @@ With a failure timeout of 5 Seconds</description>
 Refer to https://support.servicenow.com/kb?id=kb_article_view&amp;sys_kb_id=db973947db18eb48feb1a851ca9619b4</notes>
         <order>1</order>
         <snapshot/>
-        <step_config display_value="Record Query">0270b8005f30220012b44adb7f46666a</step_config>
+        <step_config display_value="Record Query (Deprecated)">0270b8005f30220012b44adb7f46666a</step_config>
         <sys_class_name>sys_atf_step</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-01-14 14:31:07</sys_created_on>

@@ -9,7 +9,151 @@
         <name>RunScriptInGlobalScope</name>
         <script><![CDATA[function RunScriptInGlobalScope(strScript, param1, param2, param3, param4, param5)
 {
-	function Debug(strText)
+	function Debug(strText)   
+	{
+		x_snc_devtools.Debug('RunScriptInGlobalScope: '+strText);
+	}
+	function CreateTempScriptInclude(strName,strScript)
+	{
+		Debug('CreateTempScriptInclude: '+strName);
+		var grScriptInclude = new GlideRecord('sys_script_include');
+		grScriptInclude.initialize();
+		grScriptInclude.name = strName;
+		grScriptInclude.sys_scope = 'global';
+		grScriptInclude.access = 'public';
+		grScriptInclude.active = true;
+		grScriptInclude.script = strScript;
+		grScriptInclude.api_name = 'global.'+strName;
+		return grScriptInclude.insert();
+	}
+	function DeleteTempScriptInclude(strName)
+	{
+		Debug('DeleteTempScriptInclude: '+strName);
+		grScriptInclude = new GlideRecord('sys_script_include');
+		grScriptInclude.addQuery('name','=',strName);
+		grScriptInclude.addQuery('sys_scope','=','global');
+		grScriptInclude.query();
+		while (grScriptInclude.next())
+		{
+			Debug('Deleting script include: '+grScriptInclude.sys_id);
+			grScriptInclude.deleteRecord();
+		}
+	}
+	
+	
+	// Get random token
+	var strRandom = GetRandomNumericToken(10);
+	
+	// Assemble the inner script (which runs the actual script)
+	var strNameInner = 'DevTools_TemporaryFunction_'+strRandom;
+
+	strScriptInner = strScript;
+	
+	/*
+		"function "+strNameInner+"(param1,param2,param3,param4,param5)"
+		+"{"
+		+strScript
+		+"}";
+		+"result = "+strNameInner+"(param1,param2,param3,param4,param5);";
+	*/
+	
+	var strScriptIncludeInner = CreateTempScriptInclude(strNameInner,strScriptInner);
+	if (IsValidSysId(strScriptIncludeInner) == false)
+	{
+		Debug('CreateTempScriptInclude("'+strNameInner+'") did not return a valid sysid');
+		return false;
+	}
+
+	//Debug(RenderValue(GetRecord('sys_script_include',strScriptIncludeInner)));
+	
+	
+	// Assemble the outer script (which runs the GlideScopedEvaluator)
+	var strNameOuter = 'DevTools_TemporaryFunction';
+	
+	strScriptOuter = 
+		"function "+strNameOuter+"(strSysId,param1,param2,param3,param4,param5)"
+		+"{"
+		+"   var grSI = new GlideRecord('sys_script_include');"
+		+"   if (grSI.get(strSysId) == false)"
+		+"   {"
+		+"      return false;"
+		+"   }"
+		+"   var evaluator = new GlideScopedEvaluator();"
+		+"   evaluator.putVariable('result',null);"
+		+"   evaluator.putVariable('param1',param1);"
+		+"   evaluator.putVariable('param2',param2);"
+		+"   evaluator.putVariable('param3',param3);"
+		+"   evaluator.putVariable('param4',param4);"
+		+"   evaluator.putVariable('param5',param5);"
+		+"   evaluator.putVariable('param5',param5);"
+		+"   evaluator.evaluateScript(grSI, 'script');"
+		+"   return evaluator.getVariable('result');"
+		+"}";
+	
+	var strScriptIncludeOuter = CreateTempScriptInclude(strNameOuter,strScriptOuter);
+	if (IsValidSysId(strScriptIncludeOuter) == false)
+	{
+		Debug('CreateTempScriptInclude("'+strNameOuter+'") did not return a valid sysid');
+		DeleteTempScriptInclude(strNameInner);
+		return false;
+	}
+
+	//Debug(RenderValue(GetRecord('sys_script_include',strScriptIncludeOuter)));
+
+
+
+	var vReturnValue = false;
+
+	var TemporaryFunction = global.DevTools_TemporaryFunction;
+
+	var strType = GetType(TemporaryFunction);
+	if (strType != 'function')
+	{
+		//Debug('GetType(TemporaryFunction) returned: '+strType);
+		vReturnValue = false;
+	}
+	else
+	{
+		Debug('BEFORE executing TemporaryFunction');
+		var vReturnValue = Clone(TemporaryFunction(strScriptIncludeInner,param1,param2,param3,param4,param5));
+		Debug('AFTER executing TemporaryFunction');
+	}
+
+	DeleteTempScriptInclude(strNameInner);
+	DeleteTempScriptInclude(strNameOuter);
+	
+	return vReturnValue;
+}
+
+
+
+/*
+
+var now_GR = new GlideRecord('x_app_table');
+now_GR.short_description = 'Testing GlideScopedEvaluator';
+now_GR.test_script = "gs.getUser().getName() + ' says ' + greeting; ";
+now_GR.insert();
+
+//setup variables to be used by the script
+var vars = {'greeting' : 'hello'};
+
+//Evaluate the script from the field
+var evaluator = new GlideScopedEvaluator();
+gs.info(evaluator.evaluateScript(now_GR, 'test_script', vars));
+
+// Now retrieve the result
+evaluator.evaluateScript(gr, 'u_test_script', null);
+gs.info(evaluator.getVariable('result'));
+
+*/
+
+
+
+/*
+
+function RunScriptInGlobalScope(strScript, param1, param2, param3, param4, param5)
+{
+	function Debug(strText)   
 	{
 		x_snc_devtools.Debug('RunScriptInGlobalScope: '+strText);
 	}
@@ -40,8 +184,8 @@
 		}
 	}
 	
-	
 	var strName = 'DevTools_TemporaryFunction';
+	//var strName2 = 'DevTools_TemporaryFunction_'+GetStringValue(GlideSecureRandomUtil.getSecureRandomLong());
 
 	strScript = 
 		"function "+strName+"(param1,param2,param3,param4,param5)"
@@ -52,7 +196,25 @@
 	CreateTempScriptInclude(strName,strScript);
 	
 	var vReturnValue = false;
-	var TemporaryFunction = global.DevTools_TemporaryFunction;
+
+	var TemporaryFunction = null;
+
+	TemporaryFunction = global.DevTools_TemporaryFunction;
+	
+	Debug(RenderValue(TemporaryFunction));
+	
+	//TemporaryFunction = Clone(global.DevTools_TemporaryFunction);
+	
+	//var strEval = 'TemporaryFunction = global.'+strName+';';
+	//eval(strEval);
+
+	//var SetTemporaryFunction = Function('TemporaryFunction = global.'+strName+';');
+	//SetTemporaryFunction();
+	
+	//var SetTemporaryFunction = 'function () { TemporaryFunction = global.'+strName+'; }'.parseFunction();
+	//SetTemporaryFunction();
+		
+	
 	var strType = x_snc_devtools.GetType(TemporaryFunction);
 	if (strType != 'function')
 	{
@@ -62,24 +224,28 @@
 	else
 	{
 		Debug('BEFORE executing TemporaryFunction');
-		var vReturnValue = TemporaryFunction(param1,param2,param3,param4,param5);
+		var vReturnValue = Clone(TemporaryFunction(param1,param2,param3,param4,param5));
 		Debug('AFTER executing TemporaryFunction');
 	}
 
 	DeleteTempScriptInclude(strName);
+	//global.DevTools_TemporaryFunction = null;
+	
 	return vReturnValue;
-}]]></script>
+}
+
+*/]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-11-30 10:24:01</sys_created_on>
         <sys_id>7303bde9db30a410ba15a35305961968</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>53</sys_mod_count>
         <sys_name>RunScriptInGlobalScope</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_7303bde9db30a410ba15a35305961968</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-03-19 21:50:57</sys_updated_on>
+        <sys_updated_on>2021-05-05 10:10:14</sys_updated_on>
     </sys_script_include>
 </record_update>

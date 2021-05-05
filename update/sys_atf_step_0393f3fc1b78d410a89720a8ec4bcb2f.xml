@@ -13,7 +13,7 @@ With a failure timeout of 5 Seconds</description>
         <notes>Check if ALICE is a member of ALPHA</notes>
         <order>16</order>
         <snapshot/>
-        <step_config display_value="Record Query">0270b8005f30220012b44adb7f46666a</step_config>
+        <step_config display_value="Record Query (Deprecated)">0270b8005f30220012b44adb7f46666a</step_config>
         <sys_class_name>sys_atf_step</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-13 15:37:22</sys_created_on>

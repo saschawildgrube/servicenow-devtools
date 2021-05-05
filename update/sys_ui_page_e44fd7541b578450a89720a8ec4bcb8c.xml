@@ -24,7 +24,7 @@
 	
 	<h2>System Requirements</h2>
 	<ul>
-		<li>New York, Orlando, Paris or Quebec</li>
+		<li>Orlando, Paris or Quebec</li>
 	</ul>
 		
 	<h2>Installation</h2>
@@ -95,13 +95,31 @@
 	
 	<h2>Release Notes</h2>
 
+	<h3>1.15.0 - 2021-05-05</h3>
+	<ol>
+		<li>WARNING: New York is now longer actively supported.</li>
+		<li>Added function IsTechnicalUser() to check if a given user is a technical user (i.e. web_service_access_only is set to true).</li>
+		<li>Added function IsProperty() to check if a given system property exists.</li>
+		<li>Added function AppSetProperty() to set a DevTools system property to a value.</li> 
+		<li>Added function UserImpersonate() which allows to impersonate a user from within a scoped application!</li>
+		<li>Added function GetRecord() to serve as a shorthand to get a GlideRecord object for a record in a given table, identified by a sys_id.</li>
+		<li>Added function GetRandomNumericToken() to create a pseudo-random numeric token string of a given length.</li>
+		<li>Added function UserAddRole() to add a role to a user if the user doesn't have the role already.</li>
+		<li>RunScriptInGlobalScope() did not work correctly if different scripts were provided within one transaction. It would always execute the first script during a transaction. This has been fixed. Please note that within a provided script, result values must now be set using "result =" instead of "return".</li>
+		<li>RenderValue() now treats any object that has the sys_id key in the same way as a real GlideRecord object.</li>
+		<li>GetGroupsFromUser() now checks for an empty user sys id. If an empty sys id was provided and for whatever reasons the sys_user_grmember has records with an empty sys_id, the associated groups would then be returned.</li>
+		<li>Added view "DevTools" for scheduled jobs to show the "Run as" field.</li>
+		<li>Renamed internal function SetDefaults() to AppSetDefaults().</li>
+		<li>The test step configuration "DevTools - Check scoped app sanity" now uses IsTechnicalUser() to check correct configuration of scheduled jobs.</li>
+	</ol>
+	
 	<h3>1.14.0 - 2021-04-20</h3>
 	<ol>
 		<li>Added function RenderBytes() to return a user friendly number of bytes using KB, MB and GB where appropriate.</li>
 		<li>Added function RecordDelete() to delete a single record based on a table name and the record sys id.</li>
 		<li>RecordBulkProcessor() now detects if updating a record fails and aborts the processing. If the update fails the maintenance date time field cannot be updated and the function would retry the same record until thresholds are reached.</li>
 		<li>Added test "DevTools - Test data sanity" to check if all test data has been cleaned up in previous test runs.</li>
-		<li>Added internal function SetDefaults() to set all system DevTools system properties to their default values.</li> 
+		<li>Added internal function SetDefaults() to set all DevTools system properties to their default values.</li> 
 	</ol>
 
 	
@@ -287,13 +305,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>304</sys_mod_count>
+        <sys_mod_count>320</sys_mod_count>
         <sys_name>start</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-04-20 13:09:00</sys_updated_on>
+        <sys_updated_on>2021-05-05 12:18:00</sys_updated_on>
     </sys_ui_page>
 </record_update>

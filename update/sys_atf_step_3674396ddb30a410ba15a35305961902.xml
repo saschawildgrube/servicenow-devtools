@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-11-30 10:30:23</sys_created_on>
         <sys_id>3674396ddb30a410ba15a35305961902</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_3674396ddb30a410ba15a35305961902</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-11-30 10:42:50</sys_updated_on>
+        <sys_updated_on>2021-05-04 15:03:43</sys_updated_on>
         <table/>
         <test display_value="DevTools - RunScriptInGlobalScope">c044356ddb30a410ba15a353059619d8</test>
         <timeout/>
@@ -36,9 +36,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-11-30 10:30:23</sys_created_on>
         <sys_id>ba15796ddb30a410ba15a3530596194e</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-11-30 10:42:50</sys_updated_on>
+        <sys_updated_on>2021-05-04 15:03:43</sys_updated_on>
         <value>var strLog = '';&#13;
 function Log(strText)&#13;
 {&#13;
@@ -50,8 +50,6 @@ function Log(strText)&#13;
 &#13;
 	var bResult = true;&#13;
 	&#13;
-&#13;
-&#13;
 	function TestCase_RunScriptInGlobalScope(vInputScript, vInputParam1, vExpected)&#13;
 	{&#13;
 		Log('TestCase_RunScriptInGlobalScope');&#13;
@@ -70,15 +68,24 @@ function Log(strText)&#13;
 	}&#13;
 	&#13;
 	&#13;
-	&#13;
 	var strScript = "";&#13;
-	strScript += "var gi = new GlideImpersonate();";   // Do something that would provoke an error in a scoped application&#13;
-	strScript += "x_snc_devtools.Debug(param1);";      // Produce some debug output&#13;
-	strScript += "return 'Hello '+param1;";            // Return a value&#13;
+	strScript += "var gi = new GlideImpersonate();";         // Do something that would provoke an error in a scoped application&#13;
+	strScript += "x_snc_devtools.Debug('Debug: '+param1);";  // Produce some debug output&#13;
+	strScript += "result = 'Hello '+param1;";                  // Return a value&#13;
 	&#13;
 	TestCase_RunScriptInGlobalScope(strScript,'John','Hello John');&#13;
 	TestCase_RunScriptInGlobalScope(strScript,'Jane','Hello Jane');&#13;
-		&#13;
+&#13;
+	&#13;
+	var strScript = "";&#13;
+	strScript += "var gi = new GlideImpersonate();";            // Do something that would provoke an error in a scoped application&#13;
+	strScript += "x_snc_devtools.Debug('Debug: '+param1);";     // Produce some debug output&#13;
+	strScript += "result = 'Goodbye '+param1;";                   // Return a value&#13;
+	&#13;
+	TestCase_RunScriptInGlobalScope(strScript,'John','Goodbye John');&#13;
+	TestCase_RunScriptInGlobalScope(strScript,'Jane','Goodbye Jane');	&#13;
+	&#13;
+	&#13;
 	stepResult.setOutputMessage(strLog);&#13;
 	return bResult;&#13;
 	&#13;

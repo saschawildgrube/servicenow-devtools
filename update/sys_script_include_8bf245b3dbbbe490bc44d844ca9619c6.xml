@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.GetRandomNumericToken</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Get a pseudo-random string token of a given length consisting of numbers only.   </description>
+        <name>GetRandomNumericToken</name>
+        <script><![CDATA[function GetRandomNumericToken(nLength)
+{
+	nLength = GetIntegerValue(nLength);
+	if (nLength < 0)
+	{
+		nLength = 0;
+	}
+	var strToken = '';
+	while (strToken.length < nLength)
+	{
+		strToken += GetStringValue(Math.abs(GlideSecureRandomUtil.getSecureRandomLong()));
+		strToken = strToken.substring(0,nLength);
+	}
+	return strToken;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-05-05 09:52:22</sys_created_on>
+        <sys_id>8bf245b3dbbbe490bc44d844ca9619c6</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>GetRandomNumericToken</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_8bf245b3dbbbe490bc44d844ca9619c6</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-05-05 10:08:16</sys_updated_on>
+    </sys_script_include>
+</record_update>

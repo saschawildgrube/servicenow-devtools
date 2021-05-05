@@ -12,7 +12,7 @@ With a failure timeout of 10 Seconds</description>
         <notes/>
         <order>2</order>
         <snapshot/>
-        <step_config display_value="Record Query">0270b8005f30220012b44adb7f46666a</step_config>
+        <step_config display_value="Record Query (Deprecated)">0270b8005f30220012b44adb7f46666a</step_config>
         <sys_class_name>sys_atf_step</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-03-27 14:14:47</sys_created_on>
