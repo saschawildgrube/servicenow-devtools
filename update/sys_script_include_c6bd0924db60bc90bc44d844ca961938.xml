@@ -2,28 +2,31 @@
     <sys_script_include action="INSERT_OR_UPDATE">
         <access>public</access>
         <active>true</active>
-        <api_name>x_snc_devtools.GetHash</api_name>
+        <api_name>x_snc_devtools.ArrayRemoveValue</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Generate a hexadecimal SHA 256 hash string. </description>
-        <name>GetHash</name>
-        <script><![CDATA[function GetHash(vInput)
+        <description>Removes a value from an array.</description>
+        <name>ArrayRemoveValue</name>
+        <script><![CDATA[function ArrayRemoveValue(aArray, vValue)
 {
-	var strString = GetStringValue(vInput);
-	var digest = new GlideDigest();
-	return digest.getSHA256Hex(strString);
+	aArray = GetArrayValue(aArray);
+	aArray = aArray.filter(function(element)
+	{
+		return element !== vValue;
+	});
+	return aArray;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2021-05-27 17:01:26</sys_created_on>
-        <sys_id>8949b73adbd030503c6c09c2ba9619d2</sys_id>
-        <sys_mod_count>1</sys_mod_count>
-        <sys_name>GetHash</sys_name>
+        <sys_created_on>2021-06-01 15:02:04</sys_created_on>
+        <sys_id>c6bd0924db60bc90bc44d844ca961938</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>ArrayRemoveValue</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
-        <sys_update_name>sys_script_include_8949b73adbd030503c6c09c2ba9619d2</sys_update_name>
+        <sys_update_name>sys_script_include_c6bd0924db60bc90bc44d844ca961938</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-06-01 14:31:31</sys_updated_on>
+        <sys_updated_on>2021-06-01 15:02:04</sys_updated_on>
     </sys_script_include>
 </record_update>
