@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <copied_from/>
+        <description>Run Server Side Validation Script</description>
+        <display_name>Run Server Side Script</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>1</order>
+        <snapshot/>
+        <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-06-09 14:31:33</sys_created_on>
+        <sys_id>b4f3d283db6c74943c6c09c2ba961972</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>Run Server Side Script</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_step_b4f3d283db6c74943c6c09c2ba961972</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-06-09 14:39:14</sys_updated_on>
+        <table/>
+        <test display_value="DevTools - GlideRecordInsert">c8d31e03db6c74943c6c09c2ba96195c</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=b4f3d283db6c74943c6c09c2ba961972"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>b4f3d283db6c74943c6c09c2ba961972</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-06-09 14:31:33</sys_created_on>
+        <sys_id>75f39e83db6c74943c6c09c2ba961955</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-06-09 14:39:14</sys_updated_on>
+        <value>var strLog = '';&#13;
+function Log(strText)&#13;
+{&#13;
+	strLog = strLog + "\n" + strText;&#13;
+}&#13;
+(function(outputs, steps, stepResult, assertEqual)&#13;
+{&#13;
+	var RenderValue = x_snc_devtools.RenderValue;&#13;
+&#13;
+	var bResult = true;&#13;
+	&#13;
+	function TestCase_GlideRecordInsert(vInput, bExpected)&#13;
+	{&#13;
+		Log('TestCase_GlideRecordInsert');&#13;
+		Log('Input          : '+RenderValue(vInput));&#13;
+		Log('Expected       : '+RenderValue(bExpected));&#13;
+		var vResult = GlideRecordInsert(vInput);&#13;
+		Log('Result  : '+RenderValue(vResult));&#13;
+		if (bExpected == false)&#13;
+		{&#13;
+			if (vResult != false)&#13;
+			{&#13;
+				bResult = false;&#13;
+				Log('Test case FAILED: Result should be false');&#13;
+			}&#13;
+		}&#13;
+		else&#13;
+		{&#13;
+			if (IsValidSysId(vResult) != true)&#13;
+			{&#13;
+				bResult = false;	&#13;
+				Log('Test case FAILED: Invaöid sys_id');&#13;
+			}&#13;
+		}&#13;
+				&#13;
+		Log('');&#13;
+	}&#13;
+&#13;
+	var grTest = new GlideRecord('x_snc_devtools_test');&#13;
+	grTest.initialize();&#13;
+	grTest.name = '_ATF_DEVTOOLS_TEST1';&#13;
+	grTest.value = 'Hello World';&#13;
+	TestCase_GlideRecordInsert(grTest,true);&#13;
+	&#13;
+	/*&#13;
+	var grIncident = new GlideRecord('incident');&#13;
+	grIncident.initialize();&#13;
+	grIncident.short_description = '_ATF_DEVTOOLS_1';&#13;
+	TestCase_GlideRecordInsert(grIncident,true);	&#13;
+	*/&#13;
+	&#13;
+	TestCase_GlideRecordInsert(null,false);	&#13;
+		&#13;
+	stepResult.setOutputMessage(strLog);&#13;
+	return bResult;&#13;
+	&#13;
+})(outputs, steps, stepResult, assertEqual);</value>
+        <variable display_value="">989d9e235324220002c6435723dc3484</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>b4f3d283db6c74943c6c09c2ba961972</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-06-09 14:31:33</sys_created_on>
+        <sys_id>bdf39e83db6c74943c6c09c2ba961954</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-06-09 14:31:33</sys_updated_on>
+        <value>3.1</value>
+        <variable display_value="">42f2564b73031300440211d8faf6a777</variable>
+    </sys_variable_value>
+</record_update>
