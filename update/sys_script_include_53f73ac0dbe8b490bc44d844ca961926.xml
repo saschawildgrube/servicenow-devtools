@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.GetTablesByColumnType</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns all tables which have at least one column with the given type.</description>
+        <name>GetTablesByColumnType</name>
+        <script><![CDATA[function GetTablesByColumnType(strType)
+{
+	strType = GetStringValue(strType);
+	var grGO = new GlideRecord('sys_glide_object');
+	grGO.addQuery('name','=',strType);
+	grGO.query();
+	if (grGO.next() == false)
+	{
+		return [];
+	}
+
+	var aTables = [];
+	
+	var grD = new GlideRecord('sys_dictionary');
+	grD.addQuery('internal_type','=',strType);
+	grD.query();
+	while (grD.next())
+	{
+		aTables.push(GetStringValue(grD.name));
+	}
+	return ArrayUnique(aTables);
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-05-31 10:01:38</sys_created_on>
+        <sys_id>53f73ac0dbe8b490bc44d844ca961926</sys_id>
+        <sys_mod_count>11</sys_mod_count>
+        <sys_name>GetTablesByColumnType</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_53f73ac0dbe8b490bc44d844ca961926</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-05-31 10:17:30</sys_updated_on>
+    </sys_script_include>
+</record_update>

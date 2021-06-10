@@ -95,6 +95,22 @@
 	
 	<h2>Release Notes</h2>
 
+	<h3>1.16.0 - 2021-06-10</h3>
+	<ol>
+		<li>Changed the short description to "Code library and tools for ServiceNow developers".</li>
+		<li>Added functions GlideRecordQuery(), GlideRecordInsert() and GlideRecordUpdate() to call GlideRecord's corresponding member functions in global scope.</li>
+		<li>Added function IsValidDatabaseView() to check if the given string identifies a database view.</li>
+		<li>Added function GetDatabaseViewsFromTable() to return all database views which use the given table.</li> 
+		<li>Added function ArrayRemoveValue() to remove a value from an array.</li>
+		<li>Added function GetInstanceURL() to return the intance root URL.</li>
+		<li>Added function GetTablesByColumnType() to return all tables which have at least one column of the given type.</li>
+		<li>Function UserAddRole() is now public.</li>
+		<li>Function IsValidTable() is now public.</li>
+		<li>TestDataAPI.GetAllUsers() now also provides the user's roles.</li>
+		<li>RecordSetValue() can now set values in records across scopes.</li>
+		<li>Added the missing script macro for RenderBytes.</li> 
+	</ol>
+	
 	<h3>1.15.0 - 2021-05-05</h3>
 	<ol>
 		<li>WARNING: New York is now longer actively supported.</li>
@@ -305,13 +321,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>320</sys_mod_count>
+        <sys_mod_count>334</sys_mod_count>
         <sys_name>start</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-05-05 12:18:00</sys_updated_on>
+        <sys_updated_on>2021-06-10 08:27:47</sys_updated_on>
     </sys_ui_page>
 </record_update>
