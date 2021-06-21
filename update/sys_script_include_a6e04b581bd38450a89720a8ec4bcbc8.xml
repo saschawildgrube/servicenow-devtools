@@ -5,7 +5,7 @@
         <api_name>x_snc_devtools.RenderValue</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Render any value as a string. In case of objects, the keys are displayed in alphabetical order. In case of arrays, the elements are displayed in the given order. In case of a GlideRecord, the table name, sys_id and number (if available) are displayed on top and a selected choice of fields leads the list of values despite the alphabetical order.</description>
+        <description>Render any value as a string. In case of objects, the keys are displayed in alphabetical order. In case of arrays, the elements are displayed in the given order. In case of a GlideRecord, the table name, sys_id and number (if available) are displayed on top, and a selected choice of fields leads the list of values despite the alphabetical order.</description>
         <name>RenderValue</name>
         <script><![CDATA[function RenderValue(vValue, bHideEmpty, nLevel)
 {
@@ -156,13 +156,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 09:04:23</sys_created_on>
         <sys_id>a6e04b581bd38450a89720a8ec4bcbc8</sys_id>
-        <sys_mod_count>49</sys_mod_count>
+        <sys_mod_count>50</sys_mod_count>
         <sys_name>RenderValue</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_a6e04b581bd38450a89720a8ec4bcbc8</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-05-04 12:27:25</sys_updated_on>
+        <sys_updated_on>2021-06-21 11:26:44</sys_updated_on>
     </sys_script_include>
 </record_update>

@@ -17,7 +17,7 @@
 	<p>Welcome to the DevTools - created and maintained by&#160;<a href="mailto:sascha.wildgrube@servicenow.com">Sascha Wildgrube</a>.</p>
 
 	<h2>Features</h2> 
-	<p>DevTools contains a number of&#160;<b>script includes</b>&#160;with useful javascript functions and classes like a GetType() function that realy works. A few&#160;<b>UI improvements</b>&#160;like the Re-Test button in the test result form and&#160;<b>shortcuts</b>&#160;to various - sometimes hidden - views and system properties in your instance.</p>
+	<p>DevTools contains a number of&#160;<b>script includes</b>&#160;with useful javascript functions and classes like a GetType() function that really works. A few&#160;<b>UI improvements</b>&#160;like the Re-Test button in the test result form and&#160;<b>shortcuts</b>&#160;to various - sometimes hidden - views and system properties in your instance.</p>
 
 	<h2>Disclaimer</h2>
 	<g2:no_escape>$[docapi.RenderDisclaimer()]</g2:no_escape>	
@@ -26,6 +26,9 @@
 	<ul>
 		<li>Orlando, Paris or Quebec</li>
 	</ul>
+	
+	<h2>Security Notice</h2>
+	<p>To leverage the full potential of DevTools functions, some settings need to be changed to allow more cross scope access for scoped apps. This might be considered as a breach of security guidelines and should be validated with those who are responsible for security within the instance!</p>
 		
 	<h2>Installation</h2>
 	<p>To use the full potential of DevTools perform the following steps:</p>
@@ -37,7 +40,6 @@
 		]</g2:no_escape>
 		<li>Switch to global scope</li>
 		<li>Create a new update set in the global scope to capture all changes related to the DevTools installation.</li>
-		<li>Note that the following steps might be considered as a breach of security guidelines and should be validated with those who are responsible for security within the instance!</li>
 		<li>Set the system property&#160;<a href="/nav_to.do?uri=sys_properties.do?sys_id=9e52826587120300cf2d5fb736cb0b7f" target="_blank">glide.record.legacy_cross_scope_access_policy_in_script</a>&#160;to true.</li>
 		<li>In order to run the installation script which configures new system property categories enable create, read, write and delete operations for all applications on the following tables:
 			<ol>
@@ -45,7 +47,7 @@
 				<li><a href="/sys_db_object.do?sys_id=sys_properties_category_m2m&amp;sysparm_refkey=name" target="_blank">sys_properties_category_m2m</a></li>
 			</ol>
 		</li> 
-		<li>In order to run all DevTools ATF tests enable create, read, write and delete operations for all applications on the following tables:
+		<li>To run all DevTools ATF tests enable create, read, write and delete operations for all applications on the following tables:
 			<ol>
 				<li><a href="/sys_db_object.do?sys_id=sys_user&amp;sysparm_refkey=name" target="_blank">sys_user</a></li>
 				<li><a href="/sys_db_object.do?sys_id=sys_user_group&amp;sysparm_refkey=name" target="_blank">sys_user_group</a></li>
@@ -59,7 +61,7 @@
 				<li><a href="/sys_db_object.do?sys_id=sc_request&amp;sysparm_refkey=name" target="_blank">sc_request</a></li>
 			</ol>
 		</li>
-		<li>In order use the RunScriptInGlobalScope() function enable create, read, write and delete operations for all applications on the following table:
+		<li>To use the RunScriptInGlobalScope() function enable create, read, write and delete operations for all applications on the following table:
 			<ol>
 				<li><a href="/sys_db_object.do?sys_id=sys_script_include&amp;sysparm_refkey=name" target="_blank">sys_script_include</a></li>
 			</ol>
@@ -72,7 +74,7 @@
 		<li>In case of errors:
 			<ol>
 				<li>Tests "DevTools - GetGroupsFromUser" and "DevTools - TestDataAPI": Retry after a few minutes. Some cross-scrope privileges will be set up during the first test run and might take a few minutes to be effective.</li>
-				<li>Test "DevTools - TestDataAPI": This script creates various records (e.g. incidents and problems). If there are customizations in place that make additional fields mandatory, you may have to set up business rules to set these values - but only if the short description (or the corresponding field) starts with "_ATF_".</li>
+				<li>Test "DevTools - TestDataAPI": This script creates various records (e.g., incidents and problems). If there are customizations in place that make additional fields mandatory, you may have to set up business rules to set these values - but only if the short description (or the corresponding field) starts with "_ATF_".</li>
 			</ol>
 		</li>
 	</ol>
@@ -95,6 +97,17 @@
 	
 	<h2>Release Notes</h2>
 
+	<h3>1.17.0 - 2021-06-21</h3>
+	<ol>
+		<li>Added function GlideRecordDelete() to execute the deleteRecord member function of a GlideRecord in global scope.</li>
+		<li>Added function SetProperty() to set any property regardless of its scope.</li>
+		<li>Added function TestDataAPI.CreateDatabaseView() and associated functions to create database views as part of a test.</li>
+		<li>TestDataAPI.CreateTestItem() did not delete the existing item before creating a new one, this has been fixed.</li>
+		<li>Fixed the sort order in the "Query Log" module.</li>
+		<li>The security notice regarding cross scope access configuration is now more prominent at the beginning of the documentation.</li>
+		<li>The test step configuration "DevTools - Check scoped app sanity" now checks for notification subscriptions that are associated to the scoped app.</li>
+	</ol>
+	
 	<h3>1.16.0 - 2021-06-10</h3>
 	<ol>
 		<li>Changed the short description to "Code library and tools for ServiceNow developers".</li>
@@ -133,7 +146,7 @@
 	<ol>
 		<li>Added function RenderBytes() to return a user friendly number of bytes using KB, MB and GB where appropriate.</li>
 		<li>Added function RecordDelete() to delete a single record based on a table name and the record sys id.</li>
-		<li>RecordBulkProcessor() now detects if updating a record fails and aborts the processing. If the update fails the maintenance date time field cannot be updated and the function would retry the same record until thresholds are reached.</li>
+		<li>RecordBulkProcessor() now detects if updating a record fails and aborts the processing. If the update fails, the maintenance date time field cannot be updated and the function would retry the same record until thresholds are reached.</li>
 		<li>Added test "DevTools - Test data sanity" to check if all test data has been cleaned up in previous test runs.</li>
 		<li>Added internal function SetDefaults() to set all DevTools system properties to their default values.</li> 
 	</ol>
@@ -150,7 +163,7 @@
 		<li>RenderValue() has been improved: In case of a GlideRecord, the table name, sys_id and number (if available) are displayed on top and a selected choice of fields leads the list of values despite the alphabetical order.</li>
 		<li>The test step configuration "DevTools - Check scoped app sanity" now checks scheduled jobs for only technical users or the system admin serve as the run_as user.</li>
 		<li>Added module "Query Log" to track invalid queries.</li>
-		<li>The module "Outbox" is renamed to "Outbox or Sent" and also displays sent mails.</li>
+		<li>The module "Outbox" is renamed to "Outbox or Sent" and displays sent mails.</li>
 		<li>Improved column order in module "Storage Column Aliases".</li>
 	</ol>	
 	
@@ -186,14 +199,14 @@
 		<li>Added function RenderDateTime() since Javascript has no built-in function to render an ISO date/time string.</li>
 		<li>Added function Sleep() to do nothing for a set amount of seconds.</li>
 		<li>RenderValue() now has a second parameter "bHideEmpty". If set to true, empty values in objects are ignored - leading to better readable output.</li>
-		<li>RenderValue() sorts keys of objects alphabetically. However the keys "name", "short_description", "number" and "sys_id" will always lead the pack.</li>
+		<li>RenderValue() sorts keys of objects alphabetically. However, the keys "name", "short_description", "number" and "sys_id" will always lead the pack.</li>
 		<li>RenderValue() now displays empty objects as "{}".</li>
 		<li>IsEqual() can now compare objects.</li>
 		<li>TestDataAPI: Added function GetAllData() and corresponding functions for each supported record type GetAllIncidents(), GetAllProblems(), etc.</li>
 		<li>TestDataAPI: Added function CreateTestItem() and GetAllTestItems() to manage entries in the table x_snc_devtools_test which is used for testing.</li>
 		<li>ParseDateTime() is now more resilient against incorrect input.</li>
 		<li>The test step configuration "DevTools - Check scoped app sanity" now checks for empty descriptions in publicly accessible script includes.</li> 
-		<li>Improved installation intructions.</li>
+		<li>Improved installation instructions.</li>
 	</ol>
 	
 	<h3>1.10.0 - 2021-02-26</h3>
@@ -236,7 +249,7 @@
 		<li>Added module "Background Script" to open the background script page in a new window.</li>
 		<li>Added new navigation section "Transaction" and moved all transaction related modules into it.</li> 
 		<li>Added new navigation section "Cache" for easy access to the cache inspection tool and to flush the cache.</li> 
-		<li>Added new navigation section "Events" to easily access the event log, event registry, notifications and outbox.</li>
+		<li>Added new navigation section "Events" to easily access the event log, event registry, notifications, and outbox.</li>
 		<li>Added more test cases for GetIntegerValue().</li>
 	</ol>
 	
@@ -246,13 +259,13 @@
 		<li>Added function RunScriptInGlobalScope() to run a script in the global scope from within a scoped application. Note that the function required full cross scope access to the sys_script_include table.</li>
 		<li>IsEqual() now uses type strict comparison and will no longer return true in case of IsEqual(1,"1").</li>
 		<li>The "Rerun Test" button has been renamed to "Run Test" and is now available on all forms that directly refer to an ATF test (including test steps).</li> 
-		<li>The ATF tests "TestDataAPI" and "GetGroupsFromUser" now make use of the "DevTools - IsTableCrossScopeAccessible" test step configuration to check if the croos scope access to the tables is configured.</li>
+		<li>The ATF tests "TestDataAPI" and "GetGroupsFromUser" now make use of the "DevTools - IsTableCrossScopeAccessible" test step configuration to check if the cross scope access to the tables is configured.</li>
 		<li>The ATF test "Installation" now checks if the system property glide.record.legacy_cross_scope_access_policy_in_script is set to true to avoid cross scope access policy errors. Refer to&#160;<a target="_blank" href="https://support.servicenow.com/kb?id=kb_article_view&amp;sys_kb_id=db973947db18eb48feb1a851ca9619b4">KB0711970</a>.</li>
 	</ol>
 	
 	<h3>1.5.0 - 2020-11-23</h3>
 	<ol>
-		<li>Added test step configuration "DevTools - Check scoped app sanity". This test step configuration takes a scoped application and checks if all its sys_properties are NOT set to private and all ATF tests have an empty copied_from field. More checks will be added later.</li>
+		<li>Added test step configuration "DevTools - Check scoped app sanity". This test step configuration takes a scoped application and checks if all its sys_properties are NOT set to private, and all ATF tests have an empty copied_from field. More checks will be added later.</li>
 		<li>Added test step configuration "DevTools - Check table cross scope access"</li>
 		<li>Added test step configurations to the documentation.</li>
 		<li>Added test "DevTools - Installation" to check if all relevant tables are configured according to the installation guide.</li>
@@ -321,13 +334,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>334</sys_mod_count>
+        <sys_mod_count>350</sys_mod_count>
         <sys_name>start</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-06-10 08:27:47</sys_updated_on>
+        <sys_updated_on>2021-06-21 11:58:06</sys_updated_on>
     </sys_ui_page>
 </record_update>

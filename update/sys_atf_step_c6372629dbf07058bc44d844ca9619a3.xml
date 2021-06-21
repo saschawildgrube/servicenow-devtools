@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <copied_from/>
+        <description>Run Server Side Validation Script</description>
+        <display_name>Run Server Side Script</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>1</order>
+        <snapshot/>
+        <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-06-17 10:20:33</sys_created_on>
+        <sys_id>c6372629dbf07058bc44d844ca9619a3</sys_id>
+        <sys_mod_count>25</sys_mod_count>
+        <sys_name>Run Server Side Script</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_step_c6372629dbf07058bc44d844ca9619a3</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-06-18 09:26:31</sys_updated_on>
+        <table/>
+        <test display_value="DevTools - TestDataAPI  - Database Views">8017a6e5dbf07058bc44d844ca9619ee</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=c6372629dbf07058bc44d844ca9619a3"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>c6372629dbf07058bc44d844ca9619a3</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-06-17 10:20:33</sys_created_on>
+        <sys_id>0b37a229dbf07058bc44d844ca96192a</sys_id>
+        <sys_mod_count>25</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-06-18 09:26:31</sys_updated_on>
+        <value>var strLog = '';&#13;
+function Log(strText)&#13;
+{&#13;
+	strLog = strLog + "\n" + strText;&#13;
+}&#13;
+(function(outputs, steps, stepResult, assertEqual)&#13;
+{&#13;
+	var bResult = true;&#13;
+	&#13;
+&#13;
+	function TestCase_DatabaseView(vInputDbName, vInputDbView, bExpectedView, bExpectedItem)&#13;
+	{&#13;
+		Log('TestCase_DatabaseView');&#13;
+		Log('bExpectedView     : '+RenderValue(bExpectedView));&#13;
+		Log('bExpectedItem     : '+RenderValue(bExpectedItem));&#13;
+		Log('vInputName        : '+RenderValue(vInputDbName));&#13;
+		Log('vInputDbView      : '+RenderValue(vInputDbView));&#13;
+		&#13;
+		var testdata = new TestDataAPI('_ATF_DEVTOOLS_');	&#13;
+		var strDbViewSysId = testdata.CreateDatabaseView(vInputDbName,vInputDbView);&#13;
+		&#13;
+		Log('DbViewSysId      : '+RenderValue(strDbViewSysId));&#13;
+		if (bExpectedView == false &amp;&amp; IsValidSysId(strDbViewSysId) == false)&#13;
+		{&#13;
+			Log('');&#13;
+			return;&#13;
+		}&#13;
+		&#13;
+		if (bExpectedView == false &amp;&amp; IsValidSysId(strDbViewSysId))&#13;
+		{&#13;
+			Log('Test case FAILED');&#13;
+			bResult = false;&#13;
+			Log('');&#13;
+			return;&#13;
+			&#13;
+		}&#13;
+&#13;
+		&#13;
+		var strName = 'TEST';&#13;
+		var strValue = 'Hello World';&#13;
+		var strTestItemSysId = testdata.CreateTestItem(strName,strValue);&#13;
+		Log(RenderValue(testdata.GetAllData()));&#13;
+&#13;
+		var grTest = new GlideRecord(testdata.GetDatabaseViewName(vInputDbName));&#13;
+		grTest.addQuery('name','=',testdata.GetPrefix()+strName);&#13;
+		grTest.query();&#13;
+		if (bExpectedItem == true)&#13;
+		{&#13;
+			Log('Expecting to find the item and read the value!');&#13;
+			if (grTest.getRowCount() != 1)&#13;
+			{&#13;
+				Log('Test case FAILED');&#13;
+				bResult = false;	&#13;
+			}&#13;
+			else&#13;
+			{&#13;
+				grTest.next();&#13;
+				Log(RenderValue(grTest));&#13;
+				if (GetStringValue(grTest.getValue('test_value')) != strValue)&#13;
+				{&#13;
+					bResult = false;	&#13;
+					Log('Test case FAILED');	&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+		else&#13;
+		{&#13;
+			Log('Expecting to find the item but NOT to read the value!');&#13;
+			if (grTest.getRowCount() != 1)&#13;
+			{&#13;
+				Log('Test case FAILED');&#13;
+				bResult = false;	&#13;
+			}&#13;
+			else&#13;
+			{&#13;
+				grTest.next();&#13;
+				Log(RenderValue(grTest));&#13;
+				if (GetStringValue(grTest.getValue('test_value')) == strValue)&#13;
+				{&#13;
+					bResult = false;	&#13;
+					Log('Test case FAILED');	&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+		Log('');&#13;
+	}&#13;
+	&#13;
+&#13;
+	Log('Missing definition');&#13;
+	TestCase_DatabaseView(&#13;
+		'TEST1',&#13;
+		null,&#13;
+		false,&#13;
+		false);		&#13;
+	&#13;
+	&#13;
+	Log('Incomplete definition');&#13;
+	TestCase_DatabaseView(&#13;
+		'TEST2',&#13;
+		{},&#13;
+		false,&#13;
+		false);		&#13;
+	&#13;
+	&#13;
+	Log('Single table without fields');&#13;
+	TestCase_DatabaseView(&#13;
+		'TEST3',&#13;
+		{&#13;
+			'tables':&#13;
+				[&#13;
+					{&#13;
+						'table': 'x_snc_devtools_test',&#13;
+						'variable_prefix': 'test',&#13;
+						'order': 1&#13;
+					}&#13;
+				]&#13;
+		&#13;
+		},&#13;
+		true,&#13;
+		true);	&#13;
+&#13;
+	&#13;
+	Log('Single table with fields');&#13;
+	TestCase_DatabaseView(&#13;
+		'TEST4',&#13;
+		{&#13;
+			'tables':&#13;
+				[&#13;
+					{&#13;
+						'table': 'x_snc_devtools_test',&#13;
+						'variable_prefix': 'test',&#13;
+						'order': 1,&#13;
+						'where_clause': '',&#13;
+						'fields': ['name','value','sys_id']&#13;
+					}&#13;
+				]&#13;
+		&#13;
+		},&#13;
+		true,&#13;
+		true);	&#13;
+&#13;
+	Log('Single table with incomplete field set');&#13;
+	TestCase_DatabaseView(&#13;
+		'TEST5',&#13;
+		{&#13;
+			'tables':&#13;
+				[&#13;
+					{&#13;
+						'table': 'x_snc_devtools_test',&#13;
+						'variable_prefix': 'test',&#13;
+						'order': 1,&#13;
+						'where_clause': '',&#13;
+						'fields': ['name','sys_id']&#13;
+					}&#13;
+				]&#13;
+		&#13;
+		},&#13;
+		true,&#13;
+		false);	&#13;
+	&#13;
+	&#13;
+	stepResult.setOutputMessage(strLog);&#13;
+	return bResult;&#13;
+	&#13;
+})(outputs, steps, stepResult, assertEqual);</value>
+        <variable display_value="">989d9e235324220002c6435723dc3484</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>c6372629dbf07058bc44d844ca9619a3</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-06-17 10:20:33</sys_created_on>
+        <sys_id>4737a229dbf07058bc44d844ca96192a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-06-17 10:20:33</sys_updated_on>
+        <value>3.1</value>
+        <variable display_value="">42f2564b73031300440211d8faf6a777</variable>
+    </sys_variable_value>
+</record_update>

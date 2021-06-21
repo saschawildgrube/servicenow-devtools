@@ -19,7 +19,7 @@
 	}
 	
 	var grSP = new GlideRecord('sys_properties');
-	grSP.newRecord();
+	grSP.initialize();
 	grSP.name = GetStringValue(strName);
 	grSP.type = GetStringValue(strType);
 	grSP.description = GetStringValue(strDescription);
@@ -64,7 +64,7 @@ function InstallSystemPropertyCategoryMapping(strSystemPropertyCategory, strSyst
 	}	
 	
 	var grSPCM2 = new GlideRecord('sys_properties_category_m2m');
-	grSPCM2.newRecord();
+	grSPCM2.initialize();
 	grSPCM2.category = strSystemPropertyCategorySysId;
 	grSPCM2.property = strSystemPropertySysId;
 	grSPCM2.order = nOrder;
@@ -112,13 +112,13 @@ function Install()
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-07-03 21:35:10</sys_created_on>
         <sys_id>339e63591b719050a89720a8ec4bcb3f</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>Install</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_339e63591b719050a89720a8ec4bcb3f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-07-03 21:35:10</sys_updated_on>
+        <sys_updated_on>2021-06-18 10:56:54</sys_updated_on>
     </sys_script_include>
 </record_update>

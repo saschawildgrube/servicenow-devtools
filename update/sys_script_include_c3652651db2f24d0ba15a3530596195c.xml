@@ -5,7 +5,7 @@
         <api_name>x_snc_devtools.GetTimeNow</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Returns the number of milisenconds passed since the start of the unix epoch.</description>
+        <description>Returns the number of millisenconds passed since the start of the unix epoch.</description>
         <name>GetTimeNow</name>
         <script><![CDATA[function GetTimeNow()
 {
@@ -16,13 +16,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-04-15 12:15:40</sys_created_on>
         <sys_id>c3652651db2f24d0ba15a3530596195c</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>GetTimeNow</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_c3652651db2f24d0ba15a3530596195c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-04-15 12:30:33</sys_updated_on>
+        <sys_updated_on>2021-06-21 11:32:48</sys_updated_on>
     </sys_script_include>
 </record_update>

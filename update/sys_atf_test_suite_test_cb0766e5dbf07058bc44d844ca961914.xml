@@ -4,17 +4,17 @@
         <order>100</order>
         <sys_class_name>sys_atf_test_suite_test</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2020-05-13 14:55:10</sys_created_on>
-        <sys_id>890a2f741b78d410a89720a8ec4bcb61</sys_id>
-        <sys_mod_count>1</sys_mod_count>
-        <sys_name>820a6f741b78d410a89720a8ec4bcb44</sys_name>
+        <sys_created_on>2021-06-17 10:20:13</sys_created_on>
+        <sys_id>cb0766e5dbf07058bc44d844ca961914</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>8017a6e5dbf07058bc44d844ca9619ee</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
-        <sys_update_name>sys_atf_test_suite_test_890a2f741b78d410a89720a8ec4bcb61</sys_update_name>
+        <sys_update_name>sys_atf_test_suite_test_cb0766e5dbf07058bc44d844ca961914</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-11-23 15:29:56</sys_updated_on>
-        <test display_value="DevTools - TestDataAPI - ITSM">820a6f741b78d410a89720a8ec4bcb44</test>
+        <sys_updated_on>2021-06-17 10:20:13</sys_updated_on>
+        <test display_value="DevTools - TestDataAPI  - Database Views">8017a6e5dbf07058bc44d844ca9619ee</test>
         <test_suite display_value="DevTools">4a8550391b5b8850a89720a8ec4bcbd9</test_suite>
     </sys_atf_test_suite_test>
 </record_update>
