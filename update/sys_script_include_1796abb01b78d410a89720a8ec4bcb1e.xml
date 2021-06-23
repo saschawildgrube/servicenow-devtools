@@ -422,7 +422,17 @@ TestDataAPI.prototype =
 		grIncident.query();
 		while (grIncident.next())
 		{
-			aIncidents.push(Clone(grIncident));
+			var oIncident = Clone(grIncident);
+			var aTaskSLA = [];
+			var grTaskSLA = new GlideRecord('task_sla');
+			grTaskSLA.addQuery('task','=',grIncident.sys_id);
+			GlideRecordQuery(grTaskSLA);
+			while (grTaskSLA.next())
+			{
+				aTaskSLA.push(Clone(grTaskSLA));
+			}
+			oIncident['_task_sla'] = aTaskSLA;
+			aIncidents.push(oIncident);
 		}
 		return aIncidents;
 	},
@@ -1060,13 +1070,13 @@ TestDataAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-13 14:53:39</sys_created_on>
         <sys_id>1796abb01b78d410a89720a8ec4bcb1e</sys_id>
-        <sys_mod_count>124</sys_mod_count>
+        <sys_mod_count>127</sys_mod_count>
         <sys_name>TestDataAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_1796abb01b78d410a89720a8ec4bcb1e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-06-22 12:32:51</sys_updated_on>
+        <sys_updated_on>2021-06-23 11:34:40</sys_updated_on>
     </sys_script_include>
 </record_update>
