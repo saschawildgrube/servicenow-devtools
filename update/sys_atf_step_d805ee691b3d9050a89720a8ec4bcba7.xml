@@ -4,29 +4,29 @@
         <copied_from/>
         <description>Validate there is at least one record in 'problem_task' matching query:
 Short description = _ATF_DEVTOOLS_PROBLEM_1_TASK_1
-and Opened by = {{Step 11: Record Query.First record}}
-and Assignment group = {{Step 15: Record Query.First record}}
+and Opened by = {{Step 2: Record Query (Deprecated).First record}}
+and Assignment group = {{Step 6: Record Query (Deprecated).First record}}
 With a failure timeout of 5 Seconds</description>
-        <display_name>Record Query</display_name>
+        <display_name>Record Query (Deprecated)</display_name>
         <inputs/>
         <inputs/>
         <mugshots_cache_json/>
         <notes>Check for problem task PROBLEM_1_TASK_1</notes>
-        <order>21</order>
+        <order>12</order>
         <snapshot/>
         <step_config display_value="Record Query (Deprecated)">0270b8005f30220012b44adb7f46666a</step_config>
         <sys_class_name>sys_atf_step</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-07-04 10:52:13</sys_created_on>
         <sys_id>d805ee691b3d9050a89720a8ec4bcba7</sys_id>
-        <sys_mod_count>33</sys_mod_count>
-        <sys_name>Record Query</sys_name>
+        <sys_mod_count>60</sys_mod_count>
+        <sys_name>Record Query (Deprecated)</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_d805ee691b3d9050a89720a8ec4bcba7</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-11-30 08:51:36</sys_updated_on>
+        <sys_updated_on>2021-06-24 16:10:51</sys_updated_on>
         <table>problem_task</table>
         <test display_value="DevTools - TestDataAPI - ITSM">820a6f741b78d410a89720a8ec4bcb44</test>
         <timeout>1970-01-01 00:00:05</timeout>
