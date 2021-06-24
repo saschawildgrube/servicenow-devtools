@@ -11,14 +11,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-03-27 12:33:53</sys_created_on>
         <sys_id>7ec6c9f1db3f0c10ba15a3530596198d</sys_id>
-        <sys_mod_count>30</sys_mod_count>
+        <sys_mod_count>32</sys_mod_count>
         <sys_name>x_snc_devtools.debug.log</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_properties_7ec6c9f1db3f0c10ba15a3530596198d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-06-21 11:59:43</sys_updated_on>
+        <sys_updated_on>2021-06-24 09:04:20</sys_updated_on>
         <type>boolean</type>
         <value>false</value>
         <write_roles>admin,delegated_developer</write_roles>

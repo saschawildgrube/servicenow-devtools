@@ -13,7 +13,7 @@
 	nLevel = GetIntegerValue(nLevel);
 	var strLevel = '___';
 	strLevel = strLevel.repeat(nLevel);
-	
+
 	if (vValue === undefined)
 	{
 		return 'undefined';
@@ -33,12 +33,15 @@
 	{
 		return '\n'+vValue;
 	}
-
 	if (strType == 'Array')
 	{
 		var strOutput = '';
 		if (vValue.length == 0)
 		{
+			if (strLevel.length > 0)
+			{
+				strOutput += '\n';
+			}
 			strOutput += strLevel+'[]';
 		}
 		else
@@ -50,19 +53,58 @@
 		}
 		return strOutput;
 	}
-
-	var bIsObject = vValue instanceof Object;
-	var strTypeOf = typeof vValue;
-	if (bIsObject || (strTypeOf == 'object'))
+	if (IsObject(vValue))
 	{
 		var strOutput = '';
-		var aKeys = Object.keys(vValue);
+		var aKeys = GetKeys(vValue);
+		//var aKeys = ['sys_id','short_description']; 
 		if (aKeys.length == 0)
 		{
+			if (strLevel.length > 0)
+			{
+				strOutput += '\n';
+			}		
 			strOutput += strLevel+'{}';
 		}
 		else
 		{
+			function Compare(value1, value2)
+			{
+				if (value1 < value2)
+				{
+					return -1;
+				}
+				if (value1 > value2)
+				{
+					return 1;
+				}
+				return 0;
+			}
+			function CompareUnderscoresAtEnd(value1, value2)
+			{
+				value1 = GetStringValue(value1);
+				value2 = GetStringValue(value2);
+				var nUnderscores1 = 0;
+				var nUnderscores2 = 0;
+				while (value1[nUnderscores1] == '_')
+				{
+					nUnderscores1++;
+				}
+				while (value2[nUnderscores2] == '_')
+				{
+					nUnderscores2++;
+				}
+				if (nUnderscores1 < nUnderscores2)
+				{
+					return -1;
+				}
+				if (nUnderscores1 > nUnderscores2)
+				{
+					return 1;
+				}
+				return Compare(value1, value2);
+			}
+
 			function CompareGlideRecordKeys(str1, str2)
 			{
 				var aPriorityKeys = ['name','short_description'];
@@ -77,15 +119,7 @@
 						return 1;
 					}
 				}
-				if (str1 < str2)
-				{
-					return -1;
-				}
-				if (str1 > str2)
-				{
-					return 1;
-				}
-				return 0;
+				return CompareUnderscoresAtEnd(str1,str2);
 			}		
 			
 			if (IsValidRecord(vValue))
@@ -135,7 +169,7 @@
 			}
 			else
 			{
-				aKeys.sort();
+				aKeys.sort(CompareUnderscoresAtEnd);
 			}
 			aKeys.forEach( function(strKey)
 			{
@@ -156,13 +190,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 09:04:23</sys_created_on>
         <sys_id>a6e04b581bd38450a89720a8ec4bcbc8</sys_id>
-        <sys_mod_count>50</sys_mod_count>
+        <sys_mod_count>63</sys_mod_count>
         <sys_name>RenderValue</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_a6e04b581bd38450a89720a8ec4bcbc8</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-06-21 11:26:44</sys_updated_on>
+        <sys_updated_on>2021-06-23 10:49:23</sys_updated_on>
     </sys_script_include>
 </record_update>
