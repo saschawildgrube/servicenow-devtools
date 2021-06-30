@@ -38,20 +38,15 @@
 				'DevTools',
 				'https://github.com/saschawildgrube/servicenow-devtools');
 		]</g2:no_escape>
-		<li>Switch to global scope</li>
+		<li>Switch to global scope.</li>
 		<li>Create a new update set in the global scope to capture all changes related to the DevTools installation.</li>
-		<li>Enable create, read, write and delete operations for all applications on the following table:
-			<ol>
-				<li><a href="/sys_db_object.do?sys_id=sys_script_include&amp;sysparm_refkey=name" target="_blank">sys_script_include</a></li>
-			</ol>
-		</li>
-		<li>Execute the following script in the scope x_snc_devtools:</li>
-<pre>
-	AppInstall();	
-</pre>	
+		<li>Enable create, read, write and delete operations for all applications on the table&#160;<a href="/sys_db_object.do?sys_id=sys_script_include&amp;sysparm_refkey=name" target="_blank">sys_script_include</a>.</li>
+		<g2:no_escape>$[
+			docapi.RenderInstallationInstructionsAppInstall();
+		]</g2:no_escape>		
 		<li>Set the update set in the global scope to to complete.</li>
 		<li>Go to&#160;"<a href="/system_properties_ui.do?sysparm_title=Instance%20Debug%20Options&amp;sysparm_category=devtools.instance.debug" target="_blank">Instance Debug Options</a>"&#160;and activate the ATF test execution (if not set already).</li>
-		<li>Run the&#160;<a href="/sys_atf_test_suite.do?sys_id=4a8550391b5b8850a89720a8ec4bcbd9&amp;sysparm_view=DevTools&amp;sysparm_view_forced=true" target="_blank">DevTools Test Suite</a></li>
+		<li>Run the&#160;<a href="/sys_atf_test_suite.do?sys_id=4a8550391b5b8850a89720a8ec4bcbd9&amp;sysparm_view=DevTools&amp;sysparm_view_forced=true" target="_blank">DevTools Test Suite.</a></li>
 		<li>In case of errors:
 			<ol>
 				<li>Tests "DevTools - GetGroupsFromUser" and "DevTools - TestDataAPI": Retry after a few minutes. Some cross-scrope privileges will be set up during the first test run and might take a few minutes to be effective.</li>
@@ -83,6 +78,8 @@
 		<li>Installation has been simplified. Only the sys_script_include table needs to be configured for cross scope access.</li> 
 		<li>Massive refactoring to remove the dependency to the cross scope configuration to various tables.</li>
 		<li>Added functions GlideRecordDeleteMultiple() and GlideRecordSetValue() to perform said activities from global scope.</li>
+		<li>Added function DocumentationAPI.RenderInstallationInstructionsAppInstall() to guide an admin to run the AppInstall() function during installation.</li>
+		<li>Extended DocumentationAPI.RenderInstallationInstructionsImportFromSourceControl() with a new step to create a personal access token.</li>
 		<li>Install() has been renamed to AppInstall().</li>
 		<li>IsValidTable() now checks for an empty table name before getting the record.</li>
 		<li>ATF test "DevTools - GetRolesFromUser" has been refactored into a single script.</li>
@@ -338,13 +335,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>367</sys_mod_count>
+        <sys_mod_count>372</sys_mod_count>
         <sys_name>start</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-06-30 10:23:20</sys_updated_on>
+        <sys_updated_on>2021-06-30 10:39:50</sys_updated_on>
     </sys_ui_page>
 </record_update>
