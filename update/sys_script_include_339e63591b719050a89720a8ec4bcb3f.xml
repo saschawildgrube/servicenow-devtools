@@ -14,77 +14,75 @@
 		x_snc_devtools.Log('DevTools: AppInstall: '+strText);
 	}
 
-	
-	
-function AppInstallGlobalSystemProperty(strName, strType, strDescription)
-{
-	var grSP = new GlideRecord('sys_properties');
-	grSP.addQuery('name','=',GetStringValue(strName));
-	grSP.query();
-	if (grSP.next())
+	function AppInstallGlobalSystemProperty(strName, strType, strDescription)
 	{
-		return grSP.getValue('sys_id');
-	}
-	
-	var grSP = new GlideRecord('sys_properties');
-	grSP.initialize();
-	GlideRecordSetValue(grSP,'name',GetStringValue(strName));
-	GlideRecordSetValue(grSP,'type',GetStringValue(strType));
-	GlideRecordSetValue(grSP,'description',GetStringValue(strDescription));
-	GlideRecordSetValue(grSP,'sys_scope','global');
-	var strSysID = GlideRecordInsert(grSP);
-	if (IsValidSysId(strSysID) == false)
-	{
-		return false;
-	}
-	
-	return strSysID;
-}
+		var grSP = new GlideRecord('sys_properties');
+		grSP.addQuery('name','=',GetStringValue(strName));
+		grSP.query();
+		if (grSP.next())
+		{
+			return grSP.getValue('sys_id');
+		}
 
-function AppInstallSystemPropertyCategoryMapping(strSystemPropertyCategory, strSystemProperty, nOrder)
-{
-	var grSPC = new GlideRecord('sys_properties_category');
-	grSPC.addQuery('name','=',GetStringValue(strSystemPropertyCategory));
-	grSPC.query();
-	if (grSPC.next() == false)
-	{
-		return false;
-	}
-	var strSystemPropertyCategorySysId = grSPC.getValue('sys_id');
-	
-	var grSP = new GlideRecord('sys_properties');
-	grSP.addQuery('name','=',GetStringValue(strSystemProperty));
-	grSP.query();
-	if (grSP.next() == false)
-	{
-		return false;
-	}
-	var strSystemPropertySysId = grSP.getValue('sys_id');
+		var grSP = new GlideRecord('sys_properties');
+		grSP.initialize();
+		GlideRecordSetValue(grSP,'name',GetStringValue(strName));
+		GlideRecordSetValue(grSP,'type',GetStringValue(strType));
+		GlideRecordSetValue(grSP,'description',GetStringValue(strDescription));
+		GlideRecordSetValue(grSP,'sys_scope','global');
+		var strSysID = GlideRecordInsert(grSP);
+		if (IsValidSysId(strSysID) == false)
+		{
+			return false;
+		}
 
-	
-	var grSPCM2 = new GlideRecord('sys_properties_category_m2m');
-	grSPCM2.addQuery('property','=',strSystemPropertySysId);
-	grSPCM2.addQuery('category','=',strSystemPropertyCategorySysId);
-	grSPCM2.query();
-	if (grSPCM2.next())
-	{
-		return grSPCM2.getValue('sys_id');
-	}	
-	
-	var grSPCM2 = new GlideRecord('sys_properties_category_m2m');
-	grSPCM2.initialize();
-	grSPCM2.category = strSystemPropertyCategorySysId;
-	grSPCM2.property = strSystemPropertySysId;
-	grSPCM2.order = nOrder;
-	//grSPCM2.sys_scope = 'global';
-	var strSysID = GetStringValue(GlideRecordInsert(grSPCM2));
-	if (strSysID == '')
-	{
-		return false;
+		return strSysID;
 	}
 
-	return strSysID;
-}
+	function AppInstallSystemPropertyCategoryMapping(strSystemPropertyCategory, strSystemProperty, nOrder)
+	{
+		var grSPC = new GlideRecord('sys_properties_category');
+		grSPC.addQuery('name','=',GetStringValue(strSystemPropertyCategory));
+		grSPC.query();
+		if (grSPC.next() == false)
+		{
+			return false;
+		}
+		var strSystemPropertyCategorySysId = grSPC.getValue('sys_id');
+
+		var grSP = new GlideRecord('sys_properties');
+		grSP.addQuery('name','=',GetStringValue(strSystemProperty));
+		grSP.query();
+		if (grSP.next() == false)
+		{
+			return false;
+		}
+		var strSystemPropertySysId = grSP.getValue('sys_id');
+
+
+		var grSPCM2 = new GlideRecord('sys_properties_category_m2m');
+		grSPCM2.addQuery('property','=',strSystemPropertySysId);
+		grSPCM2.addQuery('category','=',strSystemPropertyCategorySysId);
+		grSPCM2.query();
+		if (grSPCM2.next())
+		{
+			return grSPCM2.getValue('sys_id');
+		}	
+
+		var grSPCM2 = new GlideRecord('sys_properties_category_m2m');
+		grSPCM2.initialize();
+		grSPCM2.category = strSystemPropertyCategorySysId;
+		grSPCM2.property = strSystemPropertySysId;
+		grSPCM2.order = nOrder;
+		//grSPCM2.sys_scope = 'global';
+		var strSysID = GetStringValue(GlideRecordInsert(grSPCM2));
+		if (strSysID == '')
+		{
+			return false;
+		}
+
+		return strSysID;
+	}
 	
 	
 	
@@ -139,13 +137,13 @@ function AppInstallSystemPropertyCategoryMapping(strSystemPropertyCategory, strS
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-07-03 21:35:10</sys_created_on>
         <sys_id>339e63591b719050a89720a8ec4bcb3f</sys_id>
-        <sys_mod_count>15</sys_mod_count>
+        <sys_mod_count>16</sys_mod_count>
         <sys_name>AppInstall</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_339e63591b719050a89720a8ec4bcb3f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-06-24 15:59:40</sys_updated_on>
+        <sys_updated_on>2021-06-30 10:54:41</sys_updated_on>
     </sys_script_include>
 </record_update>
