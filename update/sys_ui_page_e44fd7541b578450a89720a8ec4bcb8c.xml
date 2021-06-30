@@ -38,39 +38,15 @@
 				'DevTools',
 				'https://github.com/saschawildgrube/servicenow-devtools');
 		]</g2:no_escape>
-		<li>Switch to global scope</li>
+		<li>Switch to global scope.</li>
 		<li>Create a new update set in the global scope to capture all changes related to the DevTools installation.</li>
-		<li>Set the system property&#160;<a href="/nav_to.do?uri=sys_properties.do?sys_id=9e52826587120300cf2d5fb736cb0b7f" target="_blank">glide.record.legacy_cross_scope_access_policy_in_script</a>&#160;to true.</li>
-		<li>In order to run the installation script which configures new system property categories enable create, read, write and delete operations for all applications on the following tables:
-			<ol>
-				<li><a href="/sys_db_object.do?sys_id=sys_properties&amp;sysparm_refkey=name" target="_blank">sys_properties</a></li>
-				<li><a href="/sys_db_object.do?sys_id=sys_properties_category_m2m&amp;sysparm_refkey=name" target="_blank">sys_properties_category_m2m</a></li>
-			</ol>
-		</li> 
-		<li>To run all DevTools ATF tests enable create, read, write and delete operations for all applications on the following tables:
-			<ol>
-				<li><a href="/sys_db_object.do?sys_id=sys_user&amp;sysparm_refkey=name" target="_blank">sys_user</a></li>
-				<li><a href="/sys_db_object.do?sys_id=sys_user_group&amp;sysparm_refkey=name" target="_blank">sys_user_group</a></li>
-				<li><a href="/sys_db_object.do?sys_id=sys_user_role&amp;sysparm_refkey=name" target="_blank">sys_user_role</a></li>
-				<li><a href="/sys_db_object.do?sys_id=incident&amp;sysparm_refkey=name" target="_blank">incident</a></li>
-				<li><a href="/sys_db_object.do?sys_id=incident_task&amp;sysparm_refkey=name" target="_blank">incident_task</a></li>
-				<li><a href="/sys_db_object.do?sys_id=change_request&amp;sysparm_refkey=name" target="_blank">change_request</a></li>
-				<li><a href="/sys_db_object.do?sys_id=change_task&amp;sysparm_refkey=name" target="_blank">change_task</a></li>
-				<li><a href="/sys_db_object.do?sys_id=problem&amp;sysparm_refkey=name" target="_blank">problem</a></li>
-				<li><a href="/sys_db_object.do?sys_id=problem_task&amp;sysparm_refkey=name" target="_blank">problem_task</a></li>
-				<li><a href="/sys_db_object.do?sys_id=sc_request&amp;sysparm_refkey=name" target="_blank">sc_request</a></li>
-			</ol>
-		</li>
-		<li>To use the RunScriptInGlobalScope() function enable create, read, write and delete operations for all applications on the following table:
-			<ol>
-				<li><a href="/sys_db_object.do?sys_id=sys_script_include&amp;sysparm_refkey=name" target="_blank">sys_script_include</a></li>
-			</ol>
-		</li>
-		<li>Go to the "Install Script" module and execute the script.</li>
-		<li>Go to the "Install Log" module and check for error messages. In case of errors, wait a few minutes and retry. The access changes to the tables might take a few minutes to be effective.</li>
+		<li>Enable create, read, write and delete operations for all applications on the table&#160;<a href="/sys_db_object.do?sys_id=sys_script_include&amp;sysparm_refkey=name" target="_blank">sys_script_include</a>.</li>
+		<g2:no_escape>$[
+			docapi.RenderInstallationInstructionsAppInstall();
+		]</g2:no_escape>		
 		<li>Set the update set in the global scope to to complete.</li>
 		<li>Go to&#160;"<a href="/system_properties_ui.do?sysparm_title=Instance%20Debug%20Options&amp;sysparm_category=devtools.instance.debug" target="_blank">Instance Debug Options</a>"&#160;and activate the ATF test execution (if not set already).</li>
-		<li>Run the&#160;<a href="/sys_atf_test_suite.do?sys_id=4a8550391b5b8850a89720a8ec4bcbd9&amp;sysparm_view=DevTools&amp;sysparm_view_forced=true" target="_blank">DevTools Test Suite</a></li>
+		<li>Run the&#160;<a href="/sys_atf_test_suite.do?sys_id=4a8550391b5b8850a89720a8ec4bcbd9&amp;sysparm_view=DevTools&amp;sysparm_view_forced=true" target="_blank">DevTools Test Suite.</a></li>
 		<li>In case of errors:
 			<ol>
 				<li>Tests "DevTools - GetGroupsFromUser" and "DevTools - TestDataAPI": Retry after a few minutes. Some cross-scrope privileges will be set up during the first test run and might take a few minutes to be effective.</li>
@@ -97,6 +73,18 @@
 	
 	<h2>Release Notes</h2>
 
+	<h3>1.19.0 - 2021-06-30</h3>
+	<ol>
+		<li>Installation has been simplified. Only the sys_script_include table needs to be configured for cross scope access.</li> 
+		<li>Massive refactoring to remove the dependency to the cross scope configuration to various tables.</li>
+		<li>Added functions GlideRecordDeleteMultiple() and GlideRecordSetValue() to perform said activities from global scope.</li>
+		<li>Added function DocumentationAPI.RenderInstallationInstructionsAppInstall() to guide an admin to run the AppInstall() function during installation.</li>
+		<li>Extended DocumentationAPI.RenderInstallationInstructionsImportFromSourceControl() with a new step to create a personal access token.</li>
+		<li>Install() has been renamed to AppInstall().</li>
+		<li>IsValidTable() now checks for an empty table name before getting the record.</li>
+		<li>ATF test "DevTools - GetRolesFromUser" has been refactored into a single script.</li>
+	</ol>
+			
 	<h3>1.18.0 - 2021-06-24</h3>
 	<ol>
 		<li>Added function TestDataAPI.DeleteAllData() to delete all test data items.</li>
@@ -347,13 +335,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>361</sys_mod_count>
+        <sys_mod_count>373</sys_mod_count>
         <sys_name>start</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-06-24 09:03:25</sys_updated_on>
+        <sys_updated_on>2021-06-30 12:55:51</sys_updated_on>
     </sys_ui_page>
 </record_update>

@@ -102,14 +102,14 @@ TestDataAPI.prototype =
 		while(grTestItem.next())
 		{
 			grTestItem.getValue('sys_id');
-			grTestItem.deleteRecord();
+			GlideRecordDelete(grTestItem);
 		}
 		
 		grTestItem.initialize();
 		grTestItem.name = strPrefix+strName;
 		grTestItem.value = strValue;
 		grTestItem.processed = strProcessedDateTime;
-		strSysId = grTestItem.insert();
+		strSysId = GlideRecordInsert(grTestItem);
 
 		if (strSysId == null)
 		{
@@ -155,7 +155,7 @@ TestDataAPI.prototype =
 		if (grUser.get('user_name','=',strPrefix+strName))
 		{
 			strUserSysId = grUser.getValue('sys_id');
-			bDeleted = grUser.deleteRecord();
+			bDeleted = GlideRecordDelete(grUser);
 		}
 		if (bDeleted == true || strUserSysId == null)
 		{
@@ -166,7 +166,7 @@ TestDataAPI.prototype =
 			{
 				grUser.web_service_access_only = true;
 			}
-			strUserSysId = grUser.insert();
+			strUserSysId = GlideRecordInsert(grUser);
 		}
 
 		if (strUserSysId == null)
@@ -201,7 +201,7 @@ TestDataAPI.prototype =
 						grUserHasRole.initialize();
 						grUserHasRole.role = grUserRole.sys_id;
 						grUserHasRole.user = strUserSysId;
-						grUserHasRole.insert();
+						GlideRecordInsert(grUserHasRole);
 					}
 				}
 			}
@@ -252,12 +252,12 @@ TestDataAPI.prototype =
 		var grGroupToDelete = new GlideRecord('sys_user_group');
 		grGroupToDelete.addQuery('name','=',strPrefix+strName);
 		grGroupToDelete.query();
-		grGroupToDelete.deleteMultiple();
+		GlideRecordDeleteMultiple(grGroupToDelete);
 
 		var grGroup = new GlideRecord('sys_user_group');
 		grGroup.initialize();
 		grGroup.name = strPrefix+strName;
-		var strGroupSysId = grGroup.insert();
+		var strGroupSysId = GlideRecordInsert(grGroup);
 
 		if (strGroupSysId == null)
 		{
@@ -277,7 +277,7 @@ TestDataAPI.prototype =
 					grGroupMember.initialize();
 					grGroupMember.group = strGroupSysId;
 					grGroupMember.user = grUser.sys_id;
-					grGroupMember.insert();
+					GlideRecordInsert(grGroupMember);
 				}
 
 			}
@@ -312,13 +312,13 @@ TestDataAPI.prototype =
 		var grRoleToDelete = new GlideRecord('sys_user_role');
 		grRoleToDelete.addQuery('name','=',strPrefix+strName);
 		grRoleToDelete.query();
-		grRoleToDelete.deleteMultiple();
+		GlideRecordDeleteMultiple(grRoleToDelete);
 
 		var grRole = new GlideRecord('sys_user_role');
 		grRole.initialize();
-		grRole.name = strPrefix+strName;
+		GlideRecordSetValue(grRole,'name',strPrefix+strName);
 		//grRole.state = 'active';
-		var strRoleSysId = grRole.insert();
+		var strRoleSysId = GlideRecordInsert(grRole);
 
 		if (strRoleSysId == null)
 		{
@@ -362,7 +362,7 @@ TestDataAPI.prototype =
 		var grIncidentToDelete = new GlideRecord('incident');
 		grIncidentToDelete.addQuery('short_description','=',strPrefix+strName);
 		grIncidentToDelete.query();
-		grIncidentToDelete.deleteMultiple();
+		GlideRecordDeleteMultiple(grIncidentToDelete);
 
 		var strOpenedByUserSysId = '';
 		if (strOpenedByUserName != '')
@@ -400,7 +400,7 @@ TestDataAPI.prototype =
 		grIncident.opened_by = strOpenedByUserSysId;
 		grIncident.caller_id = strCallerUserSysId;
 		grIncident.assignment_group = strAssignmentGroupSysId;
-		var strIncidentSysId = grIncident.insert();
+		var strIncidentSysId = GlideRecordInsert(grIncident);
 		
 		if (strIncidentSysId == null)
 		{
@@ -455,7 +455,7 @@ TestDataAPI.prototype =
 		var grIncidentTaskToDelete = new GlideRecord('incident_task');
 		grIncidentTaskToDelete.addQuery('short_description','=',strShortDescription);
 		grIncidentTaskToDelete.query();
-		grIncidentTaskToDelete.deleteMultiple();
+		GlideRecordDeleteMultiple(grIncidentTaskToDelete);
 
 		var strOpenedByUserSysId = '';
 		if (strOpenedByUserName != '')
@@ -493,7 +493,7 @@ TestDataAPI.prototype =
 		grIncidentTask.short_description = strShortDescription;
 		grIncidentTask.opened_by = strOpenedByUserSysId;
 		grIncidentTask.assignment_group = strAssignmentGroupSysId;
-		var strIncidentTaskSysId = grIncidentTask.insert();
+		var strIncidentTaskSysId = GlideRecordInsert(grIncidentTask);
 		
 		if (strIncidentTaskSysId == null)
 		{
@@ -536,7 +536,7 @@ TestDataAPI.prototype =
 		var grChangeRequestToDelete = new GlideRecord('change_request');
 		grChangeRequestToDelete.addQuery('short_description','=',strPrefix+strName);
 		grChangeRequestToDelete.query();
-		grChangeRequestToDelete.deleteMultiple();
+		GlideRecordDeleteMultiple(grChangeRequestToDelete);
 
 		var strOpenedByUserSysId = '';
 		if (strOpenedByUserName != '')
@@ -574,7 +574,7 @@ TestDataAPI.prototype =
 		grChangeRequest.opened_by = strOpenedByUserSysId;
 		grChangeRequest.requested_by = strRequestedByUserSysId;
 		grChangeRequest.assignment_group = strAssignmentGroupSysId;
-		var strChangeRequestSysId = grChangeRequest.insert();
+		var strChangeRequestSysId = GlideRecordInsert(grChangeRequest);
 		if (strChangeRequestSysId == null)
 		{
 			//this.Debug('CreateChangeRequest','Failed to create change request '+strChangeRequestSysId+'!');
@@ -618,7 +618,7 @@ TestDataAPI.prototype =
 		var grChangeTaskToDelete = new GlideRecord('change_task');
 		grChangeTaskToDelete.addQuery('short_description','=',strShortDescription);
 		grChangeTaskToDelete.query();
-		grChangeTaskToDelete.deleteMultiple();
+		GlideRecordDeleteMultiple(grChangeTaskToDelete);
 
 		var strOpenedByUserSysId = '';
 		if (strOpenedByUserName != '')
@@ -656,7 +656,7 @@ TestDataAPI.prototype =
 		grChangeTask.short_description = strShortDescription;
 		grChangeTask.opened_by = strOpenedByUserSysId;
 		grChangeTask.assignment_group = strAssignmentGroupSysId;
-		var strChangeTaskSysId = grChangeTask.insert();
+		var strChangeTaskSysId = GlideRecordInsert(grChangeTask);
 		
 		if (strChangeTaskSysId == null)
 		{
@@ -699,7 +699,7 @@ TestDataAPI.prototype =
 		var grProblemToDelete = new GlideRecord('problem');
 		grProblemToDelete.addQuery('short_description','=',strPrefix+strName);
 		grProblemToDelete.query();
-		grProblemToDelete.deleteMultiple();
+		GlideRecordDeleteMultiple(grProblemToDelete);
 
 		var strOpenedByUserSysId = '';
 		if (strOpenedByUserName != '')
@@ -726,7 +726,7 @@ TestDataAPI.prototype =
 		grProblem.short_description = strPrefix+strName;
 		grProblem.opened_by = strOpenedByUserSysId;
 		grProblem.assignment_group = strAssignmentGroupSysId;
-		var strProblemSysId = grProblem.insert();
+		var strProblemSysId = GlideRecordInsert(grProblem);
 		
 		if (strProblemSysId == null)
 		{
@@ -771,7 +771,7 @@ TestDataAPI.prototype =
 		var grProblemTaskToDelete = new GlideRecord('problem_task');
 		grProblemTaskToDelete.addQuery('short_description','=',strShortDescription);
 		grProblemTaskToDelete.query();
-		grProblemTaskToDelete.deleteMultiple();
+		GlideRecordDeleteMultiple(grProblemTaskToDelete);
 
 		var strOpenedByUserSysId = '';
 		if (strOpenedByUserName != '')
@@ -809,7 +809,7 @@ TestDataAPI.prototype =
 		grProblemTask.short_description = strShortDescription;
 		grProblemTask.opened_by = strOpenedByUserSysId;
 		grProblemTask.assignment_group = strAssignmentGroupSysId;
-		var strProblemTaskSysId = grProblemTask.insert();
+		var strProblemTaskSysId = GlideRecordInsert(grProblemTask);
 		
 		if (strProblemTaskSysId == null)
 		{
@@ -852,7 +852,7 @@ TestDataAPI.prototype =
 		var grRequestToDelete = new GlideRecord('sc_request');
 		grRequestToDelete.addQuery('short_description','=',strPrefix+strName);
 		grRequestToDelete.query();
-		grRequestToDelete.deleteMultiple();
+		GlideRecordDeleteMultiple(grRequestToDelete);
 
 		var strOpenedByUserSysId = '';
 		if (strOpenedByUserName != '')
@@ -890,7 +890,7 @@ TestDataAPI.prototype =
 		grRequest.opened_by = strOpenedByUserSysId;
 		grRequest.requested_for = strRequestedForUserSysId;
 		grRequest.assignment_group = strAssignmentGroupSysId;
-		var strRequestSysId = grRequest.insert();
+		var strRequestSysId = GlideRecordInsert(grRequest);
 		if (strRequestSysId == null)
 		{
 			//this.Debug('CreateRequest','Failed to create request '+strRequestSysId+'!');
@@ -1072,13 +1072,13 @@ TestDataAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-13 14:53:39</sys_created_on>
         <sys_id>1796abb01b78d410a89720a8ec4bcb1e</sys_id>
-        <sys_mod_count>131</sys_mod_count>
+        <sys_mod_count>138</sys_mod_count>
         <sys_name>TestDataAPI</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_1796abb01b78d410a89720a8ec4bcb1e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-06-24 07:54:18</sys_updated_on>
+        <sys_updated_on>2021-06-24 16:25:09</sys_updated_on>
     </sys_script_include>
 </record_update>
