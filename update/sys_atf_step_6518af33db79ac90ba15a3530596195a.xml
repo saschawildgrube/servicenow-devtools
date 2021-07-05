@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
     <sys_atf_step action="INSERT_OR_UPDATE">
         <active>true</active>
-        <copied_from display_value="Run Server Side Script">57149e01db455010ba15a35305961978</copied_from>
+        <copied_from display_value="">57149e01db455010ba15a35305961978</copied_from>
         <description>Run Server Side Validation Script</description>
         <display_name>Run Server Side Script</display_name>
         <inputs/>
