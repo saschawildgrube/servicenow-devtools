@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <copied_from/>
+        <description>Run Server Side Validation Script</description>
+        <display_name>Run Server Side Script</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes>Checking behavior on an empty record set.</notes>
+        <order>3</order>
+        <snapshot/>
+        <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-08-18 11:12:17</sys_created_on>
+        <sys_id>3035caa51bcefc10577f43b5bb4bcb07</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>Run Server Side Script</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_step_3035caa51bcefc10577f43b5bb4bcb07</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-08-18 11:24:18</sys_updated_on>
+        <table/>
+        <test display_value="DevTools - RecordBulkProcessor">72520390db4fac10ba15a35305961926</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=3035caa51bcefc10577f43b5bb4bcb07"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>3035caa51bcefc10577f43b5bb4bcb07</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-08-18 11:12:17</sys_created_on>
+        <sys_id>01a5caa51bcefc10577f43b5bb4bcb36</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-08-18 11:24:18</sys_updated_on>
+        <value>var strLog = '';&#13;
+function Log(strText)&#13;
+{&#13;
+	strLog = strLog + "\n" + strText;&#13;
+}&#13;
+(function(outputs, steps, stepResult, assertEqual)&#13;
+{&#13;
+	var RenderValue = x_snc_devtools.RenderValue;&#13;
+	var GetType = x_snc_devtools.GetType;&#13;
+	&#13;
+	var testdata = new TestDataAPI('_ATF_DEVTOOLS_');&#13;
+&#13;
+	var bResult = true;&#13;
+		&#13;
+	function TestCase_RecordBulkProcessor(&#13;
+		grRecords,&#13;
+		callbackRecordProcessor,&#13;
+		strFieldDateTime,&#13;
+		nMaxRecords,&#13;
+		nMaxSeconds,&#13;
+		callbackLog,&#13;
+		nLogFrequency,&#13;
+		vExpected)&#13;
+	{&#13;
+		Log('TestCase_RecordBulkProcessor');&#13;
+		var strRecordClassName = '';&#13;
+		if (IsValidRecord(grRecords) == true)&#13;
+		{&#13;
+			strRecordClassName = grRecords.getRecordClassName();&#13;
+		}&#13;
+		Log('Class name              : '+strRecordClassName);&#13;
+		Log('callbackRecordProcessor : '+GetType(callbackRecordProcessor));&#13;
+		Log('strFieldDateTime        : '+RenderValue(strFieldDateTime));&#13;
+		Log('nMaxRecords             : '+RenderValue(nMaxRecords));&#13;
+		Log('nMaxSeconds             : '+RenderValue(nMaxSeconds));&#13;
+		Log('callbackLog             : '+GetType(callbackLog));&#13;
+		Log('nLogFrequency           : '+RenderValue(nLogFrequency));&#13;
+		Log('Expected                : '+RenderValue(vExpected));&#13;
+		var vResult = RecordBulkProcessor(&#13;
+			grRecords,&#13;
+			callbackRecordProcessor,&#13;
+			strFieldDateTime,&#13;
+			nMaxRecords,&#13;
+			nMaxSeconds,&#13;
+			callbackLog,&#13;
+			nLogFrequency);&#13;
+		Log('Result  : '+RenderValue(vResult));&#13;
+		if (vResult != vExpected)&#13;
+		{&#13;
+			bResult = false;&#13;
+			Log('Test case FAILED');&#13;
+		}&#13;
+		Log('');&#13;
+	}&#13;
+	&#13;
+	// Prepare test data&#13;
+	&#13;
+	testdata.DeleteAllData();&#13;
+	&#13;
+	// RecordProcessor&#13;
+	function CallbackRecordProcessor(grRecord)&#13;
+	{&#13;
+		var strValue = GetStringValue(grRecord.getValue('value'));&#13;
+		if (strValue != strValue.toLowerCase())&#13;
+		{&#13;
+			grRecord.value = strValue.toLowerCase();&#13;
+			return true;&#13;
+		}&#13;
+		return false;&#13;
+	}&#13;
+	&#13;
+	// Log function&#13;
+	function CallbackLog(strText)&#13;
+	{&#13;
+		Log('Testing RecordBulkProcessor: '+strText);&#13;
+	}&#13;
+	&#13;
+	Log(RenderValue(testdata.GetAllTestItems()));&#13;
+	&#13;
+	var stopwatch = new StopWatch();&#13;
+	&#13;
+	stopwatch.Start();&#13;
+	&#13;
+	// Test 1: the function should return immediately if no records can be found&#13;
+	var grRecords = new GlideRecord('x_snc_devtools_test');&#13;
+	grRecords.addQuery('name','STARTSWITH',testdata.GetPrefix());&#13;
+	TestCase_RecordBulkProcessor(&#13;
+		grRecords,&#13;
+		CallbackRecordProcessor,&#13;
+		'processed',&#13;
+		100, &#13;
+		10,&#13;
+		CallbackLog,&#13;
+		1,&#13;
+		0);&#13;
+	&#13;
+	stopwatch.Stop();&#13;
+	&#13;
+	var nSecondsThreshold = 2;&#13;
+	if (stopwatch.GetSeconds() &gt; nSecondsThreshold)&#13;
+	{&#13;
+		Log('FAILED: RecordBulkProcessor took more than '+nSecondsThreshold+' seconds to process an empty record set.');&#13;
+		bResult = false;&#13;
+	}&#13;
+	&#13;
+	Log(RenderValue(testdata.GetAllTestItems()));&#13;
+	&#13;
+	stepResult.setOutputMessage(strLog);&#13;
+	return bResult;&#13;
+	&#13;
+})(outputs, steps, stepResult, assertEqual);</value>
+        <variable display_value="">989d9e235324220002c6435723dc3484</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>3035caa51bcefc10577f43b5bb4bcb07</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-08-18 11:12:17</sys_created_on>
+        <sys_id>85a5caa51bcefc10577f43b5bb4bcb35</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-08-18 11:12:17</sys_updated_on>
+        <value>3.1</value>
+        <variable display_value="">42f2564b73031300440211d8faf6a777</variable>
+    </sys_variable_value>
+</record_update>
