@@ -10,7 +10,7 @@
         <license_model>none</license_model>
         <logo/>
         <menu/>
-        <name>DevTools WORK IN PROGRESS</name>
+        <name>DevTools</name>
         <private>false</private>
         <restrict_table_access>false</restrict_table_access>
         <runtime_access_tracking>permissive</runtime_access_tracking>
@@ -25,9 +25,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 08:31:37</sys_created_on>
         <sys_id>d689f6901bd38450a89720a8ec4bcbfd</sys_id>
-        <sys_mod_count>78</sys_mod_count>
+        <sys_mod_count>79</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-07-06 11:38:51</sys_updated_on>
+        <sys_updated_on>2021-08-23 14:14:17</sys_updated_on>
         <template/>
         <trackable>true</trackable>
         <user_role/>
