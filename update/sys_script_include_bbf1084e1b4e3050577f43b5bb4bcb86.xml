@@ -5,7 +5,7 @@
         <api_name>x_snc_devtools.PerformanceQuery</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description/>
+        <description>Measure the average performance of a query in milliseconds from the perspective of a given user based on a defined number of repetitions.</description>
         <name>PerformanceQuery</name>
         <script><![CDATA[function PerformanceQuery(strName, strTable, strQuery, strOrderBy, nLimit, strUser, nRepetitions)
 {
@@ -112,13 +112,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-08-19 15:08:17</sys_created_on>
         <sys_id>bbf1084e1b4e3050577f43b5bb4bcb86</sys_id>
-        <sys_mod_count>11</sys_mod_count>
+        <sys_mod_count>12</sys_mod_count>
         <sys_name>PerformanceQuery</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_bbf1084e1b4e3050577f43b5bb4bcb86</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-08-23 13:04:41</sys_updated_on>
+        <sys_updated_on>2021-08-23 14:06:02</sys_updated_on>
     </sys_script_include>
 </record_update>
