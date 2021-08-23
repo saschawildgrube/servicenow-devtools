@@ -7,12 +7,14 @@
         <client_callable>false</client_callable>
         <description/>
         <name>PerformanceQuery</name>
-        <script><![CDATA[function PerformanceQuery(strName, strTable, strQuery, strUser)
+        <script><![CDATA[function PerformanceQuery(strName, strTable, strQuery, strUser, nRepetitions, nLimit)
 {
 	strName = GetStringValue(strName);
 	strTable = GetStringValue(strTable);
 	strQuery = GetStringValue(strQuery);
 	strUser = GetStringValue(strUser);
+	nRepetitions = GetIntegerValue(nRepetitions);
+	nLimit = GetIntegerValue(nLimit);
 	
 	var result = {};
 	result['name'] = strName;
@@ -21,6 +23,11 @@
 
 	var strUserSysId = '';
 	var strUserName = '';
+	
+	if (IsValidTable(strTable) == false)
+	{
+		return false;
+	}
 
 	
 	var grUser = GetUserRecord(strUser);
@@ -38,19 +45,57 @@
 	result['user_sys_id'] = strUserSysId;
 	result['user_name'] = strUserName;
 
+	
+	if (nRepetitions == 0)
+	{
+		nRepetitions = 1;
+	}
+	result['repetitions'] = nRepetitions;
+
 	var strPreviousUserSysId = UserImpersonate(strUserSysId);
 	
-	var stopwatch = new StopWatch();
+	var fFastest = 0;
+	var fSlowest = 0;
+	var fSum = 0;
+
+
 	
-	var gr = new GlideRecord(strTable);
-	gr.addEncodedQuery(strQuery);
+	for (var nRepetition = 0; nRepetition < nRepetitions; nRepetition++)
+	{
+		var stopwatch = new StopWatch();
+
+		var gr = new GlideRecordSecure(strTable);
+		gr.addEncodedQuery(strQuery);
+		
+		if (nLimit > 0)
+		{
+			gr.setLimit(nLimit);
+		}
+
+		stopwatch.Start();
+		gr.query();
+		stopwatch.Stop();
+
+		var fMilliseconds = stopwatch.GetMilliSeconds();
+		if (nRepetition == 0)
+		{
+			var fFastest = fMilliseconds;
+			var fSlowest = fMilliseconds;
+			var fSum = fMilliseconds;
+		}
+		else
+		{
+			fFastest = Math.min(fFastest,fMilliseconds);
+			fSlowest = Math.max(fSlowest,fMilliseconds);
+			fSum += fMilliseconds;
+		}
+	}
 	
-	stopwatch.Start();
-	gr.query();
-	stopwatch.Stop();
-	
-	result['count'] = gr.getRowCount();
-	result['milliseconds'] = stopwatch.GetMilliSeconds();
+	result['fastest_milliseconds'] = fFastest;
+	result['slowest_milliseconds'] = fSlowest;
+	result['average_milliseconds'] = fSum/nRepetitions;
+
+	result['records'] = gr.getRowCount();
 	
 	UserImpersonate(strPreviousUserSysId);
 	
@@ -60,13 +105,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-08-19 15:08:17</sys_created_on>
         <sys_id>bbf1084e1b4e3050577f43b5bb4bcb86</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_name>PerformanceQuery</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_bbf1084e1b4e3050577f43b5bb4bcb86</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-08-19 15:27:13</sys_updated_on>
+        <sys_updated_on>2021-08-23 11:50:26</sys_updated_on>
     </sys_script_include>
 </record_update>
