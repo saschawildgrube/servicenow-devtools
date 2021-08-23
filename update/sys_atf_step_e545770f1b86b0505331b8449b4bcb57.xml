@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-08-23 11:14:00</sys_created_on>
         <sys_id>e545770f1b86b0505331b8449b4bcb57</sys_id>
-        <sys_mod_count>9</sys_mod_count>
+        <sys_mod_count>12</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_e545770f1b86b0505331b8449b4bcb57</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-08-23 11:55:30</sys_updated_on>
+        <sys_updated_on>2021-08-23 13:10:12</sys_updated_on>
         <table/>
         <test display_value="DevTools - PerformanceQuery">c425b30f1b86b0505331b8449b4bcbdd</test>
         <timeout/>
@@ -50,9 +50,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-08-23 11:14:00</sys_created_on>
         <sys_id>47f5bb0f1b86b0505331b8449b4bcbfb</sys_id>
-        <sys_mod_count>9</sys_mod_count>
+        <sys_mod_count>12</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-08-23 11:55:30</sys_updated_on>
+        <sys_updated_on>2021-08-23 13:10:12</sys_updated_on>
         <value>var strLog = '';&#13;
 function Log(strText)&#13;
 {&#13;
@@ -69,6 +69,7 @@ function Log(strText)&#13;
 		vInputName,&#13;
 		vInputTable,&#13;
 		vInputQuery,&#13;
+		vInputOrderBy,&#13;
 		vInputUser,&#13;
 		vInputRepetitions,&#13;
 		vInputLimit,&#13;
@@ -78,11 +79,12 @@ function Log(strText)&#13;
 		Log('Input Name       : '+RenderValue(vInputName));&#13;
 		Log('Input Table      : '+RenderValue(vInputTable));&#13;
 		Log('Input Query      : '+RenderValue(vInputQuery));&#13;
+		Log('Input Order by   : '+RenderValue(vInputOrderBy));&#13;
 		Log('Input User       : '+RenderValue(vInputUser));&#13;
 		Log('Input Repetitions: '+RenderValue(vInputRepetitions));&#13;
 		Log('Input Limit      : '+RenderValue(vInputLimit));&#13;
 		Log('Expected         : '+RenderValue(vExpected));&#13;
-		var vResult = PerformanceQuery(vInputName,vInputTable,vInputQuery,vInputUser,vInputRepetitions,vInputLimit);&#13;
+		var vResult = PerformanceQuery(vInputName,vInputTable,vInputQuery,vInputOrderBy,vInputLimit,vInputUser,vInputRepetitions);&#13;
 		Log('Result           : '+RenderValue(vResult));&#13;
 		if (vExpected == false)&#13;
 		{&#13;
@@ -111,18 +113,18 @@ function Log(strText)&#13;
 		Log('');&#13;
 	}&#13;
 	&#13;
-	TestCase_PerformanceQuery('Test0','','','_ATF_DEVTOOLS_NOACCESS',2,0,false);	&#13;
+	TestCase_PerformanceQuery('No results','','','','_ATF_DEVTOOLS_NOACCESS',2,0,false);	&#13;
 	&#13;
 	var testdata = new TestDataAPI('_ATF_DEVTOOLS_');&#13;
 	testdata.CreateUser('NOACCESS',[]);&#13;
 	testdata.CreateUser('ADMIN',['admin']);&#13;
 	&#13;
-	TestCase_PerformanceQuery('Test1','incident','','_ATF_DEVTOOLS_NOACCESS',2,0,true);&#13;
-	TestCase_PerformanceQuery('Test2','incident','','_ATF_DEVTOOLS_ADMIN',2,0,true);&#13;
-	TestCase_PerformanceQuery('Test3','incident','active=true','_ATF_DEVTOOLS_NOACCESS',2,0,true);&#13;
-	TestCase_PerformanceQuery('Test4','incident','active=true','_ATF_DEVTOOLS_ADMIN',2,0,true);&#13;
-	TestCase_PerformanceQuery('Test5','incident','active=true','_ATF_DEVTOOLS_NOACCESS',2,1,true);&#13;
-	TestCase_PerformanceQuery('Test6','incident','active=true','_ATF_DEVTOOLS_ADMIN',2,1,true);&#13;
+	TestCase_PerformanceQuery('All incidents','incident','','','_ATF_DEVTOOLS_NOACCESS',2,0,true);&#13;
+	TestCase_PerformanceQuery('All incidents','incident','','','_ATF_DEVTOOLS_ADMIN',2,0,true);&#13;
+	TestCase_PerformanceQuery('Active incidents','incident','active=true','','_ATF_DEVTOOLS_NOACCESS',2,0,true);&#13;
+	TestCase_PerformanceQuery('Active incidents','incident','active=true','','_ATF_DEVTOOLS_ADMIN',2,0,true);&#13;
+	TestCase_PerformanceQuery('One sorted incident','incident','active=true','number','_ATF_DEVTOOLS_NOACCESS',2,1,true);&#13;
+	TestCase_PerformanceQuery('One sorted incident','incident','active=true','number','_ATF_DEVTOOLS_ADMIN',2,1,true);&#13;
 &#13;
 	&#13;
 	stepResult.setOutputMessage(strLog);&#13;
