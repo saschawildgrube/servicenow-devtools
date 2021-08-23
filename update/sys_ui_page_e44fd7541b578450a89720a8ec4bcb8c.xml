@@ -40,7 +40,21 @@
 		]</g2:no_escape>
 		<li>Switch to global scope.</li>
 		<li>Create a new update set in the global scope to capture all changes related to the DevTools installation.</li>
-		<li>Enable create, read, write and delete operations for all applications on the table&#160;<a href="/sys_db_object.do?sys_id=sys_script_include&amp;sysparm_refkey=name" target="_blank">sys_script_include</a>.</li>
+		<li>Enable create, read, write and delete operations for all applications on the table&#160;<a href="/sys_db_object.do?sys_id=sys_script_include&amp;sysparm_refkey=name" target="_blank">sys_script_include</a>&#160;by running the following&#160;<a href="/sys.scripts.do" target="_blank">background script</a>&#160;in global scope:</li>
+<pre>var grRecord = new GlideRecord('sys_db_object');
+grRecord.addQuery('name','=','sys_script_include');
+grRecord.query();
+if (grRecord.next())
+{
+   grRecord.access = 'public';
+   grRecord.read_access = 'true';
+   grRecord.create_access = 'true';
+   grRecord.update_access = 'true';
+   grRecord.delete_access = 'true';
+   grRecord.update();
+}
+gs.invalidateCache();
+</pre>
 		<g2:no_escape>$[
 			docapi.RenderInstallationInstructionsAppInstall();
 		]</g2:no_escape>		
@@ -49,7 +63,7 @@
 		<li>Run the&#160;<a href="/sys_atf_test_suite.do?sys_id=4a8550391b5b8850a89720a8ec4bcbd9&amp;sysparm_view=DevTools&amp;sysparm_view_forced=true" target="_blank">DevTools Test Suite.</a></li>
 		<li>In case of errors:
 			<ol>
-				<li>Tests "DevTools - GetGroupsFromUser" and "DevTools - TestDataAPI": Retry after a few minutes. Some cross-scrope privileges will be set up during the first test run and might take a few minutes to be effective.</li>
+				<li>If the test "DevTools - RunScriptInGlobalScope" fails: Retry after a few minutes. Some cross-scrope privileges will be set up during the first test run and might take a few minutes to be effective. The function RunScriptInGlobalScope() is used in many other functions, so do look into any other failed tests as long as this test fails.</li>
 				<li>Test "DevTools - TestDataAPI": This script creates various records (e.g., incidents and problems). If there are customizations in place that make additional fields mandatory, you may have to set up business rules to set these values - but only if the short description (or the corresponding field) starts with "_ATF_".</li>
 			</ol>
 		</li>
@@ -73,6 +87,17 @@
 	
 	<h2>Release Notes</h2>
 
+	<h3>1.21.0 - 2021-08-23</h3>
+	<ol>
+		<li>Added function GetUserRecord() to get a user's GlideRecord object based on a sys_id, user_name or email.</li>
+		<li>Added function PerformanceQuery() to measure query performance given a table, query string, a user, the number of repetitions and a limit of records to be returned. The function will provide the milliseconds of the fastest and slowest repetition, the average speed and the number of records returned.</li> 
+		<li>Added function PerformanceQueryMultiple() to execute multiple performance tests on a number of queries combined with a number of users in one go.</li>
+		<li>TestDataAPI.CreateUser() can now set the user's email.</li>
+		<li>RecordBulkProcess() now handles empty tables properly and stops immediately.</li>
+		<li>AppInstall() is now accessible from all scopes. This enables other installation scripts in other scoped Apps to run the function as part of their own installation procedure.</li>
+		<li>Extended the installation guide to run a background script to configure cross scope access to the sys_script_include table.</li>
+	</ol>
+	
 	<h3>1.20.0 - 2021-07-06</h3>
 	<ol>
 		<li>AppSanity() now sets is_private to false for system properties.</li>
@@ -348,13 +373,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>386</sys_mod_count>
+        <sys_mod_count>399</sys_mod_count>
         <sys_name>start</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-07-06 11:30:07</sys_updated_on>
+        <sys_updated_on>2021-08-23 14:13:33</sys_updated_on>
     </sys_ui_page>
 </record_update>
