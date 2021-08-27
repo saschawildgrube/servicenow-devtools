@@ -9,11 +9,8 @@
         <name>AppInstall</name>
         <script><![CDATA[function AppInstall()
 {
-	function Log(strText)
-	{
-		x_snc_devtools.Log('DevTools: AppInstall: '+strText);
-	}
-
+	var installer = new InstallerAPI();
+	
 	function AppInstallGlobalSystemProperty(strName, strType, strDescription)
 	{
 		var grSP = new GlideRecord('sys_properties');
@@ -96,11 +93,11 @@
 
 	if (SetProperty('glide.record.legacy_cross_scope_access_policy_in_script','true') == true)
 	{
-		Log('System property glide.record.legacy_cross_scope_access_policy_in_script has been set to true.');
+		installer.Log('System property glide.record.legacy_cross_scope_access_policy_in_script has been set to true.');
 	}
 	else
 	{
-		Log('Error while setting system property glide.record.legacy_cross_scope_access_policy_in_script.');
+		installer.Log('Error while setting system property glide.record.legacy_cross_scope_access_policy_in_script.');
 	}
 
 
@@ -111,11 +108,11 @@
 
 	if (IsValidSysId(strSystemPropertySysId))
 	{
-		Log('AppInstall: System property com.glide.apps.include_my_deletes has been installed successfully.');
+		installer.Log('AppInstall: System property com.glide.apps.include_my_deletes has been installed successfully.');
 	}
 	else
 	{
-		Log('Error while installing system property com.glide.apps.include_my_deletes.');
+		installer.Log('Error while installing system property com.glide.apps.include_my_deletes.');
 	}
 
 	var strSystemPropertyCategoryMappingSysId = AppInstallSystemPropertyCategoryMapping(
@@ -125,25 +122,27 @@
 
 	if (IsValidSysId(strSystemPropertyCategoryMappingSysId))
 	{
-		Log('System property category mapping for com.glide.apps.include_my_deletes has been installed successfully.');
+		installer.Log('System property category mapping for com.glide.apps.include_my_deletes has been installed successfully.');
 	}
 	else
 	{
-		Log('Error while installing system property category mapping for com.glide.apps.include_my_deletes.');
+		installer.Log('Error while installing system property category mapping for com.glide.apps.include_my_deletes.');
 	}
+	
+	return installer.Finish();
 
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-07-03 21:35:10</sys_created_on>
         <sys_id>339e63591b719050a89720a8ec4bcb3f</sys_id>
-        <sys_mod_count>17</sys_mod_count>
+        <sys_mod_count>19</sys_mod_count>
         <sys_name>AppInstall</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_339e63591b719050a89720a8ec4bcb3f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-07-07 08:38:36</sys_updated_on>
+        <sys_updated_on>2021-08-27 10:54:07</sys_updated_on>
     </sys_script_include>
 </record_update>
