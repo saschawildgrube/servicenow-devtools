@@ -299,7 +299,54 @@ DocumentationAPI.prototype = {
 		strHTML += '<li>Go to&#160;<a href="/$studio.do" target="_blank">Studio</a>&#160;and import the '+strAppName+' application from source control.</li>';
 		return strHTML;
 	},
+
+	RenderInstallationInstructionsBackgroundScript: function(strText, strScript, strScope)
+	{
+		var strText = GetStringValue(strText);
+		var strScript = GetStringValue(strScript);
+		var strScope = GetStringValue(strScope);
+		if (strScope == '')
+		{
+			strScope = this.m_strScope;
+		}
+		if (strText != '')
+		{
+			strText += '<br/>';
+		}
+		var strHTML = '';
+		strHTML +=	'<li>'+strText+'Run the following script as a <a href="/sys.scripts.do" target="_blank">background script</a> in scope&#160;<b>'+strScope+'</b>:</li>';
+		strHTML +=	'<pre>'+strScript+'</pre>';
+		return strHTML;
+	},
+
 	
+	RenderInstallationInstructionsConfigureTableCrossScopeAccess: function(strTable)
+	{
+		var strTable = GetStringValue(strTable);
+		if (strTable == '')
+		{
+			return '';
+		}
+		var strHTML = this.RenderInstallationInstructionsBackgroundScript(
+			'Enable create, read, write and delete operations for all applications on the table&#160;<a href="/sys_db_object.do?sys_id='+strTable+'&amp;sysparm_refkey=name" target="_blank">'+strTable+'</a>.',
+		"var grRecord = new GlideRecord('sys_db_object');\n"
+		+"grRecord.addQuery('name','=','"+strTable+"');\n"
+		+"grRecord.query();\n"
+		+"if (grRecord.next())\n"
+		+"{\n"
+		+"   grRecord.access = 'public';\n"
+		+"   grRecord.read_access = 'true';\n"
+		+"   grRecord.create_access = 'true';\n"
+		+"   grRecord.update_access = 'true';\n"
+		+"   grRecord.delete_access = 'true';\n"
+		+"   grRecord.update();\n"
+		+"}\n"
+		+"gs.invalidateCache();",
+		'global');
+		return strHTML;
+	},	
+	
+
 	RenderInstallationInstructionsAppInstall: function(strScope)
 	{
 		var strScope = GetStringValue(strScope);
@@ -307,9 +354,9 @@ DocumentationAPI.prototype = {
 		{
 			strScope = this.m_strScope;
 		}
-		var strHTML = '';
-		strHTML +=	'<li>Execute the following script in the scope '+strScope+' as a <a href="/sys.scripts.do" target="_blank">background script</a>:</li>';
-		strHTML +=	'<pre>AppInstall();</pre>';
+		var strHTML = this.RenderInstallationInstructionsBackgroundScript(
+			'The '+strScope+'.AppInstall() function must be executed.',
+			strScope+'.AppInstall();');
 		return strHTML;
 	},
 	
@@ -324,13 +371,13 @@ DocumentationAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-01-20 15:26:20</sys_created_on>
         <sys_id>98912146db31e490ba15a353059619b6</sys_id>
-        <sys_mod_count>66</sys_mod_count>
+        <sys_mod_count>75</sys_mod_count>
         <sys_name>DocumentationAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_98912146db31e490ba15a353059619b6</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-08-26 12:24:48</sys_updated_on>
+        <sys_updated_on>2021-08-27 10:23:19</sys_updated_on>
     </sys_script_include>
 </record_update>
