@@ -82,6 +82,7 @@
 
 	<h3>1.22.0 - 2021-TODO</h3>
 	<ol>	
+		<li>Introduced class TestAPI to support scripted tests by managing log output, result state and various generic test case functions.</li>
 		<li>Introduced class InstallerAPI to support scripted installation steps (and refactored AppInstall() to use the new class).</li>
 		<li>Added test step configuration "DevTools - Check test data sanity" to check if there is any test data left over with a given prefix.</li>
 		<li>TestDataAPI now also supports sc_req_item and sc_task.</li>
@@ -377,13 +378,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>421</sys_mod_count>
+        <sys_mod_count>422</sys_mod_count>
         <sys_name>start</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-08-30 10:56:20</sys_updated_on>
+        <sys_updated_on>2021-08-31 12:06:51</sys_updated_on>
     </sys_ui_page>
 </record_update>
