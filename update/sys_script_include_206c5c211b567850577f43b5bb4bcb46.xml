@@ -95,14 +95,115 @@ TestAPI.prototype = {
 		if (bRecordAccessible != bExpected)
 		{
 			this.SetResult(false);
-			this.Log('Test case FAILED\n');
+			this.Log('TEST CASE: FAILED\n');
 			return false;
 		}
 		else
 		{
-			this.Log('Test case PASSED\n');
+			this.Log('TEST CASE: PASSED\n');
 			return true;
 		}
+	},
+	
+	TestCase: function(
+		strTitle,
+		callbackFunction,
+		vInput,
+		vExpected,
+		callbackCheckResult)
+	{
+		this.Log('TEST CASE: '+strTitle);
+		var strTypeFunction = GetType(callbackFunction)
+	
+		if (GetType(callbackFunction) != 'function')
+		{
+			this.SetResult(false);
+			this.Log('ERROR: Invalid function provided.\n');
+			return;
+		}
+		if (GetType(vInput) != 'Object')
+		{
+			this.SetResult(false);
+			this.Log('ERROR: Invalid input object provided.\n');
+			return;
+		}
+		
+		this.Log('Input: '+RenderValue(vInput));
+		this.Log('Expected: '+RenderValue(vExpected));
+
+		var aInputKeys = GetKeys(vInput);
+		
+		var vResult = undefined;
+		
+		if (aInputKeys.length == 0)
+		{
+			vResult = callbackFunction();
+		}
+		else if (aInputKeys.length == 1)
+		{
+			vResult = callbackFunction(
+				vInput[aInputKeys[0]]);
+		}
+		else if (aInputKeys.length == 2)
+		{
+			vResult = callbackFunction(
+				vInput[aInputKeys[0]],
+				vInput[aInputKeys[1]]);
+		}
+		else if (aInputKeys.length == 3)
+		{
+			vResult = callbackFunction(
+				vInput[aInputKeys[0]],
+				vInput[aInputKeys[1]],
+				vInput[aInputKeys[2]]);
+		}
+		else if (aInputKeys.length == 4)
+		{
+			vResult = callbackFunction(
+				vInput[aInputKeys[0]],
+				vInput[aInputKeys[1]],
+				vInput[aInputKeys[2]],
+				vInput[aInputKeys[3]]);
+		}
+		else if (aInputKeys.length == 5)
+		{
+			vResult = callbackFunction(
+				vInput[aInputKeys[0]],
+				vInput[aInputKeys[1]],
+				vInput[aInputKeys[2]],
+				vInput[aInputKeys[3]],
+				vInput[aInputKeys[4]]);
+		}
+		else
+		{
+			this.SetResult(false);
+			this.Log('ERROR: No support for that amount of parameters!');
+		}
+		
+		
+		this.Log('Result: '+RenderValue(vResult));
+		
+		var bResult = false;
+		if (GetType(callbackCheckResult) == 'function')
+		{
+			bResult = callbackCheckResult(vInput,vExpected,vResult); 
+		}
+		else
+		{
+			bResult = (vResult == vExpected);
+		}
+		
+		if (bResult == false)
+		{
+			this.SetResult(false);
+			this.Log('Test case FAILED');
+		}
+		else
+		{
+			this.Log('Test case PASSED');
+			
+		}
+		this.Log('');
 	},
 	
     type: 'TestAPI'
@@ -111,13 +212,13 @@ TestAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-08-30 13:48:05</sys_created_on>
         <sys_id>206c5c211b567850577f43b5bb4bcb46</sys_id>
-        <sys_mod_count>12</sys_mod_count>
+        <sys_mod_count>28</sys_mod_count>
         <sys_name>TestAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_206c5c211b567850577f43b5bb4bcb46</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-08-31 12:29:53</sys_updated_on>
+        <sys_updated_on>2021-09-02 15:18:12</sys_updated_on>
     </sys_script_include>
 </record_update>
