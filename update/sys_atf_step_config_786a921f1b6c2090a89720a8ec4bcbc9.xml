@@ -180,6 +180,33 @@ generateDescription();
 					bResult = false;
 				}
 			}
+			
+			// Get all roles associated to the ACL
+			var grSSAR = new GlideRecord('sys_security_acl_role');
+			grSSAR.addQuery('sys_security_acl','=',grSSA.sys_id);
+			grSSAR.query();
+			if (grSSAR.getRowCount() > 1)
+			{
+				var aRoles = [];
+				while(grSSAR.next())
+				{
+					var grRole = GetRecord('sys_user_role',grSSAR.sys_user_role);
+					if (grRole != false)
+					{
+						aRoles.push(GetStringValue(grRole.name));
+					}
+				}
+				if (ArrayValueExists(aRoles,'snc_internal'))
+				{
+					strMessage += '  Failed: If more than one role is associated to an ACL, snc_internal should not be contained!\n';
+					bResult = false;
+				}
+			}
+			
+			
+			// Check for snc_internal in combination with another role
+			
+			
 		}
 		
 		
@@ -261,14 +288,14 @@ generateDescription();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-11-23 13:28:01</sys_created_on>
         <sys_id>786a921f1b6c2090a89720a8ec4bcbc9</sys_id>
-        <sys_mod_count>38</sys_mod_count>
+        <sys_mod_count>47</sys_mod_count>
         <sys_name>DevTools - Check scoped app sanity</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_config_786a921f1b6c2090a89720a8ec4bcbc9</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-06-10 15:33:42</sys_updated_on>
+        <sys_updated_on>2021-09-07 11:44:10</sys_updated_on>
         <template_reminder>TBD</template_reminder>
         <type display_value="Test Step" name="sys_atf_step">f653cf3f1b343010577f43b5bb4bcb46</type>
         <wizard_redirect/>
