@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.AppBuilderAddTestToSuite</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Add an ATF test to an existing test suite. </description>
+        <name>AppBuilderAddTestToSuite</name>
+        <script><![CDATA[function AppBuilderAddTestToSuite(strSuiteSysId)
+{
+	function Log(strText)
+	{
+		x_snc_devtools.Log('AppBuilderAddTestToSuite: '+strText);
+	}
+	
+	if (IsValidSysId(strSuiteSysId) == false)
+	{
+		Log('Error: no valid sys id provided.');
+		return false;
+	}
+	var grSuite = GetRecord('sys_atf_test_suite',strSuiteSysId);
+	if (grSuite == false)
+	{
+		Log('Error: Test suite not found with sys_id: '+strSuiteSysId);
+		return false;
+	}
+	
+	var strScopeSysId = GetStringValue(grSuite.sys_scope);
+	
+	var strName = GetAppName(strScopeSysId);
+	if (strName == false)
+	{
+		strName = ''; 
+	}
+	if (strName != '')
+	{
+		strName += ' - ';
+	}
+	strName += 'New Test';
+	
+	var grTest = new GlideRecord('sys_atf_test');
+	grTest.initialize();
+	grTest.sys_scope = strScopeSysId;
+	grTest.name = strName;
+	grTest.active = true;
+	var strTestSysId = GlideRecordInsert(grTest);
+	
+	if (IsValidSysId(strTestSysId) == false)
+	{
+		Log('Error: Failed to add new test!');
+		return false;
+	}
+	
+	
+	var grTestSuiteTest = new GlideRecord('sys_atf_test_suite_test');
+	grTestSuiteTest.initialize();
+	grTestSuiteTest.test = strTestSysId;
+	grTestSuiteTest.test_suite = strSuiteSysId;
+	grTestSuiteTest.sys_scope = strScopeSysId;
+	grTestSuiteTest.order = '0';
+	var strTestSuiteTestSysId = GlideRecordInsert(grTestSuiteTest);
+	if (IsValidSysId(strTestSuiteTestSysId) == false)
+	{
+		Log('Error: Failed to add new test to suite!');
+		return false;
+	}
+	
+	/*
+	// This does not work (yet) - maybe because of missing input parameters for the test step
+	var grTestStep = new GlideRecord('atf_test_step');
+	grTestStep.initialize();
+	grTestStep.test = strTestSysId;
+	grTestStep.sys_scope = strScopeSysId;
+	grTestStep.step_config = '41de4a935332120028bc29cac2dc349a'; // Run server side script
+	grTestStep.active = true;
+	//grTestStep.order = '0';
+	var strTestStepSysId = GlideRecordInsert(grTestStep);
+	if (IsValidSysId(strTestStepSysId) == false)
+	{
+		Log('Error: Failed to add test step to test!');
+	}
+	*/
+	
+	
+	Log('Done.');
+	
+	return strTestSysId;
+	
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-09-08 08:35:19</sys_created_on>
+        <sys_id>221be1dc1ba6bc505331b8449b4bcbde</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>AppBuilderAddTestToSuite</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_221be1dc1ba6bc505331b8449b4bcbde</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-09-08 09:08:38</sys_updated_on>
+    </sys_script_include>
+</record_update>

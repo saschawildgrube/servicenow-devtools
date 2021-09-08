@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_action">
     <sys_ui_action action="INSERT_OR_UPDATE">
-        <action_name>test_run</action_name>
+        <action_name>test_add</action_name>
         <active>true</active>
-        <client>true</client>
+        <client>false</client>
         <client_script_v2><![CDATA[function onClick(g_form) {
 
 }]]></client_script_v2>
-        <comments>Run an ATF test directly from any screen that has a reference to a test.</comments>
-        <condition>IsRecordRunTestButtonCompatible(current)</condition>
+        <comments>Add a test to a suite.</comments>
+        <condition>current.getTableName() == 'sys_atf_test_suite'</condition>
         <form_action>true</form_action>
         <form_button>true</form_button>
         <form_button_v2>false</form_button_v2>
@@ -16,7 +16,7 @@
         <form_menu_button_v2>false</form_menu_button_v2>
         <form_style>primary</form_style>
         <hint/>
-        <isolate_script>true</isolate_script>
+        <isolate_script>false</isolate_script>
         <list_action>false</list_action>
         <list_banner_button>false</list_banner_button>
         <list_button>false</list_button>
@@ -25,58 +25,43 @@
         <list_link>false</list_link>
         <list_save_with_form_button>false</list_save_with_form_button>
         <list_style/>
-        <name>Run Test</name>
-        <onclick>OnClickRunTest()</onclick>
-        <order>0</order>
-        <script><![CDATA[function OnClickRunTest()
+        <name>Add Test</name>
+        <onclick/>
+        <order>9999</order>
+        <script><![CDATA[//RecordSetValue('sys_ui_action','82b0add41ba6bc505331b8449b4bcb26','table','sys_atf_test_suite');
+//x_snc_devtools.GetBoolValue(gs.getProperty('x_snc_devtools.ui.list_button')) == true
+
+var strTestSysId = AppBuilderAddTestToSuite(current.sys_id);
+
+var strRedirectURI = '';
+if (IsValidSysId(strTestSysId) == true)
 {
-	function DialogRunTest(strTestSysId)
-	{
-		var tableName = '';
-		var newStepFormTitle = '';
-		var stepQuery = '';
-
-		var dialog = new GlideModal("atf_pick_a_browser");
-		dialog.setPreference("test_sys_id", ''+strTestSysId);
-		dialog.setWidth("600");
-		dialog.setTitle(new GwtMessage().getMessage("Pick a Browser"));
-		dialog.setPreference("focusTrap", true);
-		dialog.setPreference("table_name", tableName);
-		dialog.setPreference("new_step_form_title", newStepFormTitle);
-		dialog.setPreference("step_query", stepQuery);
-		dialog.render();
-	}
-
-	if (g_form.getTableName() == 'sys_atf_step')
-	{
-		if (g_form.modified == true)
-		{
-			alert('Changes detected! Saving record instead.');
-			g_form.save();
-		}
-	}
-	
-	DialogRunTest(g_form.getValue('test'));
-}]]></script>
+	strRedirectURI = GetInstanceRecordURI('sys_atf_test',strTestSysId);
+}
+else
+{
+	strRedirectURI = GetInstanceRecordURI('sys_atf_test_suite',current.sys_id);	
+}
+gs.setRedirect(strRedirectURI); ]]></script>
         <show_insert>false</show_insert>
         <show_multiple_update>false</show_multiple_update>
         <show_query>false</show_query>
         <show_update>true</show_update>
         <sys_class_name>sys_ui_action</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2020-05-20 15:37:46</sys_created_on>
+        <sys_created_on>2021-09-08 07:49:57</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
-        <sys_id>a316f34b1b3cdc10a89720a8ec4bcbfc</sys_id>
-        <sys_mod_count>52</sys_mod_count>
-        <sys_name>Run Test</sys_name>
+        <sys_id>82b0add41ba6bc505331b8449b4bcb26</sys_id>
+        <sys_mod_count>11</sys_mod_count>
+        <sys_name>Add Test</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
-        <sys_update_name>sys_ui_action_a316f34b1b3cdc10a89720a8ec4bcbfc</sys_update_name>
+        <sys_update_name>sys_ui_action_82b0add41ba6bc505331b8449b4bcb26</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-09-08 09:14:38</sys_updated_on>
+        <sys_updated_on>2021-09-08 08:46:00</sys_updated_on>
         <table>global</table>
         <ui11_compatible>true</ui11_compatible>
         <ui16_compatible>false</ui16_compatible>
