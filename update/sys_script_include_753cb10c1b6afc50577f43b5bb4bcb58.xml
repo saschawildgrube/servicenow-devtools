@@ -26,14 +26,14 @@
 	}
 	
 	
-	// Adding function AppGetDependencies()
+	// Adding script include "AppGetDependencies"
 	var grSSI = new GlideRecord('sys_script_include');
 	grSSI.addQuery('sys_scope','=',strAppSysId);
 	grSSI.addQuery('name','=','AppGetDependencies');
 	grSSI.query();
 	if (grSSI.next() == false)
 	{
-		Log('Adding script include AppGetDependencies()');
+		Log('Adding script include "AppGetDependencies"');
 		var grSSI = new GlideRecord('sys_script_include');
 		grSSI.initialize();
 		grSSI.name = 'AppGetDependencies';
@@ -55,6 +55,25 @@
 		GlideRecordInsert(grSSI);
 	}
 	
+	
+/*	
+	// Adding module "Options"
+	var grSAM = new GlideRecord('sys_app_module');
+	grSAM.addQuery('sys_scope','=',strAppSysId);
+	grSAM.addQuery('title','CONTAINS','Options');
+	grSAM.query();
+	if (grSAM.next() == false)
+	{
+		Log('Adding module "Options"');
+		var grSAM = new GlideRecord('sys_app_module');
+		grSAM.initialize();
+		grSAM.title = 'Options';
+		grSAM.sys_scope = strAppSysId;
+		grSAM.link_type = 'DIRECT';
+		//grSAM.query = "system_properties_ui.do?sysparm_title=DevTools%20Options&sysparm_category=devtools";
+		GlideRecordInsert(grSAM);
+	}	
+*/	
 	
 	
 /*
@@ -79,13 +98,13 @@ function AppGetDependencies()
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-07 15:15:09</sys_created_on>
         <sys_id>753cb10c1b6afc50577f43b5bb4bcb58</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_mod_count>10</sys_mod_count>
         <sys_name>AppBuilder</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_753cb10c1b6afc50577f43b5bb4bcb58</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-09-07 15:28:42</sys_updated_on>
+        <sys_updated_on>2021-09-08 14:01:22</sys_updated_on>
     </sys_script_include>
 </record_update>
