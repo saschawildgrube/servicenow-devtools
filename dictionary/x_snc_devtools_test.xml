@@ -2,6 +2,10 @@
     <element label="test" max_length="40" name="x_snc_devtools_test" sizeclass="0" type="collection">
         <element display="true" label="Name" max_length="40" name="name" type="string"/>
         <element label="Processed" max_length="40" name="processed" type="glide_date_time"/>
+        <element label="ttttt" max_length="32" name="ttttt" reference="incident" type="reference"/>
         <element label="Value" max_length="40" name="value" type="string"/>
+        <index name="index">
+            <element name="ttttt"/>
+        </index>
     </element>
 </database>
