@@ -96,6 +96,8 @@
 		<li>Added function AppBuilder() to help building robust scoped apps.</li>
 		<li>Added function AppBuilderAddTestToSuite() to add an ATF test to an existing ATF test suite.</li>
 		<li>Added UI action "Add Test" to add a test to a suite in one click.</li>
+		<li>Added UI action "Up" to navigate to a record's parent record if possible.</li>
+		<li>The new function GetParentRecord() delivers a record's parent record if supported.</li>
 		<li>Added function RenderSystemRequirements() to DocumentationAPI to automatically render system requirements including dependencies to other apps.</li>
 		<li>Added function RenderInstallationInstructionsConfigureTableCrossScopeAccess() to DocumentationAPI.</li>
 		<li>Added function RenderInstallationInstructionsBackgroundScript() to DocumentationAPI.</li>
@@ -396,13 +398,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>436</sys_mod_count>
+        <sys_mod_count>437</sys_mod_count>
         <sys_name>start</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-09-08 12:28:00</sys_updated_on>
+        <sys_updated_on>2021-09-08 13:10:26</sys_updated_on>
     </sys_ui_page>
 </record_update>
