@@ -23,9 +23,9 @@
         <sys_id>d89dbfcfdbf8f4d83c6c09c2ba961961</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>IsArray</sys_name>
-        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
-        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_d89dbfcfdbf8f4d83c6c09c2ba961961</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2021-06-22 08:28:38</sys_updated_on>
