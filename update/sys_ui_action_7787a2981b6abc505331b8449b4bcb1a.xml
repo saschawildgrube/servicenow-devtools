@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_action">
     <sys_ui_action action="INSERT_OR_UPDATE">
-        <action_name>list</action_name>
+        <action_name>up</action_name>
         <active>true</active>
         <client>false</client>
         <client_script_v2><![CDATA[function onClick(g_form) {
@@ -29,8 +29,8 @@
         <onclick/>
         <order>9998</order>
         <script><![CDATA[var grParent = GetParentRecord(current.getRecordClassName(),current.sys_id);
-var strUrl = GetInstanceRecordURI(grParent.getRecordClassName(),grRecord.sys_id);
-gs.setRedirect(strUrl); ]]></script>
+var strUri = GetInstanceRecordURI(grParent.getRecordClassName(),grParent.sys_id);
+gs.setRedirect(strUri); ]]></script>
         <show_insert>true</show_insert>
         <show_multiple_update>false</show_multiple_update>
         <show_query>false</show_query>
@@ -41,7 +41,7 @@ gs.setRedirect(strUrl); ]]></script>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>7787a2981b6abc505331b8449b4bcb1a</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>Up</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -49,7 +49,7 @@ gs.setRedirect(strUrl); ]]></script>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_action_7787a2981b6abc505331b8449b4bcb1a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-09-08 13:03:20</sys_updated_on>
+        <sys_updated_on>2021-09-09 08:24:35</sys_updated_on>
         <table>global</table>
         <ui11_compatible>true</ui11_compatible>
         <ui16_compatible>false</ui16_compatible>
