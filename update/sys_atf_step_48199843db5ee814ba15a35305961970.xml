@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-02-17 09:15:43</sys_created_on>
         <sys_id>48199843db5ee814ba15a35305961970</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_48199843db5ee814ba15a35305961970</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-02-17 09:15:43</sys_updated_on>
+        <sys_updated_on>2021-09-08 09:13:57</sys_updated_on>
         <table/>
         <test display_value="DevTools - GetAppName">d2e89443db5ee814ba15a3530596194b</test>
         <timeout/>
@@ -50,9 +50,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-02-17 09:15:43</sys_created_on>
         <sys_id>97991083db5ee814ba15a353059619a1</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-02-17 09:15:43</sys_updated_on>
+        <sys_updated_on>2021-09-08 09:13:57</sys_updated_on>
         <value>var strLog = '';&#13;
 function Log(strText)&#13;
 {&#13;
@@ -79,6 +79,7 @@ function Log(strText)&#13;
 		Log('');&#13;
 	}&#13;
 	&#13;
+	TestCase_GetAppName('bogus',false);&#13;
 	TestCase_GetAppName('d689f6901bd38450a89720a8ec4bcbfd','DevTools');&#13;
 		&#13;
 	stepResult.setOutputMessage(strLog);&#13;

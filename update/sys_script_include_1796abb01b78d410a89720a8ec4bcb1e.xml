@@ -55,8 +55,8 @@ TestDataAPI.prototype =
 		result.change_request = this.GetAllChangeRequests();
 		result.change_task = this.GetAllChangeTasks();
 		result.sc_request = this.GetAllRequests();
-		//result.sc_req_item = this.GetAllRequestedItems();
-		//result.sc_task = this.GetAllRequestTasks();
+		result.sc_req_item = this.GetAllRequestItems();
+		result.sc_task = this.GetAllRequestTasks();
 		result.sys_db_view = this.GetAllDatabaseViews();
 		return result;
 	},
@@ -334,8 +334,6 @@ TestDataAPI.prototype =
 	
 	CreateIncident:function(strName, strOpenedByUserName, strCallerUserName, strAssignmentGroupName)
 	{
-		var GetStringValue = x_snc_devtools.GetStringValue;
-
 		strName = GetStringValue(strName);
 		strOpenedByUserName = GetStringValue(strOpenedByUserName);
 		strCallerUserName = GetStringValue(strCallerUserName);
@@ -421,8 +419,6 @@ TestDataAPI.prototype =
 	
 	CreateIncidentTask:function(strParentName, strName, strOpenedByUserName, strAssignmentGroupName)
 	{
-		var GetStringValue = x_snc_devtools.GetStringValue;
-
 		strParentName = GetStringValue(strParentName);
 		strName = GetStringValue(strName);
 		strOpenedByUserName = GetStringValue(strOpenedByUserName);
@@ -500,8 +496,6 @@ TestDataAPI.prototype =
 	
 	CreateChangeRequest:function(strName, strOpenedByUserName, strRequestedByUserName, strAssignmentGroupName)
 	{
-		var GetStringValue = x_snc_devtools.GetStringValue;
-
 		strName = GetStringValue(strName);
 		strOpenedByUserName = GetStringValue(strOpenedByUserName);
 		strRequestedByUserName = GetStringValue(strRequestedByUserName);
@@ -576,8 +570,6 @@ TestDataAPI.prototype =
 	
 	CreateChangeTask:function(strParentName, strName, strOpenedByUserName, strAssignmentGroupName)
 	{
-		var GetStringValue = x_snc_devtools.GetStringValue;
-		
 		strParentName = GetStringValue(strParentName);
 		strName = GetStringValue(strName);
 		strOpenedByUserName = GetStringValue(strOpenedByUserName);
@@ -655,8 +647,6 @@ TestDataAPI.prototype =
 		
 	CreateProblem:function(strName, strOpenedByUserName, strAssignmentGroupName)
 	{
-		var GetStringValue = x_snc_devtools.GetStringValue;
-
 		strName = GetStringValue(strName);
 		strOpenedByUserName = GetStringValue(strOpenedByUserName);
 		strAssignmentGroupName = GetStringValue(strAssignmentGroupName);
@@ -720,8 +710,6 @@ TestDataAPI.prototype =
 	
 	CreateProblemTask:function(strParentName, strName, strOpenedByUserName, strAssignmentGroupName)
 	{
-		var GetStringValue = x_snc_devtools.GetStringValue;
-		
 		strParentName = GetStringValue(strParentName);
 		strName = GetStringValue(strName);
 		strOpenedByUserName = GetStringValue(strOpenedByUserName);
@@ -799,8 +787,6 @@ TestDataAPI.prototype =
 	
 	CreateRequest:function(strName, strOpenedByUserName, strRequestedForUserName, strAssignmentGroupName)
 	{
-		var GetStringValue = x_snc_devtools.GetStringValue;
-
 		strName = GetStringValue(strName);
 		strOpenedByUserName = GetStringValue(strOpenedByUserName);
 		strRequestedForUserName = GetStringValue(strRequestedForUserName);
@@ -873,7 +859,119 @@ TestDataAPI.prototype =
 		}
 		return aResult;
 	},		
+
+	CreateRequestItem:function(strName, strRequestSysId, strCatalogItemSysId, strOpenedByUserName)
+	{
+		strName = GetStringValue(strName);
+		strRequestSysId = GetStringValue(strRequestSysId);
+		strCatalogItemSysId = GetStringValue(strCatalogItemSysId);
+		strOpenedByUserName = GetStringValue(strOpenedByUserName);
+		
+		var strPrefix = this.GetPrefix(); 
+
+		var grRequestItemToDelete = new GlideRecord('sc_req_item');
+		grRequestItemToDelete.addQuery('short_description','=',strPrefix+strName);
+		grRequestItemToDelete.query();
+		GlideRecordDeleteMultiple(grRequestItemToDelete);
+
+		var strOpenedByUserSysId = '';
+		if (strOpenedByUserName != '')
+		{
+			var grUser = new GlideRecord("sys_user");
+			if (grUser.get('user_name',strPrefix+strOpenedByUserName))
+			{
+				strOpenedByUserSysId = grUser.sys_id;
+			}
+		}		
+		
 	
+		var grRequestItem = new GlideRecord('sc_req_item');
+		grRequestItem.initialize();
+		grRequestItem.short_description = strPrefix+strName;
+		grRequestItem.opened_by = strOpenedByUserSysId;
+		grRequestItem.request = strRequestSysId;
+		grRequestItem.cat_item = strCatalogItemSysId;
+		var strRequestItemSysId = GlideRecordInsert(grRequestItem);
+		if (strRequestItemSysId == null)
+		{
+			return null;
+		}
+		return strRequestItemSysId;
+		
+	},
+	
+	
+	GetAllRequestItems:function()
+	{
+		var aResult = [];
+		var strPrefix = this.GetPrefix();
+		
+		var grRequestItems = new GlideRecord('sc_req_item');
+		var query = grRequestItems.addQuery('short_description','STARTSWITH',strPrefix);
+		//query.addOrCondition('request.short_description','STARTSWITH',strPrefix);
+		grRequestItems.orderBy('number');
+		grRequestItems.query();
+		while (grRequestItems.next())
+		{
+			aResult.push(Clone(grRequestItems));
+		}
+		return aResult;
+	},	
+
+	CreateRequestTask:function(strName, strRequestItemSysId, strAssignedToUserName)
+	{
+		strName = GetStringValue(strName);
+		strRequestItemSysId = GetStringValue(strRequestItemSysId);
+		strAssignedToUserName = GetStringValue(strAssignedToUserName);
+		
+		var strPrefix = this.GetPrefix(); 
+
+		var grRequestTaskToDelete = new GlideRecord('sc_req_item');
+		grRequestTaskToDelete.addQuery('short_description','=',strPrefix+strName);
+		grRequestTaskToDelete.query();
+		GlideRecordDeleteMultiple(grRequestTaskToDelete);
+
+		var strAssignedToUserSysId = '';
+		if (strAssignedToUserName != '')
+		{
+			var grUser = new GlideRecord("sys_user");
+			if (grUser.get('user_name',strPrefix+strAssignedToUserName))
+			{
+				strAssignedToUserSysId = grUser.sys_id;
+			}
+		}		
+		
+	
+		var grRequestTask = new GlideRecord('sc_task');
+		grRequestTask.initialize();
+		grRequestTask.short_description = strPrefix+strName;
+		grRequestTask.assigned_to = strAssignedToUserSysId;
+		grRequestTask.request_item = strRequestItemSysId;
+		var strRequestTaskSysId = GlideRecordInsert(grRequestTask);
+		if (strRequestTaskSysId == null)
+		{
+			return null;
+		}
+		return strRequestTaskSysId;
+		
+	},
+	
+	
+	GetAllRequestTasks:function()
+	{
+		var aResult = [];
+		var strPrefix = this.GetPrefix();
+		
+		var grRequestTasks = new GlideRecord('sc_task');
+		grRequestTasks.addQuery('short_description','STARTSWITH',strPrefix);
+		grRequestTasks.orderBy('short_description');
+		grRequestTasks.query();
+		while (grRequestTasks.next())
+		{
+			aResult.push(Clone(grRequestTasks));
+		}
+		return aResult;
+	},	
 	
 	
 	CreateDatabaseView:function(strName, oDbView)
@@ -1028,13 +1126,13 @@ TestDataAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-13 14:53:39</sys_created_on>
         <sys_id>1796abb01b78d410a89720a8ec4bcb1e</sys_id>
-        <sys_mod_count>141</sys_mod_count>
+        <sys_mod_count>152</sys_mod_count>
         <sys_name>TestDataAPI</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_1796abb01b78d410a89720a8ec4bcb1e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-08-19 15:54:22</sys_updated_on>
+        <sys_updated_on>2021-08-26 11:08:31</sys_updated_on>
     </sys_script_include>
 </record_update>

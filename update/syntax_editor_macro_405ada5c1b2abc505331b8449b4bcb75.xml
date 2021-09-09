@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="syntax_editor_macro">
+    <syntax_editor_macro action="INSERT_OR_UPDATE">
+        <comments>This template creates the code necessary to access the AppBuilderAddTestToSuite() function contained in the AppBuilderAddTestToSuite script include.</comments>
+        <name>AppBuilderAddTestToSuite</name>
+        <sys_class_name>syntax_editor_macro</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-09-08 12:01:35</sys_created_on>
+        <sys_id>405ada5c1b2abc505331b8449b4bcb75</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>AppBuilderAddTestToSuite</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>syntax_editor_macro_405ada5c1b2abc505331b8449b4bcb75</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-09-08 12:01:35</sys_updated_on>
+        <text>var AppBuilderAddTestToSuite  = x_snc_devtools.AppBuilderAddTestToSuite;&#13;
+AppBuilderAddTestToSuite('4a8550391b5b8850a89720a8ec4bcbd9'); // Add a new test to the "DevTools" test suite </text>
+    </syntax_editor_macro>
+</record_update>

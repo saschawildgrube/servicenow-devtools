@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step_config">
+    <sys_atf_step_config action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <batch_order_constraint/>
+        <can_mutate_page>false</can_mutate_page>
+        <category display_value="Server">317c4dc20b202200a8d7a12cf6673aa8</category>
+        <class_name/>
+        <class_type>script</class_type>
+        <deprecated>false</deprecated>
+        <description_generator><![CDATA[function generateDescription()
+{
+	var GetStringValue = x_snc_devtools.GetStringValue;
+	
+	var strPrefix = GetStringValue(step.inputs.u_prefix);
+	
+    var strDescription = 'Checks if there is any test data left over with prefix: '+strPrefix+'\n';
+	return strDescription;
+}
+generateDescription();]]></description_generator>
+        <html_description><![CDATA[<p>Checks if there are remainders of test data from previous tests based on a given test data prefix.</p>]]></html_description>
+        <icon>icon-article-document</icon>
+        <inputs/>
+        <name>DevTools - Check test data sanity</name>
+        <order>9010</order>
+        <outputs/>
+        <step_env display_value="Server - Independent">6c2bcea1870312009dccc9ded0e3ecca</step_env>
+        <step_execution_generator><![CDATA[(function executeStep(inputs, outputs, stepResult, timeout)
+{
+	var bResult = true;
+	var strMessage = '';
+
+	var GetStringValue = x_snc_devtools.GetStringValue;
+	var RenderValue = x_snc_devtools.RenderValue;
+	var GetKeys = x_snc_devtools.GetKeys;
+	var GetValue = x_snc_devtools.GetValue;
+	var IsArray = x_snc_devtools.IsArray;
+	var TestDataAPI = x_snc_devtools.TestDataAPI;
+	
+	var strPrefix = GetStringValue(inputs.u_prefix);
+	
+	var testdata = new TestDataAPI(strPrefix); 
+
+	var data = testdata.GetAllData();
+	
+	var aTables = GetKeys(data);
+	for (var nTable = 0; nTable < aTables.length; nTable++)
+	{
+		var strTable = aTables[nTable];
+		var aRecords = GetValue(data,strTable);
+		if (IsArray(aRecords) == true)
+		{
+			if (aRecords.length > 0)
+			{
+				bResult = false;
+			}
+		}	
+	}
+
+	if (bResult == false)
+	{
+		strMessage += 'TEST FAILED: At least one test data item was found!\n';
+		strMessage += RenderValue(data);
+	}
+	else
+	{
+		strMessage += 'TEST PASSED: No test data items were found.\n';
+		
+	}
+	
+	
+	if (bResult == true)
+	{
+		stepResult.setSuccess();
+	}
+	else
+	{
+		stepResult.setFailed();
+	}
+	stepResult.setOutputMessage(strMessage);
+		
+	
+}(inputs, outputs, stepResult, timeout));
+]]></step_execution_generator>
+        <sys_class_name>sys_atf_step_config</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-08-26 07:26:32</sys_created_on>
+        <sys_id>da7ede081b9a34505331b8449b4bcb00</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>DevTools - Check test data sanity</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_step_config_da7ede081b9a34505331b8449b4bcb00</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-08-26 07:49:33</sys_updated_on>
+        <template_reminder>TBD</template_reminder>
+        <type display_value="Test Step" name="sys_atf_step">f653cf3f1b343010577f43b5bb4bcb46</type>
+        <wizard_redirect/>
+    </sys_atf_step_config>
+    <sys_translated_text action="delete_multiple" query="documentkey=da7ede081b9a34505331b8449b4bcb00"/>
+    <sys_variable_value action="delete_multiple" query="document_key=da7ede081b9a34505331b8449b4bcb00"/>
+</record_update>

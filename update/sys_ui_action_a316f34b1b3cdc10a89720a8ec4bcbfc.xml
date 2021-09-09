@@ -6,7 +6,7 @@
         <client_script_v2><![CDATA[function onClick(g_form) {
 
 }]]></client_script_v2>
-        <comments>Rerun a test directly from any screen that has a reference to a test.</comments>
+        <comments>Run an ATF test directly from any screen that has a reference to a test.</comments>
         <condition>IsRecordRunTestButtonCompatible(current)</condition>
         <form_action>true</form_action>
         <form_button>true</form_button>
@@ -30,12 +30,14 @@
         <order>0</order>
         <script><![CDATA[function OnClickRunTest()
 {
-	function pickABrowser(tableName, newStepFormTitle, stepQuery)
+	function DialogRunTest(strTestSysId)
 	{
-		var sysId = g_form.getValue('test');
+		var tableName = '';
+		var newStepFormTitle = '';
+		var stepQuery = '';
 
 		var dialog = new GlideModal("atf_pick_a_browser");
-		dialog.setPreference("test_sys_id", sysId);
+		dialog.setPreference("test_sys_id", ''+strTestSysId);
 		dialog.setWidth("600");
 		dialog.setTitle(new GwtMessage().getMessage("Pick a Browser"));
 		dialog.setPreference("focusTrap", true);
@@ -44,9 +46,19 @@
 		dialog.setPreference("step_query", stepQuery);
 		dialog.render();
 	}
-	pickABrowser();
+
+	if (g_form.getTableName() == 'sys_atf_step')
+	{
+		if (g_form.modified == true)
+		{
+			alert('Changes detected! Saving record instead.');
+			g_form.save();
+		}
+	}
+	
+	DialogRunTest(g_form.getValue('test'));
 }]]></script>
-        <show_insert>true</show_insert>
+        <show_insert>false</show_insert>
         <show_multiple_update>false</show_multiple_update>
         <show_query>false</show_query>
         <show_update>true</show_update>
@@ -56,7 +68,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>a316f34b1b3cdc10a89720a8ec4bcbfc</sys_id>
-        <sys_mod_count>17</sys_mod_count>
+        <sys_mod_count>52</sys_mod_count>
         <sys_name>Run Test</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -64,7 +76,7 @@
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_action_a316f34b1b3cdc10a89720a8ec4bcbfc</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-11-26 12:27:37</sys_updated_on>
+        <sys_updated_on>2021-09-08 09:14:38</sys_updated_on>
         <table>global</table>
         <ui11_compatible>true</ui11_compatible>
         <ui16_compatible>false</ui16_compatible>

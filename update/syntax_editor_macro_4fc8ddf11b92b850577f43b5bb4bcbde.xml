@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="syntax_editor_macro">
+    <syntax_editor_macro action="INSERT_OR_UPDATE">
+        <comments>This is a template for a server side ATF test script using TestAPI.</comments>
+        <name>TestAPI</name>
+        <sys_class_name>syntax_editor_macro</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-08-31 12:50:31</sys_created_on>
+        <sys_id>4fc8ddf11b92b850577f43b5bb4bcbde</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>TestAPI</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>syntax_editor_macro_4fc8ddf11b92b850577f43b5bb4bcbde</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-09-09 08:04:52</sys_updated_on>
+        <text>(function(outputs, steps, stepResult, assertEqual)&#13;
+{&#13;
+	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
+	&#13;
+	test.SetResult(true);&#13;
+&#13;
+	function Hello(strName, strGreeting)&#13;
+	{&#13;
+		strName = x_snc_devtools.GetStringValue(strName);&#13;
+		strGreeting = x_snc_devtools.GetStringValue(strGreeting);&#13;
+		if (strGreeting == '')&#13;
+		{&#13;
+			strGreeting = 'Hello';&#13;
+		}&#13;
+		if (strName != '')&#13;
+		{&#13;
+			return strGreeting + ' '+strName+'!';	&#13;
+		}&#13;
+		return strGreeting+'!';&#13;
+	}&#13;
+&#13;
+	function TestCase_Hello(strName, vExpected)&#13;
+	{&#13;
+		test.TestCase(&#13;
+			'Function Hello()',&#13;
+			Hello,&#13;
+			{&#13;
+				'Name': strName &#13;
+			},&#13;
+			vExpected,&#13;
+			null);&#13;
+	}&#13;
+&#13;
+	function TestCase_HelloWithGreeting_CheckResult(vInput,vExpected,vResult)&#13;
+	{&#13;
+		return (vExpected == vResult);&#13;
+	}&#13;
+	&#13;
+	function TestCase_HelloWithGreeting(strName, strGreeting, vExpected)&#13;
+	{&#13;
+		test.TestCase(&#13;
+			'Function Hello() with greeting parameter',&#13;
+			Hello,&#13;
+			{&#13;
+				'Name': strName,&#13;
+				'Greeting': strGreeting,&#13;
+			},&#13;
+			vExpected,&#13;
+			TestCase_HelloWithGreeting_CheckResult);&#13;
+	}&#13;
+&#13;
+	TestCase_Hello(null,'Hello!');&#13;
+	TestCase_Hello('','Hello!');&#13;
+	TestCase_Hello('John','Hello John!');&#13;
+	TestCase_Hello('Jane','Hello Jane!');&#13;
+&#13;
+	TestCase_HelloWithGreeting(null,'Hi','Hi!');&#13;
+	TestCase_HelloWithGreeting('','Good Morning','Good Morning!');&#13;
+	TestCase_HelloWithGreeting('John','Salute','Salute John!');&#13;
+	TestCase_HelloWithGreeting('Jane','Cheerio','Cheerio Jane!');&#13;
+	&#13;
+	return test.GetResult();&#13;
+	&#13;
+})(outputs, steps, stepResult, assertEqual);</text>
+    </syntax_editor_macro>
+</record_update>

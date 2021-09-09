@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.AppBuilder</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>AppBuilder adds various application files to a scoped app.</description>
+        <name>AppBuilder</name>
+        <script><![CDATA[function AppBuilder(strAppSysId)
+{
+	function Log(strText)
+	{
+		x_snc_devtools.Log('AppBuilder: '+strText);
+	}
+	
+	if (IsValidSysId(strAppSysId) == false)
+	{
+		Log('Error: no valid sys id provided.');
+		return false;
+	}
+	var grApp = GetRecord('sys_app',strAppSysId);
+	if (grApp == false)
+	{
+		Log('Error: App not found with sys_id: '+strAppSysId);
+	}
+	
+	
+	var grAppDevTools = GetRecord('sys_app','d689f6901bd38450a89720a8ec4bcbfd');
+	var strDevToolsVersion = '';
+	if (grAppDevTools != false)
+	{
+		strDevToolsVersion = GetStringValue(grAppDevTools.version);
+	}
+	
+	// Adding script include "AppGetDependencies"
+	var grSSI = new GlideRecord('sys_script_include');
+	grSSI.addQuery('sys_scope','=',strAppSysId);
+	grSSI.addQuery('name','=','AppGetDependencies');
+	grSSI.query();
+	if (grSSI.next() == false)
+	{
+		Log('Adding script include "AppGetDependencies"');
+		var grSSI = new GlideRecord('sys_script_include');
+		grSSI.initialize();
+		grSSI.name = 'AppGetDependencies';
+		grSSI.description = "Retrieves information about the app's dependencies to other apps and required versions.";
+		grSSI.sys_scope = strAppSysId;
+		grSSI.access = 'public';
+		grSSI.script =
+			"function AppGetDependencies()\n"
+			+"{\n"
+			+"\treturn [\n"
+			+"\t\t{\n"
+			+"\t\t\tname: 'DevTools',\n"
+			+"\t\t\tversion: '"+strDevToolsVersion+"',\n"
+			+"\t\t\turl: 'https://github.com/saschawildgrube/servicenow-devtools/',\n"
+			+"\t\t\twebsite_url: 'https://www.wildgrube.com/servicenow-devtools'\n"
+			+"\t\t}\n"
+			+"\t];\n"
+			+"}";
+		GlideRecordInsert(grSSI);
+	}
+	
+	
+/*	
+	// Adding module "Options"
+	var grSAM = new GlideRecord('sys_app_module');
+	grSAM.addQuery('sys_scope','=',strAppSysId);
+	grSAM.addQuery('title','CONTAINS','Options');
+	grSAM.query();
+	if (grSAM.next() == false)
+	{
+		Log('Adding module "Options"');
+		var grSAM = new GlideRecord('sys_app_module');
+		grSAM.initialize();
+		grSAM.title = 'Options';
+		grSAM.sys_scope = strAppSysId;
+		grSAM.link_type = 'DIRECT';
+		//grSAM.query = "system_properties_ui.do?sysparm_title=DevTools%20Options&sysparm_category=devtools";
+		GlideRecordInsert(grSAM);
+	}	
+*/	
+	
+	
+/*
+function AppGetDependencies()
+{
+	return [
+		{
+			name: 'DevTools',
+			version: '1.22.0',
+			url: 'https://github.com/saschawildgrube/servicenow-devtools/',
+			website_url: 'https://www.wildgrube.com/servicenow-devtools'
+		}
+	];
+}
+
+*/
+	Log('Done.');
+	return true;
+	
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-09-07 15:15:09</sys_created_on>
+        <sys_id>753cb10c1b6afc50577f43b5bb4bcb58</sys_id>
+        <sys_mod_count>11</sys_mod_count>
+        <sys_name>AppBuilder</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_753cb10c1b6afc50577f43b5bb4bcb58</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-09-09 11:07:05</sys_updated_on>
+    </sys_script_include>
+</record_update>

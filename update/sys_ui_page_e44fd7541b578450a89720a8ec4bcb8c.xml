@@ -24,7 +24,12 @@
 	
 	<h2>System Requirements</h2>
 	<ul>
-		<li>Orlando, Paris or Quebec</li>
+		<g2:no_escape>$[
+			docapi.RenderSystemRequirements(
+				'Orlando,Paris,Quebec',
+				true,
+				AppGetDependencies());
+		]</g2:no_escape>	
 	</ul>
 	
 	<h2>Security Notice</h2>
@@ -40,21 +45,9 @@
 		]</g2:no_escape>
 		<li>Switch to global scope.</li>
 		<li>Create a new update set in the global scope to capture all changes related to the DevTools installation.</li>
-		<li>Enable create, read, write and delete operations for all applications on the table&#160;<a href="/sys_db_object.do?sys_id=sys_script_include&amp;sysparm_refkey=name" target="_blank">sys_script_include</a>&#160;by running the following&#160;<a href="/sys.scripts.do" target="_blank">background script</a>&#160;in global scope:</li>
-<pre>var grRecord = new GlideRecord('sys_db_object');
-grRecord.addQuery('name','=','sys_script_include');
-grRecord.query();
-if (grRecord.next())
-{
-   grRecord.access = 'public';
-   grRecord.read_access = 'true';
-   grRecord.create_access = 'true';
-   grRecord.update_access = 'true';
-   grRecord.delete_access = 'true';
-   grRecord.update();
-}
-gs.invalidateCache();
-</pre>
+		<g2:no_escape>$[
+			docapi.RenderInstallationInstructionsConfigureTableCrossScopeAccess('sys_script_include');
+		]</g2:no_escape>		
 		<g2:no_escape>$[
 			docapi.RenderInstallationInstructionsAppInstall();
 		]</g2:no_escape>		
@@ -73,9 +66,15 @@ gs.invalidateCache();
 
 	<h3>Configuration options</h3>
 	<g2:no_escape>$[docapi.RenderProperties()]</g2:no_escape>
+
+	<h3>UI Actions</h3>
+	<g2:no_escape>$[docapi.RenderUIActions()]</g2:no_escape>		
 	
 	<h3>Script includes</h3>
 	<g2:no_escape>$[docapi.RenderScriptIncludes()]</g2:no_escape>
+	
+	<h3>Business Rules</h3>
+	<g2:no_escape>$[docapi.RenderBusinessRules()]</g2:no_escape>	
 	
 	<h3>Test step configurations</h3>
 	<p>DevTools contains the following customized test step configurations:</p>
@@ -87,6 +86,32 @@ gs.invalidateCache();
 	
 	<h2>Release Notes</h2>
 
+	<h3>1.22.0 - 2021-09-09</h3>
+	<ol>	
+		<li>When using the "Run Test" button on a test step form, the UI action will first check if there are unsaved changes and save the test step record instead of running the test.</li> 
+		<li>Introduced class TestAPI to support scripted tests by managing log output, result state and various generic test case functions.</li>
+		<li>Introduced class InstallerAPI to support scripted installation steps (and refactored AppInstall() to use the new class).</li>
+		<li>Added test step configuration "DevTools - Check test data sanity" to check if there is any test data left over with a given prefix.</li>
+		<li>TestDataAPI now also supports sc_req_item and sc_task.</li>
+		<li>Added function AppBuilder() to help building robust scoped apps.</li>
+		<li>Added function AppBuilderAddTestToSuite() to add an ATF test to an existing ATF test suite.</li>
+		<li>Added UI action "Add Test" to add a test to a suite in one click.</li>
+		<li>Added UI action "Up" to navigate to a record's parent record if possible.</li>
+		<li>The new function GetParentRecord() delivers a record's parent record if supported.</li>
+		<li>Added function RenderSystemRequirements() to DocumentationAPI to automatically render system requirements including dependencies to other apps.</li>
+		<li>Added function RenderInstallationInstructionsConfigureTableCrossScopeAccess() to DocumentationAPI.</li>
+		<li>Added function RenderInstallationInstructionsBackgroundScript() to DocumentationAPI.</li>
+		<li>Added function RenderUIActions() to DocumentationAPI.</li>
+		<li>Added function RenderBusinessRules() to DocumentationAPI.</li>
+		<li>Added function GetInstanceRecordPath(), GetInstanceRecordURL() and GetInstanceRecordURI() to produce different variants of a deep link to a specific record in the instance.</li>
+		<li>AppSanity() now removes the snc_internal role from ACLs if there is at least one other role required for the ACL.</li>
+		<li>AppGetName() now returns false instead of "undefined" if the app cannot be found.</li>
+		<li>The test step config "DevTools - Check scoped app sanity" checks for unintended configuration of the role snc_internal in ACLs.</li>
+		<li>Added business rule "sys_ui_action - set table to global" to allow global UI Actions. In a recent family release (Quebec?) the option of defining global UI Actions has been removed as the table field no longer allows to set the value to "global". This business rule fixes this issue by setting an empty table field to "global".</li> 
+		<li>RenderValue() now supports the bUnsortedKeys parameter to avoid sorting object keys.</li>
+		<li>Introduced the function GetAppDependencies() to retrieve information about an app's dependencies to other apps.</li>
+	</ol>
+	
 	<h3>1.21.0 - 2021-08-23</h3>
 	<ol>
 		<li>Added function GetUserRecord() to get a user's GlideRecord object based on a sys_id, user_name or email.</li>
@@ -373,13 +398,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>399</sys_mod_count>
+        <sys_mod_count>438</sys_mod_count>
         <sys_name>start</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-08-23 14:13:33</sys_updated_on>
+        <sys_updated_on>2021-09-09 11:46:35</sys_updated_on>
     </sys_ui_page>
 </record_update>
