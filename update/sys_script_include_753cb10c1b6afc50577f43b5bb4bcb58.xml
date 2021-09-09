@@ -26,6 +26,13 @@
 	}
 	
 	
+	var grAppDevTools = GetRecord('sys_app','d689f6901bd38450a89720a8ec4bcbfd');
+	var strDevToolsVersion = '';
+	if (grAppDevTools != false)
+	{
+		strDevToolsVersion = GetStringValue(grAppDevTools.version);
+	}
+	
 	// Adding script include "AppGetDependencies"
 	var grSSI = new GlideRecord('sys_script_include');
 	grSSI.addQuery('sys_scope','=',strAppSysId);
@@ -46,7 +53,7 @@
 			+"\treturn [\n"
 			+"\t\t{\n"
 			+"\t\t\tname: 'DevTools',\n"
-			+"\t\t\tversion: '1.22.0',\n"
+			+"\t\t\tversion: '"+strDevToolsVersion+"',\n"
 			+"\t\t\turl: 'https://github.com/saschawildgrube/servicenow-devtools/',\n"
 			+"\t\t\twebsite_url: 'https://www.wildgrube.com/servicenow-devtools'\n"
 			+"\t\t}\n"
@@ -98,13 +105,13 @@ function AppGetDependencies()
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-07 15:15:09</sys_created_on>
         <sys_id>753cb10c1b6afc50577f43b5bb4bcb58</sys_id>
-        <sys_mod_count>10</sys_mod_count>
+        <sys_mod_count>11</sys_mod_count>
         <sys_name>AppBuilder</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_753cb10c1b6afc50577f43b5bb4bcb58</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-09-08 14:01:22</sys_updated_on>
+        <sys_updated_on>2021-09-09 11:07:05</sys_updated_on>
     </sys_script_include>
 </record_update>
