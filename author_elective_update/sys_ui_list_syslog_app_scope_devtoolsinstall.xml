@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_list action="DELETE" parent="" relationship="" sys_domain="global" table="syslog_app_scope" version="2" view="devtoolsinstall">
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>sys_created_on</element>
+            <list_id display_value="syslog_app_scope" element="NULL" name="syslog_app_scope" parent="NULL" relationship="NULL" sys_domain="global" view="b6bc681b1ba45010a89720a8ec4bcba3">4e22789f1ba45010a89720a8ec4bcba9</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>0</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2020-05-08 09:40:24</sys_created_on>
+            <sys_id>4622789f1ba45010a89720a8ec4bcbab</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2020-05-08 09:40:24</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>message</element>
+            <list_id display_value="syslog_app_scope" element="NULL" name="syslog_app_scope" parent="NULL" relationship="NULL" sys_domain="global" view="b6bc681b1ba45010a89720a8ec4bcba3">4e22789f1ba45010a89720a8ec4bcba9</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>1</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2020-05-08 09:40:24</sys_created_on>
+            <sys_id>4e22789f1ba45010a89720a8ec4bcbab</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2020-05-08 09:40:24</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element/>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <name>syslog_app_scope</name>
+            <parent/>
+            <position/>
+            <relationship/>
+            <sum>false</sum>
+            <sys_class_name>sys_ui_list</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2020-05-08 09:40:24</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>4e22789f1ba45010a89720a8ec4bcba9</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>syslog_app_scope</sys_name>
+            <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+            <sys_update_name>sys_ui_list_syslog_app_scope_devtoolsinstall</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2020-05-08 09:40:24</sys_updated_on>
+            <sys_user/>
+            <view display_value="DevTools Install" name="devtoolsinstall">b6bc681b1ba45010a89720a8ec4bcba3</view>
+            <view_name/>
+        </sys_ui_list>
+    </sys_ui_list>
+<sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>027b763fdb383810601a11f84896197c</instance_id>
+        <instance_name>empswildgrubedevorlando</instance_name>
+        <name>sys_ui_list_syslog_app_scope_devtoolsinstall</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_list parent="" relationship="" sys_domain="global" table="syslog_app_scope" version="2" view="devtoolsinstall">
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>sys_created_on</element>
+            <list_id display_value="syslog_app_scope" element="NULL" name="syslog_app_scope" parent="NULL" relationship="NULL" sys_domain="global" view="b6bc681b1ba45010a89720a8ec4bcba3">4e22789f1ba45010a89720a8ec4bcba9</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>0</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2020-05-08 09:40:24</sys_created_on>
+            <sys_id>4622789f1ba45010a89720a8ec4bcbab</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2020-05-08 09:40:24</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>message</element>
+            <list_id display_value="syslog_app_scope" element="NULL" name="syslog_app_scope" parent="NULL" relationship="NULL" sys_domain="global" view="b6bc681b1ba45010a89720a8ec4bcba3">4e22789f1ba45010a89720a8ec4bcba9</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>1</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2020-05-08 09:40:24</sys_created_on>
+            <sys_id>4e22789f1ba45010a89720a8ec4bcbab</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2020-05-08 09:40:24</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element/>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <name>syslog_app_scope</name>
+            <parent/>
+            <position/>
+            <relationship/>
+            <sum>false</sum>
+            <sys_class_name>sys_ui_list</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2020-05-08 09:40:24</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>4e22789f1ba45010a89720a8ec4bcba9</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>syslog_app_scope</sys_name>
+            <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+            <sys_update_name>sys_ui_list_syslog_app_scope_devtoolsinstall</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2020-05-08 09:40:24</sys_updated_on>
+            <sys_user/>
+            <view display_value="DevTools Install" name="devtoolsinstall">b6bc681b1ba45010a89720a8ec4bcba3</view>
+            <view_name/>
+        </sys_ui_list>
+    </sys_ui_list>
+</record_update>]]></payload>
+        <payload_hash>-760534691</payload_hash>
+        <record_name>App Log Entry</record_name>
+        <reverted_from/>
+        <source>3de96fbf1b3030105331b8449b4bcb5c</source>
+        <source_table>sys_upgrade_history</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-06-24 14:58:28</sys_created_on>
+        <sys_id>5af967ff1b3030105331b8449b4bcb01</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>17a3e878d070000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-06-24 14:58:28</sys_updated_on>
+        <type>List Layout</type>
+        <update_guid>1af967ffa7303010ea59f5f5cdafde01</update_guid>
+        <update_guid_history>1af967ffa7303010ea59f5f5cdafde01:-760534691</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-09-13 10:55:16</sys_created_on>
+        <sys_db_object display_value="" name="sys_ui_list">sys_ui_list</sys_db_object>
+        <sys_id>0c2be645cdd54cfe8675708f6ed10999</sys_id>
+        <sys_metadata>4e22789f1ba45010a89720a8ec4bcba9</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>syslog_app_scope</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent display_value="Syslog App Scope">a7dd76331b303010577f43b5bb4bcb48</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sys_ui_list_syslog_app_scope_devtoolsinstall</sys_update_name>
+        <sys_update_version display_value="sys_ui_list_syslog_app_scope_devtoolsinstall">5af967ff1b3030105331b8449b4bcb01</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-09-13 10:55:16</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
