@@ -47,7 +47,8 @@
 			grTestSuiteTest.next();
 			var strSuiteSysId = GetStringValue(grTestSuiteTest.test_suite);
 			return GetRecord('sys_atf_test_suite',strSuiteSysId);
-		}		
+		}	
+		return false;
 	}
 
 	// ATF test step to test
@@ -72,6 +73,19 @@
 	{
 		return GetRecord('sys_atf_test_suite',grRecord.test_suite);
 	}
+	
+	// DB View table to DB view
+	if (strTable == 'sys_db_view_table')
+	{
+		return GetRecord('sys_db_view',grRecord.view);
+	}
+
+	// DB View table field to DB view table
+	if (strTable == 'sys_db_view_table_field')
+	{
+		return GetRecord('sys_db_view_table',grRecord.view_table);
+	}
+
 		
 	return false;
 }]]></script>
@@ -79,13 +93,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-08 12:44:48</sys_created_on>
         <sys_id>9934e6141b6abc505331b8449b4bcbdd</sys_id>
-        <sys_mod_count>14</sys_mod_count>
+        <sys_mod_count>18</sys_mod_count>
         <sys_name>GetParentRecord</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_9934e6141b6abc505331b8449b4bcbdd</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-09-13 10:49:21</sys_updated_on>
+        <sys_updated_on>2021-09-13 13:30:18</sys_updated_on>
     </sys_script_include>
 </record_update>
