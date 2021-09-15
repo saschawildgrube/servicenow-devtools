@@ -156,7 +156,7 @@
         <sys_mod_count>0</sys_mod_count>
         <sys_name>syslog_app_scope</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_parent display_value="Syslog App Scope">a7dd76331b303010577f43b5bb4bcb48</sys_parent>
+        <sys_parent display_value="">a7dd76331b303010577f43b5bb4bcb48</sys_parent>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
