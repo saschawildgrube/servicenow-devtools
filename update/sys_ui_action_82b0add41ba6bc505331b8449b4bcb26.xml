@@ -25,9 +25,10 @@
         <list_link>false</list_link>
         <list_save_with_form_button>false</list_save_with_form_button>
         <list_style/>
+        <messages/>
         <name>Add Test</name>
         <onclick/>
-        <order>9999</order>
+        <order>1</order>
         <script><![CDATA[//RecordSetValue('sys_ui_action','82b0add41ba6bc505331b8449b4bcb26','table','sys_atf_test_suite');
 //x_snc_devtools.GetBoolValue(gs.getProperty('x_snc_devtools.ui.list_button')) == true
 
@@ -55,7 +56,7 @@ gs.setRedirect(strRedirectURI); ]]></script>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>82b0add41ba6bc505331b8449b4bcb26</sys_id>
-        <sys_mod_count>12</sys_mod_count>
+        <sys_mod_count>13</sys_mod_count>
         <sys_name>Add Test</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -63,7 +64,7 @@ gs.setRedirect(strRedirectURI); ]]></script>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_action_82b0add41ba6bc505331b8449b4bcb26</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-09-08 09:24:18</sys_updated_on>
+        <sys_updated_on>2021-09-13 10:50:10</sys_updated_on>
         <table>global</table>
         <ui11_compatible>true</ui11_compatible>
         <ui16_compatible>false</ui16_compatible>

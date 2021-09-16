@@ -110,7 +110,7 @@
         <update_guid_history>97e9efbf18303010c7a59ad8439e3e02:-1611479286</update_guid_history>
     </sys_update_version>
     <sys_metadata_delete action="INSERT_OR_UPDATE">
-        <sys_audit_delete display_value="Install Script">258d67f31b7030105331b8449b4bcb02</sys_audit_delete>
+        <sys_audit_delete display_value="">258d67f31b7030105331b8449b4bcb02</sys_audit_delete>
         <sys_class_name>sys_metadata_delete</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-06-24 15:13:59</sys_created_on>

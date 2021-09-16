@@ -4,9 +4,12 @@
         <can_edit_in_studio>false</can_edit_in_studio>
         <enforce_license>log</enforce_license>
         <guided_setup_guid/>
+        <hide_on_ui>false</hide_on_ui>
+        <installed_as_dependency>false</installed_as_dependency>
         <js_level>helsinki_es5</js_level>
         <licensable>true</licensable>
         <license_category>none</license_category>
+        <license_definition/>
         <license_model>none</license_model>
         <logo/>
         <menu/>
@@ -25,14 +28,15 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 08:31:37</sys_created_on>
         <sys_id>d689f6901bd38450a89720a8ec4bcbfd</sys_id>
-        <sys_mod_count>81</sys_mod_count>
+        <sys_mod_count>85</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-09-09 11:47:11</sys_updated_on>
+        <sys_updated_on>2021-09-16 16:03:09</sys_updated_on>
         <template/>
         <trackable>true</trackable>
+        <uninstall_blocked>false</uninstall_blocked>
         <user_role/>
         <vendor/>
         <vendor_prefix/>
-        <version>1.22.0</version>
+        <version>1.23.0</version>
     </sys_app>
 </record_update>

@@ -3,7 +3,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>sys_created_on</element>
-            <list_id display_value="syslog_app_scope" element="NULL" name="syslog_app_scope" parent="NULL" relationship="NULL" sys_domain="global" view="b6bc681b1ba45010a89720a8ec4bcba3">4e22789f1ba45010a89720a8ec4bcba9</list_id>
+            <list_id display_value="syslog_app_scope" element="NULL" name="syslog_app_scope" parent="NULL" relationship="NULL" sys_domain="global" view="32a34ee21b627010edf3642aab4bcbb7">4e22789f1ba45010a89720a8ec4bcba9</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>0</position>
@@ -18,7 +18,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>message</element>
-            <list_id display_value="syslog_app_scope" element="NULL" name="syslog_app_scope" parent="NULL" relationship="NULL" sys_domain="global" view="b6bc681b1ba45010a89720a8ec4bcba3">4e22789f1ba45010a89720a8ec4bcba9</list_id>
+            <list_id display_value="syslog_app_scope" element="NULL" name="syslog_app_scope" parent="NULL" relationship="NULL" sys_domain="global" view="32a34ee21b627010edf3642aab4bcbb7">4e22789f1ba45010a89720a8ec4bcba9</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>1</position>
@@ -55,7 +55,7 @@
             <sys_updated_by>admin</sys_updated_by>
             <sys_updated_on>2020-05-08 09:40:24</sys_updated_on>
             <sys_user/>
-            <view display_value="DevTools Install" name="devtoolsinstall">b6bc681b1ba45010a89720a8ec4bcba3</view>
+            <view display_value="DevTools Install" name="devtoolsinstall">32a34ee21b627010edf3642aab4bcbb7</view>
             <view_name/>
         </sys_ui_list>
     </sys_ui_list>

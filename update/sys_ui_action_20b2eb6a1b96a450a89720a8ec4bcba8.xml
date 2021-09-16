@@ -25,6 +25,7 @@
         <list_link>false</list_link>
         <list_save_with_form_button>false</list_save_with_form_button>
         <list_style/>
+        <messages/>
         <name>Export to current update set</name>
         <onclick/>
         <order>100</order>
