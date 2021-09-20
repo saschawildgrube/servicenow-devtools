@@ -7,7 +7,7 @@
         <client_callable>false</client_callable>
         <description>Run any script in the global scope even if the context is a scoped application. However, the function requires full cross scope access configured for the sys_script_include table. Note that the script will be placed into a function body so you cannot assume that declared local variables will be valid after its execution. To return a value from the script, set the "result" variable.</description>
         <name>RunScriptInGlobalScope</name>
-        <script><![CDATA[function RunScriptInGlobalScope(strScript, param1, param2, param3, param4, param5)
+        <script><![CDATA[function RunScriptInGlobalScope(strScript, param1, param2, param3, param4, param5, param6, param7)
 {
 	function CreateTempScriptInclude(strName,strScript)
 	{
@@ -50,7 +50,7 @@
 	var strNameOuter = 'DevTools_TemporaryFunction';
 	
 	strScriptOuter = 
-		"function "+strNameOuter+"(strSysId,param1,param2,param3,param4,param5)"
+		"function "+strNameOuter+"(strSysId,param1,param2,param3,param4,param5,param6,param7)"
 		+"{"
 		+"   var grSI = new GlideRecord('sys_script_include');"
 		+"   if (grSI.get(strSysId) == false)"
@@ -64,7 +64,8 @@
 		+"   evaluator.putVariable('param3',param3);"
 		+"   evaluator.putVariable('param4',param4);"
 		+"   evaluator.putVariable('param5',param5);"
-		+"   evaluator.putVariable('param5',param5);"
+		+"   evaluator.putVariable('param6',param6);"
+		+"   evaluator.putVariable('param7',param7);"
 		+"   evaluator.evaluateScript(grSI, 'script');"
 		+"   return evaluator.getVariable('result');"
 		+"}";
@@ -87,7 +88,7 @@
 	}
 	else
 	{
-		var vReturnValue = Clone(TemporaryFunction(strScriptIncludeInner,param1,param2,param3,param4,param5));
+		vReturnValue = Clone(TemporaryFunction(strScriptIncludeInner,param1,param2,param3,param4,param5,param6,param7));
 	}
 
 	DeleteTempScriptInclude(strNameInner);
@@ -99,13 +100,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-11-30 10:24:01</sys_created_on>
         <sys_id>7303bde9db30a410ba15a35305961968</sys_id>
-        <sys_mod_count>57</sys_mod_count>
+        <sys_mod_count>65</sys_mod_count>
         <sys_name>RunScriptInGlobalScope</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_7303bde9db30a410ba15a35305961968</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-09-17 13:05:44</sys_updated_on>
+        <sys_updated_on>2021-09-20 15:22:42</sys_updated_on>
     </sys_script_include>
 </record_update>
