@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <copied_from/>
+        <description>Validate there are not any records in 'sys_ui_view' matching query:
+Name starts with exp_dtmpincidentadmin
+With a failure timeout of 5 Seconds</description>
+        <display_name>Record Query</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>2</order>
+        <snapshot/>
+        <step_config display_value="Record Query">2d82e3c7531400109e02ddeeff7b12a7</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-09-16 16:31:27</sys_created_on>
+        <sys_id>d3a4e8031b26b010edf3642aab4bcb05</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Record Query</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_step_d3a4e8031b26b010edf3642aab4bcb05</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-09-16 16:31:27</sys_updated_on>
+        <table>sys_ui_view</table>
+        <test display_value="DevTools - App sanity">428a6adf1bac2090a89720a8ec4bcba2</test>
+        <timeout>1970-01-01 00:00:05</timeout>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=d3a4e8031b26b010edf3642aab4bcb05"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>d3a4e8031b26b010edf3642aab4bcb05</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-09-16 16:31:27</sys_created_on>
+        <sys_id>17c42c031b26b010edf3642aab4bcba5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-09-16 16:31:27</sys_updated_on>
+        <value>0</value>
+        <variable display_value="">02fb0027531000109e02ddeeff7b120b</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>d3a4e8031b26b010edf3642aab4bcb05</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-09-16 16:31:27</sys_created_on>
+        <sys_id>1fc42c031b26b010edf3642aab4bcba4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-09-16 16:31:27</sys_updated_on>
+        <value>no_records_match_query</value>
+        <variable display_value="">b86c0427531000109e02ddeeff7b1227</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>d3a4e8031b26b010edf3642aab4bcb05</document_key>
+        <order>400</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-09-16 16:31:27</sys_created_on>
+        <sys_id>9bc42c031b26b010edf3642aab4bcba5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-09-16 16:31:27</sys_updated_on>
+        <value>nameSTARTSWITHexp_dtmpincidentadmin ^EQ</value>
+        <variable display_value="">915990ab531000109e02ddeeff7b12f8</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>d3a4e8031b26b010edf3642aab4bcb05</document_key>
+        <order>300</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-09-16 16:31:27</sys_created_on>
+        <sys_id>d7c42c031b26b010edf3642aab4bcba5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-09-16 16:31:27</sys_updated_on>
+        <value>sys_ui_view</value>
+        <variable display_value="">78b8d86b531000109e02ddeeff7b12f3</variable>
+    </sys_variable_value>
+</record_update>
