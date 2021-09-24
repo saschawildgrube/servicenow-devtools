@@ -7,7 +7,7 @@
         <client_callable>false</client_callable>
         <description>Creates a new database index if it doesn't exist yet.</description>
         <name>CreateDatabaseIndex</name>
-        <script><![CDATA[function CreateDatabaseIndex(strName, strTable, aColumns, strEmail)
+        <script><![CDATA[function CreateDatabaseIndex(strName, strTable, aColumns)
 {
 	aColumns = GetArrayValue(aColumns);
 	for (var nColumn = 0; nColumn < aColumns.length; nColumn++)
@@ -19,11 +19,20 @@
 		}
 	}
 	var strColumnList = GetStringValue(aColumns);
-	gs.include('IndexCreator');
 	var bUnique = false;
-	var indexCreator = new IndexCreator(strTable, strColumnList, bUnique, strEmail, strName);
-	indexCreator.execute();
-	return true;
+
+	var strScript = ""
+		+"result = false;"
+		+"var bResult = gs.include('IndexCreator');"
+		+"if (bResult == true)"
+		+"{"
+		+"  var indexCreator = new IndexCreator(param1, param2, param3, null, param4);"
+		+"  result = indexCreator.execute();"
+		+"}";
+	
+	var bResult = RunScriptInGlobalScope(strScript,strTable,strColumnList,bUnique,strName);
+
+	return bResult;
 }
 
 /*
@@ -35,13 +44,13 @@ CreateDatabaseIndex('TEST001', 'incident', ['sys_class_name','x_snc_datasilos_la
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-24 09:20:25</sys_created_on>
         <sys_id>55cccc651b363810edf3642aab4bcb29</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>11</sys_mod_count>
         <sys_name>CreateDatabaseIndex</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_55cccc651b363810edf3642aab4bcb29</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-09-24 09:32:41</sys_updated_on>
+        <sys_updated_on>2021-09-24 11:16:52</sys_updated_on>
     </sys_script_include>
 </record_update>
