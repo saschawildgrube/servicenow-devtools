@@ -7,24 +7,44 @@
         <client_callable>false</client_callable>
         <description>AppBuilder adds various application files to a scoped app.</description>
         <name>AppBuilder</name>
-        <script><![CDATA[function AppBuilder(strAppSysId)
+        <script><![CDATA[function AppBuilder(strAppSysIdOrScopeName)
 {
 	function Log(strText)
 	{
-		x_snc_devtools.Log('AppBuilder: '+strText);
+		x_snc_devtools.Log('DevTools AppBuilder: '+strText);
 	}
 	
-	if (IsValidSysId(strAppSysId) == false)
+	var strAppSysId = '';
+	var strAppScope = '';
+	var grApp = false;
+	
+	if (IsValidSysId(strAppSysIdOrScopeName) == false)
 	{
-		Log('Error: no valid sys id provided.');
-		return false;
+		strAppScope = strAppSysIdOrScopeName;
+		grApp = new GlideRecord('sys_app');
+		grApp.addQuery('scope','=',strAppSysIdOrScopeName);
+		grApp.query();
+		if (grApp.getRowCount() != 1)
+		{
+			Log('Error: App not found with scope name: '+strAppScope);
+			return false;
+		}
+		grApp.next();
+		strAppSysId = grApp.sys_id; 
 	}
-	var grApp = GetRecord('sys_app',strAppSysId);
-	if (grApp == false)
+	else
 	{
-		Log('Error: App not found with sys_id: '+strAppSysId);
+		strAppSysId = strAppSysIdOrScopeName;
+		grApp = GetRecord('sys_app',strAppSysId);
+		if (grApp == false)
+		{
+			Log('Error: App not found with sys_id: '+strAppSysId);
+			return false;
+		}
+		strAppScope = GetStringValue(grApp.scope);
 	}
 	
+	Log('Working on app '+strAppScope);
 	
 	var grAppDevTools = GetRecord('sys_app','d689f6901bd38450a89720a8ec4bcbfd');
 	var strDevToolsVersion = '';
@@ -129,20 +149,19 @@ function AppGetDependencies()
 
 */
 	Log('Done.');
-	return true;
-	
+	return grApp;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-07 15:15:09</sys_created_on>
         <sys_id>753cb10c1b6afc50577f43b5bb4bcb58</sys_id>
-        <sys_mod_count>13</sys_mod_count>
+        <sys_mod_count>17</sys_mod_count>
         <sys_name>AppBuilder</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_753cb10c1b6afc50577f43b5bb4bcb58</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-09-13 11:44:23</sys_updated_on>
+        <sys_updated_on>2021-09-28 09:56:51</sys_updated_on>
     </sys_script_include>
 </record_update>
