@@ -56,6 +56,51 @@
 	}
 	
 	
+	// Adding script include "Log"
+	var grSSI = new GlideRecord('sys_script_include');
+	grSSI.addQuery('sys_scope','=',strAppSysId);
+	grSSI.addQuery('name','=','Log');
+	grSSI.query();
+	if (grSSI.next() == false)
+	{
+		Log('Adding script include "Log"');
+		var grSSI = new GlideRecord('sys_script_include');
+		grSSI.initialize();
+		grSSI.name = 'Log';
+		grSSI.description = "Produces a log output in the application log.";
+		grSSI.sys_scope = strAppSysId;
+		grSSI.access = 'public';
+		grSSI.caller_access = '1';
+		grSSI.script =
+			"function Log(strText)\n"
+			+"{\n"
+			+"\tx_snc_devtools.Log('"+strAppName+": '+gs.getUserName()+': '+strText);\n"
+			+"}";
+		GlideRecordInsert(grSSI);
+	}
+	
+	// Adding script include "Debug"
+	var grSSI = new GlideRecord('sys_script_include');
+	grSSI.addQuery('sys_scope','=',strAppSysId);
+	grSSI.addQuery('name','=','Debug');
+	grSSI.query();
+	if (grSSI.next() == false)
+	{
+		Log('Adding script include "Debug"');
+		var grSSI = new GlideRecord('sys_script_include');
+		grSSI.initialize();
+		grSSI.name = 'Debug';
+		grSSI.description = "Produces a log output in the application log using the DevTools Debug function.";
+		grSSI.sys_scope = strAppSysId;
+		grSSI.access = 'public';
+		grSSI.caller_access = '1';
+		grSSI.script =
+			"function Debug(strText)\n"
+			+"{\n"
+			+"\tx_snc_devtools.Debug('"+strAppName+": '+gs.getUserName()+': '+strText);\n"
+			+"}";
+		GlideRecordInsert(grSSI);
+	}	
 	
 	
 	// Adding script include "AppSetProperty"
@@ -72,6 +117,7 @@
 		grSSI.description = "Sets a system property of this application.";
 		grSSI.sys_scope = strAppSysId;
 		grSSI.access = 'public';
+		grSSI.caller_access = '1';
 		grSSI.script =
 			"function AppSetProperty(strSuffix,vValue)\n"
 			+"{\n"
@@ -101,6 +147,7 @@
 		grSSI.description = "Retrieves information about the app's dependencies to other apps and required versions.";
 		grSSI.sys_scope = strAppSysId;
 		grSSI.access = 'public';
+		grSSI.caller_access = '1';
 		grSSI.script =
 			"function AppGetDependencies()\n"
 			+"{\n"
@@ -165,8 +212,8 @@ function AppGetDependencies()
 	if (grAppMenu == false)
 	{
 		Log('Creating a new application menu...');
-		// Create our own menu
 		grAppMenu = new GlideRecord('sys_app_application');
+		grAppMenu.initialize();
 		grAppMenu.active = true;
 		grAppMenu.category = 'e0355b31ef303000a61d5a3615c0fb78'; // "Custom Applications"
 		grAppMenu.device_type = 'browser';
@@ -174,7 +221,6 @@ function AppGetDependencies()
 		grAppMenu.description = grApp.short_description;
 		grAppMenu.sys_scope = strAppSysId;
 		grAppMenu.title = strAppName;
-		grAppMenu.initialize();
 		GlideRecordInsert(grAppMenu);
 		
 	}
@@ -194,13 +240,13 @@ function AppGetDependencies()
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-07 15:15:09</sys_created_on>
         <sys_id>753cb10c1b6afc50577f43b5bb4bcb58</sys_id>
-        <sys_mod_count>22</sys_mod_count>
+        <sys_mod_count>27</sys_mod_count>
         <sys_name>AppBuilder</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_753cb10c1b6afc50577f43b5bb4bcb58</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-09-28 14:14:37</sys_updated_on>
+        <sys_updated_on>2021-09-28 15:09:50</sys_updated_on>
     </sys_script_include>
 </record_update>
