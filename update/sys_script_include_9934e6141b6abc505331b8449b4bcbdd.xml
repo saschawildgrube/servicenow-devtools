@@ -13,7 +13,7 @@
 	{
 		return false;
 	}
-	var grRecord = GetRecord(strTable,strSysId);
+	var grRecord = GetRecord(strTable,strSysId,true);
 	if (grRecord == false)
 	{
 		return false;
@@ -199,11 +199,11 @@
 	
 	if (strTable == 'sys_update_xml')
 	{
-		return GetRecord('sys_update_set',grRecord.update_set);
+		return GetRecord('sys_update_set',grRecord.update_set,true);
 	}	
 	if (strTable == 'sys_update_set')
 	{
-		return GetRecord('sys_update_set',grRecord.parent);
+		return GetRecord('sys_update_set',grRecord.parent,true);
 	}	
 	
 	return false;
@@ -212,13 +212,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-08 12:44:48</sys_created_on>
         <sys_id>9934e6141b6abc505331b8449b4bcbdd</sys_id>
-        <sys_mod_count>40</sys_mod_count>
+        <sys_mod_count>44</sys_mod_count>
         <sys_name>GetParentRecord</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_9934e6141b6abc505331b8449b4bcbdd</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-10-04 12:14:47</sys_updated_on>
+        <sys_updated_on>2021-10-04 14:55:14</sys_updated_on>
     </sys_script_include>
 </record_update>

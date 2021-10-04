@@ -5,21 +5,25 @@
         <api_name>x_snc_devtools.GetRecord</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Shorthand to get a record from a table based on its sys_id.</description>
+        <description>Shorthand to get a record from a table based on a sys_id.</description>
         <name>GetRecord</name>
-        <script><![CDATA[function GetRecord(strTable,strSysId)
+        <script><![CDATA[function GetRecord(strTable,strSysId,bNoCrossScope)
 {
+	bNoCrossScope = GetBoolValue(bNoCrossScope);
 	if (IsValidTable(strTable) == false)
 	{
 		return false;
 	}
 	var grRecord = new GlideRecord(strTable);
-	
-	var vResult = grRecord.get(strSysId);
-	if (vResult != false)
+	if (grRecord.get(strSysId))
 	{
 		return grRecord;
 	}
+	if (bNoCrossScope == true)
+	{
+		return false;
+	}
+	var grRecord = new GlideRecord(strTable);
 	grRecord.addQuery('sys_id','=',strSysId);
 	GlideRecordQuery(grRecord);
 	if (grRecord.next())
@@ -32,13 +36,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-05-04 14:12:29</sys_created_on>
         <sys_id>df56bc67db7768503c6c09c2ba96199d</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>10</sys_mod_count>
         <sys_name>GetRecord</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_df56bc67db7768503c6c09c2ba96199d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-09-29 11:28:25</sys_updated_on>
+        <sys_updated_on>2021-10-04 14:58:54</sys_updated_on>
     </sys_script_include>
 </record_update>
