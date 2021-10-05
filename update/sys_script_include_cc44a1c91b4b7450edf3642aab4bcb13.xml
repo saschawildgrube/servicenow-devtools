@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.RunScriptInScope</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Runs any script in any scope even if the context is a scoped application. TODO</description>
+        <name>RunScriptInScope</name>
+        <script><![CDATA[function RunScriptInScope(strScope, strScript, param1, param2, param3, param4, param5, param6, param7)
+{
+	var grSI = new GlideRecord('sys_script_include');
+	grSI.initialize();
+	grSI.name = 'DevTools_TemporaryScript';
+	grSI.caller_access = null;
+	grSI.access = 'public';
+	grSI.active = true;
+	grSI.api_name = 'global.'+grSI.name;	
+	grSI.script = strScript; //'result = "Hello World";';
+	grSI.sys_scope = strScope;
+	grSI.sys_class_name = 'sys_script_include';
+	//Debug(RenderValue(grSI));
+	var evaluator = new GlideScopedEvaluator();
+	evaluator.putVariable('result',null);
+	evaluator.putVariable('param1',param1);
+	evaluator.putVariable('param2',param2);
+	evaluator.putVariable('param3',param3);
+	evaluator.putVariable('param4',param4);
+	evaluator.putVariable('param5',param5);
+	evaluator.putVariable('param6',param6);
+	evaluator.putVariable('param7',param7);
+	var vResult = evaluator.evaluateScript(grSI, 'script');
+	//Debug(RenderValue(vResult));
+	return evaluator.getVariable('result');
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-10-05 12:32:12</sys_created_on>
+        <sys_id>cc44a1c91b4b7450edf3642aab4bcb13</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>RunScriptInScope</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_cc44a1c91b4b7450edf3642aab4bcb13</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-10-05 14:32:36</sys_updated_on>
+    </sys_script_include>
+</record_update>
