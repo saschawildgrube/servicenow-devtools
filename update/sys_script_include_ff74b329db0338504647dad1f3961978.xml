@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.GetParentTable</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns the parent table of the given table. False if the given table does not exist or is not derived from another table.</description>
+        <name>GetParentTable</name>
+        <script><![CDATA[function GetParentTable(strTable)
+{
+	if (IsValidTable(strTable) == false)
+	{
+		return false;
+	}
+	var grTable = new GlideRecord('sys_db_object');
+	if (grTable.get('name',strTable) == false)
+	{
+		Debug('Could not get table');
+		return false;
+	}
+	var strParentTableSysId = GetStringValue(grTable.super_class);
+	if (IsValidSysId(strParentTableSysId) == false)
+	{
+		Debug('super_class is not a valid sysid');
+
+		return false;
+	}
+	var grParentTable = GetRecord('sys_db_object',strParentTableSysId);
+	if (grParentTable == false)
+	{
+		Debug('super_class could not be found');
+
+		return false;
+	}
+	return GetStringValue(grParentTable.name);
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-10-07 12:22:29</sys_created_on>
+        <sys_id>ff74b329db0338504647dad1f3961978</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>GetParentTable</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_ff74b329db0338504647dad1f3961978</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-10-07 12:37:07</sys_updated_on>
+    </sys_script_include>
+</record_update>
