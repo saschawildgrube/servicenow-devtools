@@ -6,20 +6,20 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-06-09 14:29:44</sys_created_on>
         <sys_id>1783dacbdb2c74943c6c09c2ba961934</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>GlideRecordUpdate</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>syntax_editor_macro_1783dacbdb2c74943c6c09c2ba961934</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-06-09 14:29:44</sys_updated_on>
+        <sys_updated_on>2021-10-07 17:14:40</sys_updated_on>
         <text>var GlideRecordUpdate = x_snc_devtools.GlideRecordUpdate;&#13;
 var grIncident = new GlideRecord('incident');&#13;
 grIncident.initialize();&#13;
 grIncident.short_description = 'Hello world';&#13;
 GlideRecordInsert(grIncident);&#13;
 grIncident.short_description = 'Brave new world';&#13;
-GlideRecordUpdate(grIncident);</text>
+GlideRecordUpdate(grIncident,false); // do not use ghost mode</text>
     </syntax_editor_macro>
 </record_update>
