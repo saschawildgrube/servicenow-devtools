@@ -5,25 +5,54 @@
         <api_name>x_snc_devtools.RecordSetValue</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Sets a single field value on a given record. </description>
+        <description>Sets a single field value on a given record. If bGhost is set to true, no business rules are executed as a result of the update.</description>
         <name>RecordSetValue</name>
-        <script><![CDATA[function RecordSetValue(strTable,strSysId,strField,vValue)
+        <script><![CDATA[function RecordSetValue(strTable,strSysId,strField,vValue,bGhost)
 {
+	bGhost = GetBoolValue(bGhost);
 	if (IsValidTable(strTable) == false)
 	{
 		return false;
 	}
-	var grRecord = new GlideRecord(strTable);
-	if (grRecord.isValidField(strField) == false)
+	
+	var vResult = false;
+	
+	if (bGhost == false)
 	{
-		return false;
+		var grRecord = new GlideRecord(strTable);
+		if (grRecord.isValidField(strField) == false)
+		{
+			return false;
+		}
+		if (grRecord.get(strSysId) == false)
+		{
+			return false;
+		}
+		grRecord[strField] = vValue;
+		vResult = GlideRecordUpdate(grRecord);
 	}
-	if (grRecord.get(strSysId) == false)
+	else
 	{
-		return false;
+		var strScript = ""
+			+"result = false;\n"
+			+"var grRecord = GlideRecord(param1);\n"
+			+"if (grRecord.isValidField(param3) == true)\n"
+			+"{\n"
+			+"   if (param5 == true)\n"
+			+"   {\n"
+			+"      grRecord.autoSysFields(false);\n"
+			+"      grRecord.setWorkflow(false);\n"
+			+"   }\n"
+			+"   if (grRecord.get(param2))\n"
+			+"   {\n"
+			+"	   grRecord[param3] = param4;\n"
+			+"     result = grRecord.update();\n"
+			+"   }\n"
+			+"}\n";
+
+		vResult = RunScriptInGlobalScope(strScript,strTable,strSysId,strField,vValue,bGhost);
 	}
-	grRecord[strField] = vValue;
-	var vResult = GlideRecordUpdate(grRecord);
+		
 	if (IsValidSysId(vResult) == false)
 	{
 		return false;
@@ -34,13 +63,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-03-03 16:09:53</sys_created_on>
         <sys_id>631e39eb1b6aac10a89720a8ec4bcb59</sys_id>
-        <sys_mod_count>19</sys_mod_count>
+        <sys_mod_count>37</sys_mod_count>
         <sys_name>RecordSetValue</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_631e39eb1b6aac10a89720a8ec4bcb59</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-06-22 16:24:24</sys_updated_on>
+        <sys_updated_on>2021-10-08 12:05:51</sys_updated_on>
     </sys_script_include>
 </record_update>

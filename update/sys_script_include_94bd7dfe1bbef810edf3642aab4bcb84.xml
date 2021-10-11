@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.RecordGetValue</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Shorthand to get a single value from a record from a table based on its sys_id.</description>
+        <name>RecordGetValue</name>
+        <script><![CDATA[function RecordGetValue(strTable,strSysId,strColumn)
+{
+	var grRecord = GetRecord(strTable,strSysId);
+	if (grRecord == false)
+	{
+		return null;
+	}
+	return grRecord.getValue(strColumn);
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-09-28 14:37:02</sys_created_on>
+        <sys_id>94bd7dfe1bbef810edf3642aab4bcb84</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>RecordGetValue</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_94bd7dfe1bbef810edf3642aab4bcb84</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-09-28 14:37:02</sys_updated_on>
+    </sys_script_include>
+</record_update>

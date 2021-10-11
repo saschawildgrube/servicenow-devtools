@@ -10,6 +10,10 @@
         <script><![CDATA[function IsValidSysId(strSysId)
 {
 	strSysId = GetStringValue(strSysId);
+	if (strSysId == 'global')
+	{
+		return true;
+	}
 	if (strSysId.length != 32)
 	{
 		return false;
@@ -25,13 +29,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-06-22 17:03:51</sys_created_on>
         <sys_id>13e686f91b6d1410a89720a8ec4bcbc7</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>IsValidSysId</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_13e686f91b6d1410a89720a8ec4bcbc7</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-09-07 12:30:43</sys_updated_on>
+        <sys_updated_on>2021-10-05 14:47:05</sys_updated_on>
     </sys_script_include>
 </record_update>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.GetTableFromSysId</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns the table of the record identified by a given sys_id.</description>
+        <name>GetTableFromSysId</name>
+        <script><![CDATA[function GetTableFromSysId(strSysId)
+{
+	if (strSysId == 'global')
+	{
+		return 'sys_dictionary';
+	}
+	if (IsValidSysId(strSysId) == false)
+	{
+		return false;
+	}
+	
+	var grRecord = GetRecord('sys_metadata',strSysId,true);
+	if (grRecord != false)
+	{
+		return GetStringValue(grRecord.getRecordClassName());
+	}
+
+	grRecord = new GlideRecord('task');
+	if (grRecord.get(strSysId) == true)
+	{
+		return GetStringValue(grRecord.sys_class_name);
+	}	
+
+	grRecord = new GlideRecord('sys_user');
+	if (grRecord.get(strSysId) == true)
+	{
+		return GetStringValue(grRecord.sys_class_name);
+	}	
+	
+	grRecord = new GlideRecord('cmdb_ci');
+	if (grRecord.get(strSysId) == true)
+	{
+		return GetStringValue(grRecord.sys_class_name);
+	}
+	
+	/* exclude more tables - check out which tables refuse cross scope access */
+	
+	
+	var grTables = new GlideRecord('sys_db_object');
+	grTables.addNullQuery("extension_model"); // Only want tables that don't extend from anything
+	grTables.addEncodedQuery('sys_update_nameISNOTEMPTY^nameISNOTEMPTY^nameNOT LIKEts_^nameNOT LIKEpa_scores_^nameNOT LIKEv_^nameNOT LIKEm2m_');
+	grTables.addQuery('name','!=','sys_rollback_incremental');
+	grTables.addQuery('name','!=','sys_rollback_sequence');
+	grTables.addQuery('name','!=','sn_templated_snip_note_template');
+	grTables.addQuery('name','!=','sn_templated_snip_channel');
+	GlideRecordQuery(grTables,true);
+	while (grTables.next())
+	{
+		var strTable  = grTables.getValue('name');
+		grRecord = new GlideRecord(strTable);
+		grRecord.addQuery('sys_id','=',strSysId);
+		GlideRecordQuery(grRecord);
+		if (grRecord.next() == true)
+		{
+			return strTable;
+		}
+	}
+	
+
+/* Check if sys_id is a valid field?
+
+     var tu = new TableUtils(tableName);
+            
+            try {
+                var gr = new GlideRecord(tableName);
+                
+                // Need to use TableUtils to check for sys_id,
+                // because gr.isValidField is still TRUE on some tables that don't actually have one,
+                // like the "ts_" text search tables.
+                if (!tu.isValidField("sys_id")) { 
+         
+*/
+	
+	
+/* Search deleted records?	
+	
+	        var grD = new GlideRecord("sys_audit_delete");
+        grD.addQuery("documentkey", sysIdToFind);
+        grD.query();
+        _log("Deleted record results: "+grD.getRowCount());
+        while (grD.next()) {
+            results.push({
+                type: "deleted_record",
+                table_name: ""+grD.tablename,
+                table_label: ""+grD.tablename.getDisplayValue(),
+                table_searched: ""+grD.getRecordClassName(),
+                display_value: ""+grD.display_value,
+                sys_id: ""+grD.documentkey
+            })
+        }
+*/
+	
+	
+	return false;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-10-08 14:07:48</sys_created_on>
+        <sys_id>fc26194edb073c504647dad1f3961930</sys_id>
+        <sys_mod_count>28</sys_mod_count>
+        <sys_name>GetTableFromSysId</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_fc26194edb073c504647dad1f3961930</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-10-11 14:48:28</sys_updated_on>
+    </sys_script_include>
+</record_update>

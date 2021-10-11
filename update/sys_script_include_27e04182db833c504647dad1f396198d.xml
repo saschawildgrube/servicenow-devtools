@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.DeleteUpdateSet</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Deletes an update set including all its files.</description>
+        <name>DeleteUpdateSet</name>
+        <script><![CDATA[function DeleteUpdateSet(strSysId)
+{
+	var grUpdateSet = GetRecord('sys_update_set',strSysId);
+	if (grUpdateSet == false)
+	{
+		return false;
+	}
+	
+	if (grUpdateSet.state != 'complete')
+	{
+		return false;
+	}
+	
+	var grUpdateXml = new GlideRecord('sys_update_xml');
+	grUpdateXml.addQuery('update_set','=',strSysId);
+	grUpdateXml.query();
+	var nUpdateXml = grUpdateXml.getRowCount();
+	GlideRecordDeleteMultiple(grUpdateXml);
+	
+	var bResult = GlideRecordDelete(grUpdateSet);
+	
+	if (bResult == false)
+	{
+		Log('Failed to delete update set "'+grUpdateSet.name+'" with '+nUpdateXml+' captured items.');
+		return false;
+	}
+
+	Log('Deleted update set "'+grUpdateSet.name+'" including '+nUpdateXml+' captured items.');
+	return true;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-10-08 12:35:47</sys_created_on>
+        <sys_id>27e04182db833c504647dad1f396198d</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>DeleteUpdateSet</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_27e04182db833c504647dad1f396198d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-10-08 12:45:10</sys_updated_on>
+    </sys_script_include>
+</record_update>

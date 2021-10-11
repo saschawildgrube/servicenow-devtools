@@ -24,7 +24,7 @@
 	for (var nEP = 0; nEP < eps.length; nEP++)
 	{
 		var ep = eps[nEP];
-		if (GetType(ep.GetParentRecord) == 'function')
+		if (IsValidFunction(ep.GetParentRecord))
 		{
 			grParentRecord = ep.GetParentRecord(grRecord);
 			if (grParentRecord != false)
@@ -47,6 +47,7 @@
 		var grTestSuiteTest = new GlideRecord('sys_atf_test_suite_test');
 		grTestSuiteTest.addQuery('test','=',grRecord.sys_id);
 		grTestSuiteTest.addQuery('sys_scope','=',grRecord.sys_scope);
+		grTestSuiteTest.addQuery('test_suite.sys_scope','=',grRecord.sys_scope);
 		grTestSuiteTest.query();
 		if (grTestSuiteTest.getRowCount() == 1) // Only if the test is part of exactly one suite in the same scope!
 		{
@@ -144,6 +145,71 @@
 		return GetRecord('sys_aw_master_config',grRecord.workspace);
 	}
 	
+	// Extension point instance to extension point
+	if (strTable == 'sys_extension_instance')
+	{
+		var strPoint = GetStringValue(grRecord.point);
+		if (strPoint != '')
+		{
+			var grEP = new GlideRecord('sys_extension_point');
+			grEP.addQuery('api_name','=',strPoint);
+			grEP.query();
+			if (grEP.getRowCount() == 1)
+			{
+				grEP.next();
+				return grEP;
+			}
+		}
+	}
+	
+	if (strTable == 'sys_documentation')
+	{
+		var grSD = new GlideRecord('sys_dictionary');
+		grSD.addQuery('name','=',grRecord.name);
+		grSD.addQuery('element','=',grRecord.element);
+		grSD.query();
+		if (grSD.getRowCount() == 1)
+		{
+			grSD.next();
+			return grSD;
+		}
+	}
+
+	if (strTable == 'sys_dictionary')
+	{
+		var grSDO = new GlideRecord('sys_db_object');
+		grSDO.addQuery('name','=',grRecord.name);
+		grSDO.query();
+		if (grSDO.getRowCount() == 1)
+		{
+			grSDO.next();
+			return grSDO;
+		}
+	}
+	
+	
+	if (strTable == 'sys_ux_list')
+	{
+		return GetRecord('sys_ux_list_category',grRecord.category);
+	}	
+	if (strTable == 'sys_ux_list_category')
+	{
+		return GetRecord('sys_ux_list_menu_config',grRecord.configuration);
+	}	
+	
+	if (strTable == 'sys_update_xml')
+	{
+		return GetRecord('sys_update_set',grRecord.update_set,true);
+	}	
+	if (strTable == 'sys_update_set')
+	{
+		return GetRecord('sys_update_set',grRecord.parent,true);
+	}	
+		
+	if (strTable == 'ts_table')
+	{
+		return GetRecord('ts_group',grRecord.group,true);
+	}	
 	
 	return false;
 }]]></script>
@@ -151,13 +217,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-08 12:44:48</sys_created_on>
         <sys_id>9934e6141b6abc505331b8449b4bcbdd</sys_id>
-        <sys_mod_count>32</sys_mod_count>
+        <sys_mod_count>48</sys_mod_count>
         <sys_name>GetParentRecord</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_9934e6141b6abc505331b8449b4bcbdd</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-09-22 07:49:44</sys_updated_on>
+        <sys_updated_on>2021-10-11 14:16:19</sys_updated_on>
     </sys_script_include>
 </record_update>

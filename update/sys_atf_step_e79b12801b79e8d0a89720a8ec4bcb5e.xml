@@ -6,26 +6,26 @@
 Name = glide.record.legacy_cross_scope_access_policy_in_script
 and Value = true
 With a failure timeout of 5 Seconds</description>
-        <display_name>Record Query</display_name>
+        <display_name>Record Query (Deprecated)</display_name>
         <inputs/>
         <mugshots_cache_json/>
         <notes>This is to avoid cross scope access policy errors.&#13;
 Refer to https://support.servicenow.com/kb?id=kb_article_view&amp;sys_kb_id=db973947db18eb48feb1a851ca9619b4</notes>
-        <order>1</order>
+        <order>2</order>
         <snapshot/>
         <step_config display_value="Record Query (Deprecated)">0270b8005f30220012b44adb7f46666a</step_config>
         <sys_class_name>sys_atf_step</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-01-14 14:31:07</sys_created_on>
         <sys_id>e79b12801b79e8d0a89720a8ec4bcb5e</sys_id>
-        <sys_mod_count>1</sys_mod_count>
-        <sys_name>Record Query</sys_name>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>Record Query (Deprecated)</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_e79b12801b79e8d0a89720a8ec4bcb5e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-01-14 14:31:51</sys_updated_on>
+        <sys_updated_on>2021-09-23 15:01:47</sys_updated_on>
         <table>sys_properties</table>
         <test display_value="DevTools - Installation">889f2f29db28e850ba15a35305961990</test>
         <timeout>1970-01-01 00:00:05</timeout>

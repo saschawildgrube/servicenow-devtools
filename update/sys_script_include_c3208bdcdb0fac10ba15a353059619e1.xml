@@ -6,9 +6,10 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>A function to process large amounts of records using a callback function. The function makes use of a specified date/time field to determine which record to process next. Multiple instances of a background script can run using this function to work on large amounts of records in a table without interfering with each other.&#13;
-For large tables it is imperative to add an index on the date time field!</description>
+For large tables it is imperative to add an index on the date time field!&#13;
+If the ghost parameter is set to true, records are updated with setWorkflow(false) to avoid business rules etc. being triggered.</description>
         <name>RecordBulkProcessor</name>
-        <script><![CDATA[function RecordBulkProcessor(grRecords,callbackRecordProcessor,strFieldDateTime,nMaxRecords,nMaxSeconds,callbackLog,nLogFrequency)
+        <script><![CDATA[function RecordBulkProcessor(grRecords,callbackRecordProcessor,strFieldDateTime,nMaxRecords,nMaxSeconds,callbackLog,nLogFrequency,bGhost)
 {
 	var GetStringValue = x_snc_devtools.GetStringValue;
 	var RenderValue = x_snc_devtools.RenderValue;
@@ -30,6 +31,10 @@ For large tables it is imperative to add an index on the date time field!</descr
 	}
 	
 	strFieldDateTime = GetStringValue(strFieldDateTime);
+	if (strFieldDateTime == '')
+	{
+		return false;
+	}
 	
 	nMaxRecords = GetIntegerValue(nMaxRecords);
 	if (nMaxRecords == 0)
@@ -54,6 +59,8 @@ For large tables it is imperative to add an index on the date time field!</descr
 		nLogFrequency = 1000;
 	}
 	
+	bGhost = GetBoolValue(bGhost);
+	
 	function Log(strText)
 	{
 		if (callbackLog == null)
@@ -72,52 +79,57 @@ For large tables it is imperative to add an index on the date time field!</descr
 
 	var nTimeStampStart = GetTimeNow();
 
+	var strLastSysId = '';
 	var bContinue = true;
 	while (bContinue == true)
 	{
 		var nTimeStamp = GetTimeNow();
-
 		grRecords.orderBy(strFieldDateTime);
 		grRecords.setLimit(1);		
 		grRecords.query();
 		if (grRecords.next())
 		{
-			var strDateTimeLastMaintenance = grRecords.getValue(strFieldDateTime);
-			var nTimeStampLastMaintenance = ParseDateTime(strDateTimeLastMaintenance);
-			if (nTimeStampLastMaintenance > nTimeStampStart)
+			var strNextSysId = GetStringValue(grRecords.sys_id);
+			if (strNextSysId == strLastSysId)
 			{
+				Log('Found the same record again. Aborting.');
 				bContinue = false;
 			}
 			else
 			{
-				grRecords.setValue(strFieldDateTime,RenderDateTime(nTimeStamp));
-				
-				var bChanged = callbackRecordProcessor(grRecords);
-				if (grRecords.update() == null)
+				strLastSysId = strNextSysId;
+				var strDateTimeLastMaintenance = grRecords.getValue(strFieldDateTime);
+				var nTimeStampLastMaintenance = ParseDateTime(strDateTimeLastMaintenance);
+				if (nTimeStampLastMaintenance > nTimeStampStart)
 				{
-					Log('Failed to update record '+grRecords.sys_id+' in '+strClassName+'. Aborting!');
 					bContinue = false;
-
 				}
 				else
 				{
-					nTotalRecordsProcessed++;
-					if (bChanged == true)
+					grRecords.setValue(strFieldDateTime,RenderDateTime(nTimeStamp));
+					var bChanged = callbackRecordProcessor(grRecords);
+					if (GlideRecordUpdate(grRecords,bGhost) == false)
 					{
-						nTotalRecordsChanged++;
+						Log('Failed to update record '+grRecords.sys_id+' in '+strClassName+'. Aborting!');
+						bContinue = false;
 					}
-
-
-					if (nTotalRecordsProcessed > 0 && nLogFrequency > 0)
+					else
 					{
-						if (nTotalRecordsProcessed % nLogFrequency == 0)
+						nTotalRecordsProcessed++;
+						if (bChanged == true)
 						{
-							var strLog = 'Processing record '+nTotalRecordsProcessed+' in '+strClassName+' and made '+nTotalRecordsChanged+' changes so far.';
-							Log(strLog);
+							nTotalRecordsChanged++;
+						}
+						if (nTotalRecordsProcessed > 0 && nLogFrequency > 0)
+						{
+							if (nTotalRecordsProcessed % nLogFrequency == 0)
+							{
+								var strLog = 'Processing record '+nTotalRecordsProcessed+' in '+strClassName+' and made '+nTotalRecordsChanged+' changes so far.';
+								Log(strLog);
+							}
 						}
 					}
 				}
-
 			}
 		}
 		else
@@ -145,13 +157,13 @@ For large tables it is imperative to add an index on the date time field!</descr
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-03-18 15:15:16</sys_created_on>
         <sys_id>c3208bdcdb0fac10ba15a353059619e1</sys_id>
-        <sys_mod_count>32</sys_mod_count>
+        <sys_mod_count>44</sys_mod_count>
         <sys_name>RecordBulkProcessor</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_c3208bdcdb0fac10ba15a353059619e1</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-08-18 11:27:28</sys_updated_on>
+        <sys_updated_on>2021-10-07 17:10:41</sys_updated_on>
     </sys_script_include>
 </record_update>

@@ -113,6 +113,20 @@ generateDescription();
 			
 		}
 		
+		
+		// Check sys_atf_test_suite_test
+		strMessage += 'Checking test suite tests...\n';
+		var grSysAtfTestSuiteTest = new GlideRecord('sys_atf_test_suite_test');
+		grSysAtfTestSuiteTest.addQuery('sys_scope','=',strAppSysId);
+		grSysAtfTestSuiteTest.addQuery('test_suite.sys_scope','!=',strAppSysId);
+		grSysAtfTestSuiteTest.query();
+		if (grSysAtfTestSuiteTest.getRowCount() > 0)
+		{
+			strMessage += 'Failed: There is at least one record in sys_atf_test_suite_test where the scope of the record does not match the scope of the test suite (which should be not the case)!\n'
+                         +'Check out the sys_atf_test_suite_test table and delete all records where the scope does not match the scope of the suite!\n';
+			bResult = false;
+		}	
+		
 
 		
 		// Check sys_app_module
@@ -233,43 +247,35 @@ generateDescription();
 		
 		
 		// Check notification subscription 
-		strMessage += 'Checking Notification subscriptions:\n';
+		strMessage += 'Checking notification subscriptions...\n';
 		var grNS = new GlideRecord('sys_notif_subscription');
 		grNS.addQuery('sys_scope','=',strAppSysId);
 		grNS.query();
 		if (grNS.getRowCount() > 0)
 		{
-			strMessage += 'Failed: There is at least one notification subscription associated to the scoped app (which should be the case!\n'
-                         +'Check out the sys_notif_subscription table and delete any records associated to the scoped app.\n';
+			strMessage += 'Failed: There is at least one notification subscription associated to the scoped app (which should be not the case)!\n'
+                         +'Check out the sys_notif_subscription table and delete all records associated to the scoped app.\n';
 			bResult = false;
 		}
-	}
-	
-	
-	
-	/*
-
-	var gr = new GlideRecord('sys_db_object');
-
-	//gr.addQuery('active','=','true');
-	gr.addQuery('name','=',strTable);
-	gr.query();
-
-	if (gr.getRowCount() == 0)
-	{
-		strMessage += '\nFailed: Table has not been found "'+strTable+'"!\n\n';
-		stepResult.setFailed();
-	}
-	else
-	{
-		var bCanRead = GetBoolValue(gr.can_read);
-		if (bCanRead != true)
+		
+		
+		
+		// Check sys_index
+		strMessage += 'Checking indexes...\n';
+		var grSI = new GlideRecord('sys_index');
+		grSI.addQuery('sys_scope','=',strAppSysId);
+		grSI.query();
+		if (grSI.getRowCount() > 0)
 		{
-			strMessage += 'Failed: canRead is not set!\n';
-			stepResult.setFailed();
+			strMessage += 'Failed: There is at least one record in sys_index to the scoped app (which should be not the case)!\n'
+                         +'Check out the sys_index table and delete all records associated to the scoped app.\n';
+			bResult = false;
 		}
+		
+		
+		
 	}
-*/
+	
 	
 	
 	if (bResult == true)
@@ -290,14 +296,14 @@ generateDescription();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-11-23 13:28:01</sys_created_on>
         <sys_id>786a921f1b6c2090a89720a8ec4bcbc9</sys_id>
-        <sys_mod_count>48</sys_mod_count>
+        <sys_mod_count>54</sys_mod_count>
         <sys_name>DevTools - Check scoped app sanity</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_config_786a921f1b6c2090a89720a8ec4bcbc9</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-09-10 12:46:48</sys_updated_on>
+        <sys_updated_on>2021-09-27 17:28:25</sys_updated_on>
         <template_reminder>TBD</template_reminder>
         <type display_value="Test Step" name="sys_atf_step">32cab51a1b663010edf3642aab4bcbb8</type>
         <wizard_redirect/>

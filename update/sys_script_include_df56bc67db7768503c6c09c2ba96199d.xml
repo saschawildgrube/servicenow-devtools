@@ -5,12 +5,26 @@
         <api_name>x_snc_devtools.GetRecord</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Shorthand to get a record from a table based on its sys_id.</description>
+        <description>Shorthand to get a record from a table based on a sys_id. If the bNoCrossScope parameter is set to true, GetRecord will not attempt to load the record from the global scope if it cannot load it from within the application scope.</description>
         <name>GetRecord</name>
-        <script><![CDATA[function GetRecord(strTable,strSysId)
+        <script><![CDATA[function GetRecord(strTable,strSysId,bNoCrossScope)
 {
+	if (IsValidSysId(strSysId) == false)
+	{
+		return false;
+	}
 	if (IsValidTable(strTable) == false)
 	{
+		return false;
+	}
+	bNoCrossScope = GetBoolValue(bNoCrossScope);
+	if (bNoCrossScope == true)
+	{
+		var grRecord = new GlideRecord(strTable);
+		if (grRecord.get(strSysId) == true)
+		{
+			return grRecord;
+		}
 		return false;
 	}
 	var grRecord = new GlideRecord(strTable);
@@ -26,13 +40,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-05-04 14:12:29</sys_created_on>
         <sys_id>df56bc67db7768503c6c09c2ba96199d</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>15</sys_mod_count>
         <sys_name>GetRecord</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_df56bc67db7768503c6c09c2ba96199d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-09-08 13:07:08</sys_updated_on>
+        <sys_updated_on>2021-10-11 14:17:37</sys_updated_on>
     </sys_script_include>
 </record_update>

@@ -11,49 +11,40 @@
 {
 	if (steps == undefined)
 	{
-		Debug('GetRecordFromTestStep: steps is undefined');
 		return false;
 	}
 	if (strStepSysId == undefined)
 	{
-		Debug('GetRecordFromTestStep: strStepSysId is undefined');
 		return false;
 	}
 	if (typeof strStepSysId != 'string') 
 	{
-		Debug('GetRecordFromTestStep: strStepSysId is not a string');
 		return false;
 	}
 	if (strStepSysId == '') 
 	{
-		Debug('GetRecordFromTestStep: strStepSysId is an empty string');
 		return false;
 	}	
 	var step = steps(strStepSysId);
 	if (step === undefined)
 	{
-		Debug('GetRecordFromTestStep: step is undefined');
 		return false;
 	}
 	if (step.first_record !== undefined)
 	{
 		var strRecordSysId = step.first_record.toString();
-		Debug('GetRecordFromTestStep: step.first_record: returns '+strRecordSysId);
 		return strRecordSysId;
 	}
 	if (step.record_id !== undefined)
 	{
 		var strRecordSysId = step.record_id.toString();
-		Debug('GetRecordFromTestStep: step.record_id: returns '+strRecordSysId);
 		return strRecordSysId;
 	}
 	if (step.user !== undefined)
 	{
 		var strUserSysId = step.user.sys_id.toString();
-		Debug('GetRecordFromTestStep: step.user: returns '+strUserSysId);	
 		return strUserSysId;
 	}
-	Debug('GetRecordFromTestStep: step.record_id and step.user are undefined');
 	return false;
 	
 }]]></script>
@@ -61,13 +52,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-26 13:53:00</sys_created_on>
         <sys_id>2b08d645db455010ba15a35305961945</sys_id>
-        <sys_mod_count>16</sys_mod_count>
+        <sys_mod_count>17</sys_mod_count>
         <sys_name>GetRecordFromTestStep</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_2b08d645db455010ba15a35305961945</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-01-26 15:18:06</sys_updated_on>
+        <sys_updated_on>2021-09-29 11:45:45</sys_updated_on>
     </sys_script_include>
 </record_update>

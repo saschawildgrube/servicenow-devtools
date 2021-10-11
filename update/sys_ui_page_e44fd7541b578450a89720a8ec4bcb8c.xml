@@ -45,9 +45,6 @@
 		<li>Switch to global scope.</li>
 		<li>Create a new update set in the global scope to capture all changes related to the DevTools installation.</li>
 		<g2:no_escape>$[
-			docapi.RenderInstallationInstructionsConfigureTableCrossScopeAccess('sys_script_include');
-		]</g2:no_escape>		
-		<g2:no_escape>$[
 			docapi.RenderInstallationInstructionsAppInstall();
 		]</g2:no_escape>		
 		<li>Set the update set in the global scope to to complete.</li>
@@ -94,6 +91,55 @@
 	
 	<h2>Release Notes</h2>
 
+	<h3>1.25.0 - 2021-10-11</h3>
+	<ol>
+		<li>RunScriptInGlobalScope() and the new RunScriptInScope() functions no longer require configuration changes on the sys_script_include table. If DevTools has been installed in the past you may use the following script to revert the modified configuraiton back to OOTB:<pre>var grRecord = new GlideRecord('sys_db_object');
+grRecord.addQuery('name','=','sys_script_include');
+grRecord.query();
+if (grRecord.next())
+{
+   grRecord.access = '';
+   grRecord.read_access = 'true';
+   grRecord.create_access = 'false';
+   grRecord.update_access = 'false';
+   grRecord.delete_access = 'false';
+   grRecord.update();
+}
+gs.invalidateCache();
+</pre>
+		</li>
+		<li>Added function GetTableFromSysId() to identify the table of the record identified by the given sys_id.</li>
+		<li>Added function ArrayAppend() to append an array to another and make sure return value is always an array.</li>
+		<li>Added function DatabaseIndexCreate() to add a new database index.</li>
+		<li>Added function GetParentTable() to return the name of the super class of a given table.</li> 
+		<li>Added function IsValidColumn() to check if a given column exists in a table (or its parent tables).</li>
+		<li>Added function IsValidFunction() to check if the given value is a callable function.</li>
+		<li>Added function RecordGetValue() to get a single value from a given record.</li>
+		<li>RecordSetValue(), GlideRecordUpdate() and RecordBulkProcessor() now support the ghost parameter which (if set to true) uses setWorkflow(false) and autoSysFields(false) to supress business rules, auditing and sys field updates.</li>
+		<li>RecordBulkProcessor() now effectively detects if the same record is found again and again to prevent an endless loop. If a business rule prevents the update of a record and the ghost mode is not set, the function returns immediately.</li>
+		<li>Added function TableSetAttribute() to set an attribute of a table to a given value.</li>
+		<li>Added method InstallerAPI::SetTableAttribute().</li>
+		<li>Added method InstallerAPI::ActivateBusinessRule().</li>
+		<li>Added method InstallerAPI::ActivateClientScript().</li>
+		<li>Added function DeleteUpdateSet() function and the "Delete Update Set" UI action. A system property controls if the button is available to admin users.</li>
+		<li>The DevTools AppInstall() function now sets the update_synch attribute of the sysauto_script table to true to make sure that scheduled jobs are captured in update sets and committed to source control.</li>
+		<li>AppInstall() now enables the creation of cross-scope before query business rules by deactivating a business rule and two client scripts.</li>
+		<li>AppInstall() modifies the UI action "Execute Now" on sysauto to stay on the current form.</li>
+		<li>The function TestAPI::TestCase() now displays the milliseconds required to run the given function.</li>
+		<li>Test "DevTools - RunScriptInGlobalScope - Temporary script includes" was flaky due to race conditions during test executions. Added a threshold of 30 minutes so the test will only alert on left over script includes created more than 30 minutes ago.</li>
+		<li>Test "DevTools - Installation" now checks if the sysauto_script table is configured so that records are captured in update sets and committed to source control.</li>
+		<li>Test step configuration "DevTools - Check scoped app sanity" now checks for unwanted entries in sys_index associated with the app.</li>
+		<li>Test step configuration "DevTools - Check scoped app sanity" now checks for test suite tests where the scope of the record does not match the scope of the associated test suite.</li>
+		<li>Added the business rule "sys_atf_test_suite_test - match scopes" to make sure a test suite test is using the same scope as the associated suite.</li>
+		<li>GetParentRecord() is now more effectively checking for the suite most relevant to a test by considering the scope of the test_suite, too.</li>
+		<li>GetParentRecord() now supports records in tables sys_update_xml, sys_update_set, sys_extension_instance, sys_ux_list, sys_ux_list_category, ts_table, sys_documentation (field labels) and sys_dictionary (table columns).</li>
+		<li>GetRecord() now checks if the given sys_id is valid, hence avoiding unnecessary queries.</li>
+		<li>GetRecord() now tries to get a record from within the scope instead of using GlideRecordQuery() and hence RunScriptInGlobalScope() in all cases.</li>
+		<li>GetRecord() now supports a third parameter: bNoCrossScope. If set to true, GetRecord() will not try to load a record from the global scope if it cannot be loaded from DevTools' scope.</li>
+		<li>IsValidSysId() now confirms that "global" is a valid sys id.</li>
+		<li>AppBuilder() now also accepts a scope name as the parameter.</li>
+	</ol>
+	
 	<h3>1.24.0 - 2021-09-22</h3>
 	<ol>
 		<li>DevTools has been tested with Rome Release.</li>
@@ -431,13 +477,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>464</sys_mod_count>
+        <sys_mod_count>507</sys_mod_count>
         <sys_name>start</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-09-22 11:53:25</sys_updated_on>
+        <sys_updated_on>2021-10-11 15:03:53</sys_updated_on>
     </sys_ui_page>
 </record_update>

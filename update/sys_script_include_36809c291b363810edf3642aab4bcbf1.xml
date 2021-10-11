@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.IsValidColumn</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns true of the given table column exists. False if not.</description>
+        <name>IsValidColumn</name>
+        <script><![CDATA[function IsValidColumn(strTable, strColumn)
+{
+	strTable = GetStringValue(strTable);
+	strColumn = GetStringValue(strColumn);
+	if (IsValidTable(strTable) == false)
+	{
+		return false;
+	}
+	var strScript = "result = (new GlideTableDescriptor.get(param1).getElementDescriptor(param2) != null);";
+	var bValid = RunScriptInGlobalScope(strScript,strTable,strColumn);
+	if (bValid == false)
+	{
+		return false;
+	}
+	
+	/*
+	var grSD = new GlideRecord('sys_dictionary');
+	grSD.addQuery('name','=',strTable);
+	grSD.addQuery('element','=',strColumn);
+	grSD.query();
+	if (grSD.next() == true)
+	{
+		return true;
+	}
+	*/
+	return true;
+}
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-09-24 09:27:45</sys_created_on>
+        <sys_id>36809c291b363810edf3642aab4bcbf1</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>IsValidColumn</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_36809c291b363810edf3642aab4bcbf1</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-09-24 09:50:52</sys_updated_on>
+    </sys_script_include>
+</record_update>

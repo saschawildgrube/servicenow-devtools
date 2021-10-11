@@ -95,6 +95,12 @@
 		grSP.is_private = false;
 		GlideRecordUpdate(grSP);
 	}
+	
+	Log('Cleaning sys_index records...');
+	var grSI = new GlideRecord('sys_index');
+	grSI.addQuery('sys_scope','=',strAppSysId);
+	grSI.query();
+	GlideRecordDeleteMultiple(grSI);
 
 	
 	Log('Completed!');
@@ -106,13 +112,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-02-23 08:18:05</sys_created_on>
         <sys_id>f5a58b38dbaee010ba15a35305961957</sys_id>
-        <sys_mod_count>34</sys_mod_count>
+        <sys_mod_count>35</sys_mod_count>
         <sys_name>AppSanity</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_f5a58b38dbaee010ba15a35305961957</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-09-16 15:19:31</sys_updated_on>
+        <sys_updated_on>2021-09-27 16:23:09</sys_updated_on>
     </sys_script_include>
 </record_update>

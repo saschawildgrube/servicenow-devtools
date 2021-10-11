@@ -108,6 +108,24 @@ InstallerAPI.prototype = {
 		}
 	},
 	
+	SetTableAttribute: function(strTable,strAttributeName,strAttributeValue)
+	{
+		strTable = GetStringValue(strTable);
+		strAttributeName = GetStringValue(strAttributeName);
+		strAttributeValue = GetStringValue(strAttributeValue);
+		var bResult = TableSetAttribute(strTable,strAttributeName,strAttributeValue);
+		if (bResult == true)
+		{
+			this.Log('Table attribute "'+strAttributeName+'" of table "'+strTable+'" is set to "'+strAttributeValue+'".');
+		}
+		else
+		{
+			this.Error('Table attribute "'+strAttributeName+'" of table "'+strTable+'" is NOT set to "'+strAttributeValue+'"!');
+		}
+		return bResult;
+
+	},
+	
 	DeleteView: function(strViewName)
 	{
 		if (this.IsAborting() == true)
@@ -229,19 +247,85 @@ InstallerAPI.prototype = {
 		return strSysID;
 	},	
 	
+	ActivateBusinessRule: function(strSysId,bActive)
+	{
+		if (this.IsAborting() == true)
+		{
+			return false;
+		}
+		
+		bActive = GetBoolValue(bActive);		
+		
+		var grSS = new GlideRecord('sys_script');
+		if (grSS.get(strSysId) == false)
+		{
+			this.Log('Business rule with sys_id "'+strSysId+'" does not exist. Doing nothing.');
+			return false;
+		}
+		
+		if (grSS.active == bActive)
+		{
+			this.Log('Business rule "'+grSS.name+'" is already set '+((bActive)?('active'):('inactive'))+'. No action required.');
+			return strSysId;
+		}
+		grSS.active = bActive;
+		var vResult = GlideRecordUpdate(grSS);
+		if (vResult == false)
+		{
+			this.Error('Failed to set business rule "'+grSS.name+'" '+((bActive)?('active'):('inactive'))+'!');
+			return false;
+		}
+		this.Log('Business rule "'+grSS.name+'" is set '+((bActive)?('active'):('inactive'))+'.');
+		return strSysId;
+	},
+	
+	ActivateClientScript: function(strSysId,bActive)
+	{
+		if (this.IsAborting() == true)
+		{
+			return false;
+		}
+	
+		bActive = GetBoolValue(bActive);		
+		
+		var grSSC = new GlideRecord('sys_script_client');
+		if (grSSC.get(strSysId) == false)
+		{
+			this.Log('Client script with sys_id "'+strSysId+'" does not exist. Doing nothing.');
+			return false;
+		}
+		
+		if (grSSC.active == bActive)
+		{
+			this.Log('Client script "'+grSSC.name+'" ('+grSSC.type+') is already set '+((bActive)?('active'):('inactive'))+'. No action required.');
+			return strSysId;
+		}
+		grSSC.active = bActive;
+		var vResult = GlideRecordUpdate(grSSC);
+		if (vResult == false)
+		{
+			this.Error('Failed to set client script "'+grSSC.name+'" ('+grSSC.type+') '+((bActive)?('active'):('inactive'))+'!');
+			return false;
+		}
+		this.Log('Client script "'+grSSC.name+'" ('+grSSC.type+') is set '+((bActive)?('active'):('inactive'))+'.');
+		return strSysId;		
+		
+		
+	},	
+	
     type: 'InstallerAPI'
 };]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-08-27 10:49:10</sys_created_on>
         <sys_id>704694a81b1a74505331b8449b4bcb69</sys_id>
-        <sys_mod_count>25</sys_mod_count>
+        <sys_mod_count>35</sys_mod_count>
         <sys_name>InstallerAPI</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_704694a81b1a74505331b8449b4bcb69</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-09-22 09:02:18</sys_updated_on>
+        <sys_updated_on>2021-10-06 13:28:26</sys_updated_on>
     </sys_script_include>
 </record_update>
