@@ -132,7 +132,7 @@ gs.invalidateCache();
 		<li>Test step configuration "DevTools - Check scoped app sanity" now checks for test suite tests where the scope of the record does not match the scope of the associated test suite.</li>
 		<li>Added the business rule "sys_atf_test_suite_test - match scopes" to make sure a test suite test is using the same scope as the associated suite.</li>
 		<li>GetParentRecord() is now more effectively checking for the suite most relevant to a test by considering the scope of the test_suite, too.</li>
-		<li>GetParentRecord() now supports records in tables sys_update_xml, sys_update_set, sys_extension_instance, sys_ux_list, sys_ux_list_category, sys_documentation (field labels) and sys_dictionary (table columns).</li>
+		<li>GetParentRecord() now supports records in tables sys_update_xml, sys_update_set, sys_extension_instance, sys_ux_list, sys_ux_list_category, ts_table, sys_documentation (field labels) and sys_dictionary (table columns).</li>
 		<li>GetRecord() now checks if the given sys_id is valid, hence avoiding unnecessary queries.</li>
 		<li>GetRecord() now tries to get a record from within the scope instead of using GlideRecordQuery() and hence RunScriptInGlobalScope() in all cases.</li>
 		<li>GetRecord() now supports a third parameter: bNoCrossScope. If set to true, GetRecord() will not try to load a record from the global scope if it cannot be loaded from DevTools' scope.</li>
@@ -477,13 +477,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>505</sys_mod_count>
+        <sys_mod_count>506</sys_mod_count>
         <sys_name>start</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-10-11 11:41:26</sys_updated_on>
+        <sys_updated_on>2021-10-11 11:47:52</sys_updated_on>
     </sys_ui_page>
 </record_update>
