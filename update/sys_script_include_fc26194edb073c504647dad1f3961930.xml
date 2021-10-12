@@ -56,30 +56,17 @@
 	while (grTables.next())
 	{
 		var strTable  = grTables.getValue('name');
-		grRecord = new GlideRecord(strTable);
-		grRecord.addQuery('sys_id','=',strSysId);
-		GlideRecordQuery(grRecord);
-		if (grRecord.next() == true)
-		{
-			return strTable;
+		if (IsValidColumn(strTable,'sys_id'))
+		{ 
+			grRecord = new GlideRecord(strTable);
+			grRecord.addQuery('sys_id','=',strSysId);
+			GlideRecordQuery(grRecord);
+			if (grRecord.next() == true)
+			{
+				return strTable;
+			}
 		}
 	}
-	
-
-/* Check if sys_id is a valid field?
-
-     var tu = new TableUtils(tableName);
-            
-            try {
-                var gr = new GlideRecord(tableName);
-                
-                // Need to use TableUtils to check for sys_id,
-                // because gr.isValidField is still TRUE on some tables that don't actually have one,
-                // like the "ts_" text search tables.
-                if (!tu.isValidField("sys_id")) { 
-         
-*/
-	
 	
 /* Search deleted records?	
 	
@@ -106,13 +93,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-08 14:07:48</sys_created_on>
         <sys_id>fc26194edb073c504647dad1f3961930</sys_id>
-        <sys_mod_count>28</sys_mod_count>
+        <sys_mod_count>31</sys_mod_count>
         <sys_name>GetTableFromSysId</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_fc26194edb073c504647dad1f3961930</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-10-11 14:48:28</sys_updated_on>
+        <sys_updated_on>2021-10-12 11:06:22</sys_updated_on>
     </sys_script_include>
 </record_update>
