@@ -45,9 +45,12 @@ TestDataAPI.prototype =
 		var result = {};
 
 		result.x_snc_devtools_test = this.GetAllTestItems();
+		
 		result.sys_user = this.GetAllUsers();
 		result.sys_user_group = this.GetAllGroups();
 		result.sys_user_role = this.GetAllRoles();
+		result.core_company = this.GetAllCompanies();
+		
 		result.incident = this.GetAllIncidents();
 		result.incident_task = this.GetAllIncidentTasks();
 		result.problem = this.GetAllProblems();
@@ -57,7 +60,9 @@ TestDataAPI.prototype =
 		result.sc_request = this.GetAllRequests();
 		result.sc_req_item = this.GetAllRequestItems();
 		result.sc_task = this.GetAllRequestTasks();
+		
 		result.sys_db_view = this.GetAllDatabaseViews();
+		
 		return result;
 	},
 	
@@ -80,12 +85,102 @@ TestDataAPI.prototype =
 					var strSysId = GetValue(oRecord,'sys_id');
 					if (IsValidSysId(strSysId) == true)
 					{
-						//Debug('Attempting to delete: '+strTable+': '+strSysId);
 						RecordDelete(strTable,strSysId);
 					}
 				}
 			}
 		}
+	},
+	
+	GetAllRecordsFromTable:function(strTable,strColumn)
+	{
+		strTable = GetStringValue(strTable);
+		strColumn = GetStringValue(strColumn);
+		if (IsValidTable(strTable) == false)
+		{
+			return false;
+		}
+		if (IsValidColumn(strTable,strColumn) == false)
+		{
+			return false;
+		}
+
+		var strPrefix = this.GetPrefix();
+		var aResult = [];
+		
+		var grRecords = new GlideRecord(strTable);
+		grRecords.addQuery('name','STARTSWITH',strPrefix);
+		grRecords.orderBy('name');
+		grRecords.query();
+		while (grRecords.next())
+		{
+			aResult.push(Clone(grRecords));
+		}
+		return aResult;
+	},
+			
+	DeleteAllRecordsByName:function(strTable, strNameColumn, strName)
+	{
+		strTable = GetStringValue(strTable);
+		strNameColumn = GetStringValue(strNameColumn);
+		strName = GetStringValue(strName);
+		var strPrefix = this.GetPrefix();
+		if (IsValidTable(strTable) == false)
+		{
+			return false;
+		}
+		if (IsValidColumn(strTable,strNameColumn) == false)
+		{
+			return false;
+		}
+		if (strName == '')
+		{
+			return false;
+		}
+		var grRecordsToDelete = new GlideRecord(strTable);
+		grRecordsToDelete.addQuery(strNameColumn,'=',strPrefix+strName);
+		grRecordsToDelete.query();
+		GlideRecordDeleteMultiple(grRecordsToDelete);
+		return true;
+	},
+	
+	CreateRecord:function(strTable,strNameColumn,strName,oValues)
+	{
+		strTable = GetStringValue(strTable);
+		strNameColumn = GetStringValue(strNameColumn);
+		strName = GetStringValue(strName);
+		var strPrefix = this.GetPrefix();
+		if (IsValidTable(strTable) == false)
+		{
+			return false;
+		}
+		if (IsValidColumn(strTable,strNameColumn) == false)
+		{
+			return false;
+		}
+		if (strName == '')
+		{
+			return false;
+		}
+		var grRecord = new GlideRecord(strTable);
+		grRecord.initialize();
+		grRecord.setValue(strNameColumn,strPrefix+strName);
+		var aColumnKeys = GetKeys(oValues);
+		for (var nColumnKey = 0; nColumnKey < aColumnKeys.length; nColumnKey++)
+		{
+			var strKey = aColumnKeys[nColumnKey];
+			if (IsValidColumn(strTable,strKey) == true)
+			{
+				var vValue = oValues[strKey];
+				grRecord.setValue(strKey,vValue);
+			}
+		}
+		strSysId = GlideRecordInsert(grRecord);
+		if (strSysId == null)
+		{
+			return false;
+		}
+		return strSysId;
 	},
 	
 	CreateTestItem:function(strName, strValue, strProcessedDateTime)
@@ -95,43 +190,20 @@ TestDataAPI.prototype =
 		strProcessedDateTime = RenderDateTime(strProcessedDateTime);
 		var strPrefix = this.GetPrefix();
 		
-		var grTestItem = new GlideRecord('x_snc_devtools_test');
-		var strSysId = null;
-		grTestItem.addQuery('name','=',strPrefix+strName);
-		grTestItem.query();
-		while(grTestItem.next())
-		{
-			grTestItem.getValue('sys_id');
-			GlideRecordDelete(grTestItem);
-		}
-		
-		grTestItem.initialize();
-		grTestItem.name = strPrefix+strName;
-		grTestItem.value = strValue;
-		grTestItem.processed = strProcessedDateTime;
-		strSysId = GlideRecordInsert(grTestItem);
+		this.DeleteAllRecordsByName('x_snc_devtools_test','name',strName);
 
-		if (strSysId == null)
-		{
-			return null;
-		}
+		var strSysId = this.CreateRecord('x_snc_devtools_test','name',strName,
+			{
+				value: strValue,
+				processed: strProcessedDateTime
+			});
+
 		return strSysId;
 	},
 	
 	GetAllTestItems:function()
 	{
-		var aResult = [];
-		var strPrefix = this.GetPrefix();
-		
-		var grTestItem = new GlideRecord('x_snc_devtools_test');
-		grTestItem.addQuery('name','STARTSWITH',strPrefix);
-		grTestItem.orderBy('name');
-		grTestItem.query();
-		while (grTestItem.next())
-		{
-			aResult.push(Clone(grTestItem));
-		}
-		return aResult;
+		return this.GetAllRecordsFromTable('x_snc_devtools_test','name');
 	},
 	
 	
@@ -239,13 +311,9 @@ TestDataAPI.prototype =
 	{	
 		strName = GetStringValue(strName);
 		aUserNames = GetArrayValue(aUserNames);
-	
 		var strPrefix = this.GetPrefix();
 		
-		var grGroupToDelete = new GlideRecord('sys_user_group');
-		grGroupToDelete.addQuery('name','=',strPrefix+strName);
-		grGroupToDelete.query();
-		GlideRecordDeleteMultiple(grGroupToDelete);
+		this.DeleteAllRecordsByName('sys_user_group','name',strName);
 
 		var grGroup = new GlideRecord('sys_user_group');
 		grGroup.initialize();
@@ -278,59 +346,34 @@ TestDataAPI.prototype =
 	
 	GetAllGroups:function()
 	{
-		var aGroups = [];
-		var strPrefix = this.GetPrefix();
-		
-		var grGroup = new GlideRecord('sys_user_group');
-		grGroup.addQuery('name','STARTSWITH',strPrefix);
-		grGroup.orderBy('name');
-		grGroup.query();
-		while (grGroup.next())
-		{
-			aGroups.push(Clone(grGroup));
-		}
-		return aGroups;
+		return this.GetAllRecordsFromTable('sys_user_group','name');		
 	},	
 	
 	CreateRole:function(strName)
 	{	
 		strName = GetStringValue(strName);
-		
-		var strPrefix = this.GetPrefix();
-		
-		var grRoleToDelete = new GlideRecord('sys_user_role');
-		grRoleToDelete.addQuery('name','=',strPrefix+strName);
-		grRoleToDelete.query();
-		GlideRecordDeleteMultiple(grRoleToDelete);
-
-		var grRole = new GlideRecord('sys_user_role');
-		grRole.initialize();
-		GlideRecordSetValue(grRole,'name',strPrefix+strName);
-		//grRole.state = 'active';
-		var strRoleSysId = GlideRecordInsert(grRole);
-
-		if (strRoleSysId == null)
-		{
-			return null;
-		}
-		return strRoleSysId;
+		this.DeleteAllRecordsByName('sys_user_role','name',strName);
+		return strSysId =this.CreateRecord('sys_user_role','name',strName, {});
 	},
 		
 	GetAllRoles:function()
 	{
-		var aRoles = [];
-		var strPrefix = this.GetPrefix();
-		
-		var grRole = new GlideRecord('sys_user_role');
-		grRole.addQuery('name','STARTSWITH',strPrefix);
-		grRole.orderBy('name');
-		grRole.query();
-		while (grRole.next())
-		{
-			aRoles.push(Clone(grRole));
-		}
-		return aRoles;
+		return this.GetAllRecordsFromTable('sys_user_role','name');
 	},
+	
+	CreateCompany:function(strName, oValues)
+	{
+		strName = GetStringValue(strName);
+		this.DeleteAllRecordsByName('core_company','name',strName);
+		return strSysId =this.CreateRecord('core_company','name',strName, oValues);
+	},
+	
+	GetAllCompanies:function()
+	{
+		return this.GetAllRecordsFromTable('core_company','name');
+	},
+	
+	
 	
 	CreateIncident:function(strName, strOpenedByUserName, strCallerUserName, strAssignmentGroupName)
 	{
@@ -974,6 +1017,7 @@ TestDataAPI.prototype =
 	},	
 	
 	
+
 	CreateDatabaseView:function(strName, oDbView)
 	{
 		strName = GetStringValue(strName);
@@ -1126,13 +1170,13 @@ TestDataAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-13 14:53:39</sys_created_on>
         <sys_id>1796abb01b78d410a89720a8ec4bcb1e</sys_id>
-        <sys_mod_count>152</sys_mod_count>
+        <sys_mod_count>166</sys_mod_count>
         <sys_name>TestDataAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_1796abb01b78d410a89720a8ec4bcb1e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-08-26 11:08:31</sys_updated_on>
+        <sys_updated_on>2021-10-18 14:03:18</sys_updated_on>
     </sys_script_include>
 </record_update>
