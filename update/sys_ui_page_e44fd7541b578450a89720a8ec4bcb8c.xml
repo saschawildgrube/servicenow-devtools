@@ -58,6 +58,7 @@
 -->		
 		<li>In case of errors:
 			<ol>
+				<li>In a domain separated instance it may be necessary to switch to the topmost domain to pass all tests.</li>
 				<li>If the test "DevTools - RunScriptInGlobalScope" fails: Retry after a few minutes. Some cross-scrope privileges will be set up during the first test run and might take a few minutes to be effective. The function RunScriptInGlobalScope() is used in many other functions, so do look into any other failed tests as long as this test fails.</li>
 				<li>Test "DevTools - TestDataAPI": This script creates various records (e.g., incidents and problems). If there are customizations in place that make additional fields mandatory, you may have to set up business rules to set these values - but only if the short description (or the corresponding field) starts with "_ATF_".</li>
 			</ol>
@@ -489,13 +490,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>516</sys_mod_count>
+        <sys_mod_count>517</sys_mod_count>
         <sys_name>start</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-10-18 09:00:26</sys_updated_on>
+        <sys_updated_on>2021-10-18 09:03:12</sys_updated_on>
     </sys_ui_page>
 </record_update>
