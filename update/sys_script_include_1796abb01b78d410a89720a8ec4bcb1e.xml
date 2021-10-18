@@ -50,6 +50,7 @@ TestDataAPI.prototype =
 		result.sys_user_group = this.GetAllGroups();
 		result.sys_user_role = this.GetAllRoles();
 		result.core_company = this.GetAllCompanies();
+		result.ast_contract = this.GetAllContracts();
 		
 		result.incident = this.GetAllIncidents();
 		result.incident_task = this.GetAllIncidentTasks();
@@ -92,15 +93,15 @@ TestDataAPI.prototype =
 		}
 	},
 	
-	GetAllRecordsFromTable:function(strTable,strColumn)
+	GetAllRecordsFromTable:function(strTable,strNameColumn)
 	{
 		strTable = GetStringValue(strTable);
-		strColumn = GetStringValue(strColumn);
+		strNameColumn = GetStringValue(strNameColumn);
 		if (IsValidTable(strTable) == false)
 		{
 			return false;
 		}
-		if (IsValidColumn(strTable,strColumn) == false)
+		if (IsValidColumn(strTable,strNameColumn) == false)
 		{
 			return false;
 		}
@@ -109,8 +110,8 @@ TestDataAPI.prototype =
 		var aResult = [];
 		
 		var grRecords = new GlideRecord(strTable);
-		grRecords.addQuery('name','STARTSWITH',strPrefix);
-		grRecords.orderBy('name');
+		grRecords.addQuery(strNameColumn,'STARTSWITH',strPrefix);
+		grRecords.orderBy(strNameColumn);
 		grRecords.query();
 		while (grRecords.next())
 		{
@@ -188,17 +189,14 @@ TestDataAPI.prototype =
 		strName = GetStringValue(strName);
 		strValue = GetStringValue(strValue);
 		strProcessedDateTime = RenderDateTime(strProcessedDateTime);
-		var strPrefix = this.GetPrefix();
 		
 		this.DeleteAllRecordsByName('x_snc_devtools_test','name',strName);
 
-		var strSysId = this.CreateRecord('x_snc_devtools_test','name',strName,
+		return this.CreateRecord('x_snc_devtools_test','name',strName,
 			{
 				value: strValue,
 				processed: strProcessedDateTime
 			});
-
-		return strSysId;
 	},
 	
 	GetAllTestItems:function()
@@ -365,14 +363,26 @@ TestDataAPI.prototype =
 	{
 		strName = GetStringValue(strName);
 		this.DeleteAllRecordsByName('core_company','name',strName);
-		return strSysId =this.CreateRecord('core_company','name',strName, oValues);
+		return this.CreateRecord('core_company','name',strName, oValues);
 	},
 	
 	GetAllCompanies:function()
 	{
 		return this.GetAllRecordsFromTable('core_company','name');
 	},
+
+	CreateContract:function(strName, oValues)
+	{
+		strName = GetStringValue(strName);
+		this.DeleteAllRecordsByName('ast_contract','short_description',strName);
+		return this.CreateRecord('ast_contract','short_description',strName, oValues);
+	},
 	
+	GetAllContracts:function()
+	{
+		return this.GetAllRecordsFromTable('ast_contract','short_description');
+	},
+
 	
 	
 	CreateIncident:function(strName, strOpenedByUserName, strCallerUserName, strAssignmentGroupName)
@@ -1170,13 +1180,13 @@ TestDataAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-13 14:53:39</sys_created_on>
         <sys_id>1796abb01b78d410a89720a8ec4bcb1e</sys_id>
-        <sys_mod_count>166</sys_mod_count>
+        <sys_mod_count>170</sys_mod_count>
         <sys_name>TestDataAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_1796abb01b78d410a89720a8ec4bcb1e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-10-18 14:03:18</sys_updated_on>
+        <sys_updated_on>2021-10-18 14:37:00</sys_updated_on>
     </sys_script_include>
 </record_update>
