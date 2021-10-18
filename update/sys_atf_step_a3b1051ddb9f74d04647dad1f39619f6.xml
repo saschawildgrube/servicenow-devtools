@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <copied_from/>
+        <description>Run Server Side Validation Script</description>
+        <display_name>Run Server Side Script</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>1</order>
+        <snapshot/>
+        <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-10-18 14:55:45</sys_created_on>
+        <sys_id>a3b1051ddb9f74d04647dad1f39619f6</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>Run Server Side Script</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_step_a3b1051ddb9f74d04647dad1f39619f6</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-10-18 15:03:38</sys_updated_on>
+        <table/>
+        <test display_value="DevTools - RecordInsert">7ea1c11ddb9f74d04647dad1f39619d3</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=a3b1051ddb9f74d04647dad1f39619f6"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>a3b1051ddb9f74d04647dad1f39619f6</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-10-18 14:55:45</sys_created_on>
+        <sys_id>9dc1451ddb9f74d04647dad1f3961918</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-10-18 15:03:38</sys_updated_on>
+        <value>(function(outputs, steps, stepResult, assertEqual)&#13;
+{&#13;
+	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
+	&#13;
+	test.SetResult(true);&#13;
+&#13;
+&#13;
+	function TestCase_RecordInsert(strTable, oValues, vExpected)&#13;
+	{&#13;
+		test.TestCase(&#13;
+			'RecordInsert',&#13;
+			RecordInsert,&#13;
+			{&#13;
+				'Table': strTable,&#13;
+				'Values': oValues&#13;
+			},&#13;
+			vExpected,&#13;
+			TestCase_RecordInsert_CheckResult);&#13;
+	}&#13;
+&#13;
+	function TestCase_RecordInsert_CheckResult(vInput,vExpected,vResult)&#13;
+	{&#13;
+		if (vExpected == true)&#13;
+		{&#13;
+			test.Log(RenderValue(GetRecord(vInput.Table,vResult)));&#13;
+		}&#13;
+		return (IsValidSysId(vResult) == vExpected);&#13;
+	}&#13;
+	&#13;
+&#13;
+	TestCase_RecordInsert(null,null,false);&#13;
+	TestCase_RecordInsert('x_snc_devtools_test',null,false);&#13;
+&#13;
+	TestCase_RecordInsert('x_snc_devtools_test',{},true);&#13;
+	TestCase_RecordInsert('x_snc_devtools_test',{ name: 'Key1', value: 'Value1' },true);&#13;
+&#13;
+	&#13;
+	&#13;
+	return test.GetResult();&#13;
+	&#13;
+})(outputs, steps, stepResult, assertEqual);</value>
+        <variable display_value="">989d9e235324220002c6435723dc3484</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>a3b1051ddb9f74d04647dad1f39619f6</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-10-18 14:55:45</sys_created_on>
+        <sys_id>d9c1451ddb9f74d04647dad1f3961918</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-10-18 14:55:45</sys_updated_on>
+        <value>3.1</value>
+        <variable display_value="">42f2564b73031300440211d8faf6a777</variable>
+    </sys_variable_value>
+</record_update>
