@@ -2,12 +2,12 @@
     <sys_script_include action="INSERT_OR_UPDATE">
         <access>package_private</access>
         <active>true</active>
-        <api_name>x_snc_devtools.RenderHtmlLinkDirectory</api_name>
+        <api_name>x_snc_devtools.HtmlRenderLinkDirectory</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Renders a link directory with useful links to the instance.</description>
-        <name>RenderHtmlLinkDirectory</name>
-        <script><![CDATA[function RenderHtmlLinkDirectory()
+        <name>HtmlRenderLinkDirectory</name>
+        <script><![CDATA[function HtmlRenderLinkDirectory()
 {
 	function GetLinkDirectory()
 	{
@@ -34,13 +34,26 @@
 					table: 'sys_ui_message'
 				}
 			],
+			'Apps':
+			[
+				{
+					table: 'sys_app'
+				},
+				{
+					table: 'sys_update_set'
+				}
+			],
 			'Database':
 			[
 				{
 					table: 'sys_db_object'
 				},
 				{
-					table: ''
+					table: 'sys_db_view'
+				},
+				{
+					table: 'sys_storage_alias',
+					view: 'devtools'
 				}
 			],
 			'Access and Security':
@@ -49,7 +62,32 @@
 					table: 'domain'
 				},
 				{
-					table: 'sys_scope_privilege'
+					table: 'sys_scope_privilege',
+					view: 'devtools'
+				}
+			],
+			'Scripts':
+			[
+				{
+					table: 'sys_script_include'
+				},
+				{
+					table: 'sys_script'
+				},
+				{
+					table: 'sys_ui_action'
+				},
+				{
+					table: 'sysauto_script'
+				}
+			],
+			'CMDB and Asset Management':
+			[
+				{
+					table: 'cmdb_ci'
+				},
+				{
+					table: 'ast_contract'
 				}
 			]
 			
@@ -58,7 +96,7 @@
 		return links;
 	}
 	
-	function RenderHtmlLinkDirectoryCategory(strCategoryName, aLinks)
+	function HtmlRenderLinkDirectoryCategory(strCategoryName, aLinks)
 	{
 		strCategoryName = GetStringValue(strCategoryName);
 		aLinks = GetArrayValue(aLinks);
@@ -113,7 +151,7 @@
 		var strCategory = aCategories[nCategory];
 		//strHtml += ''+ strCategory;
 
-		var strHtmlCategory = RenderHtmlLinkDirectoryCategory(strCategory, links[strCategory]);
+		var strHtmlCategory = HtmlRenderLinkDirectoryCategory(strCategory, links[strCategory]);
 		strHtml += strHtmlCategory;
 	}
 	
@@ -123,13 +161,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-19 09:21:31</sys_created_on>
         <sys_id>9e2a7c61db9ff4d04647dad1f396193c</sys_id>
-        <sys_mod_count>6</sys_mod_count>
-        <sys_name>RenderHtmlLinkDirectory</sys_name>
+        <sys_mod_count>14</sys_mod_count>
+        <sys_name>HtmlRenderLinkDirectory</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_9e2a7c61db9ff4d04647dad1f396193c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-10-19 09:26:52</sys_updated_on>
+        <sys_updated_on>2021-10-19 11:23:31</sys_updated_on>
     </sys_script_include>
 </record_update>
