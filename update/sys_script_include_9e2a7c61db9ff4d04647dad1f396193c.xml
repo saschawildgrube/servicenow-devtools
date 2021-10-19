@@ -40,6 +40,11 @@
 					if (IsValidTable(strTable))
 					{
 						var strUrl = '/nav_to.do?uri='+strTable+'_list.do%3F';
+						var strView = GetValue(link,'view');
+						if (strView != '')
+						{
+							strUrl += 'sysparm_view%3D'+strView+'%26sysparm_view_forced%3Dtrue';
+						}
 						strHtml += '<li>';
 						strHtml += HtmlRenderLink(strUrl, strTable, true);
 						strHtml += '</li>';
@@ -75,13 +80,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-19 09:21:31</sys_created_on>
         <sys_id>9e2a7c61db9ff4d04647dad1f396193c</sys_id>
-        <sys_mod_count>15</sys_mod_count>
+        <sys_mod_count>17</sys_mod_count>
         <sys_name>HtmlRenderLinkDirectory</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_9e2a7c61db9ff4d04647dad1f396193c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-10-19 17:04:47</sys_updated_on>
+        <sys_updated_on>2021-10-19 17:08:31</sys_updated_on>
     </sys_script_include>
 </record_update>
