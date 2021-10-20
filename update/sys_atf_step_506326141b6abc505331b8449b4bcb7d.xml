@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-08 12:41:46</sys_created_on>
         <sys_id>506326141b6abc505331b8449b4bcb7d</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_506326141b6abc505331b8449b4bcb7d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-10-20 13:05:21</sys_updated_on>
+        <sys_updated_on>2021-10-20 13:15:45</sys_updated_on>
         <table/>
         <test display_value="DevTools - GetInstanceRecordPath">1a53e2141b6abc505331b8449b4bcbd6</test>
         <timeout/>
@@ -36,9 +36,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-08 12:41:46</sys_created_on>
         <sys_id>7c8326141b6abc505331b8449b4bcb84</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-10-20 13:05:21</sys_updated_on>
+        <sys_updated_on>2021-10-20 13:15:45</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -60,9 +60,9 @@
 	}&#13;
 &#13;
 	TestCase_GetInstanceRecordPath('','','',&#13;
-		'');&#13;
+		false);&#13;
 	TestCase_GetInstanceRecordPath('incident','','',&#13;
-		'');&#13;
+		false);&#13;
 	&#13;
 	TestCase_GetInstanceRecordPath('incident','9c573169c611228700193229fff72400','',&#13;
 		'nav_to.do?uri=%2Fincident.do%3Fsys_id%3D9c573169c611228700193229fff72400');&#13;
