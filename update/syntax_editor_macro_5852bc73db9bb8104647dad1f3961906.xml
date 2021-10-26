@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="syntax_editor_macro">
     <syntax_editor_macro action="INSERT_OR_UPDATE">
-        <comments>This template creates the code necessary to access the RecordGetSummary() function contained in the RecordGetSummary script include.</comments>
-        <name>RecordGetSummary</name>
+        <comments>This template creates the code necessary to access the RenderRecordSummary() function contained in the RenderRecordSummary script include.</comments>
+        <name>RenderRecordSummary</name>
         <sys_class_name>syntax_editor_macro</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-26 08:13:02</sys_created_on>
         <sys_id>5852bc73db9bb8104647dad1f3961906</sys_id>
-        <sys_mod_count>0</sys_mod_count>
-        <sys_name>RecordGetSummary</sys_name>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>RenderRecordSummary</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>syntax_editor_macro_5852bc73db9bb8104647dad1f3961906</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-10-26 08:13:02</sys_updated_on>
-        <text>var RecordGetSummary = x_snc_devtools.RecordGetSummary;&#13;
-RecordGetSummary(GetRecord('sys_user','6816f79cc0a8016401c5a33be04be441'));</text>
+        <sys_updated_on>2021-10-26 08:57:29</sys_updated_on>
+        <text>var RenderRecordSummary = x_snc_devtools.RenderRecordSummary;&#13;
+RenderRecordSummary(GetRecord('sys_user','6816f79cc0a8016401c5a33be04be441'));</text>
     </syntax_editor_macro>
 </record_update>
