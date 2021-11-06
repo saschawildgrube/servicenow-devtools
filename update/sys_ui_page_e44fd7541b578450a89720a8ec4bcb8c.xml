@@ -121,6 +121,7 @@ gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData
 		<li>GetTableFromSysId() checks the sys_package, domain, core_company and ast_contract tables first to cover more of the more likely use cases without doing the full scan through all tables.</li>
 		<li>IsTechnicalUser() now checks parameters against invalid and empty values and returns false if there are multiple technical users sharing the same user_name.</li>
 		<li>GetParentRecord() now supports sys_storage_alias.</li>
+		<li>AppBuilder() now also creates the script include for the AppSetDefaults() function.</li>
 		<li>The "Delete Update Set" button is now active by default.</li>
 		<li>Sleep() is now accessible to all application scopes.</li>
 		<li>Renamed function DeleteUpdateSet() to UpdateSetDelete() and made it accessible to all scopes.</li>
@@ -513,13 +514,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>542</sys_mod_count>
+        <sys_mod_count>543</sys_mod_count>
         <sys_name>start</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-10-29 12:11:43</sys_updated_on>
+        <sys_updated_on>2021-11-06 19:12:36</sys_updated_on>
     </sys_ui_page>
 </record_update>
