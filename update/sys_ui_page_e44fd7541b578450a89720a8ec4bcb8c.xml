@@ -113,6 +113,7 @@ gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData
 		<li>Added function IsUserAdmin() to check if the current or a given user has the admin role.</li>
 		<li>Added function GetShortUniqueString() to render unique strings and avoid naming collisions.</li>
 		<li>Added function ParseURL() to return the components of a url in an object.</li>
+		<li>Added function ParseUrlParameters() to return the key value pairs of a url parameter string in an object.</li>
 		<li>Added support for core_comapany and ast_contract in TestDataAPI class.</li>
 		<li>Added function GetRoleNamesFromUser() to get the names of the active roles of a user.</li>
 		<li>Functions IsUserSecurityAdmin() and IsUserHasRoleExactly() now support a parameter to specify a user to check.</li>
@@ -518,13 +519,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>545</sys_mod_count>
+        <sys_mod_count>546</sys_mod_count>
         <sys_name>start</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-11-08 17:06:03</sys_updated_on>
+        <sys_updated_on>2021-11-08 17:25:22</sys_updated_on>
     </sys_ui_page>
 </record_update>
