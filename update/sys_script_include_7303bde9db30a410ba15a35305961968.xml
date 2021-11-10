@@ -5,7 +5,7 @@
         <api_name>x_snc_devtools.RunScriptInGlobalScope</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Run any script in the global scope even if the context is a scoped application. However, the function requires full cross scope access configured for the sys_script_include table. Note that the script will be placed into a function body so you cannot assume that declared local variables will be valid after its execution. To return a value from the script, set the "result" variable.</description>
+        <description>Run any script in the global scope even if the context is a scoped application. Note that the script will be placed into a function body so you cannot assume that declared local variables will be valid after its execution. To return a value from the script, set the "result" variable.</description>
         <name>RunScriptInGlobalScope</name>
         <script><![CDATA[function RunScriptInGlobalScope(strScript, param1, param2, param3, param4, param5, param6, param7)
 {
@@ -103,13 +103,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-11-30 10:24:01</sys_created_on>
         <sys_id>7303bde9db30a410ba15a35305961968</sys_id>
-        <sys_mod_count>68</sys_mod_count>
+        <sys_mod_count>69</sys_mod_count>
         <sys_name>RunScriptInGlobalScope</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_7303bde9db30a410ba15a35305961968</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-10-06 12:04:11</sys_updated_on>
+        <sys_updated_on>2021-11-09 13:10:44</sys_updated_on>
     </sys_script_include>
 </record_update>
