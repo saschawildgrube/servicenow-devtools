@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="INSERT_OR_UPDATE">
+        <active>false</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description/>
+        <field/>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>GetTableFromSysId</name>
+        <order/>
+        <script><![CDATA[function onLoad()
+{
+}
+/*
+function GetTableFromSysId(strSysId)
+{
+	var ga = new GlideAjax('DevToolsClientAPI');
+	ga.addParam('sysparm_name','GetTableFromSysId');
+	ga.addParam('sysparm_sys_id',strSysId);
+	ga.getXMLWait(Response_GetTableFromSysId);
+	function Response_GetTableFromSysId(response)
+	{
+		var strTable = response.responseXML.documentElement.getAttribute('answer');
+		if (strTable == 'false')
+		{
+			alert('DevTools: Record not found. Sorry.');
+		}
+		else
+		{
+			top.window.location.href = '/nav_to.do?uri=%2F'+strTable+'.do%3Fsys_id%3D'+strSysId;
+		} 
+	}
+}
+*/]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-10-14 08:01:38</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>11cbba731bcfb490edf3642aab4bcb53</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>GetTableFromSysId</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_client_11cbba731bcfb490edf3642aab4bcb53</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-10-14 08:01:38</sys_updated_on>
+        <table/>
+        <type>onLoad</type>
+        <ui_type>10</ui_type>
+        <view/>
+    </sys_script_client>
+</record_update>

@@ -1,31 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
     <sys_script_include action="INSERT_OR_UPDATE">
-        <access>package_private</access>
+        <access>public</access>
         <active>true</active>
         <api_name>x_snc_devtools.RunScriptInScope</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Runs any script in any scope even if the context is a scoped application. TODO</description>
+        <description>Runs any script in any scope even if the context is a scoped application. Note that the script will be placed into a function body so you cannot assume that declared local variables will be valid after its execution. To return a value from the script, set the "result" variable.</description>
         <name>RunScriptInScope</name>
         <script><![CDATA[function RunScriptInScope(strScope, strScript, param1, param2, param3, param4, param5, param6, param7)
 {
 	var grSI = new GlideRecord('sys_script_include');
-	
-	var grSI = new GlideRecord('sys_script_include');
 	grSI.get("cc44a1c91b4b7450edf3642aab4bcb13"); // this script include record
-
-	/*
-	grSI.initialize();
-	grSI.name = 'DevTools_TemporaryScript';
-	grSI.caller_access = null;
-	grSI.access = 'public';
-	grSI.active = true;
-	grSI.api_name = 'global.'+grSI.name;
-	*/
-	grSI.script = strScript; //'result = "Hello World";';
+	grSI.script = strScript; 
 	grSI.sys_scope = strScope;
-	//grSI.sys_class_name = 'sys_script_include';
-	//Debug(RenderValue(grSI));
 	var evaluator = new GlideScopedEvaluator();
 	evaluator.putVariable('result',null);
 	evaluator.putVariable('param1',param1);
@@ -36,20 +23,19 @@
 	evaluator.putVariable('param6',param6);
 	evaluator.putVariable('param7',param7);
 	var vResult = evaluator.evaluateScript(grSI, 'script');
-	//Debug(RenderValue(vResult));
 	return evaluator.getVariable('result');
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-05 12:32:12</sys_created_on>
         <sys_id>cc44a1c91b4b7450edf3642aab4bcb13</sys_id>
-        <sys_mod_count>9</sys_mod_count>
+        <sys_mod_count>12</sys_mod_count>
         <sys_name>RunScriptInScope</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_cc44a1c91b4b7450edf3642aab4bcb13</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-10-06 12:02:41</sys_updated_on>
+        <sys_updated_on>2021-11-09 13:11:21</sys_updated_on>
     </sys_script_include>
 </record_update>

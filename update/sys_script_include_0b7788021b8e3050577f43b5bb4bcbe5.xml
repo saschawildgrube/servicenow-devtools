@@ -5,7 +5,7 @@
         <api_name>x_snc_devtools.GetUserRecord</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Get a user record based on sys_id, name or email address.</description>
+        <description>Get a user record based on sys_id, user_name, name or email address.</description>
         <name>GetUserRecord</name>
         <script><![CDATA[function GetUserRecord(strValue)
 {
@@ -37,11 +37,19 @@
 	}
 
 	var grUser3 = new GlideRecord('sys_user');
-	grUser3.addQuery('email','=',strValue);
+	grUser3.addQuery('name','=',strValue);
 	grUser3.query();
 	if (grUser3.next())
 	{
 		return grUser3;
+	}	
+	
+	var grUser4 = new GlideRecord('sys_user');
+	grUser4.addQuery('email','=',strValue);
+	grUser4.query();
+	if (grUser4.next())
+	{
+		return grUser4;
 	}
 
 	return false;
@@ -50,13 +58,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-08-19 15:18:03</sys_created_on>
         <sys_id>0b7788021b8e3050577f43b5bb4bcbe5</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_name>GetUserRecord</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_0b7788021b8e3050577f43b5bb4bcbe5</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-08-19 15:55:30</sys_updated_on>
+        <sys_updated_on>2021-11-09 14:41:29</sys_updated_on>
     </sys_script_include>
 </record_update>

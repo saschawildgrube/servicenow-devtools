@@ -44,6 +44,12 @@
 		strAppScope = GetStringValue(grApp.scope);
 	}
 	
+	if (strAppScope == 'x_snc_devtools')
+	{
+		Log('Error: Do not use AppBuilder() on DevTools itself!');
+		return false;
+	}
+	
 	var strAppName = GetAppName(strAppSysId);
 	
 	Log('Working on app "'+strAppName+'" ('+strAppScope+')');
@@ -162,6 +168,165 @@
 			+"}";
 		GlideRecordInsert(grSSI);
 	}
+
+	
+	// Adding script include "AppSetDefaults"
+	var grSSI = new GlideRecord('sys_script_include');
+	grSSI.addQuery('sys_scope','=',strAppSysId);
+	grSSI.addQuery('name','=','AppSetDefaults');
+	grSSI.query();
+	if (grSSI.next() == false)
+	{
+		Log('Adding script include "AppSetDefaults"');
+		var grSSI = new GlideRecord('sys_script_include');
+		grSSI.initialize();
+		grSSI.name = 'AppSetDefaults';
+		grSSI.description = "Sets all system properties to default values.";
+		grSSI.sys_scope = strAppSysId;
+		grSSI.access = 'public';
+		grSSI.caller_access = '1';
+		grSSI.script =
+			"function AppSetDefaults()\n"
+			+"{\n"
+			+"\tAppSetProperty('active','true');\n"
+			+"}\n";
+		GlideRecordInsert(grSSI);
+	}	
+	
+	
+	
+	
+	// Adding script include "DevTools" which implements the extension point
+	var strDevToolsScriptInclude = false;
+	var strScript = RecordGetValue('sys_extension_point','e3a183be1bae7010edf3642aab4bcbdc','example');
+	strScript = strScript.replaceAll('x_this_app_scope',strAppScope);
+	var grSSI = new GlideRecord('sys_script_include');
+	grSSI.addQuery('sys_scope','=',strAppSysId);
+	grSSI.addQuery('name','=','DevTools');
+	grSSI.query();
+	if (grSSI.getRowCount() != 0)
+	{
+		Log('Script include "DevTools" already exists. Updating it...');
+		grSSI.next();
+		grSSI.script = strScript;
+		GlideRecordUpdate(grSSI);
+		strDevToolsScriptInclude = grSSI.sys_id;
+	}
+	else
+	{
+		Log('Adding script include "DevTools"...');
+		var grSSI = new GlideRecord('sys_script_include');
+		grSSI.initialize();
+		grSSI.name = 'DevTools';
+		grSSI.description = "Implements the extension point for DevTools.";
+		grSSI.sys_scope = strAppSysId;
+		grSSI.access = 'public';
+		grSSI.caller_access = '1';
+		grSSI.script = strScript;
+		strDevToolsScriptInclude = GlideRecordInsert(grSSI);
+	}
+	Log('Script include "DevTools": '+RenderValue(strDevToolsScriptInclude));
+
+	// Adding extension point instance
+	var strEPI = false;
+	var grEPI = new GlideRecord('sys_extension_instance');
+	grEPI.addQuery('sys_scope','=',strAppSysId);
+	grEPI.addQuery('point','=','x_snc_devtools.DevTools');
+	grEPI.query();
+	if (grEPI.getRowCount() != 0)
+	{
+		grEPI.next();
+		Log('Extension point instance for "DevTools" already exists: '+grEPI.sys_id);
+	}
+	else
+	{
+		Log('Adding extension point instance for "DevTools"...');
+		var grEPI = new GlideRecord('sys_extension_instance');
+		grEPI.initialize();
+		grEPI.active = true;
+		grEPI.point = 'x_snc_devtools.DevTools';
+		grEPI.sys_scope = strAppSysId;
+		grEPI.script_include = strDevToolsScriptInclude;
+		grEPI.order = 100;
+		strEPI = GlideRecordInsert(grEPI);
+		Log('Adding extension point instance for "DevTools": '+RenderValue(strEPI));
+	}
+	
+	
+	
+	// Adding script include "DevToolsGetParentRecord"
+	var grSSI = new GlideRecord('sys_script_include');
+	grSSI.addQuery('sys_scope','=',strAppSysId);
+	grSSI.addQuery('name','=','DevToolsGetParentRecord');
+	grSSI.query();
+	if (grSSI.getRowCount() != 0)
+	{
+		Log('Script include "DevToolsGetParentRecord" already exists...');
+	}
+	else
+	{
+		Log('Adding script include "DevToolsGetParentRecord"...');
+		var grSSI = new GlideRecord('sys_script_include');
+		grSSI.initialize();
+		grSSI.name = 'DevToolsGetParentRecord';
+		grSSI.description = "The DevToolsGetParentRecord function is called by the DevTools extension point instance class and returns a parent record for the given record if it can be determined.";
+		grSSI.sys_scope = strAppSysId;
+		grSSI.access = 'public';
+		grSSI.caller_access = '1';
+		grSSI.script = ""
+			+"function DevToolsGetParentRecord(grRecord)\n"
+			+"{\n"
+			+"\tvar GetRecord = x_snc_devtools.GetRecord;\n"
+			+"\tvar strTable = grRecord.getRecordClassName();\n"
+			+"\n"
+			+"\tif (strTable == 'incident_task')\n"
+			+"\t{\n"
+			+"\t\treturn GetRecord('incident',grRecord.incident);\n"
+			+"\t}\n"
+			+"\n"
+			+"\treturn false;\n"
+			+"}";
+		strSSI = GlideRecordInsert(grSSI);
+		Log('Script include "DevToolsGetParentRecord": '+RenderValue(strSSI));	
+	}	
+	
+
+	// Adding script include "DevToolsGetLinkDirectory"
+	var grSSI = new GlideRecord('sys_script_include');
+	grSSI.addQuery('sys_scope','=',strAppSysId);
+	grSSI.addQuery('name','=','DevToolsGetLinkDirectory');
+	grSSI.query();
+	if (grSSI.getRowCount() != 0)
+	{
+		Log('Script include "DevToolsGetLinkDirectory" already exists...');
+	}
+	else
+	{
+		Log('Adding script include "DevToolsGetLinkDirectory"...');
+		var grSSI = new GlideRecord('sys_script_include');
+		grSSI.initialize();
+		grSSI.name = 'DevToolsGetLinkDirectory';
+		grSSI.description = "The DevToolsGetLinkDirectory function is called by the DevTools extension point instance class and returns an extended (or modified) link directory object that serves as the basis for the DevTools Link page.";
+		grSSI.sys_scope = strAppSysId;
+		grSSI.access = 'public';
+		grSSI.caller_access = '1';
+		grSSI.script = ""
+			+"function DevToolsGetLinkDirectory(linkdirectory)\n"
+			+"{\n"
+			+"\tlinkdirectory['Test Category'] =\n"
+			+"\t[\n"
+			+"\t\t{\n"
+			+"\t\t\ttable: 'x_snc_devtools_test'\n"
+			+"\t\t}\n"
+			+"\t];\n"
+			+"\n"
+			+"\treturn linkdirectory;\n"
+			+"}";
+		strSSI = GlideRecordInsert(grSSI);
+		Log('Script include "DevToolsGetLinkDirectory": '+RenderValue(strSSI));	
+	}	
+		
+	
 	
 	
 /*	
@@ -183,31 +348,38 @@
 	}	
 */	
 	
-	
-/*
-function AppGetDependencies()
-{
-	return [
-		{
-			name: 'DevTools',
-			version: '1.22.0',
-			url: 'https://github.com/saschawildgrube/servicenow-devtools/',
-			website_url: 'https://www.wildgrube.com/servicenow-devtools'
-		}
-	];
-}
 
-*/
 	
 	strAppMenuSysId = GetStringValue(strAppMenuSysId);
 	var grAppMenu = false;
 	if (IsValidSysId(strAppMenuSysId) == true)
 	{
-		var grAppMenu = GetRecord('sys_app_application',strAppMenuSysId);
+		Log('An application menu has been specified...');
+		grAppMenu = GetRecord('sys_app_application',strAppMenuSysId);
 		if (grAppMenu == false)
 		{
 			Log('Given application menu was not found!');
 		}
+	}
+	else
+	{
+		Log('No application menu has been specified, checking if a menu exists already...');
+
+		grAppMenu = new GlideRecord('sys_app_application');
+		grAppMenu.addQuery('sys_scope','=',strAppSysId);
+		grAppMenu.addQuery('device_type','=','browser');
+		grAppMenu.addQuery('title','=',strAppName);
+		grAppMenu.query();
+		if (grAppMenu.next() == true)
+		{
+			Log('Application menu exists already.');
+		}
+		else
+		{
+			Log('No application menu exists.');
+			grAppMenu = false;
+		}
+		
 	}
 	if (grAppMenu == false)
 	{
@@ -222,13 +394,15 @@ function AppGetDependencies()
 		grAppMenu.sys_scope = strAppSysId;
 		grAppMenu.title = strAppName;
 		GlideRecordInsert(grAppMenu);
-		
 	}
+	
+	/*
 	if (IsValidRecord(grAppMenu))
 	{
 		Log('Adding application menu modules...');
 			
 	}
+	*/
 		
 	
 	
@@ -240,13 +414,13 @@ function AppGetDependencies()
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-07 15:15:09</sys_created_on>
         <sys_id>753cb10c1b6afc50577f43b5bb4bcb58</sys_id>
-        <sys_mod_count>28</sys_mod_count>
+        <sys_mod_count>41</sys_mod_count>
         <sys_name>AppBuilder</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_753cb10c1b6afc50577f43b5bb4bcb58</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-10-06 13:41:04</sys_updated_on>
+        <sys_updated_on>2021-11-08 17:26:59</sys_updated_on>
     </sys_script_include>
 </record_update>

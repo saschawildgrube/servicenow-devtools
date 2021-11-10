@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.GetLinkDirectory</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns the DevTools link directory with many useful links for admins and developers.</description>
+        <name>GetLinkDirectory</name>
+        <script><![CDATA[function GetLinkDirectory()
+{
+	var linkdirectory =
+		{
+			'Organization':
+			[
+				{
+					table: 'sys_user'
+				},
+				{
+					table: 'sys_user_group'
+				},
+				{
+					table: 'core_company'
+				}
+			],
+			'UI':
+			[
+				{
+					table: 'sys_ui_view'
+				},
+				{
+					table: 'sys_process_flow'
+				}
+			],
+			'Localization':
+			[
+				{
+					table: 'sys_ui_message'
+				},
+				{
+					table: 'sys_translated'
+				}
+			],
+			'Apps':
+			[
+				{
+					table: 'sys_app'
+				},
+				{
+					table: 'sys_repo_config'
+				},
+				{
+					table: 'sys_plugins'
+				},
+				{
+					table: 'sys_update_set'
+				},
+				{
+					table: 'sys_remote_update_set'
+				}
+			],
+			'Configuration':
+			[
+				{
+					table: 'sys_properties'
+				}
+			],
+			'Database':
+			[
+				{
+					table: 'sys_db_object'
+				},
+				{
+					table: 'sys_dictionary'
+				},		
+				{
+					table: 'sys_db_view'
+				},
+				{
+					table: 'sys_db_view_table'
+				},
+				{
+					table: 'sys_storage_alias',
+					view: 'devtools'
+				}
+			],
+			'Access and Security':
+			[
+				{
+					table: 'domain'
+				},
+				{
+					table: 'sys_security_acl'
+				},
+				{
+					table: 'sys_user_role'
+				},
+				{
+					table: 'sys_scope_privilege',
+					view: 'devtools'
+				}
+			],
+			'Scripts':
+			[
+				{
+					table: 'sys_script_include'
+				},
+				{
+					table: 'sys_script'
+				},
+				{
+					table: 'sys_ui_action'
+				},
+				{
+					table: 'sysauto_script'
+				}
+			],
+			'Logs and Audit':
+			[
+				{
+					table: 'syslog',
+					filter_only: true
+				},
+				{
+					table: 'sys_audit'
+				}
+			],
+			'ITSM':
+			[
+				{
+					table: 'incident'
+				},
+				{
+					table: 'incident_task'
+				},
+				{
+					table: 'problem'
+				},
+				{
+					table: 'problem_task'
+				},
+				{
+					table: 'change_request'
+				},
+				{
+					table: 'change_task'
+				},
+				{
+					table: 'sc_request'
+				},
+				{
+					table: 'sc_req_item'
+				},
+				{
+					table: 'sc_task'
+				}
+			],
+			'CMDB and Asset Management':
+			[
+				{
+					table: 'cmdb_ci'
+				},
+				{
+					table: 'cmdb_rel_ci'
+				}
+			],
+			'Asset Management':
+			[
+				{
+					table: 'ast_contract'
+				}
+			]
+		};
+	
+	var eps = new GlideScriptedExtensionPoint().getExtensions('DevTools');
+	for (var nEP = 0; nEP < eps.length; nEP++)
+	{
+		var ep = eps[nEP];
+		if (IsValidFunction(ep.GetLinkDirectory))
+		{
+			var linkdirectory_new = ep.GetLinkDirectory(linkdirectory);
+			if (GetType(linkdirectory_new) == 'Object')
+			{
+				linkdirectory = linkdirectory_new;
+			}
+		}
+	}
+	
+	return linkdirectory;
+}
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-10-19 17:03:37</sys_created_on>
+        <sys_id>a8582ae11b5774d0edf3642aab4bcb86</sys_id>
+        <sys_mod_count>17</sys_mod_count>
+        <sys_name>GetLinkDirectory</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_a8582ae11b5774d0edf3642aab4bcb86</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-11-09 10:24:13</sys_updated_on>
+    </sys_script_include>
+</record_update>

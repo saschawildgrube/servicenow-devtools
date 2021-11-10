@@ -58,8 +58,15 @@
 -->		
 		<li>In case of errors:
 			<ol>
+				<li>In a domain separated instance it may be necessary to switch to the topmost domain to pass all tests.</li>
 				<li>If the test "DevTools - RunScriptInGlobalScope" fails: Retry after a few minutes. Some cross-scrope privileges will be set up during the first test run and might take a few minutes to be effective. The function RunScriptInGlobalScope() is used in many other functions, so do look into any other failed tests as long as this test fails.</li>
-				<li>Test "DevTools - TestDataAPI": This script creates various records (e.g., incidents and problems). If there are customizations in place that make additional fields mandatory, you may have to set up business rules to set these values - but only if the short description (or the corresponding field) starts with "_ATF_".</li>
+				<li>Tests "DevTools - TestDataAPI": These scripts create various records (e.g. incidents, problems, etc.). If there are customizations in place that make additional fields mandatory, you may have to set up business rules to set these values - but only if the short description (or the corresponding field) starts with "_ATF_".</li>
+				<li>If the "DevTools - Test data sanity" test fails you can use the following script to clear existing test data:</li>
+				<pre>var testdata = new x_snc_devtools.TestDataAPI('_ATF_DEVTOOLS_');
+gs.info('Before DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData()));
+testdata.DeleteAllData(testdata.GetAllData());
+gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData()));
+				</pre>
 			</ol>
 		</li>
 	</ol>
@@ -91,9 +98,49 @@
 	
 	<h2>Release Notes</h2>
 
+	<h3>1.26.0 - 2021-11-10</h3>
+	<ol>
+		<li>Added the new "Links" page with the new link directory with many useful links for admins and developers. The new function GetLinkDirectory() returns the standard DevTools link directory. The directory can be extended using the DevTools extension point.</li>
+		<li>Removed the "Access Control" sub menu and the "Cross Scope Privileges" module.</li>
+		<li>Added function RecordInsert() to add a new record into a table with a given set of values.</li>
+		<li>Added function RecordGetSummary() to render a short hand summary of a record for debugging.</li>
+		<li>Added function IsExistingRecord() to check if a given GlideRecord object represents an existing record.</li>
+		<li>Added function TestAPI::TestCase_GetRecord() to check if a record exists.</li>
+		<li>Added function TestAPI::TestCase_RecordGetValue() to check the value of a field in a given record.</li>
+		<li>Added function TestAPI::TestCase_IsRecordAccessibleByUser() to check if a given user has access to a given record.</li>
+		<li>Added function GetInstanceListPath() to generate the path component to access a list view.</li>
+		<li>Added function HtmlRenderLink() to render the html for a link.</li>
+		<li>Added function IsUserAdmin() to check if the current or a given user has the admin role.</li>
+		<li>Added function GetShortUniqueString() to render unique strings and avoid naming collisions.</li>
+		<li>Added function ParseURL() to return the components of a url in an object.</li>
+		<li>Added function ParseUrlParameters() to return the key value pairs of a url parameter string in an object.</li>
+		<li>Added method InstallerAPI::ActivateUiAction() to set an existing UI Action active or inactive during installation.</li>
+		<li>Added support for core_comapany and ast_contract in TestDataAPI class.</li>
+		<li>Added function GetRoleNamesFromUser() to get the names of the active roles of a user.</li>
+		<li>Functions IsUserSecurityAdmin() and IsUserHasRoleExactly() now support a parameter to specify a user to check.</li>
+		<li>The new UI Action "Find Sys ID" asks the user for a sys id and then redirects the browser to the record form page. That's a real killer feature!</li>
+		<li>The new UI Action "Execute Now" replaces the OOTB "Execute Now" UI Action on sysauto_script. It triggers the execution, stays on the current form and displays a message that the job has been triggered for execution.</li> 
+		<li>AppInstall() now deactivates the OOTB UI action "Execute Now" on sysauto_script.</li>
+
+		<li>TestAPI::TestCase() now uses strict comparison ("===") when comparing the expected value with the result. Affected tests have been adapted accordingly.</li>
+		<li>GetTableFromSysId() now checks if the sys_id field exists before trying to find the record - thus making the process faster and more robust.</li>
+		<li>GetTableFromSysId() checks the sys_package, domain, core_company and ast_contract tables first to cover more of the more likely use cases without doing the full scan through all tables.</li>
+		<li>IsTechnicalUser() now checks parameters against invalid and empty values and returns false if there are multiple technical users sharing the same user_name.</li>
+		<li>GetParentRecord() now supports sys_storage_alias.</li>
+		<li>AppBuilder() now also creates the script include for the AppSetDefaults() function.</li>
+		<li>AppBuilder() now checks if an application menu already exists.</li>
+		<li>AppBuilder() now creates the extention point instance for the DevTools extension point and the corresponding script includes.</li>
+		<li>Updated example script for the DevTools extension point.</li>
+		<li>The "List" button now keeps the filter of the list view from which the current record form was navigated.</li>
+		<li>The "Delete Update Set" button is now active by default.</li>
+		<li>Sleep() is now accessible to all application scopes.</li>
+		<li>Renamed function DeleteUpdateSet() to UpdateSetDelete() and made it accessible to all scopes.</li>
+		<li>The test step config "DevTools - Check scoped app sanity" now checks if active UI actions have a description (a non-empty comments field).</li>
+	</ol>
+	
 	<h3>1.25.0 - 2021-10-11</h3>
 	<ol>
-		<li>RunScriptInGlobalScope() and the new RunScriptInScope() functions no longer require configuration changes on the sys_script_include table. If DevTools has been installed in the past you may use the following script to revert the modified configuraiton back to OOTB:<pre>var grRecord = new GlideRecord('sys_db_object');
+		<li>RunScriptInGlobalScope() and the new RunScriptInScope() functions no longer require configuration changes on the sys_script_include table. If DevTools has been installed in the past you may use the following script to revert the modified configuration back to OOTB:<pre>var grRecord = new GlideRecord('sys_db_object');
 grRecord.addQuery('name','=','sys_script_include');
 grRecord.query();
 if (grRecord.next())
@@ -477,13 +524,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>507</sys_mod_count>
+        <sys_mod_count>551</sys_mod_count>
         <sys_name>start</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-10-11 15:03:53</sys_updated_on>
+        <sys_updated_on>2021-11-10 09:27:10</sys_updated_on>
     </sys_ui_page>
 </record_update>
