@@ -107,11 +107,16 @@ generateDescription();
 				if (IsValidSysId(grSysAtfStep.getValue('step_config')) != true)
 				{
 					bResult = false;
-					strMessage += '  Failed: Invalid or missing step config in test step: '+strName+'!\n';
+					strMessage += '  Failed: Test step '+strName+': Invalid or missing step config!\n';
+				}
+				if (GetBoolValue(grSysAtfStep.getValue('copied_from')) != '')
+				{
+					bResult = false;
+					strMessage += '  Failed: Test step '+strName+': copied_from should be EMPTY!\n';
 				}
 			}					
-			
 		}
+		
 		
 		
 		// Check sys_atf_test_suite_test
@@ -313,14 +318,14 @@ generateDescription();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-11-23 13:28:01</sys_created_on>
         <sys_id>786a921f1b6c2090a89720a8ec4bcbc9</sys_id>
-        <sys_mod_count>57</sys_mod_count>
+        <sys_mod_count>59</sys_mod_count>
         <sys_name>DevTools - Check scoped app sanity</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_config_786a921f1b6c2090a89720a8ec4bcbc9</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-10-18 08:58:13</sys_updated_on>
+        <sys_updated_on>2021-11-11 09:41:48</sys_updated_on>
         <template_reminder>TBD</template_reminder>
         <type display_value="Test Step" name="sys_atf_step">32cab51a1b663010edf3642aab4bcbb8</type>
         <wizard_redirect/>
