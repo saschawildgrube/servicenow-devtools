@@ -121,7 +121,7 @@ gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData
 		<li>HtmlRenderLinkDirectory() now also renders links specified directly using a url.</li>
 		<li>TestDataAPI::CreateRequestTask() now uses the third paramter as the opened_by user instead of the assigned_to user for consistency.</li>
 		<li>Added function InstallerAPI::ShowFieldClass() to show or hide a field class during installation.</li>
-		<li>GetTableFromSysId() has been improved significantly. Various tables are expluded and tables are searched in a way that makes it more probably that records are found faster.</li>
+		<li>GetTableFromSysId() has been improved significantly. Various tables are excluded and tables are searched in a way that makes it more probably that records are found faster.</li>
 		<li>AppInstall() now unhides the "UI Action List" field class so that it can be used by developers.</li>
 	</ol>
 	
@@ -552,13 +552,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>576</sys_mod_count>
+        <sys_mod_count>577</sys_mod_count>
         <sys_name>start</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-11-18 17:04:57</sys_updated_on>
+        <sys_updated_on>2021-11-18 17:08:15</sys_updated_on>
     </sys_ui_page>
 </record_update>
