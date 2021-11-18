@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_extension_point">
     <sys_extension_point action="INSERT_OR_UPDATE">
         <api_name>x_snc_devtools.DevTools</api_name>
-        <description>The DevTools extension point allows to extend some DevTools features. Currently, only GetParentRecord is supported. </description>
+        <description>The DevTools extension point allows to extend some DevTools features.</description>
         <example><![CDATA[var DevTools = Class.create();
 DevTools.prototype = {
 	initialize: function()
@@ -15,8 +15,8 @@ DevTools.prototype = {
 		{
 			return DevToolsGetParentRecord(grRecord);
 		}
-        return false;
-    },	
+		return false;
+	},	
 
 	GetLinkDirectory: function(linkdirectory)
 	{
@@ -25,7 +25,7 @@ DevTools.prototype = {
 		{
 			return DevToolsGetLinkDirectory(linkdirectory);
 		}
-        return linkdirectory;
+		return linkdirectory;
 	},
 
 	type: 'DevTools'
@@ -36,13 +36,13 @@ DevTools.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-16 09:19:01</sys_created_on>
         <sys_id>e3a183be1bae7010edf3642aab4bcbdc</sys_id>
-        <sys_mod_count>11</sys_mod_count>
+        <sys_mod_count>12</sys_mod_count>
         <sys_name>DevTools</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_extension_point_e3a183be1bae7010edf3642aab4bcbdc</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-11-08 08:40:42</sys_updated_on>
+        <sys_updated_on>2021-11-10 09:47:54</sys_updated_on>
     </sys_extension_point>
 </record_update>

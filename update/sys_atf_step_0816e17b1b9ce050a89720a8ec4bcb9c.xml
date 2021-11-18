@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
     <sys_atf_step action="INSERT_OR_UPDATE">
         <active>true</active>
-        <copied_from display_value="Record Query (Deprecated)">5817e23edb87d810ba15a3530596196a</copied_from>
+        <copied_from/>
         <description>Validate there is at least one record in 'sys_user' matching query:
 User ID = _ATF_DEVTOOLS_ITIL
 With a failure timeout of 5 Seconds</description>
@@ -16,14 +16,14 @@ With a failure timeout of 5 Seconds</description>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-11-12 12:39:35</sys_created_on>
         <sys_id>0816e17b1b9ce050a89720a8ec4bcb9c</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>Record Query (Deprecated)</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_0816e17b1b9ce050a89720a8ec4bcb9c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-07-05 12:46:04</sys_updated_on>
+        <sys_updated_on>2021-11-11 09:45:20</sys_updated_on>
         <table>sys_user</table>
         <test display_value="DevTools - IsUserSecurityAdmin">bf06ed3b1b9ce050a89720a8ec4bcbcc</test>
         <timeout>1970-01-01 00:00:05</timeout>

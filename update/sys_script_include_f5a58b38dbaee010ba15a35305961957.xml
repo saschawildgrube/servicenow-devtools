@@ -7,7 +7,7 @@
         <client_callable>false</client_callable>
         <description>Performs a number of changes to a scoped app's assets to maintain application sanity. E.g., the function removes the copied_from attribute in atf tests, removes unneccesary field level ACLs and removes the is_private flag from system properties.</description>
         <name>AppSanity</name>
-        <script><![CDATA[function AppSanity(strAppSysId)
+        <script><![CDATA[function AppSanity(strAppSysIdOrScopeName)
 {
 	function Log(vValue)
 	{
@@ -15,13 +15,34 @@
 	}
 	
 	
-	strAppSysId = GetStringValue(strAppSysId);
+	var strAppSysId = '';
+	var strAppScope = '';
+	var grApp = false;
 	
-	
-	var grSA = new GlideRecord('sys_scope');
-	if (grSA.get(strAppSysId) == false)
+	if (IsValidSysId(strAppSysIdOrScopeName) == false)
 	{
-		return false;
+		strAppScope = strAppSysIdOrScopeName;
+		grApp = new GlideRecord('sys_app');
+		grApp.addQuery('scope','=',strAppSysIdOrScopeName);
+		grApp.query();
+		if (grApp.getRowCount() != 1)
+		{
+			Log('Error: App not found with scope name: '+strAppScope);
+			return false;
+		}
+		grApp.next();
+		strAppSysId = grApp.sys_id; 
+	}
+	else
+	{
+		strAppSysId = strAppSysIdOrScopeName;
+		grApp = GetRecord('sys_app',strAppSysId);
+		if (grApp == false)
+		{
+			Log('Error: App not found with sys_id: '+strAppSysId);
+			return false;
+		}
+		strAppScope = GetStringValue(grApp.scope);
 	}
 
 	Log('Checking ATF tests...');
@@ -36,6 +57,17 @@
 		GlideRecordUpdate(grSAT);
 	}
 
+	Log('Checking ATF test steps...');
+	var grSAS = new GlideRecord('sys_atf_step');
+	grSAS.addQuery('sys_scope','=',strAppSysId);
+	grSAS.addQuery('copied_from','!=','');
+	grSAS.query();
+	while (grSAS.next())
+	{
+		Log('Updating test step "'+GetStringValue(grSAS.description)+'" of test "'+GetStringValue(grSAS.test.getDisplayValue())+'"');
+		grSAS.copied_from='';
+		GlideRecordUpdate(grSAS);
+	}
 	
 	
 	Log('Checking ACLs for useless field level operations...');
@@ -112,13 +144,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-02-23 08:18:05</sys_created_on>
         <sys_id>f5a58b38dbaee010ba15a35305961957</sys_id>
-        <sys_mod_count>35</sys_mod_count>
+        <sys_mod_count>40</sys_mod_count>
         <sys_name>AppSanity</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_f5a58b38dbaee010ba15a35305961957</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-09-27 16:23:09</sys_updated_on>
+        <sys_updated_on>2021-11-11 09:45:15</sys_updated_on>
     </sys_script_include>
 </record_update>

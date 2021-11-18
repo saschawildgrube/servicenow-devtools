@@ -6,67 +6,79 @@
         <display_name>Run Server Side Script</display_name>
         <inputs/>
         <mugshots_cache_json/>
-        <notes>Create test data</notes>
+        <notes/>
         <order>1</order>
         <snapshot/>
         <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
         <sys_class_name>sys_atf_step</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2020-05-13 15:00:25</sys_created_on>
-        <sys_id>697a27b41b78d410a89720a8ec4bcb1e</sys_id>
-        <sys_mod_count>65</sys_mod_count>
+        <sys_created_on>2021-11-16 15:15:19</sys_created_on>
+        <sys_id>ababd2e21bfb3c90edf3642aab4bcbdf</sys_id>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
-        <sys_update_name>sys_atf_step_697a27b41b78d410a89720a8ec4bcb1e</sys_update_name>
+        <sys_update_name>sys_atf_step_ababd2e21bfb3c90edf3642aab4bcbdf</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-11-16 12:21:11</sys_updated_on>
+        <sys_updated_on>2021-11-18 16:34:46</sys_updated_on>
         <table/>
-        <test display_value="DevTools - TestDataAPI - ITSM">820a6f741b78d410a89720a8ec4bcb44</test>
+        <test display_value="DevTools - ParseCsv">a79bd2e21bfb3c90edf3642aab4bcb8a</test>
         <timeout/>
         <warning_message/>
     </sys_atf_step>
-    <sys_variable_value action="delete_multiple" query="document_key=697a27b41b78d410a89720a8ec4bcb1e"/>
+    <sys_variable_value action="delete_multiple" query="document_key=ababd2e21bfb3c90edf3642aab4bcbdf"/>
     <sys_variable_value action="INSERT_OR_UPDATE">
         <document>sys_atf_step</document>
-        <document_key>697a27b41b78d410a89720a8ec4bcb1e</document_key>
+        <document_key>ababd2e21bfb3c90edf3642aab4bcbdf</document_key>
         <order>200</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2020-05-13 15:00:26</sys_created_on>
-        <sys_id>3e5b63f41b78d410a89720a8ec4bcb22</sys_id>
-        <sys_mod_count>25</sys_mod_count>
+        <sys_created_on>2021-11-16 15:15:19</sys_created_on>
+        <sys_id>725c1ae21bfb3c90edf3642aab4bcbfb</sys_id>
+        <sys_mod_count>3</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-11-16 12:21:11</sys_updated_on>
+        <sys_updated_on>2021-11-18 16:34:46</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
 	&#13;
 	test.SetResult(true);&#13;
 &#13;
-	var testdata = new TestDataAPI('_ATF_DEVTOOLS_');&#13;
 &#13;
-	testdata.CreateUser('CALLER',[]);&#13;
-	testdata.CreateUser('REQUESTER',[]);&#13;
-	testdata.CreateUser('OPENER',['itil']);&#13;
-	testdata.CreateUser('APPROVER',['approver']);&#13;
-	testdata.CreateGroup('TEAM_1',['OPENER']);&#13;
 	&#13;
-	testdata.CreateIncident('INCIDENT_1','OPENER','CALLER','TEAM_1');&#13;
-	testdata.CreateIncidentTask('INCIDENT_1','TASK_1','OPENER','TEAM_1');&#13;
-	&#13;
-	testdata.CreateChangeRequest('CHANGE_REQUEST_1','OPENER','REQUESTER','TEAM_1');&#13;
-	testdata.CreateChangeTask('CHANGE_REQUEST_1','TASK_1','OPENER','TEAM_1');&#13;
-	&#13;
-	testdata.CreateProblem('PROBLEM_1','OPENER','TEAM_1');&#13;
-	testdata.CreateProblemTask('PROBLEM_1','TASK_1','OPENER','TEAM_1');&#13;
-	&#13;
-	var strRequestSysId = testdata.CreateRequest('REQUEST_1','OPENER','REQUESTER','TEAM_1');&#13;
-	var strRequestItemSysId = testdata.CreateRequestItem('REQUEST_ITEM_1',strRequestSysId,null,'OPENER');&#13;
-	testdata.CreateRequestTask('REQUEST_TASK_1',strRequestItemSysId,'OPENER');&#13;
+	function TestCase_ParseCsv(strCsv, vExpected)&#13;
+	{&#13;
+		test.TestCase(&#13;
+			'ParseCsv()',&#13;
+			ParseCsv,&#13;
+			{&#13;
+				'Csv': strCsv&#13;
+			},&#13;
+			vExpected,&#13;
+			TestCase_ParseCsv_CheckResult);&#13;
+	}&#13;
 &#13;
-	test.Log(RenderValue(testdata.GetAllData()));&#13;
+	function TestCase_ParseCsv_CheckResult(vInput,vExpected,vResult)&#13;
+	{&#13;
+		return IsEqual(vExpected,vResult);&#13;
+	}&#13;
+&#13;
+	&#13;
+	TestCase_ParseCsv(null,[]);&#13;
+	TestCase_ParseCsv('',[]);&#13;
+	TestCase_ParseCsv('HEADER1,HEADER2\nvalue1,value2',&#13;
+		[&#13;
+			{&#13;
+				HEADER1: 'value1',&#13;
+				HEADER2: 'value2'&#13;
+			}&#13;
+		&#13;
+		]);&#13;
+	TestCase_ParseCsv('HEADER1,HEADER2\nvalue1,value2,value3',&#13;
+		[]);&#13;
+&#13;
+&#13;
 	&#13;
 	return test.GetResult();&#13;
 	&#13;
@@ -75,15 +87,15 @@
     </sys_variable_value>
     <sys_variable_value action="INSERT_OR_UPDATE">
         <document>sys_atf_step</document>
-        <document_key>697a27b41b78d410a89720a8ec4bcb1e</document_key>
+        <document_key>ababd2e21bfb3c90edf3642aab4bcbdf</document_key>
         <order>100</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2020-05-13 15:00:26</sys_created_on>
-        <sys_id>be5be3b41b78d410a89720a8ec4bcbde</sys_id>
+        <sys_created_on>2021-11-16 15:15:19</sys_created_on>
+        <sys_id>ba5c1ae21bfb3c90edf3642aab4bcbfa</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-05-13 15:00:26</sys_updated_on>
+        <sys_updated_on>2021-11-16 15:15:19</sys_updated_on>
         <value>3.1</value>
         <variable display_value="">42f2564b73031300440211d8faf6a777</variable>
     </sys_variable_value>

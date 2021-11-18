@@ -23,22 +23,13 @@
 					table: 'core_company'
 				}
 			],
-			'UI':
+			'Regions':
 			[
 				{
-					table: 'sys_ui_view'
+					table: 'core_country'
 				},
 				{
-					table: 'sys_process_flow'
-				}
-			],
-			'Localization':
-			[
-				{
-					table: 'sys_ui_message'
-				},
-				{
-					table: 'sys_translated'
+					table: 'fx_currency'
 				}
 			],
 			'Apps':
@@ -72,7 +63,13 @@
 				},
 				{
 					table: 'sys_dictionary'
-				},		
+				},
+				{
+					table: 'sys_m2m'
+				},
+				{
+					table: 'sys_glide_object'
+				},
 				{
 					table: 'sys_db_view'
 				},
@@ -123,6 +120,51 @@
 				},
 				{
 					table: 'sys_audit'
+				}
+			],
+			'UI Views':
+			[
+				{
+					table: 'sys_ui_view'
+				},
+				{
+					table: 'sys_ui_list'
+				},
+				{
+					table: 'sys_ui_list_element'
+				},
+				{
+					table: 'sys_ui_section' 
+				},
+				{
+					table: 'sys_ui_element' 
+				}
+			],
+			'UI Policies':
+			[
+				{
+					table: 'sys_ui_policy'
+				},
+				{
+					table: 'sys_ui_policy_action'
+				},
+				{
+					table: 'sys_ui_policy_rl_action'
+				}
+			],			
+			'Process Flows':
+			[
+				{
+					table: 'sys_process_flow'
+				}
+			],
+			'Localization':
+			[
+				{
+					table: 'sys_ui_message'
+				},
+				{
+					table: 'sys_translated'
 				}
 			],
 			'ITSM':
@@ -193,13 +235,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-19 17:03:37</sys_created_on>
         <sys_id>a8582ae11b5774d0edf3642aab4bcb86</sys_id>
-        <sys_mod_count>17</sys_mod_count>
+        <sys_mod_count>28</sys_mod_count>
         <sys_name>GetLinkDirectory</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_a8582ae11b5774d0edf3642aab4bcb86</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-11-09 10:24:13</sys_updated_on>
+        <sys_updated_on>2021-11-18 10:20:18</sys_updated_on>
     </sys_script_include>
 </record_update>
