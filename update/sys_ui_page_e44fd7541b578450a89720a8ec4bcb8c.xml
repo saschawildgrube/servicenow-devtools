@@ -105,7 +105,7 @@ gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData
 		<li>Added the global "Save" button and the system property x_snc_devtools.ui.save_button to control its visibility.</li>
 		<li>IsValidSysId() now also supports currency codes as they are used as sys_ids in fx_currency.</li>
 		<li>Test step configuration "DevTools - Check scoped app sanity" now checks if a sys_app_module title matched the sys_name and AppSanity() fixes that in case it is required.</li>
-		<li>Tables fx_rate, sys_decision, sys_decision_input and sys_decision_question have been added to link directory.</li>
+		<li>Tables sys_dictionary_override, fx_rate, sys_decision, sys_decision_input and sys_decision_question have been added to link directory.</li>
 		<li>GetParentRecord() now also supports fx_rate, sys_decision_input and sys_decision_question.</li>
 		<li>Fixed a defect in RedirectToRecord() that should have prevented the function from working at all (which it didn't).</li>
 		<li>RenderValue() no longer produces an error when a JavaObject is used as the parameter. However it cannot render it properly.</li>
@@ -565,13 +565,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>589</sys_mod_count>
+        <sys_mod_count>590</sys_mod_count>
         <sys_name>start</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-11-23 16:44:23</sys_updated_on>
+        <sys_updated_on>2021-11-24 08:48:20</sys_updated_on>
     </sys_ui_page>
 </record_update>
