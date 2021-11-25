@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="syntax_editor_macro">
     <syntax_editor_macro action="INSERT_OR_UPDATE">
-        <comments>This template creates the code necessary to access the RecordGetOrInsert() function contained in the RecordGetOrInsert script include.</comments>
-        <name>RecordGetOrInsert</name>
+        <comments>This template creates the code necessary to access the RecordQueryOrInsert() function contained in the RecordQueryOrInsert script include.</comments>
+        <name>RecordQueryOrInsert</name>
         <sys_class_name>syntax_editor_macro</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-11-25 15:54:28</sys_created_on>
         <sys_id>c8ab34211b884910edf3642aab4bcb18</sys_id>
-        <sys_mod_count>1</sys_mod_count>
-        <sys_name>RecordGetOrInsert</sys_name>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>RecordQueryOrInsert</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>syntax_editor_macro_c8ab34211b884910edf3642aab4bcb18</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-11-25 15:55:38</sys_updated_on>
-        <text>var RecordGetOrInsert = x_snc_devtools.RecordGetOrInsert;&#13;
-RecordGetOrInsert(&#13;
+        <sys_updated_on>2021-11-25 16:03:22</sys_updated_on>
+        <text>var RecordQueryOrInsert = x_snc_devtools.RecordQueryOrInsert;&#13;
+RecordQueryOrInsert(&#13;
    'incident',&#13;
    { short_description: 'All systems are down!' },&#13;
    { priority: 1 },&#13;
