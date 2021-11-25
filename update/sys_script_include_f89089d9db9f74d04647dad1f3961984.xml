@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
     <sys_script_include action="INSERT_OR_UPDATE">
-        <access>package_private</access>
+        <access>public</access>
         <active>true</active>
         <api_name>x_snc_devtools.RecordInsert</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Inserts a new record into a table with the specified values if the columns exist.</description>
         <name>RecordInsert</name>
-        <script><![CDATA[function RecordInsert(strTable,oValues)
+        <script><![CDATA[function RecordInsert(strTable,values)
 {
 	strTable = GetStringValue(strTable);
 	if (IsValidTable(strTable) == false)
 	{
 		return false;
 	}
-	if (GetType(oValues) != 'Object')
+	if (GetType(values) != 'Object')
 	{
 		return false;
 	}
 	var grRecord = new GlideRecord(strTable);
 	grRecord.initialize();
-	var aKeys = GetKeys(oValues);
+	var aKeys = GetKeys(values);
 	for (var nKey = 0; nKey < aKeys.length; nKey++)
 	{
 		var strKey = aKeys[nKey];
 		if (IsValidColumn(strTable,strKey) == true)
 		{
-			grRecord.setValue(strKey,oValues[strKey]);
+			grRecord.setValue(strKey,values[strKey]);
 		}
 	}
 	var vResult = GlideRecordInsert(grRecord);
@@ -40,13 +40,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-18 14:55:06</sys_created_on>
         <sys_id>f89089d9db9f74d04647dad1f3961984</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>RecordInsert</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_f89089d9db9f74d04647dad1f3961984</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-10-18 15:23:17</sys_updated_on>
+        <sys_updated_on>2021-11-24 22:23:26</sys_updated_on>
     </sys_script_include>
 </record_update>

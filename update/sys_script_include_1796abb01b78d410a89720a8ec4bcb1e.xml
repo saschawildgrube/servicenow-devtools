@@ -275,6 +275,7 @@ TestDataAPI.prototype =
 		while (grUser.next())
 		{
 			var oUser = Clone(grUser);
+			
 			var aRoles = [];
 			var grUserHasRole = new GlideRecord('sys_user_has_role');
 			grUserHasRole.addQuery('user','=',grUser.sys_id);
@@ -289,6 +290,23 @@ TestDataAPI.prototype =
 			}
 			aRoles = aRoles.sort();
 			oUser['_roles'] = aRoles;
+			
+			var aGroups = [];
+			var grGroupMember = new GlideRecord('sys_user_grmember');
+			grGroupMember.addQuery('user','=',grUser.sys_id);
+			grGroupMember.query();
+			while (grGroupMember.next())
+			{
+				var grGroup = new GlideRecord('sys_user_group');
+				if (grGroup.get(grGroupMember.group))
+				{
+					aGroups.push(grGroup.name);
+				}
+			}
+			aGroups = aGroups.sort();
+			oUser['_groups'] = aGroups;			
+			
+			
 			aResult.push(oUser);
 		}
 		return aResult;
@@ -1183,13 +1201,13 @@ TestDataAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-13 14:53:39</sys_created_on>
         <sys_id>1796abb01b78d410a89720a8ec4bcb1e</sys_id>
-        <sys_mod_count>174</sys_mod_count>
+        <sys_mod_count>175</sys_mod_count>
         <sys_name>TestDataAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_1796abb01b78d410a89720a8ec4bcb1e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-11-24 13:15:03</sys_updated_on>
+        <sys_updated_on>2021-11-25 14:45:36</sys_updated_on>
     </sys_script_include>
 </record_update>
