@@ -7,7 +7,7 @@
         <client_callable>false</client_callable>
         <description>AppBuilder adds various application files to a scoped app.</description>
         <name>AppBuilder</name>
-        <script><![CDATA[function AppBuilder(strAppSysIdOrScopeName, strAppMenuSysId)
+        <script><![CDATA[function AppBuilder(strAppSysIdOrScopeName, strAppMenuSysId, nAppMenuOrderStart)
 {
 	function Log(strText)
 	{
@@ -51,6 +51,7 @@
 	}
 	
 	var strAppName = GetAppName(strAppSysId);
+	var nAppMenuOrderStart = GetIntegerValue(nAppMenuOrderStart);
 	
 	Log('Working on app "'+strAppName+'" ('+strAppScope+')');
 	
@@ -437,29 +438,28 @@
 	}	
 		
 	
-	
-	
-/*	
-	// Adding module "Options"
-	var grSAM = new GlideRecord('sys_app_module');
-	grSAM.addQuery('sys_scope','=',strAppSysId);
-	grSAM.addQuery('title','CONTAINS','Options');
-	grSAM.query();
-	if (grSAM.next() == false)
+	// Adding Test Suite
+	var strTestSuiteSysId = '';
+	var grSATS = new GlideRecord('sys_atf_test_suite');
+	grSATS.addQuery('sys_scope','=',strAppSysId);
+	grSATS.addQuery('name','=',strAppName);
+	grSATS.query();
+	if (grSATS.next() == false)
 	{
-		Log('Adding module "Options"');
-		var grSAM = new GlideRecord('sys_app_module');
-		grSAM.initialize();
-		grSAM.title = 'Options';
-		grSAM.sys_scope = strAppSysId;
-		grSAM.link_type = 'DIRECT';
-		//grSAM.query = "system_properties_ui.do?sysparm_title=DevTools%20Options&sysparm_category=devtools";
-		GlideRecordInsert(grSAM);
-	}	
-*/	
+		Log('Adding Test Suite');
+		var grSATS = new GlideRecord('sys_atf_test_suite');
+		grSATS.initialize();
+		grSATS.name = strAppName;
+		grSATS.sys_scope = strAppSysId;
+		strTestSuiteSysId = GlideRecordInsert(grSATS);
+	}
+	else
+	{
+		strTestSuiteSysId = GetStringValue(grSATS.sys_id);
+	}
+	
 	
 
-	
 	strAppMenuSysId = GetStringValue(strAppMenuSysId);
 	var grAppMenu = false;
 	if (IsValidSysId(strAppMenuSysId) == true)
@@ -505,16 +505,59 @@
 		grAppMenu.title = strAppName;
 		GlideRecordInsert(grAppMenu);
 	}
+
 	
-	/*
+/*	
+	// Adding module "Options"
+	var grSAM = new GlideRecord('sys_app_module');
+	grSAM.addQuery('sys_scope','=',strAppSysId);
+	grSAM.addQuery('title','CONTAINS','Options');
+	grSAM.query();
+	if (grSAM.next() == false)
+	{
+		Log('Adding module "Options"');
+		var grSAM = new GlideRecord('sys_app_module');
+		grSAM.initialize();
+		grSAM.title = 'Options';
+		grSAM.sys_scope = strAppSysId;
+		grSAM.link_type = 'DIRECT';
+		//grSAM.query = "system_properties_ui.do?sysparm_title=DevTools%20Options&sysparm_category=devtools";
+		GlideRecordInsert(grSAM);
+	}	
+*/		
+	
+	
 	if (IsValidRecord(grAppMenu))
 	{
 		Log('Adding application menu modules...');
+		
+		if (IsValidSysId(strTestSuiteSysId))
+		{
+			// Adding module "Test Suite"
+			var grSAM = new GlideRecord('sys_app_module');
+			grSAM.addQuery('sys_scope','=',strAppSysId);
+			grSAM.addQuery('title','=','Test Suite');
+			grSAM.query();
+			if (grSAM.next() == false)
+			{
+				Log('Adding module "Test Suite"');
+				var grSAM = new GlideRecord('sys_app_module');
+				grSAM.initialize();
+				grSAM.order = nAppMenuOrderStart + 1000;
+				grSAM.application = grAppMenu.sys_id;
+				grSAM.title = 'Test Suite';
+				grSAM.sys_scope = strAppSysId;
+				grSAM.link_type = 'DETAIL';
+				grSAM.name = 'sys_atf_test_suite';
+				grSAM.query = 'sysparm_view_forced=true';
+				grSAM.filter = 'sys_id='+strTestSuiteSysId;
+				GlideRecordInsert(grSAM);
+			}	
+			
+		}
 			
 	}
-	*/
 		
-	
 	
 	
 	Log('Done.');
@@ -524,13 +567,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-07 15:15:09</sys_created_on>
         <sys_id>753cb10c1b6afc50577f43b5bb4bcb58</sys_id>
-        <sys_mod_count>55</sys_mod_count>
+        <sys_mod_count>58</sys_mod_count>
         <sys_name>AppBuilder</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_753cb10c1b6afc50577f43b5bb4bcb58</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-11-24 14:56:34</sys_updated_on>
+        <sys_updated_on>2021-11-26 17:51:57</sys_updated_on>
     </sys_script_include>
 </record_update>
