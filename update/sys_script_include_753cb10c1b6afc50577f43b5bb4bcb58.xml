@@ -124,31 +124,26 @@
 	}
 								
 								
-	// Adding script include "Log"
-	var grSSI = new GlideRecord('sys_script_include');
-	grSSI.addQuery('sys_scope','=',strAppSysId);
-	grSSI.addQuery('name','=','Log');
-	grSSI.query();
-	if (grSSI.next() == false)
-	{
-		Log('Adding script include "Log"');
-		var grSSI = new GlideRecord('sys_script_include');
-		grSSI.initialize();
-		grSSI.name = 'Log';
-		grSSI.description = "Produces a log output in the application log.";
-		grSSI.sys_scope = strAppSysId;
-		grSSI.access = 'public';
-		grSSI.caller_access = '1';
-		grSSI.script =
-			"function Log(strText)\n"
-			+"{\n"
-			+"\tif (AppGetProperty('log.active'))\n"
-			+"\t{\n"
-			+"\t\tx_snc_devtools.Log('"+strAppName+": '+gs.getUserName()+': '+strText);\n"
-			+"\t}\n"
-			+"}";
-		GlideRecordInsert(grSSI);
-	}
+	Log('Adding script include "Log"...');
+	RecordQueryOrInsert('sys_script_include',
+		{
+			sys_scope: strAppSysId,
+			name: 'Log'
+		},
+		{
+			description: 'Produces a log output in the application log.',
+			access: 'public',
+			caller_access: '1',
+			script:
+				"function Log(strText)\n"
+				+"{\n"
+				+"\tif (AppGetProperty('log.active'))\n"
+				+"\t{\n"
+				+"\t\tx_snc_devtools.Log('"+strAppName+": '+gs.getUserName()+': '+strText);\n"
+				+"\t}\n"
+				+"}"
+		},
+		false);
 	
 	// Adding script include "Debug"
 	var grSSI = new GlideRecord('sys_script_include');
@@ -458,6 +453,72 @@
 		strTestSuiteSysId = GetStringValue(grSATS.sys_id);
 	}
 	
+	if (IsValidSysId(strTestSuiteSysId))
+	{
+		// Adding Test "Installation"
+		var strTestInstallationSysId = RecordQueryOrInsert('sys_atf_test',
+			{
+				name: strAppName+' - Installation',
+				sys_scope: strAppSysId
+			},
+			{},
+			false);
+		if (IsValidSysId(strTestInstallationSysId) == false)
+		{
+			Log('Failed to add test "Installation".');
+		}
+		else
+		{
+			Log('Test "Installation" has been added.');
+			
+			// Adding test "Installation" to test suite
+			var strTestSuiteTestsysId = RecordQueryOrInsert('sys_atf_test_suite_test',
+				{
+					sys_scope: strAppSysId,
+					test: strTestInstallationSysId,
+					test_suite: strTestSuiteSysId,
+				},
+				{
+					order: 1
+				},
+				false);
+		}
+
+		
+		
+		
+		// Adding Test "Implementation"
+		var strTestImplementationSysId = RecordQueryOrInsert('sys_atf_test',
+			{
+				name: strAppName+' - Implementation',
+				sys_scope: strAppSysId
+			},
+			{},
+			false);
+		if (IsValidSysId(strTestImplementationSysId) == false)
+		{
+			Log('Failed to add test "Implementation".');
+		}
+		else
+		{
+			Log('Test "Implementation" has been added.');
+			
+			// Adding test "Implementation" to test suite
+			var strTestSuiteTestsysId = RecordQueryOrInsert('sys_atf_test_suite_test',
+				{
+					sys_scope: strAppSysId,
+					test: strTestImplementationSysId,
+					test_suite: strTestSuiteSysId,
+				},
+				{
+					order: 2
+				},
+				false);
+		}
+		
+	}
+	
+	
 	
 
 	strAppMenuSysId = GetStringValue(strAppMenuSysId);
@@ -529,33 +590,72 @@
 	
 	if (IsValidRecord(grAppMenu))
 	{
-		Log('Adding application menu modules...');
+		
+		if (IsValidSysId(strAppMenuSysId) == false) // Only if we are NOT a plugin that embedds itself into another menu 
+		{
+			Log('Adding module "Admin"...');
+			RecordQueryOrInsert('sys_app_module',
+				{
+					sys_scope: strAppSysId,
+					title: 'Admin'
+				},
+				{
+					order: nAppMenuOrderStart + 100,
+					application: grAppMenu.sys_id,
+					link_type: 'SEPARATOR'
+				},
+				false);
+		}		
 		
 		if (IsValidSysId(strTestSuiteSysId))
 		{
-			// Adding module "Test Suite"
-			var grSAM = new GlideRecord('sys_app_module');
-			grSAM.addQuery('sys_scope','=',strAppSysId);
-			grSAM.addQuery('title','=','Test Suite');
-			grSAM.query();
-			if (grSAM.next() == false)
-			{
-				Log('Adding module "Test Suite"');
-				var grSAM = new GlideRecord('sys_app_module');
-				grSAM.initialize();
-				grSAM.order = nAppMenuOrderStart + 1000;
-				grSAM.application = grAppMenu.sys_id;
-				grSAM.title = 'Test Suite';
-				grSAM.sys_scope = strAppSysId;
-				grSAM.link_type = 'DETAIL';
-				grSAM.name = 'sys_atf_test_suite';
-				grSAM.query = 'sysparm_view_forced=true';
-				grSAM.filter = 'sys_id='+strTestSuiteSysId;
-				GlideRecordInsert(grSAM);
-			}	
-			
+			Log('Adding module "Test Suite"...');
+			RecordQueryOrInsert('sys_app_module',
+				{
+					sys_scope: strAppSysId,
+					title: 'Test Suite'
+				},
+				{
+					order: nAppMenuOrderStart + 110,
+					application: grAppMenu.sys_id,
+					link_type: 'DETAIL',
+					name: 'sys_atf_test_suite',
+					query: 'sysparm_view_forced=true',
+					filter: 'sys_id='+strTestSuiteSysId
+				},
+				false);
 		}
-			
+
+		Log('Adding module "Log"...');
+			RecordQueryOrInsert('sys_app_module',
+				{
+					sys_scope: strAppSysId,
+					title: 'Log'
+				},
+				{
+					order: nAppMenuOrderStart + 120,
+					application: grAppMenu.sys_id,
+					link_type: 'LIST',
+					name: 'syslog_app_scope',
+					query: '&sysparm_view_forced=true&sysparm_order=sequence&sysparm_order_direction=desc',
+					filter: 'sys_created_onONLast 30 minutes@javascript:gs.beginningOfLast30Minutes()@javascript:gs.endOfLast30Minutes()^messageLIKE'+strAppName
+					// view_name: 
+				},
+				false);
+
+		
+		/*
+		
+<filter table="syslog_app_scope">
+sys_created_onONLast 30 minutes@javascript:gs.beginningOfLast30Minutes()@javascript:gs.endOfLast30Minutes()^messageLIKEDataSilos^EQ
+<item goto="false" or="false" field="sys_created_on" endquery="false" value="Last 30 minutes@javascript:gs.beginningOfLast30Minutes()@javascript:gs.endOfLast30Minutes()" operator="ON" newquery="false"/>
+<item goto="false" or="false" field="message" endquery="false" value="DataSilos" operator="LIKE" newquery="false"/>
+<item goto="false" or="false" field="" endquery="true" value="" operator="=" newquery="false"/>
+</filter>
+
+<window_name/>
+	
+	*/
 	}
 		
 	
@@ -567,13 +667,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-07 15:15:09</sys_created_on>
         <sys_id>753cb10c1b6afc50577f43b5bb4bcb58</sys_id>
-        <sys_mod_count>58</sys_mod_count>
+        <sys_mod_count>68</sys_mod_count>
         <sys_name>AppBuilder</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_753cb10c1b6afc50577f43b5bb4bcb58</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-11-26 17:51:57</sys_updated_on>
+        <sys_updated_on>2021-11-29 14:13:26</sys_updated_on>
     </sys_script_include>
 </record_update>
