@@ -7,7 +7,7 @@
         <client_callable>false</client_callable>
         <description>AppBuilder adds various application files to a scoped app.</description>
         <name>AppBuilder</name>
-        <script><![CDATA[function AppBuilder(strAppSysIdOrScopeName, strParentAppSysIdOrScopeName, nAppMenuOrderStart)
+        <script><![CDATA[function AppBuilder(strAppSysIdOrScopeName, strParentAppSysIdOrScopeName, strAppMenuSeparator, nAppMenuOrderStart)
 {
 
 	var strAppScope = '';
@@ -18,7 +18,7 @@
 		var strContext = '';
 		if (strAppScope != '')
 		{
-			strContext = +strAppScope;
+			strContext = strAppScope;
 			if (strParentAppScope != '')
 			{
 				strContext += ' (plugin of '+strParentAppScope+')';
@@ -27,6 +27,11 @@
 		}
 		x_snc_devtools.Log('DevTools AppBuilder: '+strContext+strText);
 	}
+	
+	strAppSysIdOrScopeName = GetStringValue(strAppSysIdOrScopeName);
+	strParentAppSysIdOrScopeName = GetStringValue(strParentAppSysIdOrScopeName);
+	strAppMenuSeparator = GetStringValue(strAppMenuSeparator);
+	nAppMenuOrderStart = GetIntegerValue(nAppMenuOrderStart);
 		
 	var strAppSysId = '';
 	var grApp = false;
@@ -73,13 +78,12 @@
 		grParentApp = new GlideRecord('sys_app');
 		grParentApp.addQuery('scope','=',strParentAppSysIdOrScopeName);
 		grParentApp.query();
-		if (grParentApp.getRowCount() != 1)
+		if (grParentApp.getRowCount() == 1)
 		{
-			Log('Error: Parent app not found with scope name: '+strParentAppScope);
-			return false;
+			Log('Parent app has been identified.');
+			grParentApp.next();
+			strParentAppSysId = GetStringValue(grParentApp.sys_id); 
 		}
-		grParentApp.next();
-		strParentAppSysId = GetStringValue(grParentApp.sys_id); 
 	}
 	else
 	{
@@ -232,30 +236,24 @@
 
 
 
+	Log('Adding script include "AppSetProperty"...');
+	RecordQueryOrInsert('sys_script_include',
+		{
+			sys_scope: strAppSysId,
+			name: 'AppSetProperty'
+		},
+		{
+			description: 'Sets a system property of this application.',
+			access: 'public',
+			caller_access: '1',
+			script:
+				"function AppSetProperty(strSuffix,vValue)\n"
+				+"{\n"
+				+"\treturn x_snc_devtools.SetProperty('"+strAppScope+".'+strSuffix,vValue);\n"
+				+"}\n"
+		},
+		false);		
 	
-	
-	// Adding script include "AppSetProperty"
-	var grSSI = new GlideRecord('sys_script_include');
-	grSSI.addQuery('sys_scope','=',strAppSysId);
-	grSSI.addQuery('name','=','AppSetProperty');
-	grSSI.query();
-	if (grSSI.next() == false)
-	{
-		Log('Adding script include "AppSetProperty"');
-		var grSSI = new GlideRecord('sys_script_include');
-		grSSI.initialize();
-		grSSI.name = 'AppSetProperty';
-		grSSI.description = "Sets a system property of this application.";
-		grSSI.sys_scope = strAppSysId;
-		grSSI.access = 'public';
-		grSSI.caller_access = '1';
-		grSSI.script =
-			"function AppSetProperty(strSuffix,vValue)\n"
-			+"{\n"
-			+"\treturn x_snc_devtools.SetProperty('"+strAppScope+".'+strSuffix,vValue);\n"
-			+"}\n";
-		GlideRecordInsert(grSSI);
-	}	
 	
 	
 	// Adding script include "AppGetDependencies"
@@ -474,25 +472,19 @@
 	}	
 		
 	
-	// Adding Test Suite
-	var strTestSuiteSysId = '';
-	var grSATS = new GlideRecord('sys_atf_test_suite');
-	grSATS.addQuery('sys_scope','=',strAppSysId);
-	grSATS.addQuery('name','=',strAppName);
-	grSATS.query();
-	if (grSATS.next() == false)
-	{
-		Log('Adding Test Suite');
-		var grSATS = new GlideRecord('sys_atf_test_suite');
-		grSATS.initialize();
-		grSATS.name = strAppName;
-		grSATS.sys_scope = strAppSysId;
-		strTestSuiteSysId = GlideRecordInsert(grSATS);
-	}
-	else
-	{
-		strTestSuiteSysId = GetStringValue(grSATS.sys_id);
-	}
+	
+	
+	
+	Log('Adding test suite...');
+	var strTestSuiteSysId = RecordQueryOrInsert('sys_atf_test_suite',
+		{
+			sys_scope: strAppSysId,
+			name: strAppName
+		},
+		{
+		},
+		false);		
+
 	
 	if (IsValidSysId(strTestSuiteSysId))
 	{
@@ -560,53 +552,49 @@
 	}
 	
 	
+	var strAppMenuSysId = '';
 	
-
-	strAppMenuSysId = GetStringValue(strAppMenuSysId);
-	var grAppMenu = false;
-	if (IsValidSysId(strAppMenuSysId) == true)
+	if (strParentAppScope == '') // The default: a standalone application
 	{
-		Log('An application menu has been specified...');
-		grAppMenu = GetRecord('sys_app_application',strAppMenuSysId);
-		if (grAppMenu == false)
-		{
-			Log('Given application menu was not found!');
-		}
+		Log('Adding application menu...');
+		strAppMenuSysId = RecordQueryOrInsert('sys_app_application',
+			{
+				sys_scope: strAppSysId,
+				device_type: 'browser',
+				title: strAppName
+			},
+			{
+				active: true,
+				category: 'e0355b31ef303000a61d5a3615c0fb78', // "Custom Applications"
+				hint: grApp.short_description,
+				description: grApp.short_description
+			},
+			false);
+		
+		
 	}
-	else
+	else // A plugin! The parent app should have it's own application menu, and the app is embedding itself into it
 	{
-		Log('No application menu has been specified, checking if a menu exists already...');
-
-		grAppMenu = new GlideRecord('sys_app_application');
-		grAppMenu.addQuery('sys_scope','=',strAppSysId);
+		Log('Searching for parent app\'s application menu...');
+		var grAppMenu = new GlideRecord('sys_app_application');
+		grAppMenu.addQuery('sys_scope','=',strParentAppSysId);
 		grAppMenu.addQuery('device_type','=','browser');
-		grAppMenu.addQuery('title','=',strAppName);
+		grAppMenu.addQuery('title','=',strParentAppName);
 		grAppMenu.query();
 		if (grAppMenu.next() == true)
 		{
-			Log('Application menu exists already.');
+			strAppMenuSysId = GetStringValue(grAppMenu.sys_id);
 		}
-		else
-		{
-			Log('No application menu exists.');
-			grAppMenu = false;
-		}
-		
 	}
-	if (grAppMenu == false)
+	
+	if (IsValidSysId(strAppMenuSysId) == false)
 	{
-		Log('Creating a new application menu...');
-		grAppMenu = new GlideRecord('sys_app_application');
-		grAppMenu.initialize();
-		grAppMenu.active = true;
-		grAppMenu.category = 'e0355b31ef303000a61d5a3615c0fb78'; // "Custom Applications"
-		grAppMenu.device_type = 'browser';
-		grAppMenu.hint = grApp.short_description;
-		grAppMenu.description = grApp.short_description;
-		grAppMenu.sys_scope = strAppSysId;
-		grAppMenu.title = strAppName;
-		GlideRecordInsert(grAppMenu);
+		Log('No application menu is available. No application menu modules will be added!');
 	}
+	else
+	{
+		
+
 
 	
 /*	
@@ -627,26 +615,43 @@
 		GlideRecordInsert(grSAM);
 	}	
 */		
-	
-	
-	if (IsValidRecord(grAppMenu))
-	{
-		
-		if (IsValidSysId(strAppMenuSysId) == false) // Only if we are NOT a plugin that embedds itself into another menu 
+
+		if (strParentAppScope == '') // Only if we are NOT a plugin that embedds itself into another menu 
 		{
 			Log('Adding module "Admin"...');
 			RecordQueryOrInsert('sys_app_module',
 				{
 					sys_scope: strAppSysId,
+					application: strAppMenuSysId,
 					title: 'Admin'
 				},
 				{
 					order: nAppMenuOrderStart + 100,
-					application: grAppMenu.sys_id,
 					link_type: 'SEPARATOR'
 				},
 				false);
-		}		
+		}
+		else // The app is a plugin
+		{
+			if (strAppMenuSeparator == '')
+			{
+				strAppMenuSeparator = strAppName;
+			}
+			Log('Adding module "'+strAppMenuSeparator+'"...');
+			RecordQueryOrInsert('sys_app_module',
+				{
+					sys_scope: strAppSysId,
+					application: strAppMenuSysId,
+					title: strAppMenuSeparator + 100
+				},
+				{
+					order: nAppMenuOrderStart,
+					link_type: 'SEPARATOR'
+				},
+				false);
+			
+			
+		}
 		
 		if (IsValidSysId(strTestSuiteSysId))
 		{
@@ -654,11 +659,12 @@
 			RecordQueryOrInsert('sys_app_module',
 				{
 					sys_scope: strAppSysId,
+					application: strAppMenuSysId,	
 					title: 'Test Suite'
 				},
 				{
 					order: nAppMenuOrderStart + 110,
-					application: grAppMenu.sys_id,
+					application: strAppMenuSysId,
 					link_type: 'DETAIL',
 					name: 'sys_atf_test_suite',
 					query: 'sysparm_view_forced=true',
@@ -667,7 +673,9 @@
 				false);
 		}
 
-		Log('Adding module "Log"...');
+		if (strParentAppScope == '') // Only if we are NOT a plugin that embedds itself into another menu 
+		{
+			Log('Adding module "Log"...');
 			RecordQueryOrInsert('sys_app_module',
 				{
 					sys_scope: strAppSysId,
@@ -675,7 +683,6 @@
 				},
 				{
 					order: nAppMenuOrderStart + 120,
-					application: grAppMenu.sys_id,
 					link_type: 'LIST',
 					name: 'syslog_app_scope',
 					query: '&sysparm_view_forced=true&sysparm_order=sequence&sysparm_order_direction=desc',
@@ -683,20 +690,8 @@
 					// view_name: 
 				},
 				false);
+		}
 
-		
-		/*
-		
-<filter table="syslog_app_scope">
-sys_created_onONLast 30 minutes@javascript:gs.beginningOfLast30Minutes()@javascript:gs.endOfLast30Minutes()^messageLIKEDataSilos^EQ
-<item goto="false" or="false" field="sys_created_on" endquery="false" value="Last 30 minutes@javascript:gs.beginningOfLast30Minutes()@javascript:gs.endOfLast30Minutes()" operator="ON" newquery="false"/>
-<item goto="false" or="false" field="message" endquery="false" value="DataSilos" operator="LIKE" newquery="false"/>
-<item goto="false" or="false" field="" endquery="true" value="" operator="=" newquery="false"/>
-</filter>
-
-<window_name/>
-	
-	*/
 	}
 		
 	
@@ -708,13 +703,13 @@ sys_created_onONLast 30 minutes@javascript:gs.beginningOfLast30Minutes()@javascr
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-07 15:15:09</sys_created_on>
         <sys_id>753cb10c1b6afc50577f43b5bb4bcb58</sys_id>
-        <sys_mod_count>71</sys_mod_count>
+        <sys_mod_count>77</sys_mod_count>
         <sys_name>AppBuilder</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_753cb10c1b6afc50577f43b5bb4bcb58</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-11-29 14:59:55</sys_updated_on>
+        <sys_updated_on>2021-11-29 15:40:05</sys_updated_on>
     </sys_script_include>
 </record_update>
