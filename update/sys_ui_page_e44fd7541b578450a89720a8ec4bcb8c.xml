@@ -108,6 +108,7 @@ gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData
 		<li>Added function CurrencyConversion() to convert a monetary amount from one currency to another.</li>
 		<li>Added function GetFloatValue() to convert a given value into a floating point number.</li>
 		<li>Added GetProperty() to receive the value of a system property using its defined type.</li>
+		<li>Added GetDateNow() to return the current date (UTC) as an ISO-formatted string.</li>
 		<li>Added the global "Save" button and the system property x_snc_devtools.ui.save_button to control its visibility.</li>
 		<li>Function TestDataAPI::GetAllUsers() now also provides the groups of a user.</li>
 		<li>Function TestDataAPI::GetAllGroups() now also provides the users of a group.</li>
@@ -578,13 +579,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>607</sys_mod_count>
+        <sys_mod_count>608</sys_mod_count>
         <sys_name>start</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-11-29 16:31:41</sys_updated_on>
+        <sys_updated_on>2021-11-30 08:46:28</sys_updated_on>
     </sys_ui_page>
 </record_update>
