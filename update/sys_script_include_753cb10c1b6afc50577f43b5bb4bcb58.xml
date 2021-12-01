@@ -7,15 +7,33 @@
         <client_callable>false</client_callable>
         <description>AppBuilder adds various application files to a scoped app.</description>
         <name>AppBuilder</name>
-        <script><![CDATA[function AppBuilder(strAppSysIdOrScopeName, strAppMenuSysId)
+        <script><![CDATA[function AppBuilder(strAppSysIdOrScopeName, strParentAppSysIdOrScopeName, strAppMenuSeparator, nAppMenuOrderStart)
 {
+
+	var strAppScope = '';
+	var strParentAppScope = '';
+	
 	function Log(strText)
 	{
-		x_snc_devtools.Log('DevTools AppBuilder: '+strText);
+		var strContext = '';
+		if (strAppScope != '')
+		{
+			strContext = strAppScope;
+			if (strParentAppScope != '')
+			{
+				strContext += ' (plugin of '+strParentAppScope+')';
+			}
+			strContext += ': ';
+		}
+		x_snc_devtools.Log('DevTools AppBuilder: '+strContext+strText);
 	}
+	
+	strAppSysIdOrScopeName = GetStringValue(strAppSysIdOrScopeName);
+	strParentAppSysIdOrScopeName = GetStringValue(strParentAppSysIdOrScopeName);
+	strAppMenuSeparator = GetStringValue(strAppMenuSeparator);
+	nAppMenuOrderStart = GetIntegerValue(nAppMenuOrderStart);
 		
 	var strAppSysId = '';
-	var strAppScope = '';
 	var grApp = false;
 	
 	if (IsValidSysId(strAppSysIdOrScopeName) == false)
@@ -30,7 +48,7 @@
 			return false;
 		}
 		grApp.next();
-		strAppSysId = grApp.sys_id; 
+		strAppSysId = GetStringValue(grApp.sys_id); 
 	}
 	else
 	{
@@ -50,9 +68,40 @@
 		return false;
 	}
 	
-	var strAppName = GetAppName(strAppSysId);
+
+	var strParentAppSysId = '';
+	var grParentApp = false;
 	
-	Log('Working on app "'+strAppName+'" ('+strAppScope+')');
+	if (IsValidSysId(strParentAppSysIdOrScopeName) == false)
+	{
+		strParentAppScope = strParentAppSysIdOrScopeName;
+		grParentApp = new GlideRecord('sys_app');
+		grParentApp.addQuery('scope','=',strParentAppSysIdOrScopeName);
+		grParentApp.query();
+		if (grParentApp.getRowCount() == 1)
+		{
+			Log('Parent app has been identified.');
+			grParentApp.next();
+			strParentAppSysId = GetStringValue(grParentApp.sys_id); 
+		}
+	}
+	else
+	{
+		strParentAppSysId = strParentAppSysIdOrScopeName;
+		grParentApp = GetRecord('sys_app',strParentAppSysId);
+		if (grParentApp == true)
+		{
+			strParentAppScope = GetStringValue(grParentApp.scope);
+			Log('Parent app is identified.');
+		}
+	}	
+	
+	
+	var strAppName = GetAppName(strAppSysId);
+	var strParentAppName = GetAppName(strParentAppSysId);
+	var nAppMenuOrderStart = GetIntegerValue(nAppMenuOrderStart);
+	
+	Log('Working on app "'+strAppName+'"');
 	
 	var grAppDevTools = GetRecord('sys_app','d689f6901bd38450a89720a8ec4bcbfd');
 	var strDevToolsVersion = '';
@@ -60,174 +109,151 @@
 	{
 		strDevToolsVersion = GetStringValue(grAppDevTools.version);
 	}
-	
-	// Adding the "active" system property
-	var grSP = new GlideRecord('sys_properties');
-	grSP.addQuery('sys_scope','=',strAppSysId);
-	grSP.addQuery('name','=',strAppScope+'.active');
-	grSP.query();
-	if (grSP.next() == false)
-	{
-		Log('Adding system property "active"');
-		var grSP = new GlideRecord('sys_properties');
-		grSP.initialize();
-		grSP.suffix = 'active';
-		grSP.name = strAppScope+'.active';
-		grSP.description = 'Controls if the '+strAppName+' application is active.';
-		grSP.sys_scope = strAppSysId;
-		grSP.type = 'boolean';
-		grSP.value = 'true';
-		GlideRecordInsert(grSP);
-	}
-	
-	// Adding the "log.active" system property
-	var grSP = new GlideRecord('sys_properties');
-	grSP.addQuery('sys_scope','=',strAppSysId);
-	grSP.addQuery('name','=',strAppScope+'.log.active');
-	grSP.query();
-	if (grSP.next() == false)
-	{
-		Log('Adding system property "log.active"');
-		var grSP = new GlideRecord('sys_properties');
-		grSP.initialize();
-		grSP.suffix = 'log.active';
-		grSP.name = strAppScope+'.log.active';
-		grSP.description = 'Controls if the '+strAppName+' application produces log output.';
-		grSP.sys_scope = strAppSysId;
-		grSP.type = 'boolean';
-		grSP.value = 'true';
-		GlideRecordInsert(grSP);
-	}	
 
-	// Adding script include "IsActive"
-	var grSSI = new GlideRecord('sys_script_include');
-	grSSI.addQuery('sys_scope','=',strAppSysId);
-	grSSI.addQuery('name','=','IsActive');
-	grSSI.query();
-	if (grSSI.next() == false)
+	/*
+	var strParentScriptScope = 'x_snc_devtools';
+	if (strParentAppScope != '')
 	{
-		Log('Adding script include "IsActive"');
-		var grSSI = new GlideRecord('sys_script_include');
-		grSSI.initialize();
-		grSSI.name = 'IsActive';
-		grSSI.description = "Returns if the application is active.";
-		grSSI.sys_scope = strAppSysId;
-		grSSI.access = 'public';
-		grSSI.caller_access = '1';
-		grSSI.script =
-			"function IsActive()\n"
-			+"{\n"
-			+"\treturn x_snc_devtools.GetBoolValue(gs.getProperty('"+strAppScope+".active'));\n"
-			+"}";
-		GlideRecordInsert(grSSI);
+		strParentScriptScope = strParentAppScope;
 	}
-								
-								
-	// Adding script include "Log"
-	var grSSI = new GlideRecord('sys_script_include');
-	grSSI.addQuery('sys_scope','=',strAppSysId);
-	grSSI.addQuery('name','=','Log');
-	grSSI.query();
-	if (grSSI.next() == false)
-	{
-		Log('Adding script include "Log"');
-		var grSSI = new GlideRecord('sys_script_include');
-		grSSI.initialize();
-		grSSI.name = 'Log';
-		grSSI.description = "Produces a log output in the application log.";
-		grSSI.sys_scope = strAppSysId;
-		grSSI.access = 'public';
-		grSSI.caller_access = '1';
-		grSSI.script =
-			"function Log(strText)\n"
-			+"{\n"
-			+"\tvar GetBoolValue = x_snc_devtools.GetBoolValue;\n"
-			+"\t\n"
-			+"\tif (GetBoolValue(AppGetProperty('log.active')))\n"
-			+"\t{\n"
-			+"\t\tx_snc_devtools.Log('"+strAppName+": '+gs.getUserName()+': '+strText);\n"
-			+"\t}\n"
-			+"}";
-		GlideRecordInsert(grSSI);
-	}
+	*/
 	
-	// Adding script include "Debug"
-	var grSSI = new GlideRecord('sys_script_include');
-	grSSI.addQuery('sys_scope','=',strAppSysId);
-	grSSI.addQuery('name','=','Debug');
-	grSSI.query();
-	if (grSSI.next() == false)
-	{
-		Log('Adding script include "Debug"');
-		var grSSI = new GlideRecord('sys_script_include');
-		grSSI.initialize();
-		grSSI.name = 'Debug';
-		grSSI.description = "Produces a log output in the application log using the DevTools Debug function.";
-		grSSI.sys_scope = strAppSysId;
-		grSSI.access = 'public';
-		grSSI.caller_access = '1';
-		grSSI.script =
-			"function Debug(strText)\n"
-			+"{\n"
-			+"\tx_snc_devtools.Debug('"+strAppName+": '+gs.getUserName()+': '+strText);\n"
-			+"}";
-		GlideRecordInsert(grSSI);
-	}	
+	
+	
+	Log('Adding system property "active"');
+	RecordQueryOrInsert('sys_properties',
+		{
+			sys_scope: strAppSysId,
+			name: strAppScope+'.active'	
+		},
+		{
+			suffix: 'active',
+			description: 'Controls if the '+strAppName+' application is active.',
+			type: 'boolean',
+			value: 'true'
+		},
+		false);
+	
+	
+	Log('Adding system property "log.active"');
+	RecordQueryOrInsert('sys_properties',
+		{
+			sys_scope: strAppSysId,
+			name: strAppScope+'.log.active'	
+		},
+		{
+			suffix: 'active',
+			description: 'Controls if the '+strAppName+' application produces log output.',
+			type: 'boolean',
+			value: 'true'
+		},
+		false);	
 	
 
-	// Adding script include "AppGetProperty"
-	var grSSI = new GlideRecord('sys_script_include');
-	grSSI.addQuery('sys_scope','=',strAppSysId);
-	grSSI.addQuery('name','=','AppGetProperty');
-	grSSI.query();
-	if (grSSI.next() == false)
-	{
-		Log('Adding script include "AppGetProperty"');
-		var grSSI = new GlideRecord('sys_script_include');
-		grSSI.initialize();
-		grSSI.name = 'AppGetProperty';
-		grSSI.description = "Gets a system property of this application.";
-		grSSI.sys_scope = strAppSysId;
-		grSSI.access = 'public';
-		grSSI.caller_access = '1';
-		grSSI.script =
-			"function AppGetProperty(strSuffix)\n"
-			+"{\n"
-			+"\tvar strName = '"+strAppScope+".'+strSuffix;\n"
-			+"\treturn gs.getProperty(strName);\n"
-			+"}\n";
-		GlideRecordInsert(grSSI);
-	}	
 	
 	
-	// Adding script include "AppSetProperty"
-	var grSSI = new GlideRecord('sys_script_include');
-	grSSI.addQuery('sys_scope','=',strAppSysId);
-	grSSI.addQuery('name','=','AppSetProperty');
-	grSSI.query();
-	if (grSSI.next() == false)
-	{
-		Log('Adding script include "AppSetProperty"');
-		var grSSI = new GlideRecord('sys_script_include');
-		grSSI.initialize();
-		grSSI.name = 'AppSetProperty';
-		grSSI.description = "Sets a system property of this application.";
-		grSSI.sys_scope = strAppSysId;
-		grSSI.access = 'public';
-		grSSI.caller_access = '1';
-		grSSI.script =
-			"function AppSetProperty(strSuffix,vValue)\n"
-			+"{\n"
-			+"\tvar strName = '"+strAppScope+".'+strSuffix;\n"
-			+"\tif (IsProperty(strName) == false)\n"
-			+"\t{\n"
-			+"\t\treturn false;\n"
-			+"\t}\n"
-			+"\tgs.setProperty(strName,vValue);\n"
-			+"\treturn true;\n"
-			+"}\n";
-		GlideRecordInsert(grSSI);
-	}	
+	
+	Log('Adding script include "AppGetProperty"...');
+	RecordQueryOrInsert('sys_script_include',
+		{
+			sys_scope: strAppSysId,
+			name: 'AppGetProperty'
+		},
+		{
+			description: 'Gets a system property of this application.',
+			access: 'public',
+			caller_access: '1',
+			script:
+				"function AppGetProperty(strSuffix)\n"
+				+"{\n"
+				+"\treturn x_snc_devtools.GetProperty('"+strAppScope+".'+strSuffix);\n"
+				+"}\n"
+		},
+		false);	
+
+
+	Log('Adding script include "IsActive"...');
+	RecordQueryOrInsert('sys_script_include',
+		{
+			sys_scope: strAppSysId,
+			name: 'IsActive'
+		},
+		{
+			description: 'Returns true if the application is active, otherwise false.',
+			access: 'public',
+			caller_access: '1',
+			script:
+				"function IsActive()\n"
+				+"{\n"
+				+"\treturn AppGetProperty('"+strAppScope+".active'));\n"
+				+"}"
+		},
+		false);		
+	
+	
+
+	
+	Log('Adding script include "Log"...');
+	RecordQueryOrInsert('sys_script_include',
+		{
+			sys_scope: strAppSysId,
+			name: 'Log'
+		},
+		{
+			description: 'Produces a log output in the application log.',
+			access: 'public',
+			caller_access: '1',
+			script:
+				"function Log(strText)\n"
+				+"{\n"
+				+"\tif (AppGetProperty('log.active'))\n"
+				+"\t{\n"
+				+"\t\tx_snc_devtools.Log('"+strAppName+": '+gs.getUserName()+': '+strText);\n"
+				+"\t}\n"
+				+"}"
+		},
+		false);
+	
+	
+	Log('Adding script include "Debug"...');
+	RecordQueryOrInsert('sys_script_include',
+		{
+			sys_scope: strAppSysId,
+			name: 'Debug'
+		},
+		{
+			description: 'Produces a log output in the application log using the DevTools Debug function.',
+			access: 'public',
+			caller_access: '1',
+			script:
+				"function Debug(strText)\n"
+				+"{\n"
+				+"\tx_snc_devtools.Debug('"+strAppName+": '+gs.getUserName()+': '+strText);\n"
+				+"}"
+		},
+		false);	
+	
+
+
+
+	Log('Adding script include "AppSetProperty"...');
+	RecordQueryOrInsert('sys_script_include',
+		{
+			sys_scope: strAppSysId,
+			name: 'AppSetProperty'
+		},
+		{
+			description: 'Sets a system property of this application.',
+			access: 'public',
+			caller_access: '1',
+			script:
+				"function AppSetProperty(strSuffix,vValue)\n"
+				+"{\n"
+				+"\treturn x_snc_devtools.SetProperty('"+strAppScope+".'+strSuffix,vValue);\n"
+				+"}\n"
+		},
+		false);		
+	
 	
 	
 	// Adding script include "AppGetDependencies"
@@ -448,6 +474,129 @@
 	
 	
 	
+	
+	Log('Adding test suite...');
+	var strTestSuiteSysId = RecordQueryOrInsert('sys_atf_test_suite',
+		{
+			sys_scope: strAppSysId,
+			name: strAppName
+		},
+		{
+		},
+		false);		
+
+	
+	if (IsValidSysId(strTestSuiteSysId))
+	{
+		// Adding Test "Installation"
+		var strTestInstallationSysId = RecordQueryOrInsert('sys_atf_test',
+			{
+				name: strAppName+' - Installation',
+				sys_scope: strAppSysId
+			},
+			{},
+			false);
+		if (IsValidSysId(strTestInstallationSysId) == false)
+		{
+			Log('Failed to add test "Installation".');
+		}
+		else
+		{
+			Log('Test "Installation" has been added.');
+			
+			// Adding test "Installation" to test suite
+			var strTestSuiteTestsysId = RecordQueryOrInsert('sys_atf_test_suite_test',
+				{
+					sys_scope: strAppSysId,
+					test: strTestInstallationSysId,
+					test_suite: strTestSuiteSysId,
+				},
+				{
+					order: 1
+				},
+				false);
+		}
+
+		
+		
+		
+		// Adding Test "Implementation"
+		var strTestImplementationSysId = RecordQueryOrInsert('sys_atf_test',
+			{
+				name: strAppName+' - Implementation',
+				sys_scope: strAppSysId
+			},
+			{},
+			false);
+		if (IsValidSysId(strTestImplementationSysId) == false)
+		{
+			Log('Failed to add test "Implementation".');
+		}
+		else
+		{
+			Log('Test "Implementation" has been added.');
+			
+			// Adding test "Implementation" to test suite
+			var strTestSuiteTestsysId = RecordQueryOrInsert('sys_atf_test_suite_test',
+				{
+					sys_scope: strAppSysId,
+					test: strTestImplementationSysId,
+					test_suite: strTestSuiteSysId,
+				},
+				{
+					order: 2
+				},
+				false);
+		}
+		
+	}
+	
+	
+	var strAppMenuSysId = '';
+	
+	if (strParentAppScope == '') // The default: a standalone application
+	{
+		Log('Adding application menu...');
+		strAppMenuSysId = RecordQueryOrInsert('sys_app_application',
+			{
+				sys_scope: strAppSysId,
+				device_type: 'browser',
+				title: strAppName
+			},
+			{
+				active: true,
+				category: 'e0355b31ef303000a61d5a3615c0fb78', // "Custom Applications"
+				hint: grApp.short_description,
+				description: grApp.short_description
+			},
+			false);
+		
+		
+	}
+	else // A plugin! The parent app should have it's own application menu, and the app is embedding itself into it
+	{
+		Log('Searching for parent app\'s application menu...');
+		var grAppMenu = new GlideRecord('sys_app_application');
+		grAppMenu.addQuery('sys_scope','=',strParentAppSysId);
+		grAppMenu.addQuery('device_type','=','browser');
+		grAppMenu.addQuery('title','=',strParentAppName);
+		grAppMenu.query();
+		if (grAppMenu.next() == true)
+		{
+			strAppMenuSysId = GetStringValue(grAppMenu.sys_id);
+		}
+	}
+	
+	if (IsValidSysId(strAppMenuSysId) == false)
+	{
+		Log('No application menu is available. No application menu modules will be added!');
+	}
+	else
+	{
+		
+
+
+	
 /*	
 	// Adding module "Options"
 	var grSAM = new GlideRecord('sys_app_module');
@@ -465,65 +614,89 @@
 		//grSAM.query = "system_properties_ui.do?sysparm_title=DevTools%20Options&sysparm_category=devtools";
 		GlideRecordInsert(grSAM);
 	}	
-*/	
-	
+*/		
 
-	
-	strAppMenuSysId = GetStringValue(strAppMenuSysId);
-	var grAppMenu = false;
-	if (IsValidSysId(strAppMenuSysId) == true)
-	{
-		Log('An application menu has been specified...');
-		grAppMenu = GetRecord('sys_app_application',strAppMenuSysId);
-		if (grAppMenu == false)
-		{
-			Log('Given application menu was not found!');
-		}
-	}
-	else
-	{
-		Log('No application menu has been specified, checking if a menu exists already...');
 
-		grAppMenu = new GlideRecord('sys_app_application');
-		grAppMenu.addQuery('sys_scope','=',strAppSysId);
-		grAppMenu.addQuery('device_type','=','browser');
-		grAppMenu.addQuery('title','=',strAppName);
-		grAppMenu.query();
-		if (grAppMenu.next() == true)
+		if (strParentAppScope == '') // Only if we are NOT a plugin that embedds itself into another menu 
 		{
-			Log('Application menu exists already.');
+			if (strAppMenuSeparator != '') // Only add the separator if explicitly requested!
+			{	
+				Log('Adding module "'+strAppMenuSeparator+'"...');
+				RecordQueryOrInsert('sys_app_module',
+					{
+						sys_scope: strAppSysId,
+						application: strAppMenuSysId,
+						title: strAppMenuSeparator
+					},
+					{
+						order: nAppMenuOrderStart + 100,
+						link_type: 'SEPARATOR'
+					},
+					false);
+			}	
 		}
-		else
+		else // The app is a plugin
 		{
-			Log('No application menu exists.');
-			grAppMenu = false;
+			if (strAppMenuSeparator == '')
+			{
+				strAppMenuSeparator = strAppName;
+			}
+			Log('Adding module "'+strAppMenuSeparator+'"...');
+			RecordQueryOrInsert('sys_app_module',
+				{
+					sys_scope: strAppSysId,
+					application: strAppMenuSysId,
+					title: strAppMenuSeparator 
+				},
+				{
+					order: nAppMenuOrderStart + 100,
+					link_type: 'SEPARATOR'
+				},
+				false);
 		}
 		
+		if (IsValidSysId(strTestSuiteSysId))
+		{
+			Log('Adding module "Test Suite"...');
+			RecordQueryOrInsert('sys_app_module',
+				{
+					sys_scope: strAppSysId,
+					application: strAppMenuSysId,	
+					title: 'Test Suite'
+				},
+				{
+					order: nAppMenuOrderStart + 110,
+					application: strAppMenuSysId,
+					link_type: 'DETAIL',
+					name: 'sys_atf_test_suite',
+					view_name: 'DevTools',
+					query: 'sysparm_view_forced=true',
+					filter: 'sys_id='+strTestSuiteSysId
+				},
+				false);
+		}
+
+		if (strParentAppScope == '') // Only if we are NOT a plugin that embedds itself into another menu 
+		{
+			Log('Adding module "Log"...');
+			RecordQueryOrInsert('sys_app_module',
+				{
+					sys_scope: strAppSysId,
+					title: 'Log'
+				},
+				{
+					order: nAppMenuOrderStart + 120,
+					link_type: 'LIST',
+					name: 'syslog_app_scope',
+					query: '&sysparm_view_forced=true&sysparm_order=sequence&sysparm_order_direction=desc',
+					filter: 'sys_created_onONLast 30 minutes@javascript:gs.beginningOfLast30Minutes()@javascript:gs.endOfLast30Minutes()^messageLIKE'+strAppName
+					// view_name: 
+				},
+				false);
+		}
+
 	}
-	if (grAppMenu == false)
-	{
-		Log('Creating a new application menu...');
-		grAppMenu = new GlideRecord('sys_app_application');
-		grAppMenu.initialize();
-		grAppMenu.active = true;
-		grAppMenu.category = 'e0355b31ef303000a61d5a3615c0fb78'; // "Custom Applications"
-		grAppMenu.device_type = 'browser';
-		grAppMenu.hint = grApp.short_description;
-		grAppMenu.description = grApp.short_description;
-		grAppMenu.sys_scope = strAppSysId;
-		grAppMenu.title = strAppName;
-		GlideRecordInsert(grAppMenu);
-	}
-	
-	/*
-	if (IsValidRecord(grAppMenu))
-	{
-		Log('Adding application menu modules...');
-			
-	}
-	*/
 		
-	
 	
 	
 	Log('Done.');
@@ -533,13 +706,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-07 15:15:09</sys_created_on>
         <sys_id>753cb10c1b6afc50577f43b5bb4bcb58</sys_id>
-        <sys_mod_count>52</sys_mod_count>
+        <sys_mod_count>80</sys_mod_count>
         <sys_name>AppBuilder</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_753cb10c1b6afc50577f43b5bb4bcb58</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-11-18 09:51:52</sys_updated_on>
+        <sys_updated_on>2021-11-30 09:01:27</sys_updated_on>
     </sys_script_include>
 </record_update>

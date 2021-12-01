@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="syntax_editor_macro">
+    <syntax_editor_macro action="INSERT_OR_UPDATE">
+        <comments>This template creates the code necessary to access the GetProperty() function contained in the GetProperty script include.</comments>
+        <name>GetProperty</name>
+        <sys_class_name>syntax_editor_macro</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-11-24 09:23:29</sys_created_on>
+        <sys_id>8f88de851b4c4510edf3642aab4bcb30</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>GetProperty</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>syntax_editor_macro_8f88de851b4c4510edf3642aab4bcb30</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-11-24 09:23:29</sys_updated_on>
+        <text>var GetProperty = x_snc_devtools.GetProperty;&#13;
+GetProperty('x_snc_devtools.debug.log'); </text>
+    </syntax_editor_macro>
+</record_update>

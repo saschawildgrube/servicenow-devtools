@@ -15,21 +15,6 @@ TestDataAPI.prototype =
 		this.SetPrefix(strPrefix);
 	},
 	
-	Log:function(strContext, vValue)
-	{
-		Log('TestDataAPI: '+strContext+': '+GetStringValue(vValue));
-	},
-
-	Debug:function(strContext, vValue)
-	{
-		Debug('TestDataAPI: '+strContext+': '+GetStringValue(vValue));
-	},
-	
-	DebugAllData:function(strContext)
-	{
-		this.Debug(strContext,RenderValue(this.GetAllData()));
-	},
-	
 	SetPrefix:function(strPrefix)
 	{
 		this.m_strPrefix = ''+strPrefix;
@@ -61,6 +46,8 @@ TestDataAPI.prototype =
 		result.sc_request = this.GetAllRequests();
 		result.sc_req_item = this.GetAllRequestItems();
 		result.sc_task = this.GetAllRequestTasks();
+		
+		result.cmdb_ci = this.GetAllConfigurationItems();
 		
 		result.sys_db_view = this.GetAllDatabaseViews();
 		
@@ -170,6 +157,19 @@ TestDataAPI.prototype =
 		oValues[strNameColumn] = strPrefix+strName;
 		return RecordInsert(strTable,oValues);
 	},
+
+	GetRecord:function(strTable,strNameColumn,strName)
+	{
+		var query = {};
+		query[strNameColumn] = this.GetPrefix()+strName;
+		var grRecord = RecordQuery(strTable,query);
+		if (IsValidRecord(grRecord) == false)
+		{
+			return false;
+		}
+		return GetStringValue(grRecord.sys_id);
+	},
+
 	
 	CreateTestItem:function(strName, strValue, strProcessedDateTime)
 	{
@@ -191,6 +191,10 @@ TestDataAPI.prototype =
 		return this.GetAllRecordsFromTable('x_snc_devtools_test','name');
 	},
 	
+	GetTestItem: function(strName)
+	{
+		return this.GetRecord('x_snc_devtools_test','name',strName);
+	},
 	
 	CreateUser:function(strName, aRoles, bTechnical, strEmail)
 	{
@@ -273,6 +277,7 @@ TestDataAPI.prototype =
 		while (grUser.next())
 		{
 			var oUser = Clone(grUser);
+			
 			var aRoles = [];
 			var grUserHasRole = new GlideRecord('sys_user_has_role');
 			grUserHasRole.addQuery('user','=',grUser.sys_id);
@@ -287,9 +292,31 @@ TestDataAPI.prototype =
 			}
 			aRoles = aRoles.sort();
 			oUser['_roles'] = aRoles;
+			
+			var aGroups = [];
+			var grGroupMember = new GlideRecord('sys_user_grmember');
+			grGroupMember.addQuery('user','=',grUser.sys_id);
+			grGroupMember.query();
+			while (grGroupMember.next())
+			{
+				var grGroup = new GlideRecord('sys_user_group');
+				if (grGroup.get(grGroupMember.group))
+				{
+					aGroups.push(grGroup.name);
+				}
+			}
+			aGroups = aGroups.sort();
+			oUser['_groups'] = aGroups;			
+			
+			
 			aResult.push(oUser);
 		}
 		return aResult;
+	},
+	
+	GetUser: function(strName)
+	{
+		return this.GetRecord('sys_user','user_name',strName);
 	},
 	
 	CreateGroup:function(strName, aUserNames)
@@ -331,7 +358,31 @@ TestDataAPI.prototype =
 	
 	GetAllGroups:function()
 	{
-		return this.GetAllRecordsFromTable('sys_user_group','name');		
+		var aResult = this.GetAllRecordsFromTable('sys_user_group','name');
+		
+		for (var nRecord = 0; nRecord < aResult.length; nRecord++)
+		{
+			var aUsers = [];
+			var grGroupMember = new GlideRecord('sys_user_grmember');
+			grGroupMember.addQuery('group','=',aResult[nRecord]['sys_id']);
+			grGroupMember.query();
+			while (grGroupMember.next())
+			{
+				var grUser = GetRecord('sys_user',grGroupMember.user);
+				if (grUser != false)
+				{
+					aUsers.push(grUser.user_name);
+				}
+			}
+			aUsers = aUsers.sort();
+			aResult[nRecord]['_users'] = aUsers;					
+		}
+		return aResult;
+	},	
+	
+	GetGroup: function(strName)
+	{
+		return this.GetRecord('sys_user_group','name',strName);
 	},	
 	
 	CreateRole:function(strName)
@@ -346,6 +397,11 @@ TestDataAPI.prototype =
 		return this.GetAllRecordsFromTable('sys_user_role','name');
 	},
 	
+	GetRole: function(strName)
+	{
+		return this.GetRecord('sys_user_role','name',strName);
+	},	
+	
 	CreateCompany:function(strName, oValues)
 	{
 		strName = GetStringValue(strName);
@@ -357,6 +413,12 @@ TestDataAPI.prototype =
 	{
 		return this.GetAllRecordsFromTable('core_company','name');
 	},
+	
+	GetCompany: function(strName)
+	{
+		return this.GetRecord('core_company','name',strName);
+	},	
+	
 
 	CreateContract:function(strName, oValues)
 	{
@@ -370,7 +432,11 @@ TestDataAPI.prototype =
 		return this.GetAllRecordsFromTable('ast_contract','short_description');
 	},
 
-	
+	GetContract: function(strName)
+	{
+		return this.GetRecord('ast_contract','short_description',strName);
+	},	
+		
 	
 	CreateIncident:function(strName, strOpenedByUserName, strCallerUserName, strAssignmentGroupName)
 	{
@@ -457,6 +523,11 @@ TestDataAPI.prototype =
 		return aIncidents;
 	},
 	
+	GetIncident: function(strName)
+	{
+		return this.GetRecord('incident','short_description',strName);
+	},		
+	
 	CreateIncidentTask:function(strParentName, strName, strOpenedByUserName, strAssignmentGroupName)
 	{
 		strParentName = GetStringValue(strParentName);
@@ -534,6 +605,11 @@ TestDataAPI.prototype =
 		return aIncidentTasks;
 	},	
 	
+	GetIncidentTask: function(strName)
+	{
+		return this.GetRecord('incident_task','short_description',strName);
+	},			
+	
 	CreateChangeRequest:function(strName, strOpenedByUserName, strRequestedByUserName, strAssignmentGroupName)
 	{
 		strName = GetStringValue(strName);
@@ -607,6 +683,11 @@ TestDataAPI.prototype =
 		}
 		return aResult;
 	},		
+	
+	GetChangeRequest: function(strName)
+	{
+		return this.GetRecord('change_request','short_description',strName);
+	},			
 	
 	CreateChangeTask:function(strParentName, strName, strOpenedByUserName, strAssignmentGroupName)
 	{
@@ -684,6 +765,11 @@ TestDataAPI.prototype =
 		}
 		return aChangeTasks;
 	},		
+	
+	GetChangeTask: function(strName)
+	{
+		return this.GetRecord('change_task','short_description',strName);
+	},			
 		
 	CreateProblem:function(strName, strOpenedByUserName, strAssignmentGroupName)
 	{
@@ -747,6 +833,11 @@ TestDataAPI.prototype =
 		}
 		return aProblems;
 	},		
+	
+	GetProblem: function(strName)
+	{
+		return this.GetRecord('problem','short_description',strName);
+	},			
 	
 	CreateProblemTask:function(strParentName, strName, strOpenedByUserName, strAssignmentGroupName)
 	{
@@ -823,6 +914,11 @@ TestDataAPI.prototype =
 			aResult.push(Clone(grProblemTask));
 		}
 		return aResult;
+	},	
+	
+	GetProblemTask: function(strName)
+	{
+		return this.GetRecord('problem_task','short_description',strName);
 	},		
 	
 	CreateRequest:function(strName, strOpenedByUserName, strRequestedForUserName, strAssignmentGroupName)
@@ -898,7 +994,13 @@ TestDataAPI.prototype =
 			aResult.push(Clone(grRequests));
 		}
 		return aResult;
-	},		
+	},	
+	
+	
+	GetRequest: function(strName)
+	{
+		return this.GetRecord('sc_request','short_description',strName);
+	},			
 
 	CreateRequestItem:function(strName, strRequestSysId, strCatalogItemSysId, strOpenedByUserName)
 	{
@@ -940,7 +1042,6 @@ TestDataAPI.prototype =
 		
 	},
 	
-	
 	GetAllRequestItems:function()
 	{
 		var aResult = [];
@@ -957,6 +1058,11 @@ TestDataAPI.prototype =
 		}
 		return aResult;
 	},	
+	
+	GetRequestItem: function(strName)
+	{
+		return this.GetRecord('sc_item','short_description',strName);
+	},		
 
 	CreateRequestTask:function(strName, strRequestItemSysId, strOpenedByUserName)
 	{
@@ -1013,7 +1119,31 @@ TestDataAPI.prototype =
 		return aResult;
 	},	
 	
+	GetRequestTask: function(strName)
+	{
+		return this.GetRecord('sc_task','short_description',strName);
+	},		
 	
+	GetAllConfigurationItems:function()
+	{
+		var aResult = [];
+		var strPrefix = this.GetPrefix();
+		
+		var grRecords = new GlideRecord('cmdb_ci');
+		grRecords.addQuery('name','STARTSWITH',strPrefix);
+		grRecords.orderBy('name');
+		grRecords.query();
+		while (grRecords.next())
+		{
+			aResult.push(Clone(grRecords));
+		}
+		return aResult;
+	},	
+	
+	GetConfigurationItem: function(strName)
+	{
+		return this.GetRecord('cmdb_ci','name',strName);
+	},		
 
 	CreateDatabaseView:function(strName, oDbView)
 	{
@@ -1026,28 +1156,23 @@ TestDataAPI.prototype =
 		
 		if (IsObject(oDbView) == false)
 		{
-			this.Debug('CreateDatabaseView','oDbView is NOT an object!');
 			return null;
 		}
 
 		var aTables = GetArrayValue(GetValue(oDbView,'tables'));
 		if (aTables.length == 0)
 		{
-			this.Debug('CreateDatabaseView','No tables are specified!');
 			return null;
 		}
 	
 		
 		var strDatabaseViewName = this.GetDatabaseViewName(strName);
 		
-		this.Debug('CreateDatabaseView',strName+' / '+strDatabaseViewName);		
-
 		var grDbViewToDelete = new GlideRecord('sys_db_view');
 		grDbViewToDelete.addQuery('name','=',strDatabaseViewName);
 		grDbViewToDelete.query();
 		while(grDbViewToDelete.next())
 		{
-			this.Debug('CreateDatabaseView','Deleting existing database view "'+strDatabaseViewName+'"!');
 			GlideRecordDelete(grDbViewToDelete);
 		}
 		
@@ -1057,7 +1182,6 @@ TestDataAPI.prototype =
 		var strDbViewSysId = GlideRecordInsert(grDbView);
 		if (strDbViewSysId == null)
 		{
-			this.Debug('CreateDatabaseView','Failed to create database view "'+strDatabaseViewName+'"!');
 			return null;
 		}
 		
@@ -1097,13 +1221,7 @@ TestDataAPI.prototype =
 				
 			}
 		}
-		
-		
-		
-		this.Debug('CreateDatabaseView','Database view '+strDatabaseViewName+' has been created. sys_id='+strDbViewSysId);
-
 		return strDbViewSysId;
-		
 	},	
 
 	GetDatabaseViewPrefix:function()
@@ -1157,6 +1275,10 @@ TestDataAPI.prototype =
 		return aResult;
 	},			
 	
+	GetDataBaseView: function(strName)
+	{
+		return this.GetRecord('sys_db_view','name',strName);
+	},		
 	
 	
 	type: 'TestDataAPI'
@@ -1167,13 +1289,13 @@ TestDataAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-13 14:53:39</sys_created_on>
         <sys_id>1796abb01b78d410a89720a8ec4bcb1e</sys_id>
-        <sys_mod_count>173</sys_mod_count>
+        <sys_mod_count>185</sys_mod_count>
         <sys_name>TestDataAPI</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_1796abb01b78d410a89720a8ec4bcb1e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-11-16 12:15:08</sys_updated_on>
+        <sys_updated_on>2021-12-01 17:18:47</sys_updated_on>
     </sys_script_include>
 </record_update>

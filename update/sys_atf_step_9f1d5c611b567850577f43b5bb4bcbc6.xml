@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-08-30 13:55:05</sys_created_on>
         <sys_id>9f1d5c611b567850577f43b5bb4bcbc6</sys_id>
-        <sys_mod_count>22</sys_mod_count>
+        <sys_mod_count>23</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_9f1d5c611b567850577f43b5bb4bcbc6</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-09-02 15:54:00</sys_updated_on>
+        <sys_updated_on>2021-12-01 14:33:18</sys_updated_on>
         <table/>
         <test display_value="DevTools - TestAPI">ddfcd8611b567850577f43b5bb4bcb25</test>
         <timeout/>
@@ -50,9 +50,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-08-30 13:55:05</sys_created_on>
         <sys_id>8ffd5c611b567850577f43b5bb4bcbee</sys_id>
-        <sys_mod_count>22</sys_mod_count>
+        <sys_mod_count>23</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-09-02 15:54:00</sys_updated_on>
+        <sys_updated_on>2021-12-01 14:33:18</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -87,13 +87,13 @@
 			null);&#13;
 	}&#13;
 &#13;
-	function TestCase_HelloWithGreeting_CheckResult(vInput,vExpected,vResult)&#13;
-	{&#13;
-		return (vExpected == vResult);&#13;
-	}&#13;
-	&#13;
 	function TestCase_HelloWithGreeting(strName, strGreeting, vExpected)&#13;
 	{&#13;
+		function TestCase_HelloWithGreeting_CheckResult(vInput,vExpected,vResult)&#13;
+		{&#13;
+			return (vExpected == vResult);&#13;
+		}		&#13;
+		&#13;
 		test.TestCase(&#13;
 			'Function Hello() with greeting parameter',&#13;
 			Hello,&#13;

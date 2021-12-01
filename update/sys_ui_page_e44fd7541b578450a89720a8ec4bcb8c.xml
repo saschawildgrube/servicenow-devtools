@@ -73,14 +73,17 @@ gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData
 	
 	<h2>Reference</h2>
 
-	<h3>Configuration options</h3>
+	<h3>Configuration Options</h3>
 	<g2:no_escape>$[docapi.RenderProperties()]</g2:no_escape>
 
 	<h3>UI Actions</h3>
 	<g2:no_escape>$[docapi.RenderUIActions()]</g2:no_escape>		
 	
-	<h3>Script includes</h3>
+	<h3>Script Includes</h3>
 	<g2:no_escape>$[docapi.RenderScriptIncludes()]</g2:no_escape>
+	
+	<h3>UI Script</h3>
+	<g2:no_escape>$[docapi.RenderUIScripts()]</g2:no_escape>	
 	
 	<h3>Test step configurations</h3>
 	<p>DevTools contains the following customized test step configurations:</p>
@@ -98,6 +101,32 @@ gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData
 	
 	<h2>Release Notes</h2>
 
+	<h3>1.28.0 - 2021-12-01</h3>
+	<ol>
+		<li>Added function RecordQueryOrInsert() to retrieve a record based on a set of criteria and create the record if it doesn't exist using a set of given values.</li>
+		<li>Added function RecordQuery() to retrieve exactly one record based on the given query object or string. Returns false if no record is found or the criteria identify multiple records.</li>
+		<li>Added function GlideRecordSetValues() to set multiple values on a GlideRecord object at once.</li>
+		<li>Added function CurrencyConversion() to convert a monetary amount from one currency to another.</li>
+		<li>Added function GetFloatValue() to convert a given value into a floating point number.</li>
+		<li>Added GetProperty() to receive the value of a system property using its defined type.</li>
+		<li>Added GetDateNow() to return the current date (UTC) as an ISO-formatted string.</li>
+		<li>Added the global "Save" button and the system property x_snc_devtools.ui.save_button to control its visibility.</li>
+		<li>Function TestDataAPI::GetAllUsers() now also provides the groups of a user.</li>
+		<li>Function TestDataAPI::GetAllGroups() now also provides the users of a group.</li>
+		<li>Added function DocumentationAPI::RenderUIScripts() to auto-document UI scripts contained in an app and added the chapter in the DevTools documentation.</li>
+		<li>Added function TestDataAPI::GetAllConfigurationItems().</li>
+		<li>IsValidSysId() now also supports currency codes as they are used as sys_ids in fx_currency.</li>
+		<li>Test step configuration "DevTools - Check scoped app sanity" now checks if a sys_app_module title matched the sys_name and AppSanity() fixes that in case it is required.</li>
+		<li>Tables sysevent_register, sysevent_email_action, sys_script_email, sys_properties_category, sys_properties_category_m2m, var_dictionary, sys_variable_value, sys_ui_style, sys_dictionary_override, fx_rate, sys_decision, sys_decision_input and sys_decision_question have been added to link directory.</li>
+		<li>GetParentRecord() now also supports sys_ui_style, sys_dictionary_override, fx_rate, sys_decision_input and sys_decision_question.</li>
+		<li>AppBuilder() now also adds a test suite and a module in the application menu.</li>
+		<li>AppBuilder() adds test "Implementation" and "Installation" to the app's test suite.</li>
+		<li>AppBuilder() creates application menu module "Log".</li>
+		<li>Fixed a defect in RedirectToRecord() that should have prevented the function from working at all (which it didn't).</li>
+		<li>RenderValue() no longer produces an error when a JavaObject is used as the parameter. However it cannot render it properly.</li>
+		<li>Removed Debug*() and Log() functions from TransactionCacheAPI and TestDataAPI classes.</li>
+	</ol>	
+	
 	<h3>1.27.1 - 2021-11-19</h3>
 	<ol>
 		<li>A defect prevented the "Find Sys ID" UI action to be visible. This has been fixed.</li>
@@ -112,7 +141,7 @@ gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData
 		<li>AppSanity() function now also accepts a scope name.</li>
 		<li>AppSanity() now also clears all test steps' copied_from fields.</li>
 		<li>GetParentRecord() now supports sys_ui_policy_rl_action, sys_ui_policy_action, sys_ui_policy, sys_ui_section, sys_ui_element, sys_ui_list and sys_ui_list_element.</li>
-		<li>Added sys_ui_policy_rl_action, sys_ui_policy_action, sys_ui_policy, fx_currency, sys_glide_object, sys_ui_section, sys_ui_element, sys_ui_list and sys_ui_list_element to GetLinkDirectory().</li>
+		<li>Added cmdb_rel_type, sys_ui_policy_rl_action, sys_ui_policy_action, sys_ui_policy, fx_currency, sys_glide_object, sys_ui_section, sys_ui_element, sys_ui_list and sys_ui_list_element to GetLinkDirectory().</li>
 		<li>AppBuilder() creates the script include for the AppInstall() function.</li>
 		<li>AppBuilder() creates the "active" system property.</li>
 		<li>AppBuilder() creates the "log.active" system property und the Log() function respects if the property is set to true.</li>
@@ -133,6 +162,7 @@ gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData
 		<li>Added function RecordInsert() to add a new record into a table with a given set of values.</li>
 		<li>Added function RecordGetSummary() to render a short hand summary of a record for debugging.</li>
 		<li>Added function IsExistingRecord() to check if a given GlideRecord object represents an existing record.</li>
+		<li>Added functions TestAPI::Get*() to get the Sys ID of the corresponding test data item.</li>
 		<li>Added function TestAPI::TestCase_GetRecord() to check if a record exists.</li>
 		<li>Added function TestAPI::TestCase_RecordGetValue() to check the value of a field in a given record.</li>
 		<li>Added function TestAPI::TestCase_IsRecordAccessibleByUser() to check if a given user has access to a given record.</li>
@@ -552,13 +582,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>578</sys_mod_count>
+        <sys_mod_count>613</sys_mod_count>
         <sys_name>start</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-11-19 08:02:44</sys_updated_on>
+        <sys_updated_on>2021-12-01 17:50:02</sys_updated_on>
     </sys_ui_page>
 </record_update>
