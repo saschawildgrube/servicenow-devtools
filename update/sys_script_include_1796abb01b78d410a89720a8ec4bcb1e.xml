@@ -329,6 +329,11 @@ TestDataAPI.prototype =
 		return aResult;
 	},
 	
+	GetUser: function(strName)
+	{
+		return this.GetRecord('sys_user','user_name',strName);
+	},
+	
 	CreateGroup:function(strName, aUserNames)
 	{	
 		strName = GetStringValue(strName);
@@ -390,6 +395,11 @@ TestDataAPI.prototype =
 		return aResult;
 	},	
 	
+	GetGroup: function(strName)
+	{
+		return this.GetRecord('sys_user_group','name',strName);
+	},	
+	
 	CreateRole:function(strName)
 	{	
 		strName = GetStringValue(strName);
@@ -402,6 +412,11 @@ TestDataAPI.prototype =
 		return this.GetAllRecordsFromTable('sys_user_role','name');
 	},
 	
+	GetRole: function(strName)
+	{
+		return this.GetRecord('sys_user_role','name',strName);
+	},	
+	
 	CreateCompany:function(strName, oValues)
 	{
 		strName = GetStringValue(strName);
@@ -413,6 +428,12 @@ TestDataAPI.prototype =
 	{
 		return this.GetAllRecordsFromTable('core_company','name');
 	},
+	
+	GetCompany: function(strName)
+	{
+		return this.GetRecord('core_company','name',strName);
+	},	
+	
 
 	CreateContract:function(strName, oValues)
 	{
@@ -426,7 +447,11 @@ TestDataAPI.prototype =
 		return this.GetAllRecordsFromTable('ast_contract','short_description');
 	},
 
-	
+	GetContract: function(strName)
+	{
+		return this.GetRecord('ast_contract','short_description',strName);
+	},	
+		
 	
 	CreateIncident:function(strName, strOpenedByUserName, strCallerUserName, strAssignmentGroupName)
 	{
@@ -513,6 +538,11 @@ TestDataAPI.prototype =
 		return aIncidents;
 	},
 	
+	GetIncident: function(strName)
+	{
+		return this.GetRecord('incident','short_description',strName);
+	},		
+	
 	CreateIncidentTask:function(strParentName, strName, strOpenedByUserName, strAssignmentGroupName)
 	{
 		strParentName = GetStringValue(strParentName);
@@ -590,6 +620,11 @@ TestDataAPI.prototype =
 		return aIncidentTasks;
 	},	
 	
+	GetIncidentTask: function(strName)
+	{
+		return this.GetRecord('incident_task','short_description',strName);
+	},			
+	
 	CreateChangeRequest:function(strName, strOpenedByUserName, strRequestedByUserName, strAssignmentGroupName)
 	{
 		strName = GetStringValue(strName);
@@ -663,6 +698,11 @@ TestDataAPI.prototype =
 		}
 		return aResult;
 	},		
+	
+	GetChangeRequest: function(strName)
+	{
+		return this.GetRecord('change_request','short_description',strName);
+	},			
 	
 	CreateChangeTask:function(strParentName, strName, strOpenedByUserName, strAssignmentGroupName)
 	{
@@ -740,6 +780,11 @@ TestDataAPI.prototype =
 		}
 		return aChangeTasks;
 	},		
+	
+	GetChangeTask: function(strName)
+	{
+		return this.GetRecord('change_task','short_description',strName);
+	},			
 		
 	CreateProblem:function(strName, strOpenedByUserName, strAssignmentGroupName)
 	{
@@ -803,6 +848,11 @@ TestDataAPI.prototype =
 		}
 		return aProblems;
 	},		
+	
+	GetProblem: function(strName)
+	{
+		return this.GetRecord('problem','short_description',strName);
+	},			
 	
 	CreateProblemTask:function(strParentName, strName, strOpenedByUserName, strAssignmentGroupName)
 	{
@@ -879,6 +929,11 @@ TestDataAPI.prototype =
 			aResult.push(Clone(grProblemTask));
 		}
 		return aResult;
+	},	
+	
+	GetProblemTask: function(strName)
+	{
+		return this.GetRecord('problem_task','short_description',strName);
 	},		
 	
 	CreateRequest:function(strName, strOpenedByUserName, strRequestedForUserName, strAssignmentGroupName)
@@ -954,7 +1009,13 @@ TestDataAPI.prototype =
 			aResult.push(Clone(grRequests));
 		}
 		return aResult;
-	},		
+	},	
+	
+	
+	GetRequest: function(strName)
+	{
+		return this.GetRecord('sc_request','short_description',strName);
+	},			
 
 	CreateRequestItem:function(strName, strRequestSysId, strCatalogItemSysId, strOpenedByUserName)
 	{
@@ -996,7 +1057,6 @@ TestDataAPI.prototype =
 		
 	},
 	
-	
 	GetAllRequestItems:function()
 	{
 		var aResult = [];
@@ -1013,6 +1073,11 @@ TestDataAPI.prototype =
 		}
 		return aResult;
 	},	
+	
+	GetRequestItem: function(strName)
+	{
+		return this.GetRecord('sc_item','short_description',strName);
+	},		
 
 	CreateRequestTask:function(strName, strRequestItemSysId, strOpenedByUserName)
 	{
@@ -1069,6 +1134,11 @@ TestDataAPI.prototype =
 		return aResult;
 	},	
 	
+	GetRequestTask: function(strName)
+	{
+		return this.GetRecord('sc_task','short_description',strName);
+	},		
+	
 	GetAllConfigurationItems:function()
 	{
 		var aResult = [];
@@ -1084,6 +1154,11 @@ TestDataAPI.prototype =
 		}
 		return aResult;
 	},	
+	
+	GetConfigurationItem: function(strName)
+	{
+		return this.GetRecord('cmdb_ci','name',strName);
+	},		
 
 	CreateDatabaseView:function(strName, oDbView)
 	{
@@ -1227,6 +1302,10 @@ TestDataAPI.prototype =
 		return aResult;
 	},			
 	
+	GetDataBaseView: function(strName)
+	{
+		return this.GetRecord('sys_db_view','name',strName);
+	},		
 	
 	
 	type: 'TestDataAPI'
@@ -1237,13 +1316,13 @@ TestDataAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-13 14:53:39</sys_created_on>
         <sys_id>1796abb01b78d410a89720a8ec4bcb1e</sys_id>
-        <sys_mod_count>182</sys_mod_count>
+        <sys_mod_count>183</sys_mod_count>
         <sys_name>TestDataAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_1796abb01b78d410a89720a8ec4bcb1e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-12-01 14:10:20</sys_updated_on>
+        <sys_updated_on>2021-12-01 14:31:18</sys_updated_on>
     </sys_script_include>
 </record_update>
