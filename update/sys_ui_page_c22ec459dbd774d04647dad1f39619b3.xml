@@ -9,7 +9,7 @@
 <j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
 <div style="padding-left: 20px;">
 	
-	<h1>Links</h1>
+	<h1>DevTools Link Directory</h1>
 	<g2:no_escape>$[HtmlRenderLinkDirectory(GetLinkDirectory())]</g2:no_escape>	
 		
 </div>
@@ -20,13 +20,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-18 11:11:30</sys_created_on>
         <sys_id>c22ec459dbd774d04647dad1f39619b3</sys_id>
-        <sys_mod_count>24</sys_mod_count>
+        <sys_mod_count>26</sys_mod_count>
         <sys_name>links</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_c22ec459dbd774d04647dad1f39619b3</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-10-19 17:32:38</sys_updated_on>
+        <sys_updated_on>2021-12-02 09:32:16</sys_updated_on>
     </sys_ui_page>
 </record_update>
