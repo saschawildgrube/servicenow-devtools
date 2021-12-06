@@ -322,6 +322,30 @@ DocumentationAPI.prototype = {
 		return strHTML;
 	},	
 	
+	RenderInstanceScanChecks: function()
+	{
+		if (this.m_bInit == false)
+		{
+			return this.RenderError();
+		}
+		var grSC = new GlideRecord('scan_check');
+		grSC.addQuery('sys_scope','=',this.m_strAppSysId);
+		grSC.orderBy('name');
+		grSC.query();
+
+		var strHTML = '<ul>';
+		while (grSC.next())
+		{
+			strHTML += this.RenderListItem(
+				grSC.getValue('name'),
+				'/scan_check.do?sys_id='+grSC.sys_id,
+				grSC.getValue('short_description'));
+		}
+		strHTML += '</ul>';
+		return strHTML;
+	},
+	
+	
 	RenderSystemRequirements: function(aSupportedReleases,bGitHubAccessRequired,aDependencies)
 	{
 		aSupportedReleases = GetArrayValue(aSupportedReleases);
@@ -479,13 +503,13 @@ DocumentationAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-01-20 15:26:20</sys_created_on>
         <sys_id>98912146db31e490ba15a353059619b6</sys_id>
-        <sys_mod_count>93</sys_mod_count>
+        <sys_mod_count>94</sys_mod_count>
         <sys_name>DocumentationAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_98912146db31e490ba15a353059619b6</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-11-24 11:18:28</sys_updated_on>
+        <sys_updated_on>2021-12-06 15:38:44</sys_updated_on>
     </sys_script_include>
 </record_update>
