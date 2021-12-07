@@ -54,6 +54,9 @@
 					{
 						var strUrl = '/nav_to.do?uri='+strTable+'_list.do%3F';
 						var strView = GetStringValue(GetValue(link,'view'));
+						var strOrder = GetStringValue(GetValue(link,'order'));
+						var strOrderDirection = GetStringValue(GetValue(link,'order_direction'));
+						var strQuery = GetStringValue(GetValue(link,'query'));
 						if (strView != '')
 						{
 							strUrl += '%26sysparm_view%3D'+strView+'%26sysparm_view_forced%3Dtrue';
@@ -62,6 +65,18 @@
 						{
 							strUrl += '%26sysparm_filter_only%3Dtrue';
 						}
+						if (strOrder != '')
+						{
+							strUrl += '%26sysparm_order%3D'+strOrder;
+						}						
+						if (strOrderDirection != '')
+						{
+							strUrl += '%26sysparm_order_direction%3D'+strOrderDirection;
+						}						
+						if (strQuery != '')
+						{
+							strUrl += '%26sysparm_query%3D'+strQuery;
+						}						
 						strHtml += '<li>';
 						strHtml += HtmlRenderLink(strUrl, strTable, true);
 						strHtml += '</li>';
@@ -105,13 +120,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-19 09:21:31</sys_created_on>
         <sys_id>9e2a7c61db9ff4d04647dad1f396193c</sys_id>
-        <sys_mod_count>41</sys_mod_count>
+        <sys_mod_count>44</sys_mod_count>
         <sys_name>HtmlRenderLinkDirectory</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_9e2a7c61db9ff4d04647dad1f396193c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-12-02 09:28:52</sys_updated_on>
+        <sys_updated_on>2021-12-06 12:37:21</sys_updated_on>
     </sys_script_include>
 </record_update>

@@ -134,6 +134,18 @@
 				},
 				{
 					table: 'sys_script_email'
+				},
+				{
+					table: 'sysevent',
+					order: 'sys_created_on',
+					order_direction: 'desc',
+					query: 'sys_created_onONToday@javascript:gs.beginningOfToday()@javascript:gs.endOfToday()'
+				},
+				{
+					table: 'sys_email',
+					order: 'sys_created_on',
+					order_direction: 'desc',
+					query: 'mailbox%3Doutbox%5EORmailbox%3Dsent%5Esys_created_onONToday@javascript:gs.daysAgoStart(0)@javascript:gs.daysAgoEnd(0)'
 				}
 			],			
 			'Logs and Audit':
@@ -144,6 +156,15 @@
 				},
 				{
 					table: 'sys_audit'
+				}
+			],
+			'Navigation':
+			[
+				{
+					table: 'sys_app_application '
+				},
+				{
+					table: 'sys_app_module'
 				}
 			],
 			'UI Views':
@@ -286,13 +307,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-19 17:03:37</sys_created_on>
         <sys_id>a8582ae11b5774d0edf3642aab4bcb86</sys_id>
-        <sys_mod_count>39</sys_mod_count>
+        <sys_mod_count>46</sys_mod_count>
         <sys_name>GetLinkDirectory</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_a8582ae11b5774d0edf3642aab4bcb86</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-12-01 10:05:41</sys_updated_on>
+        <sys_updated_on>2021-12-06 15:00:48</sys_updated_on>
     </sys_script_include>
 </record_update>

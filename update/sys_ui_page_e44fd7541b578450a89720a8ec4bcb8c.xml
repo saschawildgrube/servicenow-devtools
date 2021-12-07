@@ -32,9 +32,6 @@
 		]</g2:no_escape>	
 	</ul>
 	
-	<h2>Security Notice</h2>
-	<p>To leverage the full potential of DevTools functions, some settings need to be changed to allow more cross scope access for scoped apps. This might be considered as a breach of security guidelines and should be validated with those who are responsible for security within the instance!</p>
-		
 	<h2>Installation</h2>
 	<ol>
 		<g2:no_escape>$[
@@ -42,13 +39,10 @@
 				'DevTools',
 				'https://github.com/saschawildgrube/servicenow-devtools');
 		]</g2:no_escape>
-		<li>Switch to global scope.</li>
-		<li>Create a new update set in the global scope to capture all changes related to the DevTools installation.</li>
 		<g2:no_escape>$[
 			docapi.RenderInstallationInstructionsAppInstall();
 		]</g2:no_escape>		
-		<li>Set the update set in the global scope to to complete.</li>
-			<g2:no_escape>$[
+		<g2:no_escape>$[
 			docapi.RenderInstallationInstructionsRunTestSuite('4a8550391b5b8850a89720a8ec4bcbd9');
 		]</g2:no_escape>		
 		
@@ -82,7 +76,7 @@ gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData
 	<h3>Script Includes</h3>
 	<g2:no_escape>$[docapi.RenderScriptIncludes()]</g2:no_escape>
 	
-	<h3>UI Script</h3>
+	<h3>UI Scripts</h3>
 	<g2:no_escape>$[docapi.RenderUIScripts()]</g2:no_escape>	
 	
 	<h3>Test step configurations</h3>
@@ -101,6 +95,22 @@ gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData
 	
 	<h2>Release Notes</h2>
 
+	<h3>1.29.0 - 2021-12-07</h3>
+	<ol>
+		<li>AppBuilder() now creates a manual page based on a template. A perfect start for app documentation.</li>
+		<li>Added function DocumentationAPI::RenderInstanceScanChecks() to document instance scan checks contained in the app.</li>
+		<li>IsValidVersion() now considers version numbers consisting of four components as valid.</li>
+		<li>GlideRecordQuery() does not work on table sys_app_module. A fix is implemented. This has caused the AppBuilder() function to create duplicates of application menu modules.</li>
+		<li>GlideRecordAddQuery() was defective when using an encoded query string. This has been fixed.</li>
+		<li>HtmlRenderLinkDirectory() now supports query, order and order_direction parameters in the link directory.</li>
+		<li>Tables sys_app_module and sys_app_application have been added to the link directory.</li>
+		<li>GetParentRecord() now also supports sys_app_module and sys_choice.</li>
+		<li>Added InstallerAPI::RecordInsertOrUpdate() to add and/or update records during installation in a generic and flexible way.</li>
+		<li>AppBuilder() produced a defective AppInstall() function. When creating the InstallerAPI object, the DevTools scope was missing. This has been fixed.</li> 
+		<li>Removed the "Event" section from the DevTools menu because all relevant links are now contained in the link directory.</li>
+		<li>Removed the outdated security notice from the documentation.</li>
+	</ol>
+	
 	<h3>1.28.1 - 2021-12-02</h3>
 	<ol>
 		<li>Improved the rendering of the link directory.</li>
@@ -588,13 +598,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>616</sys_mod_count>
+        <sys_mod_count>633</sys_mod_count>
         <sys_name>start</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-12-02 09:29:58</sys_updated_on>
+        <sys_updated_on>2021-12-07 10:54:25</sys_updated_on>
     </sys_ui_page>
 </record_update>
