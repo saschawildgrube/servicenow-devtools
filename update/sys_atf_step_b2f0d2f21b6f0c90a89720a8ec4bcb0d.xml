@@ -40,7 +40,7 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2020-03-18 10:18:51</sys_updated_on>
         <value>3.1</value>
-        <variable display_value="">42f2564b73031300440211d8faf6a777</variable>
+        <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
     </sys_variable_value>
     <sys_variable_value action="INSERT_OR_UPDATE">
         <document>sys_atf_step</document>
@@ -89,6 +89,6 @@ function Log(strText)&#13;
 	return bResult;&#13;
 	&#13;
 })(outputs, steps, stepResult, assertEqual);</value>
-        <variable display_value="">989d9e235324220002c6435723dc3484</variable>
+        <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
     </sys_variable_value>
 </record_update>

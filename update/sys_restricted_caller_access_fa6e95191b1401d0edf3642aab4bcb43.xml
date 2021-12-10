@@ -2,7 +2,7 @@
     <sys_restricted_caller_access action="INSERT_OR_UPDATE">
         <operation>execute</operation>
         <source>5101eb4d1bc48510edf3642aab4bcbfb</source>
-        <source_scope display_value="Wildgrube LAB">3a1561201b22c410a89720a8ec4bcb0f</source_scope>
+        <source_scope display_value="">3a1561201b22c410a89720a8ec4bcb0f</source_scope>
         <source_table>sys_script_include</source_table>
         <source_type>2</source_type>
         <status>3</status>

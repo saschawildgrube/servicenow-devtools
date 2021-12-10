@@ -48,7 +48,7 @@ See the documentation for Test Design Considerations</warning_message>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2020-11-30 08:35:35</sys_updated_on>
         <value>sys_db_object</value>
-        <variable display_value="">90144b535320220002c6435723dc3488</variable>
+        <variable display_value="Table">90144b535320220002c6435723dc3488</variable>
     </sys_variable_value>
     <sys_variable_value action="INSERT_OR_UPDATE">
         <document>sys_atf_step</document>
@@ -62,7 +62,7 @@ See the documentation for Test Design Considerations</warning_message>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2020-11-30 08:35:35</sys_updated_on>
         <value>1</value>
-        <variable display_value="">e6e3c7535320220002c6435723dc3496</variable>
+        <variable display_value="Enforce security">e6e3c7535320220002c6435723dc3496</variable>
     </sys_variable_value>
     <sys_variable_value action="INSERT_OR_UPDATE">
         <document>sys_atf_step</document>
@@ -76,7 +76,7 @@ See the documentation for Test Design Considerations</warning_message>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2020-11-30 08:35:35</sys_updated_on>
         <value>record_successfully_inserted</value>
-        <variable display_value="">9024a37f671003007ba405225685efe5</variable>
+        <variable display_value="Assert type">9024a37f671003007ba405225685efe5</variable>
     </sys_variable_value>
     <sys_variable_value action="INSERT_OR_UPDATE">
         <document>sys_atf_step</document>
@@ -90,6 +90,6 @@ See the documentation for Test Design Considerations</warning_message>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2020-11-30 08:41:48</sys_updated_on>
         <value>name=x_snc_devtools_atf_test1^sys_scope=d689f6901bd38450a89720a8ec4bcbfd^label=atf_test1^EQ</value>
-        <variable display_value="">dd54cf535320220002c6435723dc34fd</variable>
+        <variable display_value="Field values">dd54cf535320220002c6435723dc34fd</variable>
     </sys_variable_value>
 </record_update>

@@ -110,7 +110,7 @@
         <update_guid_history>419382e249627010ac898064a1f45ebd:-1012355275</update_guid_history>
     </sys_update_version>
     <sys_metadata_delete action="INSERT_OR_UPDATE">
-        <sys_audit_delete display_value="Cross Scope Privileges">46cc6ea51b5774d0edf3642aab4bcb06</sys_audit_delete>
+        <sys_audit_delete display_value="">46cc6ea51b5774d0edf3642aab4bcb06</sys_audit_delete>
         <sys_class_name>sys_metadata_delete</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-19 17:21:45</sys_created_on>

@@ -45,7 +45,7 @@ With a failure timeout of 5 Seconds</description>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2021-08-26 11:05:32</sys_updated_on>
         <value>sc_task</value>
-        <variable display_value="">78b8d86b531000109e02ddeeff7b12f3</variable>
+        <variable display_value="Table">78b8d86b531000109e02ddeeff7b12f3</variable>
     </sys_variable_value>
     <sys_variable_value action="INSERT_OR_UPDATE">
         <document>sys_atf_step</document>
@@ -59,7 +59,7 @@ With a failure timeout of 5 Seconds</description>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2021-08-26 11:05:32</sys_updated_on>
         <value>records_match_query</value>
-        <variable display_value="">b86c0427531000109e02ddeeff7b1227</variable>
+        <variable display_value="Assert type">b86c0427531000109e02ddeeff7b1227</variable>
     </sys_variable_value>
     <sys_variable_value action="INSERT_OR_UPDATE">
         <document>sys_atf_step</document>
@@ -73,7 +73,7 @@ With a failure timeout of 5 Seconds</description>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2021-08-26 11:05:32</sys_updated_on>
         <value>0</value>
-        <variable display_value="">02fb0027531000109e02ddeeff7b120b</variable>
+        <variable display_value="Enforce security">02fb0027531000109e02ddeeff7b120b</variable>
     </sys_variable_value>
     <sys_variable_value action="INSERT_OR_UPDATE">
         <document>sys_atf_step</document>
@@ -87,7 +87,7 @@ With a failure timeout of 5 Seconds</description>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2021-11-16 12:21:33</sys_updated_on>
         <value>short_descriptionSTARTSWITH_ATF_DEVTOOLS_REQUEST_TASK_1^opened_by={{step['ff71fb3c1b78d410a89720a8ec4bcbf7'].first_record}}^request_item={{step['c632c7001b1e34505331b8449b4bcb7f'].first_record}}^EQ</value>
-        <variable display_value="">915990ab531000109e02ddeeff7b12f8</variable>
+        <variable display_value="Conditions">915990ab531000109e02ddeeff7b12f8</variable>
     </sys_variable_value>
     <sys_element_mapping action="delete_multiple" query="id=449093c81b1e34505331b8449b4bcbd0"/>
     <sys_element_mapping action="INSERT_OR_UPDATE">
