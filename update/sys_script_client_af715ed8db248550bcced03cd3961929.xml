@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_extended>true</applies_extended>
+        <condition/>
+        <description>Formats specific read-only number fields based on the configuration set in a before display business rule on a table.</description>
+        <field/>
+        <global>true</global>
+        <isolate_script>false</isolate_script>
+        <messages/>
+        <name>NumberFormat</name>
+        <order/>
+        <script><![CDATA[function onLoad()
+{
+	function Log(strText)
+	{
+		console.log('NumberFormat: '+strText);
+	}
+	function NumberFormat()
+	{
+		var devtools = g_scratchpad['devtools'];
+		if (devtools == undefined)
+		{
+			Log('Could not load devtools object from g_scratchpad! Aborting!');
+			return;
+		}
+		var numberformat = devtools['numberformat'];
+		if (numberformat == undefined)
+		{
+			Log('Could not load numberformat object from devtools! Aborting!');
+			return;
+		}
+		var config = numberformat['config'];
+		if (config == undefined)
+		{
+			Log('Could not load config object from numberformat! Aborting!');
+			return;
+		}
+
+	
+		var elementForm = g_form.getFormElement();
+		var elements = elementForm.querySelectorAll('.form-control');
+
+		for (var nElement = 0; nElement < elements.length; nElement++)
+		{
+			var element = elements[nElement];
+			var strElementId = ''+element.id;
+			//Log(strElementId);
+			
+			var aElementId = strElementId.split('.');
+			if (aElementId.length > 0)
+			{
+				var strColumnId = aElementId[aElementId.length-1];
+				//Log(strColumnId);
+				
+				var columnconfig = config[strColumnId];
+				if (columnconfig != undefined)
+				{
+					console.log(columnconfig);
+					if (aElementId[0] == 'sys_readonly')
+					{
+						element.style.textAlign = 'right';
+						
+						var strContent = element.value;
+						//Log(strContent);
+						var nDecimals = parseInt(columnconfig.decimals);
+						var strPostFix = columnconfig.postfix;
+						if (strPostFix == undefined)
+						{
+							strPostFix = '';
+						}
+						//Log(nDecimals);
+						
+						strContent = strContent.replaceAll(',','');
+						var fValue = parseFloat(strContent);
+						var strContentNew = fValue.toFixed(nDecimals) + strPostFix;
+						element.value = strContentNew;
+					}
+				}
+			}
+		}
+	}
+	
+	NumberFormat();
+
+}]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-12-16 21:29:59</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>af715ed8db248550bcced03cd3961929</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>NumberFormat</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_client_af715ed8db248550bcced03cd3961929</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-12-16 21:46:06</sys_updated_on>
+        <table>global</table>
+        <type>onLoad</type>
+        <ui_type>0</ui_type>
+        <view/>
+    </sys_script_client>
+</record_update>
