@@ -8,7 +8,7 @@
         <global>true</global>
         <isolate_script>false</isolate_script>
         <messages/>
-        <name>Format</name>
+        <name>FormatForms</name>
         <order/>
         <script><![CDATA[function onLoad()
 {
@@ -18,9 +18,8 @@
 	}
 
 	
-	function Format()
+	function FormatForm()
 	{
-		//Log('START');
 		var ga = new GlideAjax('DevToolsClientAPI');
 		ga.addParam('sysparm_name','GetFormatConfig');
 		ga.addParam('sysparm_table',g_form.getTableName());
@@ -28,7 +27,7 @@
 		ga.getXML(Response_GetFormatConfig);
 		function Response_GetFormatConfig(response)
 		{
-			Log('DevToolsClientAPI::GetFormatConfig RESPONSE...');
+			//Log('DevToolsClientAPI::GetFormatConfig RESPONSE...');
 			var formatconfig = response.responseXML.documentElement.getAttribute('answer');
 			try
 			{
@@ -56,17 +55,7 @@
 					{
 						if (aElementId[0] == 'sys_readonly')
 						{
-							var strContent = element.value;
-							var nDecimals = parseInt(columnconfig.decimals);
-							var strPostFix = columnconfig.postfix;
-							if (strPostFix == undefined)
-							{
-								strPostFix = '';
-							}
-							strContent = strContent.replaceAll(',','');
-							var fValue = parseFloat(strContent);
-							var strContentNew = fValue.toFixed(nDecimals) + strPostFix;
-							element.value = strContentNew;
+							element.value = FormatValue(element.value,columnconfig);
 							element.style.textAlign = 'right';
 						}
 					}
@@ -75,7 +64,7 @@
 		}
 	}
 	
-	Format();
+	FormatForm();
 
 }]]></script>
         <sys_class_name>sys_script_client</sys_class_name>
@@ -84,15 +73,15 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>af715ed8db248550bcced03cd3961929</sys_id>
-        <sys_mod_count>19</sys_mod_count>
-        <sys_name>Format</sys_name>
+        <sys_mod_count>21</sys_mod_count>
+        <sys_name>FormatForms</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_client_af715ed8db248550bcced03cd3961929</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-12-17 17:09:50</sys_updated_on>
+        <sys_updated_on>2021-12-20 15:35:32</sys_updated_on>
         <table>global</table>
         <type>onLoad</type>
         <ui_type>0</ui_type>

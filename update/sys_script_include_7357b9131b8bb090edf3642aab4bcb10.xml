@@ -20,11 +20,7 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 	{
 		var strTable = GetStringValue(this.getParameter('sysparm_table'));
 		var strSysId = GetStringValue(this.getParameter('sysparm_sys_id'));
-		
 		var formatconfig = GetFormatConfig(strTable,strSysId);
-		
-		Debug('DevToolsClientAPI.GetFormatConfig:');
-		Debug(RenderValue(formatconfig));
 		return JSON.stringify(formatconfig);
 	},
 
@@ -34,13 +30,13 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-12 13:47:51</sys_created_on>
         <sys_id>7357b9131b8bb090edf3642aab4bcb10</sys_id>
-        <sys_mod_count>15</sys_mod_count>
+        <sys_mod_count>16</sys_mod_count>
         <sys_name>DevToolsClientAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_7357b9131b8bb090edf3642aab4bcb10</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-12-17 21:53:48</sys_updated_on>
+        <sys_updated_on>2021-12-20 15:23:03</sys_updated_on>
     </sys_script_include>
 </record_update>
