@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_script">
     <sys_ui_script action="INSERT_OR_UPDATE">
         <active>true</active>
-        <description>lalalala</description>
+        <description>TODO</description>
         <global>true</global>
         <name>x_snc_devtools.FormatListViews</name>
         <script><![CDATA[(function() {
 	
 	var bFormatInProgress = false;
+	
+	var cache = {};
 	
 	var observeDOM = (function()
 	{
@@ -49,46 +51,62 @@
 
 		if (strRecordClass != '' && strSysId != '')
 		{
-			//Log('Requesting format config for record: '+strRecordClass+': '+strSysId);
-			var ga = new GlideAjax('x_snc_devtools.DevToolsClientAPI');
-			ga.addParam('sysparm_name','GetFormatConfig');
-			ga.addParam('sysparm_table',strRecordClass);
-			ga.addParam('sysparm_sys_id',strSysId);
-			ga.getXML(Response_GetFormatConfig);
-			function Response_GetFormatConfig(response)
+			
+			function FormatTableCells(elementRow,aColumns,formatconfig)
 			{
-				//Log('DevToolsClientAPI::GetFormatConfig RESPONSE...');
-				var formatconfig = response.responseXML.documentElement.getAttribute('answer');
-				if (formatconfig == 'false')
-				{
-					//Log('Could not retrieve format config.');
-					return;
-				}
-				try
-				{
-					formatconfig = JSON.parse(formatconfig);
-				}
-				catch (e)
-				{
-					Log('Could not parse format config.');
-					return;
-				}
-				//console.log(formatconfig);
 				var aCells = elementRow.getElementsByTagName('td');
 				for (var nCell = 0; nCell < aCells.length; nCell++)
 				{
-					var elementCell = aCells[nCell];
+					var element = aCells[nCell];
 					var strColumn = aColumns[nCell];
 					var columnconfig = formatconfig[strColumn];
 					if (columnconfig != null)
 					{
-						//Log('Column: '+strColumn);
-						//console.log(columnconfig);
-						var element = elementCell;
 						element.textContent = FormatValue(element.textContent,columnconfig);
 					}
 				}
-			}	
+			}
+			
+			var formatconfig = GetValue(cache,strRecordClass,strSysId);
+			if (formatconfig != null)
+			{
+				FormatTableCells(elementRow,aColumns,formatconfig);
+			}
+			else
+			{
+				//Log('Requesting format config for record: '+strRecordClass+': '+strSysId);
+				var ga = new GlideAjax('x_snc_devtools.DevToolsClientAPI');
+				ga.addParam('sysparm_name','GetFormatConfig');
+				ga.addParam('sysparm_table',strRecordClass);
+				ga.addParam('sysparm_sys_id',strSysId);
+				ga.getXML(Response_GetFormatConfig);
+				function Response_GetFormatConfig(response)
+				{
+					//Log('DevToolsClientAPI::GetFormatConfig RESPONSE...');
+					var formatconfig = response.responseXML.documentElement.getAttribute('answer');
+					if (formatconfig == 'false')
+					{
+						//Log('Could not retrieve format config.');
+						return;
+					}
+					try
+					{
+						formatconfig = JSON.parse(formatconfig);
+					}
+					catch (e)
+					{
+						Log('Could not parse format config.');
+						return;
+					}
+
+					if (cache[strRecordClass] == undefined)
+					{
+						cache[strRecordClass] = {};
+					}
+					cache[strRecordClass][strSysId] = formatconfig;
+					FormatTableCells(elementRow,aColumns,formatconfig);
+				}	
+			}
 		}
 	}
 
@@ -165,11 +183,10 @@
 	{
 		if (bFormatInProgress == true)
 		{
-			Log('Format: Already in progress: skipping!');
+			//Log('Format: Already in progress: skipping!');
 			return;
 		}
-		Log('Format: START');
-
+		//Log('Format: START');
 		bFormatInProgress = true;
 		FormatDocument(top.document);
 		bFormatInProgress = false;
@@ -177,8 +194,8 @@
 	
 	function callbackObserver(m)
 	{
-		Log('callbackObserver');
-		console.log(m);
+		//Log('callbackObserver');
+		//console.log(m);
 		Format();
 	}
 	
@@ -206,7 +223,7 @@
 				//if (strId != '')
 				if (strClasses.indexOf('list_div') != -1)
 				{
-					Log('Observing element: '+strId);
+					//Log('Observing element: '+strId);
 					observeDOM(elementObserved,callbackObserver);
 				}
 			}
@@ -223,14 +240,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-12-17 15:48:08</sys_created_on>
         <sys_id>bfec4ae0db240950bcced03cd3961933</sys_id>
-        <sys_mod_count>91</sys_mod_count>
+        <sys_mod_count>94</sys_mod_count>
         <sys_name>x_snc_devtools.FormatListViews</sys_name>
         <sys_package display_value="Global" source="global">global</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_script_bfec4ae0db240950bcced03cd3961933</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-12-21 16:34:48</sys_updated_on>
+        <sys_updated_on>2021-12-21 18:20:36</sys_updated_on>
         <ui_type>0</ui_type>
         <use_scoped_format>false</use_scoped_format>
     </sys_ui_script>
