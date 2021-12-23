@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_script">
+    <sys_ui_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Attaches a listening callback functon to a DOM element.</description>
+        <global>true</global>
+        <name>x_snc_devtools.ObserveDOM</name>
+        <script><![CDATA[function ObserveDOM(element,callbackFunction)
+{	
+	if (!element)
+	{
+		return false;
+	}
+	if (element.nodeType !== 1 )
+	{
+		return false;
+	}
+
+	var MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
+
+	if (MutationObserver)
+	{
+		// define a new observer
+		var mutationObserver = new MutationObserver(callbackFunction);
+
+		// have the observer observe foo for changes in children
+		mutationObserver.observe(element,
+			{
+				childList:true,
+				subtree:true,
+				characterData: true
+			});
+		//return mutationObserver
+		return true;
+	}
+	// browser support fallback
+	else if (top.window.addEventListener)
+	{
+		element.addEventListener('DOMNodeInserted', callbackFunction, false);
+		element.addEventListener('DOMNodeRemoved', callbackFunction, false);
+		element.addEventListener('DOMCharacterDataModified', callbackFunction, false);
+		return true;
+	}
+	return false;
+}]]></script>
+        <script_name>ObserveDOM</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-12-23 16:59:20</sys_created_on>
+        <sys_id>97b59d6adb604990bcced03cd3961922</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_snc_devtools.ObserveDOM</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_ui_script_97b59d6adb604990bcced03cd3961922</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-12-23 16:59:20</sys_updated_on>
+        <ui_type>0</ui_type>
+        <use_scoped_format>false</use_scoped_format>
+    </sys_ui_script>
+</record_update>
