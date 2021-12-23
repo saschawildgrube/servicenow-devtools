@@ -98,7 +98,8 @@ gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData
 	<h3>1.31.0 - 2021-12-TODO</h3>
 	<ol>
 		<li>Paris is no longer actively supported.</li>
-		<li>Added function TimeAddDays() to add a number of days to a given numeric time value.</li> 
+		<li>Added function TimeAddDays() to add a number of days to a given numeric time value.</li>
+		<li>Added method InstallerAPI::ActivateUiPolicy() to set an existing UI Policy active or inactive during installation.</li>
 		<li>RecordBulkProcessor() is now aware of lengthy record processing and multiple scheduled jobs running in parallel.</li>
 		<li>Added business rule "sys_script_client - set table to global" to allow global Client Scripts. OOTB the option of defining global Client Scripts is disabled. This business rule fixes this issue by setting an empty table field to "global".</li>
 		<li>HtmlEncode() now also converts new line characters to line break html tags.</li>
@@ -622,13 +623,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>651</sys_mod_count>
+        <sys_mod_count>652</sys_mod_count>
         <sys_name>start</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-12-18 20:21:21</sys_updated_on>
+        <sys_updated_on>2021-12-23 14:05:35</sys_updated_on>
     </sys_ui_page>
 </record_update>
