@@ -6,7 +6,7 @@
         <name>x_snc_devtools.SetValue</name>
         <script><![CDATA[function SetValue(vValue, vObject, vKey1, vKey2, vKey3, vKey4, vKey5, vKey6)
 {
-	if (vObject == undefined)
+	if (IsObject(vObject) == false)
 	{
 		vObject = {};
 	}
@@ -19,25 +19,26 @@
 		vObject[vKey1] = vValue;
 		return vObject;
 	}
-	if (typeof vObject[vKey1] != 'Object')
+	if (IsObject(vObject[vKey1]) !=  true)
 	{
 		vObject[vKey1] = {};
 	}
-	return SetValue(vValue,vObject[vKey1],vKey2,vKey3,vKey4,vKey5);
+	vObject[vKey1] = SetValue(vValue,vObject[vKey1],vKey2,vKey3,vKey4,vKey5);
+	return vObject;
 }]]></script>
         <script_name>SetValue</script_name>
         <sys_class_name>sys_ui_script</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-12-23 19:35:01</sys_created_on>
         <sys_id>fb9ab9aadbe44990bcced03cd39619f1</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>x_snc_devtools.SetValue</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_script_fb9ab9aadbe44990bcced03cd39619f1</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-12-25 12:53:33</sys_updated_on>
+        <sys_updated_on>2021-12-25 18:21:05</sys_updated_on>
         <ui_type>0</ui_type>
         <use_scoped_format>false</use_scoped_format>
     </sys_ui_script>

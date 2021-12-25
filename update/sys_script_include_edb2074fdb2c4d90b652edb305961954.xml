@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.GetFormatConfigMultiple</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Retrieves formatting information for the fields of the given records.</description>
+        <name>GetFormatConfigMultiple</name>
+        <script><![CDATA[function GetFormatConfigMultiple(records)
+{
+	var formatconfigs = {};
+	var aTables = GetKeys(records);
+	for (var nTable = 0; nTable < aTables.length; nTable++)
+	{
+		var strTable = aTables[nTable];
+		var aRecords = GetArrayValue(GetValue(records,strTable));
+		for (var nRecord = 0; nRecord < aRecords.length; nRecord++)
+		{
+			var strSysId = aRecords[nRecord];
+			var formatconfig = GetFormatConfig(strTable,strSysId);
+			if (formatconfig != false)
+			{
+				formatconfigs = SetValue(formatconfig,formatconfigs,strTable,strSysId);
+			}
+		}
+	}
+	return formatconfigs;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-12-25 14:06:57</sys_created_on>
+        <sys_id>edb2074fdb2c4d90b652edb305961954</sys_id>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_name>GetFormatConfigMultiple</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_edb2074fdb2c4d90b652edb305961954</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-12-25 18:23:02</sys_updated_on>
+    </sys_script_include>
+</record_update>
