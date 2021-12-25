@@ -23,17 +23,17 @@
 			var result = response.responseXML.documentElement.getAttribute('answer');
 			if (result == 'false')
 			{
-				result = false;
+				return false;
 			}
-			try
+			resultParsed = ParseJson(result);
+			if (resultParsed == false)
 			{
-				result = JSON.parse(result);
+				callbackResult(result);			
 			}
-			catch (e)
+			else
 			{
-				result = false;
+				callbackResult(resultParsed);			
 			}
-			callbackResult(result);			
 		}
 	}
 	else
@@ -44,30 +44,31 @@
 		{
 			return false;
 		}
-		try
+		resultParsed = ParseJson(result);
+		if (resultParsed == false)
 		{
-			result = JSON.parse(result);
+			return result;			
 		}
-		catch (e)
+		else
 		{
-			return false;
+			return resultParsed;			
 		}
-		return result;
 	}
+	
 }]]></script>
         <script_name>ServerRequest</script_name>
         <sys_class_name>sys_ui_script</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-12-23 20:59:36</sys_created_on>
         <sys_id>4ffd86e2dbe04990b652edb305961919</sys_id>
-        <sys_mod_count>13</sys_mod_count>
+        <sys_mod_count>16</sys_mod_count>
         <sys_name>x_snc_devtools.ServerRequest</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_script_4ffd86e2dbe04990b652edb305961919</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-12-23 23:04:38</sys_updated_on>
+        <sys_updated_on>2021-12-25 12:44:36</sys_updated_on>
         <ui_type>0</ui_type>
         <use_scoped_format>false</use_scoped_format>
     </sys_ui_script>
