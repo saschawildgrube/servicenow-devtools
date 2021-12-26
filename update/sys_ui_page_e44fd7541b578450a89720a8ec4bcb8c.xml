@@ -103,7 +103,7 @@ gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData
 		<li>Added function ArrayPushUnique() to add a value to an array if it doesn't exist yet.</li>
 		<li>Added UI Script function ObserveDOM() to attach an oberving callback function to a DOM element.</li>
 		<li>Added UI Script function ServerRequest() to make an Ajax API call to a server-sided script include class.</li>
-		<li>Added UI Script functions Log(), Debug(), GetType(), IsEqual(), IsObject(), IsArray(), ArrayPushUnique(), ArrayValueExists(), GetKeys(), GetArrayValue(), ParseJson() and SetValue() which are equivalent to their server-sided script include counterparts.</li> 
+		<li>Added UI Script functions Log(), Debug(), GetType(), IsEqual(), IsObject(), IsArray(), ArrayPushUnique(), ArrayValueExists(), GetKeys(), GetArrayValue(), ParseJson(), GetValue() and SetValue() which are equivalent to their server-sided script include counterparts.</li> 
 		<li>Added method InstallerAPI::ActivateUiPolicy() to set an existing UI Policy active or inactive during installation.</li>
 		<li>RecordBulkProcessor() is now aware of lengthy record processing and multiple scheduled jobs running in parallel.</li>
 		<li>Added business rule "sys_script_client - set table to global" to allow global Client Scripts. OOTB the option of defining global Client Scripts is disabled. This business rule fixes this issue by setting an empty table field to "global".</li>
@@ -629,13 +629,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>661</sys_mod_count>
+        <sys_mod_count>662</sys_mod_count>
         <sys_name>start</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-12-25 13:55:11</sys_updated_on>
+        <sys_updated_on>2021-12-26 10:20:37</sys_updated_on>
     </sys_ui_page>
 </record_update>
