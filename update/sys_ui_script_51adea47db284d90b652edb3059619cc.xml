@@ -116,7 +116,7 @@
 	{
 		function callbackObserver(m)
 		{
-			FormatAllFieldsOnPage();
+			IdentifyRecordsAndFormatAllFieldsOnPage();
 			//FormatLists(formatconfigs);
 		}
 		
@@ -141,29 +141,54 @@
 		}	
 	}
 	
+	var records = {};
+	var formatconfigs = null;
 	
-	var records = IdentifyRecordsOnPage();
-	GetFormatConfigMultiple(records,callbackGetFormatConfigMultiple);
-	function callbackGetFormatConfigMultiple(formatconfigs)
+	function IdentifyRecordsAndFormatAllFieldsOnPage()
 	{
-		FormatForm(formatconfigs);
-		FormatLists(formatconfigs);
-		ObserveLists(formatconfigs);
+		var recordsNew = IdentifyRecordsOnPage();
+		Debug('recordsNew');
+		Debug(recordsNew);
+		recordsNew = Merge(recordsNew,records);
+		Debug('recordsNew (Merged)');
+		Debug(recordsNew);
+		if (IsEqual(records,recordsNew,true) == false || formatconfigs == null)
+		{
+			Debug('(Re)loading config');
+
+			records = recordsNew;
+			GetFormatConfigMultiple(records,callbackGetFormatConfigMultiple);
+			function callbackGetFormatConfigMultiple(formatconfigsNew)
+			{
+				Debug('(Re)loaded config')
+				formatconfigs = formatconfigsNew;
+				FormatForm(formatconfigs);
+				FormatLists(formatconfigs);
+				ObserveLists(formatconfigs);
+			}
+		}
+		else
+		{
+			FormatLists(formatconfigs);
+		}
 	}
+	
+	IdentifyRecordsAndFormatAllFieldsOnPage();
+	
 }]]></script>
         <script_name>FormatAllFieldsOnPage</script_name>
         <sys_class_name>sys_ui_script</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-12-25 12:36:06</sys_created_on>
         <sys_id>51adea47db284d90b652edb3059619cc</sys_id>
-        <sys_mod_count>23</sys_mod_count>
+        <sys_mod_count>30</sys_mod_count>
         <sys_name>x_snc_devtools.FormatAllFieldsOnPage</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_script_51adea47db284d90b652edb3059619cc</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-01-06 11:31:37</sys_updated_on>
+        <sys_updated_on>2022-01-06 12:30:56</sys_updated_on>
         <ui_type>0</ui_type>
         <use_scoped_format>false</use_scoped_format>
     </sys_ui_script>
