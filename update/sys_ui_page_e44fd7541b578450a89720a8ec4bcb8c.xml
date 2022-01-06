@@ -101,6 +101,7 @@ gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData
 		<li>Added function TimeAddDays() to add a number of days to a given numeric time value.</li>
 		<li>Added function SetValue() to set a value in a recursive object.</li>
 		<li>Added function ArrayPushUnique() to add a value to an array if it doesn't exist yet.</li>
+		<li>Merge() now also merges arrays including arrays within nexted objects.</li>
 		<li>Added UI Script function ObserveDOM() to attach an oberving callback function to a DOM element.</li>
 		<li>Added UI Script function ServerRequest() to make an Ajax API call to a server-sided script include class.</li>
 		<li>Added UI Script functions Log(), Debug(), GetType(), IsEqual(), IsObject(), IsArray(), ArrayPushUnique(), ArrayValueExists(), GetKeys(), GetArrayValue(), ParseJson(), Merge(), Clone(), GetValue() and SetValue() which are equivalent to their server-sided script include counterparts.</li> 
@@ -631,13 +632,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>665</sys_mod_count>
+        <sys_mod_count>666</sys_mod_count>
         <sys_name>start</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-01-06 13:13:03</sys_updated_on>
+        <sys_updated_on>2022-01-06 15:43:11</sys_updated_on>
     </sys_ui_page>
 </record_update>
