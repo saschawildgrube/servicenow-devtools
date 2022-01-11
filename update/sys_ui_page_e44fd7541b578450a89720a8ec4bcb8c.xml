@@ -65,6 +65,40 @@ gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData
 		</li>
 	</ol>
 	
+	<h2>Field Formatting</h2>
+	<p>DevTools can help to format (float) numbers in forms, related lists and list views in the classic UI. Follow these steps to activate the feature:</p>
+	<ol>
+		<li>Set the DevTools system property&#160;<a href="/sys_properties?sys_id=b9fbd89cdb0d8954bcced03cd39619cb" target="_blank">ui.formatting</a>&#160;to true.</li> 
+		<li>Implement the&#160;<a href="/sys_extension_point.do?sys_id=e3a183be1bae7010edf3642aab4bcbdc" target="_blank">DevTools extension point</a>.</li>
+		<li>Implement the function DevToolsGetFormatConfig using the following template:
+<pre>
+function DevToolsGetFormatConfig(grRecord)
+{
+	var strTable = grRecord.getRecordClassName();
+
+	if (strTable == 'your_table')
+	{
+		var formatconfig = {
+			your_field: {
+				decimals: 2,
+				postfix: ' %'
+			}
+		};
+		return formatconfig;
+	}
+
+	return false;
+}
+</pre>
+		</li>
+		<li>Replace "your_table" by the name of the table that contains the fields to be formatted. Add support for more tables if needed.</li>
+		<li>Replace "your_field" by the name of the field to be formatted. Add more fields if required.</li>
+		<li>"decimals" specifies how many decimals digits should be used after the decimal delimiter.</li>
+		<li>"postfix" specifies a constant string to be added after the formatted number.</li>
+		<li>Note that the function will be called for each individual record, so the formatting can be dependent on other values of the same record.</li>
+		<li>You may consider session or transaction caching techniques to improve performance.</li>
+	</ol>
+	
 	<h2>Reference</h2>
 
 	<h3>Configuration Options</h3>
@@ -634,13 +668,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>669</sys_mod_count>
+        <sys_mod_count>675</sys_mod_count>
         <sys_name>start</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-01-10 14:07:22</sys_updated_on>
+        <sys_updated_on>2022-01-11 11:07:48</sys_updated_on>
     </sys_ui_page>
 </record_update>
