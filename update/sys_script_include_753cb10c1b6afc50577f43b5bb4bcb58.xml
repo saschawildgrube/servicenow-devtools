@@ -185,7 +185,7 @@
 			script:
 				"function IsActive()\n"
 				+"{\n"
-				+"\treturn AppGetProperty('"+strAppScope+".active'));\n"
+				+"\treturn AppGetProperty('active');\n"
 				+"}"
 		},
 		false);		
@@ -465,7 +465,53 @@
 		strSSI = GlideRecordInsert(grSSI);
 		Log('Script include "DevToolsGetLinkDirectory": '+RenderValue(strSSI));	
 	}	
-		
+
+	
+	// Adding script include "DevToolsGetParentRecord"
+	var grSSI = new GlideRecord('sys_script_include');
+	grSSI.addQuery('sys_scope','=',strAppSysId);
+	grSSI.addQuery('name','=','DevToolsGetFormatConfig');
+	grSSI.query();
+	if (grSSI.getRowCount() != 0)
+	{
+		Log('Script include "DevToolsGetFormatConfig" already exists...');
+	}
+	else
+	{
+		Log('Adding script include "DevToolsGetFormatConfig"...');
+		var grSSI = new GlideRecord('sys_script_include');
+		grSSI.initialize();
+		grSSI.name = 'DevToolsGetFormatConfig';
+		grSSI.description = "The DevToolsGetFormatConfig function is called by the DevTools extension point instance class and returns an object with field formatting information.";
+		grSSI.sys_scope = strAppSysId;
+		grSSI.access = 'public';
+		grSSI.caller_access = '1';
+		grSSI.script = ""
+			+"function DevToolsGetFormatConfig(grRecord)\n"
+			+"{\n"
+			+"\tvar strTable = grRecord.getRecordClassName();\n"
+			+"\n"
+			+"\tif (strTable == 'x_your_table')\n"
+			+"\t{\n"
+			+"\t\tvar formatconfig = {\n"
+			+"\t\t\tperformance: {\n"
+			+"\t\t\t\tdecimals: 2,\n"
+			+"\t\t\t\tpostfix: ' %'\n"
+			+"\t\t\t}\n"		
+			+"\t\t};\n"
+			+"\t\treturn formatconfig;\n"
+			+"\t}\n"
+			+"\n"
+			+"\treturn false;\n"
+			+"}";
+		strSSI = GlideRecordInsert(grSSI);
+		Log('Script include "DevToolsGetFormatConfig": '+RenderValue(strSSI));	
+	}	
+	
+	
+	
+	
+	
 	
 	Log('Adding UI Page "Manual"...');
 
@@ -734,13 +780,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-07 15:15:09</sys_created_on>
         <sys_id>753cb10c1b6afc50577f43b5bb4bcb58</sys_id>
-        <sys_mod_count>93</sys_mod_count>
+        <sys_mod_count>97</sys_mod_count>
         <sys_name>AppBuilder</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_753cb10c1b6afc50577f43b5bb4bcb58</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-12-07 10:21:46</sys_updated_on>
+        <sys_updated_on>2022-01-07 16:37:22</sys_updated_on>
     </sys_script_include>
 </record_update>

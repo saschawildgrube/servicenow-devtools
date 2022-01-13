@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.GetFormatConfig</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Retrieves formatting information for the fields of the given record in the given table.</description>
+        <name>GetFormatConfig</name>
+        <script><![CDATA[function GetFormatConfig(strTable,strSysId)
+{
+	if (IsValidTable(strTable) == false)
+	{
+		return false;
+	}
+	var grRecord = GetRecord(strTable,strSysId);
+	if (grRecord == false)
+	{
+		return false;
+	}
+	
+	var eps = new GlideScriptedExtensionPoint().getExtensions('DevTools');
+	for (var nEP = 0; nEP < eps.length; nEP++)
+	{
+		var ep = eps[nEP];
+		if (IsValidFunction(ep.GetFormatConfig))
+		{
+			formatconfig = ep.GetFormatConfig(grRecord);
+			if (formatconfig != false)
+			{
+				return formatconfig;
+			}
+		}
+	}
+	
+	return false;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-12-17 17:08:50</sys_created_on>
+        <sys_id>4c4f9ea4dbe40950bcced03cd39619cd</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>GetFormatConfig</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_4c4f9ea4dbe40950bcced03cd39619cd</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-01-11 10:58:41</sys_updated_on>
+    </sys_script_include>
+</record_update>

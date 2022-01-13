@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_action">
     <sys_ui_action action="INSERT_OR_UPDATE">
-        <action_name>sysverb_ws_save</action_name>
+        <action_name/>
         <active>true</active>
         <client>false</client>
         <client_script_v2><![CDATA[function onClick(g_form) {
 
 }]]></client_script_v2>
-        <comments>Global Save button (Insert)</comments>
-        <condition>current.canCreate() &amp;&amp; (AppGetProperty('ui.save_button') == true) </condition>
+        <comments>Global Save button</comments>
+        <condition>(current.canCreate() || current.canWrite() ) &amp;&amp; (AppGetProperty('ui.save_button') == true) </condition>
         <form_action>true</form_action>
         <form_button>true</form_button>
         <form_button_v2>false</form_button_v2>
@@ -29,19 +29,59 @@
         <name>Save</name>
         <onclick/>
         <order>-10000</order>
-        <script><![CDATA[GlideRecordInsert(current);
+        <script><![CDATA[var bDoUpdate = true; 
+var bUiScriptSetGlobal = false;
+if (current.getRecordClassName() == 'sys_ui_script')
+{
+	if (current.sys_scope != 'global')
+	{
+		if (GetStringValue(current.global) == 'true')
+		{
+			current.global = false;
+			bUiScriptSetGlobal = true;
+		}
+	}
+}
+
+if (bDoUpdate == true)
+{
+	if (current.isNewRecord() == true)
+	{
+		GlideRecordInsert(current,IsGhostRequiredForRecordUpdate(current));
+		// Taken from the OOTB Save context menu item:
+		gs.include('ActionUtils');
+		var au = new ActionUtils();
+		au.postInsert(current);	
+	}
+	else
+	{
+		GlideRecordUpdate(current,IsGhostRequiredForRecordUpdate(current));
+	}
+}
+
+if (bUiScriptSetGlobal == true)
+{
+	gs.addErrorMessage(
+		HtmlEncode(
+			'Global UI Scripts in scoped applications are not allowed. The necessary change is prevented by the "Access Handler".\n'
+			+'Refer to https://support.servicenow.com/kb?id=kb_article_view&sysparm_article=KB0722958\n'
+			+'But you can set the global value running the following background script:\n'
+			+'x_snc_devtools.RecordSetValue("sys_ui_script","'+current.sys_id+'","global","true",true);'));
+	//gs.addInfoMessage(RecordSetValue('sys_ui_script',current.sys_id,'global','true',true));
+}
+
 RedirectToRecord(current);]]></script>
         <show_insert>true</show_insert>
         <show_multiple_update>false</show_multiple_update>
         <show_query>false</show_query>
-        <show_update>false</show_update>
+        <show_update>true</show_update>
         <sys_class_name>sys_ui_action</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-11-22 16:24:34</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>e155ed64db4441104647dad1f39619dd</sys_id>
-        <sys_mod_count>9</sys_mod_count>
+        <sys_mod_count>50</sys_mod_count>
         <sys_name>Save</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -49,7 +89,7 @@ RedirectToRecord(current);]]></script>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_action_e155ed64db4441104647dad1f39619dd</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-11-24 11:03:12</sys_updated_on>
+        <sys_updated_on>2022-01-07 15:44:49</sys_updated_on>
         <table>global</table>
         <ui11_compatible>true</ui11_compatible>
         <ui16_compatible>false</ui16_compatible>

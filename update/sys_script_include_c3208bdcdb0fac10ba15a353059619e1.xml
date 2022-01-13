@@ -83,7 +83,6 @@ If the ghost parameter is set to true, records are updated with setWorkflow(fals
 	var bContinue = true;
 	while (bContinue == true)
 	{
-		var nTimeStamp = GetTimeNow();
 		grRecords.orderBy(strFieldDateTime);
 		grRecords.setLimit(1);		
 		grRecords.query();
@@ -106,8 +105,8 @@ If the ghost parameter is set to true, records are updated with setWorkflow(fals
 				}
 				else
 				{
-					grRecords.setValue(strFieldDateTime,RenderDateTime(nTimeStamp));
-					var bChanged = callbackRecordProcessor(grRecords);
+					// The first update ensures that multiple jobs running in parallel do not pick the same record
+					grRecords.setValue(strFieldDateTime,RenderDateTime(GetTimeNow()));
 					if (GlideRecordUpdate(grRecords,bGhost) == false)
 					{
 						Log('Failed to update record '+grRecords.sys_id+' in '+strClassName+'. Aborting!');
@@ -115,17 +114,28 @@ If the ghost parameter is set to true, records are updated with setWorkflow(fals
 					}
 					else
 					{
-						nTotalRecordsProcessed++;
-						if (bChanged == true)
+						var bChanged = callbackRecordProcessor(grRecords);
+						// The second update writes the actual result to the record with the now current time stamp
+						grRecords.setValue(strFieldDateTime,RenderDateTime(GetTimeNow()));
+						if (GlideRecordUpdate(grRecords,bGhost) == false)
 						{
-							nTotalRecordsChanged++;
+							Log('Failed to update record '+grRecords.sys_id+' in '+strClassName+'. Aborting!');
+							bContinue = false;
 						}
-						if (nTotalRecordsProcessed > 0 && nLogFrequency > 0)
+						else
 						{
-							if (nTotalRecordsProcessed % nLogFrequency == 0)
+							nTotalRecordsProcessed++;
+							if (bChanged == true)
 							{
-								var strLog = 'Processing record '+nTotalRecordsProcessed+' in '+strClassName+' and made '+nTotalRecordsChanged+' changes so far.';
-								Log(strLog);
+								nTotalRecordsChanged++;
+							}
+							if (nTotalRecordsProcessed > 0 && nLogFrequency > 0)
+							{
+								if (nTotalRecordsProcessed % nLogFrequency == 0)
+								{
+									var strLog = 'Processing record '+nTotalRecordsProcessed+' in '+strClassName+' and made '+nTotalRecordsChanged+' changes so far.';
+									Log(strLog);
+								}
 							}
 						}
 					}
@@ -157,13 +167,13 @@ If the ghost parameter is set to true, records are updated with setWorkflow(fals
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-03-18 15:15:16</sys_created_on>
         <sys_id>c3208bdcdb0fac10ba15a353059619e1</sys_id>
-        <sys_mod_count>44</sys_mod_count>
+        <sys_mod_count>45</sys_mod_count>
         <sys_name>RecordBulkProcessor</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_c3208bdcdb0fac10ba15a353059619e1</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-10-07 17:10:41</sys_updated_on>
+        <sys_updated_on>2021-12-12 19:36:39</sys_updated_on>
     </sys_script_include>
 </record_update>

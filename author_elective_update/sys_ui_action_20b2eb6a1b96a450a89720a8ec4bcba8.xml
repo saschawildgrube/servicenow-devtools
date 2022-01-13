@@ -99,7 +99,7 @@ action.setRedirectURL(current);]]&gt;&lt;/script&gt;&lt;show_insert&gt;false&lt;
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Export to current update set</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_parent display_value="CMDB CI Appl Dot Net">7846fdd61b623010edf3642aab4bcb18</sys_parent>
+        <sys_parent display_value="">7846fdd61b623010edf3642aab4bcb18</sys_parent>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_script">
+    <sys_ui_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Returns the type of a value.</description>
+        <global>true</global>
+        <name>x_snc_devtools.GetType</name>
+        <script><![CDATA[function GetType(vValue)
+{
+	// https://stackoverflow.com/questions/1249531/how-to-get-a-javascript-objects-class
+	// https://docs.servicenow.com/bundle/madrid-application-development/page/script/javascript-tools/reference/r_IsJavaObject.html
+	
+	var strType = typeof vValue;
+	if (strType == 'undefined')
+	{
+		return 'undefined';
+	}
+	if (vValue == null)
+	{
+		return 'null';
+	}
+	if (strType == 'object')
+	{
+		strType = Object.prototype.toString.call(vValue).match(/^\[object\s(.*)\]$/)[1];
+		if (strType == 'JavaObject')
+		{
+			return strType;
+		}
+		return strType;
+	}
+	return strType;
+}]]></script>
+        <script_name>GetType</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-12-23 21:12:27</sys_created_on>
+        <sys_id>6dc09a62db244990b652edb305961901</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_snc_devtools.GetType</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_ui_script_6dc09a62db244990b652edb305961901</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-12-23 21:12:27</sys_updated_on>
+        <ui_type>0</ui_type>
+        <use_scoped_format>false</use_scoped_format>
+    </sys_ui_script>
+</record_update>

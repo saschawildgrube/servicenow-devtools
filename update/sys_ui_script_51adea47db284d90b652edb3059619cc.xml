@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_script">
+    <sys_ui_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Formats all fields on the page: in the form, related lists or a list view according to the format configuration provided by the backend. </description>
+        <global>true</global>
+        <name>x_snc_devtools.FormatAllFieldsOnPage</name>
+        <script><![CDATA[function FormatAllFieldsOnPage()
+{
+	//Log('FormatAllFieldsOnPage');
+	
+	function FormatForm(formatconfigs)
+	{
+		if (typeof g_form === 'undefined')
+		{
+			return false;
+		}
+		var elementForm = g_form.getFormElement();
+		var elements = elementForm.querySelectorAll('.form-control');
+
+		for (var nElement = 0; nElement < elements.length; nElement++)
+		{
+			var element = elements[nElement];
+			var strElementId = ''+element.id;
+			var aElementId = strElementId.split('.');
+			if (aElementId.length > 0)
+			{
+				var strColumnId = aElementId[aElementId.length-1];
+				var columnconfig = GetValue(formatconfigs,g_form.getTableName(),g_form.getUniqueValue(),strColumnId);
+				if (columnconfig != null)
+				{
+					if (aElementId[0] == 'sys_readonly')
+					{
+						element.value = FormatValue(element.value,columnconfig);
+						element.style.textAlign = 'right';
+					}
+				}
+			}
+		}
+	}
+	
+	function FormatLists(formatconfigs)
+	{
+		var aFrames = top.document.getElementsByTagName('iframe');
+		for (var nFrame = 0; nFrame < aFrames.length; nFrame++)
+		{
+			var elementFrame = aFrames[nFrame];
+			if (elementFrame.getAttribute('id') == 'gsft_main')
+			{
+				var aTables = elementFrame.contentWindow.document.getElementsByTagName('table');
+				for (var nTable = 0; nTable < aTables.length; nTable++)
+				{
+					var elementTable = aTables[nTable];
+					var strTable = GetStringValue(elementTable.getAttribute('data-list_id'));
+					if (strTable != '')
+					{
+						var aTableHeader = elementTable.getElementsByTagName('thead');
+
+						if (aTableHeader.length > 0)
+						{
+							var aColumns = [];
+
+							var aRows = aTableHeader[0].getElementsByTagName('tr');
+							for (var nRow = 0; nRow < aRows.length; nRow++)
+							{
+								var elementRow = aRows[nRow];
+								if (elementRow.id.indexOf('hdr_') == 0)
+								{
+									var aCells = elementRow.getElementsByTagName('th');
+									for (var nCell = 0; nCell < aCells.length; nCell++)
+									{
+										var elementCell = aCells[nCell];
+										aColumns.push(''+elementCell.getAttribute('name'));
+									}
+								}
+							}
+
+							if (aColumns.length > 0)
+							{
+								var aTableBodies = elementTable.getElementsByTagName('tbody');
+								if (aTableBodies.length > 0)
+								{
+									var aRows = aTableBodies[0].getElementsByTagName('tr');
+									for (var nRow = 0; nRow < aRows.length; nRow++)
+									{
+										var elementRow = aRows[nRow];
+										var strRecordClass = GetStringValue(elementRow.getAttribute('record_class'));
+										var strSysId = GetStringValue(elementRow.getAttribute('sys_id'));
+										if (strRecordClass != '' && strSysId != '')
+										{
+											var aCells = elementRow.querySelectorAll(':scope > td');
+											for (var nCell = 0; nCell < aCells.length; nCell++)
+											{
+												var element = aCells[nCell];
+												var strColumn = aColumns[nCell];
+												if (strColumn != '')
+												{
+													var columnconfig = GetValue(formatconfigs,strRecordClass,strSysId,strColumn);
+													if (IsObject(columnconfig) == true)
+													{
+														element.textContent = FormatValue(element.textContent,columnconfig);
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	function ObserveLists(formatconfigs)
+	{
+		function callbackObserver(m)
+		{
+			IdentifyRecordsAndFormatAllFieldsOnPage();
+			//FormatLists(formatconfigs);
+		}
+		
+		var aFrames = top.document.getElementsByTagName('iframe');
+		for (nFrame = 0; nFrame < aFrames.length; nFrame++)
+		{
+			var elementFrame = aFrames[nFrame];
+			if (GetStringValue(elementFrame.getAttribute('id'))=='gsft_main')
+			{
+				var aObserved = elementFrame.contentWindow.document.getElementsByTagName('div');
+				for (var nElement = 0; nElement < aObserved.length; nElement++)
+				{
+					var elementObserved = aObserved[nElement]; 
+					var strId = ''+elementObserved.id;
+					var strClasses = ''+elementObserved.className;
+					if (strClasses.indexOf('list_div') != -1)
+					{
+						ObserveDOM(elementObserved,callbackObserver);
+					}
+				}
+			}
+		}	
+	}
+	
+	var records = {};
+	var formatconfigs = null;
+	
+	function IdentifyRecordsAndFormatAllFieldsOnPage()
+	{
+		var recordsNew = IdentifyRecordsOnPage();
+		//Debug('recordsNew');
+		//Debug(recordsNew);
+		recordsNew = Merge(recordsNew,records);
+		//Debug('recordsNew (Merged)');
+		//Debug(recordsNew);
+		if (IsEqual(records,recordsNew,true) == false || formatconfigs == null)
+		{
+			//Debug('(Re)loading config');
+
+			records = recordsNew;
+			GetFormatConfigMultiple(records,callbackGetFormatConfigMultiple);
+			function callbackGetFormatConfigMultiple(formatconfigsNew)
+			{
+				//Debug('(Re)loaded config')
+				formatconfigs = formatconfigsNew;
+				FormatForm(formatconfigs);
+				FormatLists(formatconfigs);
+				ObserveLists(formatconfigs);
+			}
+		}
+		else
+		{
+			FormatLists(formatconfigs);
+		}
+	}
+	
+	IdentifyRecordsAndFormatAllFieldsOnPage();
+	
+}]]></script>
+        <script_name>FormatAllFieldsOnPage</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-12-25 12:36:06</sys_created_on>
+        <sys_id>51adea47db284d90b652edb3059619cc</sys_id>
+        <sys_mod_count>31</sys_mod_count>
+        <sys_name>x_snc_devtools.FormatAllFieldsOnPage</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_ui_script_51adea47db284d90b652edb3059619cc</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-01-13 14:30:09</sys_updated_on>
+        <ui_type>0</ui_type>
+        <use_scoped_format>false</use_scoped_format>
+    </sys_ui_script>
+</record_update>

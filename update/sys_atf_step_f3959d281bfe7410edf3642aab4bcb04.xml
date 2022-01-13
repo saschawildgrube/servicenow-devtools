@@ -43,7 +43,7 @@ With a failure timeout of 5 Seconds</description>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2021-09-21 11:56:32</sys_updated_on>
         <value>no_records_match_query</value>
-        <variable display_value="">b86c0427531000109e02ddeeff7b1227</variable>
+        <variable display_value="Assert type">b86c0427531000109e02ddeeff7b1227</variable>
     </sys_variable_value>
     <sys_variable_value action="INSERT_OR_UPDATE">
         <document>sys_atf_step</document>
@@ -57,7 +57,7 @@ With a failure timeout of 5 Seconds</description>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2021-09-22 14:43:18</sys_updated_on>
         <value>nameSTARTSWITHDevTools_TemporaryFunction^sys_created_on&gt;javascript:gs.beginningOfLast30Minutes()^EQ</value>
-        <variable display_value="">915990ab531000109e02ddeeff7b12f8</variable>
+        <variable display_value="Conditions">915990ab531000109e02ddeeff7b12f8</variable>
     </sys_variable_value>
     <sys_variable_value action="INSERT_OR_UPDATE">
         <document>sys_atf_step</document>
@@ -71,7 +71,7 @@ With a failure timeout of 5 Seconds</description>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2021-09-21 11:56:32</sys_updated_on>
         <value>sys_script_include</value>
-        <variable display_value="">78b8d86b531000109e02ddeeff7b12f3</variable>
+        <variable display_value="Table">78b8d86b531000109e02ddeeff7b12f3</variable>
     </sys_variable_value>
     <sys_variable_value action="INSERT_OR_UPDATE">
         <document>sys_atf_step</document>
@@ -85,6 +85,6 @@ With a failure timeout of 5 Seconds</description>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2021-09-21 11:56:32</sys_updated_on>
         <value>0</value>
-        <variable display_value="">02fb0027531000109e02ddeeff7b120b</variable>
+        <variable display_value="Enforce security">02fb0027531000109e02ddeeff7b120b</variable>
     </sys_variable_value>
 </record_update>

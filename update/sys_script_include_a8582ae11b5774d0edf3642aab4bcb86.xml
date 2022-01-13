@@ -32,6 +32,9 @@
 					table: 'fx_currency'
 				},
 				{
+					table: 'fx_system_rate'
+				},
+				{
 					table: 'fx_rate'
 				}
 			],
@@ -109,7 +112,7 @@
 					view: 'devtools'
 				}
 			],
-			'Scripts':
+			'Server Scripts':
 			[
 				{
 					table: 'sys_script_include'
@@ -122,6 +125,15 @@
 				},
 				{
 					table: 'sysauto_script'
+				}
+			],
+			'Clients Scripts':
+			[
+				{
+					table: 'sys_script_client'
+				},
+				{
+					table: 'sys_ui_script'
 				}
 			],
 			'Events and Notifications':
@@ -161,7 +173,7 @@
 			'Navigation':
 			[
 				{
-					table: 'sys_app_application '
+					table: 'sys_app_application'
 				},
 				{
 					table: 'sys_app_module'
@@ -224,6 +236,12 @@
 					table: 'sys_variable_value'
 				}
 			],
+			'Service Portals':
+			[
+				{
+					table: 'sp_portal'
+				}
+			],
 			'Decision Tables':
 			[
 				{
@@ -266,7 +284,7 @@
 					table: 'sc_task'
 				}
 			],
-			'CMDB and Asset Management':
+			'CMDB':
 			[
 				{
 					table: 'cmdb_ci'
@@ -307,13 +325,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-19 17:03:37</sys_created_on>
         <sys_id>a8582ae11b5774d0edf3642aab4bcb86</sys_id>
-        <sys_mod_count>46</sys_mod_count>
+        <sys_mod_count>52</sys_mod_count>
         <sys_name>GetLinkDirectory</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_a8582ae11b5774d0edf3642aab4bcb86</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-12-06 15:00:48</sys_updated_on>
+        <sys_updated_on>2022-01-13 10:20:10</sys_updated_on>
     </sys_script_include>
 </record_update>

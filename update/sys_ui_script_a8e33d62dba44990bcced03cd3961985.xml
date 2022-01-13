@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_script">
+    <sys_ui_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Retrieves the format config using an ajax request and caches the response to avoid duplicate requests.</description>
+        <global>true</global>
+        <name>x_snc_devtools.GetFormatConfig</name>
+        <script><![CDATA[function GetFormatConfig(strTable,strSysId,callbackResponse)
+{
+	Log('GetFormatConfig: '+strTable+' '+strSysId);
+	if (strTable == null)
+	{
+		return false;
+	}
+	if (strSysId == null)
+	{
+		return false;
+	}
+	if (GetCacheValue('formatconfig',strTable) === false)
+	{
+		return false;
+	}
+	var formatconfig = GetCacheValue('formatconfig',strTable,strSysId);
+	if (formatconfig != null)
+	{
+		Log('Cache hit: '+strTable+' '+strSysId);
+		Log(formatconfig);
+
+		return formatconfig;
+	}
+	
+	if (callbackResponse != null)
+	{
+		function callbackResponseFormatConfig(formatconfig)
+		{
+
+			if (formatconfig == false)
+			{
+				SetCacheValue(false,'formatconfig',strTable);
+			}
+			if (formatconfig != false)
+			{
+				SetCacheValue(formatconfig,'formatconfig',strTable,strSysId);
+			}
+			callbackResponse(formatconfig);
+		}
+		ServerRequest('x_snc_devtools.DevToolsClientAPI','GetFormatConfig',
+			{
+				table: strTable,
+				sys_id: strSysId
+			},callbackResponseFormatConfig);
+	}
+	else
+	{
+		formatconfig = ServerRequest('x_snc_devtools.DevToolsClientAPI','GetFormatConfig',
+			{
+				table: strTable,
+				sys_id: strSysId
+			});
+		if (formatconfig == false)
+		{
+			SetCacheValue(false,'formatconfig',strTable);
+		}
+		if (formatconfig != false)
+		{
+			SetCacheValue(formatconfig,'formatconfig',strTable,strSysId);
+		}
+		return formatconfig;
+	}
+}]]></script>
+        <script_name>GetFormatConfig</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-12-23 19:05:34</sys_created_on>
+        <sys_id>a8e33d62dba44990bcced03cd3961985</sys_id>
+        <sys_mod_count>25</sys_mod_count>
+        <sys_name>x_snc_devtools.GetFormatConfig</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_ui_script_a8e33d62dba44990bcced03cd3961985</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-12-25 15:39:28</sys_updated_on>
+        <ui_type>0</ui_type>
+        <use_scoped_format>false</use_scoped_format>
+    </sys_ui_script>
+</record_update>

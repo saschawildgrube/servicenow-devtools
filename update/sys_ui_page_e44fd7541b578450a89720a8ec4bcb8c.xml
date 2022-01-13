@@ -26,7 +26,7 @@
 	<ul>
 		<g2:no_escape>$[
 			docapi.RenderSystemRequirements(
-				'Paris,Quebec,Rome',
+				'Quebec,Rome',
 				true,
 				AppGetDependencies());
 		]</g2:no_escape>	
@@ -65,6 +65,40 @@ gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData
 		</li>
 	</ol>
 	
+	<h2>Field Formatting</h2>
+	<p>DevTools can help to format (float) numbers in forms, related lists and list views in the classic UI. Follow these steps to activate the feature:</p>
+	<ol>
+		<li>Set the DevTools system property&#160;<a href="/sys_properties?sys_id=b9fbd89cdb0d8954bcced03cd39619cb" target="_blank">ui.formatting</a>&#160;to true.</li> 
+		<li>Implement the&#160;<a href="/sys_extension_point.do?sys_id=e3a183be1bae7010edf3642aab4bcbdc" target="_blank">DevTools extension point</a>.</li>
+		<li>Implement the function DevToolsGetFormatConfig using the following template:
+<pre>
+function DevToolsGetFormatConfig(grRecord)
+{
+	var strTable = grRecord.getRecordClassName();
+
+	if (strTable == 'your_table')
+	{
+		var formatconfig = {
+			your_field: {
+				decimals: 2,
+				postfix: ' %'
+			}
+		};
+		return formatconfig;
+	}
+
+	return false;
+}
+</pre>
+		</li>
+		<li>Replace "your_table" by the name of the table that contains the fields to be formatted. Add support for more tables if needed.</li>
+		<li>Replace "your_field" by the name of the field to be formatted. Add more fields if required.</li>
+		<li>"decimals" specifies how many decimals digits should be used after the decimal delimiter.</li>
+		<li>"postfix" specifies a constant string to be added after the formatted number.</li>
+		<li>Note that the function will be called for each individual record, so the formatting can be dependent on other values of the same record.</li>
+		<li>You may consider session or transaction caching techniques to improve performance.</li>
+	</ol>
+	
 	<h2>Reference</h2>
 
 	<h3>Configuration Options</h3>
@@ -95,9 +129,42 @@ gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData
 	
 	<h2>Release Notes</h2>
 
+	<h3>1.31.0 - 2022-01-13</h3>
+	<ol>
+		<li>Paris is no longer actively supported.</li>
+		<li>Control whether a Service Portal is active by setting the 'Active' flag on records in sp_portal.</li> 
+		<li>Added function TimeAddDays() to add a number of days to a given numeric time value.</li>
+		<li>Added function SetValue() to set a value in a recursive object.</li>
+		<li>Added function ArrayPushUnique() to add a value to an array if it doesn't exist yet.</li>
+		<li>Added function GetAppScope() to get the scope name of an application based on its Sys Id.</li>
+		<li>Added function IsTableDomainSeparated() to check if domain separation is active and supported on a given table.</li>
+		<li>Merge() now also merges arrays including arrays within nested objects.</li>
+		<li>Function GlideRecordInsert() now also supports the ghost mode in which it avoids the execution of business rules during insert.</li> 
+		<li>Added UI Script function ObserveDOM() to attach an oberving callback function to a DOM element.</li>
+		<li>Added UI Script function ServerRequest() to make an Ajax API call to a server-sided script include class.</li>
+		<li>Added UI Script functions Log(), Debug(), GetType(), IsEqual(), IsObject(), IsArray(), ArrayPushUnique(), ArrayValueExists(), GetKeys(), GetArrayValue(), ParseJson(), Merge(), Clone(), GetValue() and SetValue() which are equivalent to their server-sided script include counterparts.</li> 
+		<li>Added method InstallerAPI::ActivateUiPolicy() to set an existing UI Policy active or inactive during installation.</li>
+		<li>RecordBulkProcessor() is now aware of lengthy record processing and multiple scheduled jobs running in parallel.</li>
+		<li>DocumentationAPI::RenderRoles() now renders links to the role record pages.</li>
+		<li>Added business rule "sys_script_client - set table to global" to allow global Client Scripts. OOTB the option of defining global Client Scripts is disabled. This business rule fixes this issue by setting an empty table field to "global".</li>
+		<li>HtmlEncode() now also converts new line characters to line break html tags.</li>
+		<li>Test "DevTools - CurrencyConversion" failed if the instance was set up after september 2021 as ECB exchange rates are not loaded historically. The test now uses the default rate supplied in an OOTB instance.</li>
+		<li>Test step configuration "DevTools - Check scoped app sanity" now checks if a sys_ui_script has a description.</li>
+		<li>Added tables sp_portal, sys_script_client, sys_ui_script and fx_system_rate to the link directory.</li>
+		<li>Link to table sys_app_application in the link directory did not work. This has been fixed.</li>
+		<li>Hardened CurrencyConversion() against invalid parameters.</li>
+		<li>The new form link UI action "Create Macro" on the script include form helps to create a syntax edit macro to access a function or class defined in that script include.</li>  
+		<li>The global "Save" button is now ONE UI Action for both insert and update operations.</li>
+		<li>AppBuilder() had a defect that cause the IsActive() function in the target application not to work correctly. This has been fixed.</li>
+		<li>InstallerAPI.SetProperty() was defective and did not set properties correctly. This has been fixed.</li>
+		<li>The AppInstall() script now also sets the system property "glide.script.block.client.globals" to false to enable global client-sided scripts and hence all client-side DevTools capabilities.</li>
+		<li>Added system property "logging.verbosity" to control DevTools log output. Debug() is now using gs.debug() to produce debug output. AppInstall() sets "logging.verbosity" to "debug" which is the default setting.</li>
+	</ol>
+
+	
 	<h3>1.30.0 - 2021-12-08</h3>
 	<ol>
-		<li>Added function GetPadStart() to compensate the missing Javascript function padStart.</li>
+		<li>Added function StringPadStart() to compensate the missing Javascript function padStart.</li>
 		<li>Added function RenderDate() to render the given date/time as an UTC iso string.</li>
 		<li>Added function RenderDateTimeUser() to render the given date/time according to the current user's preferences.</li>
 		<li>GetRecord() now checks if the given table actually has the sys_id column and returns false if not.</li>
@@ -608,13 +675,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>640</sys_mod_count>
+        <sys_mod_count>683</sys_mod_count>
         <sys_name>start</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-12-08 16:32:57</sys_updated_on>
+        <sys_updated_on>2022-01-13 15:19:35</sys_updated_on>
     </sys_ui_page>
 </record_update>

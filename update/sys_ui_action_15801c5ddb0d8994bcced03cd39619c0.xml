@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_action">
+    <sys_ui_action action="INSERT_OR_UPDATE">
+        <action_name/>
+        <active>true</active>
+        <client>false</client>
+        <client_script_v2><![CDATA[function onClick(g_form) {
+
+}]]></client_script_v2>
+        <comments>Create a syntax editor macro to access the function or class defined in the script include.</comments>
+        <condition>current.getRecordClassName() == 'sys_script_include' &amp;&amp; IsMacroAvailableForScriptInclude(current) == false</condition>
+        <form_action>true</form_action>
+        <form_button>false</form_button>
+        <form_button_v2>false</form_button_v2>
+        <form_context_menu>false</form_context_menu>
+        <form_link>true</form_link>
+        <form_menu_button_v2>false</form_menu_button_v2>
+        <form_style/>
+        <hint/>
+        <isolate_script>false</isolate_script>
+        <list_action>false</list_action>
+        <list_banner_button>false</list_banner_button>
+        <list_button>false</list_button>
+        <list_choice>false</list_choice>
+        <list_context_menu>false</list_context_menu>
+        <list_link>false</list_link>
+        <list_save_with_form_button>false</list_save_with_form_button>
+        <list_style/>
+        <messages/>
+        <name>Create Macro</name>
+        <onclick/>
+        <order>9999</order>
+        <script><![CDATA[var strAppSysId = GetStringValue(current.sys_scope);
+var strAppScope = GetAppScope(strAppSysId);
+var strScript = GetStringValue(current.script);
+var strName = GetStringValue(current.name); 
+
+var strType = '';
+
+if (strScript.indexOf('function ') == 0)
+{
+	strType = 'function';
+}
+else if (strScript.indexOf('var ') == 0)
+{
+	strType = 'class';
+}
+
+if (strType == '')
+{
+	gs.addErrorMessage('Could not identify type of script include (function or class). Aborting.');
+	RedirectToRecord(current);
+}
+else
+{
+	var strInfo = '';
+	var strMacro = '';
+	strMacro += strName+' = '+strAppScope+'.'+strName+';\n';
+	
+	if (strType == 'function')
+	{
+		strInfo = 'This editor macro creates the code necessary to access the function contained in the '+strName+' script include.';
+		strMacro += strName+'();';
+	}
+	else if (strType == 'class')
+	{
+		strInfo = 'This editor macro creates the code necessary to access the class contained in the '+strName+' script include.';
+		strMacro += 'var '+strName.toLowerCase()+' = new '+strName+'();';
+	}
+	
+	var strMacroSysId = AppBuilderAddSyntaxEditorMacro(
+		strAppSysId,
+		strName,
+		strInfo,
+		strMacro);
+	
+	var grMacro = GetRecord('syntax_editor_macro',strMacroSysId);
+	if (grMacro == false)
+	{
+		gs.addErrorMessage('Macro could not be created.');
+		RedirectToRecord(current);	
+	}
+	else
+	{
+		gs.addInfoMessage('Macro has been created.');
+		RedirectToRecord(grMacro);	
+	}
+}
+
+]]></script>
+        <show_insert>false</show_insert>
+        <show_multiple_update>false</show_multiple_update>
+        <show_query>false</show_query>
+        <show_update>true</show_update>
+        <sys_class_name>sys_ui_action</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-01-13 11:13:34</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>15801c5ddb0d8994bcced03cd39619c0</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>Create Macro</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_ui_action_15801c5ddb0d8994bcced03cd39619c0</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-01-13 14:48:32</sys_updated_on>
+        <table>global</table>
+        <ui11_compatible>true</ui11_compatible>
+        <ui16_compatible>false</ui16_compatible>
+    </sys_ui_action>
+</record_update>

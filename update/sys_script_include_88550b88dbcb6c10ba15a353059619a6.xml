@@ -5,50 +5,69 @@
         <api_name>x_snc_devtools.Merge</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Merges two objects.</description>
+        <description>Merges two objects or arrays.</description>
         <name>Merge</name>
         <script><![CDATA[function Merge(vValue1, vValue2)
 {
-	if (IsObject(vValue1) == false)
+	if (IsObject(vValue1) == true && vValue2 === null)
 	{
-		return false;
+		return vValue1;
 	}
-	if (IsObject(vValue2) == false)
+	if (IsObject(vValue2) == true && vValue1 === null)
 	{
-		return false;
+		return vValue2;
 	}
-
-	var oMerge = Clone(vValue1);
-
-	var aKeys = GetKeys(vValue2);
-	aKeys.forEach( function(strKey)
+	if (IsArray(vValue1) == true && vValue2 === null)
 	{
-		if (vValue1[strKey] == undefined)
+		return vValue1;
+	}
+	if (IsArray(vValue2) == true && vValue1 === null)
+	{
+		return vValue2;
+	}
+	
+	if (IsObject(vValue1) == true && IsObject(vValue2) == true)
+	{
+		var oMerge = Clone(vValue1);
+
+		var aKeys = GetKeys(vValue2);
+		aKeys.forEach( function(strKey)
 		{
-			oMerge[strKey] = vValue2[strKey];
-		}
-		else if (IsObject(vValue1[strKey]) == false)
-		{
-			oMerge[strKey] = vValue2[strKey];
-		}
-		else
-		{
-			oMerge[strKey] = Merge(vValue1[strKey],vValue2[strKey]);
-		}
-	});		
-	return oMerge;
+			if (vValue1[strKey] == undefined)
+			{
+				oMerge[strKey] = vValue2[strKey];
+			}
+			else if (IsObject(vValue1[strKey]) == false && IsArray(vValue1[strKey]) == false)
+			{
+				oMerge[strKey] = vValue2[strKey];
+			}
+			else
+			{
+				oMerge[strKey] = Merge(vValue1[strKey],vValue2[strKey]);
+			}
+		});		
+		return oMerge;		
+	}
+	
+	if (IsArray(vValue1) == true && IsArray(vValue2) == true)
+	{
+		var vMergedArray = ArrayAppend(vValue1,vValue2);
+		vMergedArray = ArrayUnique(vMergedArray);
+		return vMergedArray;
+	}
+	return false;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-03-17 20:51:12</sys_created_on>
         <sys_id>88550b88dbcb6c10ba15a353059619a6</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_name>Merge</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_88550b88dbcb6c10ba15a353059619a6</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-06-22 16:27:28</sys_updated_on>
+        <sys_updated_on>2022-01-06 15:42:05</sys_updated_on>
     </sys_script_include>
 </record_update>

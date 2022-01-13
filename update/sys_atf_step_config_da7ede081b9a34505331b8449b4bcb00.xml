@@ -94,7 +94,7 @@ generateDescription();]]></description_generator>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2021-08-26 07:49:33</sys_updated_on>
         <template_reminder>TBD</template_reminder>
-        <type display_value="Test Step" name="sys_atf_step">32cab51a1b663010edf3642aab4bcbb8</type>
+        <type display_value="Test Step" name="sys_atf_step">ee6efe9ddb540110b652edb305961948</type>
         <wizard_redirect/>
     </sys_atf_step_config>
     <sys_translated_text action="delete_multiple" query="documentkey=da7ede081b9a34505331b8449b4bcb00"/>
