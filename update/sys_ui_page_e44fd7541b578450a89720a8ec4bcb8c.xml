@@ -136,6 +136,7 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>Added function TimeAddDays() to add a number of days to a given numeric time value.</li>
 		<li>Added function SetValue() to set a value in a recursive object.</li>
 		<li>Added function ArrayPushUnique() to add a value to an array if it doesn't exist yet.</li>
+		<li>Added function GetAppScope() to get the scope name of an application based on its Sys Id.</li>
 		<li>Merge() now also merges arrays including arrays within nested objects.</li>
 		<li>Function GlideRecordInsert() now also supports the ghost mode in which it avoids the execution of business rules during insert.</li> 
 		<li>Added UI Script function ObserveDOM() to attach an oberving callback function to a DOM element.</li>
@@ -672,13 +673,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>679</sys_mod_count>
+        <sys_mod_count>680</sys_mod_count>
         <sys_name>start</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-01-13 12:05:23</sys_updated_on>
+        <sys_updated_on>2022-01-13 12:38:18</sys_updated_on>
     </sys_ui_page>
 </record_update>
