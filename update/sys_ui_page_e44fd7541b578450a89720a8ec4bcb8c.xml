@@ -99,6 +99,10 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>You may consider session or transaction caching techniques to improve performance.</li>
 	</ol>
 	
+	<h2>Service Portal Deactivation</h2>
+	<p>DevTools allows you to deactivate specific Service Portals.</p>
+	<p>A new field "Active" is added to the&#160;<a href="/nav_to.do?uri=sp_portal_list.do%3F" target="_blank">sp_portal</a>&#160;table. Once set to false, the corresponding Service Portal will just disappear and is no longer accessible.</p>
+	
 	<h2>Reference</h2>
 
 	<h3>Configuration Options</h3>
@@ -129,9 +133,22 @@ function DevToolsGetFormatConfig(grRecord)
 	
 	<h2>Release Notes</h2>
 
+	<h3>1.32.0 - 2022-01-28</h3>
+	<ol>
+		<li>Added tables sys_index, sys_ui_bookmark_group and sys_ui_bookmark to the link directory.</li>
+		<li>GetTableFromSysId() now ignores tables starting with "sn_esign_".</li>
+		<li>The global system property "glide.script.block.client.globals" is now created during installation if it does not exist yet.</li>
+		<li>Test step configuration "DevTools - Check scoped app sanity" now checks for an empty description field in system properties.</li>
+		<li>Test step configuration "DevTools - Check scoped app sanity" no longer objects records in sys_index associated to the app.</li>
+		<li>IsTableDomainSeparated() did not work properly if the domain separation system property does not exist. This has been fixed.</li>
+		<li>The "Create Macro" UI action produced incorrect source code. Syntax editor macros for TimeAddDays(), IsTableDomainSeparated() and AppGetScope() were created incorrectly. This has been fixed.</li> 
+		<li>Added chapter "Service Portal Deactivation" to the documentation.</li>
+	</ol>
+	
 	<h3>1.31.0 - 2022-01-13</h3>
 	<ol>
 		<li>Paris is no longer actively supported.</li>
+		<li>Introduced the Field Formatting Feature to display float values nicely in forms and lists.</li> 
 		<li>Control whether a Service Portal is active by setting the 'Active' flag on records in sp_portal.</li> 
 		<li>Added function TimeAddDays() to add a number of days to a given numeric time value.</li>
 		<li>Added function SetValue() to set a value in a recursive object.</li>
@@ -675,13 +692,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>683</sys_mod_count>
+        <sys_mod_count>699</sys_mod_count>
         <sys_name>start</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-01-13 15:19:35</sys_updated_on>
+        <sys_updated_on>2022-01-28 14:28:41</sys_updated_on>
     </sys_ui_page>
 </record_update>

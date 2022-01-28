@@ -10,7 +10,7 @@
         <script><![CDATA[function IsTableDomainSeparated(strTable)
 {
 	strTable = GetStringValue(strTable);
-	if (GetProperty('glide.sys.domain.partitioning') == false)
+	if (GetBoolValue(GetProperty('glide.sys.domain.partitioning')) == false)
 	{
 		return false;
 	}
@@ -28,13 +28,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-01-13 14:12:49</sys_created_on>
         <sys_id>57f93455dbc5c994bcced03cd3961907</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name>IsTableDomainSeparated</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_57f93455dbc5c994bcced03cd3961907</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-01-13 14:14:55</sys_updated_on>
+        <sys_updated_on>2022-01-14 13:25:51</sys_updated_on>
     </sys_script_include>
 </record_update>
