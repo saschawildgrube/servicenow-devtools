@@ -115,7 +115,7 @@ With a failure timeout of 5 Seconds</description>
     </sys_element_mapping>
     <sys_update_version action="INSERT_OR_UPDATE">
         <action>DELETE</action>
-        <application display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <application display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</application>
         <file_path/>
         <instance_id>027b763fdb383810601a11f84896197c</instance_id>
         <instance_name>empswildgrubedevorlando</instance_name>
@@ -151,10 +151,10 @@ With a failure timeout of 5 Seconds</description><display_name>Record Query (Dep
         <sys_metadata>26fbecccdb4eac90ba15a35305961986</sys_metadata>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Record Query (Deprecated)</sys_name>
-        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_parent/>
         <sys_policy/>
-        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
         <sys_update_name>sys_atf_step_26fbecccdb4eac90ba15a35305961986</sys_update_name>
         <sys_update_version display_value="sys_atf_step_26fbecccdb4eac90ba15a35305961986">e9db23b31b7030105331b8449b4bcbb5</sys_update_version>

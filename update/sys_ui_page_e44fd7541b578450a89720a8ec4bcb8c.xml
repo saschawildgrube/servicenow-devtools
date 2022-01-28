@@ -133,7 +133,7 @@ function DevToolsGetFormatConfig(grRecord)
 	
 	<h2>Release Notes</h2>
 
-	<h3>1.32.0 - 2022-01-TODO</h3>
+	<h3>1.32.0 - 2022-01-28</h3>
 	<ol>
 		<li>Added tables sys_index, sys_ui_bookmark_group and sys_ui_bookmark to the link directory.</li>
 		<li>GetTableFromSysId() now ignores tables starting with "sn_esign_".</li>
@@ -692,13 +692,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>698</sys_mod_count>
+        <sys_mod_count>699</sys_mod_count>
         <sys_name>start</sys_name>
-        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
-        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-01-24 17:01:47</sys_updated_on>
+        <sys_updated_on>2022-01-28 14:28:41</sys_updated_on>
     </sys_ui_page>
 </record_update>
