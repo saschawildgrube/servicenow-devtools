@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.IsDomainSeparationInstalled</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns true if domain separtion is installed on the instance. Keep in mind, domain separation may or may not be active.</description>
+        <name>IsDomainSeparationInstalled</name>
+        <script><![CDATA[function IsDomainSeparationInstalled()
+{
+	return IsValidTable('sys_application_property');
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-02-14 11:55:15</sys_created_on>
+        <sys_id>096d45ebdb254510bcced03cd39619e3</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>IsDomainSeparationInstalled</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_096d45ebdb254510bcced03cd39619e3</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-02-14 12:05:15</sys_updated_on>
+    </sys_script_include>
+</record_update>
