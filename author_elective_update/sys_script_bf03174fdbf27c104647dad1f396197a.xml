@@ -64,7 +64,7 @@
     <sys_translated_text action="DELETE" query="documentkey=bf03174fdbf27c104647dad1f396197a"/>
     <sys_update_version action="INSERT_OR_UPDATE">
         <action>DELETE</action>
-        <application display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <application display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</application>
         <file_path/>
         <instance_id>6b513d92dbe2fc100b9d21c4059619eb</instance_id>
         <instance_name>wildgrubedevparis</instance_name>
@@ -111,10 +111,10 @@
         <sys_metadata>bf03174fdbf27c104647dad1f396197a</sys_metadata>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>sys_documentation - match scopes</sys_name>
-        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_parent display_value="">4be331121b223010edf3642aab4bcb5a</sys_parent>
         <sys_policy/>
-        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
         <sys_update_name>sys_script_bf03174fdbf27c104647dad1f396197a</sys_update_name>
         <sys_update_version display_value="sys_script_bf03174fdbf27c104647dad1f396197a">ef49db8fdb367c104647dad1f3961997</sys_update_version>
