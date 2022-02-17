@@ -41,13 +41,10 @@
 			'Apps':
 			[
 				{
-					table: 'sys_app'
+					table: 'sys_package'
 				},
 				{
 					table: 'sys_repo_config'
-				},
-				{
-					table: 'sys_plugins'
 				},
 				{
 					table: 'sys_update_set'
@@ -130,13 +127,16 @@
 					table: 'sysauto_script'
 				}
 			],
-			'Clients Scripts':
+			'Client Scripts':
 			[
 				{
 					table: 'sys_script_client'
 				},
 				{
 					table: 'sys_ui_script'
+				},
+				{
+					table: 'catalog_script_client'
 				}
 			],
 			'Events and Notifications':
@@ -171,6 +171,24 @@
 				},
 				{
 					table: 'sys_audit'
+				}
+			],
+			'Automated Testing Framework':
+			[
+				{
+					table: 'sys_atf_test_suite'
+				},
+				{
+					table: 'sys_atf_test'
+				},
+				{
+					table: 'sys_atf_test_suite_test'
+				},
+				{
+					table: 'sys_atf_test_suite_result'
+				},
+				{
+					table: 'sys_atf_test_result'
 				}
 			],
 			'Navigation':
@@ -308,13 +326,324 @@
 					table: 'cmdb_rel_type'
 				}				
 			],
-			'Asset Management':
+			'Contract Management':
 			[
 				{
 					table: 'ast_contract'
 				}
-			]
+			],
+			'Asset Lifecycle Management':
+			[
+				{
+					table: 'alm_asset'
+				},
+				{
+					table: 'alm_fixed_assets'
+				},
+				{
+					table: 'alm_entitlement'
+				},
+				{
+					table: 'alm_asset_ci_field_mapping'
+				},
+				{
+					table: 'alm_asset_ci_field_mapping'
+				},
+				{
+					table: 'alm_asset_creation_queue'
+				},
+				{
+					table: 'alm_hardware_state_mapping'
+				},
+				{
+					table: 'alm_m2m_stockroom_model'
+				},
+				{
+					table: 'alm_stockroom'
+				},
+				{
+					table: 'alm_stockroom_type'
+				},
+				{
+					table: 'alm_stock_rule'
+				},
+				{
+					table: 'alm_template_subtask'
+				},
+				{
+					table: 'alm_template_task'
+				}
+			]	
 		};
+	
+	
+	if (IsDomainSeparationInstalled())
+	{
+		linkdirectory['Domain Separation'] = 
+			[
+				{
+					table: 'sys_domain'
+				},
+				{
+					table: 'syslog_domain'
+				},
+				{
+					table: 'sys_overrides'
+				},
+				{
+					table: 'sys_application_property'
+				},
+				{
+					table: 'sys_application_property_value'
+				},
+				{
+					table: 'domain_contains'
+				},
+				{
+					table: 'sys_user_visibility'
+				},
+				{
+					table: 'sys_user_group_visibility'
+				},
+				{
+					table: 'domain_spool'
+				},
+				{
+					table: 'domain_audit_definition'
+				},
+				{
+					table: 'domain_audit_result'
+				},
+				{
+					table: 'domain_validation'
+				},
+				{
+					table: 'domain_work_request'
+				}
+			];
+	}
+
+	
+	if (GetPackageVersion('51d811fad7223100b7490ee60e61034f') != false)
+	{
+		linkdirectory['Customer Service Management'] =
+		[
+			{
+				table: 'sn_customerservice_account_relationship_access'
+			},
+			{
+				table: 'sn_customerservice_account_relationship_type'
+			},
+			{
+				table: 'sn_customerservice_agent_token'
+			},
+			{
+				table: 'sn_customerservice_appointment'
+			},
+			{
+				table: 'sn_customerservice_case'
+			},
+			{
+				table: 'sn_customerservice_case_report'
+			},
+			{
+				table: 'sn_customerservice_channel_config'
+			},
+			{
+				table: 'sn_customerservice_contact_relationship'
+			},
+			{
+				table: 'sn_customerservice_customer_interaction'
+			},
+			{
+				table: 'sn_customerservice_escalation'
+			},
+			{
+				table: 'sn_customerservice_escalation_severity'
+			},
+			{
+				table: 'sn_customerservice_escalation_template'
+			},
+			{
+				table: 'sn_customerservice_m2m_asset_contact'
+			},
+			{
+				table: 'sn_customerservice_registration'
+			},
+			{
+				table: 'sn_customerservice_related_party'
+			},
+			{
+				table: 'sn_customerservice_related_party_configuration'
+			},
+			{
+				table: 'sn_customerservice_responsibility_def'
+			},
+			{
+				table: 'sn_customerservice_sf_case'
+			},
+			{
+				table: 'sn_customerservice_task'
+			},
+			{
+				table: 'sn_customerservice_team_member'
+			}
+		];
+	}
+	
+	if (GetPackageVersion('fb779c995b8310102dff5e92dc81c79e') != false)
+	{	
+		linkdirectory['Product Catalog Management'] =
+		[
+			{
+				table: 'sn_prd_pm_characteristic'
+			},
+			{
+				table: 'sn_prd_pm_characteristic_option'
+			},
+			{
+				table: 'sn_prd_pm_configuration'
+			},
+			{
+				table: 'sn_prd_pm_distribution_channel'
+			},
+			{
+				table: 'sn_prd_pm_pricing'
+			},
+			{
+				table: 'sn_prd_pm_product_model_characteristic'
+			},
+			{
+				table: 'sn_prd_pm_product_offering'
+			},
+			{
+				table: 'sn_prd_pm_product_offering_catalog'
+			},
+			{
+				table: 'sn_prd_pm_product_offering_characteristic'
+			},
+			{
+				table: 'sn_prd_pm_product_specification'
+			},
+			{
+				table: 'sn_prd_pm_resource_specification'
+			},
+			{
+				table: 'sn_prd_pm_service_specification'
+			},
+			{
+				table: 'sn_prd_pm_specification'
+			},
+			{
+				table: 'sn_prd_pm_specification_category'
+			},
+			{
+				table: 'sn_prd_pm_specification_characteristic'
+			},
+			{
+				table: 'sn_prd_pm_specification_relationship'
+			},
+			{
+				table: 'sn_prd_pm_visuals'
+			}
+		];
+	}
+	
+	if (GetPackageVersion('7f1fc05477122300d7159b71a91061b7') != false)
+	{
+		linkdirectory['Customer Service Install Base Management'] =
+		[
+			{
+				table: 'sn_install_base_item'
+			},
+			{
+				table: 'sn_install_base_m2m_affected_install_base'
+			},
+			{
+				table: 'sn_install_base_m2m_consumer_sold_product'
+			},
+			{
+				table: 'sn_install_base_m2m_contract_sold_product'
+			},
+			{
+				table: 'sn_install_base_m2m_installed_product'
+			},
+			{
+				table: 'sn_install_base_sold_product'
+			}
+
+		];
+	}
+		
+	
+	if (GetPackageVersion('3c58f5d55b0310102dff5e92dc81c711') != false)
+	{
+		linkdirectory['Order Management for Telecommunications'] =
+		[
+			{
+				table: 'sn_ind_tmt_orm_contract_m2m_product_offering'
+			},
+			{
+				table: 'sn_ind_tmt_orm_inflight_change_type'
+			},
+			{
+				table: 'sn_ind_tmt_orm_inflight_order_line_item_change'
+			},
+			{
+				table: 'sn_ind_tmt_orm_mobile_order_task'
+			},
+			{
+				table: 'sn_ind_tmt_orm_order'
+			},
+			{
+				table: 'sn_ind_tmt_orm_order_characteristic_value'
+			},
+			{
+				table: 'sn_ind_tmt_orm_order_decomposition_rule'
+			},
+			{
+				table: 'sn_ind_tmt_orm_order_line_item'
+			},
+			{
+				table: 'sn_ind_tmt_orm_order_line_item_contact'
+			},
+			{
+				table: 'sn_ind_tmt_orm_order_stage'
+			},
+			{
+				table: 'sn_ind_tmt_orm_order_task'
+			},
+			{
+				table: 'sn_ind_tmt_orm_product_characteristics'
+			},
+			{
+				table: 'sn_ind_tmt_orm_product_inventory'
+			},
+			{
+				table: 'sn_ind_tmt_orm_product_order'
+			},
+			{
+				table: 'sn_ind_tmt_orm_req_def_char'
+			},
+			{
+				table: 'sn_ind_tmt_orm_req_def_glide'
+			},
+			{
+				table: 'sn_ind_tmt_orm_resource_order'
+			},
+			{
+				table: 'sn_ind_tmt_orm_service_order'
+			},
+			{
+				table: 'sn_ind_tmt_orm_st_external_sim_numbers'
+			}
+		];
+	}
+	
+	
+	
+	
+	
 	
 	var eps = new GlideScriptedExtensionPoint().getExtensions('DevTools');
 	for (var nEP = 0; nEP < eps.length; nEP++)
@@ -337,13 +666,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-19 17:03:37</sys_created_on>
         <sys_id>a8582ae11b5774d0edf3642aab4bcb86</sys_id>
-        <sys_mod_count>54</sys_mod_count>
+        <sys_mod_count>66</sys_mod_count>
         <sys_name>GetLinkDirectory</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_a8582ae11b5774d0edf3642aab4bcb86</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-01-24 17:01:10</sys_updated_on>
+        <sys_updated_on>2022-02-17 17:23:48</sys_updated_on>
     </sys_script_include>
 </record_update>

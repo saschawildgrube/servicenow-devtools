@@ -4,7 +4,7 @@
         <client_script/>
         <description/>
         <direct>false</direct>
-        <endpoint>x_snc_devtools_start.do</endpoint>
+        <endpoint>x_snc_devtools_manual.do</endpoint>
         <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
 <j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
 <div style="padding-left: 20px;">
@@ -132,7 +132,34 @@ function DevToolsGetFormatConfig(grRecord)
 	<g2:no_escape>$[docapi.RenderLicense()]</g2:no_escape>
 	
 	<h2>Release Notes</h2>
+<!--
+	<h3>1.3_.0 - 2022-0_</h3>
+	<ol>
+		<li>TODO</li>
+	</ol>
+-->
+	<h3>1.33.0 - 2022-02-17</h3>
+	<ol>
+		<li>Added function IsDomainSeparationInstalled() to determine if the domain separation plugin is installed.</li>
+		<li>Function GetArrayValue() now works properly on GlideRecord fields (which are objects of type ScopedGlideElement).</li>
+		<li>Added tables related to "Automated Testing Framework" to the link directory.</li>
+		<li>Added domain separation related tables to the link directory.</li>
+		<li>Added tables related to "Asset Lifecycle Management" to the link directory.</li>
+		<li>The table ast_contract is now under "Contract Management" in the link directory.</li> 
+		<li>The tables sys_app and sys_plugin have been removed and the table sys_package has been added under "Apps" in the link directory.</li>
+		<li>Added tables related to "Customer Service Management" to the link directory.</li>
+		<li>Added tables related to "Product Catalog Management" to the link directory.</li>
+		<li>Added tables related to "Customer Service Install Base Management" to the link directory.</li>
+		<li>Added tables related to "Order Management for Telecommunications" to the link directory.</li>
+		<li>Added catalog_script_client table to the link directory.</li>
+		<li>Business rule "sys_script_client - set table to global" now only acts on Client scripts (and not on derived tables like "Catalog Cliient Scripts")</li>
+		<li>Function IsTableDomainSeparated() no longer requires the sys_domain_path column to be present in a table.</li>
+		<li>Function GetAppName() now also removes a " HOTFIX" postfix.</li>
+		<li>The "Start" page has been renamed to "Manual".</li> 
+		<li>DocumentationAPI::RenderLicense() did not use the application name (was displaying "DevTools" instead). This has been fixed.</li>
+	</ol>
 
+	
 	<h3>1.32.0 - 2022-01-28</h3>
 	<ol>
 		<li>Added tables sys_index, sys_ui_bookmark_group and sys_ui_bookmark to the link directory.</li>
@@ -686,19 +713,19 @@ gs.invalidateCache();
 <span style="visibility: hidden;">_CUT_HERE_</span>
 </div>
 </j:jelly>]]></html>
-        <name>start</name>
+        <name>manual</name>
         <processing_script/>
         <sys_class_name>sys_ui_page</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>699</sys_mod_count>
-        <sys_name>start</sys_name>
+        <sys_mod_count>714</sys_mod_count>
+        <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-01-28 14:28:41</sys_updated_on>
+        <sys_updated_on>2022-02-17 17:42:42</sys_updated_on>
     </sys_ui_page>
 </record_update>

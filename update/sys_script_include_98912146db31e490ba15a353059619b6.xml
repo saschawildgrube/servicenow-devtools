@@ -84,7 +84,7 @@ DocumentationAPI.prototype = {
 		var strLicense = '';
 		
 		strLicense += '<p>Licensed under the Apache License, Version 2.0 (the "License")</p>';
-		strLicense += '<p>You may not use DevTools except in compliance with the License.</p>';
+		strLicense += '<p>You may not use '+this.m_strAppName+' except in compliance with the License.</p>';
 		strLicense += '<p>You may obtain a copy of the License at: '+HtmlRenderLink('https://www.apache.org/licenses/LICENSE-2.0','',true)+'</p>';
 		strLicense += '<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>';
 		return strLicense;
@@ -503,13 +503,13 @@ DocumentationAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-01-20 15:26:20</sys_created_on>
         <sys_id>98912146db31e490ba15a353059619b6</sys_id>
-        <sys_mod_count>95</sys_mod_count>
+        <sys_mod_count>96</sys_mod_count>
         <sys_name>DocumentationAPI</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_98912146db31e490ba15a353059619b6</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-01-05 09:02:32</sys_updated_on>
+        <sys_updated_on>2022-02-16 16:41:51</sys_updated_on>
     </sys_script_include>
 </record_update>
