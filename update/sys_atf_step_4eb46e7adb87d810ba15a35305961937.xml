@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-09-08 11:21:09</sys_created_on>
         <sys_id>4eb46e7adb87d810ba15a35305961937</sys_id>
-        <sys_mod_count>14</sys_mod_count>
+        <sys_mod_count>15</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_4eb46e7adb87d810ba15a35305961937</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-09-08 11:31:46</sys_updated_on>
+        <sys_updated_on>2022-02-23 11:55:36</sys_updated_on>
         <table/>
         <test display_value="DevTools - IsUserHasRoleExactly">4873aef6db87d810ba15a35305961900</test>
         <timeout/>
@@ -36,9 +36,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-09-08 11:21:09</sys_created_on>
         <sys_id>19c4ae7adb87d810ba15a35305961955</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-09-08 11:21:09</sys_updated_on>
+        <sys_updated_on>2022-02-23 11:55:36</sys_updated_on>
         <value>var strLog = '';&#13;
 function Log(strText)&#13;
 {&#13;
@@ -68,7 +68,12 @@ function Log(strText)&#13;
 	TestCase_IsUserHasRoleExactly('itil_admin',false);&#13;
 	TestCase_IsUserHasRoleExactly('itil',true);&#13;
 	TestCase_IsUserHasRoleExactly('admin',false);&#13;
-		&#13;
+	&#13;
+	// Repeat to check cache behaviour&#13;
+	TestCase_IsUserHasRoleExactly('itil',true);&#13;
+	TestCase_IsUserHasRoleExactly('admin',false);&#13;
+&#13;
+	&#13;
 	stepResult.setOutputMessage(strLog);&#13;
 	return bResult;&#13;
 	&#13;
