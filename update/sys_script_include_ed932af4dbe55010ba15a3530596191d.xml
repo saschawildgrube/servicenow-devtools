@@ -10,38 +10,44 @@
         <script><![CDATA[function IsUserHasRoleExactly(strRole,strUserSysId)
 {
 	strRole = GetStringValue(strRole);
-
 	strUserSysId = GetStringValue(strUserSysId);
+
 	if (IsValidSysId(strUserSysId) == false)
 	{
 		strUserSysId = GetStringValue(gs.getUserID());
 	}
 
-	var grUserHasRoles = new GlideRecord('sys_user_has_role');
-	grUserHasRoles.addQuery('user','=',strUserSysId);
-	grUserHasRoles.query();
-	while (grUserHasRoles.next())
+	var cache = new TransactionCacheAPI('DEVTOOLS');
+	var bResult = cache.GetItem('IsUserHasRoleExactly_'+strUserSysId+'_'+strRole);
+	if (bResult != null)
 	{
-		var grRole = GetRecord('sys_user_role',grUserHasRoles.role);
-		if (grRole.name == strRole)
-		{
-			return true;
-		}
-	}
+		return bResult;
+	}		
 
+	var grUserHasRoles = new GlideRecord('sys_user_has_role');
+    grUserHasRoles.addQuery('user','=',strUserSysId);
+    grUserHasRoles.addQuery('role.name','=',strRole);
+    grUserHasRoles.setLimit(1);
+    grUserHasRoles.query();
+    if (grUserHasRoles.next())
+    {
+		cache.SetItem('IsUserHasRoleExactly_'+strUserSysId+'_'+strRole,true);
+		return true;
+    }
+	cache.SetItem('IsUserHasRoleExactly_'+strUserSysId+'_'+strRole,false);
 	return false; 
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-06-19 16:36:15</sys_created_on>
         <sys_id>ed932af4dbe55010ba15a3530596191d</sys_id>
-        <sys_mod_count>11</sys_mod_count>
+        <sys_mod_count>15</sys_mod_count>
         <sys_name>IsUserHasRoleExactly</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_ed932af4dbe55010ba15a3530596191d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-12-08 15:43:54</sys_updated_on>
+        <sys_updated_on>2022-02-23 15:37:52</sys_updated_on>
     </sys_script_include>
 </record_update>
