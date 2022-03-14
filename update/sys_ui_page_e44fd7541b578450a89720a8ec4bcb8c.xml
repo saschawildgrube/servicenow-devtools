@@ -22,6 +22,8 @@
 	<h2>Disclaimer</h2>
 	<g2:no_escape>$[docapi.RenderDisclaimer()]</g2:no_escape>	
 	
+	<p>Some features contained on DevTools and the techniques being used might be considered as a violation of security policies. Please make sure any use is based on conscious choice and careful assessment. This specifically applies to the functions RunScriptInScope() and RunScriptInGlobalScope().</p>
+	
 	<h2>System Requirements</h2>
 	<ul>
 		<g2:no_escape>$[
@@ -143,6 +145,7 @@ function DevToolsGetFormatConfig(grRecord)
 
 	<h3>1.35.0 - 2022-0_</h3>
 	<ol>
+		<li>Added security warnings to the manual and the documentation and source code of function RunScriptInScope() and RunScriptInGlobalScope().</li>
 		<li>HtmlRenderLinkDirectory() now supports the title value in the link directory.</li>
 		<li>GetParentRecord() now supports scan_check and its derived record classes.</li>
 		<li>Added tables cmn_location item_option_new, item_option_new_set and sc_item_variables_task to the link directory.</li>
@@ -741,13 +744,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>732</sys_mod_count>
+        <sys_mod_count>735</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-03-14 14:31:57</sys_updated_on>
+        <sys_updated_on>2022-03-14 16:45:34</sys_updated_on>
     </sys_ui_page>
 </record_update>
