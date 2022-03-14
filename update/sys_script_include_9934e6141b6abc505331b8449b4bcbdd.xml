@@ -91,6 +91,39 @@
 		return GetRecord('sys_atf_test_suite',grRecord.test_suite);
 	}
 	
+	
+	// Instance Scan Check to suite
+	if (   strTable == 'scan_check'
+		|| strTable == 'scan_table_check'
+		|| strTable == 'scan_script_only_check'
+	    || strTable == 'scan_linter_check'
+		|| strTable == 'scan_column_type_check')
+	{
+		var grScanSuiteCheck = new GlideRecord('scan_check_suite_check');
+		grScanSuiteCheck.addQuery('check','=',grRecord.sys_id);
+		grScanSuiteCheck.addQuery('sys_scope','=',grRecord.sys_scope);
+		grScanSuiteCheck.addQuery('suite.sys_scope','=',grRecord.sys_scope);
+		grScanSuiteCheck.query();
+		if (grScanSuiteCheck.getRowCount() == 1) // Only if the check is part of exactly one suite in the same scope!
+		{
+			grScanSuiteCheck.next();
+			var strSuiteSysId = GetStringValue(grScanSuiteCheck.suite);
+			return GetRecord('scan_check_suite',strSuiteSysId);
+		}
+		
+		var grScanSuiteCheck = new GlideRecord('scan_check_suite_check');
+		grScanSuiteCheck.addQuery('check','=',grRecord.sys_id);
+		grScanSuiteCheck.query();
+		if (grScanSuiteCheck.getRowCount() == 1) // Only if the check is part of exactly one suite in any scope!
+		{
+			grScanSuiteCheck.next();
+			var strSuiteSysId = GetStringValue(grScanSuiteCheck.suite);
+			return GetRecord('scan_check_suite',strSuiteSysId);
+		}	
+		return false;
+	}	
+	
+	
 	// DB View table to DB view
 	if (strTable == 'sys_db_view_table')
 	{
@@ -325,13 +358,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-08 12:44:48</sys_created_on>
         <sys_id>9934e6141b6abc505331b8449b4bcbdd</sys_id>
-        <sys_mod_count>64</sys_mod_count>
+        <sys_mod_count>70</sys_mod_count>
         <sys_name>GetParentRecord</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_9934e6141b6abc505331b8449b4bcbdd</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-12-07 09:40:45</sys_updated_on>
+        <sys_updated_on>2022-03-14 14:26:56</sys_updated_on>
     </sys_script_include>
 </record_update>
