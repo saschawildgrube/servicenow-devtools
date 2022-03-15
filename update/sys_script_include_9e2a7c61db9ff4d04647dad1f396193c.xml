@@ -9,7 +9,6 @@
         <name>HtmlRenderLinkDirectory</name>
         <script><![CDATA[function HtmlRenderLinkDirectory(linkdirectory)
 {
-
 	var bLeft = true;
 	function HtmlRenderLinkDirectoryCategory(strCategoryName, aLinks)
 	{
@@ -76,17 +75,29 @@
 						if (strQuery != '')
 						{
 							strUrl += '%26sysparm_query%3D'+strQuery;
-						}						
+						}					
+						
+						var strTitle = GetStringValue(GetValue(link,'title'));
+						if (strTitle == '')
+						{
+							strTitle = strTable;
+						}	
+						
 						strHtml += '<li>';
-						strHtml += HtmlRenderLink(strUrl, strTable, true);
+						strHtml += HtmlRenderLink(strUrl, strTitle, true);
 						strHtml += '</li>';
 					}
 				}
 				var strUrl = GetStringValue(GetValue(link,'url'));
 				if (strUrl != '')
 				{
+					var strTitle = GetStringValue(GetValue(link,'title'));
+					if (strTitle == '')
+					{
+						strTitle = strUrl;
+					}
 					strHtml += '<li>';
-					strHtml += HtmlRenderLink(strUrl, strUrl, true);
+					strHtml += HtmlRenderLink(strUrl, strTitle, true);
 					strHtml += '</li>';
 				}
 
@@ -100,6 +111,8 @@
 	}
 	
 	var strHtml = '';
+	strHtml += '<div>';	
+	
 
 	var aCategories = GetKeys(linkdirectory);
 	for (var nCategory = 0; nCategory < aCategories.length; nCategory++)
@@ -113,6 +126,7 @@
 
 	strHtml += '<div style="clear: both;"/>';
 
+	strHtml += '<div/>';
 	
 	return strHtml;
 }]]></script>
@@ -120,13 +134,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-19 09:21:31</sys_created_on>
         <sys_id>9e2a7c61db9ff4d04647dad1f396193c</sys_id>
-        <sys_mod_count>44</sys_mod_count>
+        <sys_mod_count>46</sys_mod_count>
         <sys_name>HtmlRenderLinkDirectory</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_9e2a7c61db9ff4d04647dad1f396193c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-12-06 12:37:21</sys_updated_on>
+        <sys_updated_on>2022-03-10 13:13:36</sys_updated_on>
     </sys_script_include>
 </record_update>
