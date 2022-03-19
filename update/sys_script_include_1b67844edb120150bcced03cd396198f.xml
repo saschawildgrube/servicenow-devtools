@@ -13,21 +13,48 @@
 	{
 		return false;
 	}
+  
+	// Warning: GlideSysAttachment.write is not binary safe
 	var gsa = new GlideSysAttachment();
 	var strSysId = gsa.write(grRecord, strFileName, strContentType, strContent);
 	return strSysId;
+
+/*  // GlideSysAttachment.writeBase64 is not binary safe either
+	var strContentBase64 = gs.base64Encode(strContent);
+	var gsa = new GlideSysAttachment();
+	var strSysId = gsa.writeBase64(grRecord, strFileName, strContentType, strContentBase64);
+*/
+	
+	/*
+	var strSysId = gsa.write(grRecord, strFileName, strContentType, '\x42\x4D\x5A\x00\x00\x00\x00\x00\x00\x00\x36\x00\x00\x00\x28\x00\x00\x00\x03\x00\x00\x00\x03\x00\x00\x00\x01\x00\x18\x00\x00\x00\x00\x00\x24\x00\x00\x00\x13\x0B\x00\x00\x13\x0B\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xFF\xFF\xFF\xFF\xFF\xFF\xCC\xBB\xAA\x00\x00\x00\xFF\xFF\xFF\xCC\xBB\xAA\xFF\xFF\xFF\x00\x00\x00\xCC\xBB\xAA\xFF\xFF\xFF\xFF\xFF\xFF\x00\x00\x00');
+	*/
+
+/*	// The ecc_queue trick does not work either
+
+	var strContentBase64 = RunScriptInGlobalScope("result = GlideStringUtil.base64Encode(param1);",strContent);
+	//Debug(strContentBase64);
+	var attCreator = new GlideRecord('ecc_queue');
+	attCreator.agent = 'AttachmentCreator';
+	attCreator.topic = 'AttachmentCreator';
+	attCreator.name =   strFileName+':'+strContentType;
+	attCreator.source = grRecord.getTableName()+':'+grRecord.sys_id;
+	attCreator.setValue('payload',strContentBase64);
+	attCreator.insert();	
+	//x_snc_devtools.Debug(x_snc_devtools.RenderValue(attCreator));	
+*/
+	
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-03-18 21:53:07</sys_created_on>
         <sys_id>1b67844edb120150bcced03cd396198f</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>25</sys_mod_count>
         <sys_name>RecordAddAttachment</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_1b67844edb120150bcced03cd396198f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-03-18 22:18:42</sys_updated_on>
+        <sys_updated_on>2022-03-19 20:54:51</sys_updated_on>
     </sys_script_include>
 </record_update>
