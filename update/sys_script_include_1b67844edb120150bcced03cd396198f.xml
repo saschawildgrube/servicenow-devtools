@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.RecordAddAttachment</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Adds an attachment to a record.</description>
+        <name>RecordAddAttachment</name>
+        <script><![CDATA[function RecordAddAttachment(grRecord, strFileName, strContentType, strContent)
+{
+	if (IsValidRecord(grRecord) == false)
+	{
+		return false;
+	}
+	var gsa = new GlideSysAttachment();
+	var strSysId = gsa.write(grRecord, strFileName, strContentType, strContent);
+	return strSysId;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-03-18 21:53:07</sys_created_on>
+        <sys_id>1b67844edb120150bcced03cd396198f</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>RecordAddAttachment</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_1b67844edb120150bcced03cd396198f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-03-18 22:18:42</sys_updated_on>
+    </sys_script_include>
+</record_update>

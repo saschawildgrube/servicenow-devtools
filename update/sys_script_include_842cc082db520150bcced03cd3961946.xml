@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>false</active>
+        <api_name>x_snc_devtools.CreateBitmap</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>CreateBitmap</name>
+        <script><![CDATA[function CreateBitmap(aBitmap)
+{
+	/*
+	function image(w, h)
+	{
+		this.header = '';
+		this.data = Array();
+		this.width = w;
+		this.height = h;
+	}
+	// Convert a value to a little endian hexadecimal value
+	function getLittleEndianHex(value)
+	{
+		var result = [];
+
+		for (var bytes = 4; bytes > 0; bytes--)
+		{
+			result.push(String.fromCharCode(value & 255));
+			value >>= 8;
+		}
+		return result.join('');
+	}
+
+	function setImageHeader(img)
+	{
+		var numFileBytes = getLittleEndianHex(img.width * img.height);
+		var w = getLittleEndianHex(img.width);
+		var h = getLittleEndianHex(img.height);
+
+		img.header = 
+			'BM' +                    // Signature
+			numFileBytes +            // size of the file (bytes)*
+			'\x00\x00' +              // reserved
+			'\x00\x00' +              // reserved
+			'\x36\x00\x00\x00' +      // offset of where BMP data lives (54 bytes)
+			'\x28\x00\x00\x00' +      // number of remaining bytes in header from here (40 bytes)
+			w +                       // the width of the bitmap in pixels*
+			h +                       // the height of the bitmap in pixels*
+			'\x01\x00' +              // the number of color planes (1)
+			'\x20\x00' +              // 32 bits / pixel
+			'\x00\x00\x00\x00' +      // No compression (0)
+			'\x00\x00\x00\x00' +      // size of the BMP data (bytes)*
+			'\x13\x0B\x00\x00' +      // 2835 pixels/meter - horizontal resolution
+			'\x13\x0B\x00\x00' +      // 2835 pixels/meter - the vertical resolution
+			'\x00\x00\x00\x00' +      // Number of colors in the palette (keep 0 for 32-bit)
+			'\x00\x00\x00\x00';       // 0 important colors (means all colors are important)
+	}
+	// Flip image vertically
+	function flipImage(img) 
+	{
+		var newImgData = new Array();
+
+		for(var x = 0; x < img.width; x++)
+		{
+			for(var y = 0; y < img.height; y ++) 
+			{
+				var ny = img.height - 1 - y;
+				newImgData[(ny * img.width) + x] = img.data[(y * img.width) + x];
+			}
+		}
+		img.data = newImgData;
+	}
+	function background(img, x, y, w, h, color)
+	{
+		for (var ny = y; ny < y + h; ny++)
+		{
+			for (var nx = x; nx < x + w; nx++) 
+			{
+				img.data[ny * img.width + nx] = color;
+			}
+		}
+	}
+	// Fill a rectangle
+	function fillRectangle(img, x, y, w, h, color)
+	{
+		for (var ny = y; ny < y + h; ny++)
+		{
+			for (var nx = x; nx < x + w; nx++) 
+			{
+				
+						if(nx == x || ny == y || ny == y+h-1 || nx == x+w-1)
+							img.data[ny * img.width + nx] = String.fromCharCode(204, 204, 204, 0);
+						else
+							img.data[ny * img.width + nx] = color;
+				img.data[ny * img.width + nx] = color;
+			}
+		}
+	}
+	//Draw pixel
+	function drawPixel(img, x, y, color)
+	{
+		fillRectangle(img, x, y, 1, 1, color);
+	}
+	// Main draw function
+	function cGreen()
+	{
+		return String.fromCharCode(152, 255, 195, 0);
+	}
+	function cOrange()
+	{
+		return String.fromCharCode(12, 160, 232, 0);
+	}
+	function cRed()
+	{
+		return String.fromCharCode(0, 0, 255, 0);
+	}
+	function cBlue()
+	{
+		return String.fromCharCode(232, 12, 58, 0);
+	}
+	function cTurquoise()
+	{
+		return String.fromCharCode(232, 255, 13, 0);
+	}
+
+	
+	
+	var img = new image(5, 5);
+	setImageHeader(img);
+	background(img, 0, 0, img.width, img.height, String.fromCharCode(0, 0, 0, 0));
+	drawPixel(img, 2, 2, String.fromCharCode(255, 255, 255, 0));
+	flipImage(img);
+	var bitmap =  img.header + img.data.join("");
+
+*/
+	
+	return bitmap;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-03-18 22:07:27</sys_created_on>
+        <sys_id>842cc082db520150bcced03cd3961946</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>CreateBitmap</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_842cc082db520150bcced03cd3961946</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-03-19 10:54:24</sys_updated_on>
+    </sys_script_include>
+</record_update>
