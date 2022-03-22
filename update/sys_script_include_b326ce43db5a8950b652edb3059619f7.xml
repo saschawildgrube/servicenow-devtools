@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.CreatePDFFromHtml</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>TODO</description>
+        <name>CreatePDFFromHtml</name>
+        <script><![CDATA[function CreatePDFFromHtml(strTable,strRecordSysId,strFileName,strHtml,strPageSize,strOrientation,nMarginTopBottom,nMarginLeftRight,bPageNumbers)
+{
+	strTable = GetStringValue(strTable);
+	if (IsValidTable(strTable) == false)
+	{
+		return false;
+	}
+
+	strRecordSysId = GetStringValue(strRecordSysId);
+	if (IsValidSysId(strRecordSysId) == false)
+	{
+		return false;
+	}
+
+	strFileName = GetStringValue(strFileName);
+	if (strFileName == '')
+	{
+		return false;
+	}
+
+	if (strFileName.endsWith('.pdf') == false)
+	{
+		return false;
+	}
+
+	if (strFileName.startsWith('.pdf') == true)
+	{
+		return false;
+	}
+
+	strHtml = GetStringValue(strHtml);
+	if (strHtml == '')
+	{
+		strHtml = '<html><body></body></html>';
+	}
+
+	strPageSize = GetStringValue(strPageSize)
+	if (strPageSize == '')
+	{
+		strPageSize = 'A4';
+	}
+
+	strOrientation = GetStringValue(strOrientation);
+	if (strOrientation == '')
+	{
+		strOrientation = 'PORTRAIT';
+	}
+
+	// TODO
+	//,nMarginTopBottom,nMarginLeftRight,bPageNumbers
+
+	var pdfapi = new sn_pdfgeneratorutils.PDFGenerationAPI;
+
+	var headerFooterInfo = {
+		"GeneratePageNumber": "false",
+		"LeftOrRightMargin": "0",
+		"PageOrientation": strOrientation,
+		"PageSize": strPageSize,
+		"TopOrBottomMargin": "0"
+	};
+
+
+	var result = pdfapi.convertToPDFWithHeaderFooter(
+		strHtml,
+		strTable,
+		strRecordSysId,
+		strFileName.substring(0,strFileName.length-4),
+		headerFooterInfo);
+
+
+}
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-03-22 09:32:42</sys_created_on>
+        <sys_id>b326ce43db5a8950b652edb3059619f7</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>CreatePDFFromHtml</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_b326ce43db5a8950b652edb3059619f7</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-03-22 09:40:35</sys_updated_on>
+    </sys_script_include>
+</record_update>
