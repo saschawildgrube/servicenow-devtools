@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
     <sys_script_include action="INSERT_OR_UPDATE">
-        <access>package_private</access>
+        <access>public</access>
         <active>true</active>
         <api_name>x_snc_devtools.ImageAPI</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>A class representing an image which can be used to generate BMP files.</description>
+        <description>A class representing an image which can be used to generate BMP files or html output.</description>
         <name>ImageAPI</name>
         <script><![CDATA[var ImageAPI = Class.create();
 ImageAPI.prototype = {
@@ -90,11 +90,35 @@ ImageAPI.prototype = {
 		return this.Color(0,0,255);
 	},
 	
+	ColorToHex: function(color)
+	{
+		return RenderValueHex(GetValue(color,0))
+			+ RenderValueHex(GetValue(color,1))
+			+ RenderValueHex(GetValue(color,2));
+	},
+	
 	SetPixel: function(nX, nY, aColor)
 	{
-		// Check parameters!
+		if (this.bitmap[nY] == undefined)
+		{
+			return;
+		}
+		if (this.bitmap[nY][nX]  == undefined)
+		{
+			return;
+		}
 		this.bitmap[nY][nX] = aColor;
 	},
+	
+	GetPixel: function(nX, nY)
+	{
+		return GetValue(this.bitmap,nY,nX);
+	},
+	
+	GetPixelHex: function(nX, nY)
+	{
+		return this.ColorToHex(this.GetPixel(nX, nY));
+	},	
 
 	MakeDemo: function()
 	{
@@ -181,19 +205,82 @@ ImageAPI.prototype = {
 				
 	},
 	
+	
+	HtmlRenderImage: function(nWidth, strUnit)
+	{
+		nWidth = GetIntegerValue(nWidth);
+		if (nWidth <= 0)
+		{
+			nWidth = 10;
+		}
+		
+		strUnit = GetStringValue(strUnit);
+		if (strUnit == '')
+		{
+			strUnit = 'cm';
+		}
+		
+		var nPixelEdge = nWidth / this.bitmap.length;
+
+		
+		var strHtml = '';
+		strHtml += '<div style="padding-top: 10px; padding-bottom: 10px;">';
+		strHtml += '<table style="'
+			+ 'width: '+nWidth+strUnit+';'
+			+ 'border: 0px;'
+			+ 'border-collapse: collapse;'
+			+ 'border-spacing: 0;'
+			+'"><tbody>';
+		
+		for (var nRow = 0; nRow < this.bitmap.length; nRow++)
+		{
+			strHtml += '<tr>';
+
+			var aRow = this.bitmap[nRow];
+			for (var nCol = 0; nCol < aRow.length; nCol++)
+			{
+				var color = this.GetPixel(nCol,nRow);
+				
+//				Debug('GetType(color): '+GetType(color));
+//				Debug('GetType(color[0]): '+GetType(color[0]));
+//				Debug('GetType(GetValue(color,0)): '+GetType(GetValue(color,0)));
+				
+//				Debug(RenderValue(this.GetPixel(nCol,nRow)));
+				var strColor = this.GetPixelHex(nCol,nRow);
+//				Debug(strColor);
+
+				strHtml += '<td style="'
+					+ ' border: 0px;'
+					+ ' margin: 0px;'
+					+ ' padding: 0px;'
+					+ ' width: ' + nPixelEdge + strUnit + ';'
+					+ ' height: ' + nPixelEdge + strUnit + ';'
+					+ ' background-color: #'+ strColor + ';"/>\n';
+
+			}
+			strHtml += '</tr>\n';
+
+		}
+		strHtml += '</tbody></table>';
+		strHtml += '</div>';
+
+		return strHtml;
+	},
+		
+	
     type: 'ImageAPI'
 };]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-03-19 10:38:05</sys_created_on>
         <sys_id>96e6f60adb5a0150bcced03cd39619e4</sys_id>
-        <sys_mod_count>47</sys_mod_count>
+        <sys_mod_count>64</sys_mod_count>
         <sys_name>ImageAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_96e6f60adb5a0150bcced03cd39619e4</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-03-19 20:42:50</sys_updated_on>
+        <sys_updated_on>2022-03-27 20:54:32</sys_updated_on>
     </sys_script_include>
 </record_update>
