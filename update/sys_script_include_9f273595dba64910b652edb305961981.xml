@@ -42,12 +42,22 @@
 				}
 				else
 				{
+					var strOldPhase = '';
 					strHtml += '<table><tbody>';
 					for (var nWhatRuns = 0; nWhatRuns < aWhatRuns.length; nWhatRuns++)
 					{
+						var whatruns_object = aWhatRuns[nWhatRuns];
+
+						var strNewPhase = whatruns_object.phase;
+						if (strNewPhase != strOldPhase)
+						{
+							strOldPhase = strNewPhase;
+							strHtml += '<tr><th>'+strNewPhase+'</th></tr>';
+						}
+						
 						strHtml += '<tr>';
 						strHtml += '<td>';
-						var whatruns_object = aWhatRuns[nWhatRuns];
+						strHtml += whatruns_object.order + ': ';
 						strHtml += HtmlRenderLink(
 							GetInstanceRecordURL(
 								'sys_script',
@@ -86,18 +96,7 @@
 	}
 	
 	
-/*	
-
-	function HtmlRenderValue(vValue)
-	{
-		var strHtml = '<pre>\n';
-		strHtml += RenderValue(vValue);
-		strHtml += '</pre>\n';
-		return strHtml;
-	}
-*/	
-	
-	
+	//strHtml += HtmlRenderValue(whatruns);
 	
 	return strHtml;
 }]]></script>
@@ -105,13 +104,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-03-29 08:13:08</sys_created_on>
         <sys_id>9f273595dba64910b652edb305961981</sys_id>
-        <sys_mod_count>29</sys_mod_count>
+        <sys_mod_count>36</sys_mod_count>
         <sys_name>HtmlRenderWhatRuns</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_9f273595dba64910b652edb305961981</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-03-29 15:14:24</sys_updated_on>
+        <sys_updated_on>2022-03-29 15:29:14</sys_updated_on>
     </sys_script_include>
 </record_update>
