@@ -147,14 +147,18 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>Added function CreateQRCodeRawData() to generate the raw data for a QRCode.</li>
 		<li>Added function WhatRuns() to identify which business rules run on a table for the different CRUD operations - currently supporting insert, update and query. A corresponding UI action has also been added on forms and lists.</li>
 		<li>Added function HtmlRenderQRCode() to render a QR code as plain vanilla html.</li>
+		<li>Added the ImageAPI class to craft wonderful images and render them as plain html code or bmp files.</li>
 		<li>Added function HtmlRenderValue() to output any value into an html document.</li>
 		<li>Added function RenderValueHex() to render a value as an hexadecimal string.</li>
 		<li>Added function StringReplace() to replace strings in strings.</li>
 		<li>GetTableFromSysId() is now using cross-scope techniques to identify records in the various tables - avoiding errors caused by cross-scope restrictions.</li>
 		<li>DocumentationAPI::RenderListItem() now checks the text parameter properly and does not show "null" if the text is not provided.</li> 
+		<li>InstallerAPI::SetProperty() now creates a property if it does not exist yet.</li>
+		<li>SetProperty() now supports the bAdd parameter to control if a non-existing system property should be created.</li>
+		<li>AppInstall() now sets the system property "sn_g_app_creator.allow_global" to true to allow users to create global scoped applications.</li>
+
 		<li>Added tables sys_ux_form_action, sys_ui_page and sys_public to the link directory.</li>
 		<li>Added tables from the "Data Model for Order Management" plugin to the link directory.</li>
-		<li>AppInstall() now sets the system property "sn_g_app_creator.allow_global" to true to allow users to create global scoped applications.</li>
 		<li>The test step configuration "DevTools - Check scoped app sanity" now checks for system properties which do not have the scope name as a prefix.</li>
 		<li>Test step configuration "DevTools - Check scoped app sanity" now checks for empty description fields in roles.</li>
 		<li>The manual template used by AppBuilder() is now also including documentation of contained roles.</li>  
@@ -764,13 +768,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>756</sys_mod_count>
+        <sys_mod_count>759</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-03-29 15:34:13</sys_updated_on>
+        <sys_updated_on>2022-03-29 18:42:44</sys_updated_on>
     </sys_ui_page>
 </record_update>
