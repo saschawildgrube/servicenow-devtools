@@ -154,6 +154,7 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>Added function CreatePDFFromHtml() to render a pdf file based on html and add it as an attachment.</li>
 		<li>Added function RecordAttachmentAdd() to add an attachment to a given record.</li>
 		<li>Added function RecordAttachmentDeleteAll() to delete all attachments of a given record.</li>
+		<li>Added function RecordAttachmentDeleteByFileName() to delete all attachments that match the given file name of a given record.</li>
 		<li>GetTableFromSysId() is now using cross-scope techniques to identify records in the various tables - avoiding errors caused by cross-scope restrictions.</li>
 		<li>DocumentationAPI::RenderListItem() now checks the text parameter properly and does not show "null" if the text is not provided.</li> 
 		<li>InstallerAPI::SetProperty() now creates a property if it does not exist yet.</li>
@@ -771,13 +772,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>762</sys_mod_count>
+        <sys_mod_count>763</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-03-30 11:25:14</sys_updated_on>
+        <sys_updated_on>2022-03-30 11:37:25</sys_updated_on>
     </sys_ui_page>
 </record_update>
