@@ -247,7 +247,37 @@ TestAPI.prototype = {
 				vInput[aInputKeys[6]],
 				vInput[aInputKeys[7]]
 			);
-		}		else
+		}
+		else if (aInputKeys.length == 9)
+		{
+			vResult = callbackFunction(
+				vInput[aInputKeys[0]],
+				vInput[aInputKeys[1]],
+				vInput[aInputKeys[2]],
+				vInput[aInputKeys[3]],
+				vInput[aInputKeys[4]],
+				vInput[aInputKeys[5]],
+				vInput[aInputKeys[6]],
+				vInput[aInputKeys[7]],
+				vInput[aInputKeys[8]]
+			);
+		}
+		else if (aInputKeys.length == 10)
+		{
+			vResult = callbackFunction(
+				vInput[aInputKeys[0]],
+				vInput[aInputKeys[1]],
+				vInput[aInputKeys[2]],
+				vInput[aInputKeys[3]],
+				vInput[aInputKeys[4]],
+				vInput[aInputKeys[5]],
+				vInput[aInputKeys[6]],
+				vInput[aInputKeys[7]],
+				vInput[aInputKeys[8]],
+				vInput[aInputKeys[9]]
+			);
+		}
+		else
 		{
 			this.SetResult(false);
 			this.Log('ERROR: No support for that amount of parameters!');
@@ -286,13 +316,13 @@ TestAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-08-30 13:48:05</sys_created_on>
         <sys_id>206c5c211b567850577f43b5bb4bcb46</sys_id>
-        <sys_mod_count>43</sys_mod_count>
+        <sys_mod_count>44</sys_mod_count>
         <sys_name>TestAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_206c5c211b567850577f43b5bb4bcb46</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-12-25 17:32:53</sys_updated_on>
+        <sys_updated_on>2022-03-30 11:23:34</sys_updated_on>
     </sys_script_include>
 </record_update>
