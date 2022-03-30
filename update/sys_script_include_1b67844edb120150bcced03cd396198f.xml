@@ -2,26 +2,33 @@
     <sys_script_include action="INSERT_OR_UPDATE">
         <access>public</access>
         <active>true</active>
-        <api_name>x_snc_devtools.RecordAddAttachment</api_name>
+        <api_name>x_snc_devtools.RecordAttachmentAdd</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Adds an attachment to a record.</description>
-        <name>RecordAddAttachment</name>
-        <script><![CDATA[function RecordAddAttachment(grRecord, strFileName, strContentType, strContent)
+        <name>RecordAttachmentAdd</name>
+        <script><![CDATA[function RecordAttachmentAdd(strTable, strRecordSysId, strFileName, strContentType, strContent)
 {
+	var grRecord = GetRecord(strTable,strRecordSysId);
 	if (IsValidRecord(grRecord) == false)
 	{
 		return false;
 	}
+
+	// Warning: GlideSysAttachment.write is not binary safe
+	var gsa = new GlideSysAttachment();
+	var strSysId = gsa.write(grRecord, strFileName, strContentType, strContent);
+	
+	if (IsValidSysId(strSysId) == false)
+	{
+		return false;
+	}
+	
+	return strSysId;	
 	
 	
-/**
-*
-*  Base64 encode / decode
-*  http://www.webtoolkit.info/
-*
-**/
-var Base64 = {
+	/*
+	var Base64 = {
 
     // private property
     _keyStr : "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
@@ -148,14 +155,11 @@ var Base64 = {
     }
 }	
 	
-	
+*/	
 	
   
-/*	// Warning: GlideSysAttachment.write is not binary safe
-	var gsa = new GlideSysAttachment();
-	var strSysId = gsa.write(grRecord, strFileName, strContentType, strContent);
-	return strSysId;
-*/
+
+
 
 /*  // GlideSysAttachment.writeBase64 is not binary safe either
 	//var strContentBase64 = gs.base64Encode(strContent);
@@ -174,6 +178,7 @@ var Base64 = {
 	var strSysId = gsa.write(grRecord, strFileName, strContentType, '\x42\x4D\x5A\x00\x00\x00\x00\x00\x00\x00\x36\x00\x00\x00\x28\x00\x00\x00\x03\x00\x00\x00\x03\x00\x00\x00\x01\x00\x18\x00\x00\x00\x00\x00\x24\x00\x00\x00\x13\x0B\x00\x00\x13\x0B\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xFF\xFF\xFF\xFF\xFF\xFF\xCC\xBB\xAA\x00\x00\x00\xFF\xFF\xFF\xCC\xBB\xAA\xFF\xFF\xFF\x00\x00\x00\xCC\xBB\xAA\xFF\xFF\xFF\xFF\xFF\xFF\x00\x00\x00');
 	*/
 
+	/*
 	// The ecc_queue trick does not work either
 
 	//var strContentBase64 = RunScriptInGlobalScope("result = GlideStringUtil.base64Encode(param1);",strContent);
@@ -187,19 +192,19 @@ var Base64 = {
 	attCreator.setValue('payload',strContent);
 	attCreator.insert();	
 	//x_snc_devtools.Debug(x_snc_devtools.RenderValue(attCreator));	
-	
+	*/
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-03-18 21:53:07</sys_created_on>
         <sys_id>1b67844edb120150bcced03cd396198f</sys_id>
-        <sys_mod_count>33</sys_mod_count>
-        <sys_name>RecordAddAttachment</sys_name>
+        <sys_mod_count>34</sys_mod_count>
+        <sys_name>RecordAttachmentAdd</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_1b67844edb120150bcced03cd396198f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-03-19 21:09:34</sys_updated_on>
+        <sys_updated_on>2022-03-30 09:20:19</sys_updated_on>
     </sys_script_include>
 </record_update>
