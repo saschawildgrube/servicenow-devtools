@@ -19,6 +19,16 @@
 		if (IsValidTable(strTable) == true)
 		{
 			var whatruns_table = {};
+			
+			
+			var aParentTables = Array();
+			var strParentTable = GetParentTable(strTable);
+			while (strParentTable != '')
+			{
+				aParentTables.push(strParentTable);
+				strParentTable = GetParentTable(strParentTable);
+			}
+			
 
 			// INSERT
 			var aWhatRuns = Array();
@@ -26,7 +36,11 @@
 				// BEFORE
 				var grBR = new GlideRecord('sys_script');
 				grBR.addActiveQuery();
-				grBR.addQuery('collection','=',strTable); // also consider parent tables!
+				var condition = grBR.addQuery('collection','=',strTable);
+				for (var nParentTable = 0; nParentTable < aParentTables.length; nParentTable++)
+				{
+					condition.addOrCondition('collection','=',aParentTables[nParentTable]);
+				}
 				grBR.addQuery('action_insert','=','true');
 				grBR.addQuery('when','=','before');
 				grBR.orderBy('order');
@@ -36,9 +50,10 @@
 					var whatruns_object = {};
 					whatruns_object['phase'] = 'before';
 					whatruns_object['order'] = GetIntegerValue(grBR.order);
-					whatruns_object['class'] = 'sys_script';
+					whatruns_object['class_name'] = 'sys_script';
 					whatruns_object['sys_id'] = GetStringValue(grBR.sys_id);
-					whatruns_object['class_name'] = 'Business Rule';
+					whatruns_object['class_display_name'] = 'Business Rule';
+					whatruns_object['table'] = GetStringValue(grBR.collection);
 					whatruns_object['name'] = GetStringValue(grBR.name);
 					aWhatRuns.push(whatruns_object); 
 				}
@@ -47,6 +62,10 @@
 				var grBR = new GlideRecord('sys_script');
 				grBR.addActiveQuery();
 				grBR.addQuery('collection','=',strTable); // also consider parent tables!
+				for (var nParentTable = 0; nParentTable < aParentTables.length; nParentTable++)
+				{
+					condition.addOrCondition('collection','=',aParentTables[nParentTable]);
+				}
 				grBR.addQuery('action_insert','=','true');
 				grBR.addQuery('when','=','after');
 				grBR.orderBy('order');
@@ -56,9 +75,10 @@
 					var whatruns_object = {};
 					whatruns_object['phase'] = 'after';
 					whatruns_object['order'] = GetIntegerValue(grBR.order);
-					whatruns_object['class'] = 'sys_script';
+					whatruns_object['class_name'] = 'sys_script';
 					whatruns_object['sys_id'] = GetStringValue(grBR.sys_id);
-					whatruns_object['class_name'] = 'Business Rule';
+					whatruns_object['class_display_name'] = 'Business Rule';
+					whatruns_object['table'] = GetStringValue(grBR.collection);
 					whatruns_object['name'] = GetStringValue(grBR.name);
 					aWhatRuns.push(whatruns_object); 
 				}			
@@ -73,6 +93,10 @@
 				var grBR = new GlideRecord('sys_script');
 				grBR.addActiveQuery();
 				grBR.addQuery('collection','=',strTable); // also consider parent tables!
+				for (var nParentTable = 0; nParentTable < aParentTables.length; nParentTable++)
+				{
+					condition.addOrCondition('collection','=',aParentTables[nParentTable]);
+				}
 				grBR.addQuery('action_update','=','true');
 				grBR.addQuery('when','=','before');
 				grBR.orderBy('order');
@@ -82,9 +106,10 @@
 					var whatruns_object = {};
 					whatruns_object['phase'] = 'before';
 					whatruns_object['order'] = GetIntegerValue(grBR.order);
-					whatruns_object['class'] = 'sys_script';
+					whatruns_object['class_name'] = 'sys_script';
 					whatruns_object['sys_id'] = GetStringValue(grBR.sys_id);
-					whatruns_object['class_name'] = 'Business Rule';
+					whatruns_object['class_display_name'] = 'Business Rule';
+					whatruns_object['table'] = GetStringValue(grBR.collection);
 					whatruns_object['name'] = GetStringValue(grBR.name);
 					aWhatRuns.push(whatruns_object); 
 				}
@@ -93,6 +118,10 @@
 				var grBR = new GlideRecord('sys_script');
 				grBR.addActiveQuery();
 				grBR.addQuery('collection','=',strTable); // also consider parent tables!
+				for (var nParentTable = 0; nParentTable < aParentTables.length; nParentTable++)
+				{
+					condition.addOrCondition('collection','=',aParentTables[nParentTable]);
+				}
 				grBR.addQuery('action_update','=','true');
 				grBR.addQuery('when','=','after');
 				grBR.orderBy('order');
@@ -102,9 +131,10 @@
 					var whatruns_object = {};
 					whatruns_object['phase'] = 'after';
 					whatruns_object['order'] = GetIntegerValue(grBR.order);
-					whatruns_object['class'] = 'sys_script';
+					whatruns_object['class_name'] = 'sys_script';
 					whatruns_object['sys_id'] = GetStringValue(grBR.sys_id);
-					whatruns_object['class_name'] = 'Business Rule';
+					whatruns_object['class_display_name'] = 'Business Rule';
+					whatruns_object['table'] = GetStringValue(grBR.collection);
 					whatruns_object['name'] = GetStringValue(grBR.name);
 					aWhatRuns.push(whatruns_object); 
 				}			
@@ -119,6 +149,10 @@
 				var grBR = new GlideRecord('sys_script');
 				grBR.addActiveQuery();
 				grBR.addQuery('collection','=',strTable); // also consider parent tables!
+				for (var nParentTable = 0; nParentTable < aParentTables.length; nParentTable++)
+				{
+					condition.addOrCondition('collection','=',aParentTables[nParentTable]);
+				}
 				grBR.addQuery('action_query','=','true');
 				grBR.addQuery('when','=','before');
 				grBR.orderBy('order');
@@ -128,9 +162,10 @@
 					var whatruns_object = {};
 					whatruns_object['phase'] = 'before';
 					whatruns_object['order'] = GetIntegerValue(grBR.order);
-					whatruns_object['class'] = 'sys_script';
+					whatruns_object['class_name'] = 'sys_script';
 					whatruns_object['sys_id'] = GetStringValue(grBR.sys_id);
-					whatruns_object['class_name'] = 'Business Rule';
+					whatruns_object['class_display_name'] = 'Business Rule';
+					whatruns_object['table'] = GetStringValue(grBR.collection);
 					whatruns_object['name'] = GetStringValue(grBR.name);
 					aWhatRuns.push(whatruns_object); 
 				}
@@ -139,6 +174,10 @@
 				var grBR = new GlideRecord('sys_script');
 				grBR.addActiveQuery();
 				grBR.addQuery('collection','=',strTable); // also consider parent tables!
+				for (var nParentTable = 0; nParentTable < aParentTables.length; nParentTable++)
+				{
+					condition.addOrCondition('collection','=',aParentTables[nParentTable]);
+				}
 				grBR.addQuery('action_query','=','true');
 				grBR.addQuery('when','=','after');
 				grBR.orderBy('order');
@@ -148,9 +187,10 @@
 					var whatruns_object = {};
 					whatruns_object['phase'] = 'after';
 					whatruns_object['order'] = GetIntegerValue(grBR.order);
-					whatruns_object['class'] = 'sys_script';
+					whatruns_object['class_name'] = 'sys_script';
 					whatruns_object['sys_id'] = GetStringValue(grBR.sys_id);
-					whatruns_object['class_name'] = 'Business Rule';
+					whatruns_object['class_display_name'] = 'Business Rule';
+					whatruns_object['table'] = GetStringValue(grBR.collection);
 					whatruns_object['name'] = GetStringValue(grBR.name);
 					aWhatRuns.push(whatruns_object); 
 				}			
@@ -168,13 +208,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-03-29 08:27:19</sys_created_on>
         <sys_id>04193959dba64910b652edb3059619c9</sys_id>
-        <sys_mod_count>15</sys_mod_count>
+        <sys_mod_count>19</sys_mod_count>
         <sys_name>WhatRuns</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_04193959dba64910b652edb3059619c9</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-03-29 15:18:51</sys_updated_on>
+        <sys_updated_on>2022-03-31 10:28:58</sys_updated_on>
     </sys_script_include>
 </record_update>
