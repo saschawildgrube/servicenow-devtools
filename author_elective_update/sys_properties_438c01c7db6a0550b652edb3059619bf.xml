@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties">
+    <sys_properties action="DELETE">
+        <choices/>
+        <description/>
+        <ignore_cache>false</ignore_cache>
+        <is_private>false</is_private>
+        <name>sn_g_app_creator.allow_global</name>
+        <read_roles/>
+        <suffix/>
+        <sys_class_name>sys_properties</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-04-03 15:36:15</sys_created_on>
+        <sys_id>438c01c7db6a0550b652edb3059619bf</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>sn_g_app_creator.allow_global</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_properties_438c01c7db6a0550b652edb3059619bf</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-04-03 15:36:15</sys_updated_on>
+        <type>string</type>
+        <value>true</value>
+        <write_roles/>
+    </sys_properties>
+    <sys_translated_text action="DELETE" query="documentkey=438c01c7db6a0550b652edb3059619bf"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>f492329ddb5849108aea21c405961946</instance_id>
+        <instance_name>wildgrubedevquebec</instance_name>
+        <name>sys_properties_438c01c7db6a0550b652edb3059619bf</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties"><sys_properties action="INSERT_OR_UPDATE"><choices/><description/><ignore_cache>false</ignore_cache><is_private>false</is_private><name>sn_g_app_creator.allow_global</name><read_roles/><suffix/><sys_class_name>sys_properties</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2022-04-03 15:36:15</sys_created_on><sys_id>438c01c7db6a0550b652edb3059619bf</sys_id><sys_mod_count>0</sys_mod_count><sys_name>sn_g_app_creator.allow_global</sys_name><sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package><sys_policy/><sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope><sys_update_name>sys_properties_438c01c7db6a0550b652edb3059619bf</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2022-04-03 15:36:15</sys_updated_on><type>string</type><value>true</value><write_roles/></sys_properties><sys_translated_text action="delete_multiple" query="documentkey=438c01c7db6a0550b652edb3059619bf"/></record_update>]]></payload>
+        <payload_hash>772238087</payload_hash>
+        <record_name>sn_g_app_creator.allow_global</record_name>
+        <reverted_from/>
+        <source>7cadd506dbae4d10b652edb3059619b4</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-04-03 15:36:17</sys_created_on>
+        <sys_id>638c01c7db6a0550b652edb3059619c6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>17ff011dd940000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-04-03 15:36:17</sys_updated_on>
+        <type>System Property</type>
+        <update_guid>e38c01c7fd6a05505066c08817af6ac5</update_guid>
+        <update_guid_history>e38c01c7fd6a05505066c08817af6ac5:772238087</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-04-03 19:10:31</sys_created_on>
+        <sys_db_object display_value="" name="sys_properties">sys_properties</sys_db_object>
+        <sys_id>9ae8f13d7206419eb60644a1b2559ca4</sys_id>
+        <sys_metadata>438c01c7db6a0550b652edb3059619bf</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>sn_g_app_creator.allow_global</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sys_properties_438c01c7db6a0550b652edb3059619bf</sys_update_name>
+        <sys_update_version display_value="sys_properties_438c01c7db6a0550b652edb3059619bf">638c01c7db6a0550b652edb3059619c6</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-04-03 19:10:31</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
