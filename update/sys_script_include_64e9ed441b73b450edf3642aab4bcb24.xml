@@ -19,14 +19,14 @@
 		var strPair = GetStringValue(aPairs[nPair]);
 		var aPair = strPair.split('=');
 		var strKey = '';
-		if (aPair[0] != undefined)
+		if (GetValue(aPair,0) != undefined)
 		{
-			strKey = aPair[0];
+			strKey = GetValue(aPair,0);
 		}
 		var strValue = '';
-		if (aPair[1] != undefined)
+		if (GetValue(aPair,1) != undefined)
 		{
-			strValue = aPair[1];
+			strValue = GetValue(aPair,1);
 		}
 		if (strKey != '')
 		{
@@ -39,13 +39,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-11-08 17:10:00</sys_created_on>
         <sys_id>64e9ed441b73b450edf3642aab4bcb24</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>ParseUrlParameters</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_64e9ed441b73b450edf3642aab4bcb24</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-11-08 17:24:19</sys_updated_on>
+        <sys_updated_on>2022-04-07 13:37:11</sys_updated_on>
     </sys_script_include>
 </record_update>
