@@ -79,7 +79,7 @@
 				// AFTER
 				var grBR = new GlideRecord('sys_script');
 				grBR.addActiveQuery();
-				grBR.addQuery('collection','=',strTable); // also consider parent tables!
+				var condition = grBR.addQuery('collection','=',strTable); // also consider parent tables!
 				for (var nParentTable = 0; nParentTable < aParentTables.length; nParentTable++)
 				{
 					condition.addOrCondition('collection','=',aParentTables[nParentTable]);
@@ -92,7 +92,25 @@
 				{
 					var whatruns_object = MakeWhatRunsObjectFromRecord(grBR, 'after');
 					aWhatRuns.push(whatruns_object); 
-				}			
+				}		
+			
+				// ASYNC
+				var grBR = new GlideRecord('sys_script');
+				grBR.addActiveQuery();
+				var condition = grBR.addQuery('collection','=',strTable); // also consider parent tables!
+				for (var nParentTable = 0; nParentTable < aParentTables.length; nParentTable++)
+				{
+					condition.addOrCondition('collection','=',aParentTables[nParentTable]);
+				}
+				grBR.addQuery('action_insert','=','true');
+				grBR.addQuery('when','=','async');
+				grBR.orderBy('order');
+				grBR.query();
+				while (grBR.next())
+				{
+					var whatruns_object = MakeWhatRunsObjectFromRecord(grBR, 'async');
+					aWhatRuns.push(whatruns_object); 
+				}		
 			
 				whatruns_table['insert'] = aWhatRuns;
 
@@ -103,7 +121,7 @@
 				// BEFORE
 				var grBR = new GlideRecord('sys_script');
 				grBR.addActiveQuery();
-				grBR.addQuery('collection','=',strTable); // also consider parent tables!
+				var condition = grBR.addQuery('collection','=',strTable); // also consider parent tables!
 				for (var nParentTable = 0; nParentTable < aParentTables.length; nParentTable++)
 				{
 					condition.addOrCondition('collection','=',aParentTables[nParentTable]);
@@ -121,7 +139,7 @@
 				// AFTER
 				var grBR = new GlideRecord('sys_script');
 				grBR.addActiveQuery();
-				grBR.addQuery('collection','=',strTable); // also consider parent tables!
+				var condition = grBR.addQuery('collection','=',strTable); // also consider parent tables!
 				for (var nParentTable = 0; nParentTable < aParentTables.length; nParentTable++)
 				{
 					condition.addOrCondition('collection','=',aParentTables[nParentTable]);
@@ -136,6 +154,24 @@
 					aWhatRuns.push(whatruns_object); 
 				}			
 			
+				// ASYNC
+				var grBR = new GlideRecord('sys_script');
+				grBR.addActiveQuery();
+				var condition = grBR.addQuery('collection','=',strTable); // also consider parent tables!
+				for (var nParentTable = 0; nParentTable < aParentTables.length; nParentTable++)
+				{
+					condition.addOrCondition('collection','=',aParentTables[nParentTable]);
+				}
+				grBR.addQuery('action_update','=','true');
+				grBR.addQuery('when','=','async');
+				grBR.orderBy('order');
+				grBR.query();
+				while (grBR.next())
+				{
+					var whatruns_object = MakeWhatRunsObjectFromRecord(grBR, 'async');
+					aWhatRuns.push(whatruns_object); 
+				}				
+			
 				whatruns_table['update'] = aWhatRuns;
 			
 			
@@ -145,7 +181,7 @@
 				// BEFORE
 				var grBR = new GlideRecord('sys_script');
 				grBR.addActiveQuery();
-				grBR.addQuery('collection','=',strTable); // also consider parent tables!
+				var condition = grBR.addQuery('collection','=',strTable); // also consider parent tables!
 				for (var nParentTable = 0; nParentTable < aParentTables.length; nParentTable++)
 				{
 					condition.addOrCondition('collection','=',aParentTables[nParentTable]);
@@ -187,6 +223,22 @@
 				}			
 			*/
 				// ASYNC
+				var grBR = new GlideRecord('sys_script');
+				grBR.addActiveQuery();
+				var condition = grBR.addQuery('collection','=',strTable); // also consider parent tables!
+				for (var nParentTable = 0; nParentTable < aParentTables.length; nParentTable++)
+				{
+					condition.addOrCondition('collection','=',aParentTables[nParentTable]);
+				}
+				grBR.addQuery('action_query','=','true');
+				grBR.addQuery('when','=','async');
+				grBR.orderBy('order');
+				grBR.query();
+				while (grBR.next())
+				{
+					var whatruns_object = MakeWhatRunsObjectFromRecord(grBR, 'async');
+					aWhatRuns.push(whatruns_object); 
+				}	
 			
 				whatruns_table['query'] = aWhatRuns;
 			
@@ -222,13 +274,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-03-29 08:27:19</sys_created_on>
         <sys_id>04193959dba64910b652edb3059619c9</sys_id>
-        <sys_mod_count>22</sys_mod_count>
+        <sys_mod_count>24</sys_mod_count>
         <sys_name>WhatRuns</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_04193959dba64910b652edb3059619c9</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-04-07 16:21:53</sys_updated_on>
+        <sys_updated_on>2022-04-07 16:51:56</sys_updated_on>
     </sys_script_include>
 </record_update>
