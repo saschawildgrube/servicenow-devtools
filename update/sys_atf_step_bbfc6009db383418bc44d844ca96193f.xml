@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-06-15 12:09:39</sys_created_on>
         <sys_id>bbfc6009db383418bc44d844ca96193f</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_bbfc6009db383418bc44d844ca96193f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-06-15 12:21:21</sys_updated_on>
+        <sys_updated_on>2022-03-29 18:38:38</sys_updated_on>
         <table/>
         <test display_value="DevTools - SetProperty">1bcca4c5db383418bc44d844ca96194c</test>
         <timeout/>
@@ -50,9 +50,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-06-15 12:09:39</sys_created_on>
         <sys_id>750d6cc5db383418bc44d844ca9619a6</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-06-15 12:21:21</sys_updated_on>
+        <sys_updated_on>2022-03-29 18:38:38</sys_updated_on>
         <value>var strLog = '';&#13;
 function Log(strText)&#13;
 {&#13;
@@ -64,13 +64,14 @@ function Log(strText)&#13;
 &#13;
 	var bResult = true;&#13;
 &#13;
-	function TestCase_SetProperty(vInputName, vInputValue,vExpected)&#13;
+	function TestCase_SetProperty(vInputName, vInputValue, vInputAdd, vExpected)&#13;
 	{&#13;
 		Log('TestCase_SetProperty');&#13;
 		Log('Input name    : '+RenderValue(vInputName));&#13;
 		Log('Input value   : '+RenderValue(vInputValue));&#13;
+		Log('Input add     : '+RenderValue(vInputAdd));&#13;
 		Log('Expected      : '+RenderValue(vExpected));&#13;
-		var vResult = SetProperty(vInputName,vInputValue);&#13;
+		var vResult = SetProperty(vInputName,vInputValue,vInputAdd);&#13;
 		Log('Result        : '+RenderValue(vResult));&#13;
 		if (vResult != vExpected)&#13;
 		{&#13;
@@ -91,19 +92,25 @@ function Log(strText)&#13;
 		Log('');&#13;
 	}&#13;
 	&#13;
-	// Non-existent properties &#13;
-	TestCase_SetProperty(false,'Hello World', false);&#13;
-	TestCase_SetProperty('','Hello World',false);&#13;
-	TestCase_SetProperty('this_property_does_not_exist','Hello World',false);&#13;
+	// Non-existent properties (don't add)&#13;
+	TestCase_SetProperty(false,'Hello World',false,false);&#13;
+	TestCase_SetProperty('','Hello World',false,false);&#13;
+	TestCase_SetProperty('this_property_does_not_exist','Hello World',false,false);&#13;
+&#13;
+	// Non-existent properties (add)&#13;
+	TestCase_SetProperty(false,'Hello World',true,false);&#13;
+	TestCase_SetProperty('','Hello World',true,false);&#13;
+	TestCase_SetProperty('this_property_does_not_exist','Hello World',true,true);&#13;
+&#13;
 	&#13;
 	// Same scope&#13;
-	TestCase_SetProperty('x_snc_devtools.debug.log','true',true);&#13;
+	TestCase_SetProperty('x_snc_devtools.debug.log','true',false,true);&#13;
 	&#13;
 	// Global scope&#13;
-	TestCase_SetProperty('sn_atf.runner.enabled','true',true);&#13;
+	TestCase_SetProperty('sn_atf.runner.enabled','true',false,true);&#13;
 	&#13;
 	// Other scope&#13;
-	TestCase_SetProperty('sn_codesearch.search.results.max','1000',true);&#13;
+	TestCase_SetProperty('sn_codesearch.search.results.max','1000',false,true);&#13;
 &#13;
 	&#13;
 	stepResult.setOutputMessage(strLog);&#13;

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script/>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_snc_devtools_links.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+<div style="padding-left: 20px;">
+	
+	<h1>DevTools Link Directory</h1>
+	<g2:no_escape>$[HtmlRenderLinkDirectory(GetLinkDirectory())]</g2:no_escape>	
+		
+</div>
+</j:jelly>]]></html>
+        <name>links</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-03-29 08:19:11</sys_created_on>
+        <sys_id>b388b9d5dba64910b652edb3059619f4</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>links</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_ui_page_b388b9d5dba64910b652edb3059619f4</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-03-29 08:20:03</sys_updated_on>
+    </sys_ui_page>
+</record_update>

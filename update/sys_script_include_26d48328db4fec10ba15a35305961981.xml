@@ -17,7 +17,7 @@
 	if (GetType(vDateTime) == 'number')
 	{
 		var nTimeStamp = GetIntegerValue(vDateTime); 
-		var date = new Date();
+		var date = new Date(0);
 		date.setTime(nTimeStamp);
 		
 		var strResult = date.getUTCFullYear();
@@ -43,13 +43,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-03-19 10:06:09</sys_created_on>
         <sys_id>26d48328db4fec10ba15a35305961981</sys_id>
-        <sys_mod_count>12</sys_mod_count>
+        <sys_mod_count>13</sys_mod_count>
         <sys_name>RenderDateTime</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_26d48328db4fec10ba15a35305961981</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-12-08 15:53:36</sys_updated_on>
+        <sys_updated_on>2022-04-01 07:13:33</sys_updated_on>
     </sys_script_include>
 </record_update>

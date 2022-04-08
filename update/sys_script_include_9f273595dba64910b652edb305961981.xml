@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.HtmlRenderWhatRuns</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Renders a the outcome of the WhatRuns() function for the given tables.</description>
+        <name>HtmlRenderWhatRuns</name>
+        <script><![CDATA[function HtmlRenderWhatRuns(vTables)
+{
+	var whatruns = WhatRuns(vTables);
+	
+	if (IsObject(whatruns) == false)
+	{
+		return 'WhatRuns did not return anything!';
+	}
+	strHtml = '';
+	
+	var aTables = GetKeys(whatruns);
+	//strHtml += "<pre>"+RenderValue(aTables)+'</pre>';
+	for (var nTable = 0; nTable < aTables.length; nTable++)
+	{
+		var strTable = aTables[nTable];
+		var whatruns_table = GetValue(whatruns,strTable);
+		
+		//strHtml += '<pre>'+RenderValue(whatruns_table)+'</pre>';
+		
+		if (IsObject(whatruns_table))
+		{
+			strHtml += '<h2>'+strTable+'</h2>';
+
+			
+			function HtmlRenderWhatRunsPhase(strPhase,aWhatRuns)
+			{
+				var strHtml = '';
+				strHtml += '<h3>'+strPhase+'</h3>';
+				aWhatRuns = GetArrayValue(aWhatRuns);
+				if (aWhatRuns.length == 0)
+				{
+					strHtml += '<p>Nothing runs</p>';
+				}
+				else
+				{
+					var strOldPhase = '';
+					strHtml += '<table><tbody>';
+					for (var nWhatRuns = 0; nWhatRuns < aWhatRuns.length; nWhatRuns++)
+					{
+						var whatruns_object = aWhatRuns[nWhatRuns];
+
+						var strNewPhase = whatruns_object.phase;
+						if (strNewPhase != strOldPhase)
+						{
+							strOldPhase = strNewPhase;
+							strHtml += '<tr><th>'+strNewPhase+'</th></tr>';
+						}
+						
+						strHtml += '<tr>';
+						strHtml += '<td style="text-align: right; padding-right: 5px;">';
+						strHtml += whatruns_object.order;
+						strHtml += '</td>';
+						strHtml += '<td style="padding-right: 5px;">';
+						strHtml += whatruns_object.class_display_name + ' ('+whatruns_object.table+')';
+						strHtml += '</td>';
+						strHtml += '<td style="padding-right: 5px;">';
+						strHtml += HtmlRenderLink(
+							GetInstanceRecordURL(
+								whatruns_object.class_name,
+								whatruns_object.sys_id),
+							whatruns_object.name,
+							true);
+						strHtml += '</td>';
+						strHtml += '</td>';
+						strHtml += '</tr>';
+					}
+					strHtml += '</tbody></table>';
+
+				}
+				return strHtml;
+			}
+			
+			strHtml += '<table><tbody>';
+				strHtml += '<tr>';
+					strHtml += '<td style="vertical-align: top; padding-right: 20px;">';
+						strHtml += HtmlRenderWhatRunsPhase('Query',GetValue(whatruns_table,'query'));
+						strHtml += HtmlRenderWhatRunsPhase('Display',GetValue(whatruns_table,'display'));
+						strHtml += HtmlRenderWhatRunsPhase('Delete',GetValue(whatruns_table,'delete'));
+					strHtml += '</td>';
+					strHtml += '<td style="vertical-align: top; padding-right: 20px;">';
+						strHtml += HtmlRenderWhatRunsPhase('Insert',GetValue(whatruns_table,'insert'));
+					strHtml += '</td>';
+					strHtml += '<td style="vertical-align: top; padding-right: 20px;">';
+						strHtml += HtmlRenderWhatRunsPhase('Update',GetValue(whatruns_table,'update'));
+					strHtml += '</td>';
+					/*strHtml += '<td style="vertical-align: top; padding-right: 20px;">';
+					strHtml += '</td>';*/
+				strHtml += '</tr>';
+			strHtml += '<tbody></table>';
+		}
+		
+	}
+	
+	
+	//strHtml += HtmlRenderValue(whatruns);
+	
+	return strHtml;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-03-29 08:13:08</sys_created_on>
+        <sys_id>9f273595dba64910b652edb305961981</sys_id>
+        <sys_mod_count>43</sys_mod_count>
+        <sys_name>HtmlRenderWhatRuns</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_9f273595dba64910b652edb305961981</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-04-08 07:46:14</sys_updated_on>
+    </sys_script_include>
+</record_update>

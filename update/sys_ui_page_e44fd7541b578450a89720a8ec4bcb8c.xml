@@ -28,7 +28,7 @@
 	<ul>
 		<g2:no_escape>$[
 			docapi.RenderSystemRequirements(
-				'Quebec,Rome',
+				'Quebec,Rome,San Diego',
 				true,
 				AppGetDependencies());
 		]</g2:no_escape>	
@@ -141,6 +141,43 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>TODO</li>
 	</ol>
 -->
+	
+	<h3>1.36.0 - 2022-04-08</h3>
+	<ol>
+		<li>San Diego is now supported.</li>
+		<li>Added function CreateQRCodeRawData() to generate the raw data for a QRCode.</li>
+		<li>Added function WhatRuns() to identify which business rules run on a table for the different CRUD operations - currently supporting insert, update and query. A corresponding UI action has also been added on forms and lists.</li>
+		<li>Added function HtmlRenderQRCode() to render a QR code as plain vanilla html.</li>
+		<li>Added the ImageAPI class to craft wonderful images and render them as plain html code or bmp files.</li>
+		<li>Added function GetAppRecord() to get a record object of an app either by its Sys ID or its scope name.</li> 
+		<li>Added function HtmlRenderValue() to output any value into an html document.</li>
+		<li>Added function RenderValueHex() to render a value as an hexadecimal string.</li>
+		<li>Added function StringReplace() to replace strings in strings.</li>
+		<li>Added function CreatePDFFromHtml() to render a pdf file based on html and add it as an attachment.</li>
+		<li>Added function RecordAttachmentAdd() to add an attachment to a given record.</li>
+		<li>Added function RecordAttachmentDeleteAll() to delete all attachments of a given record.</li>
+		<li>Added function RecordAttachmentDeleteByFileName() to delete all attachments that match the given file name of a given record.</li>
+		<li>Added function RenderTime() to render a date time value as an UTC ISO string.</li>
+		<li>Added UI script function IsValidSysId() - however the function does not yet support currencies.</li>
+		<li>GetTableFromSysId() is now using cross-scope techniques to identify records in the various tables - avoiding errors caused by cross-scope restrictions.</li>
+		<li>DocumentationAPI::RenderListItem() now checks the text parameter properly and does not show "null" if the text is not provided.</li> 
+		<li>InstallerAPI::SetProperty() now creates a property if it does not exist yet.</li>
+		<li>SetProperty() now supports the bAdd parameter to control if a non-existing system property should be created. New system properties are created in the global scope.</li>
+		<li>AppInstall() now sets the system property "sn_g_app_creator.allow_global" to true to allow users to create global scoped applications.</li>
+		<li>AppInstall() now unhides the "Email" field class so that it can be used by developers.</li>
+		<li>Added tables sys_ux_form_action, sys_ui_page and sys_public to the link directory.</li>
+		<li>Added tables from the "Data Model for Order Management" plugin to the link directory.</li>
+		<li>The test step configuration "DevTools - Check scoped app sanity" now checks for system properties which do not have the scope name as a prefix.</li>
+		<li>Test step configuration "DevTools - Check scoped app sanity" now checks for empty description fields in roles.</li>
+		<li>The manual template used by AppBuilder() is now also including documentation of contained roles.</li>  
+		<li>The "debugrecord" macro is now producing code that works from other scopes, too.</li>
+		<li>The "List" button now saves the current record before navigating to the list view.</li>
+		<li>The "Find Sys ID" UI action now provides feedback if an invalid Sys ID was provided.</li>
+		<li>When using AppBuilder() to built new apps, the bootstrapped manual ui page now also contains instructions to load the app from a source control repository.</li> 
+		<li>The ATF test "DevTools - Implementation" now checks for any UI view that starts with "exp_dtemp" in the DevTools scope explicitly.</li>
+		<li>Refactoring of code to avoid the [0] anti-pattern.</li>
+	</ol>
+
 	
 
 	<h3>1.35.0 - 2022-03-15</h3>
@@ -744,13 +781,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>736</sys_mod_count>
+        <sys_mod_count>775</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-03-15 19:56:05</sys_updated_on>
+        <sys_updated_on>2022-04-08 11:41:25</sys_updated_on>
     </sys_ui_page>
 </record_update>

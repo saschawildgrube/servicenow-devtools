@@ -31,11 +31,23 @@
         <order>99999</order>
         <script><![CDATA[function FindSysId()
 {
-	var strSysId = prompt('\nDevTools: Find Sys ID\n\nPlease enter a Sys ID to search for:');
-	if (strSysId == null)
+	var strSysId = false;
+	
+	while (strSysId == false)
 	{
-		return;
+		strSysId = prompt('\nDevTools: Find Sys ID\n\nPlease enter a Sys ID to search for:');
+		strSysId = GetStringValue(strSysId);
+		if (strSysId == '')
+		{
+			return;
+		}
+		if (IsValidSysId(strSysId) == false)
+		{
+			alert('\nDevTools: The entered Sys ID was not valid.');
+			strSysId = false;
+		}
 	}
+	
 	ServerRequest('x_snc_devtools.DevToolsClientAPI','GetTableFromSysId',
 	{
 		sys_id: strSysId
@@ -62,7 +74,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>fd55755b1b4bb090edf3642aab4bcbe5</sys_id>
-        <sys_mod_count>35</sys_mod_count>
+        <sys_mod_count>38</sys_mod_count>
         <sys_name>Find Sys ID</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -70,7 +82,7 @@
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_action_fd55755b1b4bb090edf3642aab4bcbe5</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-12-25 12:42:03</sys_updated_on>
+        <sys_updated_on>2022-04-04 13:13:43</sys_updated_on>
         <table>global</table>
         <ui11_compatible>true</ui11_compatible>
         <ui16_compatible>true</ui16_compatible>

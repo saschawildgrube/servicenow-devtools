@@ -85,6 +85,12 @@ generateDescription();
 				strMessage += '  Failed: description is empty.\n';
 			}		
 			
+			if (GetStringValue(grSysProp.getValue('name')).indexOf(grApp.getValue('scope')) != 0)
+			{
+				bResult = false;
+				strMessage += '  Failed: The name must start with the app scope name.\n';
+			}				
+			
 		}
 		
 		
@@ -228,6 +234,23 @@ generateDescription();
 			}
 		}		
 		
+		
+		// Check roles
+		var grUserRole = new GlideRecord('sys_user_role');
+		grUserRole.addQuery('sys_scope','=',strAppSysId);
+		grUserRole.query();
+		while (grUserRole.next())
+		{
+			strMessage += 'Checking role: "'+GetStringValue(grUserRole.getValue('name'))+'"\n';
+			if (GetStringValue(grUserRole.getValue('description')) == '')
+			{
+				bResult = false;
+				strMessage += '  Failed: description is empty.\n';
+			}		
+		}
+		
+		
+		
 		// Check for useless field level ACLs
 		var grSSA = new GlideRecord('sys_security_acl');
 		grSSA.addQuery('sys_scope','=',strAppSysId);
@@ -287,7 +310,7 @@ generateDescription();
 			
 			var strRunAs = grSA.getValue('run_as');
 			
-			if (IsTechnicalUser(strRunAs) == false && strRunAs != '6816f79cc0a8016401c5a33be04be441')
+			if (IsTechnicalUser(strRunAs) == false && strRunAs != '6816f79cc0a801640'+'1c5a33be04be441')
 			{
 				strMessage += 'Failed: Scheduled job "'+strName+'" is neither configured to run as a technical user (web_service_access_only is set to true) nor as the default System Administrator user!\n';
 				bResult = false;
@@ -326,6 +349,7 @@ generateDescription();
 		
 	}
 	
+
 	
 	
 	if (bResult == true)
@@ -346,14 +370,14 @@ generateDescription();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-11-23 13:28:01</sys_created_on>
         <sys_id>786a921f1b6c2090a89720a8ec4bcbc9</sys_id>
-        <sys_mod_count>64</sys_mod_count>
+        <sys_mod_count>67</sys_mod_count>
         <sys_name>DevTools - Check scoped app sanity</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_config_786a921f1b6c2090a89720a8ec4bcbc9</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-01-24 10:42:14</sys_updated_on>
+        <sys_updated_on>2022-04-07 13:48:38</sys_updated_on>
         <template_reminder>TBD</template_reminder>
         <type display_value="Test Step" name="sys_atf_step">ee6efe9ddb540110b652edb305961948</type>
         <wizard_redirect/>

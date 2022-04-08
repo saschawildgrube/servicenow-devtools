@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <copied_from/>
+        <description>Run Server Side Validation Script</description>
+        <display_name>Run Server Side Script</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>1</order>
+        <snapshot/>
+        <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-03-30 11:17:14</sys_created_on>
+        <sys_id>1dea63eddbe6c910b652edb305961978</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Run Server Side Script</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_step_1dea63eddbe6c910b652edb305961978</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-03-30 11:21:56</sys_updated_on>
+        <table/>
+        <test display_value="DevTools - CreatePDFFromHtml">02da23eddbe6c910b652edb305961936</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=1dea63eddbe6c910b652edb305961978"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>1dea63eddbe6c910b652edb305961978</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-03-30 11:17:14</sys_created_on>
+        <sys_id>0eea63eddbe6c910b652edb3059619f4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-03-30 11:17:14</sys_updated_on>
+        <value>3.1</value>
+        <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>1dea63eddbe6c910b652edb305961978</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-03-30 11:17:14</sys_created_on>
+        <sys_id>c2ea63eddbe6c910b652edb3059619f5</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-03-30 11:21:56</sys_updated_on>
+        <value>(function(outputs, steps, stepResult, assertEqual)&#13;
+{&#13;
+	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
+	&#13;
+	test.SetResult(true);&#13;
+&#13;
+	function TestCase_CreatePDFFromHtml(&#13;
+		strTable,&#13;
+		strRecordSysId,&#13;
+		strFileName,&#13;
+		strHtml,&#13;
+		strPageSize,&#13;
+		strOrientation,&#13;
+		fMarginTopBottom,&#13;
+		fMarginLeftRight,&#13;
+		bPageNumber,&#13;
+		vExpected)&#13;
+	{&#13;
+		function TestCase_CreatePDFFromHtml_CheckResult(vInput,vExpected,vResult)&#13;
+		{&#13;
+			if (vExpected == vResult)&#13;
+			{&#13;
+				return true;&#13;
+			}&#13;
+			if (vExpected == true)&#13;
+			{&#13;
+				return IsValidSysId(vResult);&#13;
+			}&#13;
+			return false;&#13;
+		}&#13;
+		test.TestCase(&#13;
+			'Function CreatePDFFromHtml()',&#13;
+			CreatePDFFromHtml,&#13;
+			{&#13;
+				'Table': strTable,&#13;
+				'Record': strRecordSysId,&#13;
+				'Filename': strFileName,&#13;
+				'Html': strHtml,&#13;
+				'Page Size': strPageSize,&#13;
+				'Orientation': strOrientation,&#13;
+				'Margin top/bottom': fMarginTopBottom,&#13;
+				'Margin left/right': fMarginLeftRight,&#13;
+				'Page Numbering': bPageNumber&#13;
+			},&#13;
+			vExpected,&#13;
+			TestCase_CreatePDFFromHtml_CheckResult);&#13;
+	}&#13;
+&#13;
+&#13;
+	TestCase_CreatePDFFromHtml(null,null,'test.pdf','&lt;p&gt;This is a test!&lt;/p&gt;','A4','PORTRAIT',1,1,false,false);&#13;
+	&#13;
+	var testdata = new TestDataAPI('_DEVTOOLS_');&#13;
+	var strRecordSysId = testdata.CreateTestItem('ATTACHMENT1');&#13;
+	&#13;
+	TestCase_CreatePDFFromHtml('x_snc_devtools_test',strRecordSysId,'test.pdf','&lt;p&gt;This is a test!&lt;/p&gt;','A4','PORTRAIT',1,1,false,true);&#13;
+	&#13;
+	var gsa = new GlideSysAttachment();&#13;
+	var grAttachments = gsa.getAttachments('x_snc_devtools_test', strRecordSysId);&#13;
+&#13;
+	while (grAttachments.next())&#13;
+	{&#13;
+		test.Log(RenderRecordSummary(grAttachments));&#13;
+	}&#13;
+	if (grAttachments.getRowCount() != 1)&#13;
+	{&#13;
+		test.Log('FAILED: Record should have exactly one attachment!');&#13;
+		test.SetResult(false);&#13;
+	}&#13;
+	&#13;
+	&#13;
+	&#13;
+	return test.GetResult();&#13;
+	&#13;
+})(outputs, steps, stepResult, assertEqual);</value>
+        <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
+    </sys_variable_value>
+</record_update>

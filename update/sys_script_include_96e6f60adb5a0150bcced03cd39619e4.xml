@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.ImageAPI</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>A class representing an image which can be used to generate BMP files or html output.</description>
+        <name>ImageAPI</name>
+        <script><![CDATA[var ImageAPI = Class.create();
+ImageAPI.prototype = {
+
+	width: 0,
+	height: 0,
+	bitmap: Array(),
+
+	initialize: function(nWidth,nHeight)
+	{
+		this.width = 0;
+		this.height = 0;
+		this.bitmap = Array();
+		this.Reset(nWidth,nHeight);
+    },
+
+	Reset: function(nWidth, nHeight)
+	{
+		nWidth = GetIntegerValue(nWidth);
+		nHeight = GetIntegerValue(nHeight);
+
+		nWidth = Math.min(nWidth,10000);
+		nHeight = Math.min(nHeight,10000);
+		
+		// TODO check min max values
+		
+		this.bitmap = Array();
+		
+		for (var nRow = 0; nRow < nHeight; nRow++)
+		{
+			var aBitmapRow = Array();
+			for (var nCol = 0; nCol < nWidth; nCol++)
+			{
+				aBitmapRow.push(this.ColorWhite());
+			}
+			this.bitmap.push(Clone(aBitmapRow));
+		}
+		
+		this.width = nWidth;
+		this.height = nHeight;
+	},
+	
+	Color: function(nRed,nGreen,nBlue)
+	{
+		nRed = GetIntegerValue(nRed);
+		nGreen = GetIntegerValue(nGreen);
+		nBlue = GetIntegerValue(nBlue);
+		
+		nRed = Math.min(nRed,255);
+		nGreen = Math.min(nGreen,255);
+		nBlue = Math.min(nBlue,255);
+
+		nRed = Math.max(nRed,0);
+		nGreen = Math.max(nGreen,0);
+		nBlue = Math.max(nBlue,0);
+
+		return Array(nRed,nGreen,nBlue);
+	},
+	
+	ColorBlack: function()
+	{
+		return this.Color(0,0,0);
+	},
+	
+	ColorWhite: function()
+	{
+		return this.Color(255,255,255);
+	},
+
+	ColorRed: function()
+	{
+		return this.Color(255,0,0);
+	},
+
+	ColorGreen: function()
+	{
+		return this.Color(0,255,0);
+	},
+
+	ColorBlue: function()
+	{
+		return this.Color(0,0,255);
+	},
+	
+	ColorToHex: function(color)
+	{
+		return RenderValueHex(GetValue(color,0))
+			+ RenderValueHex(GetValue(color,1))
+			+ RenderValueHex(GetValue(color,2));
+	},
+	
+	SetPixel: function(nX, nY, aColor)
+	{
+		if (this.bitmap[nY] == undefined)
+		{
+			return;
+		}
+		if (this.bitmap[nY][nX]  == undefined)
+		{
+			return;
+		}
+		this.bitmap[nY][nX] = aColor;
+	},
+	
+	GetPixel: function(nX, nY)
+	{
+		return GetValue(this.bitmap,nY,nX);
+	},
+	
+	GetPixelHex: function(nX, nY)
+	{
+		return this.ColorToHex(this.GetPixel(nX, nY));
+	},	
+
+	MakeDemo: function()
+	{
+		this.Reset(50,50);
+		
+		for (var nPos = 0; nPos < Math.min(this.width,this.height); nPos++)
+		{
+			//this.SetPixel(nPos,nPos,this.ColorRed());
+			this.SetPixel(nPos,nPos,this.Color(0xAA,0xBB,0xCC));
+		}
+		
+	},
+	
+	
+	CreateBitmapFile: function()
+	{
+		// https://en.wikipedia.org/wiki/BMP_file_format
+		
+		
+		function getLittleEndianHex(value)
+		{
+			var result = [];
+
+			for (var bytes = 4; bytes > 0; bytes--)
+			{
+				result.push(String.fromCharCode(value & 255));
+				value >>= 8;
+			}
+			return result.join('');
+		}	
+
+
+		var bitmapdata = '';
+		
+		var padding = '';
+		var nPaddingLength = 4 - ((this.width * 3) % 4);
+		if (nPaddingLength == 4)
+		{
+			nPaddingLength = 0;
+		}
+		for (var nPadChar = 0; nPadChar < nPaddingLength; nPadChar++)
+		{
+			padding += '\x00';
+		}
+		
+		for (var nRow = this.height-1; nRow >= 0; nRow--)
+		{
+			var row = '';
+			for (var nCol = 0; nCol < this.width; nCol++)
+			{
+				bitmapdata += String.fromCharCode(GetValue(this.bitmap,nRow,nCol,2) & 255); // Blue
+				bitmapdata += String.fromCharCode(GetValue(this.bitmap,nRow,nCol,1) & 255); // Green
+				bitmapdata += String.fromCharCode(GetValue(this.bitmap,nRow,nCol,0) & 255); // Red
+			}
+			bitmapdata += padding;
+		}
+		
+		var hexDataLength = getLittleEndianHex(bitmapdata.length);
+		var hexFileBytes = getLittleEndianHex(bitmapdata.length + 54);
+		var hexWidth = getLittleEndianHex(this.width);
+		var hexHeight = getLittleEndianHex(this.height);
+
+		var bitmapheader = 
+			'BM' +                    // Signature
+			hexFileBytes +            // size of the file (bytes)*
+			'\x00\x00' +              // reserved
+			'\x00\x00' +              // reserved
+			'\x36\x00\x00\x00' +      // offset of where BMP data lives (54 bytes)
+			'\x28\x00\x00\x00' +      // number of remaining bytes in header from here (40 bytes)
+			hexWidth +                       // the width of the bitmap in pixels*
+			hexHeight +                       // the height of the bitmap in pixels*
+			'\x01\x00' +              // the number of color planes (1)
+			'\x18\x00' +              // 24 bits / pixel
+			'\x00\x00\x00\x00' +      // No compression (0)
+			hexDataLength +           // size of the BMP data (bytes)*
+			'\x13\x0B\x00\x00' +      // 2835 pixels/meter - horizontal resolution
+			'\x13\x0B\x00\x00' +      // 2835 pixels/meter - the vertical resolution
+			'\x00\x00\x00\x00' +      // Number of colors in the palette (keep 0 for 32-bit)
+			'\x00\x00\x00\x00';       // 0 important colors (means all colors are important)
+
+		var bitmapfile = bitmapheader + bitmapdata;
+		
+		return bitmapfile;
+				
+	},
+	
+	
+	HtmlRenderImage: function(nWidth, strUnit)
+	{
+		nWidth = GetIntegerValue(nWidth);
+		if (nWidth <= 0)
+		{
+			nWidth = 10;
+		}
+		
+		strUnit = GetStringValue(strUnit);
+		if (strUnit == '')
+		{
+			strUnit = 'cm';
+		}
+		
+		var nPixelEdge = nWidth / this.bitmap.length;
+
+		
+		var strHtml = '';
+		strHtml += '<div style="padding-top: 10px; padding-bottom: 10px;">';
+		strHtml += '<table style="'
+			+ 'width: '+nWidth+strUnit+';'
+			+ 'border: 0px;'
+			+ 'border-collapse: collapse;'
+			+ 'border-spacing: 0;'
+			+'"><tbody>';
+		
+		for (var nRow = 0; nRow < this.bitmap.length; nRow++)
+		{
+			strHtml += '<tr>';
+
+			var aRow = this.bitmap[nRow];
+			for (var nCol = 0; nCol < aRow.length; nCol++)
+			{
+				var strColor = this.GetPixelHex(nCol,nRow);
+				strHtml += '<td style="'
+					+ ' border: 0px;'
+					+ ' margin: 0px;'
+					+ ' padding: 0px;'
+					+ ' width: ' + nPixelEdge + strUnit + ';'
+					+ ' height: ' + nPixelEdge + strUnit + ';'
+					+ ' background-color: #'+ strColor + ';"/>\n';
+
+			}
+			strHtml += '</tr>\n';
+
+		}
+		strHtml += '</tbody></table>';
+		strHtml += '</div>';
+
+		return strHtml;
+	},
+		
+	
+    type: 'ImageAPI'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-03-19 10:38:05</sys_created_on>
+        <sys_id>96e6f60adb5a0150bcced03cd39619e4</sys_id>
+        <sys_mod_count>65</sys_mod_count>
+        <sys_name>ImageAPI</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_96e6f60adb5a0150bcced03cd39619e4</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-04-07 11:29:38</sys_updated_on>
+    </sys_script_include>
+</record_update>

@@ -9,6 +9,9 @@
         <name>RenderDate</name>
         <script><![CDATA[function RenderDate(vDateTime)
 {
+	return RenderDateTime(vDateTime).substr(0,10);
+
+	/*
 	if (vDateTime === false || vDateTime == null || vDateTime == undefined)
 	{
 		return '';
@@ -34,18 +37,19 @@
 		return '';
 	}
 	return RenderDate(nTimestamp);
+	*/
 }	]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-12-08 16:04:09</sys_created_on>
         <sys_id>596a7ba9dbd4c1d04647dad1f3961954</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>RenderDate</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_596a7ba9dbd4c1d04647dad1f3961954</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-12-08 16:04:09</sys_updated_on>
+        <sys_updated_on>2022-03-31 15:44:51</sys_updated_on>
     </sys_script_include>
 </record_update>

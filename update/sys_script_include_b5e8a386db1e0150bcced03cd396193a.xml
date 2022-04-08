@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.RenderValueHex</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Render a value as a hexadecimal string. </description>
+        <name>RenderValueHex</name>
+        <script><![CDATA[function RenderValueHex(vValue,strByteSeparator)
+{
+	if (vValue == null)
+	{
+		return '';
+	}
+	
+	strByteSeparator = GetStringValue(strByteSeparator);
+	
+	var strType = GetType(vValue);
+	if (strType == 'Array')
+	{
+		var strResult = '';
+		for (var nPos = 0; nPos < vValue.length; nPos++)
+		{
+			if (nPos > 0)
+			{
+				strResult += strByteSeparator;	
+			}
+			strResult += RenderValueHex(vValue[nPos],strByteSeparator); 
+		}
+		return strResult;
+	}	
+	
+	if (strType == 'string')
+	{
+		var strResult = '';
+		for (var nPos = 0; nPos < vValue.length; nPos++)
+		{
+			if (nPos > 0)
+			{
+				strResult += strByteSeparator;	
+			}
+			strResult += RenderValueHex(vValue[nPos].charCodeAt(0),strByteSeparator); 
+		}
+		return strResult;
+	}
+	if (strType == 'number')
+	{
+		var strResult = Number(vValue).toString(16);
+		strResult = strResult.length % 2 ? '0' + strResult : strResult;
+		
+		var strResultNew = '';
+		for (var nPos = 0; nPos < strResult.length; nPos += 2)
+		{
+			if (nPos > 0)
+			{
+				strResultNew += strByteSeparator;	
+			}
+			strResultNew += strResult[nPos] + strResult[nPos+1];
+		}
+		strResult = strResultNew.toUpperCase();
+		return strResult;
+	}
+	return '';
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-03-19 14:13:52</sys_created_on>
+        <sys_id>b5e8a386db1e0150bcced03cd396193a</sys_id>
+        <sys_mod_count>20</sys_mod_count>
+        <sys_name>RenderValueHex</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_b5e8a386db1e0150bcced03cd396193a</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-03-19 17:51:22</sys_updated_on>
+    </sys_script_include>
+</record_update>
