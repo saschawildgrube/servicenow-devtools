@@ -146,7 +146,7 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>Added UI script function GetIntegerValue().</li>
 		<li>GetParentRecord() and the "Up" UI action now support records related to the Release Management plugin.</li>
 		<li>Added Release Management related tables to the link directory.</li>
-		<li>Added table sysrule_view to the link directory.</li>
+		<li>Added tables sys_ui_policy, sysrule_view to the link directory.</li>
 		<li>WhatRuns() now supports view rules.</li>
 		<li>AppBuilder() now sets the order for the manual ui page correctly behind the menu separator.</li>
 		<li>AppInstall() now disables the specific "Save" UI action on table rm_story if it exists to avoid duplicate buttons.</li> 
@@ -792,13 +792,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>783</sys_mod_count>
+        <sys_mod_count>784</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-04-14 16:08:44</sys_updated_on>
+        <sys_updated_on>2022-04-14 16:13:29</sys_updated_on>
     </sys_ui_page>
 </record_update>
