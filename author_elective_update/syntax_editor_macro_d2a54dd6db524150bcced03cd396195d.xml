@@ -19,7 +19,7 @@ RecordAddAttachment(current,'hello.txt','text/plain','Hello World');</text>
     </syntax_editor_macro>
     <sys_update_version action="INSERT_OR_UPDATE">
         <action>DELETE</action>
-        <application display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <application display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</application>
         <file_path/>
         <instance_id>f492329ddb5849108aea21c405961946</instance_id>
         <instance_name>wildgrubedevquebec</instance_name>
@@ -53,10 +53,10 @@ RecordAddAttachment(current,'hello.txt','text/plain','Hello World');</text></syn
         <sys_metadata>d2a54dd6db524150bcced03cd396195d</sys_metadata>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>RecordAddAttachment</sys_name>
-        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_parent/>
         <sys_policy/>
-        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
         <sys_update_name>syntax_editor_macro_d2a54dd6db524150bcced03cd396195d</sys_update_name>
         <sys_update_version display_value="syntax_editor_macro_d2a54dd6db524150bcced03cd396195d">9fc54dd6db524150bcced03cd396197a</sys_update_version>
