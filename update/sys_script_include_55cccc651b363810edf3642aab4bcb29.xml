@@ -9,8 +9,6 @@
         <name>DatabaseIndexCreate</name>
         <script><![CDATA[function DatabaseIndexCreate(strTable, aColumns, bUnique)
 {
-	// DatabaseIndexCreate('incident', ['sys_class_name','number']);
-
 	strTable = GetStringValue(strTable);
 	aColumns = GetArrayValue(aColumns);
 	for (var nColumn = 0; nColumn < aColumns.length; nColumn++)
@@ -23,36 +21,36 @@
 	}
 	bUnique = GetBoolValue(bUnique);
 
-	var strScript = ""
-	+"result = false;"	
-	+"var strTable = param1;"
-	+"var aColumns = param2;"
-	+"var bUnique = param3;"
-	+"var gid = new GlideIndexDescriptor(strTable, '', aColumns);"
-	+"if (bUnique == true)"
-	+"{"
-	+"	gid.setUnique(true);"
-	+"}"
-	+"var bCreate = false;"
-	+"var bExists = gid.hasIndex();"
-	+"if (bExists)"
-	+"{"
-	+"	gid.close();"
-	+"}"
-	+"else"
-	+"{"
-	+"	bCreate = gid.create();"
-	+"	gid.close();"
-	+"	if (bCreate == true)"
-	+"	{"
-	+"		var trs = new SNC.TableRotationSynchronizer(strTable);"
-	+"		if (trs.isValid())"
-	+"		{"
-	+"			trs.synchronize();"
-	+"		}"
-	+"      result = true;"
-	+"	}"
-	+"}";
+	var strScript = 
+	"result = false;\n"	
+	+"var strTable = param1;\n"
+	+"var aColumns = param2;\n"
+	+"var bUnique = param3;\n"
+	+"var gid = new GlideIndexDescriptor(strTable, '', aColumns);\n"
+	+"if (bUnique == true)\n"
+	+"{\n"
+	+"	gid.setUnique(true);\n"
+	+"}\n"
+	+"var bCreate = false;\n"
+	+"var bExists = gid.hasIndex();\n"
+	+"if (bExists)\n"
+	+"{\n"
+	+"	gid.close();\n"
+	+"}\n"
+	+"else\n"
+	+"{\n"
+	+"	bCreate = gid.create();\n"
+	+"	gid.close();\n"
+	+"	if (bCreate == true)\n"
+	+"	{\n"
+	+"		var trs = new SNC.TableRotationSynchronizer(strTable);\n"
+	+"		if (trs.isValid())\n"
+	+"		{\n"
+	+"			trs.synchronize();\n"
+	+"		}\n"
+	+"      result = true;\n"
+	+"	}\n"
+	+"}\n";
 
 	var bResult = RunScriptInGlobalScope(strScript,strTable,aColumns,bUnique);
 	
@@ -62,13 +60,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-24 09:20:25</sys_created_on>
         <sys_id>55cccc651b363810edf3642aab4bcb29</sys_id>
-        <sys_mod_count>27</sys_mod_count>
+        <sys_mod_count>30</sys_mod_count>
         <sys_name>DatabaseIndexCreate</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_55cccc651b363810edf3642aab4bcb29</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-09-27 16:39:18</sys_updated_on>
+        <sys_updated_on>2022-04-19 20:28:36</sys_updated_on>
     </sys_script_include>
 </record_update>

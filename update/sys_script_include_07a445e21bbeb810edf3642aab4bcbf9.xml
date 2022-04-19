@@ -18,7 +18,8 @@
 	var td = new GlideTableDescriptor(strTable);
 	td.getSchema();
 	var indexes = td.getIndexDescriptors();
-	for (var iter = indexes.values().iterator(); iter.hasNext();)
+	var aValues = indexes.values();
+	for (var iter = aValues.iterator(); iter.hasNext();)
 	{
 		var idx = iter.next();
 		if (idx.isPrimary())
@@ -31,7 +32,8 @@
 		{
 			gs.print("Index " + indexName + " found and will be dropped");
 			var dbi = new GlideDBConfiguration.getDBI(tableName);
-			gs.print(new GlideDBIndex(dbi).drop(idx));
+			var gdbi = new GlideDBIndex(dbi);
+			gs.print(gdbi.drop(idx));
 			dbi.close();
 		}
 		td.close();
@@ -41,13 +43,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-27 15:49:26</sys_created_on>
         <sys_id>07a445e21bbeb810edf3642aab4bcbf9</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name>DatabaseIndexDrop</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_07a445e21bbeb810edf3642aab4bcbf9</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-09-27 15:52:56</sys_updated_on>
+        <sys_updated_on>2022-04-19 20:32:43</sys_updated_on>
     </sys_script_include>
 </record_update>

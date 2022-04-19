@@ -15,13 +15,14 @@
 		return false;
 	}
 	
-	var strFileName = GetStringValue(strFileName);
+	strFileName = GetStringValue(strFileName);
 	
 	var gsa = new GlideSysAttachment();
 	var grAttachments = gsa.getAttachments(strTable, strRecordSysId);
 	while (grAttachments.next())
 	{
-		if (GetStringValue(grAttachments.file_name).toLowerCase() == strFileName.toLowerCase())
+		var strAttachmentFileName = GetStringValue(grAttachments.file_name);
+		if (strAttachmentFileName.toLowerCase() == strFileName.toLowerCase())
 		{
 			gsa.deleteAttachment(grAttachments.sys_id);
 		}
@@ -31,7 +32,8 @@
 	var grAttachments = gsa.getAttachments(strTable, strRecordSysId);
 	while (grAttachments.next())
 	{
-		if (GetStringValue(grAttachments.file_name).toLowerCase() == strFileName.toLowerCase())
+		var strAttachmentFileName = GetStringValue(grAttachments.file_name);
+		if (strAttachmentFileName.toLowerCase() == strFileName.toLowerCase())
 		{
 			return false;
 		}
@@ -43,13 +45,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-03-30 11:27:53</sys_created_on>
         <sys_id>795d27a1db2ac910b652edb3059619ea</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_name>RecordAttachmentDeleteByFileName</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_795d27a1db2ac910b652edb3059619ea</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-03-30 11:37:57</sys_updated_on>
+        <sys_updated_on>2022-04-19 20:35:54</sys_updated_on>
     </sys_script_include>
 </record_update>

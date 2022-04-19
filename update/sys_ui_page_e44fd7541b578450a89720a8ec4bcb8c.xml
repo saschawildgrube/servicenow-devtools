@@ -141,6 +141,19 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>TODO</li>
 	</ol>
 -->
+	<h3>1.37.0 - 2022-04-19</h3> 
+	<ol>
+		<li>Added function GetCountryRecord().</li>
+		<li>Added function StringCheckRegEx().</li>
+		<li>Added UI script function GetIntegerValue().</li>
+		<li>GetParentRecord() and the "Up" UI action now support records related to the Release Management plugin.</li>
+		<li>Added Release Management related tables to the link directory.</li>
+		<li>Added tables sys_ui_policy, sysrule_view to the link directory.</li>
+		<li>WhatRuns() now supports view rules.</li>
+		<li>AppBuilder() now sets the order for the manual ui page correctly behind the menu separator.</li>
+		<li>AppInstall() now disables the specific "Save" UI action on table rm_story if it exists to avoid duplicate buttons.</li> 
+		<li>DocumentationAPI::RenderInstallationInstructionsImportFromSourceControl() now supports the additional parameter bAdditionalSteps to control if the reader should be advised to perform additional steps during installation that are documented for the given app.</li>
+	</ol>
 	
 	<h3>1.36.0 - 2022-04-08</h3>
 	<ol>
@@ -781,13 +794,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>775</sys_mod_count>
+        <sys_mod_count>788</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-04-08 11:41:25</sys_updated_on>
+        <sys_updated_on>2022-04-19 17:48:50</sys_updated_on>
     </sys_ui_page>
 </record_update>
