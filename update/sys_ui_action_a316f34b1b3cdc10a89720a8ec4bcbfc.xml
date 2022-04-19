@@ -36,11 +36,12 @@
 		var tableName = '';
 		var newStepFormTitle = '';
 		var stepQuery = '';
-
+		
+		var gwtm = new GwtMessage();
 		var dialog = new GlideModal("atf_pick_a_browser");
 		dialog.setPreference("test_sys_id", ''+strTestSysId);
 		dialog.setWidth("600");
-		dialog.setTitle(new GwtMessage().getMessage("Pick a Browser"));
+		dialog.setTitle(gwtm.getMessage("Pick a Browser"));
 		dialog.setPreference("focusTrap", true);
 		dialog.setPreference("table_name", tableName);
 		dialog.setPreference("new_step_form_title", newStepFormTitle);
@@ -69,7 +70,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>a316f34b1b3cdc10a89720a8ec4bcbfc</sys_id>
-        <sys_mod_count>52</sys_mod_count>
+        <sys_mod_count>53</sys_mod_count>
         <sys_name>Run Test</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -77,7 +78,7 @@
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_action_a316f34b1b3cdc10a89720a8ec4bcbfc</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-09-08 09:14:38</sys_updated_on>
+        <sys_updated_on>2022-04-19 17:34:21</sys_updated_on>
         <table>global</table>
         <ui11_compatible>true</ui11_compatible>
         <ui16_compatible>false</ui16_compatible>
