@@ -412,9 +412,9 @@ DocumentationAPI.prototype = {
 		if (this.m_bGitHubRepeat == false)
 		{
 			this.m_bGitHubRepeat = true;
-			strHTML += '<li>Create an account on&#160;<a href="https://github.com/" target="_blank">GitHub</a>&#160;(if not done already).</li>';
+			strHTML += '<li>Create an account on&#160;<a href="https://github.com/" target="_blank">GitHub</a>&#160;- if not done already)</li>';
 			strHTML += '<li>Create a&#160;<a href="https://github.com/settings/tokens" target="_blank">personal access token</a>&#160;for your GitHub account.</li>';
-			strHTML += '<li>Paris or later: Add&#160;<a href="/discovery_credentials_list.do" target="_blank">credentials</a>&#160;to access GitHub (Use "Basic Auth").</li>';
+			strHTML += '<li>Paris or later: Add&#160;<a href="/discovery_credentials_list.do" target="_blank">credentials</a>&#160;to access GitHub - use "Basic Auth".</li>';
 		}
 		strHTML += '<li>Fork the repository&#160;<a href="'+strRepoURL+'" target="_blank">'+strRepoURL+'</a>.</li>';
 		strHTML += '<li>Go to&#160;<a href="/$studio.do" target="_blank">Studio</a>&#160;and import the '+strAppName+' application from source control.</li>';
@@ -494,7 +494,7 @@ DocumentationAPI.prototype = {
 			if (this.m_bTestSuiteRepeat == false)
 			{
 				this.m_bTestSuiteRepeat = true;
-				strHTML += '<li>Set the&#160;<a href="/nav_to.do?uri=sys_properties.do?sys_id=99ca5ab55b1022001f80efe5f0f91a05" target="_blank">sn_atf.runner.enabled system property</a>&#160;to "true" to activate the ATF test execution (if not set already).</li>';
+				strHTML += '<li>Set the&#160;<a href="/nav_to.do?uri=sys_properties.do?sys_id=99ca5ab55b1022001f80efe5f0f91a05" target="_blank">sn_atf.runner.enabled system property</a>&#160;to "true" to activate the ATF test execution - if not set already.</li>';
 			}
 
 			strHTML += '<li>Run the&#160;<a href="/sys_atf_test_suite.do?sys_id='+strTestSuiteSysId+'&sysparm_view=devtools&sysparm_view_forced=true" target="_blank">'+grTestSuite.name+'</a> test suite.</li>';
@@ -513,13 +513,13 @@ DocumentationAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-01-20 15:26:20</sys_created_on>
         <sys_id>98912146db31e490ba15a353059619b6</sys_id>
-        <sys_mod_count>106</sys_mod_count>
+        <sys_mod_count>107</sys_mod_count>
         <sys_name>DocumentationAPI</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_98912146db31e490ba15a353059619b6</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-04-19 17:27:06</sys_updated_on>
+        <sys_updated_on>2022-04-19 20:34:12</sys_updated_on>
     </sys_script_include>
 </record_update>
