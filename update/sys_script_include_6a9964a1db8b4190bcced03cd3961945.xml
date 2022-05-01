@@ -40,6 +40,25 @@ For safety reasons the current date (as an iso formatted string) must be passed 
 			installer.ActivateServicePortal(grSP.sys_id,false);
 		}
 	}
+
+	// Self Service Menu
+	installer.ActivateAppMenu('08771d0cc0a8016401f604303b94b999',false);
+		
+	// Password Menu
+	installer.ActivateAppMenu('cbbefbb2bf833000710071a7bf0739bb',false);
+	
+	// Live Feed
+	installer.ActivateAppMenu('5cb5869d876013002ae97e2526cb0b7f',false);
+	
+	// Connect
+	installer.ActivateAppMenu('3bb69c02d73321002ae9602b6e6103b2',false);
+	
+	// Targeted Communication
+	installer.ActivateAppMenu('87dda483d72302004f1e82285e610387',false);
+
+	// App Engine
+	installer.ActivateAppMenu('dc61043ec34020100389006c2840dd50',false);
+	
 	
 	installer.Finish();
 	
@@ -49,13 +68,13 @@ For safety reasons the current date (as an iso formatted string) must be passed 
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-04-23 17:48:08</sys_created_on>
         <sys_id>6a9964a1db8b4190bcced03cd3961945</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>12</sys_mod_count>
         <sys_name>InstanceReset</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_6a9964a1db8b4190bcced03cd3961945</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-05-01 14:17:23</sys_updated_on>
+        <sys_updated_on>2022-05-01 14:57:24</sys_updated_on>
     </sys_script_include>
 </record_update>

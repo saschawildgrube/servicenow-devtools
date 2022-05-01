@@ -334,135 +334,38 @@ InstallerAPI.prototype = {
 	
 	ActivateBusinessRule: function(strSysId,bActive)
 	{
-		if (this.IsAborting() == true)
-		{
-			return false;
-		}
-		
-		bActive = GetBoolValue(bActive);		
-		
-		var grSS = new GlideRecord('sys_script');
-		if (grSS.get(strSysId) == false)
-		{
-			this.Log('Business rule with sys_id "'+strSysId+'" does not exist. Doing nothing.');
-			return false;
-		}
-		
-		if (grSS.active == bActive)
-		{
-			this.Log('Business rule "'+grSS.name+'" is already set '+((bActive)?('active'):('inactive'))+'. No action required.');
-			return strSysId;
-		}
-		grSS.active = bActive;
-		var vResult = GlideRecordUpdate(grSS);
-		if (vResult == false)
-		{
-			this.Error('Failed to set business rule "'+grSS.name+'" '+((bActive)?('active'):('inactive'))+'!');
-			return false;
-		}
-		this.Log('Business rule "'+grSS.name+'" is set '+((bActive)?('active'):('inactive'))+'.');
-		return strSysId;
+		return this.ActivateRecord(strSysId,bActive,'sys_script','Business Rule','active','name');
 	},
 	
 	ActivateClientScript: function(strSysId,bActive)
 	{
-		if (this.IsAborting() == true)
-		{
-			return false;
-		}
-	
-		bActive = GetBoolValue(bActive);		
-		
-		var grSSC = new GlideRecord('sys_script_client');
-		if (grSSC.get(strSysId) == false)
-		{
-			this.Log('Client script with sys_id "'+strSysId+'" does not exist. Doing nothing.');
-			return false;
-		}
-		
-		if (grSSC.active == bActive)
-		{
-			this.Log('Client script "'+grSSC.name+'" ('+grSSC.type+') is already set '+((bActive)?('active'):('inactive'))+'. No action required.');
-			return strSysId;
-		}
-		grSSC.active = bActive;
-		var vResult = GlideRecordUpdate(grSSC);
-		if (vResult == false)
-		{
-			this.Error('Failed to set Client script "'+grSSC.name+'" ('+grSSC.type+') '+((bActive)?('active'):('inactive'))+'!');
-			return false;
-		}
-		this.Log('Client script "'+grSSC.name+'" ('+grSSC.type+') is set '+((bActive)?('active'):('inactive'))+'.');
-		return strSysId;		
-		
-		
+		return this.ActivateRecord(strSysId,bActive,'sys_script_client','Client Script','active','name','type');
 	},	
-	
-	
+		
 	ActivateUiAction: function(strSysId,bActive)
 	{
-		if (this.IsAborting() == true)
-		{
-			return false;
-		}
-	
-		bActive = GetBoolValue(bActive);		
-		
-		var grSUA = new GlideRecord('sys_ui_action');
-		if (grSUA.get(strSysId) == false)
-		{
-			this.Log('UI Action with sys_id "'+strSysId+'" does not exist. Doing nothing.');
-			return false;
-		}
-		
-		if (grSUA.active == bActive)
-		{
-			this.Log('UI Action "'+grSUA.name+'" ('+grSUA.table+') is already set '+((bActive)?('active'):('inactive'))+'. No action required.');
-			return strSysId;
-		}
-		grSUA.active = bActive;
-		var vResult = GlideRecordUpdate(grSUA);
-		if (vResult == false)
-		{
-			this.Error('Failed to set UI Action "'+grSUA.name+'" ('+grSUA.table+') '+((bActive)?('active'):('inactive'))+'!');
-			return false;
-		}
-		this.Log('UI Action "'+grSUA.name+'" ('+grSUA.table+') is set '+((bActive)?('active'):('inactive'))+'.');
-		return strSysId;		
+		return this.ActivateRecord(strSysId,bActive,'sys_ui_action','UI Action','active','name','table');
 	},		
 
 	ActivateUiPolicy: function(strSysId,bActive)
 	{
-		if (this.IsAborting() == true)
-		{
-			return false;
-		}
-	
-		bActive = GetBoolValue(bActive);		
-		
-		var grSUP = new GlideRecord('sys_ui_policy');
-		if (grSUP.get(strSysId) == false)
-		{
-			this.Log('UI Policy with sys_id "'+strSysId+'" does not exist. Doing nothing.');
-			return false;
-		}
-		
-		if (grSUP.active == bActive)
-		{
-			this.Log('UI Policy "'+grSUP.short_description+'" is already set '+((bActive)?('active'):('inactive'))+'. No action required.');
-			return strSysId;
-		}
-		grSUP.active = bActive;
-		var vResult = GlideRecordUpdate(grSUP);
-		if (vResult == false)
-		{
-			this.Error('Failed to set UI Policy "'+grSUP.short_description+'" '+((bActive)?('active'):('inactive'))+'!');
-			return false;
-		}
-		this.Log('UI Policy "'+grSUP.short_description+'" is set '+((bActive)?('active'):('inactive'))+'.');
-		return strSysId;		
+		return this.ActivateRecord(strSysId,bActive,'sys_ui_policy','UI Policy','active','short_description');
 	},		
 	
+	ActivateServicePortal: function(strSysId,bActive)
+	{
+		return this.ActivateRecord(strSysId,bActive,'sp_portal','Service Portal','x_snc_devtools_active','title');
+	},
+	
+	ActivateModule: function(strSysId,bActive)
+	{
+		return this.ActivateRecord(strSysId,bActive,'sys_app_module','Navigation Module','active','title');
+	},	
+	
+	ActivateAppMenu: function(strSysId,bActive)
+	{
+		return this.ActivateRecord(strSysId,bActive,'sys_app_application','Application Menu','active','title');
+	},		
 	
 	ShowFieldClass: function(strName,bVisible)
 	{
@@ -484,7 +387,7 @@ InstallerAPI.prototype = {
 		
 		if (grSGO.visible == bVisible)
 		{
-			this.Log('Field Class "'+grSGO.name+'" is already set '+((bVisible)?('visible'):('uninvisible'))+'. No action required.');
+			this.Log('Field Class "'+grSGO.name+'" is already set '+((bVisible)?('visible'):('ininvisible'))+'. No action required.');
 			return GetStringValue(grSGO.sys_id);
 		}
 		grSGO.visible = bVisible;
@@ -498,38 +401,45 @@ InstallerAPI.prototype = {
 		return GetStringValue(grSGO.sys_id);		
 	},		
 	
-	
-	ActivateServicePortal: function(strSysId,bActive)
+	ActivateRecord: function(strSysId,bActive,strTable,strRecordClassName,strActiveField,strNameField,strAdditionalField)
 	{
 		if (this.IsAborting() == true)
 		{
 			return false;
 		}
 		
-		bActive = GetBoolValue(bActive);		
+		bActive = GetBoolValue(bActive);	
+		strNameField = GetStringValue(strNameField);
+		strAdditionalField = GetStringValue(strAdditionalField);
 		
-		var grSP = GetRecord('sp_portal',strSysId);
-		if (IsValidRecord(grSP) == false)
+		var grRecord = GetRecord(strTable,strSysId);
+		if (IsValidRecord(grRecord) == false)
 		{
-			this.Log('Service Portal with sys_id "'+strSysId+'" does not exist. Doing nothing.');
+			this.Log(strRecordClassName+' with sys_id "'+strSysId+'" does not exist. Doing nothing.');
 			return false;
 		}
 		
-		if (grSP.x_snc_devtools_active == bActive)
+		var strName = '"'+grRecord.getValue(strNameField)+'"';
+		if (strAdditionalField != '')
 		{
-			this.Log('Service Portal "'+grSP.title+'" is already set '+((bActive)?('active'):('inactive'))+'. No action required.');
+			strName += ' ('+grRecord.getValue(strAdditionalField)+')';
+		}
+		
+		if (grRecord.getValue(strActiveField) == bActive)
+		{
+			this.Log(strRecordClassName+' '+strName+' is already set '+((bActive)?('active'):('inactive'))+'. No action required.');
 			return strSysId;
 		}
-		grSP.x_snc_devtools_active = bActive;
-		var vResult = GlideRecordUpdate(grSP,true);
+		grRecord.setValue(strActiveField,bActive);
+		var vResult = GlideRecordUpdate(grRecord,true);
 		if (vResult == false)
 		{
-			this.Error('Failed to set Service Portal "'+grSP.title+'" '+((bActive)?('active'):('inactive'))+'!');
+			this.Error('Failed to set '+strRecordClassName+' '+strName+' '+((bActive)?('active'):('inactive'))+'!');
 			return false;
 		}
-		this.Log('Service Portal "'+grSP.title+'" is set '+((bActive)?('active'):('inactive'))+'.');
-		return strSysId;
-	},	
+		this.Log(strRecordClassName+' '+strName+' is set '+((bActive)?('active'):('inactive'))+'.');
+		return strSysId;		
+	},
 		
 	
     type: 'InstallerAPI'
@@ -538,13 +448,13 @@ InstallerAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-08-27 10:49:10</sys_created_on>
         <sys_id>704694a81b1a74505331b8449b4bcb69</sys_id>
-        <sys_mod_count>53</sys_mod_count>
+        <sys_mod_count>59</sys_mod_count>
         <sys_name>InstallerAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>protected</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_704694a81b1a74505331b8449b4bcb69</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-05-01 14:05:53</sys_updated_on>
+        <sys_updated_on>2022-05-01 14:52:21</sys_updated_on>
     </sys_script_include>
 </record_update>
