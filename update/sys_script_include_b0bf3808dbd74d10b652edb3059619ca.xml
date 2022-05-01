@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.CacheFlushMenu</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Clears the application menu cache.</description>
+        <name>CacheFlushMenu</name>
+        <script><![CDATA[function CacheFlushMenu()
+{
+	var strScript = '';
+	
+	// Clear the cache
+	strScript += "system.cacheFlush('sys_ui_realform');\n";
+	
+	// Tell the UI to fefresh
+	strScript += "var notification = new UINotification('system_event');\n";
+	strScript += "notification.setAttribute('event', 'refresh_nav');\n";
+	strScript += "notification.send();\n";
+
+	RunScriptInGlobalScope(strScript);
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-05-01 13:49:20</sys_created_on>
+        <sys_id>b0bf3808dbd74d10b652edb3059619ca</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>CacheFlushMenu</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_b0bf3808dbd74d10b652edb3059619ca</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-05-01 13:49:20</sys_updated_on>
+    </sys_script_include>
+</record_update>
