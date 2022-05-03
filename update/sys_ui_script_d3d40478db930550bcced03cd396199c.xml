@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_script">
+    <sys_ui_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Render any value as a string. In case of objects, the keys are displayed in alphabetical order. In case of arrays, the elements are displayed in the given order.</description>
+        <global>true</global>
+        <name>x_snc_devtools.RenderValue</name>
+        <script><![CDATA[function RenderValue(vValue, bHideEmpty, bUnsortedKeys, nLevel)
+{
+	bHideEmpty = GetBoolValue(bHideEmpty);
+	bUnsortedKeys = GetBoolValue(bUnsortedKeys);
+	nLevel = GetIntegerValue(nLevel);
+	var strLevel = '___';
+	strLevel = strLevel.repeat(nLevel);
+
+	if (vValue === undefined)
+	{
+		return 'undefined';
+	}
+
+	if (vValue === null)
+	{
+		return 'null';
+	}
+
+	var strType = GetType(vValue); 
+	if (strType == 'JavaObject')
+	{
+		return ''+vValue;
+	}	
+	if (strType == 'ScopedGlideElement')
+	{
+		return ''+vValue;
+	}
+	if (strType == 'function')
+	{
+		return '\n'+vValue;
+	}
+	if (strType == 'Array')
+	{
+		var strOutput = '';
+		if (vValue.length == 0)
+		{
+			if (strLevel.length > 0)
+			{
+				strOutput += '\n';
+			}
+			strOutput += strLevel+'[]';
+		}
+		else
+		{
+			vValue.forEach( function(vElement,nKey)
+			{
+				strOutput += '\n'+strLevel+'['+nKey+']: '+RenderValue(vElement,bHideEmpty,bUnsortedKeys,nLevel+1);
+			});
+		}
+		return strOutput;
+	}
+	if (IsObject(vValue))
+	{
+		var strOutput = '';
+		var aKeys = GetKeys(vValue);
+		//var aKeys = ['sys_id','short_description']; 
+		if (aKeys.length == 0)
+		{
+			if (strLevel.length > 0)
+			{
+				strOutput += '\n';
+			}		
+			strOutput += strLevel+'{}';
+		}
+		else
+		{
+			function Compare(value1, value2)
+			{
+				if (value1 < value2)
+				{
+					return -1;
+				}
+				if (value1 > value2)
+				{
+					return 1;
+				}
+				return 0;
+			}
+			function CompareUnderscoresAtEnd(value1, value2)
+			{
+				value1 = GetStringValue(value1);
+				value2 = GetStringValue(value2);
+				var nUnderscores1 = 0;
+				var nUnderscores2 = 0;
+				while (value1[nUnderscores1] == '_')
+				{
+					nUnderscores1++;
+				}
+				while (value2[nUnderscores2] == '_')
+				{
+					nUnderscores2++;
+				}
+				if (nUnderscores1 < nUnderscores2)
+				{
+					return -1;
+				}
+				if (nUnderscores1 > nUnderscores2)
+				{
+					return 1;
+				}
+				return Compare(value1, value2);
+			}
+
+			function CompareGlideRecordKeys(str1, str2)
+			{
+				var aPriorityKeys = ['user_name','name','short_description'];
+				for (var nKey = 0; nKey < aPriorityKeys.length; nKey++)
+				{
+					if (str1 == aPriorityKeys[nKey])
+					{
+						return -1
+					}
+					if (str2 == aPriorityKeys[nKey])
+					{
+						return 1;
+					}
+				}
+				return CompareUnderscoresAtEnd(str1,str2);
+			}		
+
+	
+			if (ArrayValueExists(GetKeys(vValue),'sys_id') == true)
+			{
+				var strClassName = GetStringValue(GetValue(vValue,'sys_class_name'));
+				var strSysId = GetStringValue(GetValue(vValue,'sys_id'));
+				var strNumber = GetStringValue(GetValue(vValue,'number'));
+
+				if (   strClassName != ''
+					|| strSysId != ''
+					|| strNumber != '')
+				{
+					strOutput += '\n'+strLevel;
+					if (strClassName != '')
+					{
+						strOutput += strClassName+': ';
+					}
+					if (strNumber != '')
+					{
+						strOutput += strNumber+': ';
+					}
+					if (strSysId != '')
+					{
+						strOutput += strSysId+': ';
+					}
+				}
+				if (bUnsortedKeys == false)
+				{
+					aKeys.sort(CompareGlideRecordKeys);
+				}
+			}
+			else
+			{
+				if (bUnsortedKeys == false)
+				{
+					aKeys.sort(CompareUnderscoresAtEnd);
+				}
+			}
+			aKeys.forEach( function(strKey)
+			{
+				var strValue = RenderValue(vValue[strKey],bHideEmpty,bUnsortedKeys,nLevel+1);
+				if (bHideEmpty == false || strValue != '')
+				{
+					strOutput += '\n'+strLevel+'["'+strKey+'"]: '+strValue;
+				}
+
+			});
+		}
+		return strOutput;
+	}
+
+	return ''+vValue;
+}]]></script>
+        <script_name>RenderValue</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-05-03 17:24:39</sys_created_on>
+        <sys_id>d3d40478db930550bcced03cd396199c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_snc_devtools.RenderValue</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_ui_script_d3d40478db930550bcced03cd396199c</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-05-03 17:24:39</sys_updated_on>
+        <ui_type>0</ui_type>
+        <use_scoped_format>false</use_scoped_format>
+    </sys_ui_script>
+</record_update>
