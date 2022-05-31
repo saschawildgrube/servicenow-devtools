@@ -7,8 +7,8 @@
         <client_callable>false</client_callable>
         <description>A class to manage the transaction cache.</description>
         <name>TransactionCacheAPI</name>
-        <script><![CDATA[var g_transactionCache = {};
-var TransactionCacheAPI = Class.create();
+        <script><![CDATA[var TransactionCacheAPI = Class.create();
+var g_transactionCache = {};
 TransactionCacheAPI.prototype =
 {
 	initialize:function(strContext)
@@ -54,13 +54,13 @@ TransactionCacheAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-09-23 12:16:15</sys_created_on>
         <sys_id>62310c7f1bd31010a89720a8ec4bcba0</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_name>TransactionCacheAPI</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_62310c7f1bd31010a89720a8ec4bcba0</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-12-01 14:59:20</sys_updated_on>
+        <sys_updated_on>2022-05-25 19:24:40</sys_updated_on>
     </sys_script_include>
 </record_update>

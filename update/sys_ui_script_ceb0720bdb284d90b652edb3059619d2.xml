@@ -32,7 +32,8 @@
 					var aTableBodies = elementTable.getElementsByTagName('tbody');
 					if (aTableBodies.length > 0)
 					{
-						var aRows = GetValue(aTableBodies,0).getElementsByTagName('tr');
+						var tablebody = GetValue(aTableBodies,0); 
+						var aRows = tablebody.getElementsByTagName('tr');
 						for (var nRow = 0; nRow < aRows.length; nRow++)
 						{
 							var elementRow = aRows[nRow];
@@ -58,14 +59,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-12-25 12:49:31</sys_created_on>
         <sys_id>ceb0720bdb284d90b652edb3059619d2</sys_id>
-        <sys_mod_count>12</sys_mod_count>
+        <sys_mod_count>13</sys_mod_count>
         <sys_name>x_snc_devtools.IdentifyRecordsOnPage</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_script_ceb0720bdb284d90b652edb3059619d2</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-04-07 13:33:36</sys_updated_on>
+        <sys_updated_on>2022-04-20 11:30:25</sys_updated_on>
         <ui_type>0</ui_type>
         <use_scoped_format>false</use_scoped_format>
     </sys_ui_script>

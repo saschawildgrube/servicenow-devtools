@@ -28,7 +28,7 @@
 	<ul>
 		<g2:no_escape>$[
 			docapi.RenderSystemRequirements(
-				'Quebec,Rome,San Diego',
+				'Rome,San Diego',
 				true,
 				AppGetDependencies());
 		]</g2:no_escape>	
@@ -141,6 +141,38 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>TODO</li>
 	</ol>
 -->
+	
+
+	<h3>1.38.0 - 2022-05-31</h3>
+	<ol>
+		<li>Quebec is no longer actively supported.</li>
+		<li>Added function InstanceReset() to remove questionable OOTB features. Handle with care!</li>
+		<li>Added function CacheFlushMenu() to update the navigation menu.</li>
+		<li>Added function StringFind() to encapsulate .indexOf and correct its faulty behavior with empty strings.</li>
+		<li>Added function StringFindRegEx() to search for a string using a regular expression.</li>
+		<li>Added function IsUserDefaultAdmin() to check a given sys_id against the OOTB default admin user sys_id.</li>
+		<li>Added UI script function GetBoolValue().</li>
+		<li>Added UI script function RenderValue().</li>
+		<li>Added UI script function StringRemoveCharacters().</li>
+		<li>Added UI script function ParseUrl().</li>
+		<li>Added UI script function ParseUrlParameters().</li>
+		<li>WhatRuns() now supports flows which are triggered on insert or update a record in the given table.</li>
+		<li>GetAppName() is now using GetAppRecord() internally and hence accepts both the Sys ID and the scope name as input.</li>
+		<li>InstallerAPI class now accepts a paramter to specify a context string used in log output.</li>
+		<li>InstallerAPI now flushes the menu cache after installation.</li>
+		<li>Added InstallerAPI::ActivateServicePortal() to control if a given Service Portal should be accessible.</li>
+		<li>Added InstallerAPI::ActivateModule() to control if a given menu Module should be visible.</li>
+		<li>Added InstallerAPI::ActivateAppMenu() to control if a given Application Menu should be visible.</li>
+		<li>Added InstallerAPI::RecordSetValue() to set a single field in a given record to a new value.</li>
+		<li>InstallerAPI::SetTableAttribute() now respects that an installation is aborted.</li>
+		<li>AppBuilder() now uses the new context parameter of InstallAPI when creating the AppInstall() function script include.</li> 
+		<li>Clone() is now explicitly considering arrays - this addition was necessary due to a bug in the ServiceNow Javascript engine where arrays are unintendedly stored as references in objects.</li>
+		<li>UI script ServerRequest is now properly returning false as a result of the callback function.</li>
+		<li>Added Flow Designer tables sys_hub_flow and sys_flow_trigger to the link directory.</li>
+		<li>Added tables pa_dashboards, pa_tabs, pa_dimensions and sys_ux_data_broker to the link directory.</li>
+		<li>Added an ATF test for InstallerAPI.</li>
+	</ol>
+	
 	<h3>1.37.0 - 2022-04-19</h3> 
 	<ol>
 		<li>Added function GetCountryRecord().</li>
@@ -794,13 +826,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>788</sys_mod_count>
+        <sys_mod_count>812</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-04-19 17:48:50</sys_updated_on>
+        <sys_updated_on>2022-05-31 14:44:59</sys_updated_on>
     </sys_ui_page>
 </record_update>

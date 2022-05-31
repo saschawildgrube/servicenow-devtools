@@ -31,12 +31,19 @@
 			whatruns_object['table'] = GetStringValue(grRecord.collection);
 			whatruns_object['name'] = GetStringValue(grRecord.name);	
 		}
-		if (strClassName == 'sysrule_view') // business rules
+		if (strClassName == 'sysrule_view') // view rules
 		{
 			whatruns_object['order'] = GetIntegerValue(grRecord.order);
 			whatruns_object['class_display_name'] = 'View Rule';
 			whatruns_object['table'] = GetStringValue(grRecord.table);
 			whatruns_object['name'] = GetStringValue(grRecord.name) + ' ('+GetStringValue(grRecord.device_type)+')';	
+		}		
+		if (strClassName == 'sys_hub_flow') // Flows
+		{
+			whatruns_object['order'] = '';
+			whatruns_object['class_display_name'] = 'Flow';
+			//whatruns_object['table'] = GetStringValue(grRecord.table);
+			whatruns_object['name'] = GetStringValue(grRecord.name);	
 		}		
 		return whatruns_object;
 	}
@@ -99,7 +106,25 @@
 				{
 					var whatruns_object = MakeWhatRunsObjectFromRecord(grBR, 'after');
 					aWhatRuns.push(whatruns_object); 
-				}		
+				}	
+			
+				var grFlowTrigger = new GlideRecord('sys_flow_record_trigger');
+				grFlowTrigger.addQuery('table','=',strTable);
+				grFlowTrigger.addQuery('on_insert','=','true');
+				grFlowTrigger.addQuery('run_flow_in','=','foreground');
+				grFlowTrigger.query();
+				while (grFlowTrigger.next())
+				{
+					var grFlow = new GlideRecord('sys_hub_flow');
+					grFlow.addQuery('remote_trigger_id',grFlowTrigger.sys_id);
+					grFlow.query();
+					while (grFlow.next())
+					{
+						var whatruns_object = MakeWhatRunsObjectFromRecord(grFlow, 'after');
+						whatruns_object['table'] = strTable;
+						aWhatRuns.push(whatruns_object); 
+					}
+				}			
 			
 				// ASYNC
 				var grBR = new GlideRecord('sys_script');
@@ -118,6 +143,24 @@
 					var whatruns_object = MakeWhatRunsObjectFromRecord(grBR, 'async');
 					aWhatRuns.push(whatruns_object); 
 				}		
+			
+				var grFlowTrigger = new GlideRecord('sys_flow_record_trigger');
+				grFlowTrigger.addQuery('table','=',strTable);
+				grFlowTrigger.addQuery('on_insert','=','true');
+				grFlowTrigger.addQuery('run_flow_in','=','background');
+				grFlowTrigger.query();
+				while (grFlowTrigger.next())
+				{
+					var grFlow = new GlideRecord('sys_hub_flow');
+					grFlow.addQuery('remote_trigger_id',grFlowTrigger.sys_id);
+					grFlow.query();
+					while (grFlow.next())
+					{
+						var whatruns_object = MakeWhatRunsObjectFromRecord(grFlow, 'async');
+						whatruns_object['table'] = strTable;
+						aWhatRuns.push(whatruns_object); 
+					}
+				}
 			
 				whatruns_table['insert'] = aWhatRuns;
 
@@ -159,7 +202,26 @@
 				{
 					var whatruns_object = MakeWhatRunsObjectFromRecord(grBR, 'after');
 					aWhatRuns.push(whatruns_object); 
-				}			
+				}
+				
+				var grFlowTrigger = new GlideRecord('sys_flow_record_trigger');
+				grFlowTrigger.addQuery('table','=',strTable);
+				grFlowTrigger.addQuery('on_update','=','true');
+				grFlowTrigger.addQuery('run_flow_in','=','foreground');
+				grFlowTrigger.query();
+				while (grFlowTrigger.next())
+				{
+					var grFlow = new GlideRecord('sys_hub_flow');
+					grFlow.addQuery('remote_trigger_id',grFlowTrigger.sys_id);
+					grFlow.query();
+					while (grFlow.next())
+					{
+						var whatruns_object = MakeWhatRunsObjectFromRecord(grFlow, 'async');
+						whatruns_object['table'] = strTable;
+						aWhatRuns.push(whatruns_object); 
+					}
+				}	
+			
 			
 				// ASYNC
 				var grBR = new GlideRecord('sys_script');
@@ -178,6 +240,25 @@
 					var whatruns_object = MakeWhatRunsObjectFromRecord(grBR, 'async');
 					aWhatRuns.push(whatruns_object); 
 				}				
+			
+				var grFlowTrigger = new GlideRecord('sys_flow_record_trigger');
+				grFlowTrigger.addQuery('table','=',strTable);
+				grFlowTrigger.addQuery('on_update','=','true');
+				grFlowTrigger.addQuery('run_flow_in','=','background');
+				grFlowTrigger.query();
+				while (grFlowTrigger.next())
+				{
+					var grFlow = new GlideRecord('sys_hub_flow');
+					grFlow.addQuery('remote_trigger_id',grFlowTrigger.sys_id);
+					grFlow.query();
+					while (grFlow.next())
+					{
+						var whatruns_object = MakeWhatRunsObjectFromRecord(grFlow, 'async');
+						whatruns_object['table'] = strTable;
+						aWhatRuns.push(whatruns_object); 
+					}
+				}
+	
 			
 				whatruns_table['update'] = aWhatRuns;
 			
@@ -344,6 +425,26 @@
 					aWhatRuns.push(whatruns_object); 
 				}				
 			
+			/*
+				// FLOWS
+				var grFlowTrigger = new GlideRecord('sys_flow_record_trigger');
+				grFlowTrigger.addQuery('table','=',strTable);
+				grFlowTrigger.addQuery('on_delete','=','true');
+				grFlowTrigger.query();
+				while (grFlowTrigger.next())
+				{
+					var grFlow = new GlideRecord('sys_hub_flow');
+					grFlow.addQuery('remote_trigger_id',grFlowTrigger.sys_id);
+					grFlow.query();
+					while (grFlow.next())
+					{
+						var whatruns_object = MakeWhatRunsObjectFromRecord(grFlow, 'flows');
+						whatruns_object['table'] = strTable;
+						aWhatRuns.push(whatruns_object); 
+					}
+				}
+				*/
+			
 				whatruns_table['delete'] = aWhatRuns;
 			
 			
@@ -356,13 +457,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-03-29 08:27:19</sys_created_on>
         <sys_id>04193959dba64910b652edb3059619c9</sys_id>
-        <sys_mod_count>30</sys_mod_count>
+        <sys_mod_count>41</sys_mod_count>
         <sys_name>WhatRuns</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_04193959dba64910b652edb3059619c9</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-04-14 16:06:25</sys_updated_on>
+        <sys_updated_on>2022-05-24 09:30:56</sys_updated_on>
     </sys_script_include>
 </record_update>

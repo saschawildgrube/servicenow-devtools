@@ -7,27 +7,30 @@
         <client_callable>false</client_callable>
         <description>Returns the number of millisenconds passed since the start of this transaction.</description>
         <name>GetTransactionRuntime</name>
-        <script><![CDATA[var g_nTransactionRuntime = null;
-function GetTransactionRuntime()
+        <script><![CDATA[function GetTransactionRuntime()
 {
 	var nTimeNow = GetTimeNow();
-	if (g_nTransactionRuntime === null)
+	
+	var cache = new TransactionCacheAPI('DEVTOOLS');
+	var nTransactionRuntime = cache.GetItem('TransactionRuntime');
+	if (nTransactionRuntime === null)
 	{
-		g_nTransactionRuntime = nTimeNow;
+		nTransactionRuntime = nTimeNow;
+		cache.SetItem('TransactionRuntime',nTransactionRuntime);
 	}
-	return nTimeNow - g_nTransactionRuntime;
+	return nTimeNow - nTransactionRuntime;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-04-13 14:58:06</sys_created_on>
         <sys_id>e3e638bcdba3a0d0ba15a35305961952</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>GetTransactionRuntime</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_e3e638bcdba3a0d0ba15a35305961952</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-06-21 11:33:11</sys_updated_on>
+        <sys_updated_on>2022-05-31 13:09:37</sys_updated_on>
     </sys_script_include>
 </record_update>

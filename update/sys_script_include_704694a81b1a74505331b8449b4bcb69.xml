@@ -9,11 +9,28 @@
         <name>InstallerAPI</name>
         <script><![CDATA[var InstallerAPI = Class.create();
 InstallerAPI.prototype = {
-    initialize: function()
+    initialize: function(strContext)
 	{
-		this.m_strLog = '\nInstallation BEGIN\n';
 		this.m_bError = false;
 		this.m_bAborting = false;
+		this.m_strContext = '';
+		
+		strContext = GetStringValue(strContext);
+		if (strContext != '')
+		{
+			this.m_strContext = strContext + ': ';
+		}
+		this.m_strLog = '\n'+this.m_strContext+'Installation BEGIN\n';
+		if (strContext != '')
+		{
+			var cache = new TransactionCacheAPI('INSTALLER');
+			if (cache.GetItem(strContext) == true)
+			{
+				this.Log('Installation ran already. Aborting.');
+				this.m_bAborting = true;
+			}
+			cache.SetItem(strContext,true);
+		}
     },
 	
 	IsAborting: function()
@@ -44,11 +61,12 @@ InstallerAPI.prototype = {
 	{
 		if (this.m_bError == false)
 		{
-			this.Log('Installation COMPLETED');
+			CacheFlushMenu();
+			this.Log(this.m_strContext+'Installation COMPLETED');
 		}
 		else
 		{
-			this.Log('Installation FAILED')
+			this.Log(this.m_strContext+'Installation FAILED')
 		}
 		x_snc_devtools.Log(this.m_strLog);
 	},
@@ -105,7 +123,8 @@ InstallerAPI.prototype = {
 		}
 		if (grRecord.next())
 		{
-			if (GetKeys(valuesUpdate).length == 0)
+			var aKeys = GetKeys(valuesUpdate);
+			if (aKeys.length == 0)
 			{
 				this.Log(strTopic+': Record exists. Doing nothing!');
 				return true;
@@ -143,6 +162,17 @@ InstallerAPI.prototype = {
 		return true;
 	},
 	
+	RecordSetValue: function(strTopic,strTable,strSysId,strField,vValue)
+	{
+		var vResult = RecordSetValue(strTable,strSysId,strField,vValue);
+		if (vResult == false)
+		{
+			this.Error(strTopic+': Failed to set record '+strTable+':'+strSysId+' value "'+strField+'" to: '+RenderValue(vValue));
+			return false;
+		}
+		this.Log(strTopic+': Set record '+strTable+': '+strSysId+' value "'+strField+'" to: '+RenderValue(vValue));
+		return true;
+	},
 	
 	CheckTableCrossScopeAccessibility: function(strTable)
 	{
@@ -187,6 +217,11 @@ InstallerAPI.prototype = {
 	
 	SetTableAttribute: function(strTable,strAttributeName,strAttributeValue)
 	{
+		if (this.IsAborting() == true)
+		{
+			return false;
+		}
+		
 		strTable = GetStringValue(strTable);
 		strAttributeName = GetStringValue(strAttributeName);
 		strAttributeValue = GetStringValue(strAttributeValue);
@@ -326,135 +361,38 @@ InstallerAPI.prototype = {
 	
 	ActivateBusinessRule: function(strSysId,bActive)
 	{
-		if (this.IsAborting() == true)
-		{
-			return false;
-		}
-		
-		bActive = GetBoolValue(bActive);		
-		
-		var grSS = new GlideRecord('sys_script');
-		if (grSS.get(strSysId) == false)
-		{
-			this.Log('Business rule with sys_id "'+strSysId+'" does not exist. Doing nothing.');
-			return false;
-		}
-		
-		if (grSS.active == bActive)
-		{
-			this.Log('Business rule "'+grSS.name+'" is already set '+((bActive)?('active'):('inactive'))+'. No action required.');
-			return strSysId;
-		}
-		grSS.active = bActive;
-		var vResult = GlideRecordUpdate(grSS);
-		if (vResult == false)
-		{
-			this.Error('Failed to set business rule "'+grSS.name+'" '+((bActive)?('active'):('inactive'))+'!');
-			return false;
-		}
-		this.Log('Business rule "'+grSS.name+'" is set '+((bActive)?('active'):('inactive'))+'.');
-		return strSysId;
+		return this.ActivateRecord(strSysId,bActive,'sys_script','Business Rule','active','name');
 	},
 	
 	ActivateClientScript: function(strSysId,bActive)
 	{
-		if (this.IsAborting() == true)
-		{
-			return false;
-		}
-	
-		bActive = GetBoolValue(bActive);		
-		
-		var grSSC = new GlideRecord('sys_script_client');
-		if (grSSC.get(strSysId) == false)
-		{
-			this.Log('Client script with sys_id "'+strSysId+'" does not exist. Doing nothing.');
-			return false;
-		}
-		
-		if (grSSC.active == bActive)
-		{
-			this.Log('Client script "'+grSSC.name+'" ('+grSSC.type+') is already set '+((bActive)?('active'):('inactive'))+'. No action required.');
-			return strSysId;
-		}
-		grSSC.active = bActive;
-		var vResult = GlideRecordUpdate(grSSC);
-		if (vResult == false)
-		{
-			this.Error('Failed to set Client script "'+grSSC.name+'" ('+grSSC.type+') '+((bActive)?('active'):('inactive'))+'!');
-			return false;
-		}
-		this.Log('Client script "'+grSSC.name+'" ('+grSSC.type+') is set '+((bActive)?('active'):('inactive'))+'.');
-		return strSysId;		
-		
-		
+		return this.ActivateRecord(strSysId,bActive,'sys_script_client','Client Script','active','name','type');
 	},	
-	
-	
+		
 	ActivateUiAction: function(strSysId,bActive)
 	{
-		if (this.IsAborting() == true)
-		{
-			return false;
-		}
-	
-		bActive = GetBoolValue(bActive);		
-		
-		var grSUA = new GlideRecord('sys_ui_action');
-		if (grSUA.get(strSysId) == false)
-		{
-			this.Log('UI Action with sys_id "'+strSysId+'" does not exist. Doing nothing.');
-			return false;
-		}
-		
-		if (grSUA.active == bActive)
-		{
-			this.Log('UI Action "'+grSUA.name+'" is already set '+((bActive)?('active'):('inactive'))+'. No action required.');
-			return strSysId;
-		}
-		grSUA.active = bActive;
-		var vResult = GlideRecordUpdate(grSUA);
-		if (vResult == false)
-		{
-			this.Error('Failed to set UI Action "'+grSUA.name+'" '+((bActive)?('active'):('inactive'))+'!');
-			return false;
-		}
-		this.Log('UI Action "'+grSUA.name+'" is set '+((bActive)?('active'):('inactive'))+'.');
-		return strSysId;		
+		return this.ActivateRecord(strSysId,bActive,'sys_ui_action','UI Action','active','name','table');
 	},		
 
 	ActivateUiPolicy: function(strSysId,bActive)
 	{
-		if (this.IsAborting() == true)
-		{
-			return false;
-		}
-	
-		bActive = GetBoolValue(bActive);		
-		
-		var grSUP = new GlideRecord('sys_ui_policy');
-		if (grSUP.get(strSysId) == false)
-		{
-			this.Log('UI Policy with sys_id "'+strSysId+'" does not exist. Doing nothing.');
-			return false;
-		}
-		
-		if (grSUP.active == bActive)
-		{
-			this.Log('UI Policy "'+grSUP.short_description+'" is already set '+((bActive)?('active'):('inactive'))+'. No action required.');
-			return strSysId;
-		}
-		grSUP.active = bActive;
-		var vResult = GlideRecordUpdate(grSUP);
-		if (vResult == false)
-		{
-			this.Error('Failed to set UI Policy "'+grSUP.short_description+'" '+((bActive)?('active'):('inactive'))+'!');
-			return false;
-		}
-		this.Log('UI Policy "'+grSUP.short_description+'" is set '+((bActive)?('active'):('inactive'))+'.');
-		return strSysId;		
+		return this.ActivateRecord(strSysId,bActive,'sys_ui_policy','UI Policy','active','short_description');
 	},		
 	
+	ActivateServicePortal: function(strSysId,bActive)
+	{
+		return this.ActivateRecord(strSysId,bActive,'sp_portal','Service Portal','x_snc_devtools_active','title');
+	},
+	
+	ActivateModule: function(strSysId,bActive)
+	{
+		return this.ActivateRecord(strSysId,bActive,'sys_app_module','Navigation Module','active','title');
+	},	
+	
+	ActivateAppMenu: function(strSysId,bActive)
+	{
+		return this.ActivateRecord(strSysId,bActive,'sys_app_application','Application Menu','active','title');
+	},		
 	
 	ShowFieldClass: function(strName,bVisible)
 	{
@@ -476,7 +414,7 @@ InstallerAPI.prototype = {
 		
 		if (grSGO.visible == bVisible)
 		{
-			this.Log('Field Class "'+grSGO.name+'" is already set '+((bVisible)?('visible'):('uninvisible'))+'. No action required.');
+			this.Log('Field Class "'+grSGO.name+'" is already set '+((bVisible)?('visible'):('ininvisible'))+'. No action required.');
 			return GetStringValue(grSGO.sys_id);
 		}
 		grSGO.visible = bVisible;
@@ -489,6 +427,46 @@ InstallerAPI.prototype = {
 		this.Log('Field Class "'+grSGO.name+'" is set '+((bVisible)?('visible'):('invisible'))+'.');
 		return GetStringValue(grSGO.sys_id);		
 	},		
+	
+	ActivateRecord: function(strSysId,bActive,strTable,strRecordClassName,strActiveField,strNameField,strAdditionalField)
+	{
+		if (this.IsAborting() == true)
+		{
+			return false;
+		}
+		
+		bActive = GetBoolValue(bActive);	
+		strNameField = GetStringValue(strNameField);
+		strAdditionalField = GetStringValue(strAdditionalField);
+		
+		var grRecord = GetRecord(strTable,strSysId);
+		if (IsValidRecord(grRecord) == false)
+		{
+			this.Log(strRecordClassName+' with sys_id "'+strSysId+'" does not exist. Doing nothing.');
+			return false;
+		}
+		
+		var strName = '"'+grRecord.getValue(strNameField)+'"';
+		if (strAdditionalField != '')
+		{
+			strName += ' ('+grRecord.getValue(strAdditionalField)+')';
+		}
+		
+		if (grRecord.getValue(strActiveField) == bActive)
+		{
+			this.Log(strRecordClassName+' '+strName+' is already set '+((bActive)?('active'):('inactive'))+'. No action required.');
+			return strSysId;
+		}
+		grRecord.setValue(strActiveField,bActive);
+		var vResult = GlideRecordUpdate(grRecord,true);
+		if (vResult == false)
+		{
+			this.Error('Failed to set '+strRecordClassName+' '+strName+' '+((bActive)?('active'):('inactive'))+'!');
+			return false;
+		}
+		this.Log(strRecordClassName+' '+strName+' is set '+((bActive)?('active'):('inactive'))+'.');
+		return strSysId;		
+	},
 		
 	
     type: 'InstallerAPI'
@@ -497,13 +475,13 @@ InstallerAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-08-27 10:49:10</sys_created_on>
         <sys_id>704694a81b1a74505331b8449b4bcb69</sys_id>
-        <sys_mod_count>45</sys_mod_count>
+        <sys_mod_count>66</sys_mod_count>
         <sys_name>InstallerAPI</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy>protected</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_704694a81b1a74505331b8449b4bcb69</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-03-29 18:39:17</sys_updated_on>
+        <sys_updated_on>2022-05-31 09:28:12</sys_updated_on>
     </sys_script_include>
 </record_update>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.InstanceReset</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Makes a number of changes to OOTB records to remove or hide not needed features. Use with great care! Undoing some of these changes might be difficult.&#13;
+For safety reasons the current date (as an iso formatted string) must be passed as a parameter.  </description>
+        <name>InstanceReset</name>
+        <script><![CDATA[function InstanceReset(strSafetyToken)
+{
+	strSafetyToken = GetStringValue(strSafetyToken);
+	
+	var installer = new InstallerAPI('Instance Reset');
+	
+	if (strSafetyToken != RenderDate(GetTimeNow()))
+	{
+		installer.FatalError('Invalid safety token!');
+	}
+	
+	// Submit button on sys_metadata
+	installer.ActivateUiAction('557cc440bf0121000ba9dc2ecf073992',false);
+
+	// Global Submit button
+	installer.ActivateUiAction('42da42d00a0a0b340066377beb6dd099',false);
+
+	// Global Update button
+	installer.ActivateUiAction('42df02e20a0a0b340080e61b551f2909',false);
+
+	
+	// Deactivate Service Portals
+	var grSP = new GlideRecord('sp_portal');
+	grSP.query();
+	while (grSP.next())
+	{
+		if (  grSP.title != 'Mobile Employee Service Portal'
+		   && grSP.title != 'Service Workspace Portal'
+		   && grSP.url_suffix != 'sp_config')
+		{
+			installer.ActivateServicePortal(grSP.sys_id,false);
+		}
+	}
+
+	// Self Service Menu
+	installer.ActivateAppMenu('08771d0cc0a8016401f604303b94b999',false);
+		
+	// Password Menu
+	installer.ActivateAppMenu('cbbefbb2bf833000710071a7bf0739bb',false);
+	
+	// Live Feed
+	installer.ActivateAppMenu('5cb5869d876013002ae97e2526cb0b7f',false);
+	
+	// Connect
+	installer.ActivateAppMenu('3bb69c02d73321002ae9602b6e6103b2',false);
+	
+	// Targeted Communication
+	installer.ActivateAppMenu('87dda483d72302004f1e82285e610387',false);
+
+	// App Engine
+	installer.ActivateAppMenu('dc61043ec34020100389006c2840dd50',false);
+	
+	
+	installer.Finish();
+	
+	return true;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-04-23 17:48:08</sys_created_on>
+        <sys_id>6a9964a1db8b4190bcced03cd3961945</sys_id>
+        <sys_mod_count>13</sys_mod_count>
+        <sys_name>InstanceReset</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_6a9964a1db8b4190bcced03cd3961945</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-05-16 18:44:08</sys_updated_on>
+    </sys_script_include>
+</record_update>

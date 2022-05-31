@@ -7,16 +7,20 @@
         <client_callable>false</client_callable>
         <description>Produce a debug log output but only if x_snc_devtools.debug.log is set to true.</description>
         <name>Debug</name>
-        <script><![CDATA[var g_nCounter = 0;
-function Debug(vValue)
+        <script><![CDATA[function Debug(vValue)
 {
 	var bDebugLog = GetBoolValue(AppGetProperty('debug.log'));
 	if (bDebugLog == false)
 	{
 		return;
 	}
-	g_nCounter++;
-	var strText = '#'+GetStringValue(g_nCounter)+' ';
+	
+	var cache = new TransactionCacheAPI('DEVTOOLS');
+	var nCounter = cache.GetItem('Debug_Counter');
+	nCounter++;
+	cache.SetItem('Debug_Counter',nCounter);
+	
+	var strText = '#'+GetStringValue(nCounter)+' ';
 	
 	var bDebugLogTransactionRuntime = GetBoolValue(AppGetProperty('debug.log.transaction_runtime'));
 	if (bDebugLogTransactionRuntime == true)
@@ -25,19 +29,18 @@ function Debug(vValue)
 	}
 	strText += GetStringValue(vValue);
 	gs.debug(strText);
-}
-]]></script>
+}]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 09:07:47</sys_created_on>
         <sys_id>6fa1c3981bd38450a89720a8ec4bcb93</sys_id>
-        <sys_mod_count>29</sys_mod_count>
+        <sys_mod_count>31</sys_mod_count>
         <sys_name>Debug</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_6fa1c3981bd38450a89720a8ec4bcb93</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-01-13 13:10:10</sys_updated_on>
+        <sys_updated_on>2022-05-31 12:27:52</sys_updated_on>
     </sys_script_include>
 </record_update>

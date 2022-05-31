@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <copied_from/>
+        <description>Run Server Side Validation Script</description>
+        <display_name>Run Server Side Script</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>1</order>
+        <snapshot/>
+        <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-05-20 15:13:08</sys_created_on>
+        <sys_id>68f90b4adbeb0dd0bcced03cd39619b0</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>Run Server Side Script</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_step_68f90b4adbeb0dd0bcced03cd39619b0</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-05-20 15:27:03</sys_updated_on>
+        <table/>
+        <test display_value="DevTools - StringFindRegEx">fde90b4adbeb0dd0bcced03cd39619be</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=68f90b4adbeb0dd0bcced03cd39619b0"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>68f90b4adbeb0dd0bcced03cd39619b0</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-05-20 15:13:08</sys_created_on>
+        <sys_id>62f90b4adbeb0dd0bcced03cd3961923</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-05-20 15:27:03</sys_updated_on>
+        <value>(function(outputs, steps, stepResult, assertEqual)&#13;
+{&#13;
+	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
+	&#13;
+	test.SetResult(true);&#13;
+&#13;
+&#13;
+&#13;
+	function TestCase_StringFindRegEx(strHaystack, strPattern, strOptions, vExpected)&#13;
+	{&#13;
+		test.TestCase(&#13;
+			'Function StringFindRegEx()',&#13;
+			StringFindRegEx,&#13;
+			{&#13;
+				'Haystack': strHaystack,&#13;
+				'Pattern': strPattern,&#13;
+				'Options': strOptions&#13;
+			},&#13;
+			vExpected,&#13;
+			null);&#13;
+	}&#13;
+&#13;
+&#13;
+	TestCase_StringFindRegEx(null,null,null,-1);&#13;
+	TestCase_StringFindRegEx('',null,null,-1);&#13;
+	TestCase_StringFindRegEx('123abc',null,null,-1);&#13;
+	TestCase_StringFindRegEx('123abc','','',-1);&#13;
+	TestCase_StringFindRegEx('123abc','hello','i',-1);&#13;
+&#13;
+	TestCase_StringFindRegEx('123abc','[a-z]','',3);&#13;
+	TestCase_StringFindRegEx('123abc','[a-z]','i',3);&#13;
+&#13;
+	TestCase_StringFindRegEx('123Abc','[a-z]','',4);&#13;
+	TestCase_StringFindRegEx('123Abc','[a-z]','i',3);&#13;
+	&#13;
+	return test.GetResult();&#13;
+	&#13;
+})(outputs, steps, stepResult, assertEqual);</value>
+        <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>68f90b4adbeb0dd0bcced03cd39619b0</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-05-20 15:13:08</sys_created_on>
+        <sys_id>aaf90b4adbeb0dd0bcced03cd3961922</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-05-20 15:13:08</sys_updated_on>
+        <value>3.1</value>
+        <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
+    </sys_variable_value>
+</record_update>

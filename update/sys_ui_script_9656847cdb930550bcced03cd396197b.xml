@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_script">
+    <sys_ui_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Parses a URL and returns its components as an object.</description>
+        <global>true</global>
+        <name>x_snc_devtools.ParseUrl</name>
+        <script><![CDATA[function ParseUrl(strUrl)
+{
+	strUrl = GetStringValue(strUrl);
+	var match = strUrl.match(/^(https?)\:\/\/(([^:\/?#]*)(?:\:([0-9]+))?)\/?([\/]{0,1}[^?#]*)\??([^#]*|)#?(.*|)$/);
+    if (match == null)
+	{
+		return false;
+	}
+	return 	{
+        protocol: GetStringValue(GetValue(match,1)),
+        host: GetStringValue(GetValue(match,3)),
+        port: GetStringValue(GetValue(match,4)),
+		user: '',
+		password: '',
+        path: GetStringValue(GetValue(match,5)),
+        parameters: GetStringValue(GetValue(match,6)),
+        anchor: GetStringValue(GetValue(match,7))
+    };
+}]]></script>
+        <script_name>ParseUrl</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-05-03 17:32:38</sys_created_on>
+        <sys_id>9656847cdb930550bcced03cd396197b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_snc_devtools.ParseUrl</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_ui_script_9656847cdb930550bcced03cd396197b</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-05-03 17:32:38</sys_updated_on>
+        <ui_type>0</ui_type>
+        <use_scoped_format>false</use_scoped_format>
+    </sys_ui_script>
+</record_update>
