@@ -187,94 +187,95 @@ TestAPI.prototype = {
 		{
 			vResult = callbackFunction(
 				GetValue(vInput,GetValue(aInputKeys,0)),
-				vInput[aInputKeys[1]]);
+				GetValue(vInput,GetValue(aInputKeys,1)));
 		}
 		else if (aInputKeys.length == 3)
 		{
 			vResult = callbackFunction(
 				GetValue(vInput,GetValue(aInputKeys,0)),
-				vInput[aInputKeys[1]],
-				vInput[aInputKeys[2]]);
+				GetValue(vInput,GetValue(aInputKeys,1)),
+				GetValue(vInput,GetValue(aInputKeys,2)));
 		}
 		else if (aInputKeys.length == 4)
 		{
 			vResult = callbackFunction(
 				GetValue(vInput,GetValue(aInputKeys,0)),
-				vInput[aInputKeys[1]],
-				vInput[aInputKeys[2]],
-				vInput[aInputKeys[3]]);
+				GetValue(vInput,GetValue(aInputKeys,1)),
+				GetValue(vInput,GetValue(aInputKeys,2)),
+				GetValue(vInput,GetValue(aInputKeys,3)));
 		}
 		else if (aInputKeys.length == 5)
 		{
 			vResult = callbackFunction(
 				GetValue(vInput,GetValue(aInputKeys,0)),
-				vInput[aInputKeys[1]],
-				vInput[aInputKeys[2]],
-				vInput[aInputKeys[3]],
-				vInput[aInputKeys[4]]);
+				GetValue(vInput,GetValue(aInputKeys,1)),
+				GetValue(vInput,GetValue(aInputKeys,2)),
+				GetValue(vInput,GetValue(aInputKeys,3)),
+				GetValue(vInput,GetValue(aInputKeys,4)));
 		}
 		else if (aInputKeys.length == 6)
 		{
 			vResult = callbackFunction(
 				GetValue(vInput,GetValue(aInputKeys,0)),
-				vInput[aInputKeys[1]],
-				vInput[aInputKeys[2]],
-				vInput[aInputKeys[3]],
-				vInput[aInputKeys[4]],
-				vInput[aInputKeys[5]]);
+				GetValue(vInput,GetValue(aInputKeys,1)),
+				GetValue(vInput,GetValue(aInputKeys,2)),
+				GetValue(vInput,GetValue(aInputKeys,3)),
+				GetValue(vInput,GetValue(aInputKeys,4)),
+				GetValue(vInput,GetValue(aInputKeys,5))
+			);
 		}
 		else if (aInputKeys.length == 7)
 		{
 			vResult = callbackFunction(
 				GetValue(vInput,GetValue(aInputKeys,0)),
-				vInput[aInputKeys[1]],
-				vInput[aInputKeys[2]],
-				vInput[aInputKeys[3]],
-				vInput[aInputKeys[4]],
-				vInput[aInputKeys[5]],
-				vInput[aInputKeys[6]]
+				GetValue(vInput,GetValue(aInputKeys,1)),
+				GetValue(vInput,GetValue(aInputKeys,2)),
+				GetValue(vInput,GetValue(aInputKeys,3)),
+				GetValue(vInput,GetValue(aInputKeys,4)),
+				GetValue(vInput,GetValue(aInputKeys,5)),
+				GetValue(vInput,GetValue(aInputKeys,6))
 			);
 		}
 		else if (aInputKeys.length == 8)
 		{
 			vResult = callbackFunction(
 				GetValue(vInput,GetValue(aInputKeys,0)),
-				vInput[aInputKeys[1]],
-				vInput[aInputKeys[2]],
-				vInput[aInputKeys[3]],
-				vInput[aInputKeys[4]],
-				vInput[aInputKeys[5]],
-				vInput[aInputKeys[6]],
-				vInput[aInputKeys[7]]
+				GetValue(vInput,GetValue(aInputKeys,1)),
+				GetValue(vInput,GetValue(aInputKeys,2)),
+				GetValue(vInput,GetValue(aInputKeys,3)),
+				GetValue(vInput,GetValue(aInputKeys,4)),
+				GetValue(vInput,GetValue(aInputKeys,5)),
+				GetValue(vInput,GetValue(aInputKeys,6)),
+				GetValue(vInput,GetValue(aInputKeys,7))
 			);
 		}
 		else if (aInputKeys.length == 9)
 		{
 			vResult = callbackFunction(
 				GetValue(vInput,GetValue(aInputKeys,0)),
-				vInput[aInputKeys[1]],
-				vInput[aInputKeys[2]],
-				vInput[aInputKeys[3]],
-				vInput[aInputKeys[4]],
-				vInput[aInputKeys[5]],
-				vInput[aInputKeys[6]],
-				vInput[aInputKeys[7]],
-				vInput[aInputKeys[8]]
+				GetValue(vInput,GetValue(aInputKeys,1)),
+				GetValue(vInput,GetValue(aInputKeys,2)),
+				GetValue(vInput,GetValue(aInputKeys,3)),
+				GetValue(vInput,GetValue(aInputKeys,4)),
+				GetValue(vInput,GetValue(aInputKeys,5)),
+				GetValue(vInput,GetValue(aInputKeys,6)),
+				GetValue(vInput,GetValue(aInputKeys,7)),
+				GetValue(vInput,GetValue(aInputKeys,8))
 			);
 		}
 		else if (aInputKeys.length == 10)
 		{
 			vResult = callbackFunction(
 				GetValue(vInput,GetValue(aInputKeys,0)),
-				vInput[aInputKeys[1]],
-				vInput[aInputKeys[2]],
-				vInput[aInputKeys[3]],
-				vInput[aInputKeys[4]],
-				vInput[aInputKeys[5]],
-				vInput[aInputKeys[6]],
-				vInput[aInputKeys[7]],
-				vInput[aInputKeys[8]],
-				vInput[aInputKeys[9]]
+				GetValue(vInput,GetValue(aInputKeys,1)),
+				GetValue(vInput,GetValue(aInputKeys,2)),
+				GetValue(vInput,GetValue(aInputKeys,3)),
+				GetValue(vInput,GetValue(aInputKeys,4)),
+				GetValue(vInput,GetValue(aInputKeys,5)),
+				GetValue(vInput,GetValue(aInputKeys,6)),
+				GetValue(vInput,GetValue(aInputKeys,7)),
+				GetValue(vInput,GetValue(aInputKeys,8)),
+				GetValue(vInput,GetValue(aInputKeys,9))
 			);
 		}
 		else
@@ -316,13 +317,13 @@ TestAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-08-30 13:48:05</sys_created_on>
         <sys_id>206c5c211b567850577f43b5bb4bcb46</sys_id>
-        <sys_mod_count>45</sys_mod_count>
+        <sys_mod_count>46</sys_mod_count>
         <sys_name>TestAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_206c5c211b567850577f43b5bb4bcb46</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-04-01 07:19:23</sys_updated_on>
+        <sys_updated_on>2022-05-31 11:32:18</sys_updated_on>
     </sys_script_include>
 </record_update>
