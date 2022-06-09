@@ -147,6 +147,7 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>Added function GetParam() to get a url parameter in different contexts.</li>
 		<li>Added function HtmlRenderImage() to render an image stored in db_image into an html document.</li>
 		<li>Added function GetScopeSysIdFromPropertyName() to identify the scope of a system property based on its name - no matter if the property actually exists or not.</li>
+		<li>Added function GetInstanceListURI() to return a list view uri for a given table.</li>
 		<li>SetProperty() and InstallerAPI::SetProperty() are now using GetScopeSysIdFromPropertyName() to identify the right scope when creating a system property.</li>
 		<li>AppInstall() now makes the field class "Related Tags" visible.</li>
 		<li>AppBuilder() now creates the system property "logging.verbosity" for the application.</li>
@@ -841,13 +842,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>823</sys_mod_count>
+        <sys_mod_count>824</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-06-08 09:56:37</sys_updated_on>
+        <sys_updated_on>2022-06-09 16:51:10</sys_updated_on>
     </sys_ui_page>
 </record_update>
