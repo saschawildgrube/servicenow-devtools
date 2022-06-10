@@ -151,7 +151,7 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>Added UI action "Show Choices" to show the choices associated to a table.</li>
 		<li>SetProperty() and InstallerAPI::SetProperty() are now using GetScopeSysIdFromPropertyName() to identify the right scope when creating a system property.</li>
 		<li>AppInstall() now makes the field class "Related Tags" visible.</li>
-		<li>AppBuilder() now creates the system property "logging.verbosity" for the application.</li>
+		<li>AppBuilder() now creates the system property "logging.verbosity" for the application and the created AppSetDefaults() functions sets the property to "info" by default.</li>
 		<li>The "Save" UI action no longer shows on the "Many to Many Definition" form.</li>
 		<li>GetParentRecord() can now properly handle sys_choice records that refer to sys_dictionary entries of a parent table.</li>
 		<li>The manual template now longer contains Quebec as a supported platform version.</li>
@@ -843,13 +843,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>825</sys_mod_count>
+        <sys_mod_count>826</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-06-09 17:19:58</sys_updated_on>
+        <sys_updated_on>2022-06-10 17:12:04</sys_updated_on>
     </sys_ui_page>
 </record_update>
