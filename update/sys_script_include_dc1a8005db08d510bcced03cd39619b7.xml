@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.InstanceScanGetScanResults</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns the result of an instance scan as a single object. </description>
+        <name>InstanceScanGetScanResults</name>
+        <script><![CDATA[function InstanceScanGetScanResults(strScanResultSysId, bDetailed)
+{
+	bDetailed = GetBoolValue(bDetailed);
+	
+	var grScanResult = GetRecord('scan_result',strScanResultSysId);
+	if (IsValidRecord(grScanResult) == false)
+	{
+		return false;
+	}
+
+	
+	var results = {};
+	var grFinding = new GlideRecord('scan_finding');
+	grFinding.addQuery('result','=',grScanResult.sys_id);
+	grFinding.query();
+	while (grFinding.next())
+	{
+		if (bDetailed == true)
+		{
+			SetValue(
+				Clone(grFinding),
+				results,
+				'findings',
+				GetStringValue(grFinding.sys_id));
+		}
+		else
+		{
+			SetValue(
+				GetStringValue(grFinding.check.sys_id),
+				results,
+				'findings',
+				GetStringValue(grFinding.sys_id),
+				'check');	
+		
+		}
+
+		SetValue(
+			GetStringValue(grFinding.check.name),
+			results,
+			'findings',
+			GetStringValue(grFinding.sys_id),
+			'check_name');
+		
+	
+		var grRecord = GetRecord(grFinding.source_table,grFinding.source);
+		
+		SetValue(
+			RenderRecordSummary(grRecord),
+			results,
+			'findings',
+			GetStringValue(grFinding.sys_id),
+			'source_record_summary');
+
+		if (bDetailed == true)
+		{
+			SetValue(
+				Clone(grRecord),
+				results,
+				'findings',
+				GetStringValue(grFinding.sys_id),
+				'source_record');
+		}
+		
+	}
+
+	
+	var checks = {};
+	var grChecks = new GlideRecord('scan_check_execution');
+	grChecks.addQuery('result','=',grScanResult.sys_id);
+	grChecks.query();
+	while (grChecks.next())
+	{
+		if (bDetailed == true)
+		{
+			SetValue(
+				Clone(GetRecord('scan_check',grChecks.check)),
+				results,
+				'checks',
+				GetStringValue(grChecks.check.sys_id));
+		}
+		else
+		{
+			SetValue(
+				GetStringValue(grChecks.check.name),
+				results,
+				'checks',
+				GetStringValue(grChecks.check.sys_id),
+				'name');
+			
+		}
+	
+	}
+	
+	return results;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-06-10 19:12:50</sys_created_on>
+        <sys_id>dc1a8005db08d510bcced03cd39619b7</sys_id>
+        <sys_mod_count>14</sys_mod_count>
+        <sys_name>InstanceScanGetScanResults</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_dc1a8005db08d510bcced03cd39619b7</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-06-10 21:13:53</sys_updated_on>
+    </sys_script_include>
+</record_update>
