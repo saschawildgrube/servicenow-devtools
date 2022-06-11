@@ -263,20 +263,26 @@
 	
 	if (strTable == 'sys_choice')
 	{
-		var grSD = new GlideRecord('sys_dictionary');
-		grSD.addQuery('name','=',grRecord.name);
-		grSD.addQuery('element','=',grRecord.element);
-		grSD.query();
-		if (grSD.getRowCount() == 1)
+		var strTable = GetStringValue(grRecord.name);
+		while (strTable != '')
 		{
-			grSD.next();
-			return grSD;
+			var grSD = new GlideRecord('sys_dictionary');
+			grSD.addQuery('name','=',strTable);
+			grSD.addQuery('element','=',grRecord.element);
+			grSD.query();
+			if (grSD.getRowCount() == 1)
+			{
+				grSD.next();
+				return grSD;
+			}
+			else
+			{
+				strTable = GetParentTable(strTable);
+			}
 		}
 	}		
 	
-	
-	 
-	
+
 	if (strTable == 'sys_ux_list')
 	{
 		return GetRecord('sys_ux_list_category',grRecord.category);
@@ -374,6 +380,10 @@
 		return GetRecord('rm_release',grRecord.parent,true);
 	}		
 	
+	if (strTable == 'label_entry')
+	{
+		return GetRecord('label',grRecord.label,true);
+	}		
 	
 	return false;
 }]]></script>
@@ -381,13 +391,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-08 12:44:48</sys_created_on>
         <sys_id>9934e6141b6abc505331b8449b4bcbdd</sys_id>
-        <sys_mod_count>77</sys_mod_count>
+        <sys_mod_count>80</sys_mod_count>
         <sys_name>GetParentRecord</sys_name>
-        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
-        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_9934e6141b6abc505331b8449b4bcbdd</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-04-20 11:23:53</sys_updated_on>
+        <sys_updated_on>2022-06-08 09:58:44</sys_updated_on>
     </sys_script_include>
 </record_update>

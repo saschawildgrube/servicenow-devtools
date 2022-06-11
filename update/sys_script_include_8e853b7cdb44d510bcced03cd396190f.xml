@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.InstanceScanPointScan</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Performs an instance scan point scan on a specific record</description>
+        <name>InstanceScanPointScan</name>
+        <script><![CDATA[function InstanceScanPointScan(strTable, strRecordSysId, bDetailed)
+{
+	strTable = GetStringValue(strTable);
+	strRecordSysId = GetStringValue(strRecordSysId);
+	
+	if (IsValidTable(strTable) == false)
+	{
+		return false;
+	}
+	if (IsValidSysId(strRecordSysId) == false)
+	{
+		return false;
+	}
+	
+	var sic = new sn_instance_scan.ScanInstance();
+	try 
+	{
+		var strProgressSysId = sic.triggerPointScan(strTable, strRecordSysId);
+	}
+	catch (e)
+	{
+	}
+	
+	if (IsValidSysId(strProgressSysId) == false)
+	{
+		return false;
+	}
+	
+	var grProgress = new GlideRecord('sys_progress_worker');
+	var bProgress = true;
+	while (bProgress == true)
+	{
+		if (grProgress.get(strProgressSysId))
+		{
+			var strState = GetStringValue(grProgress.state);  
+			if (strState != 'starting' && strState != 'running')
+			{
+				bProgress = false;
+			}
+		}
+		else
+		{
+			bProgress = false;
+		}
+	}
+	
+	var grScanResult = new GlideRecord('scan_result');
+	grScanResult.addQuery('progress_id','=',strProgressSysId);
+	grScanResult.query();
+	if (grScanResult.next() == false)
+	{
+		return false;
+	}
+	
+	return InstanceScanGetScanResults(grScanResult.sys_id,bDetailed);
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-06-10 17:51:47</sys_created_on>
+        <sys_id>8e853b7cdb44d510bcced03cd396190f</sys_id>
+        <sys_mod_count>20</sys_mod_count>
+        <sys_name>InstanceScanPointScan</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_8e853b7cdb44d510bcced03cd396190f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-06-10 20:59:41</sys_updated_on>
+    </sys_script_include>
+</record_update>

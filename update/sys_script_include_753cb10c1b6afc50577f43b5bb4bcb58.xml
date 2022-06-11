@@ -110,15 +110,6 @@
 		strDevToolsVersion = GetStringValue(grAppDevTools.version);
 	}
 
-	/*
-	var strParentScriptScope = 'x_snc_devtools';
-	if (strParentAppScope != '')
-	{
-		strParentScriptScope = strParentAppScope;
-	}
-	*/
-	
-	
 	
 	Log('Adding system property "active"');
 	RecordQueryOrInsert('sys_properties',
@@ -148,11 +139,23 @@
 			value: 'true'
 		},
 		false);	
-	
 
-	
-	
-	
+	Log('Adding system property "logging.verbosity"');
+	RecordQueryOrInsert('sys_properties',
+		{
+			sys_scope: strAppSysId,
+			name: strAppScope+'.logging.verbosity'	
+		},
+		{
+			suffix: 'logging.verbosity',
+			description: 'Controls the verbosity of log output produced by the '+strAppName+' application.',
+			type: 'choicelist',
+			choices: 'Debug=debug,Info=info,Warn=warn,Error=error',
+			value: 'info'
+		},
+		false);	
+
+		
 	Log('Adding script include "AppGetProperty"...');
 	RecordQueryOrInsert('sys_script_include',
 		{
@@ -306,6 +309,7 @@
 			"function AppSetDefaults()\n"
 			+"{\n"
 			+"\tAppSetProperty('active','true');\n"
+			+"\tAppSetProperty('logging.verbosity','info');\n"
 			+"\tAppSetProperty('log.active','true');\n"
 			+"}\n";
 		GlideRecordInsert(grSSI);
@@ -780,13 +784,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-07 15:15:09</sys_created_on>
         <sys_id>753cb10c1b6afc50577f43b5bb4bcb58</sys_id>
-        <sys_mod_count>105</sys_mod_count>
+        <sys_mod_count>110</sys_mod_count>
         <sys_name>AppBuilder</sys_name>
-        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
-        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_753cb10c1b6afc50577f43b5bb4bcb58</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-04-24 10:21:08</sys_updated_on>
+        <sys_updated_on>2022-06-10 17:14:32</sys_updated_on>
     </sys_script_include>
 </record_update>
