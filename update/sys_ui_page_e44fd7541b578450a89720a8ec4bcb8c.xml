@@ -136,11 +136,24 @@ function DevToolsGetFormatConfig(grRecord)
 	
 	<h2>Release Notes</h2>
 <!--
-	<h3>1.3_.0 - 2022-0_</h3>
+	<h3>1.4_.0 - 2022-0_</h3>
 	<ol>
 		<li>TODO</li>
 	</ol>
 -->
+	
+	<h3>1.40.0 - 2022-07-07</h3>
+	<ol>
+		<li>RedirectToRecord() now supports the view parameter.</li>
+		<li>Added UI action "Show Table Dictionary Record".</li>
+		<li>Added UI action "Baseline Version" to support the baseline of an application version.</li>
+		<li>UI action "Save" now maintains the current view.</li>
+		<li>UI action "Up" now maintains the current view.</li>
+		<li>UI action "List" maintains the current view.</li>
+		<li>GetParentRecord() now supports cmn_location, sys_ui_related_list and sys_ui_related_list_entry.</li>
+		<li>TestDataAPI now supports Service Portal widgets.</li>
+		<li>Added sp_page and sp_widget to the link directory.</li>
+	</ol>
 
 	<h3>1.39.0 - 2022-06-11</h3>
 	<ol>
@@ -847,13 +860,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>832</sys_mod_count>
+        <sys_mod_count>844</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-06-11 18:11:33</sys_updated_on>
+        <sys_updated_on>2022-07-07 14:09:59</sys_updated_on>
     </sys_ui_page>
 </record_update>

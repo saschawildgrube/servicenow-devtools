@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_action">
     <sys_ui_action action="INSERT_OR_UPDATE">
-        <action_name>list</action_name>
+        <action_name/>
         <active>true</active>
         <client>false</client>
         <client_script_v2><![CDATA[function onClick(g_form) {
 
 }]]></client_script_v2>
-        <comments>The "List" button navigates from a record's form view to it's list view.  </comments>
-        <condition>(AppGetProperty('ui.list_button') == true)</condition>
+        <comments>Shows the table's "collection" dictionary record.</comments>
+        <condition>current.getRecordClassName() == 'sys_db_object'</condition>
         <form_action>true</form_action>
-        <form_button>true</form_button>
+        <form_button>false</form_button>
         <form_button_v2>false</form_button_v2>
-        <form_context_menu>true</form_context_menu>
-        <form_link>false</form_link>
+        <form_context_menu>false</form_context_menu>
+        <form_link>true</form_link>
         <form_menu_button_v2>false</form_menu_button_v2>
-        <form_style>unstyled</form_style>
+        <form_style/>
         <hint/>
         <isolate_script>false</isolate_script>
         <list_action>false</list_action>
@@ -26,46 +26,44 @@
         <list_save_with_form_button>false</list_save_with_form_button>
         <list_style/>
         <messages/>
-        <name>List</name>
+        <name>Show Table Dictionary Record</name>
         <onclick/>
-        <order>9999</order>
-        <script><![CDATA[GlideRecordUpdate(current);
-/*var uri = action.getGlideURI();
-var strCurrentUrl = GetInstanceURL() + uri.toString();
-var url = ParseUrl(strCurrentUrl);
-var strParameters = GetStringValue(url['parameters']);
-var params = ParseUrlParameters(strParameters);
-var strParamRecordList = GetStringValue(params['sysparm_record_list']);
-var strParamRecordRow = GetStringValue(params['sysparm_record_row']);
-*/
-var strParamRecordList = GetParam('sysparm_record_list');
-var strParamRecordRow = GetParam('sysparm_record_row');
-var strParamView = GetParam('sysparm_view');
-
-var strUri = current.getTableName() + '_list.do?sysparm_query=' + strParamRecordList
-	+ '&sysparm_first_row=' + strParamRecordRow
-	+ '&sysparm_view=' + strParamView;
-
-gs.setRedirect(strUri); ]]></script>
-        <show_insert>true</show_insert>
+        <order>99998</order>
+        <script><![CDATA[var grDictionary = new GlideRecord('sys_dictionary');
+grDictionary.addQuery('name','=',current.name);
+grDictionary.addQuery('element','=','');
+grDictionary.addQuery('internal_type','=','collection');
+grDictionary.query();
+if (grDictionary.next())
+{
+	var strURL = GetInstanceRecordURI('sys_dictionary',grDictionary.sys_id);
+	gs.setRedirect(strURL);	
+}
+else
+{
+	gs.addErrorMessage('Could not find the table\'s dictionary record.');
+}
+	
+]]></script>
+        <show_insert>false</show_insert>
         <show_multiple_update>false</show_multiple_update>
         <show_query>false</show_query>
         <show_update>true</show_update>
         <sys_class_name>sys_ui_action</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2020-05-20 14:45:21</sys_created_on>
+        <sys_created_on>2022-06-14 09:08:39</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
-        <sys_id>d29ae78f1bf8dc10a89720a8ec4bcbd6</sys_id>
-        <sys_mod_count>46</sys_mod_count>
-        <sys_name>List</sys_name>
+        <sys_id>d3466682db8c95103a25edb305961939</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>Show Table Dictionary Record</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
-        <sys_update_name>sys_ui_action_d29ae78f1bf8dc10a89720a8ec4bcbd6</sys_update_name>
+        <sys_update_name>sys_ui_action_d3466682db8c95103a25edb305961939</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-06-12 21:31:48</sys_updated_on>
+        <sys_updated_on>2022-06-14 09:13:36</sys_updated_on>
         <table>global</table>
         <ui11_compatible>true</ui11_compatible>
         <ui16_compatible>false</ui16_compatible>
