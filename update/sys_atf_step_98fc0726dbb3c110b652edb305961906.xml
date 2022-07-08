@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-06-03 15:02:03</sys_created_on>
         <sys_id>98fc0726dbb3c110b652edb305961906</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_98fc0726dbb3c110b652edb305961906</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-06-03 15:04:53</sys_updated_on>
+        <sys_updated_on>2022-07-07 15:12:10</sys_updated_on>
         <table/>
         <test display_value="DevTools - HtmlRenderImage">25cc03e2dbb3c110b652edb305961933</test>
         <timeout/>
@@ -50,9 +50,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-06-03 15:02:03</sys_created_on>
         <sys_id>f8bd0b66dbb3c110b652edb3059619ba</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-06-03 15:04:53</sys_updated_on>
+        <sys_updated_on>2022-07-07 15:12:10</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -88,7 +88,7 @@
 &#13;
 	TestCase_HtmlRenderImage(null,false);&#13;
 	TestCase_HtmlRenderImage('',false);&#13;
-	TestCase_HtmlRenderImage('la_jolla_sp_logo.png',true);&#13;
+	TestCase_HtmlRenderImage('la_jolla_sp_banner.jpg',true);&#13;
 	&#13;
 	return test.GetResult();&#13;
 	&#13;
