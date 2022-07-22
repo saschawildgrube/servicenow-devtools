@@ -147,11 +147,11 @@ TestAPI.prototype = {
 		function TestCase_InstanceScanCheck_CheckResult(vInput,vExpected,vResult)
 		{
 			var bFinding = false;
-			var aFindings = x_snc_devtools.GetKeys(x_snc_devtools.GetValue(vResult,'findings'));
+			var aFindings = GetKeys(GetValue(vResult,'findings'));
 			for (var nFinding = 0; nFinding < aFindings.length; nFinding++)
 			{
 				var strFinding = aFindings[nFinding];
-				var finding = x_snc_devtools.GetValue(vResult,'findings',strFinding);
+				var finding = GetValue(vResult,'findings',strFinding);
 				if (finding.check == strCheckSysId)
 				{
 					bFinding = true;
@@ -161,15 +161,15 @@ TestAPI.prototype = {
 		}
 
 		var strCheckName = 'NOT FOUND!';
-		var grCheck = x_snc_devtools.GetRecord('scan_check',strCheckSysId);
-		if (x_snc_devtools.IsValidRecord(grCheck) == true)
+		var grCheck = GetRecord('scan_check',strCheckSysId);
+		if (IsValidRecord(grCheck) == true)
 		{
-			strCheckName = '"'+x_snc_devtools.GetStringValue(grCheck.name)+'"';
+			strCheckName = '"'+GetStringValue(grCheck.name)+'"';
 		}
 		
 		this.TestCase(
-			'Check '+ strCheckName,
-			x_snc_devtools.InstanceScanPointScan,
+			'Check: ' + strCheckName + '\non Record: ' + RenderRecordSummary(GetRecord(strTable,strRecordSysId)),
+			InstanceScanPointScan,
 			{
 				'Table': strTable,
 				'Record SysId': strRecordSysId,
@@ -355,13 +355,13 @@ TestAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-08-30 13:48:05</sys_created_on>
         <sys_id>206c5c211b567850577f43b5bb4bcb46</sys_id>
-        <sys_mod_count>50</sys_mod_count>
+        <sys_mod_count>54</sys_mod_count>
         <sys_name>TestAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_206c5c211b567850577f43b5bb4bcb46</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-06-12 15:10:53</sys_updated_on>
+        <sys_updated_on>2022-07-22 11:22:12</sys_updated_on>
     </sys_script_include>
 </record_update>
