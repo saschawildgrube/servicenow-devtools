@@ -2,12 +2,12 @@
     <sys_script_include action="INSERT_OR_UPDATE">
         <access>public</access>
         <active>true</active>
-        <api_name>x_snc_devtools.GetStackTraceRaw</api_name>
+        <api_name>x_snc_devtools.GetStackTrace</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns the current call stack as a raw, unprocessed string.</description>
-        <name>GetStackTraceRaw</name>
-        <script><![CDATA[function GetStackTraceRaw()
+        <name>GetStackTrace</name>
+        <script><![CDATA[function GetStackTrace()
 {
 	var strCallStack = RunScriptInGlobalScope('result = GlideLog.getStackTrace(new Packages.java.lang.Throwable());');
 	return strCallStack;
@@ -16,13 +16,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-07-29 13:13:09</sys_created_on>
         <sys_id>e4bd03e8dbc5d510dcbdd03cd3961946</sys_id>
-        <sys_mod_count>2</sys_mod_count>
-        <sys_name>GetStackTraceRaw</sys_name>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>GetStackTrace</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_e4bd03e8dbc5d510dcbdd03cd3961946</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-07-29 13:26:44</sys_updated_on>
+        <sys_updated_on>2022-07-29 14:35:23</sys_updated_on>
     </sys_script_include>
 </record_update>
