@@ -94,11 +94,11 @@
 	
 	
 	// Instance Scan Check to suite
-	if (   strTable == 'scan_check'
+	if (   strTable == 'scan_check'/*
 		|| strTable == 'scan_table_check'
 		|| strTable == 'scan_script_only_check'
 	    || strTable == 'scan_linter_check'
-		|| strTable == 'scan_column_type_check')
+		|| strTable == 'scan_column_type_check'*/)
 	{
 		var grScanSuiteCheck = new GlideRecord('scan_check_suite_check');
 		grScanSuiteCheck.addQuery('check','=',grRecord.sys_id);
@@ -263,11 +263,11 @@
 	
 	if (strTable == 'sys_choice')
 	{
-		var strTable = GetStringValue(grRecord.name);
-		while (strTable != '')
+		var strTable2 = GetStringValue(grRecord.name);
+		while (strTable2 != '')
 		{
 			var grSD = new GlideRecord('sys_dictionary');
-			grSD.addQuery('name','=',strTable);
+			grSD.addQuery('name','=',strTable2);
 			grSD.addQuery('element','=',grRecord.element);
 			grSD.query();
 			if (grSD.getRowCount() == 1)
@@ -277,7 +277,7 @@
 			}
 			else
 			{
-				strTable = GetParentTable(strTable);
+				strTable2 = GetParentTable(strTable2);
 			}
 		}
 	}		
@@ -398,19 +398,25 @@
 		return GetRecord('core_company',grRecord.company,true);
 	}
 	
+	var strParentTable = GetParentTable(strTable);
+	if (strParentTable != '')
+	{
+		return GetParentRecord(strParentTable,strSysId);
+	}
+	
 	return false;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-08 12:44:48</sys_created_on>
         <sys_id>9934e6141b6abc505331b8449b4bcbdd</sys_id>
-        <sys_mod_count>83</sys_mod_count>
+        <sys_mod_count>85</sys_mod_count>
         <sys_name>GetParentRecord</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_9934e6141b6abc505331b8449b4bcbdd</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-06-13 18:37:24</sys_updated_on>
+        <sys_updated_on>2022-08-10 15:48:51</sys_updated_on>
     </sys_script_include>
 </record_update>
