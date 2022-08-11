@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.GetCallStack</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns the call stack in a structured format.</description>
+        <name>GetCallStack</name>
+        <script><![CDATA[function GetCallStack()
+{	
+	var strStackTrace = GetStackTrace();
+	var aLines = strStackTrace.split('\n');
+	
+	var aStack = [];
+	var strLastSysId = '';
+	for (var nLine = 0; nLine < aLines.length; nLine++)
+	{
+		var strLine = aLines[nLine];
+
+		if (strLine.indexOf('com.glide.caller.gen.') != -1)
+		{
+			var strRecord = strLine.substring(22);
+			var nPostfixPos = strRecord.indexOf('_script.call');
+			if (nPostfixPos == -1)
+			{
+				nPostfixPos = strRecord.indexOf('.call');
+			}
+			strRecord = strRecord.substring(0,nPostfixPos);
+			
+			var strSysId = strRecord.slice(-32); 
+			
+			if (strSysId != strLastSysId)
+			{
+				var strTable = strRecord.slice(0,-33); 
+				var grRecord = GetRecord(strTable,strSysId);
+				if (IsValidRecord(grRecord) == true)
+				{
+					// This is to cut off the part of the call stack that relates to the GetCallStack function
+					var bAddToStack = true;
+					if (aStack.length == 0)
+					{
+						if (GetStringValue(grRecord.getValue('name')) == 'RunScriptInScope')
+						{
+							bAddToStack = false;
+						}
+						if (GetStringValue(grRecord.getValue('name')) == 'RunScriptInGlobalScope')
+						{
+							bAddToStack = false;
+						}
+						if (GetStringValue(grRecord.getValue('name')) == 'GetStackTrace')
+						{
+							bAddToStack = false;
+						}							
+						if (GetStringValue(grRecord.getValue('name')) == 'GetCallStack')
+						{
+							bAddToStack = false;
+						}						
+					}
+					if (bAddToStack == true)
+					{
+						aStack.push(Clone(grRecord));
+					}
+				}
+			}
+			strLastSysId = strSysId;
+		}
+	}
+	return aStack;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-07-29 13:52:38</sys_created_on>
+        <sys_id>c4435bacdbc5d510dcbdd03cd3961947</sys_id>
+        <sys_mod_count>32</sys_mod_count>
+        <sys_name>GetCallStack</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_c4435bacdbc5d510dcbdd03cd3961947</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-08-01 15:00:40</sys_updated_on>
+    </sys_script_include>
+</record_update>

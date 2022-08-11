@@ -143,6 +143,26 @@ function DevToolsGetFormatConfig(grRecord)
 	</ol>
 -->	
 	
+	<h3>1.42.0 - 2022-08-11</h3>
+	<ol>
+		<li>Added UI action "Parent Table" to navigate from a list view to the parent table list view (if the table has a parent).</li> 
+		<li>Added function StringFindMultiple() to get all the indexes of all occurences of a needle string in a haystack string.</li>
+		<li>Added function GetStackTrace() to get the raw stack trace as a string.</li>
+		<li>Added function GetCallStack() to get the call stack in a structured format.</li>
+		<li>Added function GetScriptRecord() to get the record that contains the script from which GetScriptRecord() is called.</li>
+		<li>TestAPI::TestCase_InstanceScanCheck() now outputs the record summary for the test case.</li>
+		<li>RenderValue() now supports the bCompactOutput parameter which uses RenderRecordSummary() for GlideRecord objects.</li>
+		<li>GetParentRecord() and subsequently the "Up" UI action now support records in derived tables.</li>
+		<li>GetParentRecord() now supports records in sys_metadata and returns the scope/app record.</li>
+		<li>TestAPI::TestCase() now supports the bCompactOutput parameter which uses RenderRecordSummary() for GlideRecord objects.</li>
+		<li>RenderRecordSummary() shows the api_name for sys_script_include records.</li>
+		<li>Added UI script functions IsForm() and IsList().</li>
+		<li>Added UI script functions GetCurrentRecordTableName() and GetCurrentRecordSysId().</li>
+		<li>Added sys_ux_theme and cmn_cost_center tables to the link directory.</li>
+		<li>Debug output is now prefixed by "DEBUG". The "Debug Log" module now ONLY shows debug output.</li>
+	</ol>
+	
+	
 	<h3>1.41.0 - 2022-07-19</h3>
 	<ol>
 		<li>Added function RecordSaveToUpdateSet() and updated the UI action "Baseline version" to make use of it.</li>
@@ -870,13 +890,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>852</sys_mod_count>
+        <sys_mod_count>871</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-07-19 08:25:31</sys_updated_on>
+        <sys_updated_on>2022-08-11 11:53:56</sys_updated_on>
     </sys_ui_page>
 </record_update>
