@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <copied_from/>
+        <description>Run Server Side Validation Script</description>
+        <display_name>Run Server Side Script</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>1</order>
+        <snapshot/>
+        <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-08-17 12:04:24</sys_created_on>
+        <sys_id>e04474b6dbd9d110dcbdd03cd396197c</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>Run Server Side Script</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_step_e04474b6dbd9d110dcbdd03cd396197c</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-08-17 12:36:39</sys_updated_on>
+        <table/>
+        <test display_value="DevTools - GetVariablesFromRecord">911470b6dbd9d110dcbdd03cd39619b4</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=e04474b6dbd9d110dcbdd03cd396197c"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>e04474b6dbd9d110dcbdd03cd396197c</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-08-17 12:04:24</sys_created_on>
+        <sys_id>a54474b6dbd9d110dcbdd03cd3961914</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-08-17 12:04:24</sys_updated_on>
+        <value>3.1</value>
+        <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>e04474b6dbd9d110dcbdd03cd396197c</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-08-17 12:04:24</sys_created_on>
+        <sys_id>ed4474b6dbd9d110dcbdd03cd3961914</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-08-17 12:36:39</sys_updated_on>
+        <value>(function(outputs, steps, stepResult, assertEqual)&#13;
+{&#13;
+	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
+	&#13;
+	test.SetResult(true);&#13;
+&#13;
+	function TestCase_GetVariablesFromRecord(grRecord, vExpected)&#13;
+	{&#13;
+		function TestCase_GetVariablesFromRecord_CheckResult(vInput,vExpected,vResult)&#13;
+		{&#13;
+			return IsEqual(vExpected,vResult);&#13;
+		}	&#13;
+		&#13;
+		test.TestCase(&#13;
+			'Function GetVariablesFromRecord()',&#13;
+			GetVariablesFromRecord,&#13;
+			{&#13;
+				'Record': grRecord &#13;
+			},&#13;
+			vExpected,&#13;
+			TestCase_GetVariablesFromRecord_CheckResult);&#13;
+	}&#13;
+&#13;
+&#13;
+	TestCase_GetVariablesFromRecord(null,false);&#13;
+	TestCase_GetVariablesFromRecord(new GlideRecord('incident'),{});&#13;
+&#13;
+	var grItem = new GlideRecord('sc_req_item');&#13;
+	grItem.initialize();&#13;
+	var strItemSysId = grItem.insert();&#13;
+	&#13;
+	var grItemOptionNew = new GlideRecord('item_option_new');&#13;
+	grItemOptionNew.initialize();&#13;
+	grItemOptionNew.name = 'test'; &#13;
+	grItemOptionNew.type = 6;&#13;
+	grItemOptionNew.question_text = 'What do you say?';&#13;
+	var strItemOptionNewSysId = grItemOptionNew.insert();&#13;
+	&#13;
+	test.Log(RenderValue(grItemOptionNew));&#13;
+		&#13;
+	var grItemOption = new GlideRecord('sc_item_option');&#13;
+	grItemOption.initialize();&#13;
+	grItemOption.value = 'Hello World';&#13;
+	grItemOption.item_option_new = strItemOptionNewSysId;&#13;
+	var strItemOptionSysId = grItemOption.insert();&#13;
+	&#13;
+	test.Log(RenderValue(grItemOption));&#13;
+	&#13;
+	var grItemOptionMtom = new GlideRecord('sc_item_option_mtom');&#13;
+	grItemOptionMtom.initialize();&#13;
+	grItemOptionMtom.request_item = strItemSysId;&#13;
+	grItemOptionMtom.sc_item_option = strItemOptionSysId;&#13;
+	var strItemOptionMtomSysId = grItemOptionMtom.insert();	&#13;
+	&#13;
+	test.Log(RenderValue(grItemOptionMtom));&#13;
+	&#13;
+	grItem.get(strItemSysId);&#13;
+	&#13;
+	// TODO: Actually we expect the variable to show up, but something in the test data setup seems to be missing!&#13;
+	TestCase_GetVariablesFromRecord(grItem,{});&#13;
+	return test.GetResult();&#13;
+	&#13;
+})(outputs, steps, stepResult, assertEqual);</value>
+        <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
+    </sys_variable_value>
+</record_update>
