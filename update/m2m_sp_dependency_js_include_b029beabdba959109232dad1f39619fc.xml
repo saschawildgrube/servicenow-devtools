@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_dependency_js_include">
+    <m2m_sp_dependency_js_include action="INSERT_OR_UPDATE">
+        <order>100</order>
+        <sp_dependency display_value="DevTools">5578b2abdba959109232dad1f396191d</sp_dependency>
+        <sp_js_include display_value="DevTools DoModalConfirm">e3f87eabdba959109232dad1f39619ae</sp_js_include>
+        <sys_class_name>m2m_sp_dependency_js_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-09-01 15:56:00</sys_created_on>
+        <sys_id>b029beabdba959109232dad1f39619fc</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>DevTools.DevTools DoModalConfirm</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>m2m_sp_dependency_js_include_b029beabdba959109232dad1f39619fc</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-09-01 15:56:00</sys_updated_on>
+    </m2m_sp_dependency_js_include>
+</record_update>
