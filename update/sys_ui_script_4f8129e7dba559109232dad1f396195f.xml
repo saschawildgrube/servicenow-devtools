@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_script">
+    <sys_ui_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Returns the best available class to render a modal Glide dialog pop-up window - if there is any.</description>
+        <global>true</global>
+        <name>x_snc_devtools.GetGlideDialogClass</name>
+        <script><![CDATA[function GetGlideDialogClass()
+{
+	console.log('GetDialogClass');
+
+	if (typeof GlideModal == 'function')
+	{	
+		console.log('return GlideModal');
+		return GlideModal;
+	}		
+
+	if (typeof GlideDialogWindow == 'function')
+	{	
+		console.log('return GlideDialogWindow');
+		return GlideDialogWindow;
+	}
+
+	if (typeof window == 'Object')
+	{
+		if (typeof window.GlideModal == 'Object')
+		{
+			console.log('return GlideModal');
+			return window.GlideModal;
+		}
+	}
+
+	if (typeof top == 'Object')
+	{
+		console.log('top is not undefined');
+
+		if (typeof top.window == 'Object')
+		{
+			console.log('top.window is not undefined');
+
+			if (typeof top.window.GlideModal == 'Object')
+			{
+				console.log('return GlideModal');
+				return top.window.GlideModal;
+			}
+
+		}
+	}	
+
+	if (typeof GlideDialogWindow == 'Object')
+	{
+		console.log('return GlideDialogWindow');
+		return GlideDialogWindow;
+	}
+	
+	return null;
+}	]]></script>
+        <script_name>GetGlideDialogClass</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-09-01 09:36:59</sys_created_on>
+        <sys_id>4f8129e7dba559109232dad1f396195f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_snc_devtools.GetGlideDialogClass</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_ui_script_4f8129e7dba559109232dad1f396195f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-09-01 09:36:59</sys_updated_on>
+        <ui_type>0</ui_type>
+        <use_scoped_format>false</use_scoped_format>
+    </sys_ui_script>
+</record_update>
