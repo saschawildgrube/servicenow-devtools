@@ -6,8 +6,9 @@
         <name>x_snc_devtools.DoModalMessage</name>
         <script><![CDATA[function DoModalMessage(strTitle, strText)
 {
-	// Displays a modal dialog with "OK" and "Cancel" options. Returns true if the user clicks "OK", false if the user clicks on "Cancel".
-
+	
+	
+	
 	//var Dialog = GetGlideDialogClass();
 	var Dialog = null;
 	if (Dialog != null)
@@ -36,6 +37,27 @@
 		dialog.render();
 		
 /*		
+		
+function resolveAfterModalRender()
+{
+  return new Promise(resolve =>
+	{
+	  dialog.render();
+      resolve('Dialog rendered');
+	 });
+}		
+		
+async function asyncRender() {
+  console.log('calling asyncRender');
+  const result = await resolveAfterModalRender();
+  console.log(result);
+  // expected output: "resolved"
+}
+
+asyncRender();		
+	*/	
+		
+/*		
 function timeout(ms)
 {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -46,21 +68,75 @@ async function sleep(ms)
     return;
 }
 */
-		
+		/*
 		async function Sleep(nMiliseconds)
 		{
 			await new Promise(resolve => setTimeout(resolve, nMiliseconds));
 		}
+		*/
+
+		
+	
 		
 		
 		// The problem is: how to produce a non-blocking way to wait for the dialog to close BEFORE returning from this function?
+
 		
-		var nCount = 0;
-		while (bModalClosed == false && nCount < 100)
+		/*
+		function WaitForModal()
 		{
-			Sleep(500);
-			console.log('sleep loop '+nCount++);
-		};
+			var nCount = 0;
+			while (bModalClosed == false && nCount < 50000)
+			{
+				console.log('Count: '+nCount++);
+			}
+			
+		}
+		
+		async function WaitForPromise()
+		{
+			await Promise.all([WaitForModal]);
+		}
+		
+		
+		WaitForPromise();
+		*/
+function resolveAfterModalClosed()
+{
+  return new Promise(resolve =>
+	{
+	  //dialog.render();
+	  
+
+ 	  function Wait()
+		{
+		  var nCount = 0;
+		  while (bModalClosed == false && nCount < 50000)
+		  {
+			  console.log('Count: '+nCount++);
+		  }	  
+		  resolve('resolved');
+
+		}
+ 	  
+	  setTimeout(Wait, 100);
+	  
+	  
+	  
+	 });
+}
+
+async function asyncCall() {
+  console.log('calling');
+  const result = await resolveAfterModalClosed();
+  console.log(result);
+  // expected output: "resolved"
+}
+
+asyncCall();
+		
+		
+		
 		
 		return;
 	}
@@ -79,14 +155,14 @@ async function sleep(ms)
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-09-01 09:59:02</sys_created_on>
         <sys_id>aff6e12fdba559109232dad1f39619ca</sys_id>
-        <sys_mod_count>15</sys_mod_count>
+        <sys_mod_count>27</sys_mod_count>
         <sys_name>x_snc_devtools.DoModalMessage</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_script_aff6e12fdba559109232dad1f39619ca</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-09-01 15:47:50</sys_updated_on>
+        <sys_updated_on>2022-09-02 10:43:36</sys_updated_on>
         <ui_type>0</ui_type>
         <use_scoped_format>false</use_scoped_format>
     </sys_ui_script>
