@@ -4,14 +4,17 @@
         <description>Displays a modal message dialog.</description>
         <global>true</global>
         <name>x_snc_devtools.DoModalMessage</name>
-        <script><![CDATA[function DoModalMessage(strTitle, strText)
+        <script><![CDATA[function DoModalMessage(strTitle, strText, callbackResult)
 {
+	var bCallback = false;
+	if (typeof callbackResult == 'function')
+	{
+		bCallback = true;
+	}
 	
-	
-	
-	//var Dialog = GetGlideDialogClass();
-	var Dialog = null;
-	if (Dialog != null)
+	var Dialog = GetGlideDialogClass();
+	//var Dialog = null;
+	if (Dialog != null && bCallback)
 	{
 		strTitle = GetStringValue(strTitle);
 		if (strTitle == '')
@@ -22,12 +25,15 @@
 		dialog.setTitle(strTitle);
 		dialog.setPreference("title", strText); // yes, "title" is the actual text...
 		
-		var bModalClosed = false;
+		//var bModalClosed = false;
 		
 		function onOK()
 		{
-			//alert('onOK');
-			bModalClosed = true;
+			//alert('onOK BEGIN');
+			callbackResult();
+			GlideModal.get().destroy();
+			//alert('onOK END');
+			//bModalClosed = true;
 		}
 		
 		dialog.setPreference('onPromptComplete',onOK);
@@ -35,6 +41,53 @@
 		//dialog.setPreference("warning", "false");
 		
 		dialog.render();
+
+		/*
+		while (queue.waitForMessage())
+		{
+		  queue.processNextMessage();
+		}
+		*/
+		
+
+	/*	
+		function Sleep(nMiliseconds)
+		{
+			await new Promise(resolve => setTimeout(resolve, nMiliseconds));
+		}
+		
+		var nCount = 0;
+		while (bModalClosed == false)
+		{
+			console.log('Count: '+nCount++);
+			Sleep(500);
+		}
+		*/
+		
+		
+		/*
+		function* Generator()
+		{
+			if (bModalClosed == true)
+			{
+				return;
+			}
+			else
+			{
+				yield++;
+			}
+		}
+		
+		var gen = Generator();
+		
+		var nCount = 0;
+		while (gen.next()) {
+			console.log('Count: '+nCount++);
+		};
+		*/
+		
+		
+		
 		
 /*		
 		
@@ -58,13 +111,13 @@ asyncRender();
 	*/	
 		
 /*		
-function timeout(ms)
-{
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
 async function sleep(ms)
 {
-    await timeout(ms);
+	function timeout(ms)
+	{
+		return new Promise(resolve => setTimeout(resolve, ms));
+	}
+	await timeout(ms);
     return;
 }
 */
@@ -101,6 +154,8 @@ async function sleep(ms)
 		
 		WaitForPromise();
 		*/
+		
+		/*
 function resolveAfterModalClosed()
 {
   return new Promise(resolve =>
@@ -135,11 +190,48 @@ async function asyncCall() {
 
 asyncCall();
 		
+		*/
+		
+	/*	
+		function resolveAfterModalClosed()
+		{
+			return new Promise(resolve =>
+			{
+				function Wait()
+				{
+					console.log('Wait');
+					if (bModalClosed == false)
+					{
+						setTimeout(Wait, 500);
+					}
+					else
+					{
+						console.log('resolve(ModalClosed)');
+						resolve('ModalClosed');
+					}
+				}
+				Wait();
+			 });
+		}
+
+		async function asyncCall()
+		{
+		  console.log('asyncCall');
+		  const result = await resolveAfterModalClosed();
+		  console.log('asyncCall: resolveAfterModalClosed returned: '+result);
+		}
+		
+		console.log('asyncCall BEFORE');
+		asyncCall();		
+		console.log('asyncCall AFTER');
+	*/	
 		
 		
 		
 		return;
 	}
+	
+	
 
 	// Fallback
 	strTitle = GetStringValue(strTitle);
@@ -148,6 +240,12 @@ asyncCall();
 		strText = strTitle + '\n\n' + strText;
 	}
 	alert(strText);
+	
+	if (bCallback == true)
+	{
+		callbackResult();
+	}
+	
 	return;
 }]]></script>
         <script_name>DoModalMessage</script_name>
@@ -155,14 +253,14 @@ asyncCall();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-09-01 09:59:02</sys_created_on>
         <sys_id>aff6e12fdba559109232dad1f39619ca</sys_id>
-        <sys_mod_count>27</sys_mod_count>
+        <sys_mod_count>47</sys_mod_count>
         <sys_name>x_snc_devtools.DoModalMessage</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_script_aff6e12fdba559109232dad1f39619ca</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-09-02 10:43:36</sys_updated_on>
+        <sys_updated_on>2022-09-03 06:36:17</sys_updated_on>
         <ui_type>0</ui_type>
         <use_scoped_format>false</use_scoped_format>
     </sys_ui_script>
