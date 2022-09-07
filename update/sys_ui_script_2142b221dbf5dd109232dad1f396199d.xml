@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_script">
+    <sys_ui_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Converts a string to html.</description>
+        <global>true</global>
+        <name>x_snc_devtools.HtmlEncode</name>
+        <script><![CDATA[function HtmlEncode(strValue)
+{
+	strValue = GetStringValue(strValue);
+	strResult = strValue.replace(/[\xA0-\xB0<>&]/gi,
+		function(i)
+		{
+			return '&#'+i.charCodeAt(0)+';';
+		});
+	strResult = strResult.replaceAll('\n','<br/>');
+	return strResult;
+}]]></script>
+        <script_name>HtmlEncode</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-09-07 20:34:12</sys_created_on>
+        <sys_id>2142b221dbf5dd109232dad1f396199d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_snc_devtools.HtmlEncode</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_ui_script_2142b221dbf5dd109232dad1f396199d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-09-07 20:34:12</sys_updated_on>
+        <ui_type>0</ui_type>
+        <use_scoped_format>false</use_scoped_format>
+    </sys_ui_script>
+</record_update>
