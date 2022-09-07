@@ -22,8 +22,11 @@
 		}
 		var dialog = new Dialog("x_snc_devtools_dialog_message", true);
 		dialog.setTitle(strTitle);
-		dialog.setPreference("text", HtmlEncode(strText));
 		
+		strText = HtmlEncode(strText);
+		strText = encodeURIComponent(strText);
+		dialog.setPreference("sysparm_text", strText);
+				
 		function onOK()
 		{
 			callbackResult();
@@ -32,185 +35,6 @@
 		dialog.setPreference('onOK',onOK);
 		dialog.render();
 	
-
-	/*	
-		function Sleep(nMiliseconds)
-		{
-			await new Promise(resolve => setTimeout(resolve, nMiliseconds));
-		}
-		
-		var nCount = 0;
-		while (bModalClosed == false)
-		{
-			console.log('Count: '+nCount++);
-			Sleep(500);
-		}
-		*/
-		
-		
-		/*
-		function* Generator()
-		{
-			if (bModalClosed == true)
-			{
-				return;
-			}
-			else
-			{
-				yield++;
-			}
-		}
-		
-		var gen = Generator();
-		
-		var nCount = 0;
-		while (gen.next()) {
-			console.log('Count: '+nCount++);
-		};
-		*/
-		
-		
-		
-		
-/*		
-		
-function resolveAfterModalRender()
-{
-  return new Promise(resolve =>
-	{
-	  dialog.render();
-      resolve('Dialog rendered');
-	 });
-}		
-		
-async function asyncRender() {
-  console.log('calling asyncRender');
-  const result = await resolveAfterModalRender();
-  console.log(result);
-  // expected output: "resolved"
-}
-
-asyncRender();		
-	*/	
-		
-/*		
-async function sleep(ms)
-{
-	function timeout(ms)
-	{
-		return new Promise(resolve => setTimeout(resolve, ms));
-	}
-	await timeout(ms);
-    return;
-}
-*/
-		/*
-		async function Sleep(nMiliseconds)
-		{
-			await new Promise(resolve => setTimeout(resolve, nMiliseconds));
-		}
-		*/
-
-		
-	
-		
-		
-		// The problem is: how to produce a non-blocking way to wait for the dialog to close BEFORE returning from this function?
-
-		
-		/*
-		function WaitForModal()
-		{
-			var nCount = 0;
-			while (bModalClosed == false && nCount < 50000)
-			{
-				console.log('Count: '+nCount++);
-			}
-			
-		}
-		
-		async function WaitForPromise()
-		{
-			await Promise.all([WaitForModal]);
-		}
-		
-		
-		WaitForPromise();
-		*/
-		
-		/*
-function resolveAfterModalClosed()
-{
-  return new Promise(resolve =>
-	{
-	  //dialog.render();
-	  
-
- 	  function Wait()
-		{
-		  var nCount = 0;
-		  while (bModalClosed == false && nCount < 50000)
-		  {
-			  console.log('Count: '+nCount++);
-		  }	  
-		  resolve('resolved');
-
-		}
- 	  
-	  setTimeout(Wait, 100);
-	  
-	  
-	  
-	 });
-}
-
-async function asyncCall() {
-  console.log('calling');
-  const result = await resolveAfterModalClosed();
-  console.log(result);
-  // expected output: "resolved"
-}
-
-asyncCall();
-		
-		*/
-		
-	/*	
-		function resolveAfterModalClosed()
-		{
-			return new Promise(resolve =>
-			{
-				function Wait()
-				{
-					console.log('Wait');
-					if (bModalClosed == false)
-					{
-						setTimeout(Wait, 500);
-					}
-					else
-					{
-						console.log('resolve(ModalClosed)');
-						resolve('ModalClosed');
-					}
-				}
-				Wait();
-			 });
-		}
-
-		async function asyncCall()
-		{
-		  console.log('asyncCall');
-		  const result = await resolveAfterModalClosed();
-		  console.log('asyncCall: resolveAfterModalClosed returned: '+result);
-		}
-		
-		console.log('asyncCall BEFORE');
-		asyncCall();		
-		console.log('asyncCall AFTER');
-	*/	
-		
-		
-		
 		return;
 	}
 	
@@ -236,14 +60,14 @@ asyncCall();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-09-01 09:59:02</sys_created_on>
         <sys_id>aff6e12fdba559109232dad1f39619ca</sys_id>
-        <sys_mod_count>51</sys_mod_count>
+        <sys_mod_count>56</sys_mod_count>
         <sys_name>x_snc_devtools.DoModalMessage</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_script_aff6e12fdba559109232dad1f39619ca</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-09-07 20:32:40</sys_updated_on>
+        <sys_updated_on>2022-09-07 21:24:08</sys_updated_on>
         <ui_type>0</ui_type>
         <use_scoped_format>false</use_scoped_format>
     </sys_ui_script>
