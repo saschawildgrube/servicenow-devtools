@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.HtmlRenderError</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Renders an error message in Html.</description>
+        <name>HtmlRenderError</name>
+        <script><![CDATA[function HtmlRenderError(strText)
+{
+	strText = GetStringValue(strText);
+	var strHtml = '<div style="color: red;">'+strText+'</div>';
+	return strHtml;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-09-16 18:18:29</sys_created_on>
+        <sys_id>7599a824dbce5510dcbdd03cd39619ad</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>HtmlRenderError</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_7599a824dbce5510dcbdd03cd39619ad</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-09-16 18:19:35</sys_updated_on>
+    </sys_script_include>
+</record_update>
