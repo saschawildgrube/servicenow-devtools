@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_script">
+    <sys_ui_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Displays a modal message dialog.</description>
+        <global>true</global>
+        <name>x_snc_devtools.DoModalMessage</name>
+        <script><![CDATA[function DoModalMessage(strTitle, strText, callbackResult)
+{
+	var bCallback = false;
+	if (typeof callbackResult == 'function')
+	{
+		bCallback = true;
+	}
+	
+	var Dialog = GetGlideDialogClass();
+	if (Dialog != null && bCallback)
+	{
+		strTitle = GetStringValue(strTitle);
+		if (strTitle == '')
+		{
+			strTitle = '&#160;';
+		}
+		var dialog = new Dialog("x_snc_devtools_dialog_message", true);
+		dialog.setTitle(strTitle);
+		
+		strText = HtmlEncode(strText);
+		strText = encodeURIComponent(strText);
+		dialog.setPreference("sysparm_text", strText);
+				
+		function onOK()
+		{
+			callbackResult();
+			var dialog = GlideModal.get();
+			dialog.destroy();
+		}
+		dialog.setPreference('onOK',onOK);
+		dialog.render();
+	
+		return;
+	}
+	
+	
+
+	// Fallback
+	strTitle = GetStringValue(strTitle);
+	if (strTitle != '')
+	{
+		strText = strTitle + '\n\n' + strText;
+	}
+	alert(strText);
+	
+	if (bCallback == true)
+	{
+		callbackResult();
+	}
+	
+	return;
+}]]></script>
+        <script_name>DoModalMessage</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-09-01 09:59:02</sys_created_on>
+        <sys_id>aff6e12fdba559109232dad1f39619ca</sys_id>
+        <sys_mod_count>57</sys_mod_count>
+        <sys_name>x_snc_devtools.DoModalMessage</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_ui_script_aff6e12fdba559109232dad1f39619ca</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-09-16 23:57:04</sys_updated_on>
+        <ui_type>0</ui_type>
+        <use_scoped_format>false</use_scoped_format>
+    </sys_ui_script>
+</record_update>

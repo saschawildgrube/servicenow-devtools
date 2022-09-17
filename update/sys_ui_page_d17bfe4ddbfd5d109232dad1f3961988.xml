@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script><![CDATA[(function(){
+    try
+	{
+        var elementText = gel("text");
+        elementText.innerHTML = decodeURIComponent("${sysparm_text}");
+    }
+	catch (e)
+	{
+	}
+})();
+
+addLoadEvent(focusInput);
+
+function invokePromptCallBack(type)
+{
+    var dialog = GlideDialogWindow.get();
+    if (type == 'ok')
+	{
+       var f = dialog.getPreference('onPromptComplete');
+    }
+	else
+	{
+       var f = dialog.getPreference('onPromptCancel');
+    }
+	if (typeof(f) == 'function')
+	{
+        try
+		{
+			var e = gel('glide_prompt_answer');
+            f.call(dialog, e.value);
+        }
+		catch(e)
+		{
+        }
+    }
+    dialog.destroy();
+    return false;
+}
+
+function focusInput()
+{
+   var e = gel('glide_prompt_answer');
+   Field.activate(e);
+   triggerEvent(e, 'focus', true);
+}]]></client_script>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_snc_devtools_dialog_prompt.do</endpoint>
+        <html><![CDATA[<g:ui_form onsubmit="return invokePromptCallBack('ok');">
+<table width="100%">
+	<tr>
+		<td>
+			<label for="glide_prompt_answer" id="text"></label>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<input size="50" id="glide_prompt_answer" name="glide_prompt_answer" value="${RP.getWindowProperties().default}"/>
+		</td>
+	</tr>
+	<tr>
+		<td align="right">
+			<g:dialog_buttons_ok_cancel 
+				ok="invokePromptCallBack('ok');" 
+				ok_type="button" 
+				cancel="invokePromptCallBack('cancel')" 
+				cancel_type="button" />
+		</td>
+	</tr>
+</table>
+</g:ui_form>]]></html>
+        <name>dialog_prompt</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-09-06 07:57:22</sys_created_on>
+        <sys_id>d17bfe4ddbfd5d109232dad1f3961988</sys_id>
+        <sys_mod_count>13</sys_mod_count>
+        <sys_name>dialog_prompt</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_ui_page_d17bfe4ddbfd5d109232dad1f3961988</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-09-16 23:53:15</sys_updated_on>
+    </sys_ui_page>
+</record_update>

@@ -143,6 +143,34 @@ function DevToolsGetFormatConfig(grRecord)
 	</ol>
 -->	
 	
+	<h3>1.43.0 - 2022-09-17</h3>
+	<ol>
+		<li>Added function GetVariablesFromRecord().</li>
+		<li>Added function SetCurrentScope().</li>
+		<li>Added function HtmlRenderError().</li>
+		<li>Added function HtmlRenderScript().</li>
+		<li>Added function IsPascalCase().</li>
+		<li>Added function DocumentationAPI::RenderEditorMacros().</li>
+		<li>Function GetTableFromSysId() is now public and hence added to the manual.</li>
+		<li>Function GetPseudoSysId() is now public and hence added to the manual.</li>
+		<li>Function GlideRecordAddQuery() is now public and hence added to the manual.</li>
+		<li>Added UI script function DoModalMessage() to display a message in a modal dialog.</li>
+		<li>Added UI script function DoModalConfirm() to ask the user for confirmation using a modal dialog.</li>
+		<li>Added UI script function DoModalPrompt() to ask the user for a text input using a modal dialog.</li>
+		<li>Added UI script function GetGlideDialogClass().</li>
+		<li>Added UI script function HtmlEncode().</li>
+		<li>Added a widget dependency and JS includes to use the DoModal* functions in portal widgets.</li>
+		<li>Added table sys_ui_action_view to the link directory.</li>
+		<li>Added tables sys_ws_definition and sys_ws_operation to the link directory.</li>
+		<li>Added tables sc_item_option and sc_item_option_mtom to the link directory.</li>
+		<li>Added business rule on sys_metadata to set the user's current scope to the scope of the record that is displayed.</li> 
+		<li>The "Save" UI action is now aware of the limitations to define a UI Action View (rule) in one scope referring to a UI Action from a different scope and displays the background script workaround.</li> 
+		<li>GetParentRecord() and the "Up" UI action now support records in sys_ui_action_view and return the related sys_ui_action record.</li>
+		<li>GetParentRecord() and the "Up" UI action now support records in sc_item_option and sc_item_option_mtom and return the related records.</li>
+		<li>GetParentRecord() and the "Up" UI action now support records in sys_ws_operation and returns the sys_ws_definition record.</li>
+		<li>Added macro for AppBuilder().</li>
+	</ol>	
+	
 	<h3>1.42.0 - 2022-08-11</h3>
 	<ol>
 		<li>Added UI action "Parent Table" to navigate from a list view to the parent table list view (if the table has a parent).</li> 
@@ -890,13 +918,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>871</sys_mod_count>
+        <sys_mod_count>895</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-08-11 11:53:56</sys_updated_on>
+        <sys_updated_on>2022-09-17 00:34:25</sys_updated_on>
     </sys_ui_page>
 </record_update>
