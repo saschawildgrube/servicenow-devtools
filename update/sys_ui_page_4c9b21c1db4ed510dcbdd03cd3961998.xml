@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script/>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_snc_devtools_gallery.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+
+	<h1>DevTools Gallery</h1>
+	<g2:no_escape>$[HtmlRenderError('This is an error message')]</g2:no_escape>	
+	<g2:no_escape>$[HtmlRenderWarning('This is a warning message')]</g2:no_escape>	
+	<g2:no_escape>$[HtmlRenderInfo('This is an information message')]</g2:no_escape>	
+	
+</j:jelly>]]></html>
+        <name>gallery</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-09-18 12:23:52</sys_created_on>
+        <sys_id>4c9b21c1db4ed510dcbdd03cd3961998</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>gallery</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_ui_page_4c9b21c1db4ed510dcbdd03cd3961998</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-09-18 12:27:50</sys_updated_on>
+    </sys_ui_page>
+</record_update>
