@@ -11,7 +11,12 @@
 {
 	try
 	{
-		var regexp = new RegExp(GetStringValue(strRegEx), GetStringValue(strOptions));
+		strRegEx = GetStringValue(strRegEx);
+		if (strRegEx == '')
+		{
+			return false;
+		}
+		var regexp = new RegExp(strRegEx, GetStringValue(strOptions));
 		return regexp.test(GetStringValue(strString));		
 	}
 	catch (e)
@@ -24,13 +29,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-04-19 16:01:58</sys_created_on>
         <sys_id>80cbe30cdb070950bcced03cd39619d5</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>StringCheckRegEx</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_80cbe30cdb070950bcced03cd39619d5</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-10-12 12:25:53</sys_updated_on>
+        <sys_updated_on>2022-10-12 13:53:32</sys_updated_on>
     </sys_script_include>
 </record_update>
