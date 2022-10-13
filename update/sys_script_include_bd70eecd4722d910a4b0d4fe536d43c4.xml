@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.ScriptGetFunctionNames</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Retrieves the names of all functions from the given script.</description>
+        <name>ScriptGetFunctionNames</name>
+        <script><![CDATA[function ScriptGetFunctionNames(strScript)
+{
+	strScript = GetStringValue(strScript);
+	var aNames = [];
+	
+	var nodes = {};
+	var parentNodes = [];
+		
+	var parser = RunScriptInGlobalScope('result = new sn_parser.RhinoParser();');
+	if (IsObject(parser) == false)
+	{
+		//Debug('parser is not an object');
+		return false;
+	}
+
+	var rootNode = parser.parse(strScript);
+	if (IsObject(rootNode) == false)
+	{
+		//Debug('rootNode is not an object');
+		return false;
+	}
+		
+	// Pass 1: Use visitor to build up the basic structure
+	rootNode.visit(function(node) {
+		var key = node.getAbsolutePosition();
+		if (nodes.hasOwnProperty / (key))
+			gs.error("LINT: duplicate position " + key);
+		nodes[key] = {
+			lineNo: node.getLineNo(),
+			position: node.getAbsolutePosition(),
+			type: node.getTypeName(),
+			nodeOrig: node
+		};
+		if (!gs.nil(node.getParent())) {
+			nodes[key].parentPosition = node.getParent().getAbsolutePosition();
+		}
+		if (node.getTypeName() == "NAME") {
+			nodes[key].name = node.getNameIdentifier();
+		}
+	});
+
+	// Pass 2: Child nodes to their parent nodes
+	for (key in nodes) {
+		if (!gs.nil(nodes[key].parentPosition) && nodes[key].parentPosition != nodes[key].position) {
+			if (!nodes[nodes[key].parentPosition].hasOwnProperty("children"))
+				nodes[nodes[key].parentPosition].children = [];
+			nodes[nodes[key].parentPosition].children.push(nodes[key]);
+		} else {
+			parentNodes.push(nodes[key]);
+		}
+	}
+
+		
+
+	var functionNames = {};
+	var node;
+		
+	for (key in nodes) {
+		if (nodes[key].type == "FUNCTION") {
+			if (nodes[nodes[key].parentPosition].type == "NAME") {
+				node = null;
+
+				// Assignment of an anonymous function to a static method name, 
+				// e.g. Class.static = function(arg1, ...) ...
+				if(nodes[nodes[key].parentPosition].children[0] != nodes[key] && nodes[nodes[key].parentPosition].children[0].type == "NAME") {
+					node = nodes[nodes[key].parentPosition].children[0];
+				}
+
+				// Assignment of an anonymous function to a dynamic method name
+				// e.g. Class.prototype = { dynamic: function(arg1, ...) }
+				else {
+					node = nodes[nodes[key].parentPosition];
+				}
+
+			} else if (nodes[key].children[0].type == "NAME") {
+
+				// Non-anonymous function
+				// e.g. function notAnonymous(arg1, ...)
+				node = nodes[key].children[0];
+			}
+			if( ! gs.nil(node) )
+				functionNames[node.name] = node;
+		}
+	}
+	
+
+	/*
+	toString: function() {
+		return JSON.stringify(this.parentNodes);
+	},
+	*/
+
+	
+	aNames = functionNames;
+	
+	
+	return aNames;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-10-13 12:47:11</sys_created_on>
+        <sys_id>bd70eecd4722d910a4b0d4fe536d43c4</sys_id>
+        <sys_mod_count>11</sys_mod_count>
+        <sys_name>ScriptGetFunctionNames</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_bd70eecd4722d910a4b0d4fe536d43c4</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-10-13 13:55:22</sys_updated_on>
+    </sys_script_include>
+</record_update>
