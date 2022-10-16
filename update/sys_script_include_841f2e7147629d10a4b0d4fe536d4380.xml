@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.GetAllTables</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns an object that contains all details of all tables, including a list of tables that are extended from a table if requested.</description>
+        <name>GetAllTables</name>
+        <script><![CDATA[function GetAllTables(bExtendingTables)
+{
+	bExtendingTables = GetBoolValue(bExtendingTables);
+	var grTables = new GlideRecord('sys_db_object');
+	grTables.orderBy('name');
+	grTables.query();
+	var tables = {};
+	var tables_by_sys_id = {};
+	while (grTables.next())
+	{
+		var strTable = GetStringValue(grTables.name);
+		if (bExtendingTables == true)
+		{
+			tables_by_sys_id[GetStringValue(grTables.sys_id)] = strTable; 
+		}
+		tables[strTable] = Clone(grTables);
+	}
+	if (bExtendingTables == true)
+	{
+		var aTables = GetKeys(tables);
+		for (var nTable = 0; nTable < aTables.length; nTable++)
+		{
+			var strTable = aTables[nTable];
+			var strSuperClass = tables[strTable].super_class;
+			if (strSuperClass != '')
+			{
+				var strSuperClassTable = tables_by_sys_id[strSuperClass];
+				var aExtendingTables = GetArrayValue(GetValue(tables,strSuperClassTable,'extending_tables'));
+				aExtendingTables.push(strTable);
+				tables[strSuperClassTable].extending_tables = aExtendingTables;
+			}
+		}
+	}
+	
+	return tables;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-10-15 21:48:43</sys_created_on>
+        <sys_id>841f2e7147629d10a4b0d4fe536d4380</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>GetAllTables</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_841f2e7147629d10a4b0d4fe536d4380</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-10-16 07:43:47</sys_updated_on>
+    </sys_script_include>
+</record_update>
