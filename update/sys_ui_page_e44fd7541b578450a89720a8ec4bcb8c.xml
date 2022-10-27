@@ -151,11 +151,13 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>Added function IsKebabCase() to check if a string is "kebab-case".</li>
 		<li>Added function IsSnakeCase() to check if a string is "snake_case".</li>
 		<li>Added function GetCleanAppName() to strip postfixes from an application name based on the given string and refactored GetAppName() to use the new function.</li>
+		<li>Added function GetInstanceListURL().</li>
 		<li>Function GetAppRecord() can now also get the app record by the (clean) name of the app.</li> 
 		<li>Function GetAppRecord() can now also be used to get store apps, since it now queries the sys_scope table (instead of sys_app).</li>
 		<li>Function GetAppScope() now uses GetAppRecord() internally and hence can return the scope name based on an app's Sys ID, name, scope name or an existing record object.</li>
+		<li>Added "List" and "All Configurations" links to the WhatRuns page.</li>
 		<li>Added the "Maintainer", "Maintainer Email", "Documentation (url)" and "Repository (url)" fields on sys_app.</li>
-		<li>Added the DevTools view for sys_app to show the new fields.</li>
+		<li>Added the DevTools view for sys_app to only show essential fields and the new fields to document the maintainer, documentation and repo urls.</li>
 		<li>Fixed a bug in client function ServerRequest().</li>
 		<li>GetParentRecord() and the "Up" UI action now support records in sys_atf_test_suite_test and return the related sys_atf_test_suite record.</li>
 		<li>Enforcing the DevTools view on the content_css form and make sure only the correct fields are displayed.</li>
@@ -947,13 +949,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>923</sys_mod_count>
+        <sys_mod_count>926</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-10-25 14:54:11</sys_updated_on>
+        <sys_updated_on>2022-10-27 12:01:37</sys_updated_on>
     </sys_ui_page>
 </record_update>
