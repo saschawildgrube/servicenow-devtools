@@ -11,7 +11,9 @@
 {
 	if (IsValidRecord(vValue))
 	{
-		if (vValue.getRecordClassName() == 'sys_app')
+		if (   vValue.getRecordClassName() == 'sys_scope'
+			|| vValue.getRecordClassName() == 'sys_app'
+			|| vValue.getRecordClassName() == 'sys_store_app')
 		{
 			return vValue;
 		}
@@ -22,39 +24,54 @@
 	{
 		return false;
 	}
+	if (strValue == 'global')
+	{
+		return false;
+	}
 
-	var grApp1 = new GlideRecord('sys_app');
-	
 	if (IsValidSysId(strValue))
 	{
-		if (grApp1.get(strValue))
+		var grApp = new GlideRecord('sys_scope');
+		if (grApp.get(strValue))
 		{
-			return grApp1;
+			return grApp;
 		}
 		return false;
 	}
 	
-	var grApp2 = new GlideRecord('sys_app');
-	grApp2.addQuery('scope','=',strValue);
-	grApp2.query();
-	if (grApp2.next())
+	var grApp = new GlideRecord('sys_scope');
+	grApp.addQuery('scope','=',strValue);
+	grApp.query();
+	if (grApp.next())
 	{
-		return grApp2;
+		return grApp;
 	}
-		
+	
+	var grApp = new GlideRecord('sys_scope');
+	grApp.addQuery('name','STARTSWITH',GetCleanAppName(strValue));
+	grApp.orderBy('name');
+	grApp.query();
+	if (grApp.next())
+	{
+		if (GetCleanAppName(strValue) == GetCleanAppName(grApp.name))
+		{
+			return grApp;
+		}
+	}
+			
 	return false;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-04-05 14:51:44</sys_created_on>
         <sys_id>e2859bebdb22c110bcced03cd39619c7</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>12</sys_mod_count>
         <sys_name>GetAppRecord</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_e2859bebdb22c110bcced03cd39619c7</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-07-06 12:28:03</sys_updated_on>
+        <sys_updated_on>2022-10-25 13:03:39</sys_updated_on>
     </sys_script_include>
 </record_update>

@@ -34,6 +34,23 @@
 		if (IsObject(whatruns_table))
 		{
 			strHtml += '<h2>'+strTable+'</h2>';
+			
+			strHtml += '<p>';
+			
+			strHtml += HtmlRenderLink(
+				GetInstanceListURL(strTable,'','',0),
+				'List',
+				true);	
+			
+			strHtml += '&#160;|&#160;'; 		
+			
+			strHtml += HtmlRenderLink(
+				GetInstanceURL()
+					+'/nav_to.do?uri=personalize_all.do%3Fsysparm_rules_table%3D'+strTable+'%26sysparm_rules_label%3D'+strTable,
+				'All Configuration',
+				true);
+			
+			strHtml += '</p>';
 
 			
 			function HtmlRenderWhatRunsPhase(strPhase,aWhatRuns)
@@ -114,13 +131,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-03-29 08:13:08</sys_created_on>
         <sys_id>9f273595dba64910b652edb305961981</sys_id>
-        <sys_mod_count>45</sys_mod_count>
+        <sys_mod_count>52</sys_mod_count>
         <sys_name>HtmlRenderWhatRuns</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_9f273595dba64910b652edb305961981</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-09-16 23:39:04</sys_updated_on>
+        <sys_updated_on>2022-10-27 11:58:07</sys_updated_on>
     </sys_script_include>
 </record_update>
