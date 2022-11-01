@@ -449,7 +449,7 @@ DocumentationAPI.prototype = {
 		{
 			if (strInstallURL != '')
 			{
-				strHTML += '<li>Perform all&#160;<a href="'+strInstallURL+'" target="_blank">installation steps documented</a>&#160;for the '+strAppName+' application.</li>';
+				strHTML += '<li>Perform all installation steps for the '+strAppName+' application documented here:&#160;<a href="'+strInstallURL+'" target="_blank">'+strInstallURL+'</a>&#160;</li>';
 				
 			}
 			else
@@ -548,13 +548,13 @@ DocumentationAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-01-20 15:26:20</sys_created_on>
         <sys_id>98912146db31e490ba15a353059619b6</sys_id>
-        <sys_mod_count>111</sys_mod_count>
+        <sys_mod_count>113</sys_mod_count>
         <sys_name>DocumentationAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_98912146db31e490ba15a353059619b6</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-10-31 14:03:37</sys_updated_on>
+        <sys_updated_on>2022-11-01 08:25:05</sys_updated_on>
     </sys_script_include>
 </record_update>
