@@ -5,7 +5,8 @@
         <api_name>x_snc_devtools.ScriptGetFunctionNames</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Retrieves the names of all functions from the given script (or engine object). As the sn_parser object is only available within a script in a linter scan check, this function can only be used within such a check script for the time being.</description>
+        <description>Retrieves the names of all functions from the given script (or engine object). As the sn_parser object is only available within a script in a linter scan check, this function can only be used within such a check script for the time being.&#13;
+A known deficiency is that anonymous functions erroneously return with the function name of the function that receives the function as a parameter.</description>
         <name>ScriptGetFunctionNames</name>
         <script><![CDATA[function ScriptGetFunctionNames(vScriptOrEngine)
 {
@@ -56,62 +57,86 @@
 	var parentNodes = [];
 	
 	
-	// Pass 1: Use visitor to build up the basic structure
-	rootNode.visit(function(node) {
+	// Pass 1: Use visitor to build up the basic structure	
+	rootNode.visit(function(node)
+	{
 		var key = node.getAbsolutePosition();
 		if (nodes.hasOwnProperty / (key))
+		{
 			gs.error("LINT: duplicate position " + key);
+		}
 		nodes[key] = {
 			lineNo: node.getLineNo(),
 			position: node.getAbsolutePosition(),
 			type: node.getTypeName(),
 			nodeOrig: node
 		};
-		if (!gs.nil(node.getParent())) {
-			nodes[key].parentPosition = node.getParent().getAbsolutePosition();
+		var parent = node.getParent(); 
+		if (!gs.nil(parent))
+		{
+			nodes[key].parentPosition = parent.getAbsolutePosition();
 		}
-		if (node.getTypeName() == "NAME") {
+		if (node.getTypeName() == "NAME")
+		{
 			nodes[key].name = node.getNameIdentifier();
 		}
 	});
 
 	// Pass 2: Child nodes to their parent nodes
-	for (key in nodes) {
-		if (!gs.nil(nodes[key].parentPosition) && nodes[key].parentPosition != nodes[key].position) {
-			if (!nodes[nodes[key].parentPosition].hasOwnProperty("children"))
-				nodes[nodes[key].parentPosition].children = [];
-			nodes[nodes[key].parentPosition].children.push(nodes[key]);
-		} else {
+	for (key in nodes)
+	{
+		var node = nodes[key];
+		if (!gs.nil(node.parentPosition) && node.parentPosition != node.position)
+		{
+			var parentNode = nodes[node.parentPosition];
+			if (!parentNode.hasOwnProperty("children"))
+			{
+				SetValue([],nodes,node.parentPosition,'children');
+			}
+			var children = GetValue(nodes,node.parentPosition,'children');
+			children.push(node);
+			SetValue(children,nodes,node.parentPosition,'children');
+		}
+		else
+		{
 			parentNodes.push(nodes[key]);
 		}
 	}
 
 		
-
 	var node;
-		
-	for (key in nodes) {
-		if (nodes[key].type == "FUNCTION") {
-			if (nodes[nodes[key].parentPosition].type == "NAME") {
+
+	for (key in nodes)
+	{
+		var currentNode = nodes[key];
+		if (currentNode.type == "FUNCTION")
+		{
+			var parentNode = nodes[currentNode.parentPosition];
+			if (parentNode.type == "NAME")
+			{
 				node = null;
 
 				// Assignment of an anonymous function to a static method name, 
 				// e.g. Class.static = function(arg1, ...) ...
-				if(nodes[nodes[key].parentPosition].children[0] != nodes[key] && nodes[nodes[key].parentPosition].children[0].type == "NAME") {
-					node = nodes[nodes[key].parentPosition].children[0];
+				if (GetValue(parentNode,'children',0) != currentNode && GetValue(parentNode,'children',0,'type') == "NAME")
+				{
+					node = GetValue(parentNode,'children',0);
 				}
 
 				// Assignment of an anonymous function to a dynamic method name
 				// e.g. Class.prototype = { dynamic: function(arg1, ...) }
-				else {
-					node = nodes[nodes[key].parentPosition];
+				else
+				{
+					node = nodes[currentNode.parentPosition];
 				}
 
-			} else if (nodes[key].children[0].type == "NAME") {
+			}
+			else if (GetValue(currentNode,'children',0,'type') == "NAME")
+			{
 
 				// Non-anonymous function
 				// e.g. function notAnonymous(arg1, ...)
-				node = nodes[key].children[0];
+				node = GetValue(currentNode,'children',0);
 			}
 			if( ! gs.nil(node) )
 			{
@@ -136,13 +161,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-10-13 12:47:11</sys_created_on>
         <sys_id>bd70eecd4722d910a4b0d4fe536d43c4</sys_id>
-        <sys_mod_count>22</sys_mod_count>
+        <sys_mod_count>31</sys_mod_count>
         <sys_name>ScriptGetFunctionNames</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_bd70eecd4722d910a4b0d4fe536d43c4</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-11-01 08:56:19</sys_updated_on>
+        <sys_updated_on>2022-11-01 11:53:39</sys_updated_on>
     </sys_script_include>
 </record_update>
