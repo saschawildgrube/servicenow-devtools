@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="syntax_editor_macro">
+    <syntax_editor_macro action="INSERT_OR_UPDATE">
+        <comments>This editor macro creates the code necessary to access the function contained in the InstanceScanSuiteOnApp script include.</comments>
+        <name>InstanceScanSuiteOnApp</name>
+        <sys_class_name>syntax_editor_macro</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-11-08 15:01:39</sys_created_on>
+        <sys_id>dfc83425dbc399106a03dad1f3961944</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>InstanceScanSuiteOnApp</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>syntax_editor_macro_dfc83425dbc399106a03dad1f3961944</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-11-08 15:02:44</sys_updated_on>
+        <text>var InstanceScanSuiteOnApp = x_snc_devtools.InstanceScanSuiteOnApp;&#13;
+InstanceScanSuiteOnApp('833655cc1b94101046e87733cd4bcb4e',x_snc_devtools.GetAppRecord('x_snc_devtools').sys_id);</text>
+    </syntax_editor_macro>
+</record_update>
