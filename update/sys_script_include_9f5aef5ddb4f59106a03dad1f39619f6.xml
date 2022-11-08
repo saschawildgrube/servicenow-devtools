@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.InstanceScanSuiteOnApp</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Performs an instance scan on an application using a specific suite.</description>
+        <name>InstanceScanSuiteOnApp</name>
+        <script><![CDATA[function InstanceScanSuiteOnApp(strSuiteSysId, strAppSysId, bDetailed)
+{
+	strSuiteSysId = GetStringValue(strSuiteSysId);
+	strAppSysId = GetStringValue(strAppSysId);
+	
+	if (IsValidSysId(strSuiteSysId) == false)
+	{
+		return false;
+	}
+	if (IsValidSysId(strAppSysId) == false)
+	{
+		return false;
+	}
+	
+	var strUrl = GetInstanceURL()+'/api/sn_cicd/instance_scan/suite_scan/'+strSuiteSysId+'/scoped_apps';
+	var strBody = '{ app_scope_sys_ids : ["'+strAppSysId+'"]}';
+	
+
+	var strUserName = 'devtools.technicaluser.instancescan';
+	var strPassword = GetRandomNumericToken(30);
+
+	
+	var grUser = new GlideRecord('sys_user');
+	grUser.initialize();
+	grUser.user_name = strUserName;
+	grUser.user_password.setDisplayValue(strPassword);
+	grUser.web_service_access_only = true;
+	grUser.internal_integration_user = true;
+	var strUserSysId = GlideRecordInsert(grUser);
+	
+	if (IsValidSysId(strUserSysId) == false)
+	{
+		return false;
+	}
+	
+	var grUserHasRole = new GlideRecord('sys_user_has_role');
+	grUserHasRole.initialize();
+	grUserHasRole.user = strUserSysId;
+	grUserHasRole.role = '2831a114c611228501d4ea6c309d626d'; // admin
+	var strUserHasRole = GlideRecordInsert(grUserHasRole);
+
+	try
+	{
+		var request = new sn_ws.RESTMessageV2();
+		request.setEndpoint(strUrl);
+		request.setHttpMethod('POST');
+		request.setRequestHeader("Accept","application/json");
+		request.setBasicAuth(strUserName,strPassword);
+		request.setRequestBody(strBody);
+		var response = request.execute();
+	}
+	catch (e)
+	{
+	}
+
+	
+	var grUserDelete = GetUserRecord(strUserSysId);
+	GlideRecordDelete(grUserDelete);
+	
+	var strResponse = response.getBody();
+	var result = ParseJson(strResponse);
+	var strProgressSysId = GetValue(result,'result','links','progress','id');
+	if (IsValidSysId(strProgressSysId) == false)
+	{
+		return false;
+	}
+	
+	var grProgress = new GlideRecord('sys_progress_worker');
+	var bProgress = true;
+	while (bProgress == true)
+	{
+		if (grProgress.get(strProgressSysId))
+		{
+			var strState = GetStringValue(grProgress.state);  
+			if (strState != 'starting' && strState != 'running')
+			{
+				bProgress = false;
+			}
+		}
+		else
+		{
+			bProgress = false;
+		}
+	}
+	
+	var grScanResult = new GlideRecord('scan_result');
+	grScanResult.addQuery('progress_id','=',strProgressSysId);
+	grScanResult.query();
+	if (grScanResult.next() == false)
+	{
+		return false;
+	}
+	
+	return InstanceScanGetScanResults(grScanResult.sys_id,bDetailed);
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-11-08 09:18:56</sys_created_on>
+        <sys_id>9f5aef5ddb4f59106a03dad1f39619f6</sys_id>
+        <sys_mod_count>27</sys_mod_count>
+        <sys_name>InstanceScanSuiteOnApp</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_9f5aef5ddb4f59106a03dad1f39619f6</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-11-08 11:28:11</sys_updated_on>
+    </sys_script_include>
+</record_update>
