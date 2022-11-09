@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.HtmlRenderTable</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Renders a table in html.</description>
+        <name>HtmlRenderTable</name>
+        <script><![CDATA[function HtmlRenderTable(aCells,strClass,strStyles)
+{
+	aCells = GetArrayValue(aCells);
+	strClass = GetStringValue(strClass);
+	strStyles = GetStringValue(strStyles);
+	
+	var strHtml = '';
+	
+	var strHtmlClass = '';
+	if (strClass != '')
+	{
+		strHtmlClass = ' class="'+strClass+'"';
+	}
+	
+	if (strStyles != '')
+	{
+		strHtml += '<style>\n'+strStyles+'</style>\n';
+	}
+	
+	strHtml += '<table'+strHtmlClass+'><tbody>\n';
+	
+	for (var nRow = 0; nRow < aCells.length; nRow++)
+	{
+		var aRow = GetArrayValue(aCells[nRow]);
+		strHtml += '<tr'+strHtmlClass+'>';
+		
+		for (var nCol = 0; nCol < aRow.length; nCol++)
+		{
+			var bHeader = false;
+			var strHorizontal = 'left';
+			var strContent = '';
+			var cell = aRow[nCol];
+			if (IsObject(cell))
+			{
+				bHeader = GetBoolValue(GetValue(cell,'header'));
+				strHorizontal = GetBoolValue(GetValue(cell,'horizontal'));
+				strContent = GetStringValue(GetValue(cell,'content'));
+			}
+			else
+			{
+				strContent = GetStringValue(cell);
+			}
+			if (bHeader == true)
+			{
+				strHtml += '<th'+strHtmlClass+'>';
+			}
+			else
+			{
+				strHtml += '<td'+strHtmlClass+'>';
+			}
+			strHtml += strContent;
+			if (bHeader == true)
+			{
+				strHtml += '</th>';
+			}
+			else
+			{
+				strHtml += '</td>';
+			}
+		}
+			
+		strHtml += '</tr>';
+	}
+	
+	strHtml += '</tbody></table>\n';
+	
+	return strHtml;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-11-09 07:57:37</sys_created_on>
+        <sys_id>c1fe5cb5db43d9106a03dad1f39619d7</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>HtmlRenderTable</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_c1fe5cb5db43d9106a03dad1f39619d7</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-11-09 08:20:15</sys_updated_on>
+    </sys_script_include>
+</record_update>
