@@ -40,22 +40,22 @@ DocumentationAPI.prototype = {
 	{
 		strURL = GetStringValue(strURL);
 		strText = GetStringValue(strText);
-		var strHTML = '';
-		strHTML += '<li>';
+		var strHtml = '';
+		strHtml += '<li>';
 		if (strURL != '')
 		{
-			strHTML += HtmlRenderLink(strURL,strItem,true);
+			strHtml += HtmlRenderLink(strURL,strItem,true);
 		}
 		else
 		{
-			strHTML += '<b>'+strItem +'</b>&#160;';
+			strHtml += '<b>'+strItem +'</b>&#160;';
 		}
 		if (strText != '')
 		{
-			strHTML += '<p>'+strText+'</p>';
+			strHtml += '<p>'+strText+'</p>';
 		}
-		strHTML += '</li>';		
-		return strHTML;
+		strHtml += '</li>';		
+		return strHtml;
 	},
 	
 	RenderCopyright: function(nCopyrightYear, strCopyrightHolder)
@@ -78,10 +78,10 @@ DocumentationAPI.prototype = {
 	
 	RenderDisclaimer: function()
 	{
-		var strHTML = '';
-		strHTML += '<p>'+GetAppName(this.m_strAppSysId)+' is NOT an officially supported ServiceNow product.</p>';
-		strHTML += '<p>'+GetAppName(this.m_strAppSysId)+' does NOT come with any kind of warranty. If you use it, you own it!</p>';
-		return strHTML;
+		var strHtml = '';
+		strHtml += '<p>'+GetAppName(this.m_strAppSysId)+' is NOT an officially supported ServiceNow product.</p>';
+		strHtml += '<p>'+GetAppName(this.m_strAppSysId)+' does NOT come with any kind of warranty. If you use it, you own it!</p>';
+		return strHtml;
 	},	
 	
 	RenderLicense: function()
@@ -106,16 +106,24 @@ DocumentationAPI.prototype = {
 		grUR.orderBy('name');
 		grUR.query();
 
-		var strHTML = '<ul>';
-		while (grUR.next())
+		var strHtml = '';
+		if (grUR.getRowCount() == 0)
 		{
-			strHTML += this.RenderListItem(
-				grUR.getValue('name'),
-				GetInstanceRecordURI('sys_user_role',grUR.sys_id),
-				grUR.getValue('description'))
+			strHtml += '<p>This app does not define any roles.</p>';
 		}
-		strHTML += '</ul>';
-		return strHTML;			
+		else
+		{
+			strHtml += '<ul>';
+			while (grUR.next())
+			{
+				strHtml += this.RenderListItem(
+					grUR.getValue('name'),
+					GetInstanceRecordPath('sys_user_role',grUR.sys_id),
+					grUR.getValue('description'))
+			}
+			strHtml += '</ul>';
+		}
+		return strHtml;			
 	},
 	
 	RenderProperties: function()
@@ -129,17 +137,25 @@ DocumentationAPI.prototype = {
 		grSP.orderBy('name');
 		grSP.query();
 
-		var strHTML = '<ul>';
-		while (grSP.next())
+		var strHtml = '';
+		if (grSP.getRowCount() == 0)
 		{
-			var strDescription = HtmlEncode(grSP.getValue('description'));
-			strHTML += this.RenderListItem(
-				grSP.getValue('name'),
-				'/sys_properties.do?sys_id='+grSP.sys_id,
-				strDescription);
+			strHtml += '<p>This app does not contain any system properties.</p>';
 		}
-		strHTML += '</ul>';
-		return strHTML;	
+		else
+		{
+			strHtml += '<ul>';
+			while (grSP.next())
+			{
+				var strDescription = HtmlEncode(grSP.getValue('description'));
+				strHtml += this.RenderListItem(
+					grSP.getValue('name'),
+					GetInstanceRecordPath('sys_properties',grSP.sys_id),
+					strDescription);
+			}
+			strHtml += '</ul>';
+		}
+		return strHtml;	
 	},
 	
 	RenderEvents: function()
@@ -153,16 +169,16 @@ DocumentationAPI.prototype = {
 		grEvent.orderBy('event_name');
 		grEvent.query();
 
-		var strHTML = '<ul>';
+		var strHtml = '<ul>';
 		while (grEvent.next())
 		{
-			strHTML += this.RenderListItem(
+			strHtml += this.RenderListItem(
 				grEvent.getValue('event_name'),
 				'',
 				grEvent.getValue('description'));
 		}
-		strHTML += '</ul>';
-		return strHTML;			
+		strHtml += '</ul>';
+		return strHtml;			
 	},
 	
 	RenderUIActions: function()
@@ -177,20 +193,20 @@ DocumentationAPI.prototype = {
 		grSUA.addActiveQuery();
 		grSUA.query();
 
-		var strHTML = '<ul>';
+		var strHtml = '<ul>';
 		while (grSUA.next())
 		{
 			var strName = grSUA.getValue('name');
 			var strTable = grSUA.getValue('table');
 			var strComments = GetStringValue(grSUA.getValue('comments'));
 
-			strHTML += this.RenderListItem(
+			strHtml += this.RenderListItem(
 				strName + ' ('+strTable+')',
-				'/sys_ui_action.do?sys_id='+grSUA.sys_id,
+				GetInstanceRecordPath('sys_ui_action',grSUA.sys_id),
 				strComments);
 		}
-		strHTML += '</ul>';
-		return strHTML;
+		strHtml += '</ul>';
+		return strHtml;
 	},
 	
 	
@@ -206,18 +222,18 @@ DocumentationAPI.prototype = {
 		grSSI.orderBy('name');
 		grSSI.query();
 
-		var strHTML = '<ul>';
+		var strHtml = '<ul>';
 		while (grSSI.next())
 		{
 			var strDescription = HtmlEncode(grSSI.getValue('description'));
 			
-			strHTML += this.RenderListItem(
+			strHtml += this.RenderListItem(
 				grSSI.getValue('name'),
-				'/sys_script_include.do?sys_id='+grSSI.sys_id,
+				GetInstanceRecordPath('sys_script_include',grSSI.sys_id),
 				strDescription);
 		}
-		strHTML += '</ul>';
-		return strHTML;
+		strHtml += '</ul>';
+		return strHtml;
 	},
 	
 	
@@ -233,18 +249,18 @@ DocumentationAPI.prototype = {
 		grSUS.orderBy('name');
 		grSUS.query();
 
-		var strHTML = '<ul>';
+		var strHtml = '<ul>';
 		while (grSUS.next())
 		{
 			//var strDescription = HtmlEncode(grSUS.getValue('description'));
 			
-			strHTML += this.RenderListItem(
+			strHtml += this.RenderListItem(
 				grSUS.getValue('script_name'),
 				'/sys_ui_script.do?sys_id='+grSUS.sys_id,
 				grSUS.getValue('description'));
 		}
-		strHTML += '</ul>';
-		return strHTML;
+		strHtml += '</ul>';
+		return strHtml;
 	},	
 
 	RenderBusinessRules: function()
@@ -259,19 +275,19 @@ DocumentationAPI.prototype = {
 		grSS.addActiveQuery();
 		grSS.query();
 
-		var strHTML = '<ul>';
+		var strHtml = '<ul>';
 		while (grSS.next())
 		{
 			var strName = grSS.getValue('name');
 			var strCollection = grSS.getValue('collection');
 			
-			strHTML += this.RenderListItem(
+			strHtml += this.RenderListItem(
 				strName +' ('+strCollection+')',
-				'/sys_script.do?sys_id='+grSS.sys_id,
+				GetInstanceRecordPath('sys_script',grSS.sys_id),
 				'');
 		}
-		strHTML += '</ul>';
-		return strHTML;
+		strHtml += '</ul>';
+		return strHtml;
 	},
 
 	RenderScheduledJobs: function()
@@ -280,24 +296,34 @@ DocumentationAPI.prototype = {
 		{
 			return this.RenderError();
 		}
+		
+		var strHtml = '';
+		
 		var grSS = new GlideRecord('sysauto_script');
 		grSS.addQuery('sys_scope','=',this.m_strAppSysId);
 		grSS.orderBy('name');
 		grSS.addActiveQuery();
 		grSS.query();
 
-		var strHTML = '<ul>';
-		while (grSS.next())
+		if (grSS.getRowCount() == 0)
 		{
-			var strName = grSS.getValue('name');
-			
-			strHTML += this.RenderListItem(
-				strName,
-				GetInstanceRecordPath('sysauto_script',grSS.sys_id),
-				RenderRecordExecutionSchedule(grSS));
+			strHtml += '<p>This app does not contain any active scheduled jobs.</p>';
 		}
-		strHTML += '</ul>';
-		return strHTML;
+		else
+		{
+			strHtml = '<ul>';
+			while (grSS.next())
+			{
+				var strName = grSS.getValue('name');
+
+				strHtml += this.RenderListItem(
+					strName,
+					GetInstanceRecordPath('sysauto_script',grSS.sys_id),
+					RenderRecordExecutionSchedule(grSS));
+			}
+			strHtml += '</ul>';
+		}
+		return strHtml;
 	},
 	
 	
@@ -314,20 +340,20 @@ DocumentationAPI.prototype = {
 		grSC.query();
 
 		
-		var strHTML = '<ul>';
+		var strHtml = '<ul>';
 		while (grSC.next())
 		{
 			var strDescription = GetStringValue(grSC.getValue('html_description'));
 			strDescription = strDescription.replace('<p>','');
 			strDescription = strDescription.replace('</p>','');
 						
-			strHTML += this.RenderListItem(
+			strHtml += this.RenderListItem(
 				grSC.getValue('name'),
 				'/sys_atf_step_config.do?sys_id='+grSC.sys_id,
 				strDescription);
 		}
-		strHTML += '</ul>';
-		return strHTML;	
+		strHtml += '</ul>';
+		return strHtml;	
 	},
 	
 	RenderExtensionPoints: function()
@@ -342,16 +368,16 @@ DocumentationAPI.prototype = {
 		grSEP.orderBy('name');
 		grSEP.query();
 
-		var strHTML = '<ul>';
+		var strHtml = '<ul>';
 		while (grSEP.next())
 		{
-			strHTML += this.RenderListItem(
+			strHtml += this.RenderListItem(
 				grSEP.getValue('name'),
-				'/sys_extension_point.do?sys_id='+grSEP.sys_id,
+				GetInstanceRecordPath('sys_extension_point',grSEP.sys_id),
 				grSEP.getValue('description') + '<pre>'+grSEP.getValue('example')+'</pre>');
 		}
-		strHTML += '</ul>';
-		return strHTML;
+		strHtml += '</ul>';
+		return strHtml;
 	},	
 	
 	RenderInstanceScanChecks: function()
@@ -365,16 +391,16 @@ DocumentationAPI.prototype = {
 		grSC.orderBy('name');
 		grSC.query();
 
-		var strHTML = '<ul>';
+		var strHtml = '<ul>';
 		while (grSC.next())
 		{
-			strHTML += this.RenderListItem(
+			strHtml += this.RenderListItem(
 				grSC.getValue('name'),
-				'/scan_check.do?sys_id='+grSC.sys_id,
+				GetInstanceRecordPath('scan_check',grSC.sys_id),
 				grSC.getValue('short_description'));
 		}
-		strHTML += '</ul>';
-		return strHTML;
+		strHtml += '</ul>';
+		return strHtml;
 	},
 	
 	RenderEditorMacros: function()
@@ -388,49 +414,49 @@ DocumentationAPI.prototype = {
 		grSEM.orderBy('name');
 		grSEM.query();
 
-		var strHTML = '<ul>';
+		var strHtml = '<ul>';
 		while (grSEM.next())
 		{
 			var strDescription = HtmlEncode(grSEM.getValue('comments'));
 			var strText = GetStringValue(grSEM.getValue('text'));
 			
-			strHTML += this.RenderListItem(
+			strHtml += this.RenderListItem(
 				grSEM.getValue('name'),
 				GetInstanceRecordPath('syntax_editor_macro',grSEM.sys_id),
 				strDescription + '<br/>' + '<pre>'+strText+'</pre>');
 		}
-		strHTML += '</ul>';
-		return strHTML;
+		strHtml += '</ul>';
+		return strHtml;
 	},	
 	
 	
 	RenderSystemRequirements: function(aSupportedReleases,bGitHubAccessRequired,aDependencies)
 	{
 		aSupportedReleases = GetArrayValue(aSupportedReleases);
-		var strHTML = '';
+		var strHtml = '';
 		
 		if (aSupportedReleases.length > 0)
 		{
-			strHTML += '<li>';
+			strHtml += '<li>';
 			for (var nRelease = 0; nRelease < aSupportedReleases.length; nRelease++)
 			{
 				var strRelease = aSupportedReleases[nRelease];
 				strHTML += strRelease;
 				if (nRelease == aSupportedReleases.length - 2)
 				{
-					strHTML += ' or ';
+					strHtml += ' or ';
 				}
 				else if (nRelease < aSupportedReleases.length - 1)
 				{
-					strHTML += ', ';
+					strHtml += ', ';
 				}
 			}
-			strHTML += '</li>';
+			strHtml += '</li>';
 		}
 		
 		if (bGitHubAccessRequired == true)
 		{
-			strHTML += '<li>Access to&#160;<a href="https://www.github.com" target="_blank">GitHub.com</a></li>';
+			strHtml += '<li>Access to&#160;<a href="https://www.github.com" target="_blank">GitHub.com</a></li>';
 		}
 		
 		aDependencies = GetArrayValue(aDependencies);
@@ -442,20 +468,20 @@ DocumentationAPI.prototype = {
 			{
 				var strVersion = GetStringValue(GetValue(dependency,'version'));
 				var strUrl = GetStringValue(GetValue(dependency,'url'));
-				strHTML += '<li>';
+				strHtml += '<li>';
 				if (strUrl != '')
 				{
-					strHTML += '<a href="'+strUrl+'" target="_blank">';
+					strHtml += '<a href="'+strUrl+'" target="_blank">';
 				}
-				strHTML += strAppName+' '+strVersion;
+				strHtml += strAppName+' '+strVersion;
 				if (strUrl != '')
 				{
-					strHTML += '</a>';
+					strHtml += '</a>';
 				}
-				strHTML += '</li>';
+				strHtml += '</li>';
 			}
 		}
-		return strHTML;
+		return strHtml;
 	},	
 	
 	RenderInstallationInstructionsImportFromSourceControl: function(strAppName, strRepoURL, bAdditionalSteps, strInstallURL)
@@ -541,32 +567,32 @@ DocumentationAPI.prototype = {
 		{
 			strScope = this.m_strScope;
 		}
-		var strHTML = this.RenderInstallationInstructionsBackgroundScript(
+		var strHtml = this.RenderInstallationInstructionsBackgroundScript(
 			'The '+strScope+'.AppInstall() function must be executed.',
 			strScope+'.AppInstall();');
-		return strHTML;
+		return strHtml;
 	},
 	
 	RenderInstallationInstructionsRunTestSuite: function(strTestSuiteSysId)
 	{
-		var strHTML = '';
+		var strHtml = '';
 		var grTestSuite = new GlideRecord('sys_atf_test_suite');
 		if (grTestSuite.get(strTestSuiteSysId) != false)
 		{
 			if (this.m_bTestSuiteRepeat == false)
 			{
 				this.m_bTestSuiteRepeat = true;
-				strHTML += '<li>Set the&#160;<a href="/nav_to.do?uri=sys_properties.do?sys_id=99ca5ab55b1022001f80efe5f0f91a05" target="_blank">sn_atf.runner.enabled system property</a>&#160;to "true" to activate the ATF test execution - if not set already.</li>';
+				strHtml += '<li>Set the&#160;<a href="/nav_to.do?uri=sys_properties.do?sys_id=99ca5ab55b1022001f80efe5f0f91a05" target="_blank">sn_atf.runner.enabled system property</a>&#160;to "true" to activate the ATF test execution - if not set already.</li>';
 			}
 
-			strHTML += '<li>Run the&#160;<a href="/sys_atf_test_suite.do?sys_id='+strTestSuiteSysId+'&sysparm_view=devtools&sysparm_view_forced=true" target="_blank">'+grTestSuite.name+'</a> test suite.</li>';
+			strHtml += '<li>Run the&#160;<a href="/sys_atf_test_suite.do?sys_id='+strTestSuiteSysId+'&sysparm_view=devtools&sysparm_view_forced=true" target="_blank">'+grTestSuite.name+'</a> test suite.</li>';
 		}
-		return strHTML;
+		return strHtml;
 	},
 	
 	RenderError: function()
 	{
-		return '<p style="color:red">ERROR: DocumentationAPI is not initialized!</p>';
+		return HtmlRenderError('ERROR: DocumentationAPI is not initialized!');
 	},
 
     type: 'DocumentationAPI'
@@ -575,13 +601,13 @@ DocumentationAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-01-20 15:26:20</sys_created_on>
         <sys_id>98912146db31e490ba15a353059619b6</sys_id>
-        <sys_mod_count>121</sys_mod_count>
+        <sys_mod_count>127</sys_mod_count>
         <sys_name>DocumentationAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy>protected</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_98912146db31e490ba15a353059619b6</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-11-12 21:59:40</sys_updated_on>
+        <sys_updated_on>2022-11-12 22:23:19</sys_updated_on>
     </sys_script_include>
 </record_update>
