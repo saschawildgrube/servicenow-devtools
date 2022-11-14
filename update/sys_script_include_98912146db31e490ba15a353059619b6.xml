@@ -448,7 +448,7 @@ DocumentationAPI.prototype = {
 			for (var nRelease = 0; nRelease < aSupportedReleases.length; nRelease++)
 			{
 				var strRelease = aSupportedReleases[nRelease];
-				strHTML += strRelease;
+				strHtml += strRelease;
 				if (nRelease == aSupportedReleases.length - 2)
 				{
 					strHtml += ' or ';
@@ -495,29 +495,29 @@ DocumentationAPI.prototype = {
 	{
 		bAdditionalSteps = GetBoolValue(bAdditionalSteps);
 		strInstallURL = GetStringValue(strInstallURL);
-		var strHTML = '';
+		var strHtml = '';
 		if (this.m_bGitHubRepeat == false)
 		{
 			this.m_bGitHubRepeat = true;
-			strHTML += '<li>Create an account on&#160;<a href="https://github.com/" target="_blank">GitHub</a>&#160;- if not done already.</li>';
-			strHTML += '<li>Create a&#160;<a href="https://github.com/settings/tokens" target="_blank">personal access token</a>&#160;for your GitHub account.</li>';
-			strHTML += '<li>Add&#160;<a href="/discovery_credentials_list.do" target="_blank">credentials</a>&#160;to access GitHub - use "Basic Auth".</li>';
+			strHtml += '<li>Create an account on&#160;<a href="https://github.com/" target="_blank">GitHub</a>&#160;- if not done already.</li>';
+			strHtml += '<li>Create a&#160;<a href="https://github.com/settings/tokens" target="_blank">personal access token</a>&#160;for your GitHub account.</li>';
+			strHtml += '<li>Add&#160;<a href="/discovery_credentials_list.do" target="_blank">credentials</a>&#160;to access GitHub - use "Basic Auth".</li>';
 		}
-		strHTML += '<li>Fork the repository&#160;<a href="'+strRepoURL+'" target="_blank">'+strRepoURL+'</a>.</li>';
-		strHTML += '<li>Go to&#160;<a href="/$studio.do" target="_blank">Studio</a>&#160;and import the '+strAppName+' application from source control.</li>';
+		strHtml += '<li>Fork the repository&#160;<a href="'+strRepoURL+'" target="_blank">'+strRepoURL+'</a>.</li>';
+		strHtml += '<li>Go to&#160;<a href="/$studio.do" target="_blank">Studio</a>&#160;and import the '+strAppName+' application from source control.</li>';
 		if (bAdditionalSteps == true)
 		{
 			if (strInstallURL != '')
 			{
-				strHTML += '<li>Perform all installation steps for the '+strAppName+' application documented here:&#160;<a href="'+strInstallURL+'" target="_blank">'+strInstallURL+'</a>&#160;</li>';
+				strHtml += '<li>Perform all installation steps for the '+strAppName+' application documented here:&#160;<a href="'+strInstallURL+'" target="_blank">'+strInstallURL+'</a>&#160;</li>';
 				
 			}
 			else
 			{
-				strHTML += '<li>Perform all installation steps documented for the '+strAppName+' application.</li>';
+				strHtml += '<li>Perform all installation steps documented for the '+strAppName+' application.</li>';
 			}
 		}
-		return strHTML;
+		return strHtml;
 	},
 
 	RenderInstallationInstructionsBackgroundScript: function(strText, strScript, strScope)
@@ -533,10 +533,10 @@ DocumentationAPI.prototype = {
 		{
 			strText += '<br/>';
 		}
-		var strHTML = '';
-		strHTML +=	'<li>'+strText+'Run the following script as a <a href="/sys.scripts.do" target="_blank">background script</a> in scope&#160;<b>'+strScope+'</b>:</li>';
-		strHTML +=	'<pre>'+strScript+'</pre>';
-		return strHTML;
+		var strHtml = '';
+		strHtml +=	'<li>'+strText+'Run the following script as a <a href="/sys.scripts.do" target="_blank">background script</a> in scope&#160;<b>'+strScope+'</b>:</li>';
+		strHtml +=	'<pre>'+strScript+'</pre>';
+		return strHtml;
 	},
 
 	
@@ -547,7 +547,7 @@ DocumentationAPI.prototype = {
 		{
 			return '';
 		}
-		var strHTML = this.RenderInstallationInstructionsBackgroundScript(
+		var strHtml = this.RenderInstallationInstructionsBackgroundScript(
 			'Enable create, read, write and delete operations for all applications on the table&#160;<a href="/sys_db_object.do?sys_id='+strTable+'&amp;sysparm_refkey=name" target="_blank">'+strTable+'</a>.',
 		"var grRecord = new GlideRecord('sys_db_object');\n"
 		+"grRecord.addQuery('name','=','"+strTable+"');\n"
@@ -563,7 +563,7 @@ DocumentationAPI.prototype = {
 		+"}\n"
 		+"gs.invalidateCache();",
 		'global');
-		return strHTML;
+		return strHtml;
 	},	
 	
 
@@ -608,13 +608,13 @@ DocumentationAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-01-20 15:26:20</sys_created_on>
         <sys_id>98912146db31e490ba15a353059619b6</sys_id>
-        <sys_mod_count>131</sys_mod_count>
+        <sys_mod_count>132</sys_mod_count>
         <sys_name>DocumentationAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_98912146db31e490ba15a353059619b6</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-11-13 21:33:52</sys_updated_on>
+        <sys_updated_on>2022-11-14 16:00:25</sys_updated_on>
     </sys_script_include>
 </record_update>
