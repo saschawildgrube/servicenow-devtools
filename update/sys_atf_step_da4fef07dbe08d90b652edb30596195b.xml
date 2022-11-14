@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-12-25 17:26:41</sys_created_on>
         <sys_id>da4fef07dbe08d90b652edb30596195b</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>10</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_da4fef07dbe08d90b652edb30596195b</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-12-25 18:10:33</sys_updated_on>
+        <sys_updated_on>2022-11-06 11:44:21</sys_updated_on>
         <table/>
         <test display_value="DevTools - SetValue">da3fab07dbe08d90b652edb305961931</test>
         <timeout/>
@@ -36,9 +36,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-12-25 17:26:41</sys_created_on>
         <sys_id>1b60bb4bdbe08d90b652edb305961959</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>10</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-12-25 18:10:34</sys_updated_on>
+        <sys_updated_on>2022-11-06 11:44:21</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -138,6 +138,80 @@
 					}&#13;
 				}&#13;
 		});		&#13;
+	&#13;
+	TestCase_SetValue(&#13;
+		'Value0',&#13;
+		[],&#13;
+		0,&#13;
+		null,&#13;
+		null,&#13;
+		null,&#13;
+		null,&#13;
+		null,&#13;
+		[&#13;
+			'Value0'&#13;
+		]);	&#13;
+	&#13;
+	TestCase_SetValue(&#13;
+		'Value1',&#13;
+		[],&#13;
+		1,&#13;
+		null,&#13;
+		null,&#13;
+		null,&#13;
+		null,&#13;
+		null,&#13;
+		[&#13;
+			null,&#13;
+			'Value1'&#13;
+		]);		&#13;
+	&#13;
+	TestCase_SetValue(&#13;
+		'Value01',&#13;
+		[],&#13;
+		0,&#13;
+		1,&#13;
+		null,&#13;
+		null,&#13;
+		null,&#13;
+		null,&#13;
+		[&#13;
+			[null,'Value01']&#13;
+		]);			&#13;
+	&#13;
+	TestCase_SetValue(&#13;
+		'Value11',&#13;
+		[],&#13;
+		1,&#13;
+		1,&#13;
+		null,&#13;
+		null,&#13;
+		null,&#13;
+		null,&#13;
+		[&#13;
+			null,&#13;
+			[&#13;
+				null,&#13;
+				'Value11'&#13;
+			]&#13;
+		]);				&#13;
+&#13;
+	TestCase_SetValue(&#13;
+		'Value1',&#13;
+		[],&#13;
+		1,&#13;
+		'Key1',&#13;
+		null,&#13;
+		null,&#13;
+		null,&#13;
+		null,&#13;
+		[&#13;
+			null,&#13;
+			{&#13;
+				'Key1': 'Value1'&#13;
+			}&#13;
+		]);				&#13;
+	&#13;
 	&#13;
 	return test.GetResult();&#13;
 	&#13;

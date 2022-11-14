@@ -28,7 +28,7 @@
 	<ul>
 		<g2:no_escape>$[
 			docapi.RenderSystemRequirements(
-				'San Diego',
+				'San Diego,Tokyo',
 				true,
 				AppGetDependencies());
 		]</g2:no_escape>	
@@ -146,11 +146,29 @@ function DevToolsGetFormatConfig(grRecord)
 	<h2>Release Notes</h2>
 	
 <!--
-	<h3>1.4_.0 - 2022-0_</h3>
+	<h3>1.4_.0 - 2022-TODO</h3>
 	<ol>
 		<li>TODO</li>
 	</ol>
 -->	
+	
+	<h3>1.46.0 - 2022-11-14</h3>
+	<ol>
+		<li>Added function IsInteger().</li>
+		<li>Added function HtmlRenderTable().</li>
+		<li>Added function HtmlRenderStyle().</li>
+		<li>Added function RenderRecordExecutionSchedule().</li>
+		<li>Added function DocumentationAPI::RenderScheduledJobs().</li>
+		<li>Added UI script function IsInteger().</li>
+		<li>Fixed a bug in TableSetAttribute() which may have caused the wrong dictionary record to be changed.</li>
+		<li>Function and UI script function SetValue() can now handle arrays, too.</li>
+		<li>ATF test step configuration "DevTools - Check scoped app dependency" now strips whitespaces from the version list.</li>
+		<li>ATF test "DevTools - GetAllTables" now produces less output to not run into memory issues.</li>
+		<li>Removed Rome support from the manual UI page template.</li>
+		<li>Added DevTools website url to the manual UI page template.</li>
+		<li>UI action "Baseline" - i.e. the function AppVersionBaseline() - is now also executing the AppSanity() function for the app.</li>
+		<li>AppBuilder() now adds x_snc_devtools.AppInstall() to the created AppInstall() function to show how apps can also install their dependencies.</li>
+	</ol>	
 	
 	<h3>1.45.0 - 2022-11-01</h3>
 	<ol>
@@ -965,13 +983,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>938</sys_mod_count>
+        <sys_mod_count>955</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-11-01 15:50:51</sys_updated_on>
+        <sys_updated_on>2022-11-14 16:39:33</sys_updated_on>
     </sys_ui_page>
 </record_update>
