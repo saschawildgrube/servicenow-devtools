@@ -158,6 +158,7 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>Added function ScriptEmptyStringLiterals().</li>
 		<li>Added function ScriptRemoveComments().</li>
 		<li>Added function InstanceScanSuiteOnApp() to the DevToolsClientAPI class.</li>
+		<li>Added function GetCurrentScope().</li>
 		<li>Added UI script function RedirectToURL().</li>
 		<li>Added UI script function RedirectToRecord().</li>
 		<li>Added UI script function GetInstanceRecordUri().</li>
@@ -1006,13 +1007,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>974</sys_mod_count>
+        <sys_mod_count>975</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-11-23 20:09:16</sys_updated_on>
+        <sys_updated_on>2022-11-24 06:48:29</sys_updated_on>
     </sys_ui_page>
 </record_update>
