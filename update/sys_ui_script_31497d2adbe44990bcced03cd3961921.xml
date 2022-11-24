@@ -2,7 +2,7 @@
     <sys_ui_script action="INSERT_OR_UPDATE">
         <active>true</active>
         <description>Called when a page is loaded to invoke DevTools features. </description>
-        <global>false</global>
+        <global>true</global>
         <ignore_in_now_experience>false</ignore_in_now_experience>
         <name>x_snc_devtools.Init</name>
         <script><![CDATA[var g_cache = {};
@@ -19,6 +19,27 @@ function SetCacheValue(vValue,vKey1,vKey2,vKey3)
 
 (function(){
 
+	
+	var strUrl = top.window.location.href;
+	if (strUrl.indexOf('system_properties_ui.do') != -1)
+	{
+		var strCategory = GetParameter('category');
+
+		if (strCategory != '')
+		{
+			var bResult = ServerRequest('x_snc_devtools.DevToolsClientAPI','SetScopeForSystemPropertiesUI',
+										{
+				category: strCategory
+			});	
+
+			if (bResult == true)
+			{
+				top.window.location.reload();
+			}
+		}
+	}	
+	
+	
 	function Init()
 	{
 		Log('DevTools: Init');
@@ -40,43 +61,11 @@ function SetCacheValue(vValue,vKey1,vKey2,vKey3)
 		
 		//Log(GetFormatConfig('incident','552c48888c033300964f4932b03eb092'));
 		
-		var strUrl = top.window.location.href;
-		if (strUrl.indexOf('system_properties_ui.do') != -1)
-		{
-			var url = ParseUrl(strUrl);
-			var strParams = GetValue(url,'parameters');
-			var params = ParseUrlParameters(strParams);
-			var strCategory = GetValue(params,'sysparm_category');
-			
-			if (strCategory == null)
-			{
-				var strUrlDecoded = decodeURIComponent(strUrl);
-				var url = ParseUrl(strUrlDecoded);
-				var strParams = GetValue(url,'parameters');
-				var params = ParseUrlParameters(strParams);
-				var strCategory = GetValue(params,'sysparm_category');
-			}
-			
-			if (strCategory != null)
-			{
-				var bResult = ServerRequest('x_snc_devtools.DevToolsClientAPI','SetScopeForSystemPropertiesUI',
-				{
-					category: strCategory
-				});	
-				
-				if (bResult == true)
-				{
-					top.window.location.reload();
-				}
-			}
-		}
-		
 		
 	}
 	
 	setTimeout(Init, 1000);
-	
-	
+		
 })();
 ]]></script>
         <script_name>Init</script_name>
@@ -84,14 +73,14 @@ function SetCacheValue(vValue,vKey1,vKey2,vKey3)
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-12-23 19:29:09</sys_created_on>
         <sys_id>31497d2adbe44990bcced03cd3961921</sys_id>
-        <sys_mod_count>28</sys_mod_count>
+        <sys_mod_count>30</sys_mod_count>
         <sys_name>x_snc_devtools.Init</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_script_31497d2adbe44990bcced03cd3961921</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-11-20 19:23:24</sys_updated_on>
+        <sys_updated_on>2022-11-24 09:39:46</sys_updated_on>
         <ui_type>0</ui_type>
         <use_scoped_format>false</use_scoped_format>
     </sys_ui_script>
