@@ -47,23 +47,36 @@
 			element = elementFrame.contentWindow.document.getElementById(strId);	
 			if (element != null)
 			{
-				
 				console.log('elementFrame.contentWindow.document.getElementById');
 				return element;
 			}
 		}
 	}
 
-
-	elements = elementForm.querySelectorAll("#"+strId);
-	//console.log('elements: '+RenderValue(elements));
-
-	element = GetValue(elements,0);	
-	if (element != null)
+	var elementForm = g_form.getFormElement();
+	if (elementForm != null)
 	{
-		console.log('elementForm.querySelectorAll');
-		return element;
+		elements = elementForm.querySelectorAll("#"+strId);
+		//console.log('elements: '+RenderValue(elements));
+
+		element = GetValue(elements,0);	
+		if (element != null)
+		{
+			console.log('elementForm.querySelectorAll');
+			return element;
+		}
 	}
+	
+	if ($ !== undefined)
+	{
+		element = $(strId);
+		if (element != null)
+		{
+			console.log('$()');
+			return element;
+		}
+	}
+	
 
 	return element;
 }]]></script>
@@ -72,14 +85,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-11-25 10:47:39</sys_created_on>
         <sys_id>7c7163fadb9399106a03dad1f39619d4</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_name>x_snc_devtools.GetElementById</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_script_7c7163fadb9399106a03dad1f39619d4</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-11-25 14:50:37</sys_updated_on>
+        <sys_updated_on>2022-11-26 10:41:24</sys_updated_on>
         <ui_type>0</ui_type>
         <use_scoped_format>false</use_scoped_format>
     </sys_ui_script>
