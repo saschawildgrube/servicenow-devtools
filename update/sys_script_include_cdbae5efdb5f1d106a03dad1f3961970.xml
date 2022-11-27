@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.StartWorker</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>TEMP</description>
+        <name>StartWorker</name>
+        <script><![CDATA[function StartWorker(strName, params)
+{
+	strName = GetStringValue(strName);
+	
+	Debug('StartWorker: START: '+strName);
+	
+	var worker = new GlideScriptedHierarchicalWorker();
+	worker.setProgressName(strName);
+	worker.setScriptIncludeName("x_snc_codesanity.CodeSanityClientAPI");
+	worker.setScriptIncludeMethod('ScanApplication');
+	worker.putMethodArg('strAppSysId', GetValue(params,'strAppSysId'));
+	worker.setBackground(true);
+	worker.start();
+
+	var strId =  GetStringValue(worker.getProgressID());		
+	
+	Debug('StartWorker: '+strId);
+	
+	return strId;
+	
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-11-27 10:04:14</sys_created_on>
+        <sys_id>cdbae5efdb5f1d106a03dad1f3961970</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>StartWorker</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_cdbae5efdb5f1d106a03dad1f3961970</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-11-27 10:21:58</sys_updated_on>
+    </sys_script_include>
+</record_update>
