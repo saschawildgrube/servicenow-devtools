@@ -12,16 +12,16 @@
 	strSuiteSysId = GetStringValue(strSuiteSysId);
 	strAppSysId = GetStringValue(strAppSysId);
 	
+	var nEstimatedSeconds = 60;
 	var progresstracker = new ProgressTracker();
-		
+	progresstracker.Start(nEstimatedSeconds);
+	
 	if (IsValidSysId(strSuiteSysId) == false)
 	{
-		Log('invalud suite');
 		return false;
 	}
 	if (IsValidSysId(strAppSysId) == false)
 	{
-		Log('invalud app');
 		return false;
 	}
 	
@@ -43,7 +43,6 @@
 	
 	if (IsValidSysId(strUserSysId) == false)
 	{
-		Log('invalud user');
 		return false;
 	}
 	
@@ -52,7 +51,6 @@
 	grRole.query();
 	if (grRole.next() == false)
 	{
-		Log('admin role not found');
 		return false;
 	}
 	
@@ -74,7 +72,6 @@
 	}
 	catch (e)
 	{
-		Log('rest call failed');
 		return false;
 	}
 
@@ -87,14 +84,12 @@
 	var strProgressSysId = GetValue(result,'result','links','progress','id');
 	if (IsValidSysId(strProgressSysId) == false)
 	{
-		Log('invalud progress id ');
 		return false;
 	}
 	
-	var nLastTime = GetTimeNow();
+	var nStartTime = GetTimeNow();
 	
-	var nEstimatedSeconds = 60;
-	progresstracker.Start(nEstimatedSeconds);
+	var nSecondsPassed = 0;
 	
 	var grProgress = new GlideRecord('sys_progress_worker');
 	var bProgress = true;
@@ -113,10 +108,13 @@
 			bProgress = false;
 		}
 		var nTime = GetTimeNow();
-		if (nTime > nLastTime + 1000)
+		var nNewSecondsPassed = GetIntegerValue((nTime - nStartTime) / 1000);
+		if (nNewSecondsPassed > nSecondsPassed + 1)
 		{
-			nLastTime = nTime;
-			progresstracker.IncrementProgress(1);
+			nSecondsPassed = nNewSecondsPassed; 
+			progresstracker.IncrementProgress(nSecondsPassed);
+			var strText = 'Scan running for '+nSecondsPassed+' seconds.';
+			progresstracker.SetText(strText);
 		}
 	}
 	
@@ -125,27 +123,24 @@
 	grScanResult.query();
 	if (grScanResult.next() == false)
 	{
-		Log('invalud scan result');
 		return false;
 	}
 	
 	var scanresults =  InstanceScanGetScanResults(grScanResult.sys_id,bDetailed);
-	
 	progresstracker.SetResult(scanresults);
-	
 	return scanresults;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-11-08 09:18:56</sys_created_on>
         <sys_id>9f5aef5ddb4f59106a03dad1f39619f6</sys_id>
-        <sys_mod_count>34</sys_mod_count>
+        <sys_mod_count>48</sys_mod_count>
         <sys_name>InstanceScanSuiteOnApp</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_9f5aef5ddb4f59106a03dad1f39619f6</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-11-26 15:11:42</sys_updated_on>
+        <sys_updated_on>2022-11-27 00:49:20</sys_updated_on>
     </sys_script_include>
 </record_update>
