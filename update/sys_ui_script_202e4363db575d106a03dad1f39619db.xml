@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_script">
+    <sys_ui_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>The function encapsulates a glide modal dialog using the "simple_progress_viewer" template. The function renders a progress dialog and triggers an ajax request that starts a worker process.</description>
+        <global>true</global>
+        <ignore_in_now_experience>false</ignore_in_now_experience>
+        <name>x_snc_devtools.DoModalProgress</name>
+        <script><![CDATA[function DoModalProgress(strTitle,strProgressTitle,strScriptInclude,params,buttons,callbackOnExecutionComplete)
+{
+	strTitle = GetStringValue(strTitle);
+	strProgressTitle = GetStringValue(strProgressTitle);
+	strScriptInclude = GetStringValue(strScriptInclude);
+	
+	var Dialog = GetGlideDialogClass();
+	var dialog = new Dialog("simple_progress_viewer", true, "40em", "10em");
+	
+	dialog.setTitle(strTitle);
+    dialog.setPreference('sysparm_renderer_progress_title', strProgressTitle);
+	
+    dialog.setPreference('sysparm_ajax_processor', strScriptInclude);
+	var aParams = GetKeys(params);
+	for (var nParam = 0; nParam < aParams.length; nParam++)
+	{
+		var strParam = aParams[nParam];
+		dialog.setPreference('sysparm_ajax_processor_'+strParam, GetStringValue(GetValue(params,strParam)));
+	}
+
+	var aButtons = GetKeys(buttons);
+	for (var nButton = 0; nButton < aButtons.length; nButton++)
+	{
+		var strButton = aButtons[nButton];
+		dialog.setPreference('sysparm_button_'+strButton, GetStringValue(GetValue(buttons,strButton,'title')));
+	}
+		
+    dialog.on("executionComplete", function(tracker)
+	{
+		if (typeof callbackOnExecutionComplete == 'function')
+		{
+			callbackOnExecutionComplete(dialog,tracker);
+		}
+/*
+		console.log('complete: '+RenderValue(tracker));
+
+		var strResultSysId = GetStringValue(GetValue(tracker,'result','sys_id'));
+		console.log(strResultSysId);
+		
+		var buttonViewResults = GetElementById('sysparm_button_view_results');
+			
+		if (buttonViewResults)
+		{
+			if (IsValidSysId(strResultSysId) == true)
+			{
+				buttonViewResults.on('click', function()
+					{
+						RedirectToRecord('scan_result',strResultSysId,'',true);
+					});
+			}
+			else
+			{
+				buttonViewResults.style.display = "none";
+			}
+		}
+	
+		var buttonClose = GetElementById('sysparm_button_close');
+		console.log('buttonClose: '+RenderValue(buttonClose));
+		
+        if (buttonClose)
+		{
+            buttonClose.on('click', function()
+				{
+					dd.destroy();
+				});
+        }
+  */
+		
+    });
+		
+	dialog.on("beforeclose", function()
+	{
+		reloadWindow(window); // Reload current form after closing the progress viewer dialog
+	});	
+    
+    dialog.render();	
+	
+	
+	/*
+		{
+			app_sys_id: strAppSysId
+		},
+		{
+			view_results:
+			{
+				title: 'View Results'
+			},
+			close:
+			{
+				title: 'Close'
+			}
+		},
+		OnExecutionComplete)
+{
+
+	function OnExecutionComplete(dialog,tracker)
+	{
+		
+		console.log('complete: '+RenderValue(tracker));
+
+		var strResultSysId = GetStringValue(GetValue(tracker,'result','sys_id'));
+		console.log(strResultSysId);
+		
+		var buttonViewResults = GetElementById('sysparm_button_view_results');
+			
+		if (buttonViewResults)
+		{
+			if (IsValidSysId(strResultSysId) == true)
+			{
+				buttonViewResults.on('click', function()
+					{
+						RedirectToRecord('scan_result',strResultSysId,'',true);
+					});
+			}
+			else
+			{
+				buttonViewResults.style.display = "none";
+			}
+		}
+	
+		var buttonClose = GetElementById('sysparm_button_close');
+		console.log('buttonClose: '+RenderValue(buttonClose));
+		
+        if (buttonClose)
+		{
+            buttonClose.on('click', function()
+				{
+					dialog.destroy();
+				});
+        }
+	}
+
+
+	DoModalProgress(
+		'CodeSanity',
+		'Scan',
+		 'x_snc_codesanity.CodeSanityClientAPI',
+		{
+			app_sys_id: strAppSysId
+		},
+		{
+			view_results:
+			{
+				title: 'View Results'
+			},
+			close:
+			{
+				title: 'Close'
+			}
+		},
+		OnExecutionComplete);
+
+*/
+
+
+	
+	
+}]]></script>
+        <script_name>DoModalProgress</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-11-27 17:20:32</sys_created_on>
+        <sys_id>202e4363db575d106a03dad1f39619db</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>x_snc_devtools.DoModalProgress</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_ui_script_202e4363db575d106a03dad1f39619db</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-11-27 17:41:14</sys_updated_on>
+        <ui_type>0</ui_type>
+        <use_scoped_format>false</use_scoped_format>
+    </sys_ui_script>
+</record_update>
