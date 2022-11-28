@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
     <sys_ui_page action="INSERT_OR_UPDATE">
         <category>general</category>
-        <client_script><![CDATA[console.log('Hello this is the manual page!');]]></client_script>
+        <client_script/>
         <description/>
         <direct>false</direct>
         <endpoint>x_snc_devtools_manual.do</endpoint>
@@ -179,6 +179,7 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>Added "DevTools" views for Script Includes and UI Scripts.</li>
 		<li>Added "System Log" to the menu.</li>
 		<li>Added table sys_execution_tracker to the link directory.</li>
+		<li>Removed not needed debug log output from various UI scripts.</li>
 	</ol>
 
 	
@@ -1014,13 +1015,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>985</sys_mod_count>
+        <sys_mod_count>987</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-11-27 18:48:50</sys_updated_on>
+        <sys_updated_on>2022-11-28 17:30:28</sys_updated_on>
     </sys_ui_page>
 </record_update>

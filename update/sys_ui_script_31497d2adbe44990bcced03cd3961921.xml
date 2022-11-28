@@ -45,23 +45,6 @@ function SetCacheValue(vValue,vKey1,vKey2,vKey3)
 		Log('DevTools: Init');
 		
 		FormatAllFieldsOnPage();
-		
-		/*
-		SetValue(g_cache,'hallowelt','key1');
-		Log(g_cache);
-		
-		SetValue(g_cache,'test','incident','INC123');	
-		Log(g_cache);
-		
-		SetCacheValue('hallo welt level 2','key1','key2');
-		
-		Log(GetCacheValue('key1','key2'));
-		Log(g_cache);
-		*/
-		
-		//Log(GetFormatConfig('incident','552c48888c033300964f4932b03eb092'));
-		
-		
 	}
 	
 	setTimeout(Init, 1000);
@@ -73,14 +56,14 @@ function SetCacheValue(vValue,vKey1,vKey2,vKey3)
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-12-23 19:29:09</sys_created_on>
         <sys_id>31497d2adbe44990bcced03cd3961921</sys_id>
-        <sys_mod_count>30</sys_mod_count>
+        <sys_mod_count>31</sys_mod_count>
         <sys_name>x_snc_devtools.Init</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_script_31497d2adbe44990bcced03cd3961921</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-11-24 09:39:46</sys_updated_on>
+        <sys_updated_on>2022-11-28 17:27:34</sys_updated_on>
         <ui_type>0</ui_type>
         <use_scoped_format>false</use_scoped_format>
     </sys_ui_script>
