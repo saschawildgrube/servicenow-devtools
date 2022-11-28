@@ -15,7 +15,7 @@
         <mobile_title>Script Includes</mobile_title>
         <mobile_view_name>Mobile</mobile_view_name>
         <name>sys_script_include</name>
-        <order>901</order>
+        <order>910</order>
         <override_menu_roles>false</override_menu_roles>
         <query>sysparm_view_forced=true</query>
         <report/>
@@ -26,7 +26,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>ec04d345dbfb4810ba15a35305961980</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>Script Includes</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -34,7 +34,7 @@
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_app_module_ec04d345dbfb4810ba15a35305961980</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-04-16 13:06:42</sys_updated_on>
+        <sys_updated_on>2022-11-21 07:48:26</sys_updated_on>
         <timeline_page/>
         <title>Script Includes</title>
         <uncancelable>false</uncancelable>

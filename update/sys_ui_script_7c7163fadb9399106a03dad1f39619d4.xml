@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_script">
+    <sys_ui_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Retrieves an element from DOM by its Id. It uses different methods to get access to the element (including jquery and getElementById) to be functional in different execution contexts (forms, ui pages, etc.)  </description>
+        <global>true</global>
+        <ignore_in_now_experience>false</ignore_in_now_experience>
+        <name>x_snc_devtools.GetElementById</name>
+        <script><![CDATA[function GetElementById(strId)
+{
+	var element = null;
+	
+	element = top.document.getElementById(strId);
+	if (element != null)
+	{
+		return element;
+	}
+
+/*
+	var elementForm = g_form.getFormElement();
+	if (elementForm != null)
+	{
+		console.log('elementForm: '+RenderValue(elementForm));
+		element = elementForm.getElementById(strId);
+		if (element != null)
+		{
+			console.log('g_form.getFormElement().getElementById');
+			return element;
+		}
+	}
+*/
+	
+
+
+	var aFrames = top.document.getElementsByTagName('iframe');
+	for (var nFrame = 0; nFrame < aFrames.length; nFrame++)
+	{
+		var elementFrame = aFrames[nFrame];
+		if (elementFrame.getAttribute('id') == 'gsft_main')
+		{
+			element = elementFrame.contentWindow.document.getElementById(strId);	
+			if (element != null)
+			{
+				return element;
+			}
+		}
+	}
+
+	var elementForm = g_form.getFormElement();
+	if (elementForm != null)
+	{
+		elements = elementForm.querySelectorAll("#"+strId);
+		element = GetValue(elements,0);	
+		if (element != null)
+		{
+			return element;
+		}
+	}
+	
+	if ($ !== undefined)
+	{
+		element = $(strId);
+		if (element != null)
+		{
+			return element;
+		}
+	}
+	
+
+	return element;
+}]]></script>
+        <script_name>GetElementById</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-11-25 10:47:39</sys_created_on>
+        <sys_id>7c7163fadb9399106a03dad1f39619d4</sys_id>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_name>x_snc_devtools.GetElementById</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_ui_script_7c7163fadb9399106a03dad1f39619d4</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-11-28 17:26:26</sys_updated_on>
+        <ui_type>0</ui_type>
+        <use_scoped_format>false</use_scoped_format>
+    </sys_ui_script>
+</record_update>

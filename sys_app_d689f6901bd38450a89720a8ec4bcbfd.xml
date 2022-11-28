@@ -29,19 +29,19 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 08:31:37</sys_created_on>
         <sys_id>d689f6901bd38450a89720a8ec4bcbfd</sys_id>
-        <sys_mod_count>136</sys_mod_count>
+        <sys_mod_count>140</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-11-01 22:09:58</sys_updated_on>
+        <sys_updated_on>2022-11-22 14:47:07</sys_updated_on>
         <template/>
         <trackable>true</trackable>
         <uninstall_blocked>false</uninstall_blocked>
         <user_role/>
         <vendor/>
         <vendor_prefix/>
-        <version>1.46.0</version>
+        <version>1.47.0</version>
         <x_snc_devtools_documentation_url>https://www.wildgrube.com/servicenow-devtools</x_snc_devtools_documentation_url>
         <x_snc_devtools_maintainer>Sascha Wildgrube</x_snc_devtools_maintainer>
         <x_snc_devtools_maintainer_email>sascha.wildgrube@servicenow.com</x_snc_devtools_maintainer_email>
-        <x_snc_devtools_repo_url>https://github.com/saschawildgrube/servicenow-devtools</x_snc_devtools_repo_url>
+        <x_snc_devtools_repo_url>https://github.com/saschawildgrube/servicenow-devtools.git</x_snc_devtools_repo_url>
     </sys_app>
 </record_update>
