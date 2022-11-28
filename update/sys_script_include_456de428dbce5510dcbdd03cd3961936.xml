@@ -10,19 +10,23 @@
         <script><![CDATA[function HtmlRenderScript(strScript)
 {
 	strScript = GetStringValue(strScript);
+	if (strScript == '')
+	{
+		return '';
+	}
 	return '\t<script>\n'+strScript+'\n\t</script>\n';
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-09-16 18:35:04</sys_created_on>
         <sys_id>456de428dbce5510dcbdd03cd3961936</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>HtmlRenderScript</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_456de428dbce5510dcbdd03cd3961936</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-09-16 18:37:30</sys_updated_on>
+        <sys_updated_on>2022-11-28 17:45:18</sys_updated_on>
     </sys_script_include>
 </record_update>
