@@ -127,6 +127,16 @@
 		return false;
 	}
 	
+	var grSuiteExec = new GlideRecord('scan_suite_execution');
+	grSuiteExec.addQuery('result','=',grScanResult.sys_id);
+	grSuiteExec.query();
+	if (grSuiteExec.next())
+	{
+		grSuiteExec.sys_created_by = gs.getUserName();
+		GlideRecordUpdate(grSuiteExec);
+	}
+	
+	
 	var scanresults =  InstanceScanGetScanResults(grScanResult.sys_id,bDetailed);
 	progresstracker.SetResult(scanresults,true,'Scan completed');
 	return scanresults;
@@ -135,13 +145,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-11-08 09:18:56</sys_created_on>
         <sys_id>9f5aef5ddb4f59106a03dad1f39619f6</sys_id>
-        <sys_mod_count>55</sys_mod_count>
+        <sys_mod_count>60</sys_mod_count>
         <sys_name>InstanceScanSuiteOnApp</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_9f5aef5ddb4f59106a03dad1f39619f6</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-11-27 18:35:48</sys_updated_on>
+        <sys_updated_on>2022-11-30 09:11:46</sys_updated_on>
     </sys_script_include>
 </record_update>

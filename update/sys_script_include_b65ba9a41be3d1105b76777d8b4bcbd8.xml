@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.IsTestRunning</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns true if the current execution context is an ATF test. False if not.</description>
+        <name>IsTestRunning</name>
+        <script><![CDATA[function IsTestRunning(strContext)
+{
+	// 1. Attempt: via callstack: if a script from atf_test_step is in the stack, we're called from an ATF
+	var aCallStack = GetCallStack();
+	for (var nLevel = 0; nLevel < aCallStack.length; nLevel++)
+	{
+		var level = aCallStack[nLevel];
+		if (GetValue(level,'sys_class_name') == 'sys_atf_step')
+		{
+			return true;
+		}
+	}
+	
+	strContext = GetStringValue(strContext);
+	if (strContext == '')
+	{
+		strContext = 'unspecified';
+	}
+	if (IsSnakeCase(strContext) == false)
+	{
+		strContext = 'unspecified';
+	}
+	
+	// 2. Attempt: Did TestAPI set the transaction cache value?
+	var transactionCache = new x_snc_devtools.TransactionCacheAPI('ATF');
+	var bTestRunning = transactionCache.GetItem(strContext,'running');
+	if (bTestRunning == true)
+	{
+		return true;
+	}
+
+	// 3. Attempt: Did TestAPI set the temporary global system property?
+	var bTestRunning = GetBoolValue(GetProperty('devtools.atf.'+strContext+'.running'));
+	if (bTestRunning == true)
+	{
+		return true;
+	}
+	
+	return false;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-11-30 12:41:13</sys_created_on>
+        <sys_id>b65ba9a41be3d1105b76777d8b4bcbd8</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>IsTestRunning</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_b65ba9a41be3d1105b76777d8b4bcbd8</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-11-30 13:21:39</sys_updated_on>
+    </sys_script_include>
+</record_update>
