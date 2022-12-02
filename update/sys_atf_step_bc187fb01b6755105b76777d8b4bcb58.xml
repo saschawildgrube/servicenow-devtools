@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-12-01 17:33:45</sys_created_on>
         <sys_id>bc187fb01b6755105b76777d8b4bcb58</sys_id>
-        <sys_mod_count>19</sys_mod_count>
+        <sys_mod_count>20</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_bc187fb01b6755105b76777d8b4bcb58</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-01 19:27:06</sys_updated_on>
+        <sys_updated_on>2022-12-02 16:27:23</sys_updated_on>
         <table/>
         <test display_value="DevTools - InstanceScanCheckOnRecord">d808bbb01b6755105b76777d8b4bcb88</test>
         <timeout/>
@@ -50,9 +50,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-12-01 17:33:45</sys_created_on>
         <sys_id>b7283fb01b6755105b76777d8b4bcbb7</sys_id>
-        <sys_mod_count>19</sys_mod_count>
+        <sys_mod_count>20</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-01 19:27:06</sys_updated_on>
+        <sys_updated_on>2022-12-02 16:27:23</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -102,7 +102,7 @@
 	TestCase_InstanceScanCheckOnRecord(strCheckSysId,'sys_app',grApp.sys_id,true);&#13;
 	&#13;
 	// Check "TEST"&#13;
-	TestCase_InstanceScanCheckOnRecord('cc86488d1ba755105b76777d8b4bcbe7','sys_app',grApp.sys_id,true);&#13;
+	//TestCase_InstanceScanCheckOnRecord('cc86488d1ba755105b76777d8b4bcbe7','sys_app',grApp.sys_id,true);&#13;
 	&#13;
 	&#13;
 	&#13;
@@ -119,8 +119,6 @@
 	test.Log(RenderValue(grCheck));&#13;
 	&#13;
 	TestCase_InstanceScanCheckOnRecord(strCheckSysId,'sys_app',grApp.sys_id,true);&#13;
-	&#13;
-	test.TestCase_InstanceScanCheck(strCheckSysId,'sys_app',grApp.sys_id,true);&#13;
 	&#13;
 	return test.GetResult();&#13;
 	&#13;
