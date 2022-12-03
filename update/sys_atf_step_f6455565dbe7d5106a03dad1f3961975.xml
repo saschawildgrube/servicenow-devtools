@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-12-03 13:37:36</sys_created_on>
         <sys_id>f6455565dbe7d5106a03dad1f3961975</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_f6455565dbe7d5106a03dad1f3961975</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-03 13:37:36</sys_updated_on>
+        <sys_updated_on>2022-12-03 13:42:12</sys_updated_on>
         <table/>
         <test display_value="DevTools - HtmlRenderWarning">b7849525dbe7d5106a03dad1f39619e8</test>
         <timeout/>
@@ -36,99 +36,34 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-12-03 13:37:36</sys_created_on>
         <sys_id>08559165dbe7d5106a03dad1f39619ba</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-03 13:37:36</sys_updated_on>
-        <value>// You can use this step to execute a variety of server-side javascript tests including&#13;
-// jasmine tests and custom assertions&#13;
-//&#13;
-//&#13;
-// Pass or fail a step: Override the step outcome to pass or fail. This is ignored &#13;
-//                      by jasmine tests&#13;
-//&#13;
-//  - Return true from the main function body to pass the step&#13;
-//  - Return false from the main function body to fail the step&#13;
-//&#13;
-//&#13;
-// outputs:       Pre-defined Step config Output variables to set on this step during &#13;
-//                execution that are available to later steps&#13;
-//&#13;
-// steps(SYS_ID): A function to retrieve Output variable data from a step that executed&#13;
-//                earlier in the test. The desired step's sys_id is required&#13;
-//&#13;
-// params:        The current test run data set's parameter data including both &#13;
-//                exclusive and shared parameters&#13;
-//&#13;
-//  Example:&#13;
-//&#13;
-//      // Test step 1 - add data&#13;
-//      var gr = new GlideRecord('sc_task');&#13;
-//      // If parameterized testing is enabled, parameters are stored in the params object&#13;
-//      gr.setValue('short_description', params.u_my_short_description)&#13;
-//      gr.setValue('caller', params.u_my_user.manager)&#13;
-//      // this sample step's Step config has Output variables named table and record_id&#13;
-//      outputs.table = 'sc_task';&#13;
-//      outputs.record_id = gr.insert();&#13;
-//&#13;
-//      // Test step 2 - access added data and validate&#13;
-//      // check that the record exists (or that business logic changed it)&#13;
-//      var gr = new GlideRecord("sc_task");&#13;
-//      gr.get(steps(PREVIOUS_STEP_SYS_ID).record_id);&#13;
-//      assertEqual({name: "task gr exists", shouldbe: true, value: gr.isValidRecord()});&#13;
-//&#13;
-//&#13;
-// stepResult.setOutputMessage: Log a message to step results after step executes.&#13;
-//                              Can only be called once or will overwrite previous &#13;
-//                              message&#13;
-//&#13;
-//  Example:&#13;
-//&#13;
-//      var gr = new GlideRecord('sc_task');&#13;
-//      gr.setValue('short_description', 'verify task can be inserted');&#13;
-//      var grSysId = gr.insert();&#13;
-//      var justCreatedGR = new GlideRecord('sc_task');&#13;
-//      if (justCreatedGR.get(grSysId)) {&#13;
-//            stepResult.setOutputMessage("Successfully inserted task record");&#13;
-//            return true; // pass the step&#13;
-//      } else { &#13;
-//            stepResult.setOutputMessage("Failed to insert task record");&#13;
-//            return false; // fail the step&#13;
-//      }&#13;
-//&#13;
-//&#13;
-// Note: describe is only supported in Global scope.&#13;
-// Use 'describe' to create a suite of test scripts and 'it' to define test expectations&#13;
-//&#13;
-//  Example jasmine test:&#13;
-//&#13;
-//      describe('my suite of script tests', function() {&#13;
-//            it('should meet expectations', function() {&#13;
-//                  expect(true).not.toBe(false);&#13;
-//            });&#13;
-//      });&#13;
-//      // make sure to uncomment jasmine.getEnv().execute(); outside the function body&#13;
-//&#13;
-//&#13;
-// assertEqual: A function used to compare that assertion.shouldbe == assertion.value;&#13;
-//              in case of failure it throws an Error and logs that the assertion by&#13;
-//              name has failed&#13;
-//&#13;
-//  Example:&#13;
-//&#13;
-//      var testAssertion = {&#13;
-//            name: "my test assertion",&#13;
-//            shouldbe: "expected value"&#13;
-//            value: "actual value",&#13;
-//      };&#13;
-//      assertEqual(testAssertion); // throws Error, logs message to test step output&#13;
-//&#13;
-(function(outputs, steps, params, stepResult, assertEqual) {&#13;
-    // add test script here&#13;
+        <sys_updated_on>2022-12-03 13:42:12</sys_updated_on>
+        <value>(function(outputs, steps, stepResult, assertEqual)&#13;
+{&#13;
+	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
+	&#13;
+	test.SetResult(true);&#13;
 &#13;
-})(outputs, steps, params, stepResult, assertEqual);&#13;
-// uncomment the next line to execute this script as a jasmine test&#13;
-//jasmine.getEnv().execute();&#13;
-</value>
+	function TestCase_HtmlRenderWarning(strText, vExpected)&#13;
+	{&#13;
+		test.TestCase(&#13;
+			'Function HtmlRenderWarning()',&#13;
+			HtmlRenderWarning,&#13;
+			{&#13;
+				'Text': strText &#13;
+			},&#13;
+			vExpected,&#13;
+			null);&#13;
+	}&#13;
+&#13;
+	TestCase_HtmlRenderWarning(null,'');&#13;
+	TestCase_HtmlRenderWarning('','');&#13;
+	TestCase_HtmlRenderWarning('This is a warning','&lt;div class="outputmsg outputmsg_warning notification notification-warning"&gt;&lt;div class="outputmsg_text"&gt;This is a warning&lt;/div&gt;&lt;/div&gt;');&#13;
+	&#13;
+	return test.GetResult();&#13;
+	&#13;
+})(outputs, steps, stepResult, assertEqual);</value>
         <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
     </sys_variable_value>
     <sys_variable_value action="INSERT_OR_UPDATE">
