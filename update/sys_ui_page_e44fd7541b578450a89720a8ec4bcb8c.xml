@@ -155,6 +155,26 @@ function DevToolsGetFormatConfig(grRecord)
 	</ol>
 -->	
 	
+	<h3>1.49.0 - 2022-12-05</h3>
+	<ol>
+		<li>Added function InstanceScanCheckOnRecord() to check a single record against a single Instance Scan check.</li>
+		<li>TestAPI now uses InstanceScanCheckOnRecord() which significantly accelerates test cases for Instance Scan checks.</li> 
+		<li>Added function InstanceScanIsRunning().</li>
+		<li>TestAPI now uses InstanceScanIsRunning() to check if an Instance Scan test case can be executed right now and fails the test if not.</li>  
+		<li>Added UI script InstanceScanIsRunning().</li>
+		<li>Added DevToolsClientAPI::InstanceScanIsRunning().</li>
+		<li>Added function GetTestRecord() and IsTestAvailableForRecord().</li>
+		<li>Added DevToolsClientAPI::GetTestRecord().</li>
+		<li>Added Ui action "Go to Test" to navigate from a Script Include to a matching ATF test.</li>
+		<li>Fixed a defect in UI script GetKeys() that caused an error if an undefined input value was provided.</li>
+		<li>Added ATF test for HtmlRenderWarning().</li>
+		<li>Added ATF test for IsDomainSeparationInstalled().</li>
+		<li>Added ATF test for IsTableDomainSeparated().</li>
+		<li>Added ATF test for IsRecordRunTestButtonCompatible().</li>
+		<li>Improved the "AppBuilder" script macro.</li>
+		<li>Module "Evaluator Log" now shows all entries as of the current day.</li>
+	</ol>	
+	
 	<h3>1.48.0 - 2022-11-30</h3>
 	<ol>
 		<li>Added function IsTestRunning() and added required logic to TestAPI.</li>
@@ -1029,13 +1049,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>999</sys_mod_count>
+        <sys_mod_count>1015</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-11-30 16:45:48</sys_updated_on>
+        <sys_updated_on>2022-12-05 15:32:35</sys_updated_on>
     </sys_ui_page>
 </record_update>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.InstanceScanCheckOnRecord</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Performs an instance scan on a record using only a specific check.</description>
+        <name>InstanceScanCheckOnRecord</name>
+        <script><![CDATA[function InstanceScanCheckOnRecord(strCheckSysId, strTable, strRecordSysId, bDetailed)
+{
+	if (InstanceScanIsRunning() == true)
+	{
+		return false;
+	}
+	
+	
+	strCheckSysId = GetStringValue(strCheckSysId);
+	strTable = GetStringValue(strTable);
+	strRecordSysId = GetStringValue(strRecordSysId);
+	
+	if (IsValidSysId(strCheckSysId) == false)
+	{
+		return false;
+	}
+	if (IsValidTable(strTable) == false)
+	{
+		return false;
+	}
+	if (IsValidSysId(strRecordSysId) == false)
+	{
+		return false;
+	}
+
+	var grRecord = GetRecord(strTable,strRecordSysId);
+	if (IsValidRecord(grRecord) == false)
+	{
+		return false;
+	}
+	
+	var strRecordScopeSysId = '';
+	if (   grRecord.getRecordClassName() == 'sys_app'
+		|| grRecord.getRecordClassName() == 'sys_store_app'
+		|| grRecord.getRecordClassName() == 'sys_scope')
+	{
+		strRecordScopeSysId = grRecord.sys_id;
+	}
+	else
+	{
+		strRecordScopeSysId = GetStringValue(grRecord.sys_scope);
+	}
+	
+	var strUpdateSetSysId = '';
+	var strUpdateXmlSysId = '';
+	var strSuiteSysId = '';
+	var strSuiteCheckSysId = '';
+	
+	function CleanUp()
+	{
+		RecordDelete('scan_check_suite_check',strSuiteCheckSysId);
+		RecordDelete('scan_check_suite',strSuiteSysId);
+		RecordDelete('sys_update_xml',strUpdateXmlSysId);
+		RecordDelete('sys_update_set',strUpdateSetSysId);		
+	}
+
+	
+	// There is a bug in sn_instance_scan.ScanInstance().triggerScanFromCombo() which causes records NOT to be scanned
+	// if they are NOT in a current update set. No joke.
+	// To mitigate the bug we need to create a temporary update set and update XML
+	
+	var grUS = new GlideRecord('sys_update_set');
+	grUS.initialize();
+	grUS.sys_scope = strRecordScopeSysId;
+	strUpdateSetSysId = GlideRecordInsert(grUS);
+	if (IsValidSysId(strUpdateSetSysId) == false)
+	{
+		return false;
+	}
+	
+	var grUX = new GlideRecord('sys_update_xml');
+	grUX.initialize();
+	grUX.action = 'INSERT_OR_UPDATE';
+	grUX.application = strRecordScopeSysId;
+	grUX.category = 'customer';
+	grUX.name = grRecord.getRecordClassName()+'_'+grRecord.sys_id;
+	grUX.update_set = strUpdateSetSysId;	
+	strUpdateXmlSysId = GlideRecordInsert(grUX);
+	
+	if (IsValidSysId(strUpdateXmlSysId) == false)
+	{
+		CleanUp();
+		return false;
+	}
+		
+	strSuiteSysId = RecordQueryOrInsert('scan_check_suite', { name: 'DevTools.TEMP' }, { sys_scope: 'global' }, true);
+	if (IsValidSysId(strSuiteSysId) == false)
+	{
+		CleanUp();
+		return false;
+	}
+	
+	var values = {
+		suite: strSuiteSysId,
+		check: strCheckSysId,
+		sys_scope: 'global'
+	}
+	strSuiteCheckSysId = RecordQueryOrInsert('scan_check_suite_check',values,values,true);
+	if (IsValidSysId(strSuiteCheckSysId) == false)
+	{
+		CleanUp();
+		return false;
+	}
+	
+	var su = new sn_instance_scan.ScanUtil();
+	var strComboSysId = su.getOrCreateComboFromSuiteAndTargets(strSuiteSysId, strTable, [strRecordSysId]);
+	if (IsValidSysId(strComboSysId) == false)
+	{
+		CleanUp();
+		return false;
+	}
+
+	
+	
+	var si = new sn_instance_scan.ScanInstance();
+	var strProgressSysId = '';
+	try 
+	{
+		strProgressSysId = si.triggerScanFromCombo(strComboSysId);
+	}
+	catch (e)
+	{
+	}
+	
+	if (IsValidSysId(strProgressSysId) == false)
+	{
+		CleanUp();
+		return false;
+	}
+	
+	var grProgress = new GlideRecord('sys_progress_worker');
+	var bProgress = true;
+	while (bProgress == true)
+	{
+		if (grProgress.get(strProgressSysId))
+		{
+			var strState = GetStringValue(grProgress.state);  
+			if (strState != 'starting' && strState != 'running')
+			{
+				bProgress = false;
+			}
+		}
+		else
+		{
+			bProgress = false;
+		}
+	}
+	
+	var grScanResult = new GlideRecord('scan_result');
+	grScanResult.addQuery('progress_id','=',strProgressSysId);
+	grScanResult.query();
+	if (grScanResult.next() == false)
+	{
+		CleanUp();
+		return false;
+	}
+	
+	var results = InstanceScanGetScanResults(grScanResult.sys_id,bDetailed);
+
+	CleanUp();
+	
+	return results;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-01 17:29:05</sys_created_on>
+        <sys_id>d4077b701b6755105b76777d8b4bcb65</sys_id>
+        <sys_mod_count>19</sys_mod_count>
+        <sys_name>InstanceScanCheckOnRecord</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_d4077b701b6755105b76777d8b4bcb65</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-12-02 21:53:36</sys_updated_on>
+    </sys_script_include>
+</record_update>

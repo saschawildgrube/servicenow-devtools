@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_action">
     <sys_ui_action action="INSERT_OR_UPDATE">
-        <action_name>test_add</action_name>
+        <action_name/>
         <active>true</active>
-        <client>false</client>
+        <client>true</client>
         <client_script_v2><![CDATA[function onClick(g_form) {
 
 }]]></client_script_v2>
-        <comments>Adds a test to a suite</comments>
-        <condition>current.getTableName() == 'sys_atf_test_suite'</condition>
+        <comments>Navigates to the test associated to a script include if the test exists.</comments>
+        <condition>AppGetProperty('ui.gototest_button') &amp;&amp; IsTestAvailableForRecord(current)</condition>
         <form_action>true</form_action>
         <form_button>true</form_button>
         <form_button_v2>false</form_button_v2>
-        <form_context_menu>true</form_context_menu>
+        <form_context_menu>false</form_context_menu>
         <form_link>false</form_link>
         <form_menu_button_v2>false</form_menu_button_v2>
-        <form_style>primary</form_style>
+        <form_style/>
         <format_for_configurable_workspace>false</format_for_configurable_workspace>
         <hint/>
-        <isolate_script>false</isolate_script>
+        <isolate_script>true</isolate_script>
         <list_action>false</list_action>
         <list_banner_button>false</list_banner_button>
         <list_button>false</list_button>
@@ -27,21 +27,26 @@
         <list_save_with_form_button>false</list_save_with_form_button>
         <list_style/>
         <messages/>
-        <name>Add Test</name>
-        <onclick/>
-        <order>1</order>
-        <script><![CDATA[var strTestSysId = AppBuilderAddTestToSuite(current.sys_id);
-
-var strRedirectURI = '';
-if (IsValidSysId(strTestSysId) == true)
+        <name>Go to Test</name>
+        <onclick>onClick()</onclick>
+        <order>9500</order>
+        <script><![CDATA[function onClick()
 {
-	gs.addInfoMessage('Added new test to suite.');
-	RedirectToRecord(GetRecord('sys_atf_test',strTestSysId));
-}
-else
-{
-	gs.addErrorMessage('Failed to add new test to suite.');
-	RedirectToRecord(GetRecord('sys_atf_test_suite',current.sys_id));	
+	var strTitle = 'Dev'+'Tools';
+	var test = ServerRequest('x_snc_devtools.DevToolsClientAPI','GetTestRecord',
+		{
+			table: GetCurrentRecordTableName(),
+			sys_id: GetCurrentRecordSysId()
+		});
+	Log(RenderValue(test));
+	if (test == false)
+	{
+		DoModalMessage(strTitle,'No test available!');	
+	}
+	else
+	{
+		RedirectToRecord('sys_atf_test',GetValue(test,'sys_id'),'',true);
+	}
 }]]></script>
         <show_insert>false</show_insert>
         <show_multiple_update>false</show_multiple_update>
@@ -49,19 +54,19 @@ else
         <show_update>true</show_update>
         <sys_class_name>sys_ui_action</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2021-09-08 07:49:57</sys_created_on>
+        <sys_created_on>2022-12-02 22:39:15</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
-        <sys_id>82b0add41ba6bc505331b8449b4bcb26</sys_id>
-        <sys_mod_count>18</sys_mod_count>
-        <sys_name>Add Test</sys_name>
+        <sys_id>650746991b23d5105b76777d8b4bcb34</sys_id>
+        <sys_mod_count>12</sys_mod_count>
+        <sys_name>Go to Test</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
-        <sys_update_name>sys_ui_action_82b0add41ba6bc505331b8449b4bcb26</sys_update_name>
+        <sys_update_name>sys_ui_action_650746991b23d5105b76777d8b4bcb34</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-03 13:39:04</sys_updated_on>
+        <sys_updated_on>2022-12-02 23:42:20</sys_updated_on>
         <table>global</table>
         <ui11_compatible>true</ui11_compatible>
         <ui16_compatible>false</ui16_compatible>
