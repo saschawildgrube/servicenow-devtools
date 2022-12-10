@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element audit="true" label="Package dependency" max_length="40" name="sys_package_dependency_m2m" sizeclass="33" type="collection">
+        <element label="Versions" max_length="40" name="x_snc_devtools_versions" type="string"/>
+    </element>
+</database>
