@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="update_synch=true" extends="sys_metadata" label="Dependency" max_length="40" name="x_snc_devtools_dependency" type="collection">
+        <element label="Dependency" mandatory="true" max_length="32" name="dependency" reference="sys_package" type="reference"/>
+        <index name="index">
+            <element name="dependency"/>
+        </index>
+    </element>
+</database>
