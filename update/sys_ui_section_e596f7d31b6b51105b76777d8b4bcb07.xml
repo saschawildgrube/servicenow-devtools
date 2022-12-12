@@ -4,13 +4,13 @@
             <element>.begin_split</element>
             <position>0</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2022-12-10 19:10:52</sys_created_on>
-            <sys_id>46b4aabf1be3d1105b76777d8b4bcb7b</sys_id>
+            <sys_created_on>2022-12-12 19:07:14</sys_created_on>
+            <sys_id>981730601bbf55105b76777d8b4bcbea</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="sys_package_dependency_m2m" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">e596f7d31b6b51105b76777d8b4bcb07</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2022-12-10 19:10:52</sys_updated_on>
+            <sys_updated_on>2022-12-12 19:07:14</sys_updated_on>
             <sys_user/>
             <type>.begin_split</type>
         </sys_ui_element>
@@ -18,13 +18,13 @@
             <element>sys_package</element>
             <position>1</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2022-12-10 19:10:52</sys_created_on>
-            <sys_id>cab4aabf1be3d1105b76777d8b4bcb7b</sys_id>
+            <sys_created_on>2022-12-12 19:07:14</sys_created_on>
+            <sys_id>101730601bbf55105b76777d8b4bcbeb</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="sys_package_dependency_m2m" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">e596f7d31b6b51105b76777d8b4bcb07</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2022-12-10 19:10:52</sys_updated_on>
+            <sys_updated_on>2022-12-12 19:07:14</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -32,13 +32,13 @@
             <element>.split</element>
             <position>2</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2022-12-10 19:10:52</sys_created_on>
-            <sys_id>4eb4aabf1be3d1105b76777d8b4bcb7b</sys_id>
+            <sys_created_on>2022-12-12 19:07:14</sys_created_on>
+            <sys_id>901730601bbf55105b76777d8b4bcbeb</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="sys_package_dependency_m2m" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">e596f7d31b6b51105b76777d8b4bcb07</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2022-12-10 19:10:52</sys_updated_on>
+            <sys_updated_on>2022-12-12 19:07:14</sys_updated_on>
             <sys_user/>
             <type>.split</type>
         </sys_ui_element>
@@ -46,13 +46,13 @@
             <element>dependency</element>
             <position>3</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2022-12-10 19:10:52</sys_created_on>
-            <sys_id>ceb4aabf1be3d1105b76777d8b4bcb7b</sys_id>
+            <sys_created_on>2022-12-12 19:07:14</sys_created_on>
+            <sys_id>141730601bbf55105b76777d8b4bcbeb</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="sys_package_dependency_m2m" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">e596f7d31b6b51105b76777d8b4bcb07</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2022-12-10 19:10:52</sys_updated_on>
+            <sys_updated_on>2022-12-12 19:07:14</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -60,27 +60,41 @@
             <element>x_snc_devtools_versions</element>
             <position>4</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2022-12-10 19:10:52</sys_created_on>
-            <sys_id>42b4aabf1be3d1105b76777d8b4bcb7c</sys_id>
+            <sys_created_on>2022-12-12 19:07:14</sys_created_on>
+            <sys_id>941730601bbf55105b76777d8b4bcbeb</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="sys_package_dependency_m2m" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">e596f7d31b6b51105b76777d8b4bcb07</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2022-12-10 19:10:52</sys_updated_on>
+            <sys_updated_on>2022-12-12 19:07:14</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>min_version</element>
+            <position>5</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2022-12-12 19:07:14</sys_created_on>
+            <sys_id>181730601bbf55105b76777d8b4bcbeb</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="sys_package_dependency_m2m" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">e596f7d31b6b51105b76777d8b4bcb07</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2022-12-12 19:07:14</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>.end_split</element>
-            <position>5</position>
+            <position>6</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2022-12-10 19:10:52</sys_created_on>
-            <sys_id>c2b4aabf1be3d1105b76777d8b4bcb7c</sys_id>
+            <sys_created_on>2022-12-12 19:07:14</sys_created_on>
+            <sys_id>981730601bbf55105b76777d8b4bcbeb</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="sys_package_dependency_m2m" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">e596f7d31b6b51105b76777d8b4bcb07</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2022-12-10 19:10:52</sys_updated_on>
+            <sys_updated_on>2022-12-12 19:07:14</sys_updated_on>
             <sys_user/>
             <type>.end_split</type>
         </sys_ui_element>
