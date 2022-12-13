@@ -19,8 +19,8 @@
 	
 	var aDependencies = [];
 	
-	var grDependencies = new GlideRecord('sys_package_dependency_m2m');
-	grDependencies.addQuery('sys_package','=',grPackage.sys_id);
+	var grDependencies = new GlideRecord('x_snc_devtools_dependency');
+	grDependencies.addQuery('sys_scope','=',grPackage.sys_id);
 	grDependencies.query();
 	while (grDependencies.next())
 	{
@@ -30,7 +30,7 @@
 		{
 			dependency = {
 				sys_id: GetStringValue(grDependencies.dependency),
-				name: GetStringValue(grDependencies.x_snc_devtools_name)
+				name: GetStringValue(grDependencies.name)
 			};
 		}
 		aDependencies.push(dependency);
@@ -44,13 +44,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-12-12 18:12:56</sys_created_on>
         <sys_id>82e62cec1b3f55105b76777d8b4bcbec</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>GetPackageDependencyTree</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_82e62cec1b3f55105b76777d8b4bcbec</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-12 20:30:56</sys_updated_on>
+        <sys_updated_on>2022-12-13 15:14:38</sys_updated_on>
     </sys_script_include>
 </record_update>
