@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
-    <element attributes="update_synch=true" extends="sys_metadata" label="Dependency" max_length="40" name="x_snc_devtools_dependency" sizeclass="1" type="collection">
+    <element attributes="update_synch=true" extends="sys_metadata" label="Dependency" max_length="40" name="x_snc_devtools_dependency" sizeclass="5" type="collection">
         <element label="Dependency" mandatory="true" max_length="32" name="dependency" reference="sys_package" type="reference"/>
+        <element label="Documentation" max_length="1024" name="documentation_url" type="url"/>
         <element label="Name" max_length="100" name="name" type="string"/>
+        <element label="Repository" max_length="1024" name="repo_url" type="url"/>
         <element label="Compatible Versions" max_length="40" name="versions" type="string"/>
         <index name="index">
             <element name="dependency"/>

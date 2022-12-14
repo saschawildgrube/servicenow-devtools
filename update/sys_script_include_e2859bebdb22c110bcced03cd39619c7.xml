@@ -31,23 +31,37 @@
 
 	if (IsValidSysId(strValue))
 	{
-		var grApp = new GlideRecord('sys_scope');
+		var grApp = new GlideRecord('sys_app');
 		if (grApp.get(strValue))
 		{
 			return grApp;
 		}
+		grScope = new GlideRecord('sys_scope');
+		if (grScope.get(strValue))
+		{
+			return grScope;
+		}
 		return false;
 	}
-	
-	var grApp = new GlideRecord('sys_scope');
+
+	var grApp = new GlideRecord('sys_app');
 	grApp.addQuery('scope','=',strValue);
 	grApp.query();
 	if (grApp.next())
 	{
 		return grApp;
 	}
-	
-	var grApp = new GlideRecord('sys_scope');
+		
+	var grScope = new GlideRecord('sys_scope');
+	grScope.addQuery('scope','=',strValue);
+	grScope.query();
+	if (grScope.next())
+	{
+		return grScope;
+	}
+
+
+	var grApp = new GlideRecord('sys_app');
 	grApp.addQuery('name','STARTSWITH',GetCleanAppName(strValue));
 	grApp.orderBy('name');
 	grApp.query();
@@ -58,6 +72,19 @@
 			return grApp;
 		}
 	}
+	
+		
+	var grScope = new GlideRecord('sys_scope');
+	grScope.addQuery('name','STARTSWITH',GetCleanAppName(strValue));
+	grScope.orderBy('name');
+	grScope.query();
+	if (grScope.next())
+	{
+		if (GetCleanAppName(strValue) == GetCleanAppName(grScope.name))
+		{
+			return grScope;
+		}
+	}
 			
 	return false;
 }]]></script>
@@ -65,13 +92,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-04-05 14:51:44</sys_created_on>
         <sys_id>e2859bebdb22c110bcced03cd39619c7</sys_id>
-        <sys_mod_count>12</sys_mod_count>
+        <sys_mod_count>13</sys_mod_count>
         <sys_name>GetAppRecord</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_e2859bebdb22c110bcced03cd39619c7</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-10-25 13:03:39</sys_updated_on>
+        <sys_updated_on>2022-12-14 16:49:58</sys_updated_on>
     </sys_script_include>
 </record_update>
