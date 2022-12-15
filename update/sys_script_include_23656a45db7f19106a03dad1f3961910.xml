@@ -10,28 +10,69 @@
         <script><![CDATA[function HtmlRenderDependencies(vPackage)
 {
 	var oPackage = GetPackageDependencyTree(vPackage);
-	
+
 	if (IsObject(oPackage) == false)
 	{
 		return HtmlRenderError('Could not identify the given package or its dependencies!');
 	}
+
+	var strHtmlOuter = '';
+	var bError = false;
 	
+		
 	function HtmlRenderPackage(oPackage,nLevel)
 	{
 		nLevel = GetIntegerValue(nLevel);
 		var nLeft = nLevel * 30;
-		var strHtml = '<div style="margin-left: '+nLeft+'px; margin-right: 10px; margin-bottom: 10px; padding-top: 1px; padding-bottom: 5px; padding-left: 20px; padding-right:15px; background-color: #EEEEEE; border-radius: 20px;">';
+
+		var strHtml = '';
 		
-		var strVersion = '';
+		strHtml += '<div style="margin-left: '+nLeft+'px; margin-right: 10px; margin-bottom: 10px; padding-top: 1px; padding-bottom: 5px; padding-left: 20px; padding-right:15px; background-color: #EEEEEE; border-radius: 20px;">';
+		
+		var strVersion = ' ' + GetStringValue(oPackage.version);
+		
+		var strAppName = GetValue(oPackage,'name');
 		if (nLevel == 0)
 		{
-			strVersion = ' ' + GetStringValue(oPackage.version);
+			strAppName += ' ' + strVersion;
 		}
 		
-		strHtml += '<h3>' + GetValue(oPackage,'name') + strVersion + '</h3>';
+		var strAppUrl = GetInstanceRecordURL('sys_package',oPackage.sys_id,'DevTools');
+		var strAppLink = HtmlRenderLink(strAppUrl,strAppName,true);
+		var strDependencyStatus = GetStringValue(GetValue(oPackage,'dependency_status'));
+		strHtml += '<h3>' + strAppLink + '</h3>';
 		if (nLevel > 0)
 		{
-			strHtml += '<p>Compatible Version(s): ' + GetValue(oPackage,'compatible_versions') + '</p>';
+			if (strDependencyStatus != 'ok')
+			{
+				bError = true;
+			}	
+			strHtml += '<p>';
+			strHtml += 'Compatible Version(s): ' + GetValue(oPackage,'compatible_versions');
+			if (strDependencyStatus != 'missing')
+			{
+				strHtml += ' / ';
+				strHtml += 'Installed version: ' + strVersion;
+			}
+			strHtml += ' / ';
+			
+			function HtmlRenderDependencyStatus(strDependencyStatus)
+			{
+				switch (strDependencyStatus)
+				{
+					case 'ok':
+						return '<span style="color: green; font-weight: bold;">OK</span>';
+					case 'missing':
+						return '<span style="color: red; font-weight: bold;">Package not installed!</span>';
+					case 'incompatible_version':
+						return '<span style="color: red; font-weight: bold;">Incompatible package version installed!</span>';
+					default:
+						return '<span style="color: red; font-weight: bold;">UNDEFINED</span>'
+				}
+			}
+			
+			strHtml += 'Status: ' + HtmlRenderDependencyStatus(strDependencyStatus);
+			strHtml += '</p>';
 		}
 
 		var aDependencies = GetArrayValue(GetValue(oPackage,'_dependencies'));
@@ -40,32 +81,37 @@
 		
 		strHtml += '</div>';
 		
-		
 		for (var nDependency = 0; nDependency < aDependencies.length; nDependency++)
 		{
 			strHtml += HtmlRenderPackage(aDependencies[nDependency], nLevel+1);
 		}
+				
 		return strHtml;
 	}
 	
+
+	if (bError == true)
+	{
+		strHtmlOuter += HtmlRenderError('At least one missing package or incompatible package version has been detected, see below for details!');
+	}
 	
-	var strHtml = HtmlRenderPackage(oPackage,0);
+	strHtmlOuter += HtmlRenderPackage(oPackage,0);
 	
-	//strHtml += HtmlRenderValue(oPackage);
+	strHtmlOuter += HtmlRenderValue(oPackage);
 	
-	return strHtml;
+	return strHtmlOuter;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-12-14 16:26:22</sys_created_on>
         <sys_id>23656a45db7f19106a03dad1f3961910</sys_id>
-        <sys_mod_count>21</sys_mod_count>
+        <sys_mod_count>41</sys_mod_count>
         <sys_name>HtmlRenderDependencies</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_23656a45db7f19106a03dad1f3961910</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-14 20:01:47</sys_updated_on>
+        <sys_updated_on>2022-12-15 18:56:11</sys_updated_on>
     </sys_script_include>
 </record_update>
