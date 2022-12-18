@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-12-12 18:50:09</sys_created_on>
         <sys_id>cc72b82c1b7f55105b76777d8b4bcbf1</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>13</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_cc72b82c1b7f55105b76777d8b4bcbf1</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-13 15:18:53</sys_updated_on>
+        <sys_updated_on>2022-12-18 20:48:25</sys_updated_on>
         <table/>
         <test display_value="DevTools - GetPackageDependencyTree">cd62782c1b7f55105b76777d8b4bcb8a</test>
         <timeout/>
@@ -36,9 +36,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-12-12 18:50:09</sys_created_on>
         <sys_id>4223f82c1b7f55105b76777d8b4bcb14</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>13</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-13 15:18:53</sys_updated_on>
+        <sys_updated_on>2022-12-18 20:48:25</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -55,11 +55,17 @@
 				return (vExpected == vResult);&#13;
 			}&#13;
 			var aDependencies = GetArrayValue(GetValue(vResult,'_dependencies'));&#13;
-			if (vExpected == aDependencies.length)&#13;
+			if (GetValue(vExpected,'count') != aDependencies.length)&#13;
 			{&#13;
-				return true;&#13;
+				test.Log('Unexpected dependency count.');&#13;
+				return false;&#13;
 			}&#13;
-			return false;&#13;
+			if (GetValue(vExpected,'dependency_status_summary') != GetValue(vResult,'dependency_status_summary'))&#13;
+			{&#13;
+				test.Log('Unexpected dependency status summary.');&#13;
+				return false;&#13;
+			}	&#13;
+			return true;&#13;
 		}&#13;
 &#13;
 		test.TestCase(&#13;
@@ -75,18 +81,39 @@
 	TestCase_GetPackageDependencyTree(null,false);&#13;
 	TestCase_GetPackageDependencyTree('',false);&#13;
 &#13;
-	TestCase_GetPackageDependencyTree('x_snc_devtools',0);&#13;
+	TestCase_GetPackageDependencyTree('x_snc_devtools',{ count: 0, dependency_status_summary: 'ok' });&#13;
 	&#13;
 	&#13;
 	var grApp = GetAppRecord('x_snc_devtools');&#13;
+&#13;
+	var grDependency = new GlideRecord('x_snc_devtools_dependency');&#13;
+	grDependency.initialize();&#13;
+	grDependency.sys_scope = grApp.sys_id;&#13;
+	grDependency.dependency = '7e24fab71b1201103297fd9b8b4bcb9a';&#13;
+	grDependency.name = 'Package';&#13;
+	grDependency.insert();&#13;
+	TestCase_GetPackageDependencyTree('x_snc_devtools',{ count: 1, dependency_status_summary: 'ok' });		&#13;
+&#13;
+	var grDependency = new GlideRecord('x_snc_devtools_dependency');&#13;
+	grDependency.initialize();&#13;
+	grDependency.sys_scope = grApp.sys_id;&#13;
+	grDependency.dependency = '100972ff1b9201103297fd9b8b4bcbd3';&#13;
+	grDependency.name = 'Service Portal - Core';&#13;
+	grDependency.versions = '1000.0.0';&#13;
+	grDependency.insert();&#13;
+	TestCase_GetPackageDependencyTree('x_snc_devtools',{ count: 2, dependency_status_summary: 'incompatible_version' });&#13;
+	&#13;
+	&#13;
 	var grDependency = new GlideRecord('x_snc_devtools_dependency');&#13;
 	grDependency.initialize();&#13;
 	grDependency.sys_scope = grApp.sys_id;&#13;
 	grDependency.dependency = GetPseudoSysId();&#13;
 	grDependency.name = 'Pseudo';&#13;
 	grDependency.insert();&#13;
-	TestCase_GetPackageDependencyTree('x_snc_devtools',1);&#13;
+	TestCase_GetPackageDependencyTree('x_snc_devtools',{ count: 3, dependency_status_summary: 'missing' });&#13;
 &#13;
+&#13;
+	&#13;
 	&#13;
 	return test.GetResult();&#13;
 	&#13;
