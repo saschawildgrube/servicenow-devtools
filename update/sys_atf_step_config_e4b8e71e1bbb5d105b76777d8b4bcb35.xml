@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step_config">
+    <sys_atf_step_config action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <batch_order_constraint/>
+        <can_mutate_page>false</can_mutate_page>
+        <category/>
+        <class_name/>
+        <class_type>script</class_type>
+        <deprecated>false</deprecated>
+        <description_generator><![CDATA[function generateDescription()
+{
+	var GetStringValue = x_snc_devtools.GetStringValue;
+	var GetAppName = x_snc_devtools.GetAppName;
+
+	var strAppSysId = GetStringValue(step.inputs.u_application);
+
+	var strAppName = GetAppName(strAppSysId);
+    var strDescription = 'Checks if all documented dependencies of the application "'+strAppName+'" are installed in a compatible version\n';
+
+	return strDescription;
+}
+generateDescription();
+]]></description_generator>
+        <html_description><![CDATA[<p>Checks if all documented dependencies are installed in a supported version.</p>]]></html_description>
+        <icon>icon-article-document</icon>
+        <inputs/>
+        <name>DevTools - Check app dependencies</name>
+        <order>9002</order>
+        <outputs/>
+        <step_env display_value="Server - Independent">6c2bcea1870312009dccc9ded0e3ecca</step_env>
+        <step_execution_generator><![CDATA[(function executeStep(inputs, outputs, stepResult, timeout)
+{
+	var bResult = false;
+	var strMessage = '';
+
+	var GetStringValue = x_snc_devtools.GetStringValue;
+	var GetAppRecord = x_snc_devtools.GetAppRecord;
+	var IsValidRecord = x_snc_devtools.IsValidRecord;
+	var RenderValue = x_snc_devtools.RenderValue;
+	var GetPackageDependencyTree = x_snc_devtools.GetPackageDependencyTree;
+	
+	var strAppSysId = GetStringValue(inputs.u_application);
+
+	var grApp = GetAppRecord(strAppSysId);
+	if (IsValidRecord(grApp) == false)
+	{
+		var bResult = false;
+		strMessage += 'App not found or invalid sys_id: '+strAppSysId+'\n';
+	}
+	else
+	{
+		var dependencies = GetPackageDependencyTree(grApp.sys_id);
+		strMessage += 'TODO';
+	
+	}
+	
+	if (bResult == true)
+	{
+		stepResult.setSuccess();
+	}
+	else
+	{
+		stepResult.setFailed();
+	}
+	stepResult.setOutputMessage(strMessage);
+	
+	
+}(inputs, outputs, stepResult, timeout));
+]]></step_execution_generator>
+        <sys_class_name>sys_atf_step_config</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-18 18:33:05</sys_created_on>
+        <sys_id>e4b8e71e1bbb5d105b76777d8b4bcb35</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>DevTools - Check app dependencies</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_step_config_e4b8e71e1bbb5d105b76777d8b4bcb35</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-12-18 18:40:50</sys_updated_on>
+        <template_reminder>TBD</template_reminder>
+        <type display_value="Test Step" name="sys_atf_step">f1e83abf1b9201103297fd9b8b4bcbc3</type>
+        <wizard_redirect/>
+    </sys_atf_step_config>
+    <sys_translated_text action="delete_multiple" query="documentkey=e4b8e71e1bbb5d105b76777d8b4bcb35"/>
+    <sys_variable_value action="delete_multiple" query="document_key=e4b8e71e1bbb5d105b76777d8b4bcb35"/>
+</record_update>
