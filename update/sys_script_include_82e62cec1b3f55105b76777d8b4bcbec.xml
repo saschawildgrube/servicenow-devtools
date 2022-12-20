@@ -7,7 +7,7 @@
         <client_callable>false</client_callable>
         <description>Retireves all dependencies of the given package as an object tree.</description>
         <name>GetPackageDependencyTree</name>
-        <script><![CDATA[function GetPackageDependencyTree(vPackage)
+        <script><![CDATA[function GetPackageDependencyTree(vPackage,aCurrentPath)
 {
 	function GetDependencyStatusSummary(aStatusValues)
 	{
@@ -21,6 +21,10 @@
 		{
 			strStatusSummary = 'missing';
 		}
+		if (ArrayValueExists(aStatusValues,'circular'))
+		{
+			strStatusSummary = 'circular';
+		}		
 		return strStatusSummary;
 	}
 	
@@ -29,6 +33,12 @@
 	if (IsValidRecord(grPackage) == false)
 	{
 		return false;
+	}
+	
+	aCurrentPath = GetArrayValue(aCurrentPath);
+	if (aCurrentPath.length == 0)
+	{
+		aCurrentPath.push(GetStringValue(grPackage.sys_id));
 	}
 	
 	var result = Clone(grPackage);
@@ -44,44 +54,60 @@
 	grDependencies.query();
 	while (grDependencies.next())
 	{
-		var strCompatibleVersions = GetStringValue(grDependencies.versions)
-		var dependency = GetPackageDependencyTree(grDependencies.dependency);
-		if (dependency == false)
+		if (ArrayValueExists(aCurrentPath,GetStringValue(grDependencies.dependency)) == true)
 		{
 			dependency = {
 				sys_id: GetStringValue(grDependencies.dependency),
 				name: GetStringValue(grDependencies.name),
-				dependency_status: 'missing'
+				dependency_status: 'circular'
 			};
 		}
 		else
 		{
-			var strDependencyVersion = GetValue(dependency,'version');
-			var aCompatibleVersions = GetArrayValue(strCompatibleVersions);
-			var bCompatibleVersion = false;
-			for (var nVersion = 0; nVersion < aCompatibleVersions.length; nVersion++)
+			var strCompatibleVersions = GetStringValue(grDependencies.versions);
+			
+			var aNewCurrentPath = aCurrentPath;
+			aNewCurrentPath.push(grDependencies.dependency);
+			
+			var dependency = GetPackageDependencyTree(grDependencies.dependency,aNewCurrentPath);
+			if (dependency == false)
 			{
-				var strRequiredVersion = aCompatibleVersions[nVersion];
-				if (IsVersionCompatible(strDependencyVersion,strRequiredVersion) == true)
-				{
-					bCompatibleVersion = true;
-				}
-			}
-			if (bCompatibleVersion == true)
-			{
-				dependency['dependency_status'] = 'ok';
+				dependency = {
+					sys_id: GetStringValue(grDependencies.dependency),
+					name: GetStringValue(grDependencies.name),
+					dependency_status: 'missing'
+				};
 			}
 			else
 			{
-				dependency['dependency_status'] = 'incompatible_version';
+				var strDependencyVersion = GetValue(dependency,'version');
+				var aCompatibleVersions = GetArrayValue(strCompatibleVersions);
+				var bCompatibleVersion = false;
+				for (var nVersion = 0; nVersion < aCompatibleVersions.length; nVersion++)
+				{
+					var strRequiredVersion = aCompatibleVersions[nVersion];
+					if (IsVersionCompatible(strDependencyVersion,strRequiredVersion) == true)
+					{
+						bCompatibleVersion = true;
+					}
+				}
+				if (bCompatibleVersion == true)
+				{
+					dependency['dependency_status'] = 'ok';
+				}
+				else
+				{
+					dependency['dependency_status'] = 'incompatible_version';
+				}
+
 			}
-			
 		}
 		dependency['compatible_versions'] = strCompatibleVersions;
 		
 		result['dependency_status_summary'] = GetDependencyStatusSummary(
 			[result['dependency_status_summary'],
-			dependency['dependency_status']]);
+			dependency['dependency_status'],
+			dependency['dependency_status_summary']]);
 		
 		aDependencies.push(dependency);
 	}
@@ -94,13 +120,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-12-12 18:12:56</sys_created_on>
         <sys_id>82e62cec1b3f55105b76777d8b4bcbec</sys_id>
-        <sys_mod_count>16</sys_mod_count>
+        <sys_mod_count>21</sys_mod_count>
         <sys_name>GetPackageDependencyTree</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_82e62cec1b3f55105b76777d8b4bcbec</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-18 20:38:33</sys_updated_on>
+        <sys_updated_on>2022-12-20 10:00:40</sys_updated_on>
     </sys_script_include>
 </record_update>
