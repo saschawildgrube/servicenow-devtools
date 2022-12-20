@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.GetPackageRecord</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Get a package record based on sys_id, scope name, name or the record itself.</description>
+        <name>GetPackageRecord</name>
+        <script><![CDATA[function GetPackageRecord(vValue)
+{
+	var grApp = GetAppRecord(vValue);
+	if (IsValidRecord(grApp) == true)
+	{
+		return grApp;
+	}
+	
+	if (IsValidRecord(vValue))
+	{
+		if (   vValue.getRecordClassName() == 'sys_scope'
+			|| vValue.getRecordClassName() == 'sys_app'
+			|| vValue.getRecordClassName() == 'sys_store_app'
+			|| vValue.getRecordClassName() == 'sys_package'
+			|| vValue.getRecordClassName() == 'sys_plugins')
+		{
+			return vValue;
+		}
+	}
+		
+	var strValue = GetStringValue(vValue);
+	if (strValue == '')
+	{
+		return false;
+	}
+	if (strValue == 'global')
+	{
+		return false;
+	}
+
+	if (IsValidSysId(strValue))
+	{
+		var grPackage = new GlideRecord('sys_package');
+		if (grPackage.get(strValue))
+		{
+			return grPackage;
+		}
+		return false;
+	}
+
+	var grPackage = new GlideRecord('sys_package');
+	grPackage.addQuery('name','STARTSWITH',GetCleanAppName(strValue));
+	grPackage.orderBy('name');
+	grPackage.query();
+	if (grPackage.next())
+	{
+		if (GetCleanAppName(strValue) == GetCleanAppName(grPackage.name))
+		{
+			return grPackage;
+		}
+	}
+		
+	var grPackage = new GlideRecord('sys_package');
+	grPackage.addQuery('scope','=',strValue);
+	grPackage.query();
+	if (grPackage.next())
+	{
+		return grPackage;
+	}
+				
+	return false;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-12 18:13:33</sys_created_on>
+        <sys_id>42ca68241b7f55105b76777d8b4bcb63</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>GetPackageRecord</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_42ca68241b7f55105b76777d8b4bcb63</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-12-14 16:53:13</sys_updated_on>
+    </sys_script_include>
+</record_update>

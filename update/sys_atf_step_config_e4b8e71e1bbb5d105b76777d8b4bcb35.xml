@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step_config">
+    <sys_atf_step_config action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <batch_order_constraint/>
+        <can_mutate_page>false</can_mutate_page>
+        <category display_value="Server">317c4dc20b202200a8d7a12cf6673aa8</category>
+        <class_name/>
+        <class_type>script</class_type>
+        <deprecated>false</deprecated>
+        <description_generator><![CDATA[function generateDescription()
+{
+	var GetStringValue = x_snc_devtools.GetStringValue;
+	var GetAppName = x_snc_devtools.GetAppName;
+
+	var strAppSysId = GetStringValue(step.inputs.u_application);
+
+	var strAppName = GetAppName(strAppSysId);
+    var strDescription = 'Checks if all documented dependencies of the application "'+strAppName+'" are installed in a compatible version\n';
+
+	return strDescription;
+}
+generateDescription();
+]]></description_generator>
+        <html_description><![CDATA[<p>Checks if all documented dependencies are installed in a supported version.</p>]]></html_description>
+        <icon>icon-article-document</icon>
+        <inputs/>
+        <name>DevTools - Check app dependencies</name>
+        <order>9002</order>
+        <outputs/>
+        <step_env display_value="Server - Independent">6c2bcea1870312009dccc9ded0e3ecca</step_env>
+        <step_execution_generator><![CDATA[(function executeStep(inputs, outputs, stepResult, timeout)
+{
+	var bResult = false;
+	var strMessage = '';
+
+	var GetStringValue = x_snc_devtools.GetStringValue;
+	var GetAppRecord = x_snc_devtools.GetAppRecord;
+	var IsValidRecord = x_snc_devtools.IsValidRecord;
+	var RenderValue = x_snc_devtools.RenderValue;
+	var GetPackageDependencyTree = x_snc_devtools.GetPackageDependencyTree;
+	var GetValue = x_snc_devtools.GetValue;
+	var GetArrayValue = x_snc_devtools.GetArrayValue;
+	
+	var strAppSysId = GetStringValue(inputs.u_application);
+
+	var grApp = GetAppRecord(strAppSysId);
+	if (IsValidRecord(grApp) == false)
+	{
+		strMessage += 'App not found or invalid sys_id: '+strAppSysId+'\n';
+	}
+	else
+	{
+		var dependencies = GetPackageDependencyTree(grApp.sys_id);
+		if (dependencies == false)
+		{
+			strMessage += 'GetPackageDependencyTree returned false\n';
+		}
+		else
+		{
+			var aDependencies = GetArrayValue(GetValue(dependencies,'_dependencies'));
+			if (aDependencies.length == 0)
+			{
+				strMessage += 'The application does not have any dependencies. There is nothing to check.';
+				bResult = true;
+			}
+			else
+			{
+				var strStatusSummary = GetValue(dependencies,'dependency_status_summary');
+				if (strStatusSummary != 'ok')
+				{
+					strMessage += 'The status summary is "'+strStatusSummary+'".\n';
+					strMessage += RenderValue(dependencies);
+				}
+				else
+				{
+					bResult = true;
+				}
+			}
+		}
+	}
+	
+	if (bResult == true)
+	{
+		stepResult.setSuccess();
+	}
+	else
+	{
+		stepResult.setFailed();
+	}
+	stepResult.setOutputMessage(strMessage);
+	
+	
+	/* Code used to create the input variable
+	
+var gr = new GlideRecord('atf_input_variable');
+gr.initialize();
+gr.attributes = 'element_mapping_provider=com.glide.automated_testing_framework.ATFVariableElementMapper';
+gr.element = 'u_application';
+gr.internal_type = 'reference';
+gr.model = 'e4b8e71e1bbb5d105b76777d8b4bcb35';
+gr.model_id = 'e4b8e71e1bbb5d105b76777d8b4bcb35';
+gr.name = 'var__m_atf_input_variable_e4b8e71e1bbb5d105b76777d8b4bcb35';
+gr.reference = 'sys_scope';
+gr.sys_scope = 'd689f6901bd38450a89720a8ec4bcbfd';
+gr.insert();	
+		
+	*/
+	
+	
+}(inputs, outputs, stepResult, timeout));
+]]></step_execution_generator>
+        <sys_class_name>sys_atf_step_config</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-18 18:33:05</sys_created_on>
+        <sys_id>e4b8e71e1bbb5d105b76777d8b4bcb35</sys_id>
+        <sys_mod_count>11</sys_mod_count>
+        <sys_name>DevTools - Check app dependencies</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_step_config_e4b8e71e1bbb5d105b76777d8b4bcb35</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-12-18 20:55:30</sys_updated_on>
+        <template_reminder>TBD</template_reminder>
+        <type display_value="Test Step" name="sys_atf_step">f1e83abf1b9201103297fd9b8b4bcbc3</type>
+        <wizard_redirect/>
+    </sys_atf_step_config>
+    <sys_translated_text action="delete_multiple" query="documentkey=e4b8e71e1bbb5d105b76777d8b4bcb35"/>
+    <sys_variable_value action="delete_multiple" query="document_key=e4b8e71e1bbb5d105b76777d8b4bcb35"/>
+    <sys_element_mapping action="delete_multiple" query="table=var__m_atf_input_variable_e4b8e71e1bbb5d105b76777d8b4bcb35^id=e4b8e71e1bbb5d105b76777d8b4bcb35"/>
+</record_update>

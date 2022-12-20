@@ -10,21 +10,21 @@ With a failure timeout of 5 Seconds</description>
         <inputs/>
         <mugshots_cache_json/>
         <notes>This is to make sure that scheduled jobs (sysauto_script) records are captured in update sets and committed to source control.</notes>
-        <order>3</order>
+        <order>2</order>
         <snapshot/>
         <step_config display_value="Record Query">2d82e3c7531400109e02ddeeff7b12a7</step_config>
         <sys_class_name>sys_atf_step</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-23 15:01:20</sys_created_on>
         <sys_id>70f2501d1bbaf410edf3642aab4bcb63</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>Record Query</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_70f2501d1bbaf410edf3642aab4bcb63</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-09-23 15:03:12</sys_updated_on>
+        <sys_updated_on>2022-12-18 20:11:27</sys_updated_on>
         <table>sys_dictionary</table>
         <test display_value="DevTools - Installation">889f2f29db28e850ba15a35305961990</test>
         <timeout>1970-01-01 00:00:05</timeout>
@@ -87,4 +87,5 @@ With a failure timeout of 5 Seconds</description>
         <value>name=sysauto_script^attributesLIKEupdate_synch=true^EQ</value>
         <variable display_value="Conditions">915990ab531000109e02ddeeff7b12f8</variable>
     </sys_variable_value>
+    <sys_element_mapping action="delete_multiple" query="table=var__m_atf_input_variable_2d82e3c7531400109e02ddeeff7b12a7^id=70f2501d1bbaf410edf3642aab4bcb63"/>
 </record_update>

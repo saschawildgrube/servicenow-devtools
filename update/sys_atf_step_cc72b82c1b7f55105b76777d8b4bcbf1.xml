@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <copied_from/>
+        <description>Run Server Side Validation Script</description>
+        <display_name>Run Server Side Script</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>1</order>
+        <snapshot/>
+        <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-12 18:50:09</sys_created_on>
+        <sys_id>cc72b82c1b7f55105b76777d8b4bcbf1</sys_id>
+        <sys_mod_count>15</sys_mod_count>
+        <sys_name>Run Server Side Script</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_step_cc72b82c1b7f55105b76777d8b4bcbf1</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-12-20 15:10:44</sys_updated_on>
+        <table/>
+        <test display_value="DevTools - GetPackageDependencyTree">cd62782c1b7f55105b76777d8b4bcb8a</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=cc72b82c1b7f55105b76777d8b4bcbf1"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>cc72b82c1b7f55105b76777d8b4bcbf1</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-12 18:50:09</sys_created_on>
+        <sys_id>4223f82c1b7f55105b76777d8b4bcb14</sys_id>
+        <sys_mod_count>15</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-12-20 15:10:44</sys_updated_on>
+        <value>(function(outputs, steps, stepResult, assertEqual)&#13;
+{&#13;
+	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
+	&#13;
+	test.SetResult(true);&#13;
+&#13;
+&#13;
+	function TestCase_GetPackageDependencyTree(vPackage, vExpected)&#13;
+	{&#13;
+		function TestCase_GetPackageDependencyTree_CheckResult(vInput,vExpected,vResult)&#13;
+		{&#13;
+			if (vExpected === false)&#13;
+			{&#13;
+				return (vExpected == vResult);&#13;
+			}&#13;
+			var aDependencies = GetArrayValue(GetValue(vResult,'_dependencies'));&#13;
+			if (GetValue(vExpected,'count') != aDependencies.length)&#13;
+			{&#13;
+				test.Log('Unexpected dependency count.');&#13;
+				return false;&#13;
+			}&#13;
+			if (GetValue(vExpected,'dependency_status_summary') != GetValue(vResult,'dependency_status_summary'))&#13;
+			{&#13;
+				test.Log('Unexpected dependency status summary.');&#13;
+				return false;&#13;
+			}	&#13;
+			return true;&#13;
+		}&#13;
+&#13;
+		test.TestCase(&#13;
+			'Function GetPackageDependencyTree()',&#13;
+			GetPackageDependencyTree,&#13;
+			{&#13;
+				'Package': vPackage&#13;
+			},&#13;
+			vExpected,&#13;
+			TestCase_GetPackageDependencyTree_CheckResult);&#13;
+	}&#13;
+&#13;
+	TestCase_GetPackageDependencyTree(null,false);&#13;
+	TestCase_GetPackageDependencyTree('',false);&#13;
+&#13;
+	TestCase_GetPackageDependencyTree('x_snc_devtools',{ count: 0, dependency_status_summary: 'ok' });&#13;
+	&#13;
+	&#13;
+	var grApp = GetAppRecord('x_snc_devtools');&#13;
+&#13;
+	var grPackagePackage = new GlideRecord('sys_plugins');&#13;
+	grPackagePackage.addQuery('name','=','Package');&#13;
+	grPackagePackage.query();&#13;
+	grPackagePackage.next();&#13;
+&#13;
+	var grPackageServicePortal = new GlideRecord('sys_plugins');&#13;
+	grPackageServicePortal.addQuery('name','=','Service Portal - Core');&#13;
+	grPackageServicePortal.query();&#13;
+	grPackageServicePortal.next();&#13;
+	&#13;
+	&#13;
+	var grDependency = new GlideRecord('x_snc_devtools_dependency');&#13;
+	grDependency.initialize();&#13;
+	grDependency.sys_scope = grApp.sys_id;&#13;
+	grDependency.dependency = grPackagePackage.sys_id;&#13;
+	grDependency.name = 'Package';&#13;
+	grDependency.insert();&#13;
+	TestCase_GetPackageDependencyTree('x_snc_devtools',{ count: 1, dependency_status_summary: 'ok' });		&#13;
+&#13;
+	var grDependency = new GlideRecord('x_snc_devtools_dependency');&#13;
+	grDependency.initialize();&#13;
+	grDependency.sys_scope = grApp.sys_id;&#13;
+	grDependency.dependency = grPackageServicePortal.sys_id;&#13;
+	grDependency.name = 'Service Portal - Core';&#13;
+	grDependency.versions = '1000.0.0';&#13;
+	grDependency.insert();&#13;
+	TestCase_GetPackageDependencyTree('x_snc_devtools',{ count: 2, dependency_status_summary: 'incompatible_version' });&#13;
+	&#13;
+	&#13;
+	var grDependency = new GlideRecord('x_snc_devtools_dependency');&#13;
+	grDependency.initialize();&#13;
+	grDependency.sys_scope = grApp.sys_id;&#13;
+	grDependency.dependency = GetPseudoSysId();&#13;
+	grDependency.name = 'Pseudo';&#13;
+	grDependency.insert();&#13;
+	TestCase_GetPackageDependencyTree('x_snc_devtools',{ count: 3, dependency_status_summary: 'missing' });&#13;
+&#13;
+	// "Service Portal - Core" now has a dependency to "DevTools" - this would be a circular dependency which is not allowed!  &#13;
+	var grDependency = new GlideRecord('x_snc_devtools_dependency');&#13;
+	grDependency.initialize();&#13;
+	grDependency.sys_scope = grPackageServicePortal.sys_id;&#13;
+	grDependency.dependency = grApp.sys_id;&#13;
+	grDependency.name = 'DevTools';&#13;
+	grDependency.insert();&#13;
+	TestCase_GetPackageDependencyTree('x_snc_devtools',{ count: 3, dependency_status_summary: 'circular' });&#13;
+	&#13;
+	&#13;
+	return test.GetResult();&#13;
+	&#13;
+})(outputs, steps, stepResult, assertEqual);</value>
+        <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>cc72b82c1b7f55105b76777d8b4bcbf1</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-12 18:50:09</sys_created_on>
+        <sys_id>8a23f82c1b7f55105b76777d8b4bcb13</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-12-12 18:50:09</sys_updated_on>
+        <value>3.1</value>
+        <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
+    </sys_variable_value>
+</record_update>
