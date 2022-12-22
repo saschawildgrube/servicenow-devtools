@@ -10,19 +10,7 @@
         <script><![CDATA[function HtmlRenderPageApplicationStatus()
 {
 	/*
-	var RenderValue = x_snc_devtools.RenderValue;
-	var GetValue = x_snc_devtools.GetValue;
-	var GetBoolValue = x_snc_devtools.GetBoolValue;
-	var GetKeys = x_snc_devtools.GetKeys;
-	var GetStringValue = x_snc_devtools.GetStringValue;
-	var HtmlRenderLink = x_snc_devtools.HtmlRenderLink;
-	var GetInstanceListPath = x_snc_devtools.GetInstanceListPath;
-	var GetInstanceRecordPath = x_snc_devtools.GetInstanceRecordPath;
-	var RenderDateTimeUser = x_snc_devtools.RenderDateTimeUser;
-	var GetAppName = x_snc_devtools.GetAppName;
-	var IsDomainSeparationInstalled = x_snc_devtools.IsDomainSeparationInstalled;
-	var IsTableDomainSeparated = x_snc_devtools.IsTableDomainSeparated;
-	var IsValidRecord = x_snc_devtools.IsValidRecord;
+
 
 
 	
@@ -57,19 +45,7 @@
 		return strHtml;
 	}
 	
-	function HtmlRenderSpanDomainSeparationStatus(strTable)
-	{
-		if (IsDomainSeparationInstalled() == false)
-		{
-			return '<span style="color: grey;">NOT INSTALLED</span>';
-		}
-		var bSeparated = IsTableDomainSeparated(strTable);
-		if (bSeparated == true)
-		{
-			return '<span style="color: green;">YES</span>';
-		}
-		return '<span style="color: black;">NO</span>';
-	}
+
 	
 	*/
 	
@@ -89,22 +65,10 @@
 
 
 	var status = GetApplicationStatus();
-	
-	/*
-	
-	var plugin_status = GetPluginStatus();
-	var aColumns = GetKeys(GetValue(plugin_status,'columns'));	
-	
-	var bActive = GetBoolValue(GetValue(status,'active')); 
-	var strHtmlStatus = HtmlRenderSpanStatus(bActive);
-	*/
+	var applications = GetValue(status,'applications');
+	var aAppKeys = GetKeys(applications);
 	
 	strHtml += '<h1>DevTools Application Status</h1>';
-	
-	var applications = GetValue(status,'applications');
-	//strHtmlTables += RenderValue(aTables);
-
-	var aAppKeys = GetKeys(applications);
 	
 	
 	var aAppTable = [];
@@ -115,6 +79,20 @@
 	aHeaderRow.push({ header: true, content: 'Scope'} );
 	aHeaderRow.push({ header: true, content: 'Maintainer'} );
 	aHeaderRow.push({ header: true, content: 'Links'} );
+	
+	var columns = GetValue(status,'columns');
+	var aColumns = GetKeys(columns);
+	for (var nColumn = 0; nColumn < aColumns.length; nColumn++)
+	{
+		var strColumn = aColumns[nColumn];
+		var column = GetValue(columns,strColumn);
+		var strHeader = GetStringValue(GetValue(column,'header'));
+		if (strHeader == '')
+		{
+			strHeader = strColumn;
+		}
+		aHeaderRow.push({ header: true, content: strHeader} );
+	}
 	
 	aAppTable.push(aHeaderRow);	
 	
@@ -136,23 +114,6 @@
 		
 		aRow.push(strMaintainer);
 
-/*	
-		var strMenu = '';
-		var grAppMenu = new GlideRecord('sys_app_application');
-		grAppMenu.addQuery('sys_scope','=',grApp.sys_id);
-		grAppMenu.orderBy('name');
-		grAppMenu.query();
-		while (grAppMenu.next());
-		{
-			if (strMenu != '')
-			{
-				strMenu += ', ';
-			}
-			strMenu += GetStringValue(grAppMenu.title);
-		}
-		aRow.push(strMenu);
-	*/	
-		
 		var strLinks = '';
 		var strDocUrl = GetStringValue(app.x_snc_devtools_documentation_url);
 		if (strDocUrl != '')
@@ -169,178 +130,21 @@
 			strLinks += HtmlRenderLink(strRepoUrl,'Repo',true);
 		}		
 		aRow.push(strLinks);
-		//strHtml += '<td>'+strDocumentation+'</td>';
 		
-		//strHtml += '</tr>';
+		// Additional columns
+		for (var nColumn = 0; nColumn < aColumns.length; nColumn++)
+		{
+			var strColumn = aColumns[nColumn];
+			aRow.push(GetValue(app,strColumn));
+		}		
+		
 		
 		aAppTable.push(aRow);
 	}
 	
-	
 	strHtml += HtmlRenderTable(aAppTable,'appstatus');	
-	
-	
-	/*
-	strHtmlTables += '<table><tbody>';
-		strHtmlTables += '<tr>';
-			strHtmlTables += '<th>Table</th>';
-			strHtmlTables += '<th>Active</th>';
-			strHtmlTables += '<th>Total</th>';
-			strHtmlTables += '<th>Hidden</th>';
-			strHtmlTables += '<th>Unmaintained</th>';
-			strHtmlTables += '<th>Backmarker</th>';
-			strHtmlTables += '<th></th>';
-			strHtmlTables += '<th>Status Updated</th>';
-			strHtmlTables += '<th>Domain Separation</th>';
-			
-			for (var nColumn = 0; nColumn < aColumns.length; nColumn++)
-			{
-				var strHeader = GetValue(plugin_status,'columns',aColumns[nColumn],'header');
-				strHtmlTables += '<th>'+strHeader+'</th>';
-			}
-
-	strHtmlTables += '</td>';
-
-	for (var nTable = 0; nTable < aTables.length; nTable++)
-	{
-		var strTable = aTables[nTable];
-		strHtmlTables += '<tr>';
-
-		var strPath = GetInstanceListPath(strTable,GetViewForTable(strTable));
 		
-		strHtmlTables += '<td>';
-			strHtmlTables += HtmlRenderLink('/'+strPath,strTable,true);
-		strHtmlTables += '</td>';
-
-		strHtmlTables += '<td>';
-			var bTableActive = GetValue(status,'tables',strTable,'active'); 
-			strHtmlTables += HtmlRenderSpanStatus(bTableActive,!bActive);
-		strHtmlTables += '</td>';
-		
-		strHtmlTables += '<td style="text-align: right;">';
-			var nTotal = GetValue(status,'tables',strTable,'total');
-			strHtmlTables += ''+GetStringValue(nTotal);
-		strHtmlTables += '</td>';		
-
-		strHtmlTables += '<td style="text-align: right;">';
-			var nHidden = GetValue(status,'tables',strTable,'hidden');
-			strHtmlTables += ''+GetStringValue(nHidden);
-		strHtmlTables += '</td>';		
-
-		strHtmlTables += '<td style="text-align: right;">';
-			var nUnmaintained = GetValue(status,'tables',strTable,'unmaintained');
-			strHtmlTables += ''+GetStringValue(nUnmaintained);
-		strHtmlTables += '</td>';		
-
-		strHtmlTables += '<td style="text-align: left;">';
-			var strBackmarker = GetStringValue(GetValue(status,'tables',strTable,'backmarker'));
-			if (strBackmarker == '')
-			{
-				if (nTotal == 0)
-				{
-					strBackmarker = '<span style="color: gray;">No records</span>';
-				}
-				else
-				{
-					strBackmarker = '<span style="color: red;">Incomplete</span>';
-				}
-			}
-			else
-			{
-				strBackmarker = RenderDateTimeUser(strBackmarker);
-			}
-		strHtmlTables += strBackmarker;
-		strHtmlTables += '<td>';
-
-		var strEncodedQuery = 'operation=read^name='+strTable+'^ORname='+strTable+'.*';
-		var strPath = GetInstanceListPath('sys_security_acl',GetViewForTable('sys_security_acl'),strEncodedQuery);
-		strHtmlTables += HtmlRenderLink(
-			'/'+strPath,
-			'ACLs',true);
-		strHtmlTables += '&#160;|&#160;';
-
-		var strEncodedQuery = 'when=before^action_query=true^collection='+strTable;
-		var strPath = GetInstanceListPath('sys_script',GetViewForTable('sys_script'),strEncodedQuery);
-		strHtmlTables += HtmlRenderLink(
-			'/'+strPath,
-			'Before query BRs',true);
-		strHtmlTables += '&#160;|&#160;';		
-		
-		var strEncodedQuery = 'when=before^action_query=true^collection='+strTable;
-		var grTable = new GlideRecord('sys_db_object');
-		grTable.get('name',strTable);
-		if (IsValidRecord(grTable) == true)
-		{
-			var strPath = GetInstanceRecordPath('sys_db_object',grTable.sys_id);
-			strHtmlTables += HtmlRenderLink(
-				'/'+strPath,
-				'Table Config',true);
-			strHtmlTables += '&#160;|&#160;';		
-		}
-		
-		var strEncodedQuery = 'table='+strTable;
-		var strPath = GetInstanceListPath('sys_db_view_table',GetViewForTable('sys_db_view_table'),strEncodedQuery);
-		strHtmlTables += HtmlRenderLink(
-			'/'+strPath,
-			'DB Views',true);
-		strHtmlTables += '&#160;|&#160;';
-
-		var grTable = new GlideRecord('sys_db_object');
-		grTable.addQuery('name','=',strTable);
-		grTable.query();
-		if (grTable.next())
-		{
-			var strEncodedQuery = 'table='+grTable.sys_id;
-			var strPath = GetInstanceListPath('v_index_creator',GetViewForTable('v_index_creator'),strEncodedQuery);
-			strHtmlTables += HtmlRenderLink(
-				'/'+strPath,
-				'Indexes',true);
-			strHtmlTables += '&#160;|&#160;';
-		}
-		
-		
-		var strEncodedQuery = 'table_name='+strTable+'^element_nameSTARTSWITH'+GetScopeFromTable(strTable);
-		var strPath = GetInstanceListPath('sys_storage_alias',GetViewForTable('sys_storage_alias'),strEncodedQuery);
-		strHtmlTables += HtmlRenderLink(
-			'/'+strPath,
-			'Aliases',true);
-
-		
-		strHtmlTables += '<td style="text-align: left;">';
-			var strUpdated = GetStringValue(GetValue(status,'tables',strTable,'updated'));
-			if (strUpdated != '')
-			{
-				strUpdated = RenderDateTimeUser(strUpdated);
-			}
-			strHtmlTables += strUpdated;
-		strHtmlTables += '</td>';	
-	
-		strHtmlTables += '<td>';
-			strHtmlTables += HtmlRenderSpanDomainSeparationStatus(strTable);
-		strHtmlTables += '</td>';
-		
-		for (var nColumn = 0; nColumn < aColumns.length; nColumn++)
-		{
-			
-			var strTextAlign = GetStringValue(GetValue(plugin_status,'columns',aColumns[nColumn],'textalign'));
-			if (strTextAlign == '')
-			{
-				strTextAlign = 'left';
-			}
-			strHtmlTables += '<td style="text-align: '+strTextAlign+';">';
-				strHtmlTables += GetStringValue(GetValue(plugin_status,'tables',strTable,aColumns[nColumn]));
-			strHtmlTables += '</td>';			
-		}		
-		
-		
-		strHtmlTables += '</tr>';
-	}
-	strHtmlTables += '</tbody></table>';
-	strHtml += strHtmlTables;  
-
-*/
-	
-	strHtml += HtmlRenderValue(status);
+	//strHtml += HtmlRenderValue(status);
 
 	return strHtml;
 }]]></script>
@@ -348,13 +152,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-12-22 09:55:34</sys_created_on>
         <sys_id>008896e71bb791505b76777d8b4bcb9a</sys_id>
-        <sys_mod_count>10</sys_mod_count>
+        <sys_mod_count>18</sys_mod_count>
         <sys_name>HtmlRenderPageApplicationStatus</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_008896e71bb791505b76777d8b4bcb9a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-22 12:54:14</sys_updated_on>
+        <sys_updated_on>2022-12-22 16:30:21</sys_updated_on>
     </sys_script_include>
 </record_update>
