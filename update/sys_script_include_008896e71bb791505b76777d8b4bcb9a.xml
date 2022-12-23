@@ -2,73 +2,27 @@
     <sys_script_include action="INSERT_OR_UPDATE">
         <access>package_private</access>
         <active>true</active>
-        <api_name>x_snc_devtools.HtmlRenderPageApplicationStatus</api_name>
+        <api_name>x_snc_devtools.HtmlRenderPageApplications</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Renders the applications overview and status page.</description>
-        <name>HtmlRenderPageApplicationStatus</name>
-        <script><![CDATA[function HtmlRenderPageApplicationStatus()
+        <name>HtmlRenderPageApplications</name>
+        <script><![CDATA[function HtmlRenderPageApplications()
 {
-	/*
-
-
-
-	
-	function HtmlRenderSpanStatus(bActive,bGrey)
-	{
-		var strHtml = '';
-		var strColor = '';
-		if (bGrey)
-		{
-			strColor += 'grey';
-		}
-		else
-		{
-			if (bActive == true)
-			{
-				strColor = 'green';
-			}
-			else
-			{
-				strColor = 'red';
-			}
-		}
-		
-		if (bActive == true)
-		{
-			strHtml = '<span style="color: '+strColor+';">ACTIVE</span>';
-		}
-		else
-		{
-			strHtml = '<span style="color: '+strColor+';">INACTIVE</span>';
-		}
-		return strHtml;
-	}
-	
-
-	
-	*/
-	
-
 	var strHtml = '';
-		
 	
 	// STYLES
 	strHtml += HtmlRenderStyle('table.appstatus, th.appstatus, td.appstatus { border: 1px solid; padding: 2px; vertical-align: top }');	
-	
-/*	
-	
-	strHtml += '<style media="screen">';
-	strHtml += 'td,th { padding-right: 10px; }';
-	strHtml += '</style>';
-*/
 
 
 	var status = GetApplicationStatus();
 	var applications = GetValue(status,'applications');
 	var aAppKeys = GetKeys(applications);
 	
-	strHtml += '<h1>DevTools Application Status</h1>';
+	strHtml += '<h1>DevTools Application Overview</h1>';
+	
+	var strAppListLink = GetInstanceListURL('sys_app','devtools');
+	strHtml += '<p>'+HtmlRenderLink(strAppListLink,'List view',true)+'</p>';
 	
 	
 	var aAppTable = [];
@@ -102,8 +56,11 @@
 		
 		var aRow = [];
 		
-		aRow.push(GetStringValue(app.name));
+		var strAppLink = GetInstanceRecordURL('sys_app',app.sys_id,'devtools');
+		aRow.push(HtmlRenderLink(strAppLink,app.name,true));
+		
 		aRow.push(GetStringValue(app.version));
+		
 		aRow.push(GetStringValue(app.scope));
 		
 		var strMaintainer = GetStringValue(app.x_snc_devtools_maintainer);
@@ -152,13 +109,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-12-22 09:55:34</sys_created_on>
         <sys_id>008896e71bb791505b76777d8b4bcb9a</sys_id>
-        <sys_mod_count>18</sys_mod_count>
-        <sys_name>HtmlRenderPageApplicationStatus</sys_name>
+        <sys_mod_count>25</sys_mod_count>
+        <sys_name>HtmlRenderPageApplications</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_008896e71bb791505b76777d8b4bcb9a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-22 16:30:21</sys_updated_on>
+        <sys_updated_on>2022-12-23 08:28:01</sys_updated_on>
     </sys_script_include>
 </record_update>
