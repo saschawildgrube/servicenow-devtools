@@ -12,76 +12,82 @@
         <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
         <sys_class_name>sys_atf_step</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2021-10-21 14:43:43</sys_created_on>
-        <sys_id>b01b9012db53bcd04647dad1f39619fe</sys_id>
+        <sys_created_on>2022-12-22 15:14:05</sys_created_on>
+        <sys_id>f9916be31bfb91505b76777d8b4bcb2e</sys_id>
         <sys_mod_count>2</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
-        <sys_update_name>sys_atf_step_b01b9012db53bcd04647dad1f39619fe</sys_update_name>
+        <sys_update_name>sys_atf_step_f9916be31bfb91505b76777d8b4bcb2e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-22 15:26:22</sys_updated_on>
+        <sys_updated_on>2022-12-22 15:18:03</sys_updated_on>
         <table/>
-        <test display_value="DevTools - HtmlRenderLink">f00bdcdedb13bcd04647dad1f3961956</test>
+        <test display_value="DevTools - IsValidEmail">9c8167e31bfb91505b76777d8b4bcb4e</test>
         <timeout/>
         <warning_message/>
     </sys_atf_step>
-    <sys_variable_value action="delete_multiple" query="document_key=b01b9012db53bcd04647dad1f39619fe"/>
+    <sys_variable_value action="delete_multiple" query="document_key=f9916be31bfb91505b76777d8b4bcb2e"/>
     <sys_variable_value action="INSERT_OR_UPDATE">
         <document>sys_atf_step</document>
-        <document_key>b01b9012db53bcd04647dad1f39619fe</document_key>
+        <document_key>f9916be31bfb91505b76777d8b4bcb2e</document_key>
         <order>100</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2021-10-21 14:43:43</sys_created_on>
-        <sys_id>22cb1412db53bcd04647dad1f39619ff</sys_id>
+        <sys_created_on>2022-12-22 15:14:05</sys_created_on>
+        <sys_id>ae91e7e31bfb91505b76777d8b4bcbc9</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-10-21 14:43:43</sys_updated_on>
+        <sys_updated_on>2022-12-22 15:14:05</sys_updated_on>
         <value>3.1</value>
         <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
     </sys_variable_value>
     <sys_variable_value action="INSERT_OR_UPDATE">
         <document>sys_atf_step</document>
-        <document_key>b01b9012db53bcd04647dad1f39619fe</document_key>
+        <document_key>f9916be31bfb91505b76777d8b4bcb2e</document_key>
         <order>200</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2021-10-21 14:43:43</sys_created_on>
-        <sys_id>e6cb1412db53bcd04647dad1f39619ff</sys_id>
+        <sys_created_on>2022-12-22 15:14:05</sys_created_on>
+        <sys_id>e691e7e31bfb91505b76777d8b4bcbca</sys_id>
         <sys_mod_count>2</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-22 15:26:22</sys_updated_on>
+        <sys_updated_on>2022-12-22 15:18:03</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
 	&#13;
 	test.SetResult(true);&#13;
 &#13;
-	function TestCase_HtmlRenderLink(strUrl, strText, bExternal, vExpected)&#13;
+	function TestCase_IsValidEmail(strEmail, vExpected)&#13;
 	{&#13;
 		test.TestCase(&#13;
-			'HtmlRenderLink()',&#13;
-			HtmlRenderLink,&#13;
+			'Function IsValidEmail()',&#13;
+			IsValidEmail,&#13;
 			{&#13;
-				'Url': strUrl,&#13;
-				'Text': strText,&#13;
-				'External': bExternal&#13;
+				'Email': strEmail &#13;
 			},&#13;
 			vExpected,&#13;
 			null);&#13;
 	}&#13;
 &#13;
-	TestCase_HtmlRenderLink(null,null,false,'');&#13;
+	TestCase_IsValidEmail(null,false);&#13;
+	TestCase_IsValidEmail('',false);&#13;
+	TestCase_IsValidEmail('',false);&#13;
+	TestCase_IsValidEmail('@',false);&#13;
+	TestCase_IsValidEmail('@example.com',false);&#13;
+	TestCase_IsValidEmail('@example.com',false);&#13;
+	TestCase_IsValidEmail('info@.com',false);&#13;
+	TestCase_IsValidEmail('info@example',false);&#13;
+	TestCase_IsValidEmail('test@example.com,',false);&#13;
+	TestCase_IsValidEmail(' test@example.com',false);&#13;
+	TestCase_IsValidEmail('test@@example.com',false);&#13;
+	TestCase_IsValidEmail('common@2.4.25.js',false);&#13;
+	TestCase_IsValidEmail('common@2.4.25.css',false);	&#13;
 	&#13;
-	TestCase_HtmlRenderLink('http://www.example.com','',false,'&lt;a href="http://www.example.com"&gt;http://www.example.com&lt;/a&gt;');&#13;
-	TestCase_HtmlRenderLink('http://www.example.com','Example.com',false,'&lt;a href="http://www.example.com"&gt;Example.com&lt;/a&gt;');&#13;
-	TestCase_HtmlRenderLink('http://www.example.com','Example.com',true,'&lt;a href="http://www.example.com" target="_blank"&gt;Example.com&lt;/a&gt;');&#13;
-	&#13;
-	TestCase_HtmlRenderLink('info@example.com','',false,'&lt;a href="mailto:info@example.com"&gt;info@example.com&lt;/a&gt;');&#13;
-	TestCase_HtmlRenderLink('info@example.com','Info(at)Example.com',false,'&lt;a href="mailto:info@example.com"&gt;Info(at)Example.com&lt;/a&gt;');&#13;
-	TestCase_HtmlRenderLink('info@example.com','Info(at)Example.com',true,'&lt;a href="mailto:info@example.com" target="_blank"&gt;Info(at)Example.com&lt;/a&gt;');	&#13;
+	TestCase_IsValidEmail('info@example.com',true);&#13;
+	TestCase_IsValidEmail('info@example.info',true);&#13;
+	TestCase_IsValidEmail('i@ex.us',true);&#13;
 	&#13;
 	return test.GetResult();&#13;
 	&#13;

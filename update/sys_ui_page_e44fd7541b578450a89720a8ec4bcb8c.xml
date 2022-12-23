@@ -155,6 +155,18 @@ function DevToolsGetFormatConfig(grRecord)
 	</ol>
 -->	
 	
+	<h3>1.51.0 - 2022-12-23</h3>
+	<ol>
+		<li>Added page "DevTools Application Overview" and functions GetApplicationStatus() and HtmlRenderPageApplications().</li>
+		<li>The DevTools extension point class now supports the function GetApplicationStatus() to extend the "DevTools Application Overview" page with additional information.</li>
+		<li>Added function IsValidEmail().</li>
+		<li>function HtmlRenderLink() can now render email links.</li>
+		<li>Function HtmlRenderTable() now considers horizontal alignment ('left' or 'right') per cell.</li>
+		<li>Fixed a defect in GetPackageDependencyTree() that prevented circular dependencies to be handled properly.</li>
+		<li>Improved layout for the DevTools - Dependency Viewer.</li>
+		<li>Added ATF test for HtmlRenderPageGallery().</li>
+	</ol>
+	
 	<h3>1.50.0 - 2022-12-20</h3>
 	<ol>
 		<li>Added function GetPackageRecord().</li>
@@ -1071,13 +1083,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1032</sys_mod_count>
+        <sys_mod_count>1041</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-20 15:13:01</sys_updated_on>
+        <sys_updated_on>2022-12-23 11:32:00</sys_updated_on>
     </sys_ui_page>
 </record_update>
