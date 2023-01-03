@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.RenderDebugDump</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Provides detailed debug information. </description>
+        <name>RenderDebugDump</name>
+        <script><![CDATA[function RenderDebugDump()
+{
+	var strDebug = '__DEBUG_DUMP__\n\n';
+
+	strDebug += 'BusinessRuleGetOperation:';
+	var strOperation = BusinessRuleGetOperation(current);
+	{
+		strDebug += '\n"'+strOperation+'"';
+	}
+	strDebug += '\n\n';
+	
+	strDebug += 'Current Object:';
+	if (IsObject(current) == true)
+	{
+		strDebug += RenderValue(current);
+	}
+	else
+	{
+		strDebug += '\n"current" is not an object.';
+	}
+	strDebug += '\n\n';
+
+	strDebug += 'Previous Object:';
+	if (IsObject(previous) == true)
+	{
+		strDebug += RenderValue(previous);
+	}
+	else
+	{
+		strDebug += '\n"previous" is not an object.';
+	}
+	strDebug += '\n\n';
+	
+	
+	
+	strDebug += 'Session User:';
+	var strSessionUserSysId = gs.getUserID();
+	var grSessionUser = GetRecord('sys_user',strSessionUserSysId);
+	strDebug += RenderValue(grSessionUser);
+	strDebug += '\n\n';
+	
+	strDebug += 'Call Stack:';
+	var callstack = GetCallStack();
+	strDebug += RenderValue(callstack);
+	strDebug += '\n\n';	
+	
+	return strDebug;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-01-03 19:15:35</sys_created_on>
+        <sys_id>8bda466b1bc8a1905b76777d8b4bcbb3</sys_id>
+        <sys_mod_count>16</sys_mod_count>
+        <sys_name>RenderDebugDump</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_8bda466b1bc8a1905b76777d8b4bcbb3</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-01-03 20:18:50</sys_updated_on>
+    </sys_script_include>
+</record_update>
