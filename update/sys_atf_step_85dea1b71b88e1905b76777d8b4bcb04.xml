@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <copied_from/>
+        <description>Run Server Side Validation Script</description>
+        <display_name>Run Server Side Script</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>1</order>
+        <snapshot/>
+        <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-01-04 11:46:54</sys_created_on>
+        <sys_id>85dea1b71b88e1905b76777d8b4bcb04</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>Run Server Side Script</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_step_85dea1b71b88e1905b76777d8b4bcb04</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-01-04 11:59:36</sys_updated_on>
+        <table/>
+        <test display_value="DevTools - IsValidUrl">85ceed771b88e1905b76777d8b4bcbbc</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=85dea1b71b88e1905b76777d8b4bcb04"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>85dea1b71b88e1905b76777d8b4bcb04</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-01-04 11:46:54</sys_created_on>
+        <sys_id>1ade61b71b88e1905b76777d8b4bcb8a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-01-04 11:46:54</sys_updated_on>
+        <value>3.1</value>
+        <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>85dea1b71b88e1905b76777d8b4bcb04</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-01-04 11:46:54</sys_created_on>
+        <sys_id>52de61b71b88e1905b76777d8b4bcb8b</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-01-04 11:59:36</sys_updated_on>
+        <value>(function(outputs, steps, stepResult, assertEqual)&#13;
+{&#13;
+	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
+	&#13;
+	test.SetResult(true);&#13;
+&#13;
+	function TestCase_IsValidUrl(strUrl, vExpected)&#13;
+	{&#13;
+		test.TestCase(&#13;
+			'Function IsValidUrl()',&#13;
+			IsValidUrl,&#13;
+			{&#13;
+				'Url': strUrl &#13;
+			},&#13;
+			vExpected,&#13;
+			null);&#13;
+	}&#13;
+&#13;
+&#13;
+	TestCase_IsValidUrl('http://localhost',true);&#13;
+	TestCase_IsValidUrl('http://localhost:8080',true);&#13;
+	TestCase_IsValidUrl('http://localhost/',true);&#13;
+	TestCase_IsValidUrl('https://localhost',true);&#13;
+	TestCase_IsValidUrl('https://localhost/',true);&#13;
+	TestCase_IsValidUrl('http://192.168.1.1',true);&#13;
+	TestCase_IsValidUrl('http://192.168.1.1:80',true);&#13;
+	TestCase_IsValidUrl('http://192.168.1.1/',true);&#13;
+	TestCase_IsValidUrl('https://192.168.1.1',true);&#13;
+	TestCase_IsValidUrl('https://192.168.1.1/',true);&#13;
+	TestCase_IsValidUrl('http://www.example.com',true);&#13;
+	TestCase_IsValidUrl('https://www.websitedevkit.com',true);&#13;
+	TestCase_IsValidUrl('ftp://ftp.example.com',true);&#13;
+	TestCase_IsValidUrl('https://user:pass@www.somewhere.com:8080/login.php?do=login&amp;style=%23#pagetop',true);&#13;
+	TestCase_IsValidUrl('http://user@www.somewhere.com/#pagetop',true);&#13;
+	TestCase_IsValidUrl('https://somewhere.com/index.html',true);&#13;
+	TestCase_IsValidUrl('ftp://user:pass@somewhere.com:21/',true);&#13;
+	TestCase_IsValidUrl('http://somewhere.com/index.html/',true);&#13;
+	TestCase_IsValidUrl('http://video.google.com/videoplay?docid=514425911425024420#',true);&#13;
+	TestCase_IsValidUrl('http://www.youtube.com/watch?v=kNuW5yDaxTY&amp;feature=popular',true);&#13;
+	TestCase_IsValidUrl('http://en.wikipedia.org/wiki/Connascence_(computer_programming)',true);&#13;
+	TestCase_IsValidUrl('http://en.wikipedia.org/wiki/Nassi%E2%80%93Shneiderman_diagram',true);&#13;
+	TestCase_IsValidUrl('https://docs.google.com/spreadsheets/d/1m1t4BNbg8cS8jkcAKXcTHIStaISglA7sTESTAoMR5fc/edit#gid=0',true); 			&#13;
+	TestCase_IsValidUrl('https://www.example.com/test1//test2/',true);&#13;
+	TestCase_IsValidUrl('https://www.example.com/test1=1/',true);&#13;
+	TestCase_IsValidUrl('https://www.example.com/test1_1/',true);&#13;
+	TestCase_IsValidUrl('http://fonts.googleapis.com/css?family=Montserrat%3A400%2C700',true);&#13;
+	TestCase_IsValidUrl('http://fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C700italic%2C800italic%2C400%2C300%2C600%2C700%2C800',true);&#13;
+	TestCase_IsValidUrl('http://www.cio.de/a/die-10-wichtigsten-technologie-trends-2016,3248934.html',true);&#13;
+	TestCase_IsValidUrl('https://www.amazon.de/Game-Penetrating-Secret-Society-Artists/dp/0061240168/ref=sr_1_6?ie=UTF8&amp;qid=1473444983&amp;sr=8-6&amp;keywords=the+game',true);&#13;
+	TestCase_IsValidUrl('https://analytics.google.com/analytics/web/#embed/report-home/a7THIS46IS10A79TESTp114482491/',true);&#13;
+	TestCase_IsValidUrl('https://store.servicenow.com/sn_appstore_store.do#!/store/application/f13e0cce0fabaa003e0b87ece1050ec3/2.0.0?referer=%2Fstore%2Fsearch%3Flistingtype%3Dallintegrations%25253Bancillary_app%25253Bcertified_apps%25253Bcontent%25253Bindustry_solution%25253Boem%25253Butility%26q%3Dfile&amp;sl=sh',true);&#13;
+&#13;
+&#13;
+	TestCase_IsValidUrl('https://groups.google.com/a/test/forum/#managemembers/hello-world/members/active',true);&#13;
+	TestCase_IsValidUrl('https://groups.google.com/a/test/forum/#manage!members/hello-world/members/active',true);&#13;
+&#13;
+	TestCase_IsValidUrl('https://groups.google.com/a/test.com/forum/#!managemembers/hello-world/members/active',true);&#13;
+	TestCase_IsValidUrl('https://groups.google.com/a/test/forum/#!managemembers/hello-world/members/active',true);&#13;
+	TestCase_IsValidUrl('https://groups.google.com/a/test/forum/#!managemembers',true);&#13;
+	TestCase_IsValidUrl('https://groups.google.com/a/test/forum/#!',true);&#13;
+	TestCase_IsValidUrl('https://groups.google.com/a/test/forum/#',true);&#13;
+&#13;
+	TestCase_IsValidUrl('https://docs.google.com/spreadsheets/d/123-ABC-abc/edit#gid=12345&amp;fvid=6789',true);&#13;
+&#13;
+	TestCase_IsValidUrl('https://www.example.com/index.html#/folder/endpoint',true);&#13;
+	TestCase_IsValidUrl('http://www.example.org/~folder/subfolder/',true);&#13;
+	TestCase_IsValidUrl('http://www.example.org/@folder/',true);&#13;
+	TestCase_IsValidUrl('http://www.example.org/@folder/subfolder/',true);&#13;
+&#13;
+	TestCase_IsValidUrl('http://www.example.com/?hello?world',true);&#13;
+	TestCase_IsValidUrl('http://www.example.com/?param={hello-world}',true);&#13;
+&#13;
+	TestCase_IsValidUrl('https://www.example.com/#/hello/World/HelloWorld?:value=1',true);&#13;
+	TestCase_IsValidUrl('https://www.example.com/#/?:hello=world',true);&#13;
+	TestCase_IsValidUrl('https://www.example.com/?:hello=world',true);&#13;
+	TestCase_IsValidUrl('https://www.example.com/:path:/',true);&#13;
+&#13;
+&#13;
+	TestCase_IsValidUrl('',false);&#13;
+	TestCase_IsValidUrl('http://',false);&#13;
+	TestCase_IsValidUrl('http://a',false);&#13;
+	TestCase_IsValidUrl('123',false);&#13;
+	TestCase_IsValidUrl('198.168.1.1',false);&#13;
+	TestCase_IsValidUrl('http://198.168.1.256',false);&#13;
+	TestCase_IsValidUrl('http://locallhost',false);&#13;
+	TestCase_IsValidUrl('http://localhos',false);&#13;
+	TestCase_IsValidUrl('localhost',false);&#13;
+	TestCase_IsValidUrl(1,false);&#13;
+	TestCase_IsValidUrl(false,false);&#13;
+	TestCase_IsValidUrl('http:www.example.com',false);&#13;
+	TestCase_IsValidUrl('http://www.exämple.com',false);&#13;
+	TestCase_IsValidUrl('http://http://www.example.com',false);&#13;
+	&#13;
+	return test.GetResult();&#13;
+	&#13;
+})(outputs, steps, stepResult, assertEqual);</value>
+        <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
+    </sys_variable_value>
+</record_update>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.IsValidUrl</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns true if the given string contains a valid, fully qualified Url, false if not.</description>
+        <name>IsValidUrl</name>
+        <script><![CDATA[function IsValidUrl(strUrl)
+{
+
+	function GetRegExURL()
+	{
+		var strIPregex = '\\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b';
+
+		var strURLregex =
+			'((https?|ftp)\\:\\/\\/)?' // SCHEME 
+			+ '([a-z0-9+!*(),;?&=$_.-]+(\\:[a-z0-9+!*(),;?&=$_.-]+)?@)?' // USER and PASSWORD
+			+ '(([a-z0-9-.]*)\\.([a-z]{2,20})|'+strIPregex+'|localhost)' // HOST with TLD or IP or "localhost"
+			+ '(\\:[0-9]{2,5})?' // PORT
+			+ '(\\/([a-z0-9!$%\\/()=@+~,:\\-_]\\.?)+)*\\/?' // PATH allowing double slashes and commas, equal signs...
+			+ '(\\?[a-z\\:+&$_.-][a-z0-9;:@&%=+\\/$_.\\?\\{\\}\\-]*)?' // GET Query      
+			+ '(#([a-z!_\\.\\-\\/][a-z0-9:&%!+\\/=$_\\.\\?\\-]*)?)?' // ANCHOR 
+			;
+		
+		strURLregex = '^'+strURLregex+'$';
+		
+		return strURLregex;
+	}
+	
+	strUrl = GetStringValue(strUrl);
+	
+	if (strUrl == '')	
+	{
+		return false;
+	}
+	/*
+	if (StringCheckCharSet($strURL,CHARSET_URL) == false)
+	{
+		return false;	
+	}
+	*/
+	if (
+		(strUrl.substr(0,7) != "http://")
+		&& 	(strUrl.substr(0,8) != "https://")
+		&& 	(strUrl.substr(0,6) != "ftp://") 
+	)
+	{
+		return false;
+	}
+		
+	strUrl = strUrl.toLowerCase(); 
+	if (StringCheckRegEx(strUrl,GetRegExURL()) == false) 
+	{ 
+		return false; 
+	} 
+
+	return true;
+
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-01-04 11:46:09</sys_created_on>
+        <sys_id>2b7ea9771b88e1905b76777d8b4bcbc4</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>IsValidUrl</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_2b7ea9771b88e1905b76777d8b4bcbc4</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-01-04 11:58:27</sys_updated_on>
+    </sys_script_include>
+</record_update>
