@@ -11,6 +11,21 @@
 {
 	var strDebug = '__DEBUG_DUMP__\n\n';
 
+	var gsep = new GlideScriptedExtensionPoint();
+	var eps = gsep.getExtensions('DevTools');
+	for (var nEP = 0; nEP < eps.length; nEP++)
+	{
+		var ep = eps[nEP];
+		if (IsValidFunction(ep.RenderDebugDump))
+		{
+			var strDebugEx = GetStringValue(ep.RenderDebugDump());
+			if (strDebugEx !=  '')
+			{
+				strDebug += strDebugEx + '\n\n';
+			}
+		}
+	}	
+	
 	strDebug += 'BusinessRuleGetOperation:';
 	var strOperation = BusinessRuleGetOperation(current);
 	{
@@ -39,9 +54,7 @@
 		strDebug += '\n"previous" is not an object.';
 	}
 	strDebug += '\n\n';
-	
-	
-	
+		
 	strDebug += 'Session User:';
 	var strSessionUserSysId = gs.getUserID();
 	var grSessionUser = GetRecord('sys_user',strSessionUserSysId);
@@ -59,13 +72,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-01-03 19:15:35</sys_created_on>
         <sys_id>8bda466b1bc8a1905b76777d8b4bcbb3</sys_id>
-        <sys_mod_count>16</sys_mod_count>
+        <sys_mod_count>18</sys_mod_count>
         <sys_name>RenderDebugDump</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_8bda466b1bc8a1905b76777d8b4bcbb3</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-01-03 20:18:50</sys_updated_on>
+        <sys_updated_on>2023-01-04 11:35:33</sys_updated_on>
     </sys_script_include>
 </record_update>
