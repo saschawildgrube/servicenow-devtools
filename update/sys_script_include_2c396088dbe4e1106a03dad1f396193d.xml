@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.HtmlRenderTabNavigation</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Renders a tab navigation, where the current tab is highlighted.</description>
+        <name>HtmlRenderTabNavigation</name>
+        <script><![CDATA[function HtmlRenderTabNavigation(aTabs,strCurrentId)
+{
+	aTabs = GetArrayValue(aTabs);
+	strCurrentId = GetStringValue(strCurrentId);
+	
+	if (aTabs.length == 0)
+	{
+		return '';
+	}
+	
+	var strHtml = '';
+	
+	strHtml += '<div class="tabs2_strip tabs2_strip_default" id="tabs2_list" style="display: block;" role="tablist" aria-label="Section Tab Lists">';
+	
+	for (var nTab = 0; nTab < aTabs.length; nTab++)
+	{
+		var strText = GetValue(aTabs,nTab,'text');
+		var strId = GetValue(aTabs,nTab,'id');
+		var strUrl = GetValue(aTabs,nTab,'url');
+		
+		strHtml += '<span class="tab_header">';
+		
+		if (strId == strCurrentId)
+		{
+			strHtml += '<span class="tabs2_tab tabs2_active" tabindex="0" role="tab" aria-selected="true" aria-controls="">';
+				strHtml += '<span mandatory="true" aria-hidden="true" class="label_description" style="margin-right: 2px; visibility: hidden; display: none;">*</span>';
+				strHtml += '<span class="tab_caption_text">' + strText + '</span>';
+			
+			strHtml += '</span>';
+			
+			
+			
+		}
+		else
+		{
+			var strLink = HtmlRenderLink(strUrl,strText,false); 
+			strHtml += '<span class="tabs2_tab" tabindex="-1" role="tab" aria-selected="false">';
+				strHtml += '<span mandatory="true" aria-hidden="true" class="label_description" style="margin-right: 2px; visibility: hidden; display: none;">*</span>';
+				strHtml += '<span class="tab_caption_text">'+strLink+'</span>';	
+			strHtml += '</span>';
+			
+		}
+		
+		strHtml += '<img class="tab_spacer" src="images/s.gifx" width="4" height="24">';
+		strHtml += '</span>';
+
+		
+		
+		
+	}
+	
+	strHtml += '</div>';
+	
+	/*
+	
+	
+<div class="tabs2_strip tabs2_strip_default" id="tabs2_list" style="display: block;" role="tablist" aria-label="Section Tab Lists"><span class="tab_header"><span class="tabs2_tab tabs2_active" tabindex="0" role="tab" aria-selected="true" aria-controls="sys_app.x_snc_devtools_dependency.sys_scope_list"><span mandatory="true" aria-hidden="true" class="label_description" style="margin-right: 2px; visibility: hidden; display: none;">*</span><span class="tab_caption_text">Dependencies</span></span></span><img class="tab_spacer" src="images/s.gifx" width="4" height="24"><span class="tab_header"><span class="tabs2_tab" tabindex="-1" role="tab" aria-selected="false"><span mandatory="true" aria-hidden="true" class="label_description" style="margin-right: 2px; visibility: hidden; display: none;">*</span><span class="tab_caption_text">Application&nbsp;Files&nbsp;(234)</span></span></span><img class="tab_spacer" src="images/s.gifx" width="4" height="24"><span class="tab_header"><span class="tabs2_tab" tabindex="-1" role="tab" aria-selected="false"><span mandatory="true" aria-hidden="true" class="label_description" style="margin-right: 2px; visibility: hidden; display: none;">*</span><span class="tab_caption_text">Cross&nbsp;scope&nbsp;privileges&nbsp;(25)</span></span></span><img class="tab_spacer" src="images/s.gifx" width="4" height="24"><span class="tab_header"><span class="tabs2_tab" tabindex="-1" role="tab" aria-selected="false"><span mandatory="true" aria-hidden="true" class="label_description" style="margin-right: 2px; visibility: hidden; display: none;">*</span><span class="tab_caption_text">Restricted&nbsp;Caller&nbsp;Access&nbsp;Privileges</span></span></span><img class="tab_spacer" src="images/s.gifx" width="4" height="24"><span class="tab_header"><span class="tabs2_tab" tabindex="-1" role="tab" aria-selected="false"><span mandatory="true" aria-hidden="true" class="label_description" style="margin-right: 2px; visibility: hidden; display: none;">*</span><span class="tab_caption_text">Update&nbsp;Sets&nbsp;(1)</span></span></span><img class="tab_spacer" src="images/s.gifx" width="4" height="24"></div>	
+	
+	
+	*/
+	
+	return strHtml;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-01-17 11:37:32</sys_created_on>
+        <sys_id>2c396088dbe4e1106a03dad1f396193d</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>HtmlRenderTabNavigation</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_2c396088dbe4e1106a03dad1f396193d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-01-17 11:59:08</sys_updated_on>
+    </sys_script_include>
+</record_update>
