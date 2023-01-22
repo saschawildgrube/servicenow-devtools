@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
     <sys_script_include action="INSERT_OR_UPDATE">
-        <access>package_private</access>
+        <access>public</access>
         <active>true</active>
         <api_name>x_snc_devtools.InstanceScanSuiteOnRecord</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Performs an instance scan on a record using a specific suite.</description>
         <name>InstanceScanSuiteOnRecord</name>
-        <script><![CDATA[function InstanceScanSuiteOnRecord(strSuiteSysId, strTable, strRecordSysId, bDetailed)
+        <script><![CDATA[function InstanceScanSuiteOnRecord(strSuiteSysId, strRecordTable, strRecordSysId, bDetailed)
 {
 	if (InstanceScanIsRunning() == true)
 	{
@@ -15,14 +15,14 @@
 	}
 
 	strSuiteSysId = GetStringValue(strSuiteSysId);
-	strTable = GetStringValue(strTable);
+	strRecordTable = GetStringValue(strRecordTable);
 	strRecordSysId = GetStringValue(strRecordSysId);
 	
 	if (IsValidSysId(strSuiteSysId) == false || strSuiteSysId == '')
 	{
 		return false;
 	}
-	if (IsValidTable(strTable) == false)
+	if (IsValidTable(strRecordTable) == false)
 	{
 		return false;
 	}
@@ -31,14 +31,86 @@
 		return false;
 	}
 	
+	var grRecord = GetRecord(strRecordTable,strRecordSysId);
+	if (IsValidRecord(grRecord) == false)
+	{
+		return false;
+	}	
+	
 	var grSuite = new GlideRecord('scan_suite');
 	
 	var su = new sn_instance_scan.ScanUtil()
-	var strComboSysId = su.getOrCreateComboFromSuiteAndTargets(strSuiteSysId, strTable, [strRecordSysId]);
+	var strComboSysId = su.getOrCreateComboFromSuiteAndTargets(strSuiteSysId, strRecordTable, [strRecordSysId]);
 	if (IsValidSysId(strComboSysId) == false)
 	{
 		return false;
 	}
+	
+	
+	function GetRecordScopeSysId(grRecord)
+	{
+		if (IsValidRecord(grRecord) == false)
+		{
+			return false;
+		}
+		
+		var strRecordScopeSysId = false;
+		if (   grRecord.getRecordClassName() == 'sys_app'
+			|| grRecord.getRecordClassName() == 'sys_store_app'
+			|| grRecord.getRecordClassName() == 'sys_scope')
+		{
+			strRecordScopeSysId = GetStringValue(grRecord.sys_id);
+		}
+		else
+		{
+			strRecordScopeSysId = GetStringValue(grRecord.sys_scope);
+		}	
+		return strRecordScopeSysId;
+	}
+	
+	var strRecordScopeSysId = GetRecordScopeSysId(grRecord);
+
+	var strUpdateSetSysId = '';
+	var strUpdateXmlSysId = '';	
+	
+	function CleanUp()
+	{
+		RecordDelete('sys_update_xml',strUpdateXmlSysId);
+		RecordDelete('sys_update_set',strUpdateSetSysId);		
+	}
+
+	
+	// There is a bug in sn_instance_scan.ScanInstance().triggerScanFromCombo() which causes records NOT to be scanned
+	// if they are NOT in a current update set. No joke.
+	// To mitigate the bug we need to create a temporary update set and update XML
+	
+	
+	var grUS = new GlideRecord('sys_update_set');
+	grUS.initialize();
+	grUS.sys_scope = strRecordScopeSysId;
+	strUpdateSetSysId = GlideRecordInsert(grUS);
+	if (IsValidSysId(strUpdateSetSysId) == false)
+	{
+		return false;
+	}
+	
+	var grUX = new GlideRecord('sys_update_xml');
+	grUX.initialize();
+	grUX.action = 'INSERT_OR_UPDATE';
+	grUX.application = strRecordScopeSysId;
+	grUX.category = 'customer';
+	grUX.name = grRecord.getRecordClassName()+'_'+grRecord.sys_id;
+	grUX.update_set = strUpdateSetSysId;	
+	strUpdateXmlSysId = GlideRecordInsert(grUX);
+	
+	
+	if (IsValidSysId(strUpdateXmlSysId) == false)
+	{
+		CleanUp();
+		return false;
+	}	
+	
+	
 
 	var si = new sn_instance_scan.ScanInstance();
 	var strProgressSysId = '';
@@ -52,6 +124,7 @@
 	
 	if (IsValidSysId(strProgressSysId) == false)
 	{
+		CleanUp();
 		return false;
 	}
 	
@@ -78,22 +151,27 @@
 	grScanResult.query();
 	if (grScanResult.next() == false)
 	{
+		CleanUp();
 		return false;
 	}
 	
-	return InstanceScanGetScanResults(grScanResult.sys_id,bDetailed);
+	var results = InstanceScanGetScanResults(grScanResult.sys_id,bDetailed);
+
+	CleanUp();
+	
+	return results;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-10-14 12:23:14</sys_created_on>
         <sys_id>03c427d547261d10a4b0d4fe536d4351</sys_id>
-        <sys_mod_count>10</sys_mod_count>
+        <sys_mod_count>14</sys_mod_count>
         <sys_name>InstanceScanSuiteOnRecord</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_03c427d547261d10a4b0d4fe536d4351</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-02 21:54:31</sys_updated_on>
+        <sys_updated_on>2023-01-22 19:39:14</sys_updated_on>
     </sys_script_include>
 </record_update>
