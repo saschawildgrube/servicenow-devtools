@@ -46,28 +46,6 @@
 		return false;
 	}
 	
-	
-	function GetRecordScopeSysId(grRecord)
-	{
-		if (IsValidRecord(grRecord) == false)
-		{
-			return false;
-		}
-		
-		var strRecordScopeSysId = false;
-		if (   grRecord.getRecordClassName() == 'sys_app'
-			|| grRecord.getRecordClassName() == 'sys_store_app'
-			|| grRecord.getRecordClassName() == 'sys_scope')
-		{
-			strRecordScopeSysId = GetStringValue(grRecord.sys_id);
-		}
-		else
-		{
-			strRecordScopeSysId = GetStringValue(grRecord.sys_scope);
-		}	
-		return strRecordScopeSysId;
-	}
-	
 	var strRecordScopeSysId = GetRecordScopeSysId(grRecord);
 
 	var strUpdateSetSysId = '';
@@ -165,13 +143,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-10-14 12:23:14</sys_created_on>
         <sys_id>03c427d547261d10a4b0d4fe536d4351</sys_id>
-        <sys_mod_count>14</sys_mod_count>
+        <sys_mod_count>15</sys_mod_count>
         <sys_name>InstanceScanSuiteOnRecord</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_03c427d547261d10a4b0d4fe536d4351</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-01-22 19:39:14</sys_updated_on>
+        <sys_updated_on>2023-01-22 20:50:02</sys_updated_on>
     </sys_script_include>
 </record_update>
