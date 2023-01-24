@@ -14,7 +14,7 @@
 		docapi.RenderHeader();
 	]</g2:no_escape>
 	
-	<p>Welcome to the DevTools - created and maintained by&#160;<a href="mailto:sascha.wildgrube@servicenow.com">Sascha Wildgrube</a>.</p>
+	<p>Welcome to DevTools - created and maintained by&#160;<a href="mailto:sascha.wildgrube@servicenow.com">Sascha Wildgrube</a>.</p>
 
 	<h2>Overview</h2> 
 	<p>DevTools contains a number of&#160;<b>script includes</b>&#160;with useful javascript functions and classes like a GetType() function that really works. A few&#160;<b>UI improvements</b>&#160;like the Re-Test button in the test result form and&#160;<b>shortcuts</b>&#160;to various - sometimes hidden - views and system properties in your instance.</p>
@@ -117,10 +117,14 @@ function DevToolsGetFormatConfig(grRecord)
 	<h3>Fix the Flow Execution Domain Issue described in KB0998966</h3>
 	<p>DevTools contains the business rule&#160;<a href="/nav_to.do?uri=sys_script.do?sys_id=ad95de3247f6d510a4b0d4fe536d432b" target="_blank">sys_flow_context - Set domain</a>&#160;which implements the workaround to the issue described in&#160;<a href="https://support.servicenow.com/kb?id=kb_article_view&amp;sysparm_article=KB0998966" target="_blank">KB0998966</a>.</p> 
 	
-	<h3>Prevent useless Instance Scan checks</h3>
+	<h3>Prevent useless Instance Scan check executions</h3>
 	<p>Instance Scan linter checks execute on all records that have at least one script field. However, some records may have a script field but do not use it or the script field does not have to be checked because it is not relevant (based on the configuration of that record).</p>
-	<p>Examples are: sys_hub_flow_variable records are derived from sys_dictionary which contains a script field - but for a sys_hub_flow_variable record this script field is never relevant. Another example are sys_security_acl records where the script field is only relevant if the field "advanced" is set to true.</p>
-	<p>The business rule "sys_metadata - Prevent useless checks" prevents checks from running in such cases which may significantly reduce the time required to scan such records - or apps that contain such records.</p>
+	<p>Examples are:</p>
+	<ol>
+		<li>sys_hub_flow_variable records are derived from sys_dictionary which contains a script field - but for a sys_hub_flow_variable record this script field is never relevant.</li>
+		<li>sys_security_acl records where the script field is only relevant if the field "advanced" is set to true.</li>
+	</ol>
+	<p>The business rule &#160;<a href="/nav_to.do?uri=sys_script.do?sys_id=b7fad21a1be06d105b76777d8b4bcbbe" target="_blank">sys_metadata - Prevent useless checks</a>&#160;prevents checks from running in such cases which may significantly reduce the time required to scan such records - or apps that contain such records.</p>
 	
 	<h2>Reference</h2>
 
@@ -1122,13 +1126,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1066</sys_mod_count>
+        <sys_mod_count>1069</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-01-24 20:26:18</sys_updated_on>
+        <sys_updated_on>2023-01-24 20:33:46</sys_updated_on>
     </sys_ui_page>
 </record_update>
