@@ -14,7 +14,7 @@
 		docapi.RenderHeader();
 	]</g2:no_escape>
 	
-	<p>Welcome to the DevTools - created and maintained by&#160;<a href="mailto:sascha.wildgrube@servicenow.com">Sascha Wildgrube</a>.</p>
+	<p>Welcome to DevTools - created and maintained by&#160;<a href="mailto:sascha.wildgrube@servicenow.com">Sascha Wildgrube</a>.</p>
 
 	<h2>Overview</h2> 
 	<p>DevTools contains a number of&#160;<b>script includes</b>&#160;with useful javascript functions and classes like a GetType() function that really works. A few&#160;<b>UI improvements</b>&#160;like the Re-Test button in the test result form and&#160;<b>shortcuts</b>&#160;to various - sometimes hidden - views and system properties in your instance.</p>
@@ -76,6 +76,11 @@ gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData
 	<h3>Cross-scope Scripting</h3>
 	<p>The function&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=cc44a1c91b4b7450edf3642aab4bcb13" target="_blank">RunScriptInScope</a>&#160;allows to execute code in any scope no matter what the current execution scope is. The function&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=7303bde9db30a410ba15a35305961968" target="_blank">RunScriptInGlobalScope</a>&#160;specifically allows code execution in the global scope from any other other scope. This allows the use of API functions and classes which are only available in the global scope and NOT in scoped scripts. This allows more flexibility when developing scoped apps - and effectively removes any barriers between apps. The authors of DevTools believe that this is a good thing. Application scopes are NOT a security boundary. Scoped APIs have just not been implemented completely - so using these techniques serves as a workaround for incomplete scoped API implementation. It also allows scoped apps to interact with each other which would otherwise be impossible. We also believe that deployments via update sets are a method of the past. Features should always be deployed as part of scoped (or global scoped) applications via source control or AppRepo. This however requires such apps to perform installation steps - like manipulations of OOTB records - which would not be possible from within their own scope. Hence cross-scope scripting techniques finally enable fully automated deployment pipelines without the need of any manual interventions.</p>
 	
+	<h3>Dependency Management</h3>
+	<p>In an ideal world all customizations are implemented in scoped apps (and some global scoped apps if there are really good reasons). And in that same ideal world, non of these apps have any dependencies. Each app can be installed and uninstalled independently. The real corporate world, however, is complex, messy and full of dependencies. For good reasons, separate capablities are implemented as separate apps and hence these apps have dependencies to each other. For example: apps add fields to tables that are defined in other apps, they run scripts from other apps, or rely on logic implemented in flows from other apps.</p>
+	<p>Such dependencies must be managed - that means, the requirements of one app towards other apps and their minimum versions, must be documented and considered when performing deployments.</p>
+	<p>DevTools provides means for that documentaton and visualization of these dependencies. Go to the sys_app form, switch to the DevTools view to find the dependencies related list (not the OOTB dependencies). The UI action "Dependencies" opens a ui page that visualizes the dependency requirements and status of the current app as a tree and as a list, which can be used as a deployment plan.</p>
+	
 	<h3>Field Formatting</h3>
 	<p>DevTools can help to format (float) numbers in forms, related lists and list views in the classic UI. Follow these steps to activate the feature:</p>
 	<ol>
@@ -117,6 +122,14 @@ function DevToolsGetFormatConfig(grRecord)
 	<h3>Fix the Flow Execution Domain Issue described in KB0998966</h3>
 	<p>DevTools contains the business rule&#160;<a href="/nav_to.do?uri=sys_script.do?sys_id=ad95de3247f6d510a4b0d4fe536d432b" target="_blank">sys_flow_context - Set domain</a>&#160;which implements the workaround to the issue described in&#160;<a href="https://support.servicenow.com/kb?id=kb_article_view&amp;sysparm_article=KB0998966" target="_blank">KB0998966</a>.</p> 
 	
+	<h3>Prevent useless Instance Scan check executions</h3>
+	<p>Instance Scan linter checks execute on all records that have at least one script field. However, some records may have a script field but do not use it or the script field does not have to be checked because it is not relevant (based on the configuration of that record).</p>
+	<p>Examples are:</p>
+	<ol>
+		<li>sys_hub_flow_variable records are derived from sys_dictionary which contains a script field - but for a sys_hub_flow_variable record this script field is never relevant.</li>
+		<li>sys_security_acl records where the script field is only relevant if the field "advanced" is set to true.</li>
+	</ol>
+	<p>The business rule &#160;<a href="/nav_to.do?uri=sys_script.do?sys_id=b7fad21a1be06d105b76777d8b4bcbbe" target="_blank">sys_metadata - Prevent useless checks</a>&#160;prevents checks from running in such cases which may significantly reduce the time required to scan such records - or apps that contain such records.</p>
 	
 	<h2>Reference</h2>
 
@@ -149,11 +162,27 @@ function DevToolsGetFormatConfig(grRecord)
 	<h2>Release Notes</h2>
 	
 <!--
-	<h3>1.5_.0 - 2022-TODO</h3>
+	<h3>1.5_.0 - 2023-TODO</h3>
 	<ol>
 		<li>TODO</li>
 	</ol>
 -->	
+
+	<h3>1.54.0 - 2023-01-25</h3>
+	<ol>
+		<li>Added function IsDerivedFromTable().</li>
+		<li>Added function GetRecordScopeSysId().</li>
+		<li>Function InstanceScanSuiteOnRecord() is now accessible from all scopes and added ATF test.</li>
+		<li>DevToolsWorkerAPI now supports InstanceScanSuiteOnRecord().</li>
+		<li>Function StartWorker() now verifies that the given script include is valid script include api name and added ATF test for StartWorker().</li>
+		<li>Added business rule "sys_metadata - Prevent useless checks".</li>
+		<li>The business rule "sys_flow_context - Set domain" now sets the global domain for flows that are configured to run as system.</li>
+		<li>The Dependency Viewer "Dependency List" displayed a dependency count of 0 for each package. This has been fixed.</li>
+		<li>Added table sys_progress_worker to the link directory.</li>
+		<li>Added ATF for function RenderRecordExecutionSchedule().</li>
+		<li>Added chapter "Dependency Management" to the manual.</li>
+	</ol>
+	
 	
 	<h3>1.53.0 - 2023-01-17</h3>
 	<ol>
@@ -1106,13 +1135,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1058</sys_mod_count>
+        <sys_mod_count>1078</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-01-17 17:32:35</sys_updated_on>
+        <sys_updated_on>2023-01-25 20:21:22</sys_updated_on>
     </sys_ui_page>
 </record_update>
