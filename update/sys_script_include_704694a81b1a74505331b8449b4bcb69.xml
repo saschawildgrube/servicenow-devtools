@@ -59,6 +59,7 @@ InstallerAPI.prototype = {
 	
 	Finish: function()
 	{
+		var bResult = true;
 		if (this.m_bError == false)
 		{
 			CacheFlushMenu();
@@ -66,9 +67,11 @@ InstallerAPI.prototype = {
 		}
 		else
 		{
+			bResult = false;
 			this.Log(this.m_strContext+'Installation FAILED')
 		}
 		x_snc_devtools.Log(this.m_strLog);
+		return bResult;
 	},
 	
 	GenericAction: function(vResult,strLogSuccess,strLogError)
@@ -475,13 +478,13 @@ InstallerAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-08-27 10:49:10</sys_created_on>
         <sys_id>704694a81b1a74505331b8449b4bcb69</sys_id>
-        <sys_mod_count>66</sys_mod_count>
+        <sys_mod_count>67</sys_mod_count>
         <sys_name>InstallerAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>protected</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_704694a81b1a74505331b8449b4bcb69</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-05-31 09:28:12</sys_updated_on>
+        <sys_updated_on>2023-02-03 21:30:23</sys_updated_on>
     </sys_script_include>
 </record_update>

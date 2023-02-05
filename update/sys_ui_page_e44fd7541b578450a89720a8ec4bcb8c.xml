@@ -71,7 +71,7 @@ gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData
 	<h2>Features</h2>
 
 	<h3>Script Includes and UI scripts</h3>
-	<p>DevTools contains a wide varienty of functions and classes (server-side and client-side) for re-use. Please refer to the reference section for details.</p>
+	<p>DevTools contains a wide variety of functions and classes (server-side and client-side) for re-use. Please refer to the reference section for details.</p>
 	
 	<h3>Cross-scope Scripting</h3>
 	<p>The function&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=cc44a1c91b4b7450edf3642aab4bcb13" target="_blank">RunScriptInScope</a>&#160;allows to execute code in any scope no matter what the current execution scope is. The function&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=7303bde9db30a410ba15a35305961968" target="_blank">RunScriptInGlobalScope</a>&#160;specifically allows code execution in the global scope from any other other scope. This allows the use of API functions and classes which are only available in the global scope and NOT in scoped scripts. This allows more flexibility when developing scoped apps - and effectively removes any barriers between apps. The authors of DevTools believe that this is a good thing. Application scopes are NOT a security boundary. Scoped APIs have just not been implemented completely - so using these techniques serves as a workaround for incomplete scoped API implementation. It also allows scoped apps to interact with each other which would otherwise be impossible. We also believe that deployments via update sets are a method of the past. Features should always be deployed as part of scoped (or global scoped) applications via source control or AppRepo. This however requires such apps to perform installation steps - like manipulations of OOTB records - which would not be possible from within their own scope. Hence cross-scope scripting techniques finally enable fully automated deployment pipelines without the need of any manual interventions.</p>
@@ -167,6 +167,18 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>TODO</li>
 	</ol>
 -->	
+	
+	<h3>1.55.0 - 2023-02-05</h3>
+	<ol>
+		<li>Added function InstallApp() to execute an application's and all of its dependencies' AppInstall() functions.</li> 
+		<li>Added UI Action "Run Install Scripts" on the sys_app form to execute InstallApp() for the current application.</li>
+		<li>InstallerAPI::Finish() now returns true or false dependening on whether the installation activities were all successful.</li>
+		<li>DocumentationAPI::RenderInstallationInstructionsAppInstall() now refers to the InstallApp() function to run an app's and it's dependencies' AppInstall() functions.</li>
+		<li>Function TableSetAttribute() does not attempt to change the attributes if the attribute value is already set to the intended value and returns true.</li>
+		<li>Test step configuration "DevTools - Check scoped app sanity" now also considers system properties defining the activity fields of a table.</li>
+		<li>Added ATF for RedirectToRecord() - however without actually testing the function as no scripted method has been identified yet.</li>
+		<li>Added ATF for InstanceReset() to verify it is NOT running if no valid safety token is provided.</li>
+	</ol>
 
 	<h3>1.54.0 - 2023-01-25</h3>
 	<ol>
@@ -174,7 +186,7 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>Added function GetRecordScopeSysId().</li>
 		<li>Function InstanceScanSuiteOnRecord() is now accessible from all scopes and added ATF test.</li>
 		<li>DevToolsWorkerAPI now supports InstanceScanSuiteOnRecord().</li>
-		<li>Function StartWorker() now verifies that the given script include is valid script include api name and added ATF test for StartWorker().</li>
+		<li>Function StartWorker() now verifies that the given script include is a valid script include api name and added an ATF test for StartWorker().</li>
 		<li>Added business rule "sys_metadata - Prevent useless checks".</li>
 		<li>The business rule "sys_flow_context - Set domain" now sets the global domain for flows that are configured to run as system.</li>
 		<li>The Dependency Viewer "Dependency List" displayed a dependency count of 0 for each package. This has been fixed.</li>
@@ -1135,13 +1147,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1078</sys_mod_count>
+        <sys_mod_count>1088</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-01-25 20:21:22</sys_updated_on>
+        <sys_updated_on>2023-02-05 21:53:48</sys_updated_on>
     </sys_ui_page>
 </record_update>
