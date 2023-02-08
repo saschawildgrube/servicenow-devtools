@@ -173,6 +173,7 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>Function WhatRuns() now also considers "async_always" business rules.</li>
 		<li>AppSanity() now also sets async_always for (deprecated) async business rules (https://support.servicenow.com/kb?id=kb_article_view&amp;sysparm_article=KB0951770).</li>
 		<li>AppVersionBaseline() now works properly with global scoped applications.</li>
+		<li>DocumentationAPI::RenderInstallationInstructionsAppInstall() now refers to the related link "Run Install Scripts" on the application form. The scope is no longer required.</li>
 	</ol>	
 	
 	<h3>1.55.0 - 2023-02-05</h3>
@@ -1154,13 +1155,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1092</sys_mod_count>
+        <sys_mod_count>1093</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-02-08 16:33:17</sys_updated_on>
+        <sys_updated_on>2023-02-08 16:46:06</sys_updated_on>
     </sys_ui_page>
 </record_update>
