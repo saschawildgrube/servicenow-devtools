@@ -13,7 +13,7 @@
         <client_callable>false</client_callable>
         <collection>sys_metadata</collection>
         <condition/>
-        <description/>
+        <description>Prevents unnecessary Instance Scan checks from running. This reduces scan time significantly.</description>
         <execute_function>false</execute_function>
         <filter_condition/>
         <is_rest>false</is_rest>
@@ -120,7 +120,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>b7fad21a1be06d105b76777d8b4bcbbe</sys_id>
-        <sys_mod_count>10</sys_mod_count>
+        <sys_mod_count>11</sys_mod_count>
         <sys_name>sys_metadata - prevent useless checks </sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -128,7 +128,7 @@
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_b7fad21a1be06d105b76777d8b4bcbbe</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-02-10 14:26:28</sys_updated_on>
+        <sys_updated_on>2023-02-13 21:22:24</sys_updated_on>
         <template/>
         <when>before</when>
         <x_snc_datasilos_created>false</x_snc_datasilos_created>
