@@ -565,10 +565,18 @@ DocumentationAPI.prototype = {
 
 	RenderInstallationInstructionsAppInstall: function()
 	{
+		var strApp = this.m_strScope;
+		//var strApp = this.m_strAppSysId;
+		
+		var strHtml = this.RenderInstallationInstructionsBackgroundScript(
+			'The InstallApp() function must be executed.',
+			'x_snc_devtools.InstallApp("'+strApp+'");');		
+/*		
 		var strHtml =
 			'<li>'
 			+'Navigate to the&#160;<a href="/nav_to.do?uri=sys_app.do?sys_id='+this.m_strAppSysId+'" target="_blank">application record</a>&#160;and execute the related link "Run Install Scripts".'
 			+'</li>';
+	*/
 		return strHtml;
 	},
 	
@@ -600,13 +608,13 @@ DocumentationAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-01-20 15:26:20</sys_created_on>
         <sys_id>98912146db31e490ba15a353059619b6</sys_id>
-        <sys_mod_count>138</sys_mod_count>
+        <sys_mod_count>140</sys_mod_count>
         <sys_name>DocumentationAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>protected</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_98912146db31e490ba15a353059619b6</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-02-08 16:42:05</sys_updated_on>
+        <sys_updated_on>2023-02-13 08:43:45</sys_updated_on>
     </sys_script_include>
 </record_update>
