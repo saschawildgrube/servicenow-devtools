@@ -181,6 +181,7 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>AppInstall() now adds the field "Description" to the business rule form.</li>
 		<li>DocumentationAPI::RenderBusinessRules() now also displays the description of a business rule (if it exists).</li>
 		<li>Added more ATF test cases for GetPackageDependencyList().</li>
+		<li>InstanceScanSuiteOnApp() now also accepts different parameter types to specify the app (same as GetAppRecord).</li> 
 	</ol>	
 	
 	<h3>1.55.0 - 2023-02-05</h3>
@@ -1162,13 +1163,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1101</sys_mod_count>
+        <sys_mod_count>1102</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-02-14 10:37:47</sys_updated_on>
+        <sys_updated_on>2023-02-14 11:00:37</sys_updated_on>
     </sys_ui_page>
 </record_update>
