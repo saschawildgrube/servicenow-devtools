@@ -12,14 +12,14 @@
 	// https://stackoverflow.com/questions/1249531/how-to-get-a-javascript-objects-class
 	// https://docs.servicenow.com/bundle/madrid-application-development/page/script/javascript-tools/reference/r_IsJavaObject.html
 	
+	if (vValue === null)
+	{
+		return 'null';
+	}
 	var strType = typeof vValue;
 	if (strType == 'undefined')
 	{
 		return 'undefined';
-	}
-	if (vValue == null)
-	{
-		return 'null';
 	}
 	if (strType == 'object')
 	{
@@ -37,13 +37,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-03-02 12:22:24</sys_created_on>
         <sys_id>716450f51b5b8850a89720a8ec4bcb06</sys_id>
-        <sys_mod_count>23</sys_mod_count>
+        <sys_mod_count>25</sys_mod_count>
         <sys_name>GetType</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_716450f51b5b8850a89720a8ec4bcb06</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-04-18 19:14:27</sys_updated_on>
+        <sys_updated_on>2023-02-17 05:43:39</sys_updated_on>
     </sys_script_include>
 </record_update>
