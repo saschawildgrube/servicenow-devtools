@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-04-22 10:27:07</sys_created_on>
         <sys_id>670322ca1b1050d0a89720a8ec4bcb33</sys_id>
-        <sys_mod_count>67</sys_mod_count>
+        <sys_mod_count>76</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_670322ca1b1050d0a89720a8ec4bcb33</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-02-17 05:42:22</sys_updated_on>
+        <sys_updated_on>2023-02-17 06:33:40</sys_updated_on>
         <table/>
         <test display_value="DevTools - RenderValue">7ce22e8a1b1050d0a89720a8ec4bcbdb</test>
         <timeout/>
@@ -50,9 +50,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-04-22 10:27:07</sys_created_on>
         <sys_id>d263ae8a1b1050d0a89720a8ec4bcb96</sys_id>
-        <sys_mod_count>67</sys_mod_count>
+        <sys_mod_count>76</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-02-17 05:42:22</sys_updated_on>
+        <sys_updated_on>2023-02-17 06:33:40</sys_updated_on>
         <value>var strLog = '';&#13;
 function Log(strText)&#13;
 {&#13;
@@ -190,7 +190,7 @@ function Log(strText)&#13;
 		+'\n["sys_created_on"]: '&#13;
 		+'\n["sys_id"]: '&#13;
 		+'\n["sys_meta"]: null'&#13;
-		+'\n["sys_mod_count"]: 0'&#13;
+		+'\n["sys_mod_count"]: '&#13;
 		+'\n["sys_tags"]: '&#13;
 		+'\n["sys_updated_by"]: '&#13;
 		+'\n["sys_updated_on"]: '&#13;
@@ -201,10 +201,30 @@ function Log(strText)&#13;
 		'\nx_snc_devtools_test:'&#13;
 		+'\n["name"]: Test'&#13;
 		+'\n["sys_meta"]: null'&#13;
-		+'\n["sys_mod_count"]: 0'&#13;
+		//+'\n["sys_mod_count"]: 0'&#13;
 		+'\n["value"]: Hello World'&#13;
 		);	&#13;
 &#13;
+	gr.insert();&#13;
+	gr.update();&#13;
+	TestCase_RenderValueHideEmpty(gr,&#13;
+		'\nx_snc_devtools_test: '+gr.sys_id+':'&#13;
+		+'\n["name"]: Test'&#13;
+		+'\n["sys_created_by"]: '+gr.sys_created_by&#13;
+		+'\n["sys_created_on"]: '+gr.sys_created_on&#13;
+		+'\n["sys_id"]: '+gr.sys_id&#13;
+		+'\n["sys_meta"]: null'&#13;
+		+'\n["sys_mod_count"]: 1'&#13;
+		+'\n["sys_updated_by"]: '+gr.sys_updated_by&#13;
+		+'\n["sys_updated_on"]: '+gr.sys_updated_on	&#13;
+		+'\n["value"]: Hello World'&#13;
+		);		&#13;
+&#13;
+	&#13;
+	var gr = new GlideRecord('x_snc_devtools_test');&#13;
+	gr.initialize();&#13;
+	gr.name = 'Test';&#13;
+	gr.value = 'Hello World';	&#13;
 	&#13;
 	// Nested GlideRecords&#13;
 	TestCase_RenderValue(&#13;
@@ -219,7 +239,7 @@ function Log(strText)&#13;
 		+'\n___["sys_created_on"]: '&#13;
 		+'\n___["sys_id"]: '&#13;
 		+'\n___["sys_meta"]: null'&#13;
-		+'\n___["sys_mod_count"]: 0'&#13;
+		+'\n___["sys_mod_count"]: '&#13;
 		+'\n___["sys_tags"]: '&#13;
 		+'\n___["sys_updated_by"]: '&#13;
 		+'\n___["sys_updated_on"]: '&#13;
@@ -233,7 +253,7 @@ function Log(strText)&#13;
 		+'\n___x_snc_devtools_test:'&#13;
 		+'\n___["name"]: Test'&#13;
 		+'\n___["sys_meta"]: null'&#13;
-		+'\n___["sys_mod_count"]: 0'&#13;
+		//+'\n___["sys_mod_count"]: 0'&#13;
 		+'\n___["value"]: Hello World'&#13;
 		);		&#13;
 	&#13;
