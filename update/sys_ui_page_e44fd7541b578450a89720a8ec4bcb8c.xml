@@ -188,6 +188,7 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>GetType() can now deal with objects that return null.</li>
 		<li>Functions RenderValue() and Clone() can now deal with objects that do not have a default value (like "wiki" GlideElement fields as used in kb_knowledge).</li>
 		<li>Function AppBuilderAddSyntaxEditorMacro() is now available for all scopes. Added ATF test and syntax edit macro for the function. Added more robust parameter validation.</li>
+		<li>Function GetPackageDependencyList() now also includes circular dependency packages. And the Dependency Viewer shows the circular dependencies in the "List" view.</li>
 		<li>Refactored the ATF test for RenderValue() to use TestAPI.</li>
 		<li>UI Action "Find Sys Id" now trims the input which makes it more convenient to copy and paste Sys Ids into the modal dialog.</li>
 		<li>The test step configuration "DevTools - Check scoped app sanity" no longer checks if the run_as user associated to a sysauto_script is a technical user or the default admin. When running an ATF test suite via REST API call, a temporary scheduled job is created and associated with the user that triggered the REST API call. This causes the test to fail.</li>
@@ -1173,13 +1174,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1115</sys_mod_count>
+        <sys_mod_count>1116</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-02-22 12:53:07</sys_updated_on>
+        <sys_updated_on>2023-02-22 14:13:13</sys_updated_on>
     </sys_ui_page>
 </record_update>
