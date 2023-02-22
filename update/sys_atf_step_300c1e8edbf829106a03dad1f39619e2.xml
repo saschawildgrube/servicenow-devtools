@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-02-05 11:21:59</sys_created_on>
         <sys_id>300c1e8edbf829106a03dad1f39619e2</sys_id>
-        <sys_mod_count>12</sys_mod_count>
+        <sys_mod_count>13</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_300c1e8edbf829106a03dad1f39619e2</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-02-05 12:55:56</sys_updated_on>
+        <sys_updated_on>2023-02-22 14:29:06</sys_updated_on>
         <table/>
         <test display_value="DevTools - InstallApp">d9fbda8edbf829106a03dad1f396193a</test>
         <timeout/>
@@ -50,9 +50,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-02-05 11:21:59</sys_created_on>
         <sys_id>e50c5e8edbf829106a03dad1f39619b3</sys_id>
-        <sys_mod_count>12</sys_mod_count>
+        <sys_mod_count>13</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-02-05 12:55:56</sys_updated_on>
+        <sys_updated_on>2023-02-22 14:29:06</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -76,7 +76,7 @@
 &#13;
 	var grApp1 = new GlideRecord('sys_app');&#13;
 	grApp1.initialize();&#13;
-	grApp1.name = 'App 1';&#13;
+	grApp1.name = 'App1';&#13;
 	grApp1.scope = 'x_snc_app1';&#13;
 	var strApp1SysId = GlideRecordInsert(grApp1);&#13;
 	&#13;
@@ -98,7 +98,7 @@
 	&#13;
 	var grApp2 = new GlideRecord('sys_app');&#13;
 	grApp2.initialize();&#13;
-	grApp2.name = 'App 2';&#13;
+	grApp2.name = 'App2';&#13;
 	grApp2.scope = 'x_snc_app2';&#13;
 	var strApp2SysId = GlideRecordInsert(grApp2);&#13;
 &#13;
@@ -114,27 +114,25 @@
 	test.Log('The App2 AppInstall function returns true, hence installation should be successful.');&#13;
 	TestCase_InstallApp(grApp2,true);&#13;
 	&#13;
-	&#13;
-	/*&#13;
+	// App1 now depends on App2&#13;
 	var grDependency = new GlideRecord('x_snc_devtools_dependency');&#13;
 	grDependency.initialize();&#13;
-	grDependency.sys_scope = grApp.sys_id;&#13;
-	grDependency.dependency = grPackagePackage.sys_id;&#13;
-	grDependency.name = 'Package';&#13;
+	grDependency.sys_scope = strApp1SysId;&#13;
+	grDependency.dependency = strApp2SysId;&#13;
+	grDependency.name = 'App2';&#13;
 	grDependency.insert();&#13;
-	TestCase_GetPackageDependencyTree('x_snc_devtools',{ count: 1, dependency_status_summary: 'ok' });		&#13;
-&#13;
+	test.Log('App1 and App2 AppInstall() functions return true, so the installation should be sucessful.');&#13;
+	TestCase_InstallApp(grApp1,true);	&#13;
+	&#13;
+	// App2 now also depends on App1 - which implies a circular dependency&#13;
 	var grDependency = new GlideRecord('x_snc_devtools_dependency');&#13;
 	grDependency.initialize();&#13;
-	grDependency.sys_scope = grApp.sys_id;&#13;
-	grDependency.dependency = grPackageServicePortal.sys_id;&#13;
-	grDependency.name = 'Service Portal - Core';&#13;
-	grDependency.versions = '1000.0.0';&#13;
+	grDependency.sys_scope = strApp2SysId;&#13;
+	grDependency.dependency = strApp1SysId;&#13;
+	grDependency.name = 'App1';&#13;
 	grDependency.insert();&#13;
-	TestCase_GetPackageDependencyTree('x_snc_devtools',{ count: 2, dependency_status_summary: 'incompatible_version' });&#13;
-	*/&#13;
-	&#13;
-	&#13;
+	test.Log('The installation should fail due to the circular dependency.');&#13;
+	TestCase_InstallApp(grApp1,false);	&#13;
 	&#13;
 	&#13;
 	return test.GetResult();&#13;
