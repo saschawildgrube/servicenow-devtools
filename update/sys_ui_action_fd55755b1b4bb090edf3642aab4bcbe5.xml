@@ -42,8 +42,15 @@
 	
 	function StateSelectSysId(strSelectedSysId)
 	{
+		if (strSelectedSysId === false)
+		{
+			return;
+		}
+		strSelectedSysId = GetStringValue(strSelectedSysId);
+		strSelectedSysId = strSelectedSysId.trim();
 		if (strSelectedSysId == '')
 		{
+			DoModalMessage(strTitle,'No Sys ID has been entered.',StateStart);
 			return;
 		}
 		if (IsValidSysId(strSelectedSysId) == false)
@@ -85,7 +92,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>fd55755b1b4bb090edf3642aab4bcbe5</sys_id>
-        <sys_mod_count>45</sys_mod_count>
+        <sys_mod_count>53</sys_mod_count>
         <sys_name>Find Sys ID</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -93,7 +100,7 @@
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_action_fd55755b1b4bb090edf3642aab4bcbe5</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-11-23 19:32:54</sys_updated_on>
+        <sys_updated_on>2023-02-22 12:14:05</sys_updated_on>
         <table>global</table>
         <ui11_compatible>true</ui11_compatible>
         <ui16_compatible>true</ui16_compatible>
