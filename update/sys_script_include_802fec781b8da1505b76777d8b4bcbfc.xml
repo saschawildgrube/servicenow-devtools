@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.InstanceScanSuiteOnAppWithDependencies</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Performs an instance scan using a specific suite on an application  and all of the apps dependencies.</description>
+        <name>InstanceScanSuiteOnAppWithDependencies</name>
+        <script><![CDATA[function InstanceScanSuiteOnAppWithDependencies(strSuiteSysId, vApp, bDetailed)
+{
+	if (InstanceScanIsRunning() == true)
+	{
+		return false;
+	}
+	
+	strSuiteSysId = GetStringValue(strSuiteSysId);
+	if (IsValidSysId(strSuiteSysId) == false)
+	{
+		return false;
+	}
+	var grApp = GetAppRecord(vApp);
+	if (IsValidRecord(grApp) == false)
+	{
+		return false;
+	}
+	
+	
+	var scanresults = {};
+	
+	var aPackageList = GetPackageDependencyList(vApp);
+	for (var nPackage = 0; nPackage < aPackageList.length; nPackage++)
+	{
+		if (GetValue(aPackageList,nPackage,'dependency_status') != 'circular')
+		{
+			var strAppSysId = GetValue(aPackageList,nPackage,'sys_id');
+			var grApp = GetAppRecord(strAppSysId);
+			if (IsValidRecord(grApp))
+			{
+				if (grApp.getRecordClassName() == 'sys_app')
+				{
+					var scanresult = InstanceScanSuiteOnApp(strSuiteSysId,strAppSysId,bDetailed);
+					scanresults[aPackageList[nPackage].sys_id] = scanresult;
+				}
+			}
+		}
+	}	
+	
+	return scanresults;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-02-13 16:29:30</sys_created_on>
+        <sys_id>802fec781b8da1505b76777d8b4bcbfc</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>InstanceScanSuiteOnAppWithDependencies</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_802fec781b8da1505b76777d8b4bcbfc</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-02-22 14:35:01</sys_updated_on>
+    </sys_script_include>
+</record_update>

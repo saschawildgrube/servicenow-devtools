@@ -217,6 +217,46 @@ TestAPI.prototype = {
 			TestCase_InstanceScanCheck_CheckResult,
 			true);
 	},
+
+	
+	TestCase_HttpRequest: function(strTitle, vInput, vExpected, callbackCheckResult)
+	{
+		
+		function TestCase_HttpRequest_CheckResult(vInput,vExpected,vResult)
+		{
+			/*
+			var bFinding = false;
+			var aFindings = GetKeys(GetValue(vResult,'findings'));
+			for (var nFinding = 0; nFinding < aFindings.length; nFinding++)
+			{
+				var strFinding = aFindings[nFinding];
+				var finding = GetValue(vResult,'findings',strFinding);
+				if (finding.check == strCheckSysId)
+				{
+					bFinding = true;
+				}
+			}
+			*/
+			return IsEqual(vExpected == vResult);
+		}
+		
+		if (IsFunction(callbackCheckResult) == false)
+		{
+			callbackCheckResult = TestCase_HttpRequest_CheckResult;
+		}
+
+		
+		this.TestCase(
+			'HttpRequest: ' + strTitle,
+			HttpRequest,
+			{
+				'Input': vInput
+			},
+			vExpected,
+			callbackCheckResult,
+			true);
+	},
+	
 	
 	TestCase: function(
 		strTitle,
@@ -396,13 +436,13 @@ TestAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-08-30 13:48:05</sys_created_on>
         <sys_id>206c5c211b567850577f43b5bb4bcb46</sys_id>
-        <sys_mod_count>69</sys_mod_count>
+        <sys_mod_count>71</sys_mod_count>
         <sys_name>TestAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_206c5c211b567850577f43b5bb4bcb46</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-05 07:34:18</sys_updated_on>
+        <sys_updated_on>2023-02-24 14:10:42</sys_updated_on>
     </sys_script_include>
 </record_update>

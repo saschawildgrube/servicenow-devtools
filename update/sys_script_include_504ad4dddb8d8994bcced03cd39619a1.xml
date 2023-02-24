@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
     <sys_script_include action="INSERT_OR_UPDATE">
-        <access>package_private</access>
+        <access>public</access>
         <active>true</active>
         <api_name>x_snc_devtools.AppBuilderAddSyntaxEditorMacro</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>The function creates a syntac editor macro in the given application scope.</description>
+        <description>The function creates a syntax editor macro in the given application scope.</description>
         <name>AppBuilderAddSyntaxEditorMacro</name>
-        <script><![CDATA[function AppBuilderAddSyntaxEditorMacro(strAppSysId,strName,strComments,strText)
+        <script><![CDATA[function AppBuilderAddSyntaxEditorMacro(strAppSysId,strName,strText,strComments)
 {
+	strAppSysId = GetStringValue(strAppSysId);
+	if (IsValidSysId(strAppSysId) == false)
+	{
+		return false;
+	}
+	strName = GetStringValue(strName);
+	if (strName == '')
+	{
+		return false;
+	}
+	strText = GetStringValue(strText);
+	if (strText == '')
+	{
+		return false;
+	}	
 	return RecordQueryOrInsert(
 		'syntax_editor_macro',
 		{
@@ -25,13 +40,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-01-13 11:55:03</sys_created_on>
         <sys_id>504ad4dddb8d8994bcced03cd39619a1</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_name>AppBuilderAddSyntaxEditorMacro</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_504ad4dddb8d8994bcced03cd39619a1</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-20 11:53:46</sys_updated_on>
+        <sys_updated_on>2023-02-19 14:32:30</sys_updated_on>
     </sys_script_include>
 </record_update>

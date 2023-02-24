@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-06-15 12:09:39</sys_created_on>
         <sys_id>bbfc6009db383418bc44d844ca96193f</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_bbfc6009db383418bc44d844ca96193f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-03-29 18:38:38</sys_updated_on>
+        <sys_updated_on>2023-02-20 16:30:12</sys_updated_on>
         <table/>
         <test display_value="DevTools - SetProperty">1bcca4c5db383418bc44d844ca96194c</test>
         <timeout/>
@@ -50,9 +50,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-06-15 12:09:39</sys_created_on>
         <sys_id>750d6cc5db383418bc44d844ca9619a6</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-03-29 18:38:38</sys_updated_on>
+        <sys_updated_on>2023-02-20 16:30:12</sys_updated_on>
         <value>var strLog = '';&#13;
 function Log(strText)&#13;
 {&#13;
@@ -104,7 +104,7 @@ function Log(strText)&#13;
 &#13;
 	&#13;
 	// Same scope&#13;
-	TestCase_SetProperty('x_snc_devtools.debug.log','true',false,true);&#13;
+	TestCase_SetProperty('x_snc_devtools.logging.verbosity','debug',false,true);&#13;
 	&#13;
 	// Global scope&#13;
 	TestCase_SetProperty('sn_atf.runner.enabled','true',false,true);&#13;

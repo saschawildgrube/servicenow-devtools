@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-11-24 09:27:53</sys_created_on>
         <sys_id>e139da091b4c4510edf3642aab4bcbb3</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_e139da091b4c4510edf3642aab4bcbb3</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-11-24 09:30:06</sys_updated_on>
+        <sys_updated_on>2023-02-20 16:31:53</sys_updated_on>
         <table/>
         <test display_value="DevTools - GetProperty">7b1916091b4c4510edf3642aab4bcbb7</test>
         <timeout/>
@@ -36,9 +36,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-11-24 09:27:53</sys_created_on>
         <sys_id>2789da091b4c4510edf3642aab4bcbd8</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-11-24 09:30:06</sys_updated_on>
+        <sys_updated_on>2023-02-20 16:31:53</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -65,11 +65,11 @@
 	TestCase_GetProperty('this_property_does_not_exist',null);&#13;
 &#13;
 	&#13;
-	SetProperty('x_snc_devtools.debug.log','true');&#13;
-	TestCase_GetProperty('x_snc_devtools.debug.log',true);&#13;
+	SetProperty('x_snc_devtools.logging.verbosity','debug');&#13;
+	TestCase_GetProperty('x_snc_devtools.logging.verbosity','debug');&#13;
 	&#13;
-	SetProperty('x_snc_devtools.debug.log','false');&#13;
-	TestCase_GetProperty('x_snc_devtools.debug.log',false);&#13;
+	SetProperty('x_snc_devtools.logging.verbosity','info');&#13;
+	TestCase_GetProperty('x_snc_devtools.logging.verbosity','info');&#13;
 &#13;
 	&#13;
 	return test.GetResult();&#13;

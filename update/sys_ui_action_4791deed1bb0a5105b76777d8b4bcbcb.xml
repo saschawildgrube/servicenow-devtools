@@ -2,12 +2,12 @@
     <sys_ui_action action="INSERT_OR_UPDATE">
         <action_name/>
         <active>true</active>
-        <client>false</client>
+        <client>true</client>
         <client_script_v2><![CDATA[function onClick(g_form) {
 
 }]]></client_script_v2>
         <comments>Executes the installation scripts of the app and all its dependencies.</comments>
-        <condition/>
+        <condition>current.scope != 'global'</condition>
         <form_action>true</form_action>
         <form_button>false</form_button>
         <form_button_v2>false</form_button_v2>
@@ -28,9 +28,18 @@
         <list_style/>
         <messages/>
         <name>Run Install Scripts</name>
-        <onclick/>
+        <onclick>onClickRunInstallScripts()</onclick>
         <order>99999</order>
-        <script><![CDATA[var bResult = InstallApp(current);
+        <script><![CDATA[function onClickRunInstallScripts()
+{
+	var strScope = g_form.getValue('scope');
+	var strMessage = 'For yet unknown reasons, the execution of installation scripts does not work properly when invoked through a UI action. Hence please execute the following background script:';
+	strMessage += '\n\n';
+	strMessage += 'x_snc_devtools.InstallApp("'+strScope+'");';
+	DoModalMessage('DevTools - Run Install Scripts',strMessage,function(){});
+}
+
+/*var bResult = InstallApp(current);
 if (bResult == true)
 {
 	gs.addInfoMessage('The installation scripts of the app and all its dependencies has been executed successfully.');	
@@ -40,7 +49,7 @@ else
 	gs.addErrorMessage('The installation scripts of the app and all its dependencies has been executed. Errors occured. Please check the application log!');
 }
 RedirectToRecord(current);
-]]></script>
+*/]]></script>
         <show_insert>false</show_insert>
         <show_multiple_update>false</show_multiple_update>
         <show_query>false</show_query>
@@ -51,7 +60,7 @@ RedirectToRecord(current);
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>4791deed1bb0a5105b76777d8b4bcbcb</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>10</sys_mod_count>
         <sys_name>Run Install Scripts</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -59,7 +68,7 @@ RedirectToRecord(current);
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_action_4791deed1bb0a5105b76777d8b4bcbcb</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-02-03 21:42:37</sys_updated_on>
+        <sys_updated_on>2023-02-17 11:39:43</sys_updated_on>
         <table>sys_app</table>
         <ui11_compatible>true</ui11_compatible>
         <ui16_compatible>false</ui16_compatible>

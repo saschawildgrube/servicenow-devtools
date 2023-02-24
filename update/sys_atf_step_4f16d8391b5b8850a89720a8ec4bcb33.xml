@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-03-02 13:06:21</sys_created_on>
         <sys_id>4f16d8391b5b8850a89720a8ec4bcb33</sys_id>
-        <sys_mod_count>19</sys_mod_count>
+        <sys_mod_count>20</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_4f16d8391b5b8850a89720a8ec4bcb33</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-08-21 10:36:27</sys_updated_on>
+        <sys_updated_on>2023-02-17 05:33:14</sys_updated_on>
         <table/>
         <test display_value="DevTools - GetType">92f518391b5b8850a89720a8ec4bcbec</test>
         <timeout/>
@@ -50,9 +50,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-03-02 13:06:21</sys_created_on>
         <sys_id>bdce1cfd1b5b8850a89720a8ec4bcb04</sys_id>
-        <sys_mod_count>17</sys_mod_count>
+        <sys_mod_count>18</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-08-21 10:36:27</sys_updated_on>
+        <sys_updated_on>2023-02-17 05:33:14</sys_updated_on>
         <value>var strLog = '';&#13;
 function Log(strText)&#13;
 {&#13;
@@ -97,6 +97,11 @@ function Log(strText)&#13;
 	grIncident.short_description = 'Hello World';&#13;
 	TestCase_GetType(grIncident.short_description,'ScopedGlideElement');&#13;
 	&#13;
+	var grKnowledge = new GlideRecord('kb_knowledge');&#13;
+	grKnowledge.initialize();&#13;
+	grKnowledge.short_description = 'Hello World';&#13;
+	grKnowledge.wiki = '=Hello World=';&#13;
+	TestCase_GetType(grKnowledge.wiki,'ScopedGlideElement');	&#13;
 	&#13;
 	stepResult.setOutputMessage(strLog);&#13;
 	return bResult;&#13;

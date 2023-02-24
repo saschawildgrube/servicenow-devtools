@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <copied_from/>
+        <description>Run Server Side Validation Script</description>
+        <display_name>Run Server Side Script</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>1</order>
+        <snapshot/>
+        <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-02-14 10:33:09</sys_created_on>
+        <sys_id>2f17a4451b8125505b76777d8b4bcb09</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>Run Server Side Script</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_step_2f17a4451b8125505b76777d8b4bcb09</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-02-14 11:13:02</sys_updated_on>
+        <table/>
+        <test display_value="DevTools - InstanceScanSuiteOnAppWithDependencies">d7e620451b8125505b76777d8b4bcb98</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=2f17a4451b8125505b76777d8b4bcb09"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>2f17a4451b8125505b76777d8b4bcb09</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-02-14 10:33:09</sys_created_on>
+        <sys_id>352724451b8125505b76777d8b4bcb30</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-02-14 10:33:09</sys_updated_on>
+        <value>3.1</value>
+        <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>2f17a4451b8125505b76777d8b4bcb09</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-02-14 10:33:09</sys_created_on>
+        <sys_id>7d2724451b8125505b76777d8b4bcb30</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-02-14 11:13:02</sys_updated_on>
+        <value>(function(outputs, steps, stepResult, assertEqual)&#13;
+{&#13;
+	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
+	&#13;
+	test.SetResult(true);&#13;
+&#13;
+&#13;
+	&#13;
+	var grApp = GetAppRecord('x_snc_devtools');&#13;
+&#13;
+	var grApp2 = new GlideRecord('sys_app');&#13;
+	grApp2.initialize();&#13;
+	grApp2.name = '_TEST_App2';&#13;
+	grApp2.version = '1.0.0';&#13;
+	grApp2.scope = 'x_snc_testapp2';&#13;
+	var strApp2SysId = GlideRecordInsert(grApp2);&#13;
+	&#13;
+	var grDependency = new GlideRecord('x_snc_devtools_dependency');&#13;
+	grDependency.initialize();&#13;
+	grDependency.sys_scope = grApp.sys_id;&#13;
+	grDependency.dependency = strApp2SysId;&#13;
+	grDependency.name = 'App2';&#13;
+	grDependency.versions = '1.0.0';&#13;
+	grDependency.insert();		&#13;
+		&#13;
+	var grPackageServicePortal = new GlideRecord('sys_plugins');&#13;
+	grPackageServicePortal.addQuery('name','=','Service Portal - Core');&#13;
+	grPackageServicePortal.query();&#13;
+	grPackageServicePortal.next();&#13;
+		&#13;
+	var grDependency = new GlideRecord('x_snc_devtools_dependency');&#13;
+	grDependency.initialize();&#13;
+	grDependency.sys_scope = grApp.sys_id;&#13;
+	grDependency.dependency = grPackageServicePortal.sys_id;&#13;
+	grDependency.name = 'Service Portal - Core';&#13;
+	grDependency.versions = '1.0.0';&#13;
+	grDependency.insert();&#13;
+	&#13;
+&#13;
+	&#13;
+&#13;
+	function TestCase_InstanceScanSuiteOnAppWithDependencies(strSuiteSysId, strAppSysId, vExpected)&#13;
+	{&#13;
+		function TestCase_InstanceScanSuiteOnAppWithDependencies_CheckResult(vInput,vExpected,vResult)&#13;
+		{&#13;
+			if (vExpected == false)&#13;
+			{&#13;
+				return (vResult == false);&#13;
+			}&#13;
+			var aKeys = GetKeys(vResult);&#13;
+			return (aKeys.length == vExpected);&#13;
+		}	&#13;
+		&#13;
+		test.TestCase(&#13;
+			'Function InstanceScanSuiteOnAppWithDependencies()',&#13;
+			InstanceScanSuiteOnAppWithDependencies,&#13;
+			{&#13;
+				'SuiteSysId': strSuiteSysId,&#13;
+				'AppSysId':   strAppSysId,&#13;
+				'Detailed':   false&#13;
+			},&#13;
+			vExpected,&#13;
+			TestCase_InstanceScanSuiteOnAppWithDependencies_CheckResult);&#13;
+	}&#13;
+&#13;
+	var strSuiteSysId = '833655cc1b94101046e87733cd4bcb4e'; // Instance Security Center&#13;
+&#13;
+	TestCase_InstanceScanSuiteOnAppWithDependencies('',grApp.sys_id,false);&#13;
+	TestCase_InstanceScanSuiteOnAppWithDependencies('','12345678901234567890123456789012',false);&#13;
+	TestCase_InstanceScanSuiteOnAppWithDependencies(strSuiteSysId,'12345678901234567890123456789012',false);&#13;
+&#13;
+	test.Log(x_snc_devtools.RenderValue(GetPackageDependencyTree(grApp)));&#13;
+	TestCase_InstanceScanSuiteOnAppWithDependencies(strSuiteSysId,grApp.sys_id,2);	&#13;
+	&#13;
+	&#13;
+	return test.GetResult();&#13;
+	&#13;
+})(outputs, steps, stepResult, assertEqual);</value>
+        <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
+    </sys_variable_value>
+</record_update>
