@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-03-20 14:28:44</sys_created_on>
         <sys_id>fa3d11efdb6b4010ba15a35305961923</sys_id>
-        <sys_mod_count>23</sys_mod_count>
+        <sys_mod_count>25</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_fa3d11efdb6b4010ba15a35305961923</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-03-04 20:41:31</sys_updated_on>
+        <sys_updated_on>2023-03-06 14:28:07</sys_updated_on>
         <table/>
         <test display_value="DevTools - GetValue">ea0dd9afdb6b4010ba15a35305961935</test>
         <timeout/>
@@ -36,9 +36,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-03-20 14:28:44</sys_created_on>
         <sys_id>084e9523dbab4010ba15a3530596190b</sys_id>
-        <sys_mod_count>23</sys_mod_count>
+        <sys_mod_count>25</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-03-04 20:41:31</sys_updated_on>
+        <sys_updated_on>2023-03-06 14:28:07</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -77,6 +77,25 @@
 		null, // key 5&#13;
 		null, // key 6&#13;
 		null);&#13;
+	&#13;
+	test.TestCase_GetValue(&#13;
+		vObject,&#13;
+		['hello'], // key 1&#13;
+		null, // key 2&#13;
+		null, // key 3&#13;
+		null, // key 4&#13;
+		null, // key 5&#13;
+		null, // key 6&#13;
+		'world');&#13;
+	test.TestCase_GetValue(&#13;
+		vObject,&#13;
+		['hello2'], // key 1&#13;
+		null, // key 2&#13;
+		null, // key 3&#13;
+		null, // key 4&#13;
+		null, // key 5&#13;
+		null, // key 6&#13;
+		null);	&#13;
 	&#13;
 	vObject =&#13;
 	{&#13;
@@ -122,6 +141,45 @@
 		null, // key 6&#13;
 		null);&#13;
 &#13;
+	test.TestCase_GetValue(&#13;
+		vObject,&#13;
+		['node1','node11','value'], // key 1&#13;
+		null, // key 2&#13;
+		null, // key 3&#13;
+		null, // key 4&#13;
+		null, // key 5&#13;
+		null, // key 6&#13;
+		'value11');&#13;
+	test.TestCase_GetValue(&#13;
+		vObject,&#13;
+		['node666','node11'], // key 1&#13;
+		null, // key 2&#13;
+		null, // key 3&#13;
+		null, // key 4&#13;
+		null, // key 5&#13;
+		null, // key 6&#13;
+		null);&#13;
+	test.TestCase_GetValue(&#13;
+		vObject,&#13;
+		['node1','node11','node111'], // key 1&#13;
+		null, // key 2&#13;
+		null, // key 3&#13;
+		null, // key 4&#13;
+		null, // key 5&#13;
+		null, // key 6&#13;
+		null);&#13;
+	&#13;
+	// Negative test for keys after an array as key1&#13;
+	test.TestCase_GetValue(&#13;
+		vObject,&#13;
+		['node1','node11','value'], // key 1&#13;
+		'invalid', // key 2&#13;
+		null, // key 3&#13;
+		null, // key 4&#13;
+		null, // key 5&#13;
+		null, // key 6&#13;
+		null);&#13;
+	&#13;
 	&#13;
 	var grIncident = new GlideRecord('incident');&#13;
 	grIncident.initialize();&#13;
@@ -166,6 +224,25 @@
 		null, // key 6&#13;
 		255);		&#13;
 	&#13;
+	test.TestCase_GetValue(&#13;
+		[['Alpha','Beta'],['A','B'],['Primary','Secondary']],&#13;
+		[2,1], // key 1&#13;
+		null, // key 2&#13;
+		null, // key 3&#13;
+		null, // key 4&#13;
+		null, // key 5&#13;
+		null, // key 6&#13;
+		'Secondary');	&#13;
+	&#13;
+	test.TestCase_GetValue(&#13;
+		[[1,2],[10,20],[128,255]],&#13;
+		[2,1], // key 1&#13;
+		null, // key 2&#13;
+		null, // key 3&#13;
+		null, // key 4&#13;
+		null, // key 5&#13;
+		null, // key 6&#13;
+		255);			&#13;
 	&#13;
 	var grIncident = new GlideRecord('incident');&#13;
 	grIncident.initialize();&#13;

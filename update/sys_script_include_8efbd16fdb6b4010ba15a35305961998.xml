@@ -17,7 +17,26 @@
 	{
 		return null;
 	}
-	if (vKey2 == undefined)
+	if (IsArray(vKey1) == true)
+	{
+		if (vKey2 != null)
+		{
+			return null;
+		}
+		if (vKey1.length > 6)
+		{
+			return null;
+		}
+		return GetValue(
+			vObject,
+			GetValue(vKey1,0),
+			GetValue(vKey1,1),
+			GetValue(vKey1,2),
+			GetValue(vKey1,3),
+			GetValue(vKey1,4),
+			GetValue(vKey1,5));
+	}
+	if (vKey2 == undefined || vKey2 == null)
 	{
 		if (vObject[vKey1] == undefined)
 		{
@@ -36,13 +55,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-03-20 14:22:41</sys_created_on>
         <sys_id>8efbd16fdb6b4010ba15a35305961998</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_name>GetValue</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_8efbd16fdb6b4010ba15a35305961998</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-03-04 08:49:43</sys_updated_on>
+        <sys_updated_on>2023-03-06 14:26:34</sys_updated_on>
     </sys_script_include>
 </record_update>
