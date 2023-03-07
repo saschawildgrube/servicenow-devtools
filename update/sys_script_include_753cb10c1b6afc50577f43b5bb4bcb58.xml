@@ -430,6 +430,7 @@
 			"function DevToolsGetParentRecord(grRecord)\n"
 			+"{\n"
 			+"\t// TODO: Modify or remove this code (and return false)...\n"
+			+"\n"
 			+"\tvar GetRecord = x_snc_devtools.GetRecord;\n"
 			+"\tvar strTable = grRecord.getRecordClassName();\n"
 			+"\n"
@@ -595,8 +596,8 @@
 		grSSI.script =
 			"function DevToolsRenderDebugDump()\n"
 			+"{\n"
-			+"\t\n"
 			+"\t// TODO: Create additional debug information specific to this app...\n"
+			+"\t\n"
 			+"\treturn 'TODO: This is additional debug information from "+strAppName+"...';\n"
 			+"}";
 		strSSI = GlideRecordInsert(grSSI);
@@ -869,13 +870,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-07 15:15:09</sys_created_on>
         <sys_id>753cb10c1b6afc50577f43b5bb4bcb58</sys_id>
-        <sys_mod_count>123</sys_mod_count>
+        <sys_mod_count>125</sys_mod_count>
         <sys_name>AppBuilder</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_753cb10c1b6afc50577f43b5bb4bcb58</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-03-07 10:06:18</sys_updated_on>
+        <sys_updated_on>2023-03-07 14:33:25</sys_updated_on>
     </sys_script_include>
 </record_update>
