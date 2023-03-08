@@ -126,20 +126,6 @@
 		false);
 	
 	
-	Log('Adding system property "log.active"');
-	RecordQueryOrInsert('sys_properties',
-		{
-			sys_scope: strAppSysId,
-			name: strAppScope+'.log.active'	
-		},
-		{
-			suffix: 'active',
-			description: 'Controls if the '+strAppName+' application produces log output.',
-			type: 'boolean',
-			value: 'true'
-		},
-		false);	
-
 	Log('Adding system property "logging.verbosity"');
 	RecordQueryOrInsert('sys_properties',
 		{
@@ -209,10 +195,7 @@
 			script:
 				"function Log(strText)\n"
 				+"{\n"
-				+"\tif (AppGetProperty('log.active'))\n"
-				+"\t{\n"
-				+"\t\tx_snc_devtools.Log('"+strAppName+": '+gs.getUserName()+': '+strText);\n"
-				+"\t}\n"
+				+"\tx_snc_devtools.Log('"+strAppName+": '+gs.getUserName()+': '+strText);\n"
 				+"}"
 		},
 		false);
@@ -801,22 +784,19 @@
 				false);
 		}
 		
-		//if (IsValidSysId(strManual))
-		//{
-			Log('Adding module "Manual"...');
-			RecordQueryOrInsert('sys_app_module',
-				{
-					sys_scope: strAppSysId,
-					application: strAppMenuSysId,
-					title: 'Manual'
-				},
-				{
-					order: nAppMenuOrderStart + 100,
-					link_type: 'DIRECT',
-					query: '/'+strAppScope+'_manual.do'
-				},
-				false);
-		//}	
+		Log('Adding module "Manual"...');
+		RecordQueryOrInsert('sys_app_module',
+			{
+				sys_scope: strAppSysId,
+				application: strAppMenuSysId,
+				title: 'Manual'
+			},
+								{
+				order: nAppMenuOrderStart + 200,
+				link_type: 'DIRECT',
+				query: '/'+strAppScope+'_manual.do'
+			},
+			false);
 		
 		
 		if (IsValidSysId(strTestSuiteSysId))
@@ -829,7 +809,7 @@
 					title: 'Test Suite'
 				},
 				{
-					order: nAppMenuOrderStart + 110,
+					order: nAppMenuOrderStart + 300,
 					link_type: 'DETAIL',
 					name: 'sys_atf_test_suite',
 					view_name: 'DevTools',
@@ -849,7 +829,7 @@
 					title: 'Log'
 				},
 				{
-					order: nAppMenuOrderStart + 120,
+					order: nAppMenuOrderStart + 400,
 					link_type: 'LIST',
 					name: 'syslog_app_scope',
 					query: '&sysparm_view_forced=true&sysparm_order=sequence&sysparm_order_direction=desc',
@@ -870,13 +850,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-07 15:15:09</sys_created_on>
         <sys_id>753cb10c1b6afc50577f43b5bb4bcb58</sys_id>
-        <sys_mod_count>125</sys_mod_count>
+        <sys_mod_count>127</sys_mod_count>
         <sys_name>AppBuilder</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_753cb10c1b6afc50577f43b5bb4bcb58</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-03-07 14:33:25</sys_updated_on>
+        <sys_updated_on>2023-03-08 12:05:24</sys_updated_on>
     </sys_script_include>
 </record_update>
