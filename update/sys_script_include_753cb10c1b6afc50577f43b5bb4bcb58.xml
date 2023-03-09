@@ -5,7 +5,7 @@
         <api_name>x_snc_devtools.AppBuilder</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>AppBuilder adds various application files to a scoped app.</description>
+        <description>AppBuilder adds various application files to a scoped app. The function should be mostly idempotent.</description>
         <name>AppBuilder</name>
         <script><![CDATA[function AppBuilder(strAppSysIdOrScopeName, strParentAppSysIdOrScopeName, strAppMenuSeparator, nAppMenuOrderStart)
 {
@@ -126,20 +126,6 @@
 		false);
 	
 	
-	Log('Adding system property "log.active"');
-	RecordQueryOrInsert('sys_properties',
-		{
-			sys_scope: strAppSysId,
-			name: strAppScope+'.log.active'	
-		},
-		{
-			suffix: 'active',
-			description: 'Controls if the '+strAppName+' application produces log output.',
-			type: 'boolean',
-			value: 'true'
-		},
-		false);	
-
 	Log('Adding system property "logging.verbosity"');
 	RecordQueryOrInsert('sys_properties',
 		{
@@ -209,10 +195,7 @@
 			script:
 				"function Log(strText)\n"
 				+"{\n"
-				+"\tif (AppGetProperty('log.active'))\n"
-				+"\t{\n"
-				+"\t\tx_snc_devtools.Log('"+strAppName+": '+gs.getUserName()+': '+strText);\n"
-				+"\t}\n"
+				+"\tx_snc_devtools.Log('"+strAppName+": '+gs.getUserName()+': '+strText);\n"
 				+"}"
 		},
 		false);
@@ -318,6 +301,8 @@
 			+"\tAppSetProperty('active','true');\n"
 			+"\tAppSetProperty('logging.verbosity','info');\n"
 			+"\tAppSetProperty('log.active','true');\n"
+			+"\t\n"
+			+"\t// TODO: Add more code to set default values (for properties)...\n"
 			+"}\n";
 		GlideRecordInsert(grSSI);
 	}	
@@ -339,7 +324,7 @@
 				+"{\n"
 				+"\tvar installer = new x_snc_devtools.InstallerAPI(x_snc_devtools.GetAppName('"+strAppScope+"'));\n"
 				+"\t\n"
-				+"\t// TODO: Add your code here...\n"
+				+"\t// TODO: Add your installation code here...\n"
 				+"\t\n"
 				+"\treturn installer.Finish();\n"
 				+"}\n"
@@ -427,7 +412,8 @@
 		grSSI.script = 
 			"function DevToolsGetParentRecord(grRecord)\n"
 			+"{\n"
-			+"\tTODO: Modify or remove this code\n"
+			+"\t// TODO: Modify or remove this code (and return false)...\n"
+			+"\n"
 			+"\tvar GetRecord = x_snc_devtools.GetRecord;\n"
 			+"\tvar strTable = grRecord.getRecordClassName();\n"
 			+"\n"
@@ -465,7 +451,9 @@
 		grSSI.script = 
 			"function DevToolsGetLinkDirectory(linkdirectory)\n"
 			+"{\n"
-			+"\tlinkdirectory['Test Category'] =\n"
+			+"\t// TODO: Create your own link directory category, add your own tables and links or remove this code (and return linkdirectory)...\n"
+			+"\t\n"
+			+"\tlinkdirectory['"+strAppName+" Category'] =\n"
 			+"\t[\n"
 			+"\t\t{\n"
 			+"\t\t\ttable: 'x_snc_devtools_test'\n"
@@ -501,6 +489,8 @@
 		grSSI.script = 
 			"function DevToolsGetFormatConfig(grRecord)\n"
 			+"{\n"
+			+"\t// TODO: Adapt this code to support your tables or just return false...\n"
+			+"\n"
 			+"\tvar strTable = grRecord.getRecordClassName();\n"
 			+"\n"
 			+"\tif (strTable == 'x_your_table')\n"
@@ -542,20 +532,22 @@
 		grSSI.script =
 			"function DevToolsGetApplicationStatus(status)\n"
 			+"{\n"
+			+"\t// TODO: Adapt this code to add more columns to the DevTools application overview page (or just return status)...\n"
+			+"\n"
 			+"\tvar GetValue = x_snc_devtools.GetValue;\n"		
 			+"\tvar SetValue = x_snc_devtools.SetValue;\n"		
 			+"\tvar GetKeys = x_snc_devtools.GetKeys;\n"
 			+"\tvar GetAppRecord = x_snc_devtools.GetAppRecord;\n"
 			+"\t\n"
 			+"\t// Define a new column 'demo'\n"
-			+"\tSetValue('Demo',status,'columns','demo','header');\n"
+			+"\tSetValue('"+strAppName+"',status,'columns','demo','header');\n"
 			+"\t\n"
 			+"\tvar aApps = GetKeys(GetValue(status,'applications'));\n"
 			+"\tfor (var nApp = 0; nApp < aApps.length; nApp++)\n"
 			+"\t{\n"
 			+"\t\tvar grApp = GetAppRecord(aApps[nApp]);\n"
-			+"\t\t// Add some meaningful status information or useful links for each app:\n"
-			+"\t\tSetValue('Add some relevant info about app '+grApp.name,status,'applications',aApps[nApp],'demo');\n"
+			+"\t\t// TODO: Add some meaningful status information or useful links for each app:\n"
+			+"\t\tSetValue('TODO: Add some relevant info about app '+grApp.name,status,'applications',aApps[nApp],'demo');\n"
 			+"\t}\n"
 			+"\t\n"
 			+"\treturn status;\n"
@@ -587,9 +579,9 @@
 		grSSI.script =
 			"function DevToolsRenderDebugDump()\n"
 			+"{\n"
-			+"\t\n"
 			+"\t// TODO: Create additional debug information specific to this app...\n"
-			+"\treturn 'TODO: This is additional debug information...';\n"
+			+"\t\n"
+			+"\treturn 'TODO: This is additional debug information from "+strAppName+"...';\n"
 			+"}";
 		strSSI = GlideRecordInsert(grSSI);
 		Log('Script include "DevToolsRenderDebugDump": '+RenderValue(strSSI));	
@@ -792,22 +784,19 @@
 				false);
 		}
 		
-		//if (IsValidSysId(strManual))
-		//{
-			Log('Adding module "Manual"...');
-			RecordQueryOrInsert('sys_app_module',
-				{
-					sys_scope: strAppSysId,
-					application: strAppMenuSysId,
-					title: 'Manual'
-				},
-				{
-					order: nAppMenuOrderStart + 100,
-					link_type: 'DIRECT',
-					query: '/'+strAppScope+'_manual.do'
-				},
-				false);
-		//}	
+		Log('Adding module "Manual"...');
+		RecordQueryOrInsert('sys_app_module',
+			{
+				sys_scope: strAppSysId,
+				application: strAppMenuSysId,
+				title: 'Manual'
+			},
+								{
+				order: nAppMenuOrderStart + 200,
+				link_type: 'DIRECT',
+				query: '/'+strAppScope+'_manual.do'
+			},
+			false);
 		
 		
 		if (IsValidSysId(strTestSuiteSysId))
@@ -820,7 +809,7 @@
 					title: 'Test Suite'
 				},
 				{
-					order: nAppMenuOrderStart + 110,
+					order: nAppMenuOrderStart + 300,
 					link_type: 'DETAIL',
 					name: 'sys_atf_test_suite',
 					view_name: 'DevTools',
@@ -840,7 +829,7 @@
 					title: 'Log'
 				},
 				{
-					order: nAppMenuOrderStart + 120,
+					order: nAppMenuOrderStart + 400,
 					link_type: 'LIST',
 					name: 'syslog_app_scope',
 					query: '&sysparm_view_forced=true&sysparm_order=sequence&sysparm_order_direction=desc',
@@ -861,13 +850,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-07 15:15:09</sys_created_on>
         <sys_id>753cb10c1b6afc50577f43b5bb4bcb58</sys_id>
-        <sys_mod_count>119</sys_mod_count>
+        <sys_mod_count>127</sys_mod_count>
         <sys_name>AppBuilder</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_753cb10c1b6afc50577f43b5bb4bcb58</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-02-24 10:15:03</sys_updated_on>
+        <sys_updated_on>2023-03-08 12:05:24</sys_updated_on>
     </sys_script_include>
 </record_update>

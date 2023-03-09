@@ -6,7 +6,7 @@
         <client_script_v2><![CDATA[function onClick(g_form) {
 
 }]]></client_script_v2>
-        <comments>Global Save button</comments>
+        <comments>Global Save button with scope change capability</comments>
         <condition>(current.canCreate() || current.canWrite() ) &amp;&amp; (AppGetProperty('ui.save_button') == true)  &amp;&amp; (current.getRecordClassName() != 'sys_m2m')</condition>
         <form_action>true</form_action>
         <form_button>true</form_button>
@@ -30,10 +30,12 @@
         <name>Save</name>
         <onclick/>
         <order>-10000</order>
-        <script><![CDATA[var bDoUpdate = true; 
+        <script><![CDATA[var strClassName = GetStringValue(current.getRecordClassName());
+
+var bDoUpdate = true; 
 
 var bUiScriptSetGlobal = false;
-if (current.getRecordClassName() == 'sys_ui_script')
+if (strClassName == 'sys_ui_script')
 {
 	if (current.sys_scope != 'global')
 	{
@@ -47,7 +49,7 @@ if (current.getRecordClassName() == 'sys_ui_script')
 
 var bUiActionViewCrossScope = false;
 var strUiActionSysId = '';
-if (current.getRecordClassName() == 'sys_ui_action_view')
+if (strClassName == 'sys_ui_action_view')
 {
 	if (current.sys_scope != current.sys_ui_action.sys_scope)
 	{
@@ -59,6 +61,13 @@ if (current.getRecordClassName() == 'sys_ui_action_view')
 
 if (bDoUpdate == true)
 {
+	if (AppGetProperty('ui.force_scope') == true)
+	{
+		if (IsDerivedFromTable(strClassName,'sys_metadata') || strClassName == 'sys_metadata')
+		{
+			SetCurrentScope(current.sys_scope);
+		}
+	}
 	if (current.isNewRecord() == true)
 	{
 		GlideRecordInsert(current,IsGhostRequiredForRecordUpdate(current));
@@ -108,7 +117,7 @@ RedirectToRecord(current,GetParam('sysparm_view'));]]></script>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>e155ed64db4441104647dad1f39619dd</sys_id>
-        <sys_mod_count>65</sys_mod_count>
+        <sys_mod_count>67</sys_mod_count>
         <sys_name>Save</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -116,7 +125,7 @@ RedirectToRecord(current,GetParam('sysparm_view'));]]></script>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_action_e155ed64db4441104647dad1f39619dd</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-02-23 12:43:39</sys_updated_on>
+        <sys_updated_on>2023-03-03 17:02:47</sys_updated_on>
         <table>global</table>
         <ui11_compatible>true</ui11_compatible>
         <ui16_compatible>false</ui16_compatible>

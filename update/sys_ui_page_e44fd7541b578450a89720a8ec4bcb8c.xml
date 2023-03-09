@@ -16,6 +16,10 @@
 	
 	<p>Welcome to DevTools - created and maintained by&#160;<a href="mailto:sascha.wildgrube@servicenow.com">Sascha Wildgrube</a>.</p>
 
+	<g2:no_escape>$[
+		docapi.RenderDescription();
+		]</g2:no_escape>		
+	
 	<h2>Overview</h2> 
 	<p>DevTools contains a number of&#160;<b>script includes</b>&#160;with useful javascript functions and classes like a GetType() function that really works. A few&#160;<b>UI improvements</b>&#160;like the Re-Test button in the test result form and&#160;<b>shortcuts</b>&#160;to various - sometimes hidden - views and system properties in your instance.</p>
 
@@ -73,6 +77,9 @@ gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData
 	<h3>Script Includes and UI scripts</h3>
 	<p>DevTools contains a wide variety of functions and classes (server-side and client-side) for re-use. Please refer to the reference section for details.</p>
 	
+	<h3>UI Actions</h3>
+	<p>DevTools contains a number of very helpful UI Actions. One of the most powerful features is the "Save" button with active scope switching capabilities. Never ever loose changes because of switching between scopes and browser tabs at the same time.</p>
+	
 	<h3>Cross-scope Scripting</h3>
 	<p>The function&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=cc44a1c91b4b7450edf3642aab4bcb13" target="_blank">RunScriptInScope</a>&#160;allows to execute code in any scope no matter what the current execution scope is. The function&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=7303bde9db30a410ba15a35305961968" target="_blank">RunScriptInGlobalScope</a>&#160;specifically allows code execution in the global scope from any other other scope. This allows the use of API functions and classes which are only available in the global scope and NOT in scoped scripts. This allows more flexibility when developing scoped apps - and effectively removes any barriers between apps. The authors of DevTools believe that this is a good thing. Application scopes are NOT a security boundary. Scoped APIs have just not been implemented completely - so using these techniques serves as a workaround for incomplete scoped API implementation. It also allows scoped apps to interact with each other which would otherwise be impossible. We also believe that deployments via update sets are a method of the past. Features should always be deployed as part of scoped (or global scoped) applications via source control or AppRepo. This however requires such apps to perform installation steps - like manipulations of OOTB records - which would not be possible from within their own scope. Hence cross-scope scripting techniques finally enable fully automated deployment pipelines without the need of any manual interventions.</p>
 	
@@ -81,8 +88,36 @@ gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData
 	<p>Such dependencies must be managed - that means, the requirements of one app towards other apps and their minimum versions, must be documented and considered when performing deployments.</p>
 	<p>DevTools provides means for that documentaton and visualization of these dependencies. Go to the sys_app form, switch to the DevTools view to find the dependencies related list (not the OOTB dependencies). The UI action "Dependencies" opens a ui page that visualizes the dependency requirements and status of the current app as a tree and as a list, which can be used as a deployment plan.</p>
 	
+	<h3>Technical Dept Management</h3>
+	<p>A Technical Dept is any code or structure that a development team considers as to-be changed at a later point in time because it implies some form of burden to the development and deployment work to be done today.</p>
+	<p>Technical Depts need to be managed - and that starts with documenting it. DevTools contains a table to store Technical Dept records which are part of an application and hence are deployed to target-systems. This allows for reporting, work planning and automated documentation.</p>
+	<p>Unfinished, defective or deprecated features that are part of an application at the time of a version baseline also represent a form of Technical Dept - as all of these require future work. Such features should eventually be hidden from users or prevented to impact the behavior of an application. To control that each Technical Dept record has a boolean "switch" that can be used to control logic around these features. Developers can use the following pattern to control how code related to a feature that is currently considered as (or associated with) a Technical Dept should behave:</p>
+	<pre>if (GetTechnicalDeptSwitchState('x_your_scope','id_of_the_technical_dept') == true)
+{
+	// Hide unfinished work
+	// Deactivate defective features
+	// Deactivate deprecated features
+}</pre>
+	<p>If the Technical Dept with the given id exists and the switch is set to true, the function returns true, otherwise false.</p>
+	
+	<h3>Service Portal Deactivation</h3>
+	<p>DevTools allows you to deactivate specific Service Portals.</p>
+	<p>A new field "Active" is added to the&#160;<a href="/nav_to.do?uri=sp_portal_list.do%3F" target="_blank">sp_portal</a>&#160;table. Once set to false, the corresponding Service Portal will just disappear and is no longer accessible.</p>
+
+	<h3>Fix the Flow Execution Domain Issue described in KB0998966</h3>
+	<p>DevTools contains the business rule&#160;<a href="/nav_to.do?uri=sys_script.do?sys_id=ad95de3247f6d510a4b0d4fe536d432b" target="_blank">sys_flow_context - Set domain</a>&#160;which implements the workaround to the issue described in&#160;<a href="https://support.servicenow.com/kb?id=kb_article_view&amp;sysparm_article=KB0998966" target="_blank">KB0998966</a>.</p> 
+	
+	<h3>Prevent useless Instance Scan check executions</h3>
+	<p>Instance Scan linter checks execute on all records that have at least one script field. However, some records may have a script field but do not use it or the script field does not have to be checked because it is not relevant (based on the configuration of that record).</p>
+	<p>Examples are:</p>
+	<ol>
+		<li>sys_hub_flow_variable records are derived from sys_dictionary which contains a script field - but for a sys_hub_flow_variable record this script field is never relevant.</li>
+		<li>sys_security_acl records where the script field is only relevant if the field "advanced" is set to true.</li>
+	</ol>
+	<p>The business rule &#160;<a href="/nav_to.do?uri=sys_script.do?sys_id=b7fad21a1be06d105b76777d8b4bcbbe" target="_blank">sys_metadata - Prevent useless checks</a>&#160;prevents checks from running in such cases which may significantly reduce the time required to scan such records - or apps that contain such records.</p>
+
 	<h3>Field Formatting</h3>
-	<p>DevTools can help to format (float) numbers in forms, related lists and list views in the classic UI. Follow these steps to activate the feature:</p>
+	<p>DevTools can help to format (float) numbers in forms, related lists and list views in the classic UI - Polaris, however, is not supported yet! Follow these steps to activate the feature:</p>
 	<ol>
 		<li>Set the DevTools system property&#160;<a href="/sys_properties?sys_id=b9fbd89cdb0d8954bcced03cd39619cb" target="_blank">ui.formatting</a>&#160;to "true".</li> 
 		<li>Implement the&#160;<a href="/sys_extension_point.do?sys_id=e3a183be1bae7010edf3642aab4bcbdc" target="_blank">DevTools extension point</a>.</li>
@@ -115,21 +150,6 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>You may consider session or transaction caching techniques to improve performance.</li>
 	</ol>
 	
-	<h3>Service Portal Deactivation</h3>
-	<p>DevTools allows you to deactivate specific Service Portals.</p>
-	<p>A new field "Active" is added to the&#160;<a href="/nav_to.do?uri=sp_portal_list.do%3F" target="_blank">sp_portal</a>&#160;table. Once set to false, the corresponding Service Portal will just disappear and is no longer accessible.</p>
-
-	<h3>Fix the Flow Execution Domain Issue described in KB0998966</h3>
-	<p>DevTools contains the business rule&#160;<a href="/nav_to.do?uri=sys_script.do?sys_id=ad95de3247f6d510a4b0d4fe536d432b" target="_blank">sys_flow_context - Set domain</a>&#160;which implements the workaround to the issue described in&#160;<a href="https://support.servicenow.com/kb?id=kb_article_view&amp;sysparm_article=KB0998966" target="_blank">KB0998966</a>.</p> 
-	
-	<h3>Prevent useless Instance Scan check executions</h3>
-	<p>Instance Scan linter checks execute on all records that have at least one script field. However, some records may have a script field but do not use it or the script field does not have to be checked because it is not relevant (based on the configuration of that record).</p>
-	<p>Examples are:</p>
-	<ol>
-		<li>sys_hub_flow_variable records are derived from sys_dictionary which contains a script field - but for a sys_hub_flow_variable record this script field is never relevant.</li>
-		<li>sys_security_acl records where the script field is only relevant if the field "advanced" is set to true.</li>
-	</ol>
-	<p>The business rule &#160;<a href="/nav_to.do?uri=sys_script.do?sys_id=b7fad21a1be06d105b76777d8b4bcbbe" target="_blank">sys_metadata - Prevent useless checks</a>&#160;prevents checks from running in such cases which may significantly reduce the time required to scan such records - or apps that contain such records.</p>
 	
 	<h2>Reference</h2>
 
@@ -168,9 +188,28 @@ function DevToolsGetFormatConfig(grRecord)
 	</ol>
 -->	
 	
+	<h3>1.57.0 - 2023-03-09</h3>
+	<ol>
+		<li>Introduced technical dept management and the GetTechnicalDeptSwitchState() function.</li>
+		<li>Added function DocumentationAPI::RenderDescription().</li>
+		<li>Added function GetMinimalCommonVersion().</li>
+		<li>The Script Include and the UI Script functions GetValue() now also supports arrays as the vKey1 parameter.</li>
+		<li>AddSanity() now deletes sys_atf_schedule records left behind by ATF triggered Test Suite executions.</li>
+		<li>The UI Action "Save" now supports active scope switching.</li>
+		<li>AppBuilder() no longer creates the log.active property and the generated Log() function no longer checks the property.</li>
+		<li>The Dependency Viewer and the GetDependencyList() functions now consider incompatible version requirements for the same package from different packages.</li>
+		<li>Improved rendering in the Dependency Viewer in HtmlRenderDependencies(): Dependency count is no longer displayed for circular dependencies.</li>
+		<li>The Dependency Viewer page now supports the parameter hide by which a comma separated list of Sys Ids can be provided of packages that should be HIDDEN in the tree view.</li>
+		<li>Added function TestAPI::TestCase_GetValue() and refactored the ATF test for GetValue().</li>
+		<li>Refactored the ATF test for function IsProperty().</li>
+		<li>Added sys_trigger and scan_suite_execution to the link directory.</li>
+		<li>Added ATF for HtmlRenderLinkDirectory().</li>
+		<li>Added ATF for ProgressTrackerAPI.</li>
+	</ol>
+	
 	<h3>1.56.0 - 2023-02-24</h3>
 	<ol>
-		<li>Removed the system property "x_snc_devtools.debug.log" is it was redundant to the system property "x_nc_devtools.logging.verbosity".</li> 
+		<li>Removed the system property "x_snc_devtools.debug.log" is it was redundant to the system property "x_snc_devtools.logging.verbosity".</li> 
 		<li>Added function InstanceScanSuiteOnAppWithDependencies() to perform an Instance Scan on an application and all of its dependencies (only custom applications).</li> 
 		<li>Added function TableColumnSetAttribute() and InstallerAPI::SetTableColumnAttribute().</li>
 		<li>Added function TestAPI::TestCase_HttpRequest().</li>
@@ -1184,13 +1223,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1126</sys_mod_count>
+        <sys_mod_count>1151</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-02-24 17:34:42</sys_updated_on>
+        <sys_updated_on>2023-03-09 13:52:28</sys_updated_on>
     </sys_ui_page>
 </record_update>
