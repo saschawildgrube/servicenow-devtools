@@ -192,10 +192,12 @@ function DevToolsGetFormatConfig(grRecord)
 	<ol>
 		<li>Introduced technical dept management and the GetTechnicalDeptSwitchState() function.</li>
 		<li>Added function DocumentationAPI::RenderDescription().</li>
+		<li>Added function GetMinimalCommonVersion().</li>
 		<li>The Script Include and the UI Script functions GetValue() now also supports arrays as the vKey1 parameter.</li>
 		<li>AddSanity() now deletes sys_atf_schedule records left behind by ATF triggered Test Suite executions.</li>
 		<li>The UI Action "Save" now supports active scope switching.</li>
 		<li>AppBuilder() no longer creates the log.active property and the generated Log() function no longer checks the property.</li>
+		<li>The Dependency Viewer and the GetDependencyList() functions now consider incompatible version requirements for the same package from different packages.</li>
 		<li>Improved rendering in the Dependency Viewer in HtmlRenderDependencies(): Dependency count is no longer displayed for circular dependencies.</li>
 		<li>The Dependency Viewer page now supports the parameter hide by which a comma separated list of Sys Ids can be provided of packages that should be HIDDEN in the tree view.</li>
 		<li>Added function TestAPI::TestCase_GetValue() and refactored the ATF test for GetValue().</li>
@@ -1221,13 +1223,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1146</sys_mod_count>
+        <sys_mod_count>1148</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-03-09 10:19:07</sys_updated_on>
+        <sys_updated_on>2023-03-09 11:37:39</sys_updated_on>
     </sys_ui_page>
 </record_update>
