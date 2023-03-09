@@ -197,6 +197,7 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>The UI Action "Save" now supports active scope switching.</li>
 		<li>AppBuilder() no longer creates the log.active property and the generated Log() function no longer checks the property.</li>
 		<li>Improved rendering in the Dependency Viewer in HtmlRenderDependencies(): Dependency count is no longer displayed for circular dependencies.</li>
+		<li>The Dependency Viewer page now supports the parameter hide by which a comma separated list of Sys Ids can be provided of packages that should be HIDDEN in the tree view.</li>
 		<li>Added function TestAPI::TestCase_GetValue() and refactored the ATF test for GetValue().</li>
 		<li>Refactored the ATF test for function IsProperty().</li>
 		<li>Added sys_trigger and scan_suite_execution to the link directory.</li>
@@ -1220,13 +1221,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1145</sys_mod_count>
+        <sys_mod_count>1146</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-03-08 12:22:13</sys_updated_on>
+        <sys_updated_on>2023-03-09 10:19:07</sys_updated_on>
     </sys_ui_page>
 </record_update>
