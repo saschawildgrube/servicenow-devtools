@@ -33,12 +33,12 @@
 			{
 				id: 'tree',
 				text: 'Dependency Tree',
-				url: '?package='+strPackage+'&mode=tree'
+				url: '?package='+strPackage+'&mode=tree&hide='+strHide
 			},
 			{
 				id: 'list',
 				text: 'Dependency List',
-				url: '?package='+strPackage+'&mode=list'
+				url: '?package='+strPackage+'&mode=list&hide='+strHide
 			}
 		],
 		strMode);
@@ -53,13 +53,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-01-17 12:12:54</sys_created_on>
         <sys_id>1b11fcc0db28e1106a03dad1f39619b8</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_name>HtmlRenderPageDependencies</sys_name>
-        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools WORK IN PROGRESS " source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
-        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools WORK IN PROGRESS ">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_1b11fcc0db28e1106a03dad1f39619b8</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-03-09 10:09:45</sys_updated_on>
+        <sys_updated_on>2023-03-10 15:46:33</sys_updated_on>
     </sys_script_include>
 </record_update>
