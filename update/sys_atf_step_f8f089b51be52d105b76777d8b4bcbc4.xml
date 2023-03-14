@@ -12,82 +12,77 @@
         <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
         <sys_class_name>sys_atf_step</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2020-03-18 10:18:51</sys_created_on>
-        <sys_id>b2f0d2f21b6f0c90a89720a8ec4bcb0d</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_created_on>2023-03-13 16:52:47</sys_created_on>
+        <sys_id>f8f089b51be52d105b76777d8b4bcbc4</sys_id>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS " source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS ">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
-        <sys_update_name>sys_atf_step_b2f0d2f21b6f0c90a89720a8ec4bcb0d</sys_update_name>
+        <sys_update_name>sys_atf_step_f8f089b51be52d105b76777d8b4bcbc4</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-03-10 22:45:46</sys_updated_on>
+        <sys_updated_on>2023-03-13 16:55:09</sys_updated_on>
         <table/>
-        <test display_value="DevTools - ParseJson">dcc05eb21b6f0c90a89720a8ec4bcb64</test>
+        <test display_value="DevTools  - GetCurrentScope">95e085b51be52d105b76777d8b4bcbd5</test>
         <timeout/>
         <warning_message/>
     </sys_atf_step>
-    <sys_variable_value action="delete_multiple" query="document_key=b2f0d2f21b6f0c90a89720a8ec4bcb0d"/>
+    <sys_variable_value action="delete_multiple" query="document_key=f8f089b51be52d105b76777d8b4bcbc4"/>
     <sys_variable_value action="INSERT_OR_UPDATE">
         <document>sys_atf_step</document>
-        <document_key>b2f0d2f21b6f0c90a89720a8ec4bcb0d</document_key>
+        <document_key>f8f089b51be52d105b76777d8b4bcbc4</document_key>
         <order>100</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2020-03-18 10:18:51</sys_created_on>
-        <sys_id>40e192f21b6f0c90a89720a8ec4bcb9e</sys_id>
+        <sys_created_on>2023-03-13 16:52:47</sys_created_on>
+        <sys_id>0ef00db51be52d105b76777d8b4bcb59</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-03-18 10:18:51</sys_updated_on>
+        <sys_updated_on>2023-03-13 16:52:47</sys_updated_on>
         <value>3.1</value>
         <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
     </sys_variable_value>
     <sys_variable_value action="INSERT_OR_UPDATE">
         <document>sys_atf_step</document>
-        <document_key>b2f0d2f21b6f0c90a89720a8ec4bcb0d</document_key>
+        <document_key>f8f089b51be52d105b76777d8b4bcbc4</document_key>
         <order>200</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2020-03-18 10:18:51</sys_created_on>
-        <sys_id>c4e116361b6f0c90a89720a8ec4bcb28</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_created_on>2023-03-13 16:52:47</sys_created_on>
+        <sys_id>c2f00db51be52d105b76777d8b4bcb5a</sys_id>
+        <sys_mod_count>2</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-03-10 22:45:46</sys_updated_on>
-        <value>var strLog = '';&#13;
-function Log(strText)&#13;
+        <sys_updated_on>2023-03-13 16:55:09</sys_updated_on>
+        <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
-	strLog = strLog + "\n" + strText;&#13;
-}&#13;
-(function(outputs, steps, stepResult, assertEqual)&#13;
-{&#13;
-&#13;
-	var bResult = true;&#13;
-	var ParseJson = x_snc_devtools.ParseJson;&#13;
-	var RenderValue = x_snc_devtools.RenderValue;&#13;
+	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
 	&#13;
-	function TestCase_ParseJson(vInput, vExpected)&#13;
+	test.SetResult(true);&#13;
+&#13;
+	function TestCase_GetCurrentScope()&#13;
 	{&#13;
-		Log('Input: '+RenderValue(vInput));&#13;
-		Log('Expected: '+RenderValue(vExpected));&#13;
-		var vResult = ParseJson(vInput);&#13;
-		&#13;
-		Log('Result  : '+RenderValue(vResult));&#13;
-		if (RenderValue(vResult) != RenderValue(vExpected))&#13;
+		function TestCase_GetCurrentScope_CheckResult(vInput,vExpected,vResult)&#13;
 		{&#13;
-			bResult = false;&#13;
-			Log('Test case FAILED');&#13;
-		}&#13;
-		Log('');&#13;
+			return IsValidSysId(vResult);&#13;
+		}		&#13;
+		&#13;
+		test.TestCase(&#13;
+			'Function GetCurrentScope()',&#13;
+			GetCurrentScope,&#13;
+			{&#13;
+			},&#13;
+			null,&#13;
+			TestCase_GetCurrentScope_CheckResult);&#13;
 	}&#13;
-	&#13;
-	TestCase_ParseJson(false,false);&#13;
-	TestCase_ParseJson('{}',{});&#13;
-	TestCase_ParseJson('{ "hello": "world" }', { hello: 'world' } );&#13;
-	TestCase_ParseJson('["Alpha","Beta"]', ['Alpha','Beta'] );&#13;
 &#13;
 	&#13;
-	stepResult.setOutputMessage(strLog);&#13;
-	return bResult;&#13;
+&#13;
+	&#13;
+&#13;
+	TestCase_GetCurrentScope();&#13;
+	&#13;
+	&#13;
+	return test.GetResult();&#13;
 	&#13;
 })(outputs, steps, stepResult, assertEqual);</value>
         <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>

@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-01-13 12:41:02</sys_created_on>
         <sys_id>c6352895dbc1c994bcced03cd396196b</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
-        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
-        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_c6352895dbc1c994bcced03cd396196b</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-10-14 13:12:05</sys_updated_on>
+        <sys_updated_on>2023-03-14 06:05:41</sys_updated_on>
         <table/>
         <test display_value="DevTools - GetAppScope">5e25a815dbc1c994bcced03cd39619cb</test>
         <timeout/>
@@ -36,22 +36,22 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-01-13 12:41:02</sys_created_on>
         <sys_id>6445a895dbc1c994bcced03cd39619f3</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-10-14 13:12:05</sys_updated_on>
+        <sys_updated_on>2023-03-14 06:05:41</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
 	&#13;
 	test.SetResult(true);&#13;
 &#13;
-	function TestCase_GetAppScope(strSysId, vExpected)&#13;
+	function TestCase_GetAppScope(vApp, vExpected)&#13;
 	{&#13;
 		test.TestCase(&#13;
 			'Function GetAppScope()',&#13;
 			GetAppScope,&#13;
 			{&#13;
-				'SysId': strSysId &#13;
+				'App': vApp &#13;
 			},&#13;
 			vExpected,&#13;
 			null);&#13;
