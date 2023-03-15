@@ -9,19 +9,11 @@
         <deprecated>false</deprecated>
         <description_generator><![CDATA[function generateDescription()
 {
-	var GetStringValue = x_snc_devtools.GetStringValue;
-	var GetAppName = x_snc_devtools.GetAppName;
-
-	var strAppSysId = GetStringValue(step.inputs.u_application);
-
-	var strAppName = GetAppName(strAppSysId);
-    var strDescription = 'Checks if all documented dependencies of the application "'+strAppName+'" are installed in a compatible version\n';
-
+	var strDescription = 'Checks if all documented dependencies of the application are installed in a compatible version\n';	
 	return strDescription;
 }
-generateDescription();
-]]></description_generator>
-        <html_description><![CDATA[<p>Checks if all documented dependencies are installed in a supported version.</p>]]></html_description>
+generateDescription();]]></description_generator>
+        <html_description><![CDATA[<p>Checks if all documented dependencies are installed in a compatible version.</p>]]></html_description>
         <icon>icon-article-document</icon>
         <inputs/>
         <name>DevTools - Check app dependencies</name>
@@ -40,8 +32,11 @@ generateDescription();
 	var GetPackageDependencyTree = x_snc_devtools.GetPackageDependencyTree;
 	var GetValue = x_snc_devtools.GetValue;
 	var GetArrayValue = x_snc_devtools.GetArrayValue;
-	
-	var strAppSysId = GetStringValue(inputs.u_application);
+	var GetCallStack = x_snc_devtools.GetCallStack;
+
+
+	var aCallStack = GetCallStack();
+	var strAppSysId = GetValue(aCallStack,0,'sys_scope');
 
 	var grApp = GetAppRecord(strAppSysId);
 	if (IsValidRecord(grApp) == false)
@@ -113,19 +108,18 @@ gr.insert();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-12-18 18:33:05</sys_created_on>
         <sys_id>e4b8e71e1bbb5d105b76777d8b4bcb35</sys_id>
-        <sys_mod_count>11</sys_mod_count>
+        <sys_mod_count>18</sys_mod_count>
         <sys_name>DevTools - Check app dependencies</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_config_e4b8e71e1bbb5d105b76777d8b4bcb35</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-18 20:55:30</sys_updated_on>
+        <sys_updated_on>2023-03-15 19:29:29</sys_updated_on>
         <template_reminder>TBD</template_reminder>
         <type display_value="Test Step" name="sys_atf_step">f1e83abf1b9201103297fd9b8b4bcbc3</type>
         <wizard_redirect/>
     </sys_atf_step_config>
     <sys_translated_text action="delete_multiple" query="documentkey=e4b8e71e1bbb5d105b76777d8b4bcb35"/>
     <sys_variable_value action="delete_multiple" query="document_key=e4b8e71e1bbb5d105b76777d8b4bcb35"/>
-    <sys_element_mapping action="delete_multiple" query="table=var__m_atf_input_variable_e4b8e71e1bbb5d105b76777d8b4bcb35^id=e4b8e71e1bbb5d105b76777d8b4bcb35"/>
 </record_update>
