@@ -9,13 +9,7 @@
         <deprecated>false</deprecated>
         <description_generator><![CDATA[function generateDescription()
 {
-	var GetStringValue = x_snc_devtools.GetStringValue;
-	var GetAppName = x_snc_devtools.GetAppName;
-	
-	var strAppSysId = GetStringValue(step.inputs.u_application);
-	
-	var strAppName = GetAppName(strAppSysId);
-    var strDescription = 'Performs sanity checks on the scoped app: '+strAppName+'\n';
+    var strDescription = 'Performs sanity checks on the app.\n';
 	return strDescription;
 }
 generateDescription();
@@ -37,16 +31,20 @@ generateDescription();
 	var IsUserDefaultAdmin = x_snc_devtools.IsUserDefaultAdmin;
 	var ArrayValueExists = x_snc_devtools.ArrayValueExists;
 	var GetRecord = x_snc_devtools.GetRecord;
+	var GetCallStack = x_snc_devtools.GetCallStack;
+	var GetAppRecord = x_snc_devtools.GetAppRecord;
+	var GetValue = x_snc_devtools.GetValue;
 	
 	var bResult = true;
 	var strMessage = '';
 	
-	var strAppSysId = inputs.u_application;
+	var aCallStack = GetCallStack();
+	var strAppSysId = GetValue(aCallStack,0,'sys_scope');
 	
-	var strAppSysId = GetStringValue(inputs.u_application);
-	var grApp = new GlideRecord('sys_app');
+	//var strAppSysId = GetStringValue(inputs.u_application);
+	var grApp = GetAppRecord(strAppSysId);
 
-	if (grApp.get(strAppSysId) == false)
+	if (grApp == false)
 	{
 		var bResult = false;
 		strMessage += 'App not found. Invalid sys_id: '+strAppSysId+'\n';
@@ -364,19 +362,18 @@ generateDescription();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-11-23 13:28:01</sys_created_on>
         <sys_id>786a921f1b6c2090a89720a8ec4bcbc9</sys_id>
-        <sys_mod_count>79</sys_mod_count>
+        <sys_mod_count>85</sys_mod_count>
         <sys_name>DevTools - Check scoped app sanity</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_config_786a921f1b6c2090a89720a8ec4bcbc9</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-02-22 12:51:43</sys_updated_on>
+        <sys_updated_on>2023-03-15 19:51:11</sys_updated_on>
         <template_reminder>TBD</template_reminder>
         <type display_value="Test Step" name="sys_atf_step">f1e83abf1b9201103297fd9b8b4bcbc3</type>
         <wizard_redirect/>
     </sys_atf_step_config>
     <sys_translated_text action="delete_multiple" query="documentkey=786a921f1b6c2090a89720a8ec4bcbc9"/>
     <sys_variable_value action="delete_multiple" query="document_key=786a921f1b6c2090a89720a8ec4bcbc9"/>
-    <sys_element_mapping action="delete_multiple" query="table=var__m_atf_input_variable_786a921f1b6c2090a89720a8ec4bcbc9^id=786a921f1b6c2090a89720a8ec4bcbc9"/>
 </record_update>
