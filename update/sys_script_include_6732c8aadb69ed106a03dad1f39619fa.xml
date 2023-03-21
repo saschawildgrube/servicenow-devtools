@@ -106,7 +106,7 @@ GitLabAPI.prototype = {
 		strBranch = GetStringValue(strBranch);
 		strPath = GetStringValue(strPath);
 		var aFiles = [];
-		var response = this.Request('/projects/'+this.GetProjectPath(strProject)+'/repository/files/'+strPath+'?ref='+strBranch);
+		var response = this.Request('/projects/'+this.GetProjectPath(strProject)+'/repository/tree/'+strPath+'?ref='+strBranch);
 		if (response == false)
 		{
 			this.Error('GetFilesFromBranch: no files found.');
@@ -117,7 +117,7 @@ GitLabAPI.prototype = {
 		{
 			var item = aItems[nItem];
 			var strType = GetValue(item,'type');
-			if (strType == 'file')
+			if (strType == 'blob')
 			{
 				aFiles.push(Clone(item));
 			}
@@ -146,13 +146,6 @@ GitLabAPI.prototype = {
 			this.Error('GetFile: Request failed.');
 			return false;
 		}
-		
-		var strType = GetValue(response,'type');
-		if (strType != 'file')
-		{
-			this.Error('GetFile: The given path is not a file.');
-			return false;
-		}
 		return response;
 	},	
 
@@ -163,13 +156,13 @@ GitLabAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-03-15 20:14:10</sys_created_on>
         <sys_id>6732c8aadb69ed106a03dad1f39619fa</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_name>GitLabAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_6732c8aadb69ed106a03dad1f39619fa</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-03-18 09:19:55</sys_updated_on>
+        <sys_updated_on>2023-03-21 11:54:59</sys_updated_on>
     </sys_script_include>
 </record_update>
