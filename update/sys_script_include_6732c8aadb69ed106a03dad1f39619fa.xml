@@ -2,19 +2,18 @@
     <sys_script_include action="INSERT_OR_UPDATE">
         <access>public</access>
         <active>true</active>
-        <api_name>x_snc_devtools.GitHubAPI</api_name>
+        <api_name>x_snc_devtools.GitLabAPI</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Interface to the GitHub API.&#13;
-Please note that this component is EXPERIMENTAL and UNSTABLE and the interface might be subject to change without an increase of DevTools major version!&#13;
-</description>
-        <name>GitHubAPI</name>
-        <script><![CDATA[var GitHubAPI = Class.create();
-GitHubAPI.prototype = {
+        <description>Interface to the GitLab API.&#13;
+Please note that this component is EXPERIMENTAL and UNSTABLE and the interface might be subject to change without an increase of DevTools major version!</description>
+        <name>GitLabAPI</name>
+        <script><![CDATA[var GitLabAPI = Class.create();
+GitLabAPI.prototype = {
 	
-    initialize: function(vAuthentication)
+    initialize: function(strApiUrl, vAuthentication)
 	{
-		this.SetApiUrl('https://api.github.com/');
+		this.SetApiUrl(strApiUrl);
 		this.m_basicauth = { username: '', password: ''};
     },
 	
@@ -53,7 +52,7 @@ GitHubAPI.prototype = {
 	
 	Error: function(strMessage)
 	{
-		Log('GitHubAPI: ERROR: '+strMessage);
+		Log('GitLabAPI: ERROR: '+strMessage);
 	},
 	
 	
@@ -65,42 +64,49 @@ GitHubAPI.prototype = {
 			basicauth: this.m_basicauth,
 			headers:
 				[
-					{
+					/*{
 						name: 'accept',
 						value: 'application/vnd.github+json'
-					}
+					}*/
 				]
 		};
 		
 		var strResponse = HttpRequest(params);
 		var response = ParseJson(strResponse);
 		
-		var strErrorMessage = GetStringValue(GetValue(response,'message'));
+		var strErrorMessage = GetStringValue(GetValue(response,'error'));
 		if (strErrorMessage != '')
 		{
-			this.Error('GitHub API returned: "'+strErrorMessage+'"');
+			this.Error('GitLab API returned: "'+RenderValue(strErrorMessage)+'"');
 			return false;
 		}
 		return response;
 	},
 	
-	GetPublicReposFromOwner: function(strOwner)
+	GetPublicProjects: function()
 	{
-		// &visibility=all&type=all&affiliation=owner,collaborator,organization_member
-		return this.Request('users/'+strOwner+'/repos?per_page=100&page=1');
-	},
-	
-	GetBranchesFromRepo: function(strOwner, strRepo)
-	{
-		return this.Request('repos/'+strOwner+'/'+strRepo+'/branches');
+		// ?per_page=100
+		return this.Request('projects');
 	},
 
-	GetFilesFromBranch: function(strOwner, strRepo, strBranch, strPath)
+	GetProjectPath: function(strProject)
+	{
+		strProject = GetStringValue(strProject);
+		strProject = StringReplace(strProject,'/','%2F');
+		return strProject;
+	},
+		
+	GetBranchesFromRepo: function(strProject)
+	{
+		return this.Request('projects/'+this.GetProjectPath(strProject)+'/repository/branches');
+	},
+
+	GetFilesFromBranch: function(strProject, strBranch, strPath)
 	{
 		strBranch = GetStringValue(strBranch);
 		strPath = GetStringValue(strPath);
 		var aFiles = [];
-		var response = this.Request('repos/'+strOwner+'/'+strRepo+'/contents/'+strPath+'?ref='+strBranch);
+		var response = this.Request('/projects/'+this.GetProjectPath(strProject)+'/repository/tree/'+strPath+'?ref='+strBranch);
 		if (response == false)
 		{
 			this.Error('GetFilesFromBranch: no files found.');
@@ -111,7 +117,7 @@ GitHubAPI.prototype = {
 		{
 			var item = aItems[nItem];
 			var strType = GetValue(item,'type');
-			if (strType == 'file')
+			if (strType == 'blob')
 			{
 				aFiles.push(Clone(item));
 			}
@@ -119,7 +125,7 @@ GitHubAPI.prototype = {
 			{
 				var strDirName = GetValue(item,'name');
 				var strDirPath = GetValue(item,'path');
-				var aFilesInDir = this.GetFilesFromBranch(strOwner, strRepo, strBranch, strDirPath);
+				var aFilesInDir = this.GetFilesFromBranch(strProject, strBranch, strDirPath);
 				if (IsArray(aFilesInDir))
 				{
 					aFiles = ArrayAppend(aFiles,aFilesInDir);
@@ -130,40 +136,33 @@ GitHubAPI.prototype = {
 		return aFiles;
 	},
 	
-	GetFile: function(strOwner, strRepo, strBranch, strFilePath)
+	GetFile: function(strProject, strBranch, strFilePath)
 	{
 		strBranch = GetStringValue(strBranch);
 		strFilePath = GetStringValue(strFilePath);
-		var response = this.Request('repos/'+strOwner+'/'+strRepo+'/contents/'+strFilePath+'?ref='+strBranch);
+		var response = this.Request('/projects/'+this.GetProjectPath(strProject)+'/repository/files/'+strFilePath+'?ref='+strBranch);
 		if (response == false)
 		{
 			this.Error('GetFile: Request failed.');
-			return false;
-		}
-		
-		var strType = GetValue(response,'type');
-		if (strType != 'file')
-		{
-			this.Error('GetFile: The given path is not a file.');
 			return false;
 		}
 		return response;
 	},	
 
 	
-    type: 'GitHubAPI'
+    type: 'GitLabAPI'
 };]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2023-03-09 21:01:35</sys_created_on>
-        <sys_id>52efc568db2da5106a03dad1f39619b0</sys_id>
-        <sys_mod_count>33</sys_mod_count>
-        <sys_name>GitHubAPI</sys_name>
+        <sys_created_on>2023-03-15 20:14:10</sys_created_on>
+        <sys_id>6732c8aadb69ed106a03dad1f39619fa</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>GitLabAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
-        <sys_update_name>sys_script_include_52efc568db2da5106a03dad1f39619b0</sys_update_name>
+        <sys_update_name>sys_script_include_6732c8aadb69ed106a03dad1f39619fa</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-03-18 09:19:44</sys_updated_on>
+        <sys_updated_on>2023-03-21 11:54:59</sys_updated_on>
     </sys_script_include>
 </record_update>
