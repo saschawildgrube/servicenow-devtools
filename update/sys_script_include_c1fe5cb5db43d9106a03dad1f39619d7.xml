@@ -7,10 +7,11 @@
         <client_callable>false</client_callable>
         <description>Renders a table in html.</description>
         <name>HtmlRenderTable</name>
-        <script><![CDATA[function HtmlRenderTable(aCells,strClass)
+        <script><![CDATA[function HtmlRenderTable(aCells,strClass,strStyles)
 {
 	aCells = GetArrayValue(aCells);
 	strClass = GetStringValue(strClass);
+	strStyles = GetStringValue(strStyles);
 	
 	var strHtml = '';
 	
@@ -18,6 +19,11 @@
 	if (strClass != '')
 	{
 		strHtmlClass = ' class="'+strClass+'"';
+	}
+	
+	if (strStyles != '')
+	{
+		strHtml += HtmlRenderStyle(strStyles);
 	}
 	
 	strHtml += '<table'+strHtmlClass+'><tbody>\n';
@@ -79,13 +85,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-11-09 07:57:37</sys_created_on>
         <sys_id>c1fe5cb5db43d9106a03dad1f39619d7</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_name>HtmlRenderTable</sys_name>
-        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
-        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_c1fe5cb5db43d9106a03dad1f39619d7</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-23 10:30:40</sys_updated_on>
+        <sys_updated_on>2023-04-01 13:56:46</sys_updated_on>
     </sys_script_include>
 </record_update>
