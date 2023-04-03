@@ -6,14 +6,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-08-31 12:50:31</sys_created_on>
         <sys_id>4fc8ddf11b92b850577f43b5bb4bcbde</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>TestAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>syntax_editor_macro_4fc8ddf11b92b850577f43b5bb4bcbde</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-12-01 14:34:07</sys_updated_on>
+        <sys_updated_on>2023-04-03 12:50:36</sys_updated_on>
         <text>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -35,45 +35,29 @@
 		return strGreeting+'!';&#13;
 	}&#13;
 &#13;
-	function TestCase_Hello(strName, vExpected)&#13;
-	{&#13;
-		test.TestCase(&#13;
-			'Function Hello()',&#13;
-			Hello,&#13;
-			{&#13;
-				'Name': strName &#13;
-			},&#13;
-			vExpected,&#13;
-			null);&#13;
-	}&#13;
 &#13;
-	function TestCase_HelloWithGreeting(strName, strGreeting, vExpected)&#13;
+	function TestCase_Hello(strName, strGreeting, vExpected)&#13;
 	{&#13;
-		function TestCase_HelloWithGreeting_CheckResult(vInput,vExpected,vResult)&#13;
+		function TestCase_Hello_CheckResult(vInput,vExpected,vResult)&#13;
 		{&#13;
 			return (vExpected == vResult);&#13;
 		}&#13;
 &#13;
 		test.TestCase(&#13;
-			'Function Hello() with greeting parameter',&#13;
+			'Function Hello()',&#13;
 			Hello,&#13;
 			{&#13;
 				'Name': strName,&#13;
 				'Greeting': strGreeting,&#13;
 			},&#13;
 			vExpected,&#13;
-			TestCase_HelloWithGreeting_CheckResult);&#13;
+			TestCase_Hello_CheckResult);&#13;
 	}&#13;
 &#13;
-	TestCase_Hello(null,'Hello!');&#13;
-	TestCase_Hello('','Hello!');&#13;
-	TestCase_Hello('John','Hello John!');&#13;
-	TestCase_Hello('Jane','Hello Jane!');&#13;
-&#13;
-	TestCase_HelloWithGreeting(null,'Hi','Hi!');&#13;
-	TestCase_HelloWithGreeting('','Good Morning','Good Morning!');&#13;
-	TestCase_HelloWithGreeting('John','Salute','Salute John!');&#13;
-	TestCase_HelloWithGreeting('Jane','Cheerio','Cheerio Jane!');&#13;
+	TestCase_Hello(null,'Hi','Hi!');&#13;
+	TestCase_Hello('','Good Morning','Good Morning!');&#13;
+	TestCase_Hello('John','Salute','Salute John!');&#13;
+	TestCase_Hello('Jane','Cheerio','Cheerio Jane!');&#13;
 	&#13;
 	return test.GetResult();&#13;
 	&#13;
