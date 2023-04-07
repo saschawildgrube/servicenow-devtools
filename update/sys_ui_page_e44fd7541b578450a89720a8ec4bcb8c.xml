@@ -32,7 +32,7 @@
 	<ul>
 		<g2:no_escape>$[
 			docapi.RenderSystemRequirements(
-				'San Diego,Tokyo,Utah',
+				'Tokyo,Utah',
 				true,
 				AppGetDependencies());
 		]</g2:no_escape>	
@@ -193,6 +193,7 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>Added function SetAppRepo() to set the url of an application repository configuration associated to an application.</li>
 		<li>Added function GetInstanceName() to retrieve the instance name.</li>
 		<li>Added function GetInstancePipelineName() which maps the real instance name to the pipeline name - if the DevTools extension point function GetInstancePipelineName() is implemented by another application.</li>
+		<li>Added functions PrepareLogInfo() and PrepareLogDebug().</li> 
 		<li>HtmlRenderTable() now accepts a string containing css styles as its 3rd parameter - and hence is now compatible with the template code in the HtmlRenderTable script macro.</li>
 		<li>InstanceReset() hides more (not needed) menu modules.</li>
 		<li>StringFormat() was not configured to be accessible from all scopes. This has been fixed.</li>
@@ -1268,13 +1269,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1194</sys_mod_count>
+        <sys_mod_count>1196</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-04-07 19:27:22</sys_updated_on>
+        <sys_updated_on>2023-04-07 19:50:36</sys_updated_on>
     </sys_ui_page>
 </record_update>
