@@ -14,7 +14,7 @@
         <license_model>none</license_model>
         <logo/>
         <menu/>
-        <name>DevTools WORK IN PROGRESS</name>
+        <name>DevTools</name>
         <private>false</private>
         <restrict_table_access>false</restrict_table_access>
         <runtime_access_tracking>permissive</runtime_access_tracking>
@@ -46,4 +46,5 @@
         <x_snc_wildgrubelab_test/>
         <x_snc_wildgrubelab_test2/>
     </sys_app>
+    <sys_translated_text action="delete_multiple" query="documentkey=d689f6901bd38450a89720a8ec4bcbfd"/>
 </record_update>
