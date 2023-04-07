@@ -73,7 +73,13 @@ For safety reasons the current date (as an iso formatted string) must be passed 
 	installer.ActivateAppMenu('4bd3c60c3425c110f877d77d96593388',false);	
 	
 	// Adoption Services
-	installer.ActivateAppMenu('3e36be83530010109c22ddeeff7b124e',false);		
+	installer.ActivateAppMenu('3e36be83530010109c22ddeeff7b124e',false);	
+	
+	// Skills
+	installer.ActivateAppMenu('488d3ed2ac10017362c07e178e3e36c7',false);
+	
+	// Diagram Builder
+	installer.ActivateAppMenu('eb4fcaa2532210105accddeeff7b12d6',false);
 	
 	
 	return installer.Finish();
@@ -82,13 +88,13 @@ For safety reasons the current date (as an iso formatted string) must be passed 
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-04-23 17:48:08</sys_created_on>
         <sys_id>6a9964a1db8b4190bcced03cd3961945</sys_id>
-        <sys_mod_count>17</sys_mod_count>
+        <sys_mod_count>19</sys_mod_count>
         <sys_name>InstanceReset</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_6a9964a1db8b4190bcced03cd3961945</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-03-16 17:40:13</sys_updated_on>
+        <sys_updated_on>2023-03-22 20:02:43</sys_updated_on>
     </sys_script_include>
 </record_update>
