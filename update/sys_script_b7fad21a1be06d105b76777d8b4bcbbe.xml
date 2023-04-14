@@ -18,7 +18,7 @@
         <filter_condition/>
         <is_rest>false</is_rest>
         <message/>
-        <name>sys_metadata - prevent useless checks </name>
+        <name>sys_metadata - prevent useless checks</name>
         <order>0</order>
         <priority>100</priority>
         <rest_method/>
@@ -30,61 +30,8 @@
         <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
 
 	var strEncodedQuery = GetStringValue(current.getEncodedQuery());
-
-/*
-	This is an example of a query that is used by InstanceScan to get a record to be checked for a specific check:
-	
-	sys_class_name=sys_hub_flow_variable
-	^active=true
-	^sys_policy!=protected^ORsys_policy=NULL
-	^sys_id!=1a49ab04db070950bcced03cd39619fd
-	^sys_id=486eeab25b5020102a063eaa3d81c7c5
-
-	The Sys Id of the check is used in the sys_id!= condition. Unclear why, but it helps us to identify the check.
-	sys_id= or sys_idIN identifies the records to be scanned using the check
-	
-*/	
-	
-	function IsInstanceScanQuery(strEncodedQuery)
-	{
-		strEncodedQuery = GetStringValue(strEncodedQuery);
-		if (strEncodedQuery.indexOf('sys_class_name=') != 0)
-		{
-			return false;
-		}
-		if (strEncodedQuery.indexOf('active=true^sys_policy!=protected^ORsys_policy=NULL^sys_id!=') == -1)
-		{
-			return false;
-		}
-		return true;
-	}
-
-	function GetInstanceScanCheckFromQuery(strEncodedQuery)
-	{
-		strEncodedQuery = GetStringValue(strEncodedQuery);
-		var nPos = strEncodedQuery.indexOf('^sys_id!=');
-		if (nPos == -1)
-		{
-			return false;
-		}
-		nPos += 9;
-		var strCheckSysId = strEncodedQuery.substr(nPos,32);
-		if (IsValidSysId(strCheckSysId) == false)
-		{
-			return false; 
-		}
 		
-		var grCheck = GetRecord('scan_check',strCheckSysId);
-		return grCheck;
-	}
-	
-	
-	if (IsInstanceScanQuery(strEncodedQuery) == false)
-	{
-		return;
-	}
-	
-	var grCheck = GetInstanceScanCheckFromQuery(strEncodedQuery);
+	var grCheck = InstanceScanGetCheckFromQuery(strEncodedQuery);
 	if (IsValidRecord(grCheck) == false)
 	{
 		return;
@@ -120,15 +67,15 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>b7fad21a1be06d105b76777d8b4bcbbe</sys_id>
-        <sys_mod_count>11</sys_mod_count>
-        <sys_name>sys_metadata - prevent useless checks </sys_name>
+        <sys_mod_count>13</sys_mod_count>
+        <sys_name>sys_metadata - prevent useless checks</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_b7fad21a1be06d105b76777d8b4bcbbe</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-02-13 21:22:24</sys_updated_on>
+        <sys_updated_on>2023-04-14 16:22:43</sys_updated_on>
         <template/>
         <when>before</when>
         <x_snc_datasilos_created>false</x_snc_datasilos_created>
