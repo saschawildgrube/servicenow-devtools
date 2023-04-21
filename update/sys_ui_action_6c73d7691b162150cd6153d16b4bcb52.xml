@@ -7,9 +7,9 @@
 
 }]]></client_script_v2>
         <comments>Creates a new user based on a given Email address</comments>
-        <condition>(current.getRecordClassName() == 'sys_user') &amp;&amp; (AppGetProperty('ui.whatruns_button') == true)</condition>
-        <form_action>true</form_action>
-        <form_button>true</form_button>
+        <condition>(current.getRecordClassName() == 'sys_user') &amp;&amp; (AppGetProperty('ui.createuserbyemail_button') == true)</condition>
+        <form_action>false</form_action>
+        <form_button>false</form_button>
         <form_button_v2>false</form_button_v2>
         <form_context_menu>false</form_context_menu>
         <form_link>false</form_link>
@@ -57,8 +57,7 @@
 			DoModalMessage(strTitle,'The entered email is not valid.',StateStart);
 			return;
 		}
-		Log('Before server request');
-		ServerRequest('x_snc_devtools.DevToolsClientAPI','CreateUserFromEmail',
+		ServerRequest('x_snc_devtools.DevToolsClientAPI','CreateUserByEmail',
 		{
 			email: strSelectedEmail
 		},StateResponse);	
@@ -66,7 +65,6 @@
 	
 	function StateResponse(strUserSysId)
 	{
-		DoModalMessage(strTitle,'StateResponse.');
 		if (strUserSysId == false)
 		{
 			DoModalMessage(strTitle,'User could not be created. Sorry.',StateFinish);
@@ -92,7 +90,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>6c73d7691b162150cd6153d16b4bcb52</sys_id>
-        <sys_mod_count>14</sys_mod_count>
+        <sys_mod_count>19</sys_mod_count>
         <sys_name>Create User by Email</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -100,7 +98,7 @@
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_action_6c73d7691b162150cd6153d16b4bcb52</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-04-21 12:34:21</sys_updated_on>
+        <sys_updated_on>2023-04-21 13:53:08</sys_updated_on>
         <table>global</table>
         <ui11_compatible>true</ui11_compatible>
         <ui16_compatible>true</ui16_compatible>
