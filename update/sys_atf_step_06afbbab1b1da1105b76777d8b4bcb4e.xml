@@ -8,22 +8,21 @@
         <mugshots_cache_json/>
         <notes/>
         <order>1</order>
-        <snapshot/>
         <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
         <sys_class_name>sys_atf_step</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-03-07 07:00:35</sys_created_on>
         <sys_id>06afbbab1b1da1105b76777d8b4bcb4e</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_06afbbab1b1da1105b76777d8b4bcb4e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-03-07 07:06:36</sys_updated_on>
+        <sys_updated_on>2023-04-25 11:21:01</sys_updated_on>
         <table/>
-        <test display_value="DevTools - GetTechnicalDeptSwitchState">719fb7ab1b1da1105b76777d8b4bcb58</test>
+        <test display_value="DevTools - GetTechnicalDebtSwitchState">719fb7ab1b1da1105b76777d8b4bcb58</test>
         <timeout/>
         <warning_message/>
     </sys_atf_step>
@@ -50,9 +49,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-03-07 07:00:35</sys_created_on>
         <sys_id>70efbbab1b1da1105b76777d8b4bcb69</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-03-07 07:06:36</sys_updated_on>
+        <sys_updated_on>2023-04-25 11:21:01</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -60,11 +59,11 @@
 	test.SetResult(true);&#13;
 &#13;
 &#13;
-	function TestCase_GetTechnicalDeptSwitchState(vApp, strId, vExpected)&#13;
+	function TestCase_GetTechnicalDebtSwitchState(vApp, strId, vExpected)&#13;
 	{&#13;
 		test.TestCase(&#13;
-			'Function GetTechnicalDeptSwitchState()',&#13;
-			GetTechnicalDeptSwitchState,&#13;
+			'Function GetTechnicalDebtSwitchState()',&#13;
+			GetTechnicalDebtSwitchState,&#13;
 			{&#13;
 				'App': vApp,&#13;
 				'Id': strId&#13;
@@ -74,25 +73,25 @@
 	}&#13;
 &#13;
 &#13;
-	TestCase_GetTechnicalDeptSwitchState(null,'',false);&#13;
+	TestCase_GetTechnicalDebtSwitchState(null,'',false);&#13;
 	&#13;
 	var grDevToolsApp = GetAppRecord('x_snc_devtools');&#13;
-	TestCase_GetTechnicalDeptSwitchState(grDevToolsApp,'',false);&#13;
-	TestCase_GetTechnicalDeptSwitchState(grDevToolsApp,'does_not_exist',false);&#13;
+	TestCase_GetTechnicalDebtSwitchState(grDevToolsApp,'',false);&#13;
+	TestCase_GetTechnicalDebtSwitchState(grDevToolsApp,'does_not_exist',false);&#13;
 	&#13;
-	var grTD = new GlideRecord('x_snc_devtools_technical_dept');&#13;
+	var grTD = new GlideRecord('x_snc_devtools_technical_debt');&#13;
 	grTD.initialize();&#13;
 	grTD.short_description = 'This is a test';&#13;
 	grTD.id = 'test';&#13;
 	grTD.sys_scope = grDevToolsApp.sys_id;&#13;
 	var strTDSysId = grTD.insert();&#13;
 	test.Log(RenderValue(grTD));&#13;
-	TestCase_GetTechnicalDeptSwitchState(grDevToolsApp,'test',false);&#13;
+	TestCase_GetTechnicalDebtSwitchState(grDevToolsApp,'test',false);&#13;
 	&#13;
 	grTD.setValue('switch','true');&#13;
 	grTD.update();&#13;
 	test.Log(RenderValue(grTD));&#13;
-	TestCase_GetTechnicalDeptSwitchState(grDevToolsApp,'test',true);&#13;
+	TestCase_GetTechnicalDebtSwitchState(grDevToolsApp,'test',true);&#13;
 &#13;
 	&#13;
 	return test.GetResult();&#13;
