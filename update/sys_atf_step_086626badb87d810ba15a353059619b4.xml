@@ -8,20 +8,19 @@
         <mugshots_cache_json/>
         <notes>Create test users</notes>
         <order>1</order>
-        <snapshot/>
         <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
         <sys_class_name>sys_atf_step</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-09-08 11:29:09</sys_created_on>
         <sys_id>086626badb87d810ba15a353059619b4</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
-        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
-        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_086626badb87d810ba15a353059619b4</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-09-08 11:29:24</sys_updated_on>
+        <sys_updated_on>2023-04-26 06:32:55</sys_updated_on>
         <table/>
         <test display_value="DevTools - IsUserHasRoleExactly">4873aef6db87d810ba15a35305961900</test>
         <timeout/>
@@ -36,13 +35,103 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-09-08 11:29:10</sys_created_on>
         <sys_id>2a962efadb87d810ba15a3530596191e</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-09-08 11:29:10</sys_updated_on>
-        <value>var testdata = new TestDataAPI('_ATF_DEVTOOLS_');&#13;
+        <sys_updated_on>2023-04-26 06:32:55</sys_updated_on>
+        <value>(function(outputs, steps, stepResult, assertEqual)&#13;
+{&#13;
+	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
+	var testdata = new TestDataAPI('_ATF_DEVTOOLS_');&#13;
+	&#13;
+	test.SetResult(true);&#13;
 &#13;
-testdata.CreateUser('ADMIN',['admin','itil']);&#13;
-testdata.CreateUser('ITIL',['itil']);</value>
+	function TestCase_IsUserHasRoleExactly(strRole, strUserSysId, vExpected)&#13;
+	{&#13;
+		function TestCase_IsUserHasRoleExactly_CheckResult(vInput,vExpected,vResult)&#13;
+		{&#13;
+			return (vExpected == vResult);&#13;
+		}&#13;
+&#13;
+		test.TestCase(&#13;
+			'Function IsUserHasRoleExactly()',&#13;
+			IsUserHasRoleExactly,&#13;
+			{&#13;
+				'Role': strRole,&#13;
+				'User': strUserSysId,&#13;
+			},&#13;
+			vExpected,&#13;
+			TestCase_IsUserHasRoleExactly_CheckResult);&#13;
+	}&#13;
+&#13;
+&#13;
+	var strUserAdminSysId = testdata.CreateUser('ADMIN',['admin','itil']);&#13;
+	var strUserItilSysId = testdata.CreateUser('ITIL',['itil']);&#13;
+	&#13;
+	var strUserAdmin2SysId = testdata.CreateUser('ADMIN2',['admin','itil']);&#13;
+	var strUserItil2SysId = testdata.CreateUser('ITIL2',['itil']);		&#13;
+&#13;
+	&#13;
+	test.Log('Test cases with the user parameter...');&#13;
+&#13;
+	test.Log('User Admin');&#13;
+	TestCase_IsUserHasRoleExactly(null,strUserAdminSysId,false);&#13;
+	TestCase_IsUserHasRoleExactly('',strUserAdminSysId,false);&#13;
+	TestCase_IsUserHasRoleExactly('itil_admin',strUserAdminSysId,false);&#13;
+	TestCase_IsUserHasRoleExactly('itil',strUserAdminSysId,true);&#13;
+	TestCase_IsUserHasRoleExactly('admin',strUserAdminSysId,true);&#13;
+	&#13;
+	// Repeat to check cache behaviour&#13;
+	TestCase_IsUserHasRoleExactly('itil',strUserAdminSysId,true);&#13;
+	TestCase_IsUserHasRoleExactly('admin',strUserAdminSysId,true);	&#13;
+	&#13;
+	test.Log('User ITIL');&#13;
+	&#13;
+	TestCase_IsUserHasRoleExactly(null,strUserItilSysId,false);&#13;
+	TestCase_IsUserHasRoleExactly('',strUserItilSysId,false);&#13;
+	TestCase_IsUserHasRoleExactly('itil_admin',strUserItilSysId,false);&#13;
+	TestCase_IsUserHasRoleExactly('itil',strUserItilSysId,true);&#13;
+	TestCase_IsUserHasRoleExactly('admin',strUserItilSysId,false);&#13;
+	&#13;
+	// Repeat to check cache behaviour&#13;
+	TestCase_IsUserHasRoleExactly('itil',strUserItilSysId,true);&#13;
+	TestCase_IsUserHasRoleExactly('admin',strUserItilSysId,false);		&#13;
+	&#13;
+	&#13;
+	&#13;
+	test.Log('Test cases without the user parameter...');&#13;
+&#13;
+	test.Log('Impersonating user Admin2');&#13;
+	UserImpersonate(strUserAdmin2SysId);&#13;
+&#13;
+	TestCase_IsUserHasRoleExactly(null,null,false);&#13;
+	TestCase_IsUserHasRoleExactly('',null,false);&#13;
+	TestCase_IsUserHasRoleExactly('itil_admin',null,false);&#13;
+	TestCase_IsUserHasRoleExactly('itil',null,true);&#13;
+	TestCase_IsUserHasRoleExactly('admin',null,true);&#13;
+	&#13;
+	// Repeat to check cache behaviour&#13;
+	TestCase_IsUserHasRoleExactly('itil',null,true);&#13;
+	TestCase_IsUserHasRoleExactly('admin',null,true);	&#13;
+	&#13;
+	test.Log('Impersonating user Itil2');&#13;
+	UserImpersonate(strUserItil2SysId);&#13;
+	&#13;
+	TestCase_IsUserHasRoleExactly(null,null,false);&#13;
+	TestCase_IsUserHasRoleExactly('',null,false);&#13;
+	TestCase_IsUserHasRoleExactly('itil_admin',null,false);&#13;
+	TestCase_IsUserHasRoleExactly('itil',null,true);&#13;
+	TestCase_IsUserHasRoleExactly('admin',null,false);&#13;
+	&#13;
+	// Repeat to check cache behaviour&#13;
+	TestCase_IsUserHasRoleExactly('itil',null,true);&#13;
+	TestCase_IsUserHasRoleExactly('admin',null,false);	&#13;
+&#13;
+	&#13;
+	&#13;
+	return test.GetResult();&#13;
+	&#13;
+})(outputs, steps, stepResult, assertEqual);&#13;
+</value>
         <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
     </sys_variable_value>
     <sys_variable_value action="INSERT_OR_UPDATE">
