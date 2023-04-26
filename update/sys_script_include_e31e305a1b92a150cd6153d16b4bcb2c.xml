@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.ParseEmail</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns the components of an email as an object, false if the given string is not a valid email.</description>
+        <name>ParseEmail</name>
+        <script><![CDATA[function ParseEmail(strEmail)
+{
+	strEmail = GetStringValue(strEmail);
+	if (IsValidEmail(strEmail) == false)
+	{
+		return false;
+	}
+	var result = {
+		name: '',
+		firstname: '',
+		lastname: '',
+		domain: '',
+		tld: ''
+	};
+	
+	// Split the email address into its components
+	var aEmailComponents = strEmail.split('@');
+	
+	// Get the firstname and lastname from the email address
+	var strNameComponent = GetValue(aEmailComponents,0);
+	result.name = strNameComponent;
+	var aNameComponents = strNameComponent.split('.');
+	var strFirstName = '';
+	for (var nComp = 0; nComp <= aNameComponents.length - 2; nComp++)
+	{
+		if (strFirstName != '')
+		{
+			strFirstName += '.';
+		}
+		strFirstName += aNameComponents[nComp];
+	}	
+	result.firstname = strFirstName;
+	result.lastname = GetValue(aNameComponents,aNameComponents.length-1);
+	
+	// Get the domain and tld from the email address
+	var strDomainComponent = GetValue(aEmailComponents,1);
+	var aDomainComponents = strDomainComponent.split('.');
+	var strDomain = '';
+	for (var nComp = 0; nComp <= aDomainComponents.length - 2; nComp++)
+	{
+		if (strDomain != '')
+		{
+			strDomain += '.';
+		}
+		strDomain += aDomainComponents[nComp];
+	}
+	result.domain = strDomain;
+	result.tld = GetValue(aDomainComponents,aDomainComponents.length-1);
+	
+	return result;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-04-21 12:46:43</sys_created_on>
+        <sys_id>e31e305a1b92a150cd6153d16b4bcb2c</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>ParseEmail</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_e31e305a1b92a150cd6153d16b4bcb2c</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-04-21 13:13:25</sys_updated_on>
+    </sys_script_include>
+</record_update>

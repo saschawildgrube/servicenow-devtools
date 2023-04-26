@@ -13,19 +13,19 @@ Please make sure any use is based on conscious choice and careful assessment. </
 {
 	// WARNING: Using this function might be considered as a violation of security policies.
 	// Please make sure any use is based on conscious choice and careful assessment.
-	return RunScriptInScope('global',strScript, param1, param2, param3, param4, param5, param6, param7);
+	return RunScriptInScope('global', strScript, param1, param2, param3, param4, param5, param6, param7);
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-11-30 10:24:01</sys_created_on>
         <sys_id>7303bde9db30a410ba15a35305961968</sys_id>
-        <sys_mod_count>71</sys_mod_count>
+        <sys_mod_count>72</sys_mod_count>
         <sys_name>RunScriptInGlobalScope</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_7303bde9db30a410ba15a35305961968</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-03-14 16:41:06</sys_updated_on>
+        <sys_updated_on>2023-04-09 17:04:19</sys_updated_on>
     </sys_script_include>
 </record_update>

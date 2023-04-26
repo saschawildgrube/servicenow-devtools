@@ -88,17 +88,17 @@ gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData
 	<p>Such dependencies must be managed - that means, the requirements of one app towards other apps and their minimum versions, must be documented and considered when performing deployments.</p>
 	<p>DevTools provides means for that documentaton and visualization of these dependencies. Go to the sys_app form, switch to the DevTools view to find the dependencies related list (not the OOTB dependencies). The UI action "Dependencies" opens a ui page that visualizes the dependency requirements and status of the current app as a tree and as a list, which can be used as a deployment plan.</p>
 	
-	<h3>Technical Dept Management</h3>
-	<p>A Technical Dept is any code or structure that a development team considers as to-be changed at a later point in time because it implies some form of burden to the development and deployment work to be done today.</p>
-	<p>Technical Depts need to be managed - and that starts with documenting it. DevTools contains a table to store Technical Dept records which are part of an application and hence are deployed to target-systems. This allows for reporting, work planning and automated documentation.</p>
-	<p>Unfinished, defective or deprecated features that are part of an application at the time of a version baseline also represent a form of Technical Dept - as all of these require future work. Such features should eventually be hidden from users or prevented to impact the behavior of an application. To control that each Technical Dept record has a boolean "switch" that can be used to control logic around these features. Developers can use the following pattern to control how code related to a feature that is currently considered as (or associated with) a Technical Dept should behave:</p>
-	<pre>if (x_snc_devtools.GetTechnicalDeptSwitchState('x_your_scope','id_of_the_technical_dept') == true)
+	<h3>Technical Debt Management</h3>
+	<p>A Technical Debt is any code or structure that a development team considers as to-be changed at a later point in time because it implies some form of burden to the development and deployment work to be done today.</p>
+	<p>Technical debts need to be managed - and that starts with documenting it. DevTools contains a table to store Technical Debt records which are part of an application and hence are deployed to target-systems. This allows for reporting, work planning and automated documentation.</p>
+	<p>Unfinished, defective or deprecated features that are part of an application at the time of a version baseline also represent a form of Technical Debt - as all of these require future work. Such features should eventually be hidden from users or prevented to impact the behavior of an application. To control that each Technical Debt record has a boolean "switch" that can be used to control logic around these features. Developers can use the following pattern to control how code related to a feature that is currently considered as (or associated with) a Technical Debt should behave:</p>
+	<pre>if (x_snc_devtools.GetTechnicalDebtSwitchState('x_your_scope','id_of_the_technical_debt') == true)
 {
 	// Hide unfinished work
 	// Deactivate defective features
 	// Deactivate deprecated features
 }</pre>
-	<p>If the Technical Dept with the given id exists and the switch is set to true, the function returns true, otherwise false.</p>
+	<p>If the Technical Debt with the given id exists and the switch is set to true, the function returns true, otherwise false.</p>
 	
 	<h3>Service Portal Deactivation</h3>
 	<p>DevTools allows you to deactivate specific Service Portals.</p>
@@ -115,6 +115,13 @@ gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData
 		<li>sys_security_acl records where the script field is only relevant if the field "advanced" is set to true.</li>
 	</ol>
 	<p>The business rule &#160;<a href="/nav_to.do?uri=sys_script.do?sys_id=b7fad21a1be06d105b76777d8b4bcbbe" target="_blank">sys_metadata - Prevent useless checks</a>&#160;prevents checks from running in such cases which may significantly reduce the time required to scan such records - or apps that contain such records.</p>
+	
+	<h3>Create User by Email</h3>
+	<p>DevTools brings the "Create User by Email" button to the User list. Follow these steps to configure the feature:</p>
+	<ol>
+		<li>Set the DevTools system property&#160;<a href="/nav_to.do?uri=sys_properties.do?sys_id=6f6bf0961b92a150cd6153d16b4bcb14" target="_blank">ui.createuserbyemail_button</a>&#160;to "true".</li> 
+		<li>Create the GLOBAL system property "devtools.createuserbyemail.groups" and add a comma separated list of group Sys IDs to be assigned to the new users if needed.</li>
+	</ol>
 
 	<h3>Field Formatting</h3>
 	<p>DevTools can help to format (float) numbers in forms, related lists and list views in the classic UI - Polaris, however, is not supported yet! Follow these steps to activate the feature:</p>
@@ -182,11 +189,47 @@ function DevToolsGetFormatConfig(grRecord)
 	<h2>Release Notes</h2>
 	
 <!--
-	<h3>1.5_.0 - 2023-TODO</h3>
+	<h3>1.6_.0 - 2023-TODO</h3>
 	<ol>
 		<li>TODO</li>
 	</ol>
 -->	
+	<h3>1.61.0 - 2023-04-26</h3>
+	<ol>
+		<li>Function GetTechnicalDeptSwitchState() has been named incorrectly has and renamed to GetTechnicalDebtSwitchState().</li>
+		<li>The table "x_snc_devtools_technical_dept" was also named incorrectly. A new table has been created called "x_snc_devtools_technical_debt". The old table will remain until the next release to allow for a transition. Use the following script for data migration:
+		<pre>var grDept = new GlideRecord('x_snc_devtools_technical_dept');
+grDept.query();
+while (grDept.next())
+{
+    x_snc_devtools.Log(grDept);
+    RecordQueryOrInsert('x_snc_devtools_technical_debt',
+        {
+            sys_scope: grDept.sys_scope,
+            id: grDept.id
+        },
+        {
+            short_description: grDept.short_description,
+            switch: grDept.switch
+        },
+        false);
+}</pre></li>
+		<li>Added macro for GetTechnicalDebtSwitchState().</li>
+		<li>Added function TableReparent().</li>
+		<li>Added function IsUserMaint().</li>
+		<li>Added function CreateUserByEmail().</li>
+		<li>Added the "Create User by Email" UI Action.</li>
+		<li>Added function ParseEmail().</li>
+		<li>Added functions Warning() and PrepareLogWarning().</li>
+		<li>Added UI Script IsValidEmail().</li>
+		<li>Added UI Script StringCheckRegEx.</li>
+		<li>Improved function IsUserHasRoleExactly() and its ATF test to be resilient to a missing role parameter and to check test cases with and without the user parameter.</li>
+		<li>Fixed defect in GitHubAPI::SetApiUrl().</li>
+		<li>Added function InstanceScanGetCheckFromQuery() and refactored business rule "sys_metadata - prevent useless checks" to contain less code.</li>
+		<li>Added ATF for GliderecordAddQuery().</li>
+		<li>InstallerAPI now checks if the system property "glide.record.legacy_cross_scope_access_policy_in_script" is set to true before starting the installation.</li>
+		<li>Improved ATF test for BusinessRuleGetOperation() which eventually failed as the test business rule scope was not set explicitly.</li> 
+	</ol>
 	
 	<h3>1.60.0 - 2023-04-07</h3>
 	<ol>
@@ -216,7 +259,7 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>Added function InstallerAPI::ActivateViewRule().</li>
 		<li>AppInstall() now deactivates the "GlobalApp" view rule on global scoped application forms to allow the "DevTools" view to be used.</li> 
 		<li>The test step configs "DevTools - Check app dependencies" and "DevTools - Check scoped app sanity" no longer require to specify the application - it will test the application in which the test step (and the test) is contained - which is the main use case.</li>
-		<li>Fixed an issue in the technical dept management documentation code snippet.</li>
+		<li>Fixed an issue in the technical debt management documentation code snippet.</li>
 		<li>InstanceReset() hides more menus.</li>
 		<li>Added test for GetFormatConfig().</li>
 		<li>Added test for GetFormatConfigMultiple().</li>
@@ -242,7 +285,7 @@ function DevToolsGetFormatConfig(grRecord)
 	
 	<h3>1.57.0 - 2023-03-09</h3>
 	<ol>
-		<li>Introduced technical dept management and the GetTechnicalDeptSwitchState() function.</li>
+		<li>Introduced technical debt management and the GetTechnicalDeptSwitchState() function (yes, including the typo error in the function name).</li>
 		<li>Added function DocumentationAPI::RenderDescription().</li>
 		<li>Added function GetMinimalCommonVersion().</li>
 		<li>The Script Include and the UI Script functions GetValue() now also supports arrays as the vKey1 parameter.</li>
@@ -1275,13 +1318,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1202</sys_mod_count>
+        <sys_mod_count>1225</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-04-07 21:43:16</sys_updated_on>
+        <sys_updated_on>2023-04-26 11:59:22</sys_updated_on>
     </sys_ui_page>
 </record_update>

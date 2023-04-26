@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.InstanceScanCheckOnApp</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Performs an instance scan on an application using only a specific check.</description>
+        <name>InstanceScanCheckOnApp</name>
+        <script><![CDATA[function InstanceScanCheckOnApp(strCheckSysId, vApp, bDetailed)
+{
+	if (InstanceScanIsRunning() == true)
+	{
+		return false;
+	}
+		
+	strCheckSysId = GetStringValue(strCheckSysId);
+	vApp = GetAppRecord(vApp);
+	
+	if (IsValidSysId(strCheckSysId) == false)
+	{
+		return false;
+	}
+	if (IsValidRecord(vApp) == false)
+	{
+		return false;
+	}
+	
+	//var strUpdateSetSysId = '';
+	//var strUpdateXmlSysId = '';
+	var strSuiteSysId = '';
+	var strSuiteCheckSysId = '';
+	
+	function CleanUp()
+	{
+		RecordDelete('scan_check_suite_check',strSuiteCheckSysId);
+		RecordDelete('scan_check_suite',strSuiteSysId);
+		//RecordDelete('sys_update_xml',strUpdateXmlSysId);
+		//RecordDelete('sys_update_set',strUpdateSetSysId);		
+	}
+
+		
+	strSuiteSysId = RecordQueryOrInsert('scan_check_suite', { name: 'DevTools.TEMP' }, { sys_scope: 'global' }, true);
+	if (IsValidSysId(strSuiteSysId) == false)
+	{
+		CleanUp();
+		return false;
+	}
+	
+	var values = {
+		suite: strSuiteSysId,
+		check: strCheckSysId,
+		sys_scope: 'global'
+	}
+	strSuiteCheckSysId = RecordQueryOrInsert('scan_check_suite_check',values,values,true);
+	if (IsValidSysId(strSuiteCheckSysId) == false)
+	{
+		CleanUp();
+		return false;
+	}
+		
+	var results = InstanceScanSuiteOnApp(strSuiteSysId,vApp,bDetailed);
+	
+	CleanUp();
+	
+	return results;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-04-14 11:35:35</sys_created_on>
+        <sys_id>773b28041b12e910cd6153d16b4bcbe2</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>InstanceScanCheckOnApp</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_773b28041b12e910cd6153d16b4bcbe2</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-04-25 12:50:08</sys_updated_on>
+    </sys_script_include>
+</record_update>
