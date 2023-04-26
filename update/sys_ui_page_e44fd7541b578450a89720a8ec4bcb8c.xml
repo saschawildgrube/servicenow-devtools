@@ -194,10 +194,26 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>TODO</li>
 	</ol>
 -->	
-	<h3>1.61.0 - 2023-04-25</h3>
+	<h3>1.61.0 - 2023-04-26</h3>
 	<ol>
 		<li>Function GetTechnicalDeptSwitchState() has been named incorrectly has and renamed to GetTechnicalDebtSwitchState().</li>
-		<li>The table "x_snc_devtools_technical_dept" was also named incorrectly. A new table has been created called "x_snc_devtools_technical_debt". The old table will remain until the next release to allow for a transition.</li>
+		<li>The table "x_snc_devtools_technical_dept" was also named incorrectly. A new table has been created called "x_snc_devtools_technical_debt". The old table will remain until the next release to allow for a transition. Use the following script for data migration:
+		<pre>var grDept = new GlideRecord('x_snc_devtools_technical_dept');
+grDept.query();
+while (grDept.next())
+{
+    x_snc_devtools.Log(grDept);
+    RecordQueryOrInsert('x_snc_devtools_technical_debt',
+        {
+            sys_scope: grDept.sys_scope,
+            id: grDept.id
+        },
+        {
+            short_description: grDept.short_description,
+            switch: grDept.switch
+        },
+        false);
+}</pre></li>
 		<li>Added macro for GetTechnicalDebtSwitchState().</li>
 		<li>Added function TableReparent().</li>
 		<li>Added function IsUserMaint().</li>
@@ -1302,13 +1318,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1223</sys_mod_count>
+        <sys_mod_count>1225</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-04-26 10:34:48</sys_updated_on>
+        <sys_updated_on>2023-04-26 11:59:22</sys_updated_on>
     </sys_ui_page>
 </record_update>
