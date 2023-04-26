@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-04-04 06:50:57</sys_created_on>
         <sys_id>fb2a443c97866110a6a07767f053af86</sys_id>
-        <sys_mod_count>13</sys_mod_count>
+        <sys_mod_count>14</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
-        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
-        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_fb2a443c97866110a6a07767f053af86</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-04-04 07:10:49</sys_updated_on>
+        <sys_updated_on>2023-04-26 06:56:35</sys_updated_on>
         <table/>
         <test display_value="DevTools - BusinessRuleGetOperation">f6e9403c97866110a6a07767f053afd9</test>
         <timeout/>
@@ -35,9 +35,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-04-04 06:50:57</sys_created_on>
         <sys_id>743a843c97866110a6a07767f053afea</sys_id>
-        <sys_mod_count>13</sys_mod_count>
+        <sys_mod_count>14</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-04-04 07:10:49</sys_updated_on>
+        <sys_updated_on>2023-04-26 06:56:35</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -46,12 +46,13 @@
 &#13;
 	var grBR = new GlideRecord('sys_script');&#13;
 	grBR.initialize();&#13;
+	grBR.sys_scope = 'global';&#13;
 	grBR.name = 'TEST';&#13;
 	grBR.active = true;&#13;
 	grBR.collection = 'x_snc_devtools_test';&#13;
 	grBR.when = 'before';&#13;
 	grBR.advanced = true;&#13;
-	grBR.script = 'var cache = new TransactionCacheAPI("DEVTOOLS_ATF"); cache.SetItem("operation",BusinessRuleGetOperation(current));';&#13;
+	grBR.script = 'var cache = new x_snc_devtools.TransactionCacheAPI("DEVTOOLS_ATF"); cache.SetItem("operation",x_snc_devtools.BusinessRuleGetOperation(current));';&#13;
 	grBR.action_insert = true;&#13;
 	grBR.action_update = true;&#13;
 	grBR.action_delete = true;&#13;

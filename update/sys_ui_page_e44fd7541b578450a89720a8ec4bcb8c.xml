@@ -211,6 +211,7 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>Fixed defect in GitHubAPI::SetApiUrl().</li>
 		<li>Added function InstanceScanGetCheckFromQuery() and refactored business rule "sys_metadata - prevent useless checks" to contain less code.</li>
 		<li>Added ATF for GliderecordAddQuery().</li>
+		<li>Improved ATF test for BusinessRuleGetOperation() which eventually failed as the test business rule scope was not set explicitly.</li> 
 	</ol>
 	
 	<h3>1.60.0 - 2023-04-07</h3>
@@ -1300,13 +1301,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1221</sys_mod_count>
+        <sys_mod_count>1222</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-04-26 06:34:50</sys_updated_on>
+        <sys_updated_on>2023-04-26 06:59:08</sys_updated_on>
     </sys_ui_page>
 </record_update>
