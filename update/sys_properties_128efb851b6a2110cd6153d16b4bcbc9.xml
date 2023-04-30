@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties">
+    <sys_properties action="INSERT_OR_UPDATE">
+        <choices/>
+        <description>Controls if the "Generate and Send Credentials" button should be visible on the sys_user form.</description>
+        <ignore_cache>true</ignore_cache>
+        <is_private>false</is_private>
+        <name>x_snc_devtools.ui.generateandsendcredentials_button</name>
+        <read_roles/>
+        <suffix>ui.generateandsendcredentials_button</suffix>
+        <sys_class_name>sys_properties</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-04-30 15:49:10</sys_created_on>
+        <sys_id>128efb851b6a2110cd6153d16b4bcbc9</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>x_snc_devtools.ui.generateandsendcredentials_button</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_properties_128efb851b6a2110cd6153d16b4bcbc9</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-04-30 15:55:00</sys_updated_on>
+        <type>boolean</type>
+        <value>true</value>
+        <write_roles/>
+    </sys_properties>
+    <sys_translated_text action="delete_multiple" query="documentkey=128efb851b6a2110cd6153d16b4bcbc9"/>
+</record_update>
