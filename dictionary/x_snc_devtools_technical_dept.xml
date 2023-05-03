@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><database>
-    <element attributes="update_synch=true" extends="sys_metadata" label="Technical Dept" max_length="40" name="x_snc_devtools_technical_dept" type="collection">
-        <element label="ID" max_length="20" name="id" type="string"/>
-        <element display="true" label="Short Description" mandatory="true" max_length="80" name="short_description" type="string"/>
-        <element label="Switch" max_length="40" name="switch" type="boolean"/>
-    </element>
-</database>

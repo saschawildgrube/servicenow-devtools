@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.GenerateAndSendCredentialsToUser</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Generates a new password for the user, sets the user name if required, sets the password needs reset flag and sends the new credentials to the user via mail.&#13;
+This requires the "glide.email.smtp.active" system property to be "true".</description>
+        <name>GenerateAndSendCredentialsToUser</name>
+        <script><![CDATA[function GenerateAndSendCredentialsToUser(vUser)
+{
+	var grUser = GetUserRecord(vUser);
+	if (IsValidRecord(grUser) == false)
+	{
+		return false;
+	}
+
+	// Check system property
+	if (GetProperty('glide.email.smtp.active') == false)
+	{
+		return false;
+	}
+	
+	// Check email
+	var strEmail = GetStringValue(grUser.email);
+	if (IsValidEmail(strEmail) == false)
+	{
+		return false;
+	}	
+	
+	// Generate user name if required
+	var strUserName = GetStringValue(grUser.user_name);
+	if (strUserName == '')
+	{
+		strUserName = MakeUserName([grUser.first_name,grUser.last_name]);	
+	}
+	if (strUserName == '')
+	{
+		return false;
+	}
+
+	// Check for duplicate user names
+	var grUser2 = new GlideRecord('sys_user');
+	grUser2.addQuery('user_name','=',strUserName);
+	grUser2.addQuery('sys_id','!=',grUser.sys_id);
+	grUser2.query();
+	if (grUser2.next())
+	{
+		return false;
+	}
+	grUser.user_name = strUserName;
+
+	// Generate password
+	var strPassword = GetRandomNumericToken(12);
+	
+	// Set password and active state
+	grUser.user_password.setDisplayValue(strPassword);
+    grUser.password_needs_reset = true;
+	grUser.active = true;
+	grUser.locked_out = false;
+	
+	// Update user
+	grUser.update();
+	
+	var strInstanceUrl = GetInstanceURL();
+		
+	var strMessage = 'Hello ';
+		strMessage += grUser.first_name + ' ';
+		strMessage += grUser.last_name + ',\n\n';
+		strMessage += 'your user account to access '+strInstanceUrl+' is read for use:\n\n'
+		strMessage += 'User: ' + strUserName + '\n';
+		strMessage += 'Password: ' + strPassword + '\n';
+		strMessage += '\nYou will be required to change the password during login.';
+
+
+	var bSuccess = SendMail(
+		{
+			recipients: strEmail,
+			subject: 'Your user account for '+strInstanceUrl,
+			from: GetInstanceName(),
+			body: HtmlEncode(strMessage),
+		});
+	
+	if (bSuccess == false)
+	{
+		return false;
+	}
+	
+	return true;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-04-30 15:57:51</sys_created_on>
+        <sys_id>9650c8191b6a2110cd6153d16b4bcb82</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>GenerateAndSendCredentialsToUser</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_9650c8191b6a2110cd6153d16b4bcb82</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-04-30 16:21:43</sys_updated_on>
+    </sys_script_include>
+</record_update>

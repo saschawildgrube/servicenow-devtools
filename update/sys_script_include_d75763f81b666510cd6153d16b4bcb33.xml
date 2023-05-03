@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.SendMail</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Sends an email if the supplied params object contains non-empty values for "subject", "body" and "recipients" and if the "glide.email.smtp.active" system property is set to true.&#13;
+The default sender name is defined in the system property "glide.email.username". It can be set using the "from" value in the params object.</description>
+        <name>SendMail</name>
+        <script><![CDATA[function SendMail(params)
+{
+	if (GetBoolValue(GetProperty('glide.email.smtp.active')) == false)
+	{
+		return false;
+	}
+		
+	var strSubject = GetStringValue(GetValue(params,'subject'));
+	var strBody = GetStringValue(GetValue(params,'body'));
+	var aRecipients = GetArrayValue(GetValue(params,'recipients'));
+
+	if (strBody == '')
+	{
+		return false;
+	}
+	if (strSubject == '')
+	{
+		return false;
+	}
+	if (aRecipients.length == 0)
+	{
+		return false;
+	}
+	
+	
+
+	var grEmail = new GlideRecord('sys_email');
+	grEmail.initialize();
+	grEmail.notification_type = 'SMTP';
+	grEmail.subject = strSubject;
+	grEmail.recipients = GetStringValue(aRecipients);
+	grEmail.body = strBody;
+	grEmail.type = 'send-ready';
+	grEmail.user = GetValue(params,'from');
+	var strSysId = grEmail.insert();
+	if (IsValidSysId(strSysId) == false)
+	{
+		return false;
+	}
+	return true;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-04-29 19:33:15</sys_created_on>
+        <sys_id>d75763f81b666510cd6153d16b4bcb33</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>SendMail</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_d75763f81b666510cd6153d16b4bcb33</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-04-29 20:17:13</sys_updated_on>
+    </sys_script_include>
+</record_update>
