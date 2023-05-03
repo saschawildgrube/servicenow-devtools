@@ -2,26 +2,26 @@
     <sys_script_include action="INSERT_OR_UPDATE">
         <access>public</access>
         <active>true</active>
-        <api_name>x_snc_devtools.LogWarning</api_name>
+        <api_name>x_snc_devtools.PrepareLogError</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Produces a warning log output</description>
-        <name>LogWarning</name>
-        <script><![CDATA[function LogWarning(vPayload)
+        <description>Prepares a payload for error log output.</description>
+        <name>PrepareLogError</name>
+        <script><![CDATA[function PrepareLogError(vPayload)
 {
-	gs.warn(PrepareLogWarning(vPayload));
+	return RenderValue(vPayload);
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2023-04-25 11:30:47</sys_created_on>
-        <sys_id>d8a359231b9e2110cd6153d16b4bcb33</sys_id>
-        <sys_mod_count>2</sys_mod_count>
-        <sys_name>LogWarning</sys_name>
+        <sys_created_on>2023-05-03 16:53:35</sys_created_on>
+        <sys_id>cf3ae3821beee110cd6153d16b4bcbc8</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>PrepareLogError</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
-        <sys_update_name>sys_script_include_d8a359231b9e2110cd6153d16b4bcb33</sys_update_name>
+        <sys_update_name>sys_script_include_cf3ae3821beee110cd6153d16b4bcbc8</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-05-03 16:53:58</sys_updated_on>
+        <sys_updated_on>2023-05-03 16:53:35</sys_updated_on>
     </sys_script_include>
 </record_update>
