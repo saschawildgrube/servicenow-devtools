@@ -41,7 +41,6 @@ generateDescription();
 	var aCallStack = GetCallStack();
 	var strAppSysId = GetValue(aCallStack,0,'sys_scope');
 	
-	//var strAppSysId = GetStringValue(inputs.u_application);
 	var grApp = GetAppRecord(strAppSysId);
 
 	if (grApp == false)
@@ -362,16 +361,16 @@ generateDescription();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-11-23 13:28:01</sys_created_on>
         <sys_id>786a921f1b6c2090a89720a8ec4bcbc9</sys_id>
-        <sys_mod_count>85</sys_mod_count>
+        <sys_mod_count>89</sys_mod_count>
         <sys_name>DevTools - Check scoped app sanity</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_config_786a921f1b6c2090a89720a8ec4bcbc9</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-03-15 19:51:11</sys_updated_on>
+        <sys_updated_on>2023-05-06 18:40:23</sys_updated_on>
         <template_reminder>TBD</template_reminder>
-        <type display_value="Test Step" name="sys_atf_step">f1e83abf1b9201103297fd9b8b4bcbc3</type>
+        <type display_value="Test Step" name="sys_atf_step">a76763b375f011108c8b143dd0c59f95</type>
         <wizard_redirect/>
     </sys_atf_step_config>
     <sys_translated_text action="delete_multiple" query="documentkey=786a921f1b6c2090a89720a8ec4bcbc9"/>
