@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <copied_from/>
+        <description>Run Server Side Validation Script</description>
+        <display_name>Run Server Side Script</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>1</order>
+        <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-05-11 05:54:08</sys_created_on>
+        <sys_id>86bfd2ec1b7ae910cd6153d16b4bcb1f</sys_id>
+        <sys_mod_count>27</sys_mod_count>
+        <sys_name>Run Server Side Script</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_step_86bfd2ec1b7ae910cd6153d16b4bcb1f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-05-11 11:58:14</sys_updated_on>
+        <table/>
+        <test display_value="DevTools - GlideRecordSetValue">f4dc29b91b45b8105331b8449b4bcbb0</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=86bfd2ec1b7ae910cd6153d16b4bcb1f"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>86bfd2ec1b7ae910cd6153d16b4bcb1f</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-05-11 05:54:08</sys_created_on>
+        <sys_id>9900e2ec1b7ae910cd6153d16b4bcb01</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-05-11 05:54:08</sys_updated_on>
+        <value>3.1</value>
+        <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>86bfd2ec1b7ae910cd6153d16b4bcb1f</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-05-11 05:54:08</sys_created_on>
+        <sys_id>9d00e2ec1b7ae910cd6153d16b4bcb01</sys_id>
+        <sys_mod_count>21</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-05-11 11:58:14</sys_updated_on>
+        <value>(function(outputs, steps, stepResult, assertEqual)&#13;
+{&#13;
+	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
+	&#13;
+	test.SetResult(true);&#13;
+&#13;
+	function TestCase_GlideRecordSetValue_Insert(grRecord, strField, strValue, vExpected)&#13;
+	{&#13;
+		function TestCase_GlideRecordSetValue_CheckResult(vInput,vExpected,vResult)&#13;
+		{&#13;
+			if (vExpected != vResult)&#13;
+			{&#13;
+				return false;&#13;
+			}&#13;
+			if (vExpected == false)&#13;
+			{&#13;
+				return true;&#13;
+			}&#13;
+			var grRecord1 = vInput['Record'];&#13;
+			var strTable = grRecord1.getRecordClassName();&#13;
+			var strSysId = GetStringValue(grRecord1.sys_id);&#13;
+			var strField = vInput['Field'];&#13;
+			var strValue = vInput['Value'];&#13;
+			if (strField == 'sys_id')&#13;
+			{&#13;
+				strSysId = vInput['Value'];&#13;
+			}&#13;
+			var strNewSysId = GlideRecordInsert(grRecord1);			&#13;
+			//test.Log(strTable + ' ' + strSysId + ' ' + strField + ' ' + strValue);&#13;
+			var grRecord2 = GetRecord(strTable,strNewSysId);&#13;
+			test.Log(StringFormat('GetRecord("{0}","{1}") returned: {2}',strTable,strNewSysId,RenderValue(grRecord2)));&#13;
+			if (IsValidRecord(grRecord2) == false)&#13;
+			{&#13;
+				test.Log('Invalid Record');&#13;
+				return false;&#13;
+			}&#13;
+			if (grRecord2.getValue(strField) != strValue)&#13;
+			{&#13;
+				test.Log('The value has not been set!');&#13;
+				return false;&#13;
+			}&#13;
+			return true;&#13;
+		}&#13;
+		&#13;
+		test.TestCase(&#13;
+			'Function GlideRecordSetValue() before inserting',&#13;
+			GlideRecordSetValue,&#13;
+			{&#13;
+				'Record': grRecord,&#13;
+				'Field': strField,&#13;
+				'Value': strValue&#13;
+			},&#13;
+			vExpected,&#13;
+			TestCase_GlideRecordSetValue_CheckResult);&#13;
+	}		&#13;
+&#13;
+	function TestCase_GlideRecordSetValue_Update(grRecord, strField, strValue, vExpected)&#13;
+	{&#13;
+		function TestCase_GlideRecordSetValue_CheckResult(vInput,vExpected,vResult)&#13;
+		{&#13;
+			if (vExpected != vResult)&#13;
+			{&#13;
+				return false;&#13;
+			}&#13;
+			if (vExpected == false)&#13;
+			{&#13;
+				return true;&#13;
+			}&#13;
+			var grRecord1 = vInput['Record'];&#13;
+			var strTable = grRecord1.getRecordClassName();&#13;
+			var strSysId = GetStringValue(grRecord1.sys_id);&#13;
+			var strField = vInput['Field'];&#13;
+			var strValue = vInput['Value'];&#13;
+			if (strField == 'sys_id')&#13;
+			{&#13;
+				strSysId = vInput['Value'];&#13;
+			}&#13;
+			GlideRecordUpdate(grRecord1);			&#13;
+			//test.Log(strTable + ' ' + strSysId + ' ' + strField + ' ' + strValue);&#13;
+			var grRecord2 = GetRecord(strTable,strSysId);&#13;
+			test.Log(StringFormat('GetRecord("{0}","{1}") returned: {2}',strTable,strSysId,RenderValue(grRecord2)));&#13;
+			if (IsValidRecord(grRecord2) == false)&#13;
+			{&#13;
+				test.Log('Invalid Record');&#13;
+				return false;&#13;
+			}&#13;
+			if (grRecord2.getValue(strField) != strValue)&#13;
+			{&#13;
+				test.Log('The value has not been set!');&#13;
+				return false;&#13;
+			}&#13;
+			return true;&#13;
+		}&#13;
+		&#13;
+		&#13;
+		&#13;
+		test.TestCase(&#13;
+			'Function GlideRecordSetValue() before updating',&#13;
+			GlideRecordSetValue,&#13;
+			{&#13;
+				'Record': grRecord,&#13;
+				'Field': strField,&#13;
+				'Value': strValue&#13;
+			},&#13;
+			vExpected,&#13;
+			TestCase_GlideRecordSetValue_CheckResult);&#13;
+	}&#13;
+&#13;
+	&#13;
+	&#13;
+	TestCase_GlideRecordSetValue_Insert(null,null,null,false);&#13;
+	TestCase_GlideRecordSetValue_Update(null,null,null,false);&#13;
+&#13;
+	&#13;
+	var grTest = new GlideRecord('x_snc_devtools_test');&#13;
+	grTest.initialize();&#13;
+	grTest.name = 'Test1';&#13;
+	grTest.value = 'Hello';&#13;
+	grTest.insert();&#13;
+	TestCase_GlideRecordSetValue_Update(grTest,'value','World',true);&#13;
+	&#13;
+	&#13;
+	var grJob = new GlideRecord('sysauto_script');&#13;
+	grJob.initialize();&#13;
+	grJob.name = '_ATF_DEVTOOLS_TEST1';&#13;
+	var strSysId = GlideRecordInsert(grJob);&#13;
+	TestCase_GlideRecordSetValue_Update(grJob,'script','//Test',true);&#13;
+	TestCase_GlideRecordSetValue_Update(grJob,'sys_id',GetPseudoSysId(),false);&#13;
+	&#13;
+	var grJob2 = new GlideRecord('sysauto_script');&#13;
+	grJob2.initialize();&#13;
+	grJob2.newRecord();&#13;
+	grJob2.name = '_ATF_DEVTOOLS_TEST2';&#13;
+	TestCase_GlideRecordSetValue_Insert(grJob2,'sys_id',GetPseudoSysId(),true);&#13;
+	&#13;
+	&#13;
+	return test.GetResult();&#13;
+	&#13;
+})(outputs, steps, stepResult, assertEqual);</value>
+        <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
+    </sys_variable_value>
+</record_update>
