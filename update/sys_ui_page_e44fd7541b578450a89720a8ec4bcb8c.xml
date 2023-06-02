@@ -117,12 +117,20 @@ gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData
 	<p>The business rule &#160;<a href="/nav_to.do?uri=sys_script.do?sys_id=b7fad21a1be06d105b76777d8b4bcbbe" target="_blank">sys_metadata - Prevent useless checks</a>&#160;prevents checks from running in such cases which may significantly reduce the time required to scan such records - or apps that contain such records.</p>
 	
 	<h3>Create User by Email</h3>
-	<p>DevTools brings the "Create User by Email" button to the User list. Follow these steps to configure the feature:</p>
+	<p>DevTools features the "Create User by Email" button to the User list. Follow these steps to configure the feature:</p>
 	<ol>
 		<li>Set the DevTools system property&#160;<a href="/nav_to.do?uri=sys_properties.do?sys_id=6f6bf0961b92a150cd6153d16b4bcb14" target="_blank">ui.createuserbyemail_button</a>&#160;to "true".</li> 
 		<li>Create the GLOBAL system property "devtools.createuserbyemail.groups" and add a comma separated list of group Sys IDs to be assigned to the new users if needed.</li>
 	</ol>
 
+	<h3>Create and Send Credentials</h3>
+	<p>DevTools features the "Generate and Send Credentials" button to the User form. Follow these steps to configure the feature:</p>
+	<ol>
+		<li>Set the DevTools system property&#160;<a href="/nav_to.do?uri=sys_properties.do?sys_id=128efb851b6a2110cd6153d16b4bcbc9" target="_blank">ui.generateandsendcredentials_button</a>&#160;to "true".</li> 
+		<li>Verify that the GLOBAL system property&#160;<a href="/nav_to.do?uri=sys_properties.do?sys_id=856303e90a0a0bc50164129959388444" target="_blank">glide.email.smtp.active</a>&#160;is set to "true".</li>
+	</ol>
+	
+	
 	<h3>Field Formatting</h3>
 	<p>DevTools can help to format (float) numbers in forms, related lists and list views in the classic UI - Polaris, however, is not supported yet! Follow these steps to activate the feature:</p>
 	<ol>
@@ -194,6 +202,24 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>TODO</li>
 	</ol>
 -->	
+
+	<h3>1.63.0 - 2023-06-02</h3>
+	<ol>
+		<li>Added function GetVersionFromString().</li>
+		<li>Added function GetLength().</li>
+		<li>RecordInsert() can now set the Sys ID explicitly.</li>
+		<li>GlideRecordSetValue() can now also be used to set the Sys ID if the newRecord() function has been used on the record.</li>
+		<li>GitLabAPI::GetFilesFromBranch() now supports branches with more than approx. 100 files.</li>
+		<li>GitLabAPI and GitHubAPI now count the number of requests and support the ::GetRequestCount() function to return the count.</li>
+		<li>SetAppRepo() now also sets the repo url in the application record and in all dependency records.</li>
+		<li>Added ATF test for UpdateSetDelete().</li>
+		<li>ScriptGetFunctionNames() now also works outside InstanceScan checks. Additional ATF test cases have been added.</li>
+		<li>AppBuilder() now creates LogError() and LogWarning() functions.</li>
+		<li>AppBuilder() now creates navigation modules for the application log filtered by scope instead of the message containing the application name.</li>
+		<li>Function CreateUserByEmail() now sets the user name to all lower case letters.</li>
+		<li>Added section "Create and Send Credentials" to the manual.</li>
+	</ol>
+	
 	<h3>1.62.0 - 2023-05-03</h3>
 	<ol>
 		<li>Removed deprecated table "x_snc_devtools_technical_dept".</li>
@@ -1333,13 +1359,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1235</sys_mod_count>
+        <sys_mod_count>1250</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-05-03 20:34:45</sys_updated_on>
+        <sys_updated_on>2023-06-02 08:19:01</sys_updated_on>
     </sys_ui_page>
 </record_update>

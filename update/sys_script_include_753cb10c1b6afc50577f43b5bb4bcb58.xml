@@ -180,7 +180,41 @@
 		false);		
 	
 	
-
+	Log('Adding script include "LogError"...');
+	RecordQueryOrInsert('sys_script_include',
+		{
+			sys_scope: strAppSysId,
+			name: 'LogError'
+		},
+		{
+			description: 'Produces an error log output in the application log.',
+			access: 'public',
+			caller_access: '1',
+			script:
+				"function LogError(vPayload)\n"
+				+"{\n"
+				+"\tgs.error(x_snc_devtools.PrepareLogError(vPayload));\n"
+				+"}"
+		},
+		false);
+	
+	Log('Adding script include "LogWarning"...');
+	RecordQueryOrInsert('sys_script_include',
+		{
+			sys_scope: strAppSysId,
+			name: 'LogWarning'
+		},
+		{
+			description: 'Produces a warning log output in the application log.',
+			access: 'public',
+			caller_access: '1',
+			script:
+				"function LogWarning(vPayload)\n"
+				+"{\n"
+				+"\tgs.error(x_snc_devtools.PrepareLogWarning(vPayload));\n"
+				+"}"
+		},
+		false);	
 	
 	Log('Adding script include "Log"...');
 	RecordQueryOrInsert('sys_script_include',
@@ -872,7 +906,8 @@
 					link_type: 'LIST',
 					name: 'syslog_app_scope',
 					query: '&sysparm_view_forced=true&sysparm_order=sequence&sysparm_order_direction=desc',
-					filter: 'sys_created_onONLast 30 minutes@javascript:gs.beginningOfLast30Minutes()@javascript:gs.endOfLast30Minutes()^messageLIKE'+strAppName
+					filter: 'sys_created_onONLast 30 minutes@javascript:gs.beginningOfLast30Minutes()@javascript:gs.endOfLast30Minutes()'
+							+'^sys_scope='+strAppSysId
 					// view_name: 
 				},
 				false);
@@ -889,13 +924,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-07 15:15:09</sys_created_on>
         <sys_id>753cb10c1b6afc50577f43b5bb4bcb58</sys_id>
-        <sys_mod_count>135</sys_mod_count>
+        <sys_mod_count>136</sys_mod_count>
         <sys_name>AppBuilder</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_753cb10c1b6afc50577f43b5bb4bcb58</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-04-07 20:58:02</sys_updated_on>
+        <sys_updated_on>2023-05-06 10:26:18</sys_updated_on>
     </sys_script_include>
 </record_update>

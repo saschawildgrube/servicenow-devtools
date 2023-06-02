@@ -15,6 +15,7 @@ GitLabAPI.prototype = {
 	{
 		this.SetApiUrl(strApiUrl);
 		this.m_basicauth = { username: '', password: ''};
+		this.m_nRequestCount = 0;
     },
 	
 	SetCredential: function(strCredSysId)
@@ -58,12 +59,18 @@ GitLabAPI.prototype = {
 	
 	Error: function(strMessage)
 	{
-		Log('GitLabAPI: ERROR: '+strMessage);
+		LogError('GitLabAPI: ERROR: '+strMessage);
 	},
 	
+	GetRequestCount: function()
+	{
+		return this.m_nRequestCount;
+	},
 	
 	Request: function(strPath)
 	{
+		this.m_nRequestCount++;
+		
 		var strUrl = this.GetApiUrl()+strPath;
 		var params = {
 			url: strUrl,
@@ -119,24 +126,33 @@ GitLabAPI.prototype = {
 		strBranch = GetStringValue(strBranch);
 		strPath = this.GetTreePath(strPath);
 		var aFiles = [];
-		var response = this.Request('projects/'+strProject+'/repository/tree/'+strPath+'?ref='+strBranch+'&recursive=true&per_page=100');
-		if (response == false)
+		var bContinue = true;
+		var nPage = 1;
+		while (bContinue == true)
 		{
-			this.Error('GetFilesFromBranch: no files found.');
-			return false;
-		}
-		var aItems = GetArrayValue(response);
-		for (var nItem = 0; nItem < aItems.length; nItem++)
-		{
-			var item = aItems[nItem];
-			var strType = GetValue(item,'type');
-			if (strType == 'blob')
+			var response = this.Request('projects/'+strProject+'/repository/tree/'+strPath+'?ref='+strBranch+'&recursive=true&per_page=100&page='+nPage);
+			var aItems = GetArrayValue(response);
+			if (aItems.length > 0)
 			{
-				aFiles.push(Clone(item));
+				for (var nItem = 0; nItem < aItems.length; nItem++)
+				{
+					var item = aItems[nItem];
+					var strType = GetValue(item,'type');
+					if (strType == 'blob')
+					{
+						aFiles.push(Clone(item));
+					}
+				}
 			}
+			else
+			{
+				bContinue = false;
+			}
+			nPage++;
 		}
 		return aFiles;
 	},
+
 
 	
 	GetFile: function(strProject, strBranch, strFilePath)
@@ -161,13 +177,13 @@ GitLabAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-03-15 20:14:10</sys_created_on>
         <sys_id>6732c8aadb69ed106a03dad1f39619fa</sys_id>
-        <sys_mod_count>19</sys_mod_count>
+        <sys_mod_count>22</sys_mod_count>
         <sys_name>GitLabAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_6732c8aadb69ed106a03dad1f39619fa</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-05-03 16:18:19</sys_updated_on>
+        <sys_updated_on>2023-05-30 09:27:18</sys_updated_on>
     </sys_script_include>
 </record_update>

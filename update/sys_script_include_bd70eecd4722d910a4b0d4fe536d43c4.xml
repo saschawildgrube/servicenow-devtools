@@ -5,7 +5,7 @@
         <api_name>x_snc_devtools.ScriptGetFunctionNames</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Retrieves the names of all functions from the given script (or engine object). As the sn_parser object is only available within a script in a linter scan check, this function can only be used within such a check script for the time being.&#13;
+        <description>Retrieves the names of all functions from the given script (or engine object).&#13;
 A known deficiency is that anonymous functions erroneously return with the function name of the function that receives the function as a parameter.</description>
         <name>ScriptGetFunctionNames</name>
         <script><![CDATA[function ScriptGetFunctionNames(vScriptOrEngine)
@@ -14,12 +14,7 @@ A known deficiency is that anonymous functions erroneously return with the funct
 	var engine = null;
 	if (IsObject(vScriptOrEngine) == false)
 	{
-		parser = RunScriptInGlobalScope(
-			 'result = false;\n'
-			+'if (!typeof sn_parser === undefined )\n'
-			+'{\n'
-			+'   result = new sn_parser.RhinoParser();\n'
-			+'}');
+		parser = new sn_parser.RhinoParser();
 		if (IsObject(parser) == false)
 		{
 			return false;
@@ -39,7 +34,19 @@ A known deficiency is that anonymous functions erroneously return with the funct
 	if (IsObject(parser) == true)
 	{
 		var strScript = GetStringValue(vScriptOrEngine);
-		rootNode = parser.parse(strScript);
+		strScript = strScript.trim();
+		if (strScript == '')
+		{
+			return false;
+		}
+		try
+		{
+			rootNode = parser.parse(strScript);
+		}
+		catch (e)
+		{
+			return false;
+		}
 	}
 	else if (IsObject(engine) == true)
 	{
@@ -48,112 +55,99 @@ A known deficiency is that anonymous functions erroneously return with the funct
 	
 	if (IsObject(rootNode) == false)
 	{
-		//Debug('rootNode is not an object');
 		return false;
 	}
 
 	var aNames = [];
+
+
 	var nodes = {};
-	var parentNodes = [];
+	var functions = [];
 	
-	
-	// Pass 1: Use visitor to build up the basic structure	
+	// Pass 1: Build an internal representation of the AST
 	rootNode.visit(function(node)
 	{
-		var key = node.getAbsolutePosition();
-		if (nodes.hasOwnProperty / (key))
+		var key = node.getAbsolutePosition() + " ~ " + node.getTypeName();
+		if (nodes.hasOwnProperty(key))
 		{
-			gs.error("LINT: duplicate position " + key);
+			//throw "LINT: duplicate position " + key;
+			return false;
 		}
 		nodes[key] = {
+			key: key,
 			lineNo: node.getLineNo(),
 			position: node.getAbsolutePosition(),
 			type: node.getTypeName(),
-			nodeOrig: node
+			children: []
 		};
-		var parent = node.getParent(); 
+		var parent = node.getParent();
 		if (!gs.nil(parent))
 		{
-			nodes[key].parentPosition = parent.getAbsolutePosition();
+			var parentKey = parent.getAbsolutePosition() + " ~ " + parent.getTypeName();
+			nodes[key].parent = parentKey;
+			nodes[parentKey].children.push(key);
 		}
 		if (node.getTypeName() == "NAME")
 		{
 			nodes[key].name = node.getNameIdentifier();
 		}
+		else if (node.getTypeName() == "FUNCTION")
+		{
+			functions.push(nodes[key]);
+		}
+
 	});
-
-	// Pass 2: Child nodes to their parent nodes
-	for (key in nodes)
-	{
-		var node = nodes[key];
-		if (!gs.nil(node.parentPosition) && node.parentPosition != node.position)
-		{
-			var parentNode = nodes[node.parentPosition];
-			if (!parentNode.hasOwnProperty("children"))
-			{
-				SetValue([],nodes,node.parentPosition,'children');
-			}
-			var children = GetValue(nodes,node.parentPosition,'children');
-			children.push(node);
-			SetValue(children,nodes,node.parentPosition,'children');
-		}
-		else
-		{
-			parentNodes.push(nodes[key]);
-		}
-	}
-
 		
-	var node;
-
-	for (key in nodes)
+	// Pass 2: resolve relations between nodes
+	for(var key in nodes)
 	{
-		var currentNode = nodes[key];
-		if (currentNode.type == "FUNCTION")
+		nodes[key].parent = nodes[nodes[key].parent];
+		for(var i = 0; i < nodes[key].children.length; i++)
 		{
-			var parentNode = nodes[currentNode.parentPosition];
-			if (parentNode.type == "NAME")
-			{
-				node = null;
-
-				// Assignment of an anonymous function to a static method name, 
-				// e.g. Class.static = function(arg1, ...) ...
-				if (GetValue(parentNode,'children',0) != currentNode && GetValue(parentNode,'children',0,'type') == "NAME")
-				{
-					node = GetValue(parentNode,'children',0);
-				}
-
-				// Assignment of an anonymous function to a dynamic method name
-				// e.g. Class.prototype = { dynamic: function(arg1, ...) }
-				else
-				{
-					node = nodes[currentNode.parentPosition];
-				}
-
-			}
-			else if (GetValue(currentNode,'children',0,'type') == "NAME")
-			{
-
-				// Non-anonymous function
-				// e.g. function notAnonymous(arg1, ...)
-				node = GetValue(currentNode,'children',0);
-			}
-			if( ! gs.nil(node) )
-			{
-				aNames.push(node.name);
-			}
+			childKey = nodes[key].children[i];
+			nodes[key].children[i] = nodes[childKey];
 		}
 	}
 	
-
-	/*
-	toString: function() {
-		return JSON.stringify(this.parentNodes);
-	},
-	*/
-
-	
-	
+	var names = [];
+	for (var i = 0; i < functions.length; i++)
+	{
+		var node = functions[i];
+		var parent = node.parent;
+			
+		// Ordinary functions declared on to-level or inside of a block
+		if (parent.type == "SCRIPT" || parent.type == "BLOCK")
+		{
+			if ( node.children.length > 0)
+			{
+				var child = GetValue(node,'children',0);
+				if (child.type == "NAME")
+				{
+					names.push(child.name);
+				}
+			}
+		} 
+		// Member functions declared the "usual" way, e.g. var foo = { bar: function() {} }
+		else if (parent.type == "COLON")
+		{
+			var sibling = GetValue(parent,'children',0);
+			if (sibling.type == "NAME")
+			{
+				names.push(sibling.name);
+			}
+		} 
+		// Member functions declared by assignment, e.g. foo.bar = function() {}
+		else if (parent.type == "ASSIGN")
+		{
+			if(    GetValue(parent,'children',0,'type') == "GETPROP"
+				&& GetLength(GetValue(parent,'children',0,'children')) > 1
+				&& GetValue(parent,'children',0,'children',1,'type') == "NAME")
+			{
+				names.push(GetValue(parent,'children',0,'children',1,'name'));
+			}
+		}
+	}
+	aNames = names;	
 	
 	return aNames;
 }]]></script>
@@ -161,13 +155,13 @@ A known deficiency is that anonymous functions erroneously return with the funct
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-10-13 12:47:11</sys_created_on>
         <sys_id>bd70eecd4722d910a4b0d4fe536d43c4</sys_id>
-        <sys_mod_count>31</sys_mod_count>
+        <sys_mod_count>47</sys_mod_count>
         <sys_name>ScriptGetFunctionNames</sys_name>
-        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
-        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_bd70eecd4722d910a4b0d4fe536d43c4</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-11-01 11:53:39</sys_updated_on>
+        <sys_updated_on>2023-06-01 15:13:13</sys_updated_on>
     </sys_script_include>
 </record_update>
