@@ -134,7 +134,7 @@ InstallerAPI.prototype = {
 		GlideRecordQuery(grRecord);
 		if (grRecord.getRowCount() > 1)
 		{
-			this.Error(strTopic+': There is more than one record matching the specified query. Doing nothing!');
+			this.Error(strTopic+': There is more than one record matching the specified query. No action required.');
 			return false;
 		}
 		if (grRecord.next())
@@ -142,7 +142,7 @@ InstallerAPI.prototype = {
 			var aKeys = GetKeys(valuesUpdate);
 			if (aKeys.length == 0)
 			{
-				this.Log(strTopic+': Record exists. Doing nothing!');
+				this.Log(strTopic+': Record exists. No action required.');
 				return true;
 			}
 			else
@@ -200,14 +200,22 @@ InstallerAPI.prototype = {
 		{
 			return false;
 		}
+		
+		var grRecord = GetRecord(strTable,strSysId);
+		if (grRecord == false)
+		{
+			this.Log(strTopic+': Record '+strTable+' / '+strSysId+' does not exist. No action required.');
+			return true;
+		}
+		
 		var bResult = RecordDelete(strTable,strSysId);
 		if (bResult == true)
 		{
-			this.Log(strTopic+': Deleted record: '+strTable+': '+strSysId);
+			this.Log(strTopic+': Deleted record: '+strTable+' / '+strSysId);
 		}
 		else
 		{
-			this.Error(strTopic+': Failed to delete record: '+strTable+': '+strSysId);
+			this.Error(strTopic+': Failed to delete record: '+strTable+' / '+strSysId);
 			return false;
 		}
 		return true;
@@ -513,7 +521,7 @@ InstallerAPI.prototype = {
 		var grRecord = GetRecord(strTable,strSysId);
 		if (IsValidRecord(grRecord) == false)
 		{
-			this.Log(strRecordClassName+' with sys_id "'+strSysId+'" does not exist. Doing nothing.');
+			this.Log(strRecordClassName+' with sys_id "'+strSysId+'" does not exist. No action required.');
 			return false;
 		}
 		
@@ -563,7 +571,7 @@ InstallerAPI.prototype = {
 		grUiElement.query();
 		if (grUiElement.getRowCount() > 0)
 		{
-			this.Log('UI Section on table "'+strTable+'" with sys_id "'+strUiSectionSysId+'" already contains field "'+strField+'". Doing nothing.');
+			this.Log('UI Section on table "'+strTable+'" with sys_id "'+strUiSectionSysId+'" already contains field "'+strField+'". No action required.');
 			return false;
 		}
 
@@ -601,13 +609,13 @@ InstallerAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-08-27 10:49:10</sys_created_on>
         <sys_id>704694a81b1a74505331b8449b4bcb69</sys_id>
-        <sys_mod_count>83</sys_mod_count>
+        <sys_mod_count>86</sys_mod_count>
         <sys_name>InstallerAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>protected</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_704694a81b1a74505331b8449b4bcb69</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-06-13 10:47:28</sys_updated_on>
+        <sys_updated_on>2023-06-13 13:14:58</sys_updated_on>
     </sys_script_include>
 </record_update>
