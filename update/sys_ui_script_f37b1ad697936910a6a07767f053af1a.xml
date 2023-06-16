@@ -1,12 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
-    <sys_script_include action="INSERT_OR_UPDATE">
-        <access>public</access>
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_script">
+    <sys_ui_script action="INSERT_OR_UPDATE">
         <active>true</active>
-        <api_name>x_snc_devtools.IsValidUrl</api_name>
-        <caller_access/>
-        <client_callable>false</client_callable>
         <description>Returns true if the given string contains a valid, fully qualified Url, false if not.</description>
-        <name>IsValidUrl</name>
+        <global>true</global>
+        <ignore_in_now_experience>false</ignore_in_now_experience>
+        <name>x_snc_devtools.IsValidUrl</name>
         <script><![CDATA[function IsValidUrl(strUrl)
 {
 
@@ -53,17 +51,20 @@
 	return true;
 
 }]]></script>
-        <sys_class_name>sys_script_include</sys_class_name>
+        <script_name>IsValidUrl</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2023-01-04 11:46:09</sys_created_on>
-        <sys_id>2b7ea9771b88e1905b76777d8b4bcbc4</sys_id>
-        <sys_mod_count>4</sys_mod_count>
-        <sys_name>IsValidUrl</sys_name>
+        <sys_created_on>2023-06-10 12:35:25</sys_created_on>
+        <sys_id>f37b1ad697936910a6a07767f053af1a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_snc_devtools.IsValidUrl</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
-        <sys_update_name>sys_script_include_2b7ea9771b88e1905b76777d8b4bcbc4</sys_update_name>
+        <sys_update_name>sys_ui_script_f37b1ad697936910a6a07767f053af1a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-06-10 12:35:29</sys_updated_on>
-    </sys_script_include>
+        <sys_updated_on>2023-06-10 12:35:25</sys_updated_on>
+        <ui_type>0</ui_type>
+        <use_scoped_format>false</use_scoped_format>
+    </sys_ui_script>
 </record_update>

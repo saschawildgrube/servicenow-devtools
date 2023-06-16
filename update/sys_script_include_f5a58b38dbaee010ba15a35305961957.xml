@@ -96,6 +96,7 @@
 	Log('Checking ACLs for useless field level operations...');
 	var grSSA = new GlideRecord('sys_security_acl');
 	grSSA.addQuery('sys_scope','=',strAppSysId);
+	grSSA.addQuery('type','=','record'); // Type: Record
 	grSSA.addQuery('name','CONTAINS','.'); // Field level
 	var condition = grSSA.addQuery('operation','=','delete');
 	condition.addOrCondition('operation','=','create');
@@ -124,7 +125,7 @@
 				var grRole = GetRecord('sys_user_role',grSSAR.sys_user_role);
 				if (grRole != false)
 				{
-					if (GetStringValue(grRole.name) == 'snc_internal');
+					if (GetStringValue(grRole.name) == 'snc_internal')
 					{
 						Log('Deleting snc_internal role from ACL: '+GetStringValue(grSSA.operation)+' / '+GetStringValue(grSSA.name));
 						GlideRecordDelete(grSSAR);
@@ -192,6 +193,22 @@
 		GlideRecordUpdate(grMetaData);
 	}
 
+	Log('Cleaning sys_push_notif_app_install records...');
+	var grRecords = new GlideRecord('sys_push_notif_app_install');
+	grRecords.addQuery('sys_scope','=',strAppSysId);
+	grRecords.query();
+	GlideRecordDeleteMultiple(grRecords);
+	
+	Log('Fix issues with PA Dashboards documented in KB0814656');
+	RecordDelete('sys_grid_canvas','38965b7fdb330110b652edb305961986');
+	RecordDelete('sys_grid_canvas','a4961b7fdb330110b652edb3059619de');
+	RecordDelete('sys_grid_canvas','9e46177fdb330110b652edb3059619cd');
+	RecordDelete('sys_grid_canvas','38965b7fdb330110b652edb305961972');
+	RecordDelete('sys_grid_canvas','275454581b5965105b76777d8b4bcbc4');
+
+	
+	
+	
 	Log('Completed!');
 	
 	return true;
@@ -201,13 +218,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-02-23 08:18:05</sys_created_on>
         <sys_id>f5a58b38dbaee010ba15a35305961957</sys_id>
-        <sys_mod_count>49</sys_mod_count>
+        <sys_mod_count>55</sys_mod_count>
         <sys_name>AppSanity</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_f5a58b38dbaee010ba15a35305961957</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-03-06 14:46:55</sys_updated_on>
+        <sys_updated_on>2023-06-14 14:04:38</sys_updated_on>
     </sys_script_include>
 </record_update>

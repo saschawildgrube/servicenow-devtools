@@ -202,6 +202,23 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>TODO</li>
 	</ol>
 -->	
+	
+	<h3>1.64.0 - 2023-16-06</h3>
+	<ol>
+		<li>Added GetDependencyListFromTree() and refactored GetPackageDependencyList() to use it.</li>
+		<li>Added UI Script IsValidUrl().</li>
+		<li>Added method InstallerAPI::RecordDelete().</li>
+		<li>"Global" can no longer be selected as a dependency.</li>
+		<li>InstallerAPI::RecordInsertOrUpdate() now supports setting the sys_id for a new record explicitly.</li>
+		<li>InstallerAPI functions now consistently logs "No action required" in case there is no action required.</li>
+		<li>GetParentRecord() and the "Up" button now also supports item_option_new and sys_schema_attribute_m2m.</li>
+		<li>UI Script Log() now uses console.log() since jslog() is no longer supported.</li>
+		<li>AppSanity() deleted roles asociated to an ACL erroneously if more than one role is associated to an ACL. This has been fixed.</li>
+		<li>AppSanity() eventually deleted valid ACLs for create or delete operations which were not of type "record". This has been fixed.</li>
+		<li>AppSanity() now deletes all records in sys_push_notif_app_install associated to the given app.</li>
+		<li>AppSanity() now deletes records erroneously created in the application scope due to issues with PA Dashboards documented in KB0814656.</li>
+		<li>ParseXml() can now deal with xml encoded line breaks.</li>
+	</ol>
 
 	<h3>1.63.0 - 2023-06-02</h3>
 	<ol>
@@ -1359,13 +1376,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1250</sys_mod_count>
+        <sys_mod_count>1266</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-06-02 08:19:01</sys_updated_on>
+        <sys_updated_on>2023-06-16 12:30:37</sys_updated_on>
     </sys_ui_page>
 </record_update>
