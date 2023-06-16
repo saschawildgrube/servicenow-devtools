@@ -210,7 +210,7 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>Added method InstallerAPI::RecordDelete().</li>
 		<li>InstallerAPI::RecordInsertOrUpdate() now supports setting the sys_id for a new record explicitly.</li>
 		<li>InstallerAPI functions now consistently logs "No action required" in case there is no action required.</li>
-		<li>GetParentRecord() and the "Up" button now also supports item_option_new.</li>
+		<li>GetParentRecord() and the "Up" button now also supports item_option_new and sys_schema_attribute_m2m.</li>
 		<li>UI Script Log() now uses console.log() since jslog() is no longer supported.</li>
 		<li>AppSanity() deleted roles asociated to an ACL erroneously if more than one role is associated to an ACL. This has been fixed.</li>
 		<li>AppSanity() eventually deleted valid ACLs for create or delete operations which were not of type "record". This has been fixed.</li>
@@ -1375,13 +1375,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1263</sys_mod_count>
+        <sys_mod_count>1264</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-06-15 13:53:38</sys_updated_on>
+        <sys_updated_on>2023-06-16 08:47:58</sys_updated_on>
     </sys_ui_page>
 </record_update>
