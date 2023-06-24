@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-06-24 06:06:33</sys_created_on>
         <sys_id>c6b8093e97236d10a6a07767f053afe7</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>17</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_c6b8093e97236d10a6a07767f053afe7</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-06-24 06:26:07</sys_updated_on>
+        <sys_updated_on>2023-06-24 08:15:44</sys_updated_on>
         <table/>
         <test display_value="DevTools - ImageAPI">01a8853e97236d10a6a07767f053af6f</test>
         <timeout/>
@@ -49,43 +49,38 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-06-24 06:06:33</sys_created_on>
         <sys_id>8cd8093e97236d10a6a07767f053aff5</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>17</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-06-24 06:26:07</sys_updated_on>
+        <sys_updated_on>2023-06-24 08:15:44</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
 	&#13;
 	test.SetResult(true);&#13;
 &#13;
-	var image = new ImageAPI(3,3);&#13;
-	&#13;
-	function TestCase_ImageAPI_Pixel(image, nPosX, nPosY, color)&#13;
+	function TestCase_ImageAPI_GetPixel(image, nPosX, nPosY, vExpected)&#13;
 	{&#13;
-		function TestCase_ImageAPI_Pixel_CheckResult(vInput,vExpected,vResult)&#13;
+		function TestCase_ImageAPI_GetPixel_CheckResult(vInput,vExpected,vResult)&#13;
 		{&#13;
-			var image = GetValue(vInput,'image');&#13;
-			var nPosX = GetValue(vInput,'PosX');&#13;
-			var nPosY = GetValue(vInput,'PosY');&#13;
-			var color = GetValue(vInput,'Color');&#13;
-			image.SetPixel(nPosX,nPosY,color);&#13;
-			return IsEqual(color,image.GetPixel(nPosX,nPosY));&#13;
+			return IsEqual(vExpected,vResult);&#13;
 		}&#13;
 &#13;
+		test.Log('TestCase_ImageAPI_GetPixel: '+RenderValue(image.GetPixel(0,0)));&#13;
+		&#13;
 		test.TestCase(&#13;
-			'Function ImageAPI::SetPixel() and ImageAPI::GetPixel()',&#13;
+			'Function ImageAPI::GetPixel()',&#13;
 			image.GetPixel,&#13;
 			{&#13;
-				'image': image,&#13;
 				'PosX': nPosX,&#13;
-				'PosY': nPosY,&#13;
-				'Color': color&#13;
+				'PosY': nPosY&#13;
 			},&#13;
-			null,&#13;
-			TestCase_ImageAPI_Pixel_CheckResult);&#13;
+			vExpected,&#13;
+			TestCase_ImageAPI_GetPixel_CheckResult);&#13;
 	}&#13;
 &#13;
-	TestCase_ImageAPI_Pixel(image,0,0,image.ColorRed());&#13;
+	var image = new ImageAPI(3,3);&#13;
+	image.SetPixel(0,0,image.ColorRed());&#13;
+	TestCase_ImageAPI_GetPixel(image,0,0,[255,0,0]);&#13;
 	&#13;
 	return test.GetResult();&#13;
 	&#13;
