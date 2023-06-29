@@ -8,23 +8,6 @@
         <description>A class representing an image which can be used to generate BMP files or html output.</description>
         <name>ImageAPI</name>
         <script><![CDATA[var ImageAPI = Class.create();
-
-function InitializeClass(oClass)
-{
-	Debug(GetType(oClass));
-	if (GetType(oClass) != 'Object')
-	{
-		Debug('oClass is not an Object');
-		return false;
-	}
-	var aKeys = GetKeys(oClass);
-	Debug(aKeys);
-	
-	var propertyNames = GetProperties(oClass);
-	Debug(propertyNames);
-	return true;
-}
-
 ImageAPI.prototype = {
 
 	width: 0,
@@ -33,10 +16,7 @@ ImageAPI.prototype = {
 
 	initialize: function(nWidth,nHeight)
 	{
-		InitializeClass(this);
-		//this.GetPixel = this.GetPixel.bind(this);
-		//this.SetPixel = this.SetPixel.bind(this);
-
+		BindAllFunctionsToThis(this);
 		
 		this.width = 0;
 		this.height = 0;
@@ -284,13 +264,13 @@ ImageAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-03-19 10:38:05</sys_created_on>
         <sys_id>96e6f60adb5a0150bcced03cd39619e4</sys_id>
-        <sys_mod_count>82</sys_mod_count>
+        <sys_mod_count>87</sys_mod_count>
         <sys_name>ImageAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_96e6f60adb5a0150bcced03cd39619e4</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-06-29 13:46:13</sys_updated_on>
+        <sys_updated_on>2023-06-29 14:05:02</sys_updated_on>
     </sys_script_include>
 </record_update>

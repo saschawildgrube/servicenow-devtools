@@ -11,72 +11,58 @@
         <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
         <sys_class_name>sys_atf_step</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2023-06-29 13:35:53</sys_created_on>
-        <sys_id>f95f9c6897332510a6a07767f053af89</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_created_on>2023-06-29 13:51:17</sys_created_on>
+        <sys_id>a713e86c97332510a6a07767f053af38</sys_id>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
-        <sys_update_name>sys_atf_step_f95f9c6897332510a6a07767f053af89</sys_update_name>
+        <sys_update_name>sys_atf_step_a713e86c97332510a6a07767f053af38</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-06-29 13:50:41</sys_updated_on>
+        <sys_updated_on>2023-06-29 13:52:24</sys_updated_on>
         <table/>
-        <test display_value="DevTools - GetProperties">214f5c6897332510a6a07767f053af8c</test>
+        <test display_value="DevTools - GetFunctions">bf03a86c97332510a6a07767f053af57</test>
         <timeout/>
         <warning_message/>
     </sys_atf_step>
-    <sys_variable_value action="delete_multiple" query="document_key=f95f9c6897332510a6a07767f053af89"/>
+    <sys_variable_value action="delete_multiple" query="document_key=a713e86c97332510a6a07767f053af38"/>
     <sys_variable_value action="INSERT_OR_UPDATE">
         <document>sys_atf_step</document>
-        <document_key>f95f9c6897332510a6a07767f053af89</document_key>
-        <order>100</order>
-        <sys_class_name>sys_variable_value</sys_class_name>
-        <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2023-06-29 13:35:53</sys_created_on>
-        <sys_id>f69f9c6897332510a6a07767f053afdf</sys_id>
-        <sys_mod_count>0</sys_mod_count>
-        <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-06-29 13:35:53</sys_updated_on>
-        <value>3.1</value>
-        <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
-    </sys_variable_value>
-    <sys_variable_value action="INSERT_OR_UPDATE">
-        <document>sys_atf_step</document>
-        <document_key>f95f9c6897332510a6a07767f053af89</document_key>
+        <document_key>a713e86c97332510a6a07767f053af38</document_key>
         <order>200</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2023-06-29 13:35:53</sys_created_on>
-        <sys_id>fe9f9c6897332510a6a07767f053afdf</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_created_on>2023-06-29 13:51:17</sys_created_on>
+        <sys_id>20232c6c97332510a6a07767f053af87</sys_id>
+        <sys_mod_count>1</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-06-29 13:50:41</sys_updated_on>
+        <sys_updated_on>2023-06-29 13:52:24</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
 	&#13;
 	test.SetResult(true);&#13;
 &#13;
-	function TestCase_GetProperties(vValue, vExpected)&#13;
+	function TestCase_GetFunctions(vValue, vExpected)&#13;
 	{&#13;
-		function TestCase_GetProperties_CheckResult(vInput,vExpected,vResult)&#13;
+		function TestCase_GetFunctions_CheckResult(vInput,vExpected,vResult)&#13;
 		{&#13;
 			return IsEqual(vExpected,vResult);&#13;
 		}&#13;
 &#13;
 		test.TestCase(&#13;
-			'Function GetProperties()',&#13;
-			GetProperties,&#13;
+			'Function GetFunctions()',&#13;
+			GetFunctions,&#13;
 			{&#13;
 				'Value': vValue&#13;
 			},&#13;
 			vExpected,&#13;
-			TestCase_GetProperties_CheckResult);&#13;
+			TestCase_GetFunctions_CheckResult);&#13;
 	}&#13;
 &#13;
-	TestCase_GetProperties(null,[]);&#13;
-	TestCase_GetProperties('Test',[]);&#13;
+	TestCase_GetFunctions(null,[]);&#13;
+	TestCase_GetFunctions('Test',[]);&#13;
 	&#13;
 	var SomeClass = Class.create();&#13;
 	SomeClass.prototype = {&#13;
@@ -86,10 +72,9 @@
 	&#13;
 	var vValue = new SomeClass();&#13;
 	&#13;
-	TestCase_GetProperties(vValue,&#13;
+	TestCase_GetFunctions(vValue,&#13;
 		[&#13;
-			'initialize',&#13;
-			'type'&#13;
+			'initialize'&#13;
 		]);&#13;
 	&#13;
 	&#13;
@@ -97,5 +82,19 @@
 	&#13;
 })(outputs, steps, stepResult, assertEqual);</value>
         <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>a713e86c97332510a6a07767f053af38</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-06-29 13:51:17</sys_created_on>
+        <sys_id>68232c6c97332510a6a07767f053af86</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-06-29 13:51:17</sys_updated_on>
+        <value>3.1</value>
+        <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
     </sys_variable_value>
 </record_update>
