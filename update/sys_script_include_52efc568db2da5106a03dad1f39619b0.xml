@@ -79,10 +79,8 @@ GitHubAPI.prototype = {
 				]
 		};
 		
-		//Debug(params);
 		var strResponse = HttpRequest(params);
 		var response = ParseJson(strResponse);
-		//Debug(response);
 		
 		var strErrorMessage = GetStringValue(GetValue(response,'message'));
 		if (strErrorMessage != '')
@@ -108,34 +106,63 @@ GitHubAPI.prototype = {
 	{
 		strBranch = GetStringValue(strBranch);
 		strPath = GetStringValue(strPath);
-		var aFiles = [];
-		var response = this.Request('repos/'+strOwner+'/'+strRepo+'/contents/'+strPath+'?ref='+strBranch);
-		if (response == false)
+		if (strPath == '/')
 		{
-			this.Error('GetFilesFromBranch: no files found.');
-			return false;
+			strPath = '';
 		}
-		var aItems = GetArrayValue(response);
-		for (var nItem = 0; nItem < aItems.length; nItem++)
+
+		var aFiles = [];
+
+		if (strPath == '')
 		{
-			var item = aItems[nItem];
-			var strType = GetValue(item,'type');
-			if (strType == 'file')
+			var response = this.Request('repos/'+strOwner+'/'+strRepo+'/git/trees/'+strBranch+'?recursive=1');
+			if (response == false)
 			{
-				aFiles.push(Clone(item));
+				this.Error('GetFilesFromBranch: no files found.');
+				return false;
 			}
-			else if (strType == 'dir')
+			//Debug(response);
+			var aItems = GetArrayValue(GetValue(response,'tree'));
+			var aFiles = [];
+			for (var nItem = 0; nItem < aItems.length; nItem++)
 			{
-				var strDirName = GetValue(item,'name');
-				var strDirPath = GetValue(item,'path');
-				var aFilesInDir = this.GetFilesFromBranch(strOwner, strRepo, strBranch, strDirPath);
-				if (IsArray(aFilesInDir))
+				var item = aItems[nItem];
+				var strType = GetValue(item,'type');
+				if (strType == 'blob')
 				{
-					aFiles = ArrayAppend(aFiles,aFilesInDir);
+					aFiles.push(GetValue(item,'path'));
 				}
 			}
 		}
-		
+		else
+		{
+			var response = this.Request('repos/'+strOwner+'/'+strRepo+'/contents/'+strPath+'?ref='+strBranch);
+			if (response == false)
+			{
+				this.Error('GetFilesFromBranch: no files found.');
+				return false;
+			}
+			aItems = GetArrayValue(response);
+			for (var nItem = 0; nItem < aItems.length; nItem++)
+			{
+				var item = aItems[nItem];
+				var strType = GetValue(item,'type');
+				if (strType == 'file')
+				{
+					aFiles.push(GetValue(item,'path'));
+				}
+				else if (strType == 'dir')
+				{
+					var strDirName = GetValue(item,'name');
+					var strDirPath = GetValue(item,'path');
+					var aFilesInDir = this.GetFilesFromBranch(strOwner, strRepo, strBranch, strDirPath);
+					if (IsArray(aFilesInDir))
+					{
+						aFiles = ArrayAppend(aFiles,aFilesInDir);
+					}
+				}
+			}
+		}
 		return aFiles;
 	},
 	
@@ -166,13 +193,13 @@ GitHubAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-03-09 21:01:35</sys_created_on>
         <sys_id>52efc568db2da5106a03dad1f39619b0</sys_id>
-        <sys_mod_count>41</sys_mod_count>
+        <sys_mod_count>51</sys_mod_count>
         <sys_name>GitHubAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_52efc568db2da5106a03dad1f39619b0</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-05-30 09:27:10</sys_updated_on>
+        <sys_updated_on>2023-07-01 20:48:28</sys_updated_on>
     </sys_script_include>
 </record_update>

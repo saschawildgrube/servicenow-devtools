@@ -4,13 +4,13 @@
             <element>.begin_split</element>
             <position>0</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2022-12-13 16:10:27</sys_created_on>
-            <sys_id>14389db81b33d5105b76777d8b4bcbda</sys_id>
+            <sys_created_on>2023-07-19 18:49:07</sys_created_on>
+            <sys_id>0a17e8831b48f550cd6153d16b4bcbff</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_devtools_dependency" sys_domain="global" view="Default view">61771da41b3395105b76777d8b4bcbb7</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2022-12-13 16:10:27</sys_updated_on>
+            <sys_updated_on>2023-07-19 18:49:07</sys_updated_on>
             <sys_user/>
             <type>.begin_split</type>
         </sys_ui_element>
@@ -18,111 +18,139 @@
             <element>sys_scope</element>
             <position>1</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2022-12-13 16:10:27</sys_created_on>
-            <sys_id>94389db81b33d5105b76777d8b4bcbda</sys_id>
+            <sys_created_on>2023-07-19 18:49:07</sys_created_on>
+            <sys_id>8a17e8831b48f550cd6153d16b4bcbff</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_devtools_dependency" sys_domain="global" view="Default view">61771da41b3395105b76777d8b4bcbb7</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2022-12-13 16:10:27</sys_updated_on>
+            <sys_updated_on>2023-07-19 18:49:07</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>reason</element>
+            <position>2</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2023-07-19 18:49:07</sys_created_on>
+            <sys_id>0e17e8831b48f550cd6153d16b4bcbff</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_snc_devtools_dependency" sys_domain="global" view="Default view">61771da41b3395105b76777d8b4bcbb7</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2023-07-19 18:49:07</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>.split</element>
-            <position>2</position>
+            <position>3</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2022-12-13 16:10:27</sys_created_on>
-            <sys_id>18389db81b33d5105b76777d8b4bcbda</sys_id>
+            <sys_created_on>2023-07-19 18:49:07</sys_created_on>
+            <sys_id>8e17e8831b48f550cd6153d16b4bcbff</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_devtools_dependency" sys_domain="global" view="Default view">61771da41b3395105b76777d8b4bcbb7</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2022-12-13 16:10:27</sys_updated_on>
+            <sys_updated_on>2023-07-19 18:49:07</sys_updated_on>
             <sys_user/>
             <type>.split</type>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>dependency</element>
-            <position>3</position>
+            <position>4</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2022-12-13 16:10:27</sys_created_on>
-            <sys_id>98389db81b33d5105b76777d8b4bcbda</sys_id>
+            <sys_created_on>2023-07-19 18:49:07</sys_created_on>
+            <sys_id>02172c831b48f550cd6153d16b4bcb00</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_devtools_dependency" sys_domain="global" view="Default view">61771da41b3395105b76777d8b4bcbb7</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2022-12-13 16:10:27</sys_updated_on>
+            <sys_updated_on>2023-07-19 18:49:07</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>package_class</element>
+            <position>5</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2023-07-19 18:49:07</sys_created_on>
+            <sys_id>82172c831b48f550cd6153d16b4bcb00</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_snc_devtools_dependency" sys_domain="global" view="Default view">61771da41b3395105b76777d8b4bcbb7</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2023-07-19 18:49:07</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>versions</element>
-            <position>4</position>
+            <position>6</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2022-12-13 16:10:27</sys_created_on>
-            <sys_id>1c389db81b33d5105b76777d8b4bcbda</sys_id>
+            <sys_created_on>2023-07-19 18:49:07</sys_created_on>
+            <sys_id>06172c831b48f550cd6153d16b4bcb00</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_devtools_dependency" sys_domain="global" view="Default view">61771da41b3395105b76777d8b4bcbb7</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2022-12-13 16:10:27</sys_updated_on>
+            <sys_updated_on>2023-07-19 18:49:07</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>name</element>
-            <position>5</position>
+            <position>7</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2022-12-13 16:10:27</sys_created_on>
-            <sys_id>9c389db81b33d5105b76777d8b4bcbda</sys_id>
+            <sys_created_on>2023-07-19 18:49:07</sys_created_on>
+            <sys_id>86172c831b48f550cd6153d16b4bcb00</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_devtools_dependency" sys_domain="global" view="Default view">61771da41b3395105b76777d8b4bcbb7</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2022-12-13 16:10:27</sys_updated_on>
+            <sys_updated_on>2023-07-19 18:49:07</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>documentation_url</element>
-            <position>6</position>
+            <position>8</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2022-12-13 16:10:27</sys_created_on>
-            <sys_id>10389db81b33d5105b76777d8b4bcbdb</sys_id>
+            <sys_created_on>2023-07-19 18:49:07</sys_created_on>
+            <sys_id>0a172c831b48f550cd6153d16b4bcb00</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_devtools_dependency" sys_domain="global" view="Default view">61771da41b3395105b76777d8b4bcbb7</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2022-12-13 16:10:27</sys_updated_on>
+            <sys_updated_on>2023-07-19 18:49:07</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>repo_url</element>
-            <position>7</position>
+            <position>9</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2022-12-13 16:10:27</sys_created_on>
-            <sys_id>90389db81b33d5105b76777d8b4bcbdb</sys_id>
+            <sys_created_on>2023-07-19 18:49:07</sys_created_on>
+            <sys_id>8a172c831b48f550cd6153d16b4bcb00</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_devtools_dependency" sys_domain="global" view="Default view">61771da41b3395105b76777d8b4bcbb7</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2022-12-13 16:10:27</sys_updated_on>
+            <sys_updated_on>2023-07-19 18:49:07</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>.end_split</element>
-            <position>8</position>
+            <position>10</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2022-12-13 16:10:27</sys_created_on>
-            <sys_id>14389db81b33d5105b76777d8b4bcbdb</sys_id>
+            <sys_created_on>2023-07-19 18:49:07</sys_created_on>
+            <sys_id>0e172c831b48f550cd6153d16b4bcb00</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_devtools_dependency" sys_domain="global" view="Default view">61771da41b3395105b76777d8b4bcbb7</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2022-12-13 16:10:27</sys_updated_on>
+            <sys_updated_on>2023-07-19 18:49:07</sys_updated_on>
             <sys_user/>
             <type>.end_split</type>
         </sys_ui_element>

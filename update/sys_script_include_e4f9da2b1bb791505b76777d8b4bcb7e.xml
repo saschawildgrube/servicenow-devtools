@@ -9,14 +9,6 @@
         <name>GetApplicationStatus</name>
         <script><![CDATA[function GetApplicationStatus()
 {
-	
-	/*
-	var GetStringValue = x_snc_devtools.GetStringValue;
-	var GetIntegerValue = x_snc_devtools.GetIntegerValue;
-	var GetValue = x_snc_devtools.GetValue;
-	var GetKeys = x_snc_devtools.GetKeys;
-	*/
-	
 	var status = {};
 	
 	var applications = {};
@@ -46,42 +38,7 @@
 				status = status_new;
 			}
 		}
-	}		
-
-	
-
-	/*
-	
-	var bStatusIncomplete = false;
-
-	var aTables = GetKeys(GetValue(status,'tables'));
-	for (var nTable = 0; nTable < aTables.length; nTable++)
-	{
-		var strTable = aTables[nTable];
-		var table = GetValue(status,'tables',strTable);
-		
-		var grStatus = new GlideRecord('x_snc_datasilos_status');
-		grStatus.addQuery('table','=',strTable);
-		grStatus.query();
-		if (grStatus.next() != true)
-		{
-			bStatusIncomplete = true;
-		}
-		else
-		{
-			table['total'] = GetIntegerValue(grStatus.total); 
-			table['hidden'] = GetIntegerValue(grStatus.hidden); 
-			table['unmaintained'] = GetIntegerValue(grStatus.unmaintained); 
-			table['backmarker'] = GetStringValue(grStatus.backmarker);
-			table['updated'] = GetStringValue(grStatus.sys_updated_on);
-		}
 	}
-	
-	if (bStatusIncomplete == true)
-	{
-		status = GetCurrentStatus();
-	}
-	*/
 	
 	return status;
 }]]></script>
@@ -89,13 +46,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-12-22 10:02:00</sys_created_on>
         <sys_id>e4f9da2b1bb791505b76777d8b4bcb7e</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>GetApplicationStatus</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_e4f9da2b1bb791505b76777d8b4bcb7e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-22 12:53:10</sys_updated_on>
+        <sys_updated_on>2023-06-26 09:52:43</sys_updated_on>
     </sys_script_include>
 </record_update>

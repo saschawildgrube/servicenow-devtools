@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.GetAppCurrentBranch</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns the current source control branch to which an application is linked.</description>
+        <name>GetAppCurrentBranch</name>
+        <script><![CDATA[function GetAppCurrentBranch(vApp)
+{
+	var grApp = GetAppRecord(vApp);
+	if (IsValidRecord(grApp) == false)
+	{
+		return false;
+	}
+	
+	var grRepo = new GlideRecord('sys_repo_config');
+	grRepo.addQuery('sys_app','=',grApp.sys_id);
+	grRepo.query();
+	if (grRepo.next() == false)
+	{
+		return false;
+	}
+	return  GetStringValue(grRepo.current_branch);
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-06-26 09:51:18</sys_created_on>
+        <sys_id>f69c88af1bab6d10cd6153d16b4bcb26</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>GetAppCurrentBranch</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_f69c88af1bab6d10cd6153d16b4bcb26</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-06-26 09:51:18</sys_updated_on>
+    </sys_script_include>
+</record_update>
