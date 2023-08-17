@@ -486,7 +486,7 @@
 			+"{\n"
 			+"\t// TODO: Create your own link directory category, add your own tables and links or remove this code (and return linkdirectory)...\n"
 			+"\t\n"
-			+"\tlinkdirectory['"+strAppName+" Category'] =\n"
+			+"\tlinkdirectory['"+strAppName+"'] =\n"
 			+"\t[\n"
 			+"\t\t{\n"
 			+"\t\t\ttable: 'x_snc_devtools_test'\n"
@@ -614,7 +614,7 @@
 			+"{\n"
 			+"\t// TODO: Create additional debug information specific to this app...\n"
 			+"\t\n"
-			+"\treturn 'TODO: This is additional debug information from "+strAppName+"...';\n"
+			+"\treturn '';\n"
 			+"}";
 		strSSI = GlideRecordInsert(grSSI);
 		Log('Script include "DevToolsRenderDebugDump": '+RenderValue(strSSI));	
@@ -925,13 +925,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-07 15:15:09</sys_created_on>
         <sys_id>753cb10c1b6afc50577f43b5bb4bcb58</sys_id>
-        <sys_mod_count>139</sys_mod_count>
+        <sys_mod_count>141</sys_mod_count>
         <sys_name>AppBuilder</sys_name>
-        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
-        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_753cb10c1b6afc50577f43b5bb4bcb58</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-07-01 19:20:05</sys_updated_on>
+        <sys_updated_on>2023-08-17 13:55:24</sys_updated_on>
     </sys_script_include>
 </record_update>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update>
-    <sys_dictionary action="INSERT_OR_UPDATE" element="reason" table="x_snc_devtools_dependency">
+    <sys_dictionary action="INSERT_OR_UPDATE" element="description" table="x_snc_devtools_technical_debt">
         <active>true</active>
         <array>false</array>
-        <attributes>no_truncate=true</attributes>
+        <attributes/>
         <audit>false</audit>
         <calculation><![CDATA[(function calculatedFieldValue(current) {
 
@@ -13,7 +13,7 @@
         <choice/>
         <choice_field/>
         <choice_table/>
-        <column_label>Reason</column_label>
+        <column_label>Description</column_label>
         <comments/>
         <create_roles/>
         <default_value/>
@@ -26,7 +26,7 @@
         <dynamic_creation_script/>
         <dynamic_default_value/>
         <dynamic_ref_qual/>
-        <element>reason</element>
+        <element>description</element>
         <element_reference>false</element_reference>
         <foreign_database/>
         <formula/>
@@ -34,8 +34,8 @@
         <function_field>false</function_field>
         <internal_type display_value="String">string</internal_type>
         <mandatory>false</mandatory>
-        <max_length>4000</max_length>
-        <name>x_snc_devtools_dependency</name>
+        <max_length>2000</max_length>
+        <name>x_snc_devtools_technical_debt</name>
         <next_element/>
         <primary>false</primary>
         <read_only>false</read_only>
@@ -51,14 +51,14 @@
         <staged>false</staged>
         <sys_class_name>sys_dictionary</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2023-07-13 13:21:22</sys_created_on>
-        <sys_name>Reason</sys_name>
+        <sys_created_on>2023-08-04 16:22:13</sys_created_on>
+        <sys_name>Description</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
-        <sys_update_name>sys_dictionary_x_snc_devtools_dependency_reason</sys_update_name>
+        <sys_update_name>sys_dictionary_x_snc_devtools_technical_debt_description</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-08-03 15:55:53</sys_updated_on>
+        <sys_updated_on>2023-08-04 16:22:13</sys_updated_on>
         <table_reference>false</table_reference>
         <text_index>false</text_index>
         <unique>false</unique>

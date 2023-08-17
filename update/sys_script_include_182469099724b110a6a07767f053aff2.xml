@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.ProcessEvaluatorErrors</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Turns all Evaluator errors (which are logged as warnings by the platform) into real errors.</description>
+        <name>ProcessEvaluatorErrors</name>
+        <script><![CDATA[function ProcessEvaluatorErrors(nLimit)
+{
+	nLimit = GetIntegerValue(nLimit);
+	if (nLimit < 0)
+	{
+		nLimit = 0;
+	}
+	var nRows = RunScriptInGlobalScope(
+		"var grLog = new GlideRecord('syslog');"
+		+"grLog.addQuery('source','=','Evaluator');"
+		+"grLog.addQuery('level','=','1');"
+		+"grLog.orderByDesc('sys_created_on');"
+		+"if (param1 > 0)"
+		+"{"
+		+"   grLog.setLimit(param1);"
+		+"}"
+		+"grLog.query();"
+		+"result = grLog.getRowCount();"
+		+"while(grLog.next())"
+		+"{"
+		+"   grLog.setValue('level','2');"
+		+"   grLog.update();"
+		+"}",
+		nLimit
+	);
+	return nRows;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-08-07 14:41:22</sys_created_on>
+        <sys_id>182469099724b110a6a07767f053aff2</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>ProcessEvaluatorErrors</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_182469099724b110a6a07767f053aff2</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-08-07 14:52:25</sys_updated_on>
+    </sys_script_include>
+</record_update>

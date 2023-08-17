@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_action">
     <sys_ui_action action="INSERT_OR_UPDATE">
-        <action_name/>
+        <action_name>find_sys_id</action_name>
         <active>true</active>
         <client>true</client>
         <client_script_v2><![CDATA[function onClick(g_form) {
@@ -28,9 +28,9 @@
         <list_style>unstyled</list_style>
         <messages/>
         <name>Find Sys ID</name>
-        <onclick>FindSysId()</onclick>
+        <onclick>onClickFindSysId()</onclick>
         <order>99999</order>
-        <script><![CDATA[function FindSysId()
+        <script><![CDATA[function onClickFindSysId()
 {
 	var strSysId = false;
 	var strTitle = 'DevTools - Find Sys ID';
@@ -92,7 +92,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>fd55755b1b4bb090edf3642aab4bcbe5</sys_id>
-        <sys_mod_count>53</sys_mod_count>
+        <sys_mod_count>55</sys_mod_count>
         <sys_name>Find Sys ID</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -100,7 +100,7 @@
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_action_fd55755b1b4bb090edf3642aab4bcbe5</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-02-22 12:14:05</sys_updated_on>
+        <sys_updated_on>2023-08-12 11:51:23</sys_updated_on>
         <table>global</table>
         <ui11_compatible>true</ui11_compatible>
         <ui16_compatible>true</ui16_compatible>
