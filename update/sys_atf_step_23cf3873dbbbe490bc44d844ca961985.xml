@@ -7,21 +7,20 @@
         <inputs/>
         <mugshots_cache_json/>
         <notes/>
-        <order>3</order>
-        <snapshot/>
+        <order>1</order>
         <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
         <sys_class_name>sys_atf_step</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-05-05 09:34:07</sys_created_on>
         <sys_id>23cf3873dbbbe490bc44d844ca961985</sys_id>
-        <sys_mod_count>16</sys_mod_count>
+        <sys_mod_count>25</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_23cf3873dbbbe490bc44d844ca961985</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-10-18 14:16:31</sys_updated_on>
+        <sys_updated_on>2023-09-02 11:12:55</sys_updated_on>
         <table/>
         <test display_value="DevTools - GetRecord">ec7f3473dbbbe490bc44d844ca96199c</test>
         <timeout/>
@@ -36,9 +35,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-05-05 09:34:07</sys_created_on>
         <sys_id>63308573dbbbe490bc44d844ca961921</sys_id>
-        <sys_mod_count>14</sys_mod_count>
+        <sys_mod_count>19</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-10-18 14:16:31</sys_updated_on>
+        <sys_updated_on>2023-09-02 11:12:55</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -47,13 +46,27 @@
 &#13;
 	test.TestCase_GetRecord('','',false,false);&#13;
 	test.TestCase_GetRecord('x_snc_devtools_test','',false,false);&#13;
-	test.TestCase_GetRecord('',GetRecordFromTestStep('2f9fb473dbbbe490bc44d844ca9619a2'),false,false);&#13;
-	test.TestCase_GetRecord('x_snc_devtools_test',GetRecordFromTestStep('2f9fb473dbbbe490bc44d844ca9619a2'),false,true);&#13;
+	&#13;
+	var grTest = new GlideRecord('x_snc_devtools_test');&#13;
+	grTest.initialize();&#13;
+	grTest.name = 'ATF_DEVTOOLS_ITEM_1';&#13;
+	grTest.value = 'Hello World';&#13;
+	var strTestSysId = grTest.insert();&#13;
+	&#13;
+	test.TestCase_GetRecord('',strTestSysId,false,false);&#13;
+	test.TestCase_GetRecord('x_snc_devtools_test',strTestSysId,false,true);&#13;
+	test.TestCase_GetRecord('x_snc_devtools_test',grTest,false,true);&#13;
 	&#13;
 	// sys_export_set_run does not allow cross scope access&#13;
 	// But even if we do NOT allow cross scope record loading, GetRecord returns the record. Really strange...&#13;
 	//TestCase_GetRecord('sys_export_set_run',GetRecordFromTestStep('2e9442811bcb7450edf3642aab4bcbf7'),true,false);&#13;
-	test.TestCase_GetRecord('sys_export_set_run',GetRecordFromTestStep('2e9442811bcb7450edf3642aab4bcbf7'),false,true);&#13;
+	&#13;
+	var grExportSetRun = new GlideRecord('sys_export_set_run');&#13;
+	grExportSetRun.initialize();&#13;
+	grExportSetRun.state = 'cancelled';&#13;
+	var strExportSetRunSysId = GlideRecordInsert(grExportSetRun);	&#13;
+	&#13;
+	test.TestCase_GetRecord('sys_export_set_run',strExportSetRunSysId,false,true);&#13;
 		&#13;
 	test.TestCase_GetRecord('sys_scope','global',false,true);&#13;
 	test.TestCase_GetRecord('sys_scope','ebe42450739b13005754660c4cf6a7b1',false,true); // Incident ATF Tests&#13;
