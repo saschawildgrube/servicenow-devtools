@@ -208,6 +208,7 @@ function DevToolsGetFormatConfig(grRecord)
 	
 	<h3>1.67.0 - 2023-TODO</h3>
 	<ol>
+		<li>Added UI Script GetInstanceNewRecordUri().</li>
 		<li>GetRecord() now also accepts a GlideRecord object as the second parameter. If the GlideRecord object represents a record in the given table, the same GlideRecord object is returned.</li>
 		<li>Fixed a defect in IsValidUrl() which led to some urls not being recgnized as valif (e.g. "https://www.example.com/path?").</li>
 		<li>Fixed a defect in TestAPI::TestCase_GetValue(). The 6th parameter was not forwarded to the TestCase function correctly. This has been fixed. Thanks to https://github.com/jessems/ for spotting this.</li>
@@ -1428,13 +1429,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1310</sys_mod_count>
+        <sys_mod_count>1311</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-09-02 11:08:32</sys_updated_on>
+        <sys_updated_on>2023-09-02 18:46:35</sys_updated_on>
     </sys_ui_page>
 </record_update>
