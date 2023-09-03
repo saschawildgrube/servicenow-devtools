@@ -8,20 +8,19 @@
         <mugshots_cache_json/>
         <notes/>
         <order>1</order>
-        <snapshot/>
         <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
         <sys_class_name>sys_atf_step</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-01-04 11:46:54</sys_created_on>
         <sys_id>85dea1b71b88e1905b76777d8b4bcb04</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_85dea1b71b88e1905b76777d8b4bcb04</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-01-04 11:59:36</sys_updated_on>
+        <sys_updated_on>2023-08-19 21:11:52</sys_updated_on>
         <table/>
         <test display_value="DevTools - IsValidUrl">85ceed771b88e1905b76777d8b4bcbbc</test>
         <timeout/>
@@ -50,9 +49,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-01-04 11:46:54</sys_created_on>
         <sys_id>52de61b71b88e1905b76777d8b4bcb8b</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-01-04 11:59:36</sys_updated_on>
+        <sys_updated_on>2023-08-19 21:11:52</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -104,6 +103,7 @@
 	TestCase_IsValidUrl('https://www.amazon.de/Game-Penetrating-Secret-Society-Artists/dp/0061240168/ref=sr_1_6?ie=UTF8&amp;qid=1473444983&amp;sr=8-6&amp;keywords=the+game',true);&#13;
 	TestCase_IsValidUrl('https://analytics.google.com/analytics/web/#embed/report-home/a7THIS46IS10A79TESTp114482491/',true);&#13;
 	TestCase_IsValidUrl('https://store.servicenow.com/sn_appstore_store.do#!/store/application/f13e0cce0fabaa003e0b87ece1050ec3/2.0.0?referer=%2Fstore%2Fsearch%3Flistingtype%3Dallintegrations%25253Bancillary_app%25253Bcertified_apps%25253Bcontent%25253Bindustry_solution%25253Boem%25253Butility%26q%3Dfile&amp;sl=sh',true);&#13;
+	TestCase_IsValidUrl('https://wildgrubetokyo.service-now.com/x_snc_parcel_scan.do?',true);&#13;
 &#13;
 &#13;
 	TestCase_IsValidUrl('https://groups.google.com/a/test/forum/#managemembers/hello-world/members/active',true);&#13;
