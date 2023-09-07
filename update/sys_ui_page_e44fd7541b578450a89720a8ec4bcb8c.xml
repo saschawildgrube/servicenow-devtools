@@ -210,6 +210,7 @@ function DevToolsGetFormatConfig(grRecord)
 	<h3>1.68.0 - 2023-TODO</h3>
 	<ol>
 		<li>Added function GetRecentEvaluatorErrors().</li>
+		<li>Added business rules to display recent evaluator errors on tables sys_metadata, sys_app, task, scan_result and sys_atf_test_result.</li>  
 	</ol>	
 	
 	<h3>1.67.0 - 2023-09-03</h3>
@@ -1443,13 +1444,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1328</sys_mod_count>
+        <sys_mod_count>1329</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-09-07 14:22:56</sys_updated_on>
+        <sys_updated_on>2023-09-07 14:49:48</sys_updated_on>
     </sys_ui_page>
 </record_update>
