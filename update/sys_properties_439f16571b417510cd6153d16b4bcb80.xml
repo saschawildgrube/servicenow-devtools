@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties">
+    <sys_properties action="INSERT_OR_UPDATE">
+        <choices/>
+        <description>Controls if recent evaluator errors should be displayed on every screen. The value is the time span in minutes that should be considered. If the value is set to 5 a message will appear if an evaluator error has been logged within the last 5 minutes. If the value is 0, no message will be displayed.</description>
+        <ignore_cache>true</ignore_cache>
+        <is_private>false</is_private>
+        <name>x_snc_devtools.ui.show_evaluator_errors.minutes</name>
+        <read_roles/>
+        <suffix>ui.show_evaluator_errors.minutes</suffix>
+        <sys_class_name>sys_properties</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-09-08 15:19:30</sys_created_on>
+        <sys_id>439f16571b417510cd6153d16b4bcb80</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>x_snc_devtools.ui.show_evaluator_errors.minutes</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_properties_439f16571b417510cd6153d16b4bcb80</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-09-08 15:35:05</sys_updated_on>
+        <type>integer</type>
+        <value>5</value>
+        <write_roles/>
+    </sys_properties>
+    <sys_translated_text action="delete_multiple" query="documentkey=439f16571b417510cd6153d16b4bcb80"/>
+</record_update>
