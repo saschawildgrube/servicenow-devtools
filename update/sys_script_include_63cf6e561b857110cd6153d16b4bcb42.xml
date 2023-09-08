@@ -20,15 +20,11 @@
 		return;
 	}
 	
-	var transactionCache = new TransactionCacheAPI('DEVTOOLS');
-	var strRunningAlready = transactionCache.GetItem('show_eval_errors_running');
-	if (strRunningAlready == 'true')
+	var strCurrentUrl = GetCurrentUrl();
+	if (strCurrentUrl == GetInstanceURL())
 	{
 		return;
 	}
-	transactionCache.SetItem('show_eval_errors_running','true');	
-	
-	var strCurrentUrl = GetCurrentUrl();
 	if (strCurrentUrl.indexOf('angular.do') != -1)
 	{
 		return;
@@ -49,20 +45,30 @@
 	{
 		return;
 	}	
-	if (strCurrentUrl.indexOf('sysparm_transaction_scope=') != -1)
+	/*if (strCurrentUrl.indexOf('sysparm_transaction_scope=') != -1)
 	{
 		return;
-	}	
+	}*/	
 	if (strCurrentUrl.indexOf('/ds?') != -1)
 	{
 		return;
-	}		
+	}
 	
 	var strOperation = BusinessRuleGetOperation(current);
 	if (strOperation != 'query')
 	{
 		return;
 	}
+	
+	var transactionCache = new TransactionCacheAPI('DEVTOOLS');
+	var strRunningAlready = transactionCache.GetItem('show_eval_errors_running');
+	if (strRunningAlready == 'true')
+	{
+		return;
+	}
+	transactionCache.SetItem('show_eval_errors_running','true');		
+	
+	//gs.addInfoMessage(strCurrentUrl);
 	
 	var aErrors = GetRecentEvaluatorErrors(nMinutes);
 	//var aErrors = [];
@@ -86,17 +92,10 @@
 		strMessage += '<br/>';
 		strMessage += HtmlRenderLink(GetInstanceURL()+strEvaluatorLogUri,'Please review the evaluator error log',true);
 		
-		// To avoid the case where sys_metadata is again queries DURING this function
-		//var strDisplayedAlready = transactionCache.GetItem('show_eval_errors_displayed');
-		/*var strRunningAlready = transactionCache.GetItem('show_eval_errors_running');
-		if (strRunningAlready == 'true' )
-		{
-			return;
-		}*/
-		
+		//strMessage += '<br/>';
+		//strMessage += strCurrentUrl; 
+
 		gs.addErrorMessage(strMessage);
-		//transactionCache.SetItem('show_eval_errors_running','true');
-		//transactionCache.SetItem('show_eval_errors_displayed','true');
 	}
 
 }]]></script>
@@ -104,13 +103,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-09-05 13:55:22</sys_created_on>
         <sys_id>63cf6e561b857110cd6153d16b4bcb42</sys_id>
-        <sys_mod_count>59</sys_mod_count>
+        <sys_mod_count>72</sys_mod_count>
         <sys_name>ExecuteBusinessRuleShowRecentEvaluatorErrors</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_63cf6e561b857110cd6153d16b4bcb42</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-09-08 15:30:53</sys_updated_on>
+        <sys_updated_on>2023-09-08 18:59:35</sys_updated_on>
     </sys_script_include>
 </record_update>
