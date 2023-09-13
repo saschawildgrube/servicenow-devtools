@@ -10,6 +10,10 @@
         <script><![CDATA[function IsPrimaryRequestUrl(strUrl)
 {
 	strUrl = GetStringValue(strUrl);
+	if (IsValidUrl(strUrl) == false)
+	{
+		return false;
+	}
 	if (strUrl == GetInstanceURL())
 	{
 		return false;
@@ -48,13 +52,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-09-10 18:06:04</sys_created_on>
         <sys_id>42c815801bd53110cd6153d16b4bcb6d</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_name>IsPrimaryRequestUrl</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_42c815801bd53110cd6153d16b4bcb6d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-09-13 12:43:19</sys_updated_on>
+        <sys_updated_on>2023-09-13 14:03:16</sys_updated_on>
     </sys_script_include>
 </record_update>
