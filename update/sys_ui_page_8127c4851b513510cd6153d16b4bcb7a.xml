@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script/>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_snc_devtools_evaluator_log.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+
+	<g2:no_escape>$[
+		x_snc_devtools.HtmlRenderPageEvaluatorLog();
+	]</g2:no_escape>	
+	
+</j:jelly>]]></html>
+        <name>evaluator_log</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-09-13 14:41:00</sys_created_on>
+        <sys_id>8127c4851b513510cd6153d16b4bcb7a</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>evaluator_log</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_ui_page_8127c4851b513510cd6153d16b4bcb7a</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-09-13 14:44:13</sys_updated_on>
+    </sys_ui_page>
+</record_update>

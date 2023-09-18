@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.GetEvaluatorErrorExceptionPatterns</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns patterns found in evaluator errors, which should be ignored - as they are produced by OOTB components.</description>
+        <name>GetEvaluatorErrorExceptionPatterns</name>
+        <script><![CDATA[function GetEvaluatorErrorExceptionPatterns()
+{
+	var aPatterns = [
+		'ExecuteBusinessRuleShowRecentEvaluatorErrors', // this is to avoid the warning during DevTools installation ;)
+		'"referrerpolicy" is not defined',
+		'devstudio_config.xml',
+		'"RP" is not defined',
+		'"xml_baseline_string" is not defined.',
+		'"ChangeRequestDiscovery" is not defined.',
+		'GlideRecord.query() - invalid table name: itom_lu_discovery_sources',
+		'sys_script.293eb723d7232100b6bddb0c82520320.script : Line(35) column(0)',
+		'Caused by error in sys_script_include.708da435db831700dd14596e5e96194e.script at line 682',
+		'sys_script_include.4b28d4fcc78533003725756d5ec2600c.script : Line(16) column(0)'
+	];
+	return aPatterns;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-09-13 12:47:41</sys_created_on>
+        <sys_id>813dabbc1bddf110cd6153d16b4bcb3a</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>GetEvaluatorErrorExceptionPatterns</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_813dabbc1bddf110cd6153d16b4bcb3a</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-09-15 12:42:34</sys_updated_on>
+    </sys_script_include>
+</record_update>

@@ -3,47 +3,47 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>sys_created_on</element>
-            <list_id display_value="syslog" element="NULL" name="syslog" parent="NULL" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">c202c4661b5490d0a89720a8ec4bcb0c</list_id>
+            <list_id display_value="syslog" element="NULL" name="syslog" parent="NULL" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">c4a71a9f1b017510cd6153d16b4bcbf8</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>0</position>
             <sum>false</sum>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2020-04-23 11:59:00</sys_created_on>
-            <sys_id>ca02c4661b5490d0a89720a8ec4bcb0d</sys_id>
+            <sys_created_on>2023-09-08 14:42:02</sys_created_on>
+            <sys_id>80a71a9f1b017510cd6153d16b4bcbf9</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2020-04-23 11:59:00</sys_updated_on>
+            <sys_updated_on>2023-09-08 14:42:02</sys_updated_on>
         </sys_ui_list_element>
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>level</element>
-            <list_id display_value="syslog" element="NULL" name="syslog" parent="NULL" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">c202c4661b5490d0a89720a8ec4bcb0c</list_id>
+            <list_id display_value="syslog" element="NULL" name="syslog" parent="NULL" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">c4a71a9f1b017510cd6153d16b4bcbf8</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>1</position>
             <sum>false</sum>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2020-04-23 11:59:00</sys_created_on>
-            <sys_id>9202c4661b5490d0a89720a8ec4bcb0e</sys_id>
+            <sys_created_on>2023-09-08 14:42:02</sys_created_on>
+            <sys_id>04a71a9f1b017510cd6153d16b4bcbf9</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2020-04-23 11:59:00</sys_updated_on>
+            <sys_updated_on>2023-09-08 14:42:02</sys_updated_on>
         </sys_ui_list_element>
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>message</element>
-            <list_id display_value="syslog" element="NULL" name="syslog" parent="NULL" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">c202c4661b5490d0a89720a8ec4bcb0c</list_id>
+            <list_id display_value="syslog" element="NULL" name="syslog" parent="NULL" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">c4a71a9f1b017510cd6153d16b4bcbf8</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>2</position>
             <sum>false</sum>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2020-04-23 11:59:00</sys_created_on>
-            <sys_id>1602c4661b5490d0a89720a8ec4bcb0e</sys_id>
+            <sys_created_on>2023-09-08 14:42:02</sys_created_on>
+            <sys_id>84a71a9f1b017510cd6153d16b4bcbf9</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2020-04-23 11:59:00</sys_updated_on>
+            <sys_updated_on>2023-09-08 14:42:02</sys_updated_on>
         </sys_ui_list_element>
         <sys_ui_list action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
@@ -57,10 +57,10 @@
             <sum>false</sum>
             <sys_class_name>sys_ui_list</sys_class_name>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2020-04-23 11:59:00</sys_created_on>
+            <sys_created_on>2023-09-08 14:42:02</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
-            <sys_id>c202c4661b5490d0a89720a8ec4bcb0c</sys_id>
+            <sys_id>c4a71a9f1b017510cd6153d16b4bcbf8</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_name>syslog</sys_name>
             <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -68,7 +68,7 @@
             <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
             <sys_update_name>sys_ui_list_syslog_devtools</sys_update_name>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2020-04-23 11:59:00</sys_updated_on>
+            <sys_updated_on>2023-09-08 14:42:02</sys_updated_on>
             <sys_user/>
             <view display_value="DevTools" name="devtools">75e08353dbbf0450ba15a35305961913</view>
             <view_name/>

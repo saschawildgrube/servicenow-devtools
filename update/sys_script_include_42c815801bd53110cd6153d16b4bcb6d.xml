@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.IsPrimaryRequestUrl</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns true if the given url is most likely related to the primary request of a page load. If there is an indicator of a secondary request (that is a request that is triggered by the inital page load) the function returns false.</description>
+        <name>IsPrimaryRequestUrl</name>
+        <script><![CDATA[function IsPrimaryRequestUrl(strUrl)
+{
+	strUrl = GetStringValue(strUrl);
+	if (IsValidUrl(strUrl) == false)
+	{
+		return false;
+	}
+	if (strUrl == GetInstanceURL())
+	{
+		return false;
+	}
+	if (strUrl.length > 500)
+	{
+		return false;
+	}
+	var aPatterns = [
+		'angular.do',
+		'xmlhttp.do',
+		'page_timing',
+		'get?',
+		'/api/',
+		'polarisberg_theme_variables.do?',
+		'/ds?',
+		'$uxapp.do',
+		'sn_devstudio_/v1/',
+		'get_claimed_files',
+		'/slushbucket.do?',
+		'/popup.do?',
+		'?isFormPage=true',
+		'$createnow_ambclient_iframe.do',
+		'$uxappimmutables.do?',
+		'x_snc_devtools_evaluator_log'
+	];
+	for (var nPattern = 0; nPattern < aPatterns.length; nPattern++)
+	{
+		if (strUrl.indexOf(aPatterns[nPattern]) != -1)
+		{
+			return false;
+		}
+	}
+	return true;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-09-10 18:06:04</sys_created_on>
+        <sys_id>42c815801bd53110cd6153d16b4bcb6d</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>IsPrimaryRequestUrl</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_42c815801bd53110cd6153d16b4bcb6d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-09-15 12:13:04</sys_updated_on>
+    </sys_script_include>
+</record_update>
