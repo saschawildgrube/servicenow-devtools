@@ -10,23 +10,23 @@
         <script><![CDATA[function IsValidUrl(strUrl)
 {
 
-	function GetRegExURL()
+	function GetRegExUrl()
 	{
-		var strIPregex = '\\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b';
+		var strRegexIPv4 = '\\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b';
 
-		var strURLregex =
+		var strRegexUrl =
 			'((https?|ftp)\\:\\/\\/)?' // SCHEME 
 			+ '([a-z0-9+!*(),;?&=$_.-]+(\\:[a-z0-9+!*(),;?&=$_.-]+)?@)?' // USER and PASSWORD
-			+ '(([a-z0-9-.]*)\\.([a-z]{2,20})|'+strIPregex+'|localhost)' // HOST with TLD or IP or "localhost"
+			+ '(([a-z0-9-.]*)\\.([a-z]{2,20})|'+strRegexIPv4+'|localhost)' // HOST with TLD or IP or "localhost"
 			+ '(\\:[0-9]{2,5})?' // PORT
-			+ '(\\/([a-z0-9!$%\\/()=@+~,:\\-_]\\.?)+)*\\/?' // PATH allowing double slashes and commas, equal signs...
-			+ '(\\?([a-z\\:+&$_.-][a-z0-9;:@&%=+\\/$_.\\?\\{\\}\\-]*)?)?' // GET Query      
+			+ '(\\/([a-z0-9!$%\\/\\(\\)=@+~,:\\-_]\\.?)+)*\\/?' // PATH allowing double slashes and commas, equal signs...
+			+ '(\\?([a-z\\:+&$_.-][a-z0-9;:@&%=+\\/\\(\\)$_.\\?\\{\\}\\-]*)?)?' // GET Query      
 			+ '(#([a-z!_\\.\\-\\/][a-z0-9:&%!+\\/=$_\\.\\?\\-]*)?)?' // ANCHOR 
 			;
 		
-		strURLregex = '^'+strURLregex+'$';
+		strRegexUrl = '^'+strRegexUrl+'$';
 		
-		return strURLregex;
+		return strRegexUrl;
 	}
 	
 	strUrl = GetStringValue(strUrl);
@@ -45,7 +45,7 @@
 	}
 		
 	strUrl = strUrl.toLowerCase(); 
-	if (StringCheckRegEx(strUrl,GetRegExURL()) == false) 
+	if (StringCheckRegEx(strUrl,GetRegExUrl()) == false) 
 	{ 
 		return false; 
 	} 
@@ -57,13 +57,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-01-04 11:46:09</sys_created_on>
         <sys_id>2b7ea9771b88e1905b76777d8b4bcbc4</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_name>IsValidUrl</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_2b7ea9771b88e1905b76777d8b4bcbc4</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-08-19 21:18:34</sys_updated_on>
+        <sys_updated_on>2023-09-21 07:20:21</sys_updated_on>
     </sys_script_include>
 </record_update>
