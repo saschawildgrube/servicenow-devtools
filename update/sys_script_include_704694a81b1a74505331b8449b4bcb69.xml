@@ -267,6 +267,27 @@ InstallerAPI.prototype = {
 	SetHomePage: function(strUri)
 	{
 		this.SetProperty('glide.login.home',strUri);
+
+		var strUrl = GetInstanceURL() + strUri;
+		
+		this.RecordInsertOrUpdate(
+			'Set home page',
+			'sys_ui_page',
+			{
+				name: 'home',
+				sys_scope: 'global'
+			},
+			{
+				name: 'home',
+				html:
+					'<?xml version="1.0" encoding="utf-8" ?>\n'+
+					'<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">\n'+
+					'\t<g2:no_escape>$[\n'+
+					'\t\tx_snc_devtools.HtmlRenderRedirect('+strUrl+');\n'+
+					'\t]</g2:no_escape>\n'+	
+					'</j:jelly>\n'
+			});		
+		
 	},
 	
 	SetTableAttribute: function(strTable,strAttributeName,strAttributeValue)
@@ -620,13 +641,13 @@ InstallerAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-08-27 10:49:10</sys_created_on>
         <sys_id>704694a81b1a74505331b8449b4bcb69</sys_id>
-        <sys_mod_count>89</sys_mod_count>
+        <sys_mod_count>91</sys_mod_count>
         <sys_name>InstallerAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>protected</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_704694a81b1a74505331b8449b4bcb69</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-09-20 16:36:52</sys_updated_on>
+        <sys_updated_on>2023-09-23 12:52:23</sys_updated_on>
     </sys_script_include>
 </record_update>
