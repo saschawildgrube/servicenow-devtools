@@ -14,11 +14,17 @@
 		return false;
 	}
 	
+	var strStatusSummary = 'ok';	
+	
 	var aPackages = [];
 		
 	function ResolveDependencyTree(currentpackage)
 	{
 		var currentpackage = Clone(currentpackage);
+		if (GetStringValue(currentpackage['dependency_status']) == '')
+		{
+			currentpackage['dependency_status'] = 'ok';
+		}
 		
 		var aDependencies = GetArrayValue(GetValue(currentpackage,'_dependencies'));
 		for (var nDependency = 0; nDependency < aDependencies.length; nDependency++)
@@ -41,16 +47,37 @@
 					
 					if (strMinimalCommonVersion == false)
 					{
-						aPackages[nPackage]['compatible_versions'] = '';
-						aPackages[nPackage]['dependency_status'] = 'conflicting_versions';
+						if (aPackages[nPackage]['dependency_status'] == 'missing')
+						{
+							aPackages[nPackage] = Clone(currentpackage);
+						}
+						else
+						{
+							aPackages[nPackage]['compatible_versions'] = '';
+							strStatusSummary = 'conflicting_versions';
+							aPackages[nPackage]['dependency_status'] = strStatusSummary;
+						}
 					}
 					else
 					{
-						aPackages[nPackage]['compatible_versions'] = strMinimalCommonVersion;
-						if (IsVersionCompatible(currentpackage['version'],strMinimalCommonVersion) == false)
+						/*
+						if (IsVersionCompatible(currentpackage['version'],strMinimalCommonVersion) == false 
+						   && IsVersionCompatible(strMinimalCommonVersion,currentpackage['version']) == false)
 						{
 							aPackages[nPackage]['dependency_status'] = 'incompatible_version';
 						}
+						else
+						{*/
+							aPackages[nPackage]['compatible_versions'] = strMinimalCommonVersion;
+							if (x_snc_devtools.CompareVersion(aPackages[nPackage]['version'],currentpackage['version']) < 0)
+							{
+								aPackages[nPackage] = Clone(currentpackage);
+								if (currentpackage['dependency_status'] != 'ok')
+								{
+									strStatusSummary = currentpackage['dependency_status'];
+								}					
+							}
+						//}
 					}
 					
 				}
@@ -64,10 +91,22 @@
 		if (bExists == false)
 		{
 			aPackages.push(currentpackage);
+			if (currentpackage['dependency_status'] != 'ok')
+			{
+				if (CompareDependecyStatus(strStatusSummary,currentpackage['dependency_status']) < 0)
+				{
+					strStatusSummary = currentpackage['dependency_status'];
+				}
+			}					
 		}
 	}
 	
 	ResolveDependencyTree(dependencytree);
+	
+	if (aPackages.length > 0)
+	{
+		aPackages[aPackages.length-1]['dependency_status_summary'] = strStatusSummary;
+	}	
 	
 	return aPackages;	
 }]]></script>
@@ -75,13 +114,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-06-09 16:37:44</sys_created_on>
         <sys_id>9929460e1b1b2510cd6153d16b4bcb5c</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>19</sys_mod_count>
         <sys_name>GetDependencyListFromTree</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_9929460e1b1b2510cd6153d16b4bcb5c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-08-07 12:25:43</sys_updated_on>
+        <sys_updated_on>2023-09-25 15:09:29</sys_updated_on>
     </sys_script_include>
 </record_update>
