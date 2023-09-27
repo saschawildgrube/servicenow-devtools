@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.CompareDependencyStatus</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns -1 if the first dependency status is less severe than the second, returns 0 if the two dependency status are equal, returns 1 if the first dependency status is more severe than the second.</description>
+        <name>CompareDependencyStatus</name>
+        <script><![CDATA[function CompareDependencyStatus(strStatus1, strStatus2)
+{
+	strStatus1 = GetStringValue(strStatus1);
+	strStatus2 = GetStringValue(strStatus2);
+	
+	if (strStatus1 == strStatus2)
+	{
+		return 0;
+	}
+	
+	var aStatus = [
+		'ok',
+		'conflicting_versions',
+		'missing',
+		'circular'
+	];
+	
+	var nStatus1 = null;
+	for (var nStatus = 0; nStatus < aStatus.length; nStatus++)
+	{
+		if (aStatus[nStatus] == strStatus1)
+		{
+			nStatus1 = nStatus;
+		}
+	}
+	if (nStatus1 === null)
+	{
+		return -1;
+	}
+	
+	var nStatus2 = null;
+	for (var nStatus = 0; nStatus < aStatus.length; nStatus++)
+	{
+		if (aStatus[nStatus] == strStatus2)
+		{
+			nStatus2 = nStatus;
+		}
+	}
+	if (nStatus2 === null)
+	{
+		return 1;
+	}
+	
+	if (nStatus1 - nStatus2 < 0)
+	{
+		return -1;
+	}
+	return 1;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-09-25 15:06:00</sys_created_on>
+        <sys_id>c520ce341bedf150cd6153d16b4bcbb7</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>CompareDependencyStatus</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_c520ce341bedf150cd6153d16b4bcbb7</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-09-25 15:26:07</sys_updated_on>
+    </sys_script_include>
+</record_update>

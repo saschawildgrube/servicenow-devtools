@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-01-04 11:46:54</sys_created_on>
         <sys_id>85dea1b71b88e1905b76777d8b4bcb04</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_85dea1b71b88e1905b76777d8b4bcb04</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-08-19 21:11:52</sys_updated_on>
+        <sys_updated_on>2023-09-21 07:20:57</sys_updated_on>
         <table/>
         <test display_value="DevTools - IsValidUrl">85ceed771b88e1905b76777d8b4bcbbc</test>
         <timeout/>
@@ -49,9 +49,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-01-04 11:46:54</sys_created_on>
         <sys_id>52de61b71b88e1905b76777d8b4bcb8b</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-08-19 21:11:52</sys_updated_on>
+        <sys_updated_on>2023-09-21 07:20:57</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -129,6 +129,8 @@
 	TestCase_IsValidUrl('https://www.example.com/#/?:hello=world',true);&#13;
 	TestCase_IsValidUrl('https://www.example.com/?:hello=world',true);&#13;
 	TestCase_IsValidUrl('https://www.example.com/:path:/',true);&#13;
+	&#13;
+	TestCase_IsValidUrl('https://wildgrubetokyo.service-now.com/nav_to.do?uri=%2Fsyslog_list.do%3F%26sysparm_query%3Dsys_created_on%253Ejavascript%253Ags.beginningOfToday()%255Esource%253DEvaluator%255EmessageNOT%2520LIKEShowRecentEvaluatorErrors%255EmessageNOT%2520LIKE%2522referrerpolicy%2522%2520is%2520not%2520defined%255EmessageNOT%2520LIKEdevstudio_config.xml%255EmessageNOT%2520LIKE%2522RP%2522%2520is%2520not%2520defined%255EmessageNOT%2520LIKE%2522xml_baseline_string%2522%2520is%2520not%2520defined.%255EmessageNOT%2520LIKE%2522ChangeRequestDiscovery%2522%2520is%2520not%2520defined.%255EmessageNOT%2520LIKEGlideRecord.query()%2520-%2520invalid%2520table%2520name%253A%2520itom_lu_discovery_sources%255EmessageNOT%2520LIKE293eb723d7232100b6bddb0c82520320%255EmessageNOT%2520LIKE708da435db831700dd14596e5e96194e%255EmessageNOT%2520LIKE4b28d4fcc78533003725756d5ec2600c%255EmessageNOT%2520LIKElist2_header_search_cell.xml%255EmessageNOT%2520LIKEcom.glideapp.report%255EORDERBYDESCsys_created_on',true);&#13;
 &#13;
 &#13;
 	TestCase_IsValidUrl('',false);&#13;

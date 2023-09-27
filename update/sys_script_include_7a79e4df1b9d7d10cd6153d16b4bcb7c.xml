@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.HtmlRenderRedirect</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Renders a script into an html output that causes a page redirect to the given url. </description>
+        <name>HtmlRenderRedirect</name>
+        <script><![CDATA[function HtmlRenderRedirect(strUrl)
+{
+	strUrl = GetStringValue(strUrl);
+	if (IsValidUrl(strUrl) == false)
+	{
+		return '';
+	}
+	var strScript = 'top.window.location = "'+strUrl+'";';
+	return HtmlRenderScript(strScript);
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-09-20 16:57:10</sys_created_on>
+        <sys_id>7a79e4df1b9d7d10cd6153d16b4bcb7c</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>HtmlRenderRedirect</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_7a79e4df1b9d7d10cd6153d16b4bcb7c</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-09-20 16:59:28</sys_updated_on>
+    </sys_script_include>
+</record_update>
