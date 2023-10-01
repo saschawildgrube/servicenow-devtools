@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-04-30 13:14:43</sys_created_on>
         <sys_id>0e5bd78d1be62110cd6153d16b4bcbd5</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_0e5bd78d1be62110cd6153d16b4bcbd5</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-04-30 13:19:59</sys_updated_on>
+        <sys_updated_on>2023-10-01 16:11:06</sys_updated_on>
         <table/>
         <test display_value="DevTools - MakeUserName">d84b178d1be62110cd6153d16b4bcbbb</test>
         <timeout/>
@@ -35,9 +35,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-04-30 13:14:43</sys_created_on>
         <sys_id>c46b1b8d1be62110cd6153d16b4bcb0e</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-04-30 13:19:59</sys_updated_on>
+        <sys_updated_on>2023-10-01 16:11:06</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -69,6 +69,15 @@
 	TestCase_MakeUserName(['Jane',' ','Doe'],'jane.doe');&#13;
 	TestCase_MakeUserName([' Jane',' ','Doe '],'jane.doe');&#13;
 	TestCase_MakeUserName(['    ',' Jane',' ','Doe '],'jane.doe');&#13;
+	TestCase_MakeUserName(['Jane','Miller-Doe'],'jane.millerdoe');&#13;
+&#13;
+	TestCase_MakeUserName(['TEST','SomePersona'],'test.somepersona');&#13;
+	TestCase_MakeUserName(['TEST','SomeApp SomeRole'],'test.someapp.somerole');&#13;
+	TestCase_MakeUserName(['test','SomeApp SomeRole'],'test.someapp.somerole');&#13;
+&#13;
+	TestCase_MakeUserName(['TECHNICAL','SomeCapability'],'technical.somecapability');&#13;
+	TestCase_MakeUserName(['technical','SomeCapability'],'technical.somecapability');&#13;
+	TestCase_MakeUserName(['technical','SomeCapability SomethingSpecific'],'technical.somecapability.somethingspecific');&#13;
 	&#13;
 	return test.GetResult();&#13;
 	&#13;
