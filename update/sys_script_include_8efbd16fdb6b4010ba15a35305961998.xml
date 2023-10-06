@@ -7,7 +7,7 @@
         <client_callable>false</client_callable>
         <description>Returns the value of an object that is (or is not) part of an recursive object without generating errors if the object does not exist.</description>
         <name>GetValue</name>
-        <script><![CDATA[function GetValue(vObject, vKey1, vKey2, vKey3, vKey4, vKey5, vKey6)
+        <script><![CDATA[function GetValue(vObject, vKey1, vKey2, vKey3, vKey4, vKey5, vKey6, vKey7, vKey8, vKey9, vKey10)
 {
 	if (vObject == undefined)
 	{
@@ -34,7 +34,12 @@
 			GetValue(vKey1,2),
 			GetValue(vKey1,3),
 			GetValue(vKey1,4),
-			GetValue(vKey1,5));
+			GetValue(vKey1,5),
+			GetValue(vKey1,6),
+			GetValue(vKey1,7),
+			GetValue(vKey1,8),
+			GetValue(vKey1,9)
+		);
 	}
 	if (vKey2 == undefined || vKey2 == null)
 	{
@@ -49,19 +54,19 @@
 		}
 		return vValue;
 	}
-	return GetValue(vObject[vKey1],vKey2,vKey3,vKey4,vKey5,vKey6);
+	return GetValue(vObject[vKey1],vKey2,vKey3,vKey4,vKey5,vKey6,vKey7,vKey8,vKey9,vKey10);
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-03-20 14:22:41</sys_created_on>
         <sys_id>8efbd16fdb6b4010ba15a35305961998</sys_id>
-        <sys_mod_count>9</sys_mod_count>
+        <sys_mod_count>11</sys_mod_count>
         <sys_name>GetValue</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_8efbd16fdb6b4010ba15a35305961998</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-03-06 14:26:34</sys_updated_on>
+        <sys_updated_on>2023-10-03 17:57:09</sys_updated_on>
     </sys_script_include>
 </record_update>

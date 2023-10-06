@@ -10,7 +10,7 @@
 <div style="padding-left: 20px;">
 <span style="visibility: hidden;">_CUT_HERE_</span>
 	<g2:no_escape>$[
-		var docapi = new DocumentationAPI('d689f6901bd38450a89720a8ec4bcbfd');
+		var docapi = new DocumentationAPI('x_snc_devtools');
 		docapi.RenderHeader();
 	]</g2:no_escape>
 	
@@ -32,7 +32,7 @@
 	<ul>
 		<g2:no_escape>$[
 			docapi.RenderSystemRequirements(
-				'Tokyo,Utah',
+				'Utah,Vancouver',
 				true,
 				AppGetDependencies());
 		]</g2:no_escape>	
@@ -206,6 +206,22 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>TODO</li>
 	</ol>
 -->	
+	
+	<h3>1.71.0 - 2023-10-06</h3>
+	<ol>
+		<li>Tokyo is no longer actively supported.</li>
+		<li>DevTools is fully tested with Vancouver.</li>
+		<li>MakeUserName() now considers test and technical users and builds their names according to the naming convention documented in the whitepaper "A mature development and deployment process".</li>
+		<li>UI Script Clone() now also handles arrays.</li>
+		<li>GetValue() and UI script GetValue() now supports 10 parameters.</li>
+		<li>SetValue() and UI script SetValue() now supports 10 parameters.</li>
+		<li>Introduced InstallerAPI::DictionarySetValue() to modify sys_dictionary records.</li> 
+		<li>DocumentationAPI constructor now also accepts sys_app records and scope names (like GetAppRecord()).</li>
+		<li>GetEvaluatorErrorExceptionPatterns() is now accessible to all scopes.</li>
+		<li>Created script macro for GetEvaluatorErrorExceptionPatterns().</li>
+		<li>Added more evaluator log exception patterns in GetEvaluatorErrorExceptionPatterns().</li>
+		<li>Added ATF test for DocumentationAPI.</li>
+	</ol>	
 	
 	<h3>1.70.0 - 2023-09-27</h3>
 	<ol>
@@ -1468,13 +1484,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1355</sys_mod_count>
+        <sys_mod_count>1370</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-09-27 08:40:20</sys_updated_on>
+        <sys_updated_on>2023-10-06 15:18:10</sys_updated_on>
     </sys_ui_page>
 </record_update>

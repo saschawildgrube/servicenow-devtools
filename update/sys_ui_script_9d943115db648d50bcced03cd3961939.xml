@@ -5,7 +5,7 @@
         <global>true</global>
         <ignore_in_now_experience>false</ignore_in_now_experience>
         <name>x_snc_devtools.GetValue</name>
-        <script><![CDATA[function GetValue(vObject, vKey1, vKey2, vKey3, vKey4, vKey5, vKey6)
+        <script><![CDATA[function GetValue(vObject, vKey1, vKey2, vKey3, vKey4, vKey5, vKey6, vKey7, vKey8, vKey9, vKey10)
 {
 	if (vObject == undefined)
 	{
@@ -32,7 +32,12 @@
 			GetValue(vKey1,2),
 			GetValue(vKey1,3),
 			GetValue(vKey1,4),
-			GetValue(vKey1,5));
+			GetValue(vKey1,5),
+			GetValue(vKey1,6),
+			GetValue(vKey1,7),
+			GetValue(vKey1,8),
+			GetValue(vKey1,9)
+			);
 	}
 	if (vKey2 == undefined || vKey2 == null)
 	{
@@ -43,21 +48,21 @@
 		var vValue = vObject[vKey1];
 		return vValue;
 	}
-	return GetValue(vObject[vKey1],vKey2,vKey3,vKey4,vKey5,vKey6);
+	return GetValue(vObject[vKey1],vKey2,vKey3,vKey4,vKey5,vKey6,vKey7,vKey8,vKey9,vKey10);
 }]]></script>
         <script_name>GetValue</script_name>
         <sys_class_name>sys_ui_script</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-12-19 21:56:23</sys_created_on>
         <sys_id>9d943115db648d50bcced03cd3961939</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>x_snc_devtools.GetValue</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_script_9d943115db648d50bcced03cd3961939</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-03-06 14:29:33</sys_updated_on>
+        <sys_updated_on>2023-10-03 17:56:53</sys_updated_on>
         <ui_type>0</ui_type>
         <use_scoped_format>false</use_scoped_format>
     </sys_ui_script>
