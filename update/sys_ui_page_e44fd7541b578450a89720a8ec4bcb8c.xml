@@ -215,6 +215,7 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>UI Script Clone() now also handles arrays.</li>
 		<li>GetValue() and UI script GetValue() now supports 10 parameters.</li>
 		<li>SetValue() and UI script SetValue() now supports 10 parameters.</li>
+		<li>Introduced InstallerAPI::DictionarySetValue() to modify sys_dictionary records.</li> 
 		<li>DocumentationAPI constructor now also accepts sys_app records and scope names (like GetAppRecord()).</li>
 		<li>GetEvaluatorErrorExceptionPatterns() is now accessible to all scopes.</li>
 		<li>Created script macro for GetEvaluatorErrorExceptionPatterns().</li>
@@ -1483,13 +1484,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1368</sys_mod_count>
+        <sys_mod_count>1369</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-10-06 10:15:06</sys_updated_on>
+        <sys_updated_on>2023-10-06 12:19:59</sys_updated_on>
     </sys_ui_page>
 </record_update>
