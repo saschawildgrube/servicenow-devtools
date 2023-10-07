@@ -5,7 +5,8 @@
         <api_name>x_snc_devtools.RecordManageOrder</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>The function managers the order field in a given table. The given Sys ID identifies the record for which a new order value should be set and respected by all other records. The new order value is the new position of the given record. If the new order value is beyond the total number of records in the table, the record will be placed at the end.</description>
+        <description>The function managers the order field in a given table. The given Sys ID identifies the record for which a new order value should be set and respected by all other records. The new order value is the new position of the given record. If the new order value is beyond the total number of records in the table, the record will be placed at the end.&#13;
+The Sys ID and new order parameters are optional. If null, an existing order will be maintained but the order values will be put in an exact sequence, if they are not already.</description>
         <name>RecordManageOrder</name>
         <script><![CDATA[function RecordManageOrder(strTable,strColumn,strSysId,nNewOrder)
 {
@@ -24,7 +25,7 @@
 		return false;
 	}
 	
-	var strSysId = GetStringValue(strSysId);
+	strSysId = GetStringValue(strSysId);
 	if (strSysId != '')
 	{
 		if (IsValidSysId(strSysId) == false)
@@ -54,11 +55,10 @@
 		{
 			grRecords.setValue(strColumn,nNewOrder);
 			GlideRecordUpdate(grRecords,true);
-			//nOrder++;
 		}
 		else
 		{
-			if (GetIntegerValue(grRecords.getValue(strColumn)) == nNewOrder)
+			if (nOrder == nNewOrder && strSysId != '')
 			{
 				nOrder++;
 			}
@@ -74,13 +74,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-10-07 14:28:51</sys_created_on>
         <sys_id>245aef281b71f5106c17fdd49b4bcbc7</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_name>RecordManageOrder</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_245aef281b71f5106c17fdd49b4bcbc7</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-10-07 15:16:39</sys_updated_on>
+        <sys_updated_on>2023-10-07 16:16:39</sys_updated_on>
     </sys_script_include>
 </record_update>
