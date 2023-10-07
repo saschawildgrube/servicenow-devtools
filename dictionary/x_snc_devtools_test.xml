@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
-    <element label="test" max_length="40" name="x_snc_devtools_test" sizeclass="0" text_index="true" type="collection">
+    <element db_object_id="2e7a44251bcaad106c17fdd49b4bcbc1" label="Test" max_length="40" name="x_snc_devtools_test" text_index="true" type="collection">
         <element display="true" label="Name" max_length="40" name="name" type="string"/>
+        <element label="Order" max_length="40" name="order" type="integer"/>
         <element label="Processed" max_length="40" name="processed" type="glide_date_time"/>
         <element label="Value" max_length="40" name="value" type="string"/>
     </element>
