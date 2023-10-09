@@ -8,20 +8,19 @@
         <mugshots_cache_json/>
         <notes/>
         <order>1</order>
-        <snapshot/>
         <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
         <sys_class_name>sys_atf_step</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-04-20 14:51:41</sys_created_on>
         <sys_id>8c5cc9a5dbdc50d0ba15a35305961957</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_8c5cc9a5dbdc50d0ba15a35305961957</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-04-21 07:25:31</sys_updated_on>
+        <sys_updated_on>2023-10-08 13:16:55</sys_updated_on>
         <table/>
         <test display_value="DevTools - ArrayUnique">1c3c49a5dbdc50d0ba15a3530596194e</test>
         <timeout/>
@@ -36,9 +35,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-04-20 14:51:41</sys_created_on>
         <sys_id>26ccc9a5dbdc50d0ba15a35305961952</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-04-21 07:25:31</sys_updated_on>
+        <sys_updated_on>2023-10-08 13:16:55</sys_updated_on>
         <value>var strLog = '';&#13;
 function Log(strText)&#13;
 {&#13;
@@ -70,7 +69,8 @@ function Log(strText)&#13;
 	TestCase_ArrayUnique(['Alpha','Alpha'],['Alpha']);&#13;
 	TestCase_ArrayUnique(['Alpha','Beta','Beta'],['Alpha','Beta']);&#13;
 &#13;
-	&#13;
+	TestCase_ArrayUnique(&#13;
+		['431ba3e387f36150f4b131570cbb35ba','431ba3e387f36150f4b131570cbb35ba'],['431ba3e387f36150f4b131570cbb35ba']);&#13;
 	&#13;
 	stepResult.setOutputMessage(strLog);&#13;
 	return bResult;&#13;
