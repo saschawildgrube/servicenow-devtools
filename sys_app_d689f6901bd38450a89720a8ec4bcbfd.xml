@@ -20,7 +20,9 @@
         <runtime_access_tracking>permissive</runtime_access_tracking>
         <scope>x_snc_devtools</scope>
         <scoped_administration>false</scoped_administration>
-        <short_description>Code library and tools for ServiceNow developers</short_description>
+        <short_description>Code library and tools for ServiceNow developers.&#13;
+&#13;
+DevTools contains a number of Script Includes with useful javascript functions and classes like a GetType() function that really works. Several UI improvements like the "Re-Test" button in the test result form and shortcuts to various - sometimes hidden - views and system properties in your instance.</short_description>
         <source>x_snc_devtools</source>
         <store_correlation_id/>
         <store_url/>
@@ -29,16 +31,16 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 08:31:37</sys_created_on>
         <sys_id>d689f6901bd38450a89720a8ec4bcbfd</sys_id>
-        <sys_mod_count>181</sys_mod_count>
+        <sys_mod_count>183</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-09-27 10:48:21</sys_updated_on>
+        <sys_updated_on>2023-10-22 11:53:00</sys_updated_on>
         <template/>
         <trackable>true</trackable>
         <uninstall_blocked>false</uninstall_blocked>
         <user_role/>
         <vendor/>
         <vendor_prefix/>
-        <version>1.71.0</version>
+        <version>1.72.0</version>
         <x_snc_devtools_documentation_url>https://www.wildgrube.com/servicenow-devtools</x_snc_devtools_documentation_url>
         <x_snc_devtools_maintainer>Sascha Wildgrube</x_snc_devtools_maintainer>
         <x_snc_devtools_maintainer_email>sascha.wildgrube@servicenow.com</x_snc_devtools_maintainer_email>

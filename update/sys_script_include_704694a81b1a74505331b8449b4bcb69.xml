@@ -410,6 +410,63 @@ InstallerAPI.prototype = {
 		return true;
 	},	
 	
+	DeleteUISection: function(strView,strTable,strScope)
+	{
+		if (this.IsAborting() == true)
+		{
+			return false;
+		}
+		
+		strView = GetStringValue(strView);
+		strTable = GetStringValue(strTable);
+		strScope = GetStringValue(strScope);
+		
+		var grView = new GlideRecord('sys_ui_view');
+		grView.addQuery('title','=',strView);
+		grView.query();
+		if (grView.getRowCount() != 1)
+		{
+			var grView = new GlideRecord('sys_ui_view');
+			grView.addQuery('name','=',strView);
+			grView.query();
+			if (grView.getRowCount() != 1)
+			{
+				this.Log('View "'+strView+'" does not exist. No action required.');	
+				return true;
+			}
+		}
+		
+		grView.next();
+		
+		var grSection = new GlideRecord('sys_ui_section');
+		grSection.addQuery('name','=',strTable);
+		grSection.addQuery('view','=',grView.sys_id);
+		if (strScope != '')
+		{
+			grSection.addQuery('sys_scope','=',strScope);
+		}
+		grSection.query();
+		if (grSection.getRowCount() == 0)
+		{
+			this.Log('View "'+strView+'" UI Section for table "'+strTable+'" does not exist. No action required.');
+			return true;
+		}
+		while (grSection.next())
+		{
+			var bResult = RecordDelete('sys_ui_section',grSection.sys_id);
+			if (bResult == true)
+			{
+				this.Log('Deleted UI Section in View "'+strView+'" for table "'+strTable+'".');
+			}
+			else
+			{
+				this.Error('Failed to delete UI Section in View "'+strView+'" for table "'+strTable+'".');
+				return false;
+			}
+		}
+		return true;
+	},		
+	
 		
 	InstallGlobalSystemProperty: function(strName, strType, strDescription)
 	{
@@ -680,13 +737,13 @@ InstallerAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-08-27 10:49:10</sys_created_on>
         <sys_id>704694a81b1a74505331b8449b4bcb69</sys_id>
-        <sys_mod_count>102</sys_mod_count>
+        <sys_mod_count>104</sys_mod_count>
         <sys_name>InstallerAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>protected</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_704694a81b1a74505331b8449b4bcb69</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-10-06 12:17:50</sys_updated_on>
+        <sys_updated_on>2023-10-22 11:47:00</sys_updated_on>
     </sys_script_include>
 </record_update>

@@ -355,6 +355,7 @@
 			
 				// VIEW RULES
 				var grVR = new GlideRecord('sysrule_view');
+				grVR.orderBy('order');
 				grVR.addActiveQuery();
 				var condition = grVR.addQuery('table','=',strTable);
 				for (var nParentTable = 0; nParentTable < aParentTables.length; nParentTable++)
@@ -461,13 +462,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-03-29 08:27:19</sys_created_on>
         <sys_id>04193959dba64910b652edb3059619c9</sys_id>
-        <sys_mod_count>42</sys_mod_count>
+        <sys_mod_count>43</sys_mod_count>
         <sys_name>WhatRuns</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_04193959dba64910b652edb3059619c9</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-02-07 12:38:54</sys_updated_on>
+        <sys_updated_on>2023-10-22 12:17:37</sys_updated_on>
     </sys_script_include>
 </record_update>

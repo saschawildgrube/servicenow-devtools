@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sysrule_view">
+    <sysrule_view action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <advanced>false</advanced>
+        <condition/>
+        <description/>
+        <device_type>browser</device_type>
+        <match_conditions>ALL</match_conditions>
+        <name>DevTools - sysrule_view</name>
+        <order>100</order>
+        <overrides_user_preference>true</overrides_user_preference>
+        <script><![CDATA[(function overrideView(view, is_list) {
+
+	// Add your code here
+	answer = null;  // set the new view to answer
+
+})(view, is_list);]]></script>
+        <sys_class_name>sysrule_view</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-10-22 12:48:02</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>9373e0e91b8ab1506c17fdd49b4bcb0d</sys_id>
+        <sys_mod_count>28</sys_mod_count>
+        <sys_name>DevTools - sysrule_view</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sysrule_view_9373e0e91b8ab1506c17fdd49b4bcb0d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-10-22 14:35:38</sys_updated_on>
+        <table>sysrule_view</table>
+        <view>DevTools</view>
+        <x_snc_devtools_table>sysrule_view</x_snc_devtools_table>
+    </sysrule_view>
+</record_update>

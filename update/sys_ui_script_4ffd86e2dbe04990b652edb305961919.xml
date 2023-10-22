@@ -3,6 +3,7 @@
         <active>true</active>
         <description>Performs an ajax request (either synchronous or asynchronous) to a defined API and function.</description>
         <global>true</global>
+        <ignore_in_now_experience>false</ignore_in_now_experience>
         <name>x_snc_devtools.ServerRequest</name>
         <script><![CDATA[function ServerRequest(strAPI,strFunction,vParams,callbackResult)
 {
@@ -12,6 +13,15 @@
 	for (var nKey = 0; nKey < aKeys.length; nKey++)
 	{
 		var strParam = aKeys[nKey];
+		if (strParam == 'name')
+		{
+			LogError('ServerRequest: The parameter "name" is not allowed, because it is used to specify the function to be called.');
+			if (callbackResult != null)
+			{
+				callbackResult(false);
+			}
+			return;
+		}
 		var strValue = ''+vParams[strParam];
 		ga.addParam('sysparm_'+strParam,strValue);
 	}
@@ -60,14 +70,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-12-23 20:59:36</sys_created_on>
         <sys_id>4ffd86e2dbe04990b652edb305961919</sys_id>
-        <sys_mod_count>19</sys_mod_count>
+        <sys_mod_count>29</sys_mod_count>
         <sys_name>x_snc_devtools.ServerRequest</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_script_4ffd86e2dbe04990b652edb305961919</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-10-04 07:41:56</sys_updated_on>
+        <sys_updated_on>2023-10-20 12:52:03</sys_updated_on>
         <ui_type>0</ui_type>
         <use_scoped_format>false</use_scoped_format>
     </sys_ui_script>

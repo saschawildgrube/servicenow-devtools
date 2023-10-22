@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties">
+    <sys_properties action="INSERT_OR_UPDATE">
+        <choices/>
+        <description>Controls if the "Create Technical User" button should be visible.</description>
+        <ignore_cache>false</ignore_cache>
+        <is_private>false</is_private>
+        <name>x_snc_devtools.ui.createtechnicaluser_button</name>
+        <read_roles/>
+        <suffix>ui.createtechnicaluser_button</suffix>
+        <sys_class_name>sys_properties</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-10-20 09:42:52</sys_created_on>
+        <sys_id>d3e5e5b41b0631506c17fdd49b4bcbda</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>x_snc_devtools.ui.createtechnicaluser_button</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_properties_d3e5e5b41b0631506c17fdd49b4bcbda</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-10-22 16:44:33</sys_updated_on>
+        <type>boolean</type>
+        <value>false</value>
+        <write_roles/>
+    </sys_properties>
+    <sys_translated_text action="delete_multiple" query="documentkey=d3e5e5b41b0631506c17fdd49b4bcbda"/>
+</record_update>

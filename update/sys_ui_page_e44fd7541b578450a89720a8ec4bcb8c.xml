@@ -16,13 +16,13 @@
 	
 	<p>Welcome to DevTools - created and maintained by&#160;<a href="mailto:sascha.wildgrube@servicenow.com">Sascha Wildgrube</a>.</p>
 
+	<h2>Overview</h2> 
 	<g2:no_escape>$[
 		docapi.RenderDescription();  
-		]</g2:no_escape>		
-	
-	<h2>Overview</h2> 
+	]</g2:no_escape>	
+	<!--
 	<p>DevTools contains a number of&#160;<b>script includes</b>&#160;with useful javascript functions and classes like a GetType() function that really works. A few&#160;<b>UI improvements</b>&#160;like the Re-Test button in the test result form and&#160;<b>shortcuts</b>&#160;to various - sometimes hidden - views and system properties in your instance.</p>
-
+-->
 	<h2>Disclaimer</h2>
 	<g2:no_escape>$[docapi.RenderDisclaimer()]</g2:no_escape>	
 	
@@ -169,6 +169,8 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>You may consider session or transaction caching techniques to improve performance.</li>
 	</ol>
 	
+	<h3>Manage record order (or rank)</h3>
+	<p>The function RecordManageOrder() can be used set a given integer field on a table into a perfect sequence. The function is designed to be called in an async after update/insert/delete business rule.</p> 
 	
 	<h2>Reference</h2>
 
@@ -206,6 +208,31 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>TODO</li>
 	</ol>
 -->	
+	
+	<h3>1.72.0 - 2023-10-22</h3>
+	<ol>
+		<li>Added view rule to enforce the DevTools view on the sys_app form.</li>
+		<li>Added view rule to enforce the DevTools view on the sysauto_script form.</li>
+		<li>Added function RecordManageOrder().</li>
+		<li>Added function GlideRecordRestoreLocation().</li>
+		<li>Added function CreateTechnicalUser().</li>
+		<li>Added function GetTableRecord().</li>
+		<li>TestAPI::Log() can now render objects and arrays directly.</li>
+		<li>RecordSetValue() - and subsequently InstallerAPI::RecordSetValue() - can now work on sys_number records properly.</li>
+		<li>Added more urls to IsPrimaryRequestUrl() which have been identified in Vancouver.</li>
+		<li>Added more patterns to GetEvaluatorErrorExceptionPatterns().</li>
+		<li>AppSetDefaults() now sets the logging.verbosity system property to "debug".</li>
+		<li>Added UI Script LogError().</li>
+		<li>UI Script ServerRequest() now detects the use of the parameter "name" which is not supported since the "name" parameter must contain the function of the client callable script include to be executed.</li>
+		<li>The UI action "Generate and Send Credentials" is no longer available for technical users.</li>
+		<li>Added UI action "Create Technical User" on the sys_user table to create new technical users. The UI action is only visible if the system property "x_snc_devtools.ui.createtechnicaluser_button" is true (which is false by default).</li>
+		<li>DocumentationAPI::RenderDescription() now supports line breaks.</li>
+		<li>Improved the DevTools view for the sys_app form, added "Claimed Global App Files" related list.</li>
+		<li>Improved the DevTools view for the sysauto_script form.</li>
+		<li>WhatRuns() now considers the order of sysrule_view records.</li>
+		<li>Added DevTools view for sys_ui_bookmark_group that contains the bookmarks related list.</li>
+		<li>Added functionality that allows to create cross-scope sysrule_view records.</li>
+	</ol>	
 	
 	<h3>1.71.0 - 2023-10-06</h3>
 	<ol>
@@ -1484,13 +1511,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1370</sys_mod_count>
+        <sys_mod_count>1393</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-10-06 15:18:10</sys_updated_on>
+        <sys_updated_on>2023-10-22 17:51:13</sys_updated_on>
     </sys_ui_page>
 </record_update>
