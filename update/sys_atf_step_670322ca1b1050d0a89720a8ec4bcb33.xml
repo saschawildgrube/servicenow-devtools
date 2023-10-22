@@ -8,20 +8,19 @@
         <mugshots_cache_json/>
         <notes/>
         <order>1</order>
-        <snapshot/>
         <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
         <sys_class_name>sys_atf_step</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-04-22 10:27:07</sys_created_on>
         <sys_id>670322ca1b1050d0a89720a8ec4bcb33</sys_id>
-        <sys_mod_count>80</sys_mod_count>
+        <sys_mod_count>81</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
-        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
-        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_670322ca1b1050d0a89720a8ec4bcb33</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-02-17 14:47:03</sys_updated_on>
+        <sys_updated_on>2023-10-22 17:36:52</sys_updated_on>
         <table/>
         <test display_value="DevTools - RenderValue">7ce22e8a1b1050d0a89720a8ec4bcbdb</test>
         <timeout/>
@@ -50,9 +49,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-04-22 10:27:07</sys_created_on>
         <sys_id>d263ae8a1b1050d0a89720a8ec4bcb96</sys_id>
-        <sys_mod_count>80</sys_mod_count>
+        <sys_mod_count>81</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-02-17 14:47:03</sys_updated_on>
+        <sys_updated_on>2023-10-22 17:36:52</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -160,6 +159,7 @@
 	TestCase_RenderValueDefault(gr,&#13;
 		'\nx_snc_devtools_test:'&#13;
 		+'\n["name"]: Test'&#13;
+		+'\n["order"]: '&#13;
 		+'\n["processed"]: '&#13;
 		+'\n["sys_created_by"]: '&#13;
 		+'\n["sys_created_on"]: '&#13;
@@ -209,6 +209,7 @@
 		'\n["record1"]: '&#13;
 		+'\n___x_snc_devtools_test:'&#13;
 		+'\n___["name"]: Test'&#13;
+		+'\n___["order"]: '&#13;
 		+'\n___["processed"]: '&#13;
 		+'\n___["sys_created_by"]: '&#13;
 		+'\n___["sys_created_on"]: '&#13;
@@ -236,6 +237,7 @@
 	TestCase_RenderValueDefault(gr,&#13;
 		'\nx_snc_devtools_test: '+strSysId+':'&#13;
 		+'\n["name"]: Test'&#13;
+		+'\n["order"]: '&#13;
 		+'\n["processed"]: '&#13;
 		+'\n["sys_created_by"]: '+gr.sys_created_by&#13;
 		+'\n["sys_created_on"]: '+gr.sys_created_on&#13;
