@@ -20,9 +20,7 @@
 	<g2:no_escape>$[
 		docapi.RenderDescription();  
 	]</g2:no_escape>	
-	<!--
-	<p>DevTools contains a number of&#160;<b>script includes</b>&#160;with useful javascript functions and classes like a GetType() function that really works. A few&#160;<b>UI improvements</b>&#160;like the Re-Test button in the test result form and&#160;<b>shortcuts</b>&#160;to various - sometimes hidden - views and system properties in your instance.</p>
--->
+
 	<h2>Disclaimer</h2>
 	<g2:no_escape>$[docapi.RenderDisclaimer()]</g2:no_escape>	
 	
@@ -40,12 +38,12 @@
 	
 	<h2>Installation</h2>
 	<ol>
+		<li style="color: red; font-weight: bold;">Set the system property&#160;<a href="/nav_to.do?uri=sys_properties.do?sys_id=9e52826587120300cf2d5fb736cb0b7f" target="_blank">glide.record.legacy_cross_scope_access_policy_in_script</a>&#160;to "true".</li> 
 		<g2:no_escape>$[
 			docapi.RenderInstallationInstructionsImportFromSourceControl(
 				'DevTools',
 				'https://github.com/saschawildgrube/servicenow-devtools');
 		]</g2:no_escape>
-		<li style="color: red; font-weight: bold;">Set the system property&#160;<a href="/nav_to.do?uri=sys_properties.do?sys_id=9e52826587120300cf2d5fb736cb0b7f" target="_blank">glide.record.legacy_cross_scope_access_policy_in_script</a>&#160;to "true".</li> 
 		<g2:no_escape>$[
 			docapi.RenderInstallationInstructionsAppInstall();
 		]</g2:no_escape>		
@@ -208,6 +206,15 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>TODO</li>
 	</ol>
 -->	
+	
+	<h3>1.73.0 - 2023-10-26</h3>
+	<ol>
+		<li>Fixed a defect in GetDependencyListFromTree() that caused the dependency status summary to be reported as "ok" in case of nested missing packages.</li>
+		<li>Added dependency status "incompatible_version" to CompareDependencyStatus().</li>
+		<li>A new business rule prevents duplicate dependencies to be added to an application.</li>
+		<li>Menu item "Query Log" no longer filters by log level.</li>
+		<li>Improved installation steps order.</li>
+	</ol>	
 	
 	<h3>1.72.0 - 2023-10-22</h3>
 	<ol>
@@ -1511,13 +1518,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1393</sys_mod_count>
+        <sys_mod_count>1400</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-10-22 17:51:13</sys_updated_on>
+        <sys_updated_on>2023-10-26 12:35:31</sys_updated_on>
     </sys_ui_page>
 </record_update>
