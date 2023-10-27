@@ -9,6 +9,7 @@
         <name>GetDependencyListFromTree</name>
         <script><![CDATA[function GetDependencyListFromTree(dependencytree)
 {
+	Debug('GetDependencyListFromTree');
 	if (IsObject(dependencytree) == false)
 	{
 		return false;
@@ -45,11 +46,16 @@
 				{
 					bExists = true;
 					
+					Debug('currentpackage: '+RenderValue(currentpackage));
+					Debug('aPackages['+nPackage+']: '+RenderValue(aPackages[nPackage]));
+					
 					var strMinimalCommonVersion = GetMinimalCommonVersion(
 						aPackages[nPackage]['compatible_versions'],
 						currentpackage['compatible_versions']);
 					
-					if (strMinimalCommonVersion == false)
+					Debug('strMinimalCommonVersion: '+strMinimalCommonVersion);
+					
+					if (strMinimalCommonVersion == false) // Conflicting compatible versions
 					{
 						if (aPackages[nPackage]['dependency_status_summary'] == 'missing')
 						{
@@ -67,15 +73,47 @@
 					}
 					else
 					{
-						aPackages[nPackage]['compatible_versions'] = strMinimalCommonVersion;
-						if (x_snc_devtools.CompareVersion(aPackages[nPackage]['version'],currentpackage['version']) < 0)
+						Debug('Non-conflicting minimal common version');
+						
+						//if (aPackages[nPackage]['dependency_status_summary'] != 'missing')
+						//{
+						//Debug('Existing: '+aPackages[nPackage]['name']+' '+aPackages[nPackage]['version']);
+
+						//Debug('Current/New: '+currentpackage['name']+' '+currentpackage['version']);
+						/*if (currentpackage['dependency_status'] == 'ok')
 						{
+							aPackages[nPackage]['compatible_versions'] = strMinimalCommonVersion;
+						}*/
+						if (CompareVersion(strMinimalCommonVersion,aPackages[nPackage]['version']) > 0)
+						{
+							Debug('The minimal common version is higher than the version of the package we already have');
+							Debug('CompareVersion(strMinimalCommonVersion,aPackages[nPackage][version]) > 0');
+							//Debug('Compare version (existing, new) < 0');
+							
+							//if (currentpackage['dependency_status_summary'] == 'missing')
+						//{
+							//if (IsValidVersion(GetValue(currentpackage,'version')) == true)
+							//{
+								
+							//if (CompareVersion(aPackages[nPackage]['compatible_version'],currentpackage['compatible_version'],) < 0)
+						//{
+							
 							aPackages[nPackage] = Clone(currentpackage);
 							if (CompareDependencyStatus(strStatusSummary,currentpackage['dependency_status_summary']) < 0) 
 							{
 								strStatusSummary = currentpackage['dependency_status_summary'];
-							}					
+							}
+
+							//}
+
 						}
+						else
+						{
+							Debug('CompareVersion(strMinimalCommonVersion,aPackages[nPackage][version]) <= 0');
+							aPackages[nPackage]['compatible_versions'] = strMinimalCommonVersion;
+						}
+							
+						//}
 					}
 					
 				}
@@ -119,13 +157,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-06-09 16:37:44</sys_created_on>
         <sys_id>9929460e1b1b2510cd6153d16b4bcb5c</sys_id>
-        <sys_mod_count>36</sys_mod_count>
+        <sys_mod_count>58</sys_mod_count>
         <sys_name>GetDependencyListFromTree</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_9929460e1b1b2510cd6153d16b4bcb5c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-10-26 11:31:41</sys_updated_on>
+        <sys_updated_on>2023-10-27 16:20:30</sys_updated_on>
     </sys_script_include>
 </record_update>
