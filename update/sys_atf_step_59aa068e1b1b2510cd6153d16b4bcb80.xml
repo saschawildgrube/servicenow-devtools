@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-06-09 16:45:02</sys_created_on>
         <sys_id>59aa068e1b1b2510cd6153d16b4bcb80</sys_id>
-        <sys_mod_count>40</sys_mod_count>
+        <sys_mod_count>41</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_59aa068e1b1b2510cd6153d16b4bcb80</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-10-27 16:24:14</sys_updated_on>
+        <sys_updated_on>2023-10-27 16:54:13</sys_updated_on>
         <table/>
         <test display_value="DevTools - GetDependencyListFromTree">af8a828e1b1b2510cd6153d16b4bcb52</test>
         <timeout/>
@@ -49,9 +49,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-06-09 16:45:02</sys_created_on>
         <sys_id>e21b068e1b1b2510cd6153d16b4bcbd5</sys_id>
-        <sys_mod_count>40</sys_mod_count>
+        <sys_mod_count>41</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-10-27 16:24:14</sys_updated_on>
+        <sys_updated_on>2023-10-27 16:54:13</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -147,7 +147,6 @@
 	TestCase_GetDependencyListFromTree(tree,{ count: 3, dependency_status_summary: 'ok', testapp_compatible_version: '1.2.0' });	&#13;
 &#13;
 	&#13;
-	Debug('Scenario: differing compatible versions (lower first)')&#13;
 	test.Log('Scenario: differing compatible versions (lower first)');&#13;
 	test.Log('A depends on TestApp 1.1.0');&#13;
 	test.Log('A depends on B');&#13;
@@ -363,7 +362,6 @@
 		{ count: 4, dependency_status_summary: 'missing' });&#13;
 &#13;
 &#13;
-	Debug('Scenario: Nested missing and non-missing dependency to the same app');&#13;
 	test.Log('Scenario: Nested missing and non-missing dependency to the same app');&#13;
 	var tree = {&#13;
 		name: 'Alpha',&#13;
@@ -405,7 +403,6 @@
 	TestCase_GetDependencyListFromTree(tree,&#13;
 		{ count: 4, dependency_status_summary: 'ok' });&#13;
 &#13;
-	Debug('Scenario: Nested missing (more recent version) and non-missing dependency to the same app');&#13;
 	test.Log('Scenario: Nested missing (more recent version) and non-missing dependency to the same app');&#13;
 	var tree = {&#13;
 		name: 'Alpha',&#13;
