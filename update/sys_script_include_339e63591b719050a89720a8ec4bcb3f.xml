@@ -44,6 +44,9 @@
 	// Disable the OOTB "Execute Now" UI action on sysauto_script - so that DevTools' UI action can take its part
 	installer.ActivateUiAction('31db53d1a9fe07590053c90a05c57084',false);
 	
+	// Disable the "Save" global UI actionto avoid duplicate buttons
+	installer.ActivateUiAction('432ace8b0a0a0b34006b02832660c894',false);	
+	
 	// Disable the "Save" UI action on table rm_story to avoid duplicate buttons
 	installer.ActivateUiAction('6b85b644c3e003004e771bdef1d3aebb',false);
 	
@@ -81,13 +84,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-07-03 21:35:10</sys_created_on>
         <sys_id>339e63591b719050a89720a8ec4bcb3f</sys_id>
-        <sys_mod_count>83</sys_mod_count>
+        <sys_mod_count>84</sys_mod_count>
         <sys_name>AppInstall</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_339e63591b719050a89720a8ec4bcb3f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-06-13 13:16:34</sys_updated_on>
+        <sys_updated_on>2023-11-06 15:06:33</sys_updated_on>
     </sys_script_include>
 </record_update>
