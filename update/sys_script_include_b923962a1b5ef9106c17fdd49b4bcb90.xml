@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.CreateTestUser</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Creates a new test user based on a given name. Returns the Sys ID of the new user if successful or false if the user could not be created.</description>
+        <name>CreateTestUser</name>
+        <script><![CDATA[function CreateTestUser(strName)
+{
+	strName = GetStringValue(strName);
+	strName = strName.trim();
+	if (strName == '')
+	{
+		return false;
+	}
+	
+	
+	var strUserName = strName;
+	
+	strUserName = strUserName.toLowerCase();
+	strUserName = 'test.'+strUserName;
+	strUserName = StringReplace(strUserName,' ','.');
+	
+	var grUser = GetUserRecord(strUserName);
+	if (IsValidRecord(grUser) == true)
+	{
+		return false;
+	}	
+	
+	var grUser = new GlideRecord('sys_user');
+	grUser.initialize();
+	grUser.email = '';
+	grUser.user_name = strUserName;
+	grUser.first_name = 'Test';
+	grUser.last_name = strName;
+	grUser.preferred_language = 'en';
+	grUser.active = true;
+	var strUserSysId = grUser.insert();
+	
+	if (IsValidSysId(strUserSysId) == false)
+	{
+		return false;
+	}
+	
+	return strUserSysId;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-11-07 09:45:32</sys_created_on>
+        <sys_id>b923962a1b5ef9106c17fdd49b4bcb90</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>CreateTestUser</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_b923962a1b5ef9106c17fdd49b4bcb90</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-11-07 09:46:12</sys_updated_on>
+    </sys_script_include>
+</record_update>
