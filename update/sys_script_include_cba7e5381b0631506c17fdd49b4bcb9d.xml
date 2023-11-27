@@ -5,9 +5,9 @@
         <api_name>x_snc_devtools.CreateTechnicalUser</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Creates a new technical user based on a given name. Returns the Sys ID of the new user if successful or false if the user could not be created.</description>
+        <description>Creates a new technical user based on a given name, an optional role and password. Returns the Sys ID of the new user if successful or false if the user could not be created or if the specified role could not be found.</description>
         <name>CreateTechnicalUser</name>
-        <script><![CDATA[function CreateTechnicalUser(strName)
+        <script><![CDATA[function CreateTechnicalUser(strName,strRole,strPassword)
 {
 	strName = GetStringValue(strName);
 	strName = strName.trim();
@@ -16,7 +16,23 @@
 		return false;
 	}
 	
+	strRole = GetStringValue(strRole);
+	var strRoleSysId = '';
+	if (strRole != '')
+	{
+		var grRole = new GlideRecord('sys_user_role');
+		grRole.addQuery('name','=','admin');
+		grRole.query();
+		if (grRole.next() == false)
+		{
+			return false;
+		}
+		strRoleSysId = GetStringValue(grRole.sys_id);
+	}
 	
+	
+	strPassword = GetStringValue(strPassword);
+		
 	var strUserName = strName;
 	
 	strUserName = strUserName.toLowerCase();
@@ -29,22 +45,6 @@
 		return false;
 	}	
 	
-	/*function GetDisplayName(strName)
-	{
-		strName = GetStringValue(strName);
-		if (strName == '')
-		{
-			return '';
-		}
-		var strDisplayName = '';
-		var strFirstLetter = GetValue(strName,0);
-		strFirstLetter = strFirstLetter.toUpperCase();
-		strDisplayName = strFirstLetter + strName.substr(1);
-			
-		return strDisplayName;
-	}*/
-
-	
 	var grUser = new GlideRecord('sys_user');
 	grUser.initialize();
 	grUser.email = '';
@@ -54,11 +54,24 @@
 	grUser.preferred_language = 'en';
 	grUser.web_service_access_only = true;
 	grUser.active = true;
+	if (strPassword != '')
+	{
+		grUser.user_password.setDisplayValue(strPassword);
+	}
 	var strUserSysId = grUser.insert();
 	
 	if (IsValidSysId(strUserSysId) == false)
 	{
 		return false;
+	}
+	
+	if (IsValidSysId(strRoleSysId) == true)
+	{
+		var grUserHasRole = new GlideRecord('sys_user_has_role');
+		grUserHasRole.initialize();
+		grUserHasRole.user = strUserSysId;
+		grUserHasRole.role = strRoleSysId;
+		var strUserHasRole = GlideRecordInsert(grUserHasRole);	
 	}
 	
 	return strUserSysId;
@@ -67,13 +80,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-10-20 09:50:29</sys_created_on>
         <sys_id>cba7e5381b0631506c17fdd49b4bcb9d</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>CreateTechnicalUser</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_cba7e5381b0631506c17fdd49b4bcb9d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-10-20 10:57:27</sys_updated_on>
+        <sys_updated_on>2023-11-27 16:19:46</sys_updated_on>
     </sys_script_include>
 </record_update>
