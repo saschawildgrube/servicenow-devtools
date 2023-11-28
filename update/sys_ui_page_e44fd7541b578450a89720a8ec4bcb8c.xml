@@ -107,6 +107,8 @@ gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData
 	
 	<h3>Force to Record Scope</h3>
 	<p>DevTools enforces to switch to the scope of the current record on a form. This prevents any situation in which a form was loaded in the correct scope, changes are being made, and lost because the user changed the scope in a different tab. The OOTB behavior is downright annoying. DevTools comes to the rescue. The system property&#160;<a href="/nav_to.do?uri=sys_properties.do?sys_id=7b9d7bb2db3e11106a03dad1f3961901" target="_blank">x_snc_devtools.ui.force_scope</a>&#160;controls whether the scope should be changed when loading and saving a form. This may lead to some users being confused by the new (and unexpected) behavior - however, developers quickly become used to it and prefer the behavior over the OOTB behavior.</p>	
+	<h3>Instance Pipeline Names</h3>
+	<p>An instance has a technical name (sometimes matching the domain name, but not always). This technical name can be used to define logic that depends on the instance on which code is executed. However, this is not a good practise. In complex environments, where applications may be shared across multiple production instances, any logic that directly depends on a specific instance may cause problems. The DevTools extension point allows to implement the function DevToolsGetInstancePipelineName() which allows to map technical names to so-called pipeline names (e.g., "dev", "test" or "prod"). The function GetPipelineName() can then be used to get the current instance pipeline name to build instance specific logic.</p>	
 	
 	<h3>Service Portal Deactivation</h3>
 	<p>DevTools allows you to deactivate specific Service Portals.</p>
@@ -1572,13 +1574,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1438</sys_mod_count>
+        <sys_mod_count>1439</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-11-28 12:20:50</sys_updated_on>
+        <sys_updated_on>2023-11-28 12:29:46</sys_updated_on>
     </sys_ui_page>
 </record_update>
