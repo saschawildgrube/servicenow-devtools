@@ -105,6 +105,9 @@ gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData
 	<h3>Evaluator Errors</h3>
 	<p>DevTools helps to surface evaluator errors (which are logged as warnings OOTB). The system property&#160;<a href="/nav_to.do?uri=sys_properties.do?sys_id=439f16571b417510cd6153d16b4bcb80" target="_blank">x_snc_devtools.ui.show_evaluator_errors.minutes</a>&#160;controls whether and for how long evaluator errors should be displayed to admin users.</p>
 	
+	<h3>Force to Record Scope</h3>
+	<p>DevTools enforces to switch to the scope of the current record on a form. This prevents any situation in which a form was loaded in the correct scope, changes are being made, and lost because the user changed the scope in a different tab. The OOTB behavior is downright annoying. DevTools comes to the rescue. The system property&#160;<a href="/nav_to.do?uri=sys_properties.do?sys_id=7b9d7bb2db3e11106a03dad1f3961901" target="_blank">x_snc_devtools.ui.force_scope</a>&#160;controls whether the scope should be changed when loading and saving a form. This may lead to some users being confused by the new (and unexpected) behavior - however, developers quickly become used to it and prefer the behavior over the OOTB behavior.</p>	
+	
 	<h3>Service Portal Deactivation</h3>
 	<p>DevTools allows you to deactivate specific Service Portals.</p>
 	<p>A new field "Active" is added to the&#160;<a href="/nav_to.do?uri=sp_portal_list.do%3F" target="_blank">sp_portal</a>&#160;table. Once set to false, the corresponding Service Portal will just disappear and is no longer accessible.</p>
@@ -170,7 +173,7 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>You may consider session or transaction caching techniques to improve performance.</li>
 	</ol>
 	
-	<h3>Manage record order (or rank)</h3>
+	<h3>Manage Record Order (or Rank)</h3>
 	<p>The function RecordManageOrder() can be used set a given integer field on a table into a perfect sequence. The function is designed to be called in an async after update/insert/delete business rule.</p> 
 	
 	<h2>Reference</h2>
@@ -1569,13 +1572,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1436</sys_mod_count>
+        <sys_mod_count>1438</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-11-28 12:10:04</sys_updated_on>
+        <sys_updated_on>2023-11-28 12:20:50</sys_updated_on>
     </sys_ui_page>
 </record_update>
