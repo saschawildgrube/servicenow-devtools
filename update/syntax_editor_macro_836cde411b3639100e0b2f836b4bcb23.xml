@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="syntax_editor_macro">
+    <syntax_editor_macro action="INSERT_OR_UPDATE">
+        <comments>This editor macro creates boilerplate code for an application's own AppInstall() function.</comments>
+        <name>AppInstall</name>
+        <sys_class_name>syntax_editor_macro</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-11-27 15:06:32</sys_created_on>
+        <sys_id>836cde411b3639100e0b2f836b4bcb23</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>AppInstall</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>syntax_editor_macro_836cde411b3639100e0b2f836b4bcb23</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-11-27 15:12:59</sys_updated_on>
+        <text>function AppInstall()&#13;
+{	&#13;
+	var installer = new x_snc_devtools.InstallerAPI(x_snc_devtools.GetAppName('x_snc_your_scope'));&#13;
+&#13;
+    // TODO: Add installation code, e.g.,&#13;
+    // installer.SetProperty('glide.ui.session_timeout','1440');&#13;
+	&#13;
+	return installer.Finish();&#13;
+}</text>
+    </syntax_editor_macro>
+</record_update>

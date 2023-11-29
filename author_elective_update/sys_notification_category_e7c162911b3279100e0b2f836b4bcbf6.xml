@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_notification_category">
+    <sys_notification_category action="DELETE">
+        <name>xxx</name>
+        <short_description>xx</short_description>
+        <sys_class_name>sys_notification_category</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-11-28 10:08:44</sys_created_on>
+        <sys_id>e7c162911b3279100e0b2f836b4bcbf6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>xxx</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_notification_category_e7c162911b3279100e0b2f836b4bcbf6</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-11-28 10:08:44</sys_updated_on>
+    </sys_notification_category>
+    <sys_translated_text action="DELETE" query="documentkey=e7c162911b3279100e0b2f836b4bcbf6"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>25322e70dbb92590c1a4c5970596192e</instance_id>
+        <instance_name>wildgrubeutah</instance_name>
+        <name>sys_notification_category_e7c162911b3279100e0b2f836b4bcbf6</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_notification_category"><sys_notification_category action="INSERT_OR_UPDATE"><name>xxx</name><short_description>xx</short_description><sys_class_name>sys_notification_category</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2023-11-28 10:08:44</sys_created_on><sys_id>e7c162911b3279100e0b2f836b4bcbf6</sys_id><sys_mod_count>0</sys_mod_count><sys_name>xxx</sys_name><sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package><sys_policy/><sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope><sys_update_name>sys_notification_category_e7c162911b3279100e0b2f836b4bcbf6</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2023-11-28 10:08:44</sys_updated_on></sys_notification_category><sys_translated_text action="delete_multiple" query="documentkey=e7c162911b3279100e0b2f836b4bcbf6"/></record_update>]]></payload>
+        <payload_hash>-1314302322</payload_hash>
+        <record_name>xxx</record_name>
+        <reverted_from/>
+        <source>ce3edec11b3639100e0b2f836b4bcb0b</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-11-28 10:08:44</sys_created_on>
+        <sys_id>aad162911b3279100e0b2f836b4bcb3c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>18c15670efa0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-11-28 10:08:44</sys_updated_on>
+        <type>Notification Category</type>
+        <update_guid>aed16291ee327910d08c94a8e40a5d3b</update_guid>
+        <update_guid_history>aed16291ee327910d08c94a8e40a5d3b:-1314302322</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-11-28 10:10:16</sys_created_on>
+        <sys_db_object display_value="" name="sys_notification_category">sys_notification_category</sys_db_object>
+        <sys_id>1698038d4d5f448682c4350b40d7a6a4</sys_id>
+        <sys_metadata>e7c162911b3279100e0b2f836b4bcbf6</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>xxx</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sys_notification_category_e7c162911b3279100e0b2f836b4bcbf6</sys_update_name>
+        <sys_update_version display_value="sys_notification_category_e7c162911b3279100e0b2f836b4bcbf6">aad162911b3279100e0b2f836b4bcb3c</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-11-28 10:10:16</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

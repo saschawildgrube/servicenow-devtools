@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_related sys_domain="global" table="sys_notification_category" version="2" view="devtools">
+        <sys_ui_related_list_entry action="INSERT_OR_UPDATE">
+            <filter/>
+            <list_id display_value="Notification Category - DevTools" name="sys_notification_category" related_list="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">dce226d11b3279100e0b2f836b4bcb21</list_id>
+            <order_by/>
+            <position>0</position>
+            <related_list>sysevent_email_action.category</related_list>
+            <sys_class_name>sys_ui_related_list_entry</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2023-11-28 10:13:14</sys_created_on>
+            <sys_id>d8e226d11b3279100e0b2f836b4bcb22</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2023-11-28 10:13:14</sys_updated_on>
+        </sys_ui_related_list_entry>
+        <sys_ui_related_list_entry action="INSERT_OR_UPDATE">
+            <filter/>
+            <list_id display_value="Notification Category - DevTools" name="sys_notification_category" related_list="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">dce226d11b3279100e0b2f836b4bcb21</list_id>
+            <order_by/>
+            <position>1</position>
+            <related_list>sys_notification.category</related_list>
+            <sys_class_name>sys_ui_related_list_entry</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2023-11-28 10:13:14</sys_created_on>
+            <sys_id>dce226d11b3279100e0b2f836b4bcb22</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2023-11-28 10:13:14</sys_updated_on>
+        </sys_ui_related_list_entry>
+        <sys_ui_related_list action="INSERT_OR_UPDATE">
+            <calculated_name>Notification Category - DevTools</calculated_name>
+            <filter/>
+            <name>sys_notification_category</name>
+            <order_by/>
+            <position/>
+            <related_list/>
+            <sys_class_name>sys_ui_related_list</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2023-11-28 10:13:14</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>dce226d11b3279100e0b2f836b4bcb21</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Notification Category - DevTools</sys_name>
+            <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+            <sys_update_name>sys_ui_related_sys_notification_category_devtools</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2023-11-28 10:13:14</sys_updated_on>
+            <sys_user/>
+            <view display_value="DevTools" name="devtools">75e08353dbbf0450ba15a35305961913</view>
+            <view_name/>
+        </sys_ui_related_list>
+    </sys_ui_related>
+</record_update>

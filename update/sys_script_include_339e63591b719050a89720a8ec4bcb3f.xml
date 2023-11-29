@@ -81,19 +81,34 @@
 	// Deactivate the view rule to enforce the "global" view for global scoped apps
 	installer.ActivateViewRule('46427f829333310063d3941e867ffb16',false);
 	
+	// Fix the defective client script "Update Name on Suffix Change" for sys_properties which adds "u_" to a scoped application's system property.
+	// The defect has been introduced in a Vancouver update.
+	var grCS = GetRecord('sys_script_client','d89da8f3c3432100b9e7ff9c02d3ae91');
+	if (IsValidRecord(grCS) == true)
+	{
+		var strScript = GetStringValue(grCS.script);
+		var strScriptNew = StringReplace(strScript,"scope = scope == 'global' ? '' : scope + '.u_';","scope = scope == 'global' ? '' : scope + '.';");
+		if (strScript != strScriptNew)
+		{
+			installer.RecordSetValue(
+				'Fix the defective client script "Update Name on Suffix Change" for sys_properties which adds "u_" to a scoped application\'s system property.',
+				'sys_script_client','d89da8f3c3432100b9e7ff9c02d3ae91','script',strScriptNew,true);
+		}
+	}
+	
 	return installer.Finish();
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-07-03 21:35:10</sys_created_on>
         <sys_id>339e63591b719050a89720a8ec4bcb3f</sys_id>
-        <sys_mod_count>85</sys_mod_count>
+        <sys_mod_count>88</sys_mod_count>
         <sys_name>AppInstall</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_339e63591b719050a89720a8ec4bcb3f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-11-06 15:11:30</sys_updated_on>
+        <sys_updated_on>2023-11-27 16:51:07</sys_updated_on>
     </sys_script_include>
 </record_update>

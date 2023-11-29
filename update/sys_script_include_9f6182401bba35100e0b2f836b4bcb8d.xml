@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.GetDiagnostics</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns system diagnstics as an object.</description>
+        <name>GetDiagnostics</name>
+        <script><![CDATA[function GetDiagnostics()
+{
+	var strScript = ""
+		+ "var strProperty = gs.getProperty('glide.cluster.xmlstats');"
+		+ "var gxs = new GlideXMLStats();"
+		+ "var strStats = gxs.toStringWithInclude(strProperty);"
+		+ "var xml = new XMLHelper(strStats);"
+		+ "result = xml.toObject();";
+	return RunScriptInGlobalScope(strScript);
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-11-24 10:37:08</sys_created_on>
+        <sys_id>9f6182401bba35100e0b2f836b4bcb8d</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>GetDiagnostics</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_9f6182401bba35100e0b2f836b4bcb8d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-11-24 10:42:08</sys_updated_on>
+    </sys_script_include>
+</record_update>
