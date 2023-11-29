@@ -12,16 +12,16 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-03-14 12:16:16</sys_created_on>
         <sys_id>a2fe9964db56c910bcced03cd39619ed</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>8ed42c23dbad0510bcced03cd39619ce</sys_name>
-        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
-        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_restricted_caller_access_a2fe9964db56c910bcced03cd39619ed</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-02-22 11:57:04</sys_updated_on>
+        <sys_updated_on>2023-11-29 12:02:56</sys_updated_on>
         <target>704694a81b1a74505331b8449b4bcb69</target>
-        <target_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</target_scope>
+        <target_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</target_scope>
         <target_table>sys_script_include</target_table>
         <target_type>2</target_type>
     </sys_restricted_caller_access>
