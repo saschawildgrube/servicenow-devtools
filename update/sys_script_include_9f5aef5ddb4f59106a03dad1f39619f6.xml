@@ -34,19 +34,9 @@
 	var strBody = '{ app_scope_sys_ids : ["'+grApp.sys_id+'"]}';
 	
 
-	//var strUserName = 'devtools.technicaluser.instancescan';
 	var strPassword = GetRandomNumericToken(30);
-
-	/*
-	var grUser = new GlideRecord('sys_user');
-	grUser.initialize();
-	grUser.user_name = strUserName;
-	grUser.user_password.setDisplayValue(strPassword);
-	grUser.web_service_access_only = true;
-	grUser.internal_integration_user = false;
-	var strUserSysId = GlideRecordInsert(grUser);
-	*/
-	var strUserSysId = CreateTechnicalUser('DevTools InstanceScan','admin',strPassword);
+	var strUserNamePostFix = GetRandomNumericToken(4);
+	var strUserSysId = CreateTechnicalUser('DevTools InstanceScan '+strUserNamePostFix,'admin',strPassword);
 	
 	if (IsValidSysId(strUserSysId) == false)
 	{
@@ -59,7 +49,7 @@
 		request.setEndpoint(strUrl);
 		request.setHttpMethod('POST');
 		request.setRequestHeader("Accept","application/json");
-		request.setBasicAuth(strUserName,strPassword);
+		request.setBasicAuth('technical.devTools.instancescan.'+strUserNamePostFix,strPassword);
 		request.setRequestBody(strBody);
 		var response = request.execute();
 	}
@@ -138,13 +128,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-11-08 09:18:56</sys_created_on>
         <sys_id>9f5aef5ddb4f59106a03dad1f39619f6</sys_id>
-        <sys_mod_count>65</sys_mod_count>
+        <sys_mod_count>67</sys_mod_count>
         <sys_name>InstanceScanSuiteOnApp</sys_name>
-        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
-        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_9f5aef5ddb4f59106a03dad1f39619f6</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-11-27 16:16:32</sys_updated_on>
+        <sys_updated_on>2023-11-29 07:54:57</sys_updated_on>
     </sys_script_include>
 </record_update>
