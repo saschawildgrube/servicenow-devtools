@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="update_synch=true" db_object_id="a681e0b51bfeb9106c17fdd49b4bcb67" extends="sys_metadata" label="Transporter Record" max_length="40" name="x_snc_devtools_transporter_record" type="collection">
+        <element label="Package" mandatory="true" max_length="32" name="package" read_only="true" reference="x_snc_devtools_transporter_package" reference_qual="sys_scopeSAMEASsys_package.ref_sys_scope...^EQ" reference_qual_condition="sys_scopeSAMEASsys_package.ref_sys_scope...^EQ" type="reference"/>
+        <element attributes="json_view=true" label="Content" max_length="100000" name="payload_content" type="string"/>
+        <element label="Sys ID" mandatory="true" max_length="32" name="payload_sys_id" type="string"/>
+        <element label="Table" mandatory="true" max_length="80" name="payload_table" type="string"/>
+        <index name="index">
+            <element name="package"/>
+        </index>
+    </element>
+</database>

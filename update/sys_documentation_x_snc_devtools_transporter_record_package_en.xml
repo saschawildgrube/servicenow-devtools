@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="package" label="Package" language="en" table="x_snc_devtools_transporter_record">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>package</element>
+            <help/>
+            <hint/>
+            <label>Package</label>
+            <language>en</language>
+            <name>x_snc_devtools_transporter_record</name>
+            <plural>Packages</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2023-11-29 14:12:33</sys_created_on>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Package</sys_name>
+            <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+            <sys_update_name>sys_documentation_x_snc_devtools_transporter_record_package_en</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2023-11-29 14:12:33</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>
