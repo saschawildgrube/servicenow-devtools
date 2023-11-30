@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_scope_privilege">
+    <sys_scope_privilege action="INSERT_OR_UPDATE">
+        <operation>read</operation>
+        <source_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</source_scope>
+        <status>allowed</status>
+        <sys_class_name>sys_scope_privilege</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-11-30 13:19:21</sys_created_on>
+        <sys_id>d6a0a1ce1b363d106c17fdd49b4bcbf9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_snc_airline_airline</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_scope_privilege_d6a0a1ce1b363d106c17fdd49b4bcbf9</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-11-30 13:19:21</sys_updated_on>
+        <target_name>x_snc_airline_airline</target_name>
+        <target_scope display_value="Airline WORK IN PROGRESS">54ee8da3dbd64110b652edb305961973</target_scope>
+        <target_type>sys_db_object</target_type>
+    </sys_scope_privilege>
+</record_update>

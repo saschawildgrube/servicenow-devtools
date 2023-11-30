@@ -12,6 +12,7 @@
 	var grPackage = GetRecord('x_snc_devtools_transporter_package',strPackageSysId);
 	if (IsValidRecord(grPackage) == false)
 	{
+		Debug('package not found');
 		return false;
 	}
 	
@@ -19,12 +20,14 @@
 	var grRecord = GetRecord(strTable,strSysId);
 	if (IsValidRecord(grRecord) == false)
 	{
+		Debug('record not found');
 		return false;
 	}
 	
 	var record = Clone(grRecord);
 	if (IsObject(record) == false)
 	{
+		Debug('record not cloned');
 		return false;
 	}
 	
@@ -33,8 +36,8 @@
 	var strTransportRecordSysId = RecordInsertOrUpdate(
 		'x_snc_devtools_transporter_record',
 		{
-			package: grPackage.sys_id,
-			payload_table: GetStringValue(grRecord.sys_class_name),
+			package: GetStringValue(grPackage.sys_id),
+			payload_table: grRecord.getRecordClassName(),
 			payload_sys_id: GetStringValue(grRecord.sys_id),
 			sys_scope: GetStringValue(grPackage.sys_scope),
 			sys_package: GetStringValue(grPackage.sys_package)
@@ -44,6 +47,8 @@
 		{
 			payload_content: strContentJson
 		});
+	
+	Debug(strTransportRecordSysId);
 	/*
 	var grTransporterRecord = new GlideRecord('x_snc_devtools_transporter_record');
 	grTransporterRecord.initialize();
@@ -61,13 +66,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-11-29 15:43:49</sys_created_on>
         <sys_id>414674791b32f9106c17fdd49b4bcb74</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>10</sys_mod_count>
         <sys_name>RecordTransporterRecordPack</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_414674791b32f9106c17fdd49b4bcb74</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-11-30 11:16:18</sys_updated_on>
+        <sys_updated_on>2023-11-30 13:25:55</sys_updated_on>
     </sys_script_include>
 </record_update>
