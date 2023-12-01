@@ -51,6 +51,7 @@
 		{
 		},
 		{
+			action: 'insert_or_update',
 			payload_content: strContentJson
 		});
 	
@@ -60,13 +61,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-11-29 15:43:49</sys_created_on>
         <sys_id>414674791b32f9106c17fdd49b4bcb74</sys_id>
-        <sys_mod_count>12</sys_mod_count>
+        <sys_mod_count>13</sys_mod_count>
         <sys_name>RecordTransporterRecordPack</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_414674791b32f9106c17fdd49b4bcb74</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-11-30 18:02:02</sys_updated_on>
+        <sys_updated_on>2023-12-01 12:29:35</sys_updated_on>
     </sys_script_include>
 </record_update>
