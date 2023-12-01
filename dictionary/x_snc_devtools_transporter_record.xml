@@ -2,7 +2,7 @@
     <element attributes="update_synch=true" db_object_id="a681e0b51bfeb9106c17fdd49b4bcb67" extends="sys_metadata" label="Transporter Record" max_length="40" name="x_snc_devtools_transporter_record" type="collection">
         <element choice="3" default="insert_or_update" label="Action" mandatory="true" max_length="40" name="action" type="choice">
             <choice>
-                <element inactive_on_update="false" label="Insert / Update" sequence="1" value="insert_or_update"/>
+                <element inactive_on_update="false" label="Insert or Update" sequence="1" value="insert_or_update"/>
                 <element inactive_on_update="false" label="Delete" sequence="2" value="delete"/>
             </choice>
         </element>

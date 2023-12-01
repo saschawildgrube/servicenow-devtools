@@ -20,7 +20,7 @@
             <element>action</element>
             <hint/>
             <inactive>false</inactive>
-            <label>Insert / Update</label>
+            <label>Insert or Update</label>
             <language>en</language>
             <name>x_snc_devtools_transporter_record</name>
             <sequence>1</sequence>
@@ -29,9 +29,9 @@
             <sys_created_on>2023-12-01 12:24:26</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
-            <sys_mod_count>0</sys_mod_count>
+            <sys_mod_count>1</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2023-12-01 12:24:26</sys_updated_on>
+            <sys_updated_on>2023-12-01 15:12:38</sys_updated_on>
             <value>insert_or_update</value>
         </sys_choice>
         <sys_choice action="INSERT_OR_UPDATE">
