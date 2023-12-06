@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-04-25 11:59:35</sys_created_on>
         <sys_id>743951ab1b9e2110cd6153d16b4bcb6b</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
-        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
-        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_743951ab1b9e2110cd6153d16b4bcb6b</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-04-25 12:04:39</sys_updated_on>
+        <sys_updated_on>2023-12-06 09:45:08</sys_updated_on>
         <table/>
         <test display_value="DevTools - GlideRecordAddQuery">09295d6b1b9e2110cd6153d16b4bcb69</test>
         <timeout/>
@@ -35,9 +35,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-04-25 11:59:35</sys_created_on>
         <sys_id>1e3ad5eb1b9e2110cd6153d16b4bcb87</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-04-25 12:04:39</sys_updated_on>
+        <sys_updated_on>2023-12-06 09:45:08</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -68,24 +68,25 @@
 			TestCase_GlideRecordAddQuery_CheckResult);&#13;
 	}&#13;
 &#13;
-	&#13;
+&#13;
+&#13;
 &#13;
 	TestCase_GlideRecordAddQuery(null,{},0);&#13;
-	TestCase_GlideRecordAddQuery(new GlideRecord('x_snc_devtools_test'),{},0);&#13;
+	TestCase_GlideRecordAddQuery(new GlideRecord('x_snc_devtools_test'),{ name: '_ATF_DEVTOOLS_Test' },0);&#13;
 	&#13;
 	var grTest = new GlideRecord('x_snc_devtools_test');&#13;
 	grTest.initialize();&#13;
-	grTest.name = 'Test';&#13;
+	grTest.name = '_ATF_DEVTOOLS_Test';&#13;
 	grTest.insert();&#13;
-	TestCase_GlideRecordAddQuery(new GlideRecord('x_snc_devtools_test'),{},1);&#13;
+	TestCase_GlideRecordAddQuery(new GlideRecord('x_snc_devtools_test'),{ name: '_ATF_DEVTOOLS_Test' },1);&#13;
 	&#13;
 	var grTest = new GlideRecord('x_snc_devtools_test');&#13;
 	grTest.initialize();&#13;
-	grTest.name = 'Test2';&#13;
+	grTest.name = '_ATF_DEVTOOLS_Test2';&#13;
 	grTest.insert();&#13;
-	TestCase_GlideRecordAddQuery(new GlideRecord('x_snc_devtools_test'),{},2);&#13;
+	TestCase_GlideRecordAddQuery(new GlideRecord('x_snc_devtools_test'),'nameSTARTSWITH_ATF_DEVTOOLS_',2);&#13;
 	&#13;
-	TestCase_GlideRecordAddQuery(new GlideRecord('x_snc_devtools_test'),{ name: 'Test2' },1);&#13;
+	TestCase_GlideRecordAddQuery(new GlideRecord('x_snc_devtools_test'),{ name: '_ATF_DEVTOOLS_Test2' },1);&#13;
 	&#13;
 	return test.GetResult();&#13;
 	&#13;
