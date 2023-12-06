@@ -8,22 +8,21 @@
         <mugshots_cache_json/>
         <notes/>
         <order>1</order>
-        <snapshot/>
         <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
         <sys_class_name>sys_atf_step</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-06-09 12:42:37</sys_created_on>
         <sys_id>a76a3143db6474943c6c09c2ba9619a7</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_a76a3143db6474943c6c09c2ba9619a7</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-06-09 12:43:04</sys_updated_on>
+        <sys_updated_on>2023-12-05 10:16:52</sys_updated_on>
         <table/>
-        <test display_value="DevTools - GetInstanceURL">fc3a3d03db6474943c6c09c2ba961951</test>
+        <test display_value="DevTools - GetInstanceUrl">fc3a3d03db6474943c6c09c2ba961951</test>
         <timeout/>
         <warning_message/>
     </sys_atf_step>
@@ -36,38 +35,33 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-06-09 12:42:38</sys_created_on>
         <sys_id>9e0b3143db6474943c6c09c2ba961924</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-06-09 12:43:04</sys_updated_on>
-        <value>var strLog = '';&#13;
-function Log(strText)&#13;
+        <sys_updated_on>2023-12-05 10:16:52</sys_updated_on>
+        <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
-	strLog = strLog + "\n" + strText;&#13;
-}&#13;
-(function(outputs, steps, stepResult, assertEqual)&#13;
-{&#13;
-	var RenderValue = x_snc_devtools.RenderValue;&#13;
+	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
+	&#13;
+	test.SetResult(true);&#13;
 &#13;
-	var bResult = true;&#13;
-	&#13;
-	function TestCase_GetInstanceURL(vExpected)&#13;
+	function TestCase_GetInstanceUrl(vExpected)&#13;
 	{&#13;
-		Log('TestCase_GetInstanceURL');&#13;
-		Log('Expected: '+RenderValue(vExpected));&#13;
-		var vResult = GetInstanceURL();&#13;
-		Log('Result  : '+RenderValue(vResult));&#13;
-		if (vResult != vExpected)&#13;
+		function TestCase_GetInstanceUrl_CheckResult(vInput,vExpected,vResult)&#13;
 		{&#13;
-			bResult = false;&#13;
-			Log('Test case FAILED');&#13;
+			return (vExpected == vResult);&#13;
 		}&#13;
-		Log('');&#13;
+&#13;
+		test.TestCase(&#13;
+			'Function GetInstanceUrl()',&#13;
+			GetInstanceUrl,&#13;
+			{},&#13;
+			vExpected,&#13;
+			TestCase_GetInstanceUrl_CheckResult);&#13;
 	}&#13;
-	&#13;
-	TestCase_GetInstanceURL(gs.getProperty('glide.servlet.uri')); // Pointless. But how can we test this?&#13;
+&#13;
+	TestCase_GetInstanceUrl(gs.getProperty('glide.servlet.uri'));&#13;
 		&#13;
-	stepResult.setOutputMessage(strLog);&#13;
-	return bResult;&#13;
+	return test.GetResult();&#13;
 	&#13;
 })(outputs, steps, stepResult, assertEqual);</value>
         <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>

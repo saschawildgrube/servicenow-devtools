@@ -8,20 +8,19 @@
         <mugshots_cache_json/>
         <notes/>
         <order>1</order>
-        <snapshot/>
         <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
         <sys_class_name>sys_atf_step</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-09-08 12:07:08</sys_created_on>
         <sys_id>46ceea76dbc7d810ba15a35305961919</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_46ceea76dbc7d810ba15a35305961919</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-09-08 12:12:08</sys_updated_on>
+        <sys_updated_on>2023-12-05 10:55:18</sys_updated_on>
         <table/>
         <test display_value="DevTools - HttpRequest">08aee676dbc7d810ba15a353059619ba</test>
         <timeout/>
@@ -36,44 +35,50 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-09-08 12:07:08</sys_created_on>
         <sys_id>be4fa2b6dbc7d810ba15a353059619dc</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-09-08 12:12:08</sys_updated_on>
-        <value>var strLog = '';&#13;
-function Log(strText)&#13;
+        <sys_updated_on>2023-12-05 10:55:18</sys_updated_on>
+        <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
-	strLog = strLog + "\n" + strText;&#13;
-}&#13;
-(function(outputs, steps, stepResult, assertEqual)&#13;
-{&#13;
-	var bResult = true;&#13;
+	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
 	&#13;
+	test.SetResult(true);&#13;
+&#13;
 	function TestCase_HttpRequest(vInput, vExpected)&#13;
 	{&#13;
-		Log('TestCase_HttpRequest');&#13;
-		Log('Input: '+RenderValue(vInput));&#13;
-		Log('Expected: '+RenderValue(vExpected));&#13;
-		var vResult = HttpRequest(vInput);&#13;
-		Log('Result  : '+vResult);&#13;
-		if (vResult != vExpected)&#13;
+		function TestCase_HttpRequest_CheckResult(vInput,vExpected,vResult)&#13;
 		{&#13;
-			if (vResult.includes(vExpected) == false)&#13;
+			if (vResult != vExpected)&#13;
 			{&#13;
-				bResult = false;&#13;
-				Log('Test case FAILED');&#13;
+				var strResult = GetStringValue(vResult);&#13;
+				if (strResult.includes(vExpected) == false)&#13;
+				{&#13;
+					return false;&#13;
+				}&#13;
+				return true;&#13;
 			}&#13;
+			return (vExpected == vResult);&#13;
 		}&#13;
-		Log('');&#13;
+&#13;
+		test.TestCase(&#13;
+			'Function HttpRequest()',&#13;
+			HttpRequest,&#13;
+			{&#13;
+				'Input': vInput&#13;
+			},&#13;
+			vExpected,&#13;
+			TestCase_HttpRequest_CheckResult);&#13;
 	}&#13;
-	&#13;
+&#13;
 	TestCase_HttpRequest('',false);&#13;
 	TestCase_HttpRequest('http://www.example.com','&lt;title&gt;Example Domain&lt;/title&gt;');&#13;
+	TestCase_HttpRequest(GetInstanceUrl(),'window.NOW.');	&#13;
+&#13;
 	&#13;
-		&#13;
-	stepResult.setOutputMessage(strLog);&#13;
-	return bResult;&#13;
+	return test.GetResult();&#13;
 	&#13;
-})(outputs, steps, stepResult, assertEqual);</value>
+})(outputs, steps, stepResult, assertEqual);&#13;
+</value>
         <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
     </sys_variable_value>
     <sys_variable_value action="INSERT_OR_UPDATE">

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <copied_from/>
+        <description>Run Server Side Validation Script</description>
+        <display_name>Run Server Side Script</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>1</order>
+        <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-01 15:39:04</sys_created_on>
+        <sys_id>913a47521bbe7d106c17fdd49b4bcb60</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>Run Server Side Script</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_step_913a47521bbe7d106c17fdd49b4bcb60</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-01 15:47:08</sys_updated_on>
+        <table/>
+        <test display_value="DevTools - RecordTransporterPackageReset">7c2ac3521bbe7d106c17fdd49b4bcb23</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=913a47521bbe7d106c17fdd49b4bcb60"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>913a47521bbe7d106c17fdd49b4bcb60</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-01 15:39:04</sys_created_on>
+        <sys_id>663a47521bbe7d106c17fdd49b4bcb44</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-01 15:47:08</sys_updated_on>
+        <value>(function(outputs, steps, stepResult, assertEqual)&#13;
+{&#13;
+	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
+	&#13;
+	test.SetResult(true);&#13;
+&#13;
+	function TestCase_RecordTransporterPackageReset(vPackage, vExpected)&#13;
+	{&#13;
+		function TestCase_RecordTransporterPackageReset_CheckResult(vInput,vExpected,vResult)&#13;
+		{&#13;
+			return (vExpected == vResult);&#13;
+		}&#13;
+&#13;
+		test.TestCase(&#13;
+			'Function RecordTransporterPackageReset()',&#13;
+			RecordTransporterPackageReset,&#13;
+			{&#13;
+				'Package': vPackage&#13;
+			},&#13;
+			vExpected,&#13;
+			TestCase_RecordTransporterPackageReset_CheckResult);&#13;
+	}&#13;
+&#13;
+	TestCase_RecordTransporterPackageReset(null,false);&#13;
+	&#13;
+	var grPackage = new GlideRecord('x_snc_devtools_transporter_package');&#13;
+	grPackage.initialize();&#13;
+	grPackage.name = '_ATF_DEVTOOLS_Test1';&#13;
+	grPackage.id_suffix = 'atf_test1';&#13;
+	grApp = GetAppRecord('x_snc_devtools');&#13;
+	grPackage.sys_scope = grApp.sys_id;&#13;
+	var strPackageSysId = grPackage.insert();&#13;
+	test.Log(grPackage);&#13;
+&#13;
+	var grTest = new GlideRecord('x_snc_devtools_test');&#13;
+	grTest.initialize();&#13;
+	grTest.name = 'Test1';&#13;
+	grTest.value = 'Hello World';&#13;
+	var strTestSysId = grTest.insert();&#13;
+	test.Log(grTest);&#13;
+&#13;
+	var strTransportRecordSysId = RecordTransporterRecordPack(grPackage,grTest);&#13;
+&#13;
+	test.TestCase_RecordGetValue(&#13;
+		'x_snc_devtools_transporter_record',strTransportRecordSysId,'action','insert_or_update');&#13;
+&#13;
+	TestCase_RecordTransporterPackageReset(grPackage,true);&#13;
+&#13;
+	test.TestCase_RecordGetValue(&#13;
+		'x_snc_devtools_transporter_record',strTransportRecordSysId,'action','delete');&#13;
+	&#13;
+	return test.GetResult();&#13;
+	&#13;
+})(outputs, steps, stepResult, assertEqual);</value>
+        <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>913a47521bbe7d106c17fdd49b4bcb60</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-01 15:39:04</sys_created_on>
+        <sys_id>ae3a47521bbe7d106c17fdd49b4bcb43</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-01 15:39:04</sys_updated_on>
+        <value>3.1</value>
+        <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
+    </sys_variable_value>
+</record_update>

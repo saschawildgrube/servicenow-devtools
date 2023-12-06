@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="update_synch=true" db_object_id="a681e0b51bfeb9106c17fdd49b4bcb67" extends="sys_metadata" label="Transporter Record" max_length="40" name="x_snc_devtools_transporter_record" type="collection">
+        <element choice="3" default="insert_or_update" label="Action" mandatory="true" max_length="40" name="action" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Insert or Update" sequence="1" value="insert_or_update"/>
+                <element inactive_on_update="false" label="Delete" sequence="2" value="delete"/>
+            </choice>
+        </element>
+        <element display="true" label="Display" max_length="200" name="display" read_only="true" type="string"/>
+        <element label="Package" mandatory="true" max_length="32" name="package" read_only="true" reference="x_snc_devtools_transporter_package" reference_cascade_rule="delete" reference_qual="sys_scopeSAMEASsys_package.ref_sys_scope...^EQ" reference_qual_condition="sys_scopeSAMEASsys_package.ref_sys_scope...^EQ" type="reference"/>
+        <element attributes="json_view=true" label="Content" max_length="100000" name="payload_content" type="string"/>
+        <element label="Sys ID" mandatory="true" max_length="32" name="payload_sys_id" type="string"/>
+        <element label="Table" mandatory="true" max_length="80" name="payload_table" type="string"/>
+        <index name="index">
+            <element name="package"/>
+        </index>
+    </element>
+</database>

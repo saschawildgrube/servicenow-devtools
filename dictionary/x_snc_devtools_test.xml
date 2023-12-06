@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
-    <element db_object_id="2e7a44251bcaad106c17fdd49b4bcbc1" label="Test" max_length="40" name="x_snc_devtools_test" text_index="true" type="collection">
-        <element display="true" label="Name" max_length="40" name="name" type="string"/>
+    <element attributes="all_tables.text_index_translations=true" db_object_id="2e7a44251bcaad106c17fdd49b4bcbc1" label="Test" max_length="40" name="x_snc_devtools_test" text_index="true" type="collection">
+        <element attributes="serializer=com.glide.script.TranslatedTextXMLSerializer" display="true" label="Name" max_length="40" name="name" type="translated_text"/>
         <element label="Order" max_length="40" name="order" type="integer"/>
         <element label="Processed" max_length="40" name="processed" type="glide_date_time"/>
-        <element label="Value" max_length="40" name="value" type="string"/>
+        <element attributes="serializer=com.glide.script.TranslatedTextXMLSerializer" label="Value" max_length="40" name="value" type="translated_text"/>
     </element>
 </database>

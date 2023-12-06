@@ -5,7 +5,8 @@
         <api_name>x_snc_devtools.IsValidSysId</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Checks if the given string is a syntactically correct sys_id. Returns true if it is, false if not.</description>
+        <description>Checks if the given string is a syntactically correct sys_id. Returns true if it is, false if not.&#13;
+Considers special Sys IDs for fx_currency and the "Default view" in sys_ui_view.</description>
         <name>IsValidSysId</name>
         <script><![CDATA[function IsValidSysId(strSysId)
 {
@@ -28,12 +29,16 @@
 			return false;
 		}
 	}
+	// What the fuck? The sys_ui_view record for the "Default view" uses the string as a Sys ID
+	if (strSysId == 'Default view')
+	{
+		return true;
+	}
 	if (strSysId.length != 32)
 	{
 		return false;
 	}
-	var regex = RegExp('([0-9a-f]){32}');
-	if (regex.test(strSysId) == false)
+	if (StringCheckRegEx(strSysId,'([0-9a-f]){32}') == false)
 	{
 		return false;
 	}
@@ -43,13 +48,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-06-22 17:03:51</sys_created_on>
         <sys_id>13e686f91b6d1410a89720a8ec4bcbc7</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>11</sys_mod_count>
         <sys_name>IsValidSysId</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_13e686f91b6d1410a89720a8ec4bcbc7</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-11-21 18:26:55</sys_updated_on>
+        <sys_updated_on>2023-11-30 09:03:12</sys_updated_on>
     </sys_script_include>
 </record_update>

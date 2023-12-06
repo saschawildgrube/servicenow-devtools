@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.RecordTransporterRecordPack</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Packs a given record into a Record Transporter Package.</description>
+        <name>RecordTransporterRecordPack</name>
+        <script><![CDATA[function RecordTransporterRecordPack(vPackage,vRecordOrTable,strSysId)
+{
+	var grPackage = RecordTransporterGetPackageRecord(vPackage);
+	if (IsValidRecord(grPackage) == false)
+	{
+		return false;
+	}
+	
+	var grRecord = null;
+	if (IsValidRecord(vRecordOrTable) == true)
+	{
+		grRecord = vRecordOrTable;
+	}
+	else
+	{
+		var strTable = GetStringValue(vRecordOrTable);	
+		grRecord = GetRecord(strTable,strSysId);
+	}
+	
+	if (IsValidRecord(grRecord) == false)
+	{
+		return false;
+	}
+	
+	var record = Clone(grRecord);
+	if (IsObject(record) == false)
+	{
+		return false;
+	}
+	
+	var strContentJson = MakeJson(record);
+	
+	var strTransportRecordSysId = RecordInsertOrUpdate(
+		'x_snc_devtools_transporter_record',
+		{
+			package: GetStringValue(grPackage.sys_id),
+			payload_table: grRecord.getRecordClassName(),
+			payload_sys_id: GetStringValue(grRecord.sys_id),
+			sys_scope: GetStringValue(grPackage.sys_scope),
+			sys_package: GetStringValue(grPackage.sys_package)
+		},
+		{
+		},
+		{
+			action: 'insert_or_update',
+			payload_content: strContentJson
+		});
+	
+	return strTransportRecordSysId;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-11-29 15:43:49</sys_created_on>
+        <sys_id>414674791b32f9106c17fdd49b4bcb74</sys_id>
+        <sys_mod_count>17</sys_mod_count>
+        <sys_name>RecordTransporterRecordPack</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_414674791b32f9106c17fdd49b4bcb74</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-01 15:37:56</sys_updated_on>
+    </sys_script_include>
+</record_update>

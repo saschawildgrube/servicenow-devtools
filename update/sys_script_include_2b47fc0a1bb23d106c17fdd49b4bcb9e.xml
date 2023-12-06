@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.RecordTransporterRecordUnpack</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Unpacks a given record from a Record Transporter Package.</description>
+        <name>RecordTransporterRecordUnpack</name>
+        <script><![CDATA[function RecordTransporterRecordUnpack(vPackage,vTransportRecord)
+{
+	
+	var grPackage = GetRecord('x_snc_devtools_transporter_package',vPackage);
+	if (IsValidRecord(grPackage) == false)
+	{
+		return false;
+	}
+	
+	var grTransportRecord = GetRecord('x_snc_devtools_transporter_record',vTransportRecord);
+	if (IsValidRecord(grTransportRecord) == false)
+	{
+		return false;
+	}
+	
+	if (GetStringValue(grPackage.sys_scope) != GetStringValue(grTransportRecord.sys_scope))
+	{
+		return false;
+	}
+	
+	var strTable = GetStringValue(grTransportRecord.payload_table);
+	if (IsValidTable(strTable) == false)
+	{
+		return false;
+	}
+	
+	var strSysId = GetStringValue(grTransportRecord.payload_sys_id);
+	
+	var strAction = GetStringValue(grTransportRecord.action);
+	if (strAction == 'insert_or_update')
+	{
+		var strContentJson = GetStringValue(grTransportRecord.payload_content);
+
+		var record = ParseJson(strContentJson);
+		if (IsObject(record) == false)
+		{
+			return false;
+		}
+
+		var strRecordSysId = RecordInsertOrUpdate(
+			strTable,
+			{
+				sys_id: strSysId
+			},
+			{},
+			record,
+			true // Ghost mode - we don't trigger work flows
+			);
+
+		if (IsValidSysId(strRecordSysId) == false)
+		{
+			return false;
+		}
+
+		return true;		
+	}
+	
+	if (strAction == 'delete')
+	{
+		return RecordDelete(strTable,strSysId);
+	}
+	
+	return false;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-11-30 10:18:40</sys_created_on>
+        <sys_id>2b47fc0a1bb23d106c17fdd49b4bcb9e</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>RecordTransporterRecordUnpack</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_2b47fc0a1bb23d106c17fdd49b4bcb9e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-01 12:39:17</sys_updated_on>
+    </sys_script_include>
+</record_update>
