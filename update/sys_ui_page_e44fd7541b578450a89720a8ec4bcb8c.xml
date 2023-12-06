@@ -140,6 +140,42 @@ gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData
 		<li>Verify that the GLOBAL system property&#160;<a href="/nav_to.do?uri=sys_properties.do?sys_id=856303e90a0a0bc50164129959388444" target="_blank">glide.email.smtp.active</a>&#160;is set to "true".</li>
 	</ol>
 	
+	<h3>Record Transporter</h3>
+	<p>Data is managed on each instance and should not be "deployed". Code is part of applications and should be deployed as such.</p>
+	<p>However there are cases where the boundaries are blurry. If data records (i.e. records that are not in a table derived from sys_metadata must be part of an application the Record Transporter comes to the rescue.</p>
+	<p>The Record Transporter allows to store any record that is not a sys_metadata derivative into a table that is. The table in which these records are stored is x_snc_devtools_transporter_record (which is derived from sys_metadata) and hence its records are captured as part of an application (in source control). Such records are associated to a Record Transporter Package (in table table x_snc_devtools_transporter_package).</p>
+	<p>To "pack" records into a Package, create a Package in the GUI - but make sure to select the scope of the application that should contain the package - then use the function RecordTransporterRecordPack() to store individual records into the package.</p>
+	<p>To properly "store" to be deleted records use the function RecordTransporterPackageReset() before adding records to a package. The function will mark all existing records in the package to be deleted on the target instance. Once added again, these records will be stored to the package to be inserted or updated. This allows to keep track on deleted records of earlier versions of the package.</p>
+	<p>During installation use the method InstallerAPI::RecordTransporterPackageUnpack() to unpack the contained records on the target instance.</p>
+	<p>Code to store records could look like this:
+		<pre>
+// To set all existing records as to-be-deleted
+x_snc_devtools.RecordTransporterPackageReset('x_your_scope.demo');
+			
+// Identify records based on whatever logic
+var grRecords = new GlideRecord('x_snc_devtools_test');
+grRecord.addQuery('name','STARTSWITH','Test ');
+grRecords.query();
+while (grRecords.next())
+{
+	// Pack the identified record into the package
+    x_snc_devtools.RecordTransporterRecordPack('x_your_scope.demo',grRecords));
+}
+		</pre>
+	</p>
+	
+	<p>To unpack records, implement the AppInstall() function in your app like this:
+		<pre>	
+function AppInstall()
+{
+	var installer = new x_snc_devtools.InstallerAPI(x_snc_devtools.GetAppName('x_your_scope'));
+	
+	installer.RecordTransporterPackageUnpack('x_your_scope.demo');			
+
+	return installer.Finish();
+}
+		</pre>
+	</p>
 	
 	<h3>Field Formatting</h3>
 	<p>DevTools can help to format (float) numbers in forms, related lists and list views in the classic UI - Polaris, however, is not supported yet! Follow these steps to activate the feature:</p>
@@ -1585,13 +1621,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1448</sys_mod_count>
+        <sys_mod_count>1452</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-12-05 12:12:58</sys_updated_on>
+        <sys_updated_on>2023-12-05 16:00:42</sys_updated_on>
     </sys_ui_page>
 </record_update>
