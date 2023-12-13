@@ -142,7 +142,7 @@ gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData
 	
 	<h3>Record Transporter</h3>
 	<p>Data is managed on each instance and should not be "deployed". Code is part of applications and should be deployed as such.</p>
-	<p>However there are cases where the boundaries are blurry. If data records (i.e. records that are not in a table derived from sys_metadata must be part of an application the Record Transporter comes to the rescue.</p>
+	<p>However there are cases where the boundaries are blurry. If data records (i.e. records that are not in a table derived from sys_metadata) must be part of an application the Record Transporter comes to the rescue.</p>
 	<p>The Record Transporter allows to store any record that is not a sys_metadata derivative into a table that is. The table in which these records are stored is x_snc_devtools_transporter_record (which is derived from sys_metadata) and hence its records are captured as part of an application (in source control). Such records are associated to a Record Transporter Package (in table table x_snc_devtools_transporter_package).</p>
 	<p>To "pack" records into a Package, create a Package in the GUI - but make sure to select the scope of the application that should contain the package - then use the function RecordTransporterRecordPack() to store individual records into the package.</p>
 	<p>To properly "store" to be deleted records use the function RecordTransporterPackageReset() before adding records to a package. The function will mark all existing records in the package to be deleted on the target instance. Once added again, these records will be stored to the package to be inserted or updated. This allows to keep track on deleted records of earlier versions of the package.</p>
@@ -154,12 +154,12 @@ x_snc_devtools.RecordTransporterPackageReset('x_your_scope.demo');
 			
 // Identify records based on whatever logic
 var grRecords = new GlideRecord('x_snc_devtools_test');
-grRecord.addQuery('name','STARTSWITH','Test ');
+grRecords.addQuery('name','STARTSWITH','Test ');
 grRecords.query();
 while (grRecords.next())
 {
 	// Pack the identified record into the package
-    x_snc_devtools.RecordTransporterRecordPack('x_your_scope.demo',grRecords));
+	x_snc_devtools.RecordTransporterRecordPack('x_your_scope.demo',grRecords));
 }
 		</pre>
 	</p>
@@ -250,6 +250,12 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>TODO</li>
 	</ol>
 -->	
+	
+	<h3>1.78.0 - 2023-12-13</h3>
+	<ol>
+		<li>RecordTransporterPackagePackTranslatedText() now supports the "query" parameter to limit the sys_translated_text records to be scanned.</li>
+		<li>Added the "Description" field to the Record Transporter Package.</li>
+	</ol>	
 	
 	<h3>1.77.0 - 2023-12-06</h3>
 	<ol>
@@ -1622,13 +1628,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1454</sys_mod_count>
+        <sys_mod_count>1461</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-12-06 09:56:48</sys_updated_on>
+        <sys_updated_on>2023-12-13 20:23:47</sys_updated_on>
     </sys_ui_page>
 </record_update>
