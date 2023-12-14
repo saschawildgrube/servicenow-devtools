@@ -8,22 +8,21 @@
         <mugshots_cache_json/>
         <notes/>
         <order>1</order>
-        <snapshot/>
         <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
         <sys_class_name>sys_atf_step</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-01-24 19:51:14</sys_created_on>
         <sys_id>1b7ddada1be06d105b76777d8b4bcbbb</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
-        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
-        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_1b7ddada1be06d105b76777d8b4bcbbb</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-01-24 20:17:30</sys_updated_on>
+        <sys_updated_on>2023-12-14 08:39:16</sys_updated_on>
         <table/>
-        <test display_value="DevTools - sys_metadata - Prevent useless checks ">926d52da1be06d105b76777d8b4bcbc5</test>
+        <test display_value="DevTools - sys_metadata - Prevent useless checks">926d52da1be06d105b76777d8b4bcbc5</test>
         <timeout/>
         <warning_message/>
     </sys_atf_step>
@@ -36,9 +35,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-01-24 19:51:14</sys_created_on>
         <sys_id>808d1ada1be06d105b76777d8b4bcb2e</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-01-24 20:17:30</sys_updated_on>
+        <sys_updated_on>2023-12-14 08:39:16</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -66,6 +65,7 @@
 &#13;
 	test.Log('\nThe business rule should be active and prevent the check from executing on the record.\n');&#13;
 &#13;
+	Sleep(5);&#13;
 	var result = InstanceScanCheckOnRecord(grLinterCheck.sys_id, 'sys_hub_flow_variable', strFlowVariableSysId);&#13;
 	test.Log('InstanceScanCheckOnRecord returned: '+RenderValue(result));&#13;
 	&#13;
@@ -79,6 +79,7 @@
 	test.Log('\nNow, the business rule is set inactive, so the check is expected to execute and produce a finding.\n');&#13;
 	RecordSetValue('sys_script','b7fad21a1be06d105b76777d8b4bcbbe','active','false');&#13;
 &#13;
+	Sleep(5);&#13;
 	result = InstanceScanCheckOnRecord(grLinterCheck.sys_id, 'sys_hub_flow_variable', strFlowVariableSysId);&#13;
 	test.Log('InstanceScanCheckOnRecord returned: '+RenderValue(result));&#13;
 &#13;
