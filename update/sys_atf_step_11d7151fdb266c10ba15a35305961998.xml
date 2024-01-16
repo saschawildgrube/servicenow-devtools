@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-03-02 18:45:10</sys_created_on>
         <sys_id>11d7151fdb266c10ba15a35305961998</sys_id>
-        <sys_mod_count>15</sys_mod_count>
+        <sys_mod_count>20</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_11d7151fdb266c10ba15a35305961998</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-10-31 12:43:18</sys_updated_on>
+        <sys_updated_on>2024-01-16 09:06:47</sys_updated_on>
         <table/>
         <test display_value="DevTools - Clone">7cb7911fdb266c10ba15a353059619da</test>
         <timeout/>
@@ -35,108 +35,66 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-03-02 18:45:10</sys_created_on>
         <sys_id>2798515fdb266c10ba15a353059619e3</sys_id>
-        <sys_mod_count>15</sys_mod_count>
+        <sys_mod_count>20</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-10-31 12:43:18</sys_updated_on>
+        <sys_updated_on>2024-01-16 09:06:48</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
 	&#13;
 	test.SetResult(true);&#13;
 &#13;
-	function TestCase_Clone(vInput, vExpected)&#13;
+	function TestCase_Clone(vInput,bSortKeys,vExpected)&#13;
 	{&#13;
 		function TestCase_Clone_CheckResult(vInput,vExpected,vResult)&#13;
 		{&#13;
 			test.Log('GetType(vInput): '+GetType(vInput));&#13;
 			test.Log('IsObject(vInput): '+IsObject(vInput));&#13;
-			return IsEqual(vExpected, vResult);&#13;
+			return IsEqual(vExpected, vResult, false);&#13;
 		}&#13;
 &#13;
 		test.TestCase(&#13;
 			'Function Clone()',&#13;
 			Clone,&#13;
 			{&#13;
-				'Input': vInput&#13;
+				'Input': vInput,&#13;
+				'SortKeys': bSortKeys&#13;
 			},&#13;
 			vExpected,&#13;
 			TestCase_Clone_CheckResult);&#13;
 	}&#13;
 &#13;
-	TestCase_Clone(null,null);&#13;
-	TestCase_Clone('John','John');&#13;
-	TestCase_Clone(42,42);&#13;
-	TestCase_Clone(['Alpha','Beta'],['Alpha','Beta']);&#13;
+	TestCase_Clone(null,null,null);&#13;
+	TestCase_Clone('John',false,'John');&#13;
+	TestCase_Clone(42,false,42);&#13;
+	TestCase_Clone(['Alpha','Beta'],false,['Alpha','Beta']);&#13;
 	&#13;
 	TestCase_Clone(&#13;
 		{a:1,b:2,c:3},&#13;
+		false,&#13;
 		{a:1,b:2,c:3});&#13;
+&#13;
+TestCase_Clone(&#13;
+		{c:3,b:2,a:1},&#13;
+		false,&#13;
+		{c:3,b:2,a:1});		&#13;
+&#13;
+TestCase_Clone(&#13;
+		{c:3,b:2,a:1},&#13;
+		true,&#13;
+		{a:1,b:2,c:3});		&#13;
 	&#13;
 	var gr = new GlideRecord('kb_knowledge');&#13;
 	gr.initialize();&#13;
 	gr.short_description = 'Test';&#13;
 	gr.text = 'Clone World';&#13;
 	var strSysId = gr.insert();&#13;
-	TestCase_Clone(Clone(gr),Clone(gr));		&#13;
+	TestCase_Clone(Clone(gr),false,Clone(gr));		&#13;
 &#13;
 &#13;
 	return test.GetResult();&#13;
 	&#13;
-})(outputs, steps, stepResult, assertEqual);&#13;
-&#13;
-/*&#13;
-var strLog = '';&#13;
-function Log(strText)&#13;
-{&#13;
-	strLog = strLog + "\n" + strText;&#13;
-}&#13;
-(function(outputs, steps, stepResult, assertEqual)&#13;
-{&#13;
-	var RenderValue = x_snc_devtools.RenderValue;&#13;
-&#13;
-	var bResult = true;&#13;
-	&#13;
-&#13;
-	function TestCase_Clone(vInput, vInput2, vExpected)&#13;
-	{&#13;
-		Log('TestCase_Clone');&#13;
-		Log('Input            : '+RenderValue(vInput));&#13;
-		Log('GetType(Input)   : '+GetType(vInput));&#13;
-		Log('IsObject(Input)  : '+RenderValue(IsObject(vInput)));&#13;
-		Log('Expected         : '+RenderValue(vExpected));&#13;
-		Log('GetType(Expected): '+GetType(vExpected));&#13;
-		var vResult = Clone(vInput);&#13;
-		Log('Result           : '+RenderValue(vResult));&#13;
-		Log('GetType(Result)  : '+GetType(vResult));&#13;
-		vInput = vInput2;&#13;
-		Log('Input after mod. : '+RenderValue(vInput));&#13;
-		Log('GetType(Input)   : '+GetType(vInput));&#13;
-&#13;
-		Log('Result after mod.: '+RenderValue(vResult));&#13;
-		Log('GetType(Result)  : '+GetType(vResult));&#13;
-		&#13;
-		if (IsEqual(vResult,vExpected) == false)&#13;
-		{&#13;
-			bResult = false;&#13;
-			Log('IsEqual() returned false');&#13;
-			Log('Test case FAILED');&#13;
-		}&#13;
-		if (GetType(vResult) != GetType(vExpected))&#13;
-		{&#13;
-			bResult = false;&#13;
-			Log('GetType() differs');&#13;
-			Log('Test case FAILED');&#13;
-		}&#13;
-		Log('');&#13;
-	}&#13;
-	&#13;
-&#13;
-	&#13;
-	stepResult.setOutputMessage(strLog);&#13;
-	return bResult;&#13;
-	&#13;
-})(outputs, steps, stepResult, assertEqual);&#13;
-*/</value>
+})(outputs, steps, stepResult, assertEqual);</value>
         <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
     </sys_variable_value>
     <sys_variable_value action="INSERT_OR_UPDATE">

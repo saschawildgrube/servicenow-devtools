@@ -211,8 +211,18 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>You may consider session or transaction caching techniques to improve performance.</li>
 	</ol>
 	
-	<h3>Manage Record Order (or Rank)</h3>
-	<p>The function RecordManageOrder() can be used set a given integer field on a table into a perfect sequence. The function is designed to be called in an async after update/insert/delete business rule.</p> 
+	<h3>Manage Record Order (Record Ranking)</h3>
+	<p>The function RecordManageOrder() can be used set the records in a table into a definitive sequence based on a given integer field. The function is designed to be called in an async after update/insert/delete business rule like this:</p>
+<pre>
+(function executeRule(current, previous /*null when async*/) {
+	
+	var RecordManageOrder = x_snc_devtools.RecordManageOrder;
+	RecordManageOrder('your_table', 'order', current ? current.sys_id : null, current ? current.order : null);
+
+})(current, previous);
+</pre>
+<p>"your_table" is the technical name of the table in which records should be sorted (or ranked). "order" is the name of the integer field that defines the ordering sequence.</p>
+<p>The "current" object is null in an after delete async business rule, hence the conditional statements.</p>
 	
 	<h2>Reference</h2>
 
@@ -250,6 +260,22 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>TODO</li>
 	</ol>
 -->	
+	
+	<h3>1.79.0 - 2023-01-16</h3>
+	<ol>
+		<li>Added function StringStripTrailingSlash().</li>
+		<li>DevToolsWorkerAPI now supports InstallApp().</li>
+		<li>InstallApp() now uses ProgressTrackerAPI to communicate progress and produces a log entry that contains a summary of which scripts ran and if they ran successfully.</li>
+		<li>ProgressTrackerAPI detects if the execution context is an ATF test and in that case, does nothing. Reporting an error through the progress tracker may interfere with ATF test execution itself which also uses the progress tracker to communicate progress.</li>
+		<li>Clone() now supports the bSortKeys parameter to allow for sorted keys in cloned objects.</li>
+		<li>MakeJson() now always produces JSON strings with alphabetically sorted keys.</li>
+		<li>RecordTransporterRecordPack() now also produces JSON payloads in transport records with alphabetically sorted keys.</li>
+		<li>Improved documentation and syntax editor macro for RecordManageOrder().</li>
+		<li>The business rule "sys_metadata - prevent useless checks" now also prevents unnecessary checks on records in tables sys_hub_action_input and sys_hub_action_output.</li> 
+		<li>Added more patterns to GetEvaluatorErrorExceptionPatterns().</li>
+		<li>GetTableFromSysId() now also considers table sys_progress_worker as a priority to find Sys IDs way faster.</li> 
+		<li>Added "Multi Factor Authentication" section to the link directory.</li>
+	</ol>	
 	
 	<h3>1.78.2 - 2023-12-14</h3>
 	<ol>
@@ -1639,13 +1665,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1466</sys_mod_count>
+        <sys_mod_count>1484</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-12-14 08:44:02</sys_updated_on>
+        <sys_updated_on>2024-01-16 13:25:46</sys_updated_on>
     </sys_ui_page>
 </record_update>

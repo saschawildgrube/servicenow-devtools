@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_scope_privilege">
+    <sys_scope_privilege action="INSERT_OR_UPDATE">
+        <operation>read</operation>
+        <source_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</source_scope>
+        <status>allowed</status>
+        <sys_class_name>sys_scope_privilege</sys_class_name>
+        <sys_created_by>test.deployer.manager</sys_created_by>
+        <sys_created_on>2023-12-17 14:55:52</sys_created_on>
+        <sys_id>e9c9d9e71bc3b1506c17fdd49b4bcb49</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_snc_deployer_m2m_pipline_instance</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_scope_privilege_e9c9d9e71bc3b1506c17fdd49b4bcb49</sys_update_name>
+        <sys_updated_by>test.deployer.manager</sys_updated_by>
+        <sys_updated_on>2023-12-17 14:55:52</sys_updated_on>
+        <target_name>x_snc_deployer_m2m_pipline_instance</target_name>
+        <target_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</target_scope>
+        <target_type>sys_db_object</target_type>
+    </sys_scope_privilege>
+</record_update>

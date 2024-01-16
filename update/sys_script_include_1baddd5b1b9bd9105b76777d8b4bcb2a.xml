@@ -12,7 +12,15 @@ ProgressTrackerAPI.prototype =
 {
     initialize: function()
 	{
-		this.tracker = RunScriptInGlobalScope('result = SNC.GlideExecutionTracker.getLastRunning();');
+		if (IsTestRunning() == true)
+		{
+			// In case a function is called within an ATF, reporting an error derails test execution
+			this.tracker = null;
+		}
+		else
+		{
+			this.tracker = RunScriptInGlobalScope('result = SNC.GlideExecutionTracker.getLastRunning();');
+		}
 	},
 	
 	IsInitialized: function()
@@ -105,13 +113,13 @@ ProgressTrackerAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-11-26 14:32:09</sys_created_on>
         <sys_id>1baddd5b1b9bd9105b76777d8b4bcb2a</sys_id>
-        <sys_mod_count>51</sys_mod_count>
+        <sys_mod_count>52</sys_mod_count>
         <sys_name>ProgressTrackerAPI</sys_name>
-        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
-        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_1baddd5b1b9bd9105b76777d8b4bcb2a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-11-27 18:07:52</sys_updated_on>
+        <sys_updated_on>2024-01-16 12:53:18</sys_updated_on>
     </sys_script_include>
 </record_update>

@@ -26,11 +26,25 @@
 			return false;
 		}
 	}
+	
+	var progresstracker = new ProgressTrackerAPI();
+	progresstracker.Start();
+	
+	var strLog = '';
+	
 	var bResult = true;
 	for (var nPackage = 0; nPackage < aPackages.length; nPackage++)
 	{
 		var oPackage = aPackages[nPackage];
 		var strScope = GetValue(oPackage,'scope');
+		var strName = GetValue(oPackage,'name');
+
+		progresstracker.SetPercentageProgress(nPackage * 100 / aPackages.length);
+		progresstracker.SetText(StringFormat('InstallApp: Installing app "{0}"',strName));
+
+		//progresstracker.SetText(StringFormat('InstallApp: Running {0}.AppInstall()',strScope));
+
+		
 		var strScopeSysId = GetValue(oPackage,'sys_id');
 		if (strScope != 'global')
 		{
@@ -45,40 +59,61 @@
 				{
 					if (bStopOnError == true)
 					{
+						strLog += StringFormat('InstallApp: {0}: {1}.AppInstall() returned false. Aborting installation.\n',strName,strScope);
 						LogError(StringFormat('InstallApp: {0}.AppInstall() returned false. Aborting installation!',strScope));
 						return false;
 					}
 					else
 					{
+						strLog += StringFormat('InstallApp: {0}: {1}.AppInstall() returned false. Continuing installation.\n',strName,strScope);
 						LogWarning(StringFormat('InstallApp: {0}.AppInstall() returned false. Continuing...',strScope));
 					}
 					bResult = false;
 				}
+				else
+				{
+					strLog += StringFormat('InstallApp: {0}: {1}.AppInstall() returned true.\n',strName,strScope);
+				}
+			}
+			else
+			{
+				strLog += StringFormat('InstallApp: {0}: Application does not contain the AppInstall script include.\n',strName);
 			}
 			
 		}
+		else
+		{
+			strLog += StringFormat('InstallApp: {0}: Application is global. Running installation script is not supported.\n',strName);
+		}
+		
 	}
+	var strSummaryText = '';
 	if (bResult == true)
 	{
-		Log(StringFormat('InstallApp: Installed application "{0}" and all of its dependencies successfully!',strAppName));
+		strSummaryText = StringFormat('Installed application "{0}" and all of its dependencies successfully!',strAppName);
+		Log('InstallApp: '+ strSummaryText + '\n' + strLog);
 	}
 	else
 	{
-		LogError(StringFormat('InstallApp: Installing application "{0}" and all of its dependencies failed!',strAppName));
+		strSummaryText = StringFormat('Installed application "{0}" and all of its dependencies failed!',strAppName);
+		LogError('InstallApp: '+ strSummaryText+ '\n' + strLog);
 	}
+	
+	progresstracker.SetResult(null,bResult,strSummaryText);
+	
 	return bResult;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-02-01 17:59:14</sys_created_on>
         <sys_id>075093381b74e1105b76777d8b4bcb90</sys_id>
-        <sys_mod_count>16</sys_mod_count>
+        <sys_mod_count>21</sys_mod_count>
         <sys_name>InstallApp</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_075093381b74e1105b76777d8b4bcb90</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-05-06 12:45:04</sys_updated_on>
+        <sys_updated_on>2024-01-16 09:33:50</sys_updated_on>
     </sys_script_include>
 </record_update>
