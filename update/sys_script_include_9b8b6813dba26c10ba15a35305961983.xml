@@ -5,11 +5,13 @@
         <api_name>x_snc_devtools.Clone</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Creates a copy of the given value.</description>
+        <description>Creates a copy of the given value.&#13;
+If the parameter bSortKeys is set to true and the given value is an object, the resulting object contains its members sorted alphabetically. </description>
         <name>Clone</name>
-        <script><![CDATA[function Clone(vValue)
+        <script><![CDATA[function Clone(vValue,bSortKeys)
 {
 	var strType = GetType(vValue);
+	bSortKeys = GetBoolValue(bSortKeys);
 	if (strType == 'ScopedGlideElement')
 	{
 		if (vValue.getDisplayValue() == '0')
@@ -26,6 +28,10 @@
 	{
 		var oClone = {};
 		var aKeys = GetKeys(vValue);
+		if (bSortKeys == true)
+		{
+			aKeys = aKeys.sort();
+		}
 		for (var nKey = 0; nKey < aKeys.length; nKey++)
 		{
 			var strKey = aKeys[nKey];
@@ -37,6 +43,10 @@
 	{
 		var oClone = {};
 		var aKeys = GetKeys(vValue);
+		if (bSortKeys == true)
+		{
+			aKeys = aKeys.sort();
+		}
 		for (var nKey = 0; nKey < aKeys.length; nKey++)
 		{
 			var strKey = aKeys[nKey];
@@ -59,13 +69,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-03-02 15:35:25</sys_created_on>
         <sys_id>9b8b6813dba26c10ba15a35305961983</sys_id>
-        <sys_mod_count>27</sys_mod_count>
+        <sys_mod_count>29</sys_mod_count>
         <sys_name>Clone</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_9b8b6813dba26c10ba15a35305961983</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-10-31 12:36:49</sys_updated_on>
+        <sys_updated_on>2024-01-16 09:06:15</sys_updated_on>
     </sys_script_include>
 </record_update>
