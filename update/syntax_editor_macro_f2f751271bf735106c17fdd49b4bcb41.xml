@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="syntax_editor_macro">
+    <syntax_editor_macro action="INSERT_OR_UPDATE">
+        <comments>This editor macro creates the code necessary to access the function contained in the HtmlRenderTree script include.</comments>
+        <name>HtmlRenderTree</name>
+        <sys_class_name>syntax_editor_macro</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-01-23 21:35:07</sys_created_on>
+        <sys_id>f2f751271bf735106c17fdd49b4bcb41</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>HtmlRenderTree</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>syntax_editor_macro_f2f751271bf735106c17fdd49b4bcb41</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-01-23 21:35:41</sys_updated_on>
+        <text>var HtmlRenderTree = x_snc_devtools.HtmlRenderTree;&#13;
+HtmlRenderTree([&#13;
+	{&#13;
+		"content": "1",&#13;
+		"_nodes": [&#13;
+			{&#13;
+				"content": "1.1",&#13;
+				"_nodes": [&#13;
+					{&#13;
+						"content": "1.1.1"&#13;
+					},&#13;
+					{&#13;
+						"content": "1.1.2"&#13;
+					}&#13;
+				]&#13;
+			},&#13;
+			{&#13;
+				"content": "1.2",&#13;
+				"_nodes": [&#13;
+					{&#13;
+						"content": "1.2.1"&#13;
+					},&#13;
+					{&#13;
+						"content": "1.2.2"&#13;
+					}&#13;
+				]&#13;
+			}&#13;
+		]&#13;
+	}&#13;
+]);</text>
+    </syntax_editor_macro>
+</record_update>
