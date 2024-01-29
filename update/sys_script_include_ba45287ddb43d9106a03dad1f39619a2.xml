@@ -9,49 +9,138 @@
         <name>HtmlRenderPageGallery</name>
         <script><![CDATA[function HtmlRenderPageGallery()
 {
+
+	function HtmlRenderGalleryElement(strTitle, strScript)
+	{
+		var strHtml = '';
+		
+		strHtml += '<h2>'+strTitle+'</h2>';
+		
+		strHtml += '<div style="border-left-width: 20px; border-left-color: lightgrey; border-left-style: solid; margin-bottom: 10px;">';
+		var strHtmlElement = RunScriptInGlobalScope("var strHtml = '';" + strScript + "result = strHtml");
+		strHtml += strHtmlElement;
+		strHtml += '</div>';
+
+		strHtml += HtmlRenderPreformatted(strScript);
+
+		strHtml += HtmlRenderPreformatted(strHtmlElement);
+		
+		return strHtml;
+	}
+	
+	
 	var strHtml = '';
 	
-	strHtml += '<h1>DevTools Html Gallery</h1>';
+	strHtml += '<h1>DevTools HTML Gallery</h1>';
 	
-	strHtml += HtmlRenderError('This is an error message'); 
+	strHtml += HtmlRenderGalleryElement(
+		'Error Message',
+		"strHtml += x_snc_devtools.HtmlRenderError('This is an error message');");
 	
-	strHtml += HtmlRenderWarning('This is a warning message');	
+	strHtml += HtmlRenderGalleryElement(
+		'Warning Message',
+		"strHtml += x_snc_devtools.HtmlRenderWarning('This is a warning message');");	
+
+	strHtml += HtmlRenderGalleryElement(
+		'Info Message',
+		"strHtml += x_snc_devtools.HtmlRenderInfo('This is an info message');");		
+
+
 	
-	strHtml += HtmlRenderInfo('This is an information message');	
+	var aTabs = [
+		{
+			id: 'alpha',
+			text: 'Alpha',
+			url: '/x_snc_devtools_gallery.do?sysparm_tab=alpha'
+		},
+		{
+			id: 'beta',
+			text: 'Beta',
+			url: '/x_snc_devtools_gallery.do?sysparm_tab=beta'
+		},
+		{
+			id: 'gamma',
+			text: 'Gamma',
+			url: '/x_snc_devtools_gallery.do?sysparm_tab=gamma'
+		}
+	];
 	
-	var strCurrentTab = GetParam('sysparm_tab');
-	if (strCurrentTab == '')
-	{
-		strCurrentTab = 'alpha';
-	}
-	strHtml += HtmlRenderTabNavigation(
+	strHtml += HtmlRenderGalleryElement(
+		'Tab Navigation',
+		"var strCurrentTab = x_snc_devtools.GetParam('sysparm_tab');\n"
+		+"if (strCurrentTab == '')\n"
+		+"{\n"
+		+"   strCurrentTab = 'alpha';\n"
+		+"}\n"
+		+"strHtml += x_snc_devtools.HtmlRenderTabNavigation(\n"
+		+MakeJson(aTabs)+",\n"
+		+"strCurrentTab);");		
+	
+
+	var aTable =
 		[
-			{
-				id: 'alpha',
-				text: 'Alpha',
-				url: '/x_snc_devtools_gallery.do?sysparm_tab=alpha'
-			},
-			{ 
-				id: 'beta',
-				text: 'Beta',
-				url: '/x_snc_devtools_gallery.do?sysparm_tab=beta'
-			},
-			{ 
-				id: 'gamma',
-				text: 'Gamma',
-				url: '/x_snc_devtools_gallery.do?sysparm_tab=gamma'
-			}			
-		],
-		strCurrentTab);		
-	
-	strHtml += HtmlRenderTable(
-		[
-			[{ header: true, content: 'Header 1'},{ header: true, content: 'Header 2'}],
+			[
+				{
+					header: true,
+					content: 'Header 1'
+				},
+				{
+					header: true,
+					content: 'Header 2'
+				}
+			],
 			['Row 1 Col 1','Row 1 Col 2'],
 			['Row 2 Col 1','Row 2 Col 2']
-		],
-		'mytable',
-		'table.mytable, th.mytable, td.mytable { border: 2px solid; padding: 2px; vertical-align: top }');	
+		];
+	
+	strHtml += HtmlRenderGalleryElement(
+		'Table',
+		"strHtml += x_snc_devtools.HtmlRenderTable(\n"
+		+MakeJson(aTable) + ",\n"
+		+"'mytable',\n"
+		+"'table.mytable, th.mytable, td.mytable { border: 2px solid; padding: 2px; vertical-align: top }');");
+	
+	var aNodes =
+		[
+			{
+				content: '1',
+				_nodes: 
+				[
+					{
+						content: '1.1',
+						_nodes:
+						[
+							{
+								content: '1.1.1'
+							},
+							{
+								content: '1.1.2'
+							}
+						]
+					},
+					{
+						content: '1.2',
+						_nodes:
+						[
+							{
+								content: '1.2.1'
+							},
+							{
+								content: '1.2.2'
+							}
+						]
+					}
+				]
+			}
+		];
+	
+	strHtml += HtmlRenderGalleryElement(
+		'Tree (top down)',
+		"strHtml += x_snc_devtools.HtmlRenderTree("+MakeJson(aNodes)+");");	
+	
+	strHtml += HtmlRenderGalleryElement(
+		'Tree (bottom up)',
+		"strHtml += x_snc_devtools.HtmlRenderTree("+MakeJson(aNodes)+",0,true);");		
 	
 	return strHtml;
 }]]></script>
@@ -59,13 +148,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-11-09 08:17:02</sys_created_on>
         <sys_id>ba45287ddb43d9106a03dad1f39619a2</sys_id>
-        <sys_mod_count>14</sys_mod_count>
+        <sys_mod_count>46</sys_mod_count>
         <sys_name>HtmlRenderPageGallery</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_ba45287ddb43d9106a03dad1f39619a2</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-01-17 12:04:35</sys_updated_on>
+        <sys_updated_on>2024-01-23 21:34:05</sys_updated_on>
     </sys_script_include>
 </record_update>
