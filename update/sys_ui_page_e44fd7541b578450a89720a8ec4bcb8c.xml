@@ -57,6 +57,7 @@
 -->		
 		<li>In case of errors:
 			<ol>
+				<li>If the test "DevTools - HttpRequest" fails this may indicate that the instance cannot establish an http connection to itself. This is be the case in some self-hosted environments and requires intervention by the teams responsible to configure the network around the instance.</li>
 				<li>In a domain separated instance it may be necessary to switch to the topmost domain to pass all tests.</li>
 				<li>If the test "DevTools - RunScriptInGlobalScope" fails: Retry after a few minutes. Some cross-scrope privileges will be set up during the first test run and might take a few minutes to be effective. The function RunScriptInGlobalScope() is used in many other functions, so do look into any other failed tests as long as this test fails.</li>
 				<li>Tests "DevTools - TestDataAPI": These scripts create various records (e.g. incidents, problems, etc.). If there are customizations in place that make additional fields mandatory, you may have to set up business rules to set these values - but only if the short description (or the corresponding field) starts with "_ATF_".</li>
@@ -270,6 +271,7 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>The "DevTools HTML Gallery" page now documents more HtmlRender* functions and is improved.</li>
 		<li>HtmlRenderRoundedBox() now considers whether polaris styles are available.</li>
 		<li>HtmlRenderValue() now uses the new function HtmlRenderPreformatted() internally and by that making sure that any html text contained in the rendered value is html encoded.</li>
+		<li>Improved documentation on troubleshooting when DevTools ATF tests fail.</li>
 	</ol>	
 	
 	<h3>1.79.0 - 2024-01-16</h3>
@@ -1676,13 +1678,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1492</sys_mod_count>
+        <sys_mod_count>1493</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-01-24 17:18:58</sys_updated_on>
+        <sys_updated_on>2024-01-29 08:22:31</sys_updated_on>
     </sys_ui_page>
 </record_update>
