@@ -7,7 +7,7 @@
 
 }]]></client_script_v2>
         <comments>Creates a new technical user based on a given name</comments>
-        <condition>(current.getRecordClassName() == 'sys_user') &amp;&amp; (AppGetProperty('ui.createtestuser_button') == true)</condition>
+        <condition>(AppGetProperty('ui.createtestuser_button') == true)</condition>
         <form_action>false</form_action>
         <form_button>false</form_button>
         <form_button_v2>false</form_button_v2>
@@ -85,7 +85,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>df925ee61b5ef9106c17fdd49b4bcb6a</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>Create Test User</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -93,8 +93,8 @@
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_action_df925ee61b5ef9106c17fdd49b4bcb6a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-11-09 07:11:32</sys_updated_on>
-        <table>global</table>
+        <sys_updated_on>2024-02-05 12:24:07</sys_updated_on>
+        <table>sys_user</table>
         <ui11_compatible>true</ui11_compatible>
         <ui16_compatible>true</ui16_compatible>
     </sys_ui_action>
