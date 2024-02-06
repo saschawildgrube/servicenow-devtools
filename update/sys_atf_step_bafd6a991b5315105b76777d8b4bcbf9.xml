@@ -8,20 +8,19 @@
         <mugshots_cache_json/>
         <notes/>
         <order>1</order>
-        <snapshot/>
         <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
         <sys_class_name>sys_atf_step</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-11-20 15:10:54</sys_created_on>
         <sys_id>bafd6a991b5315105b76777d8b4bcbf9</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_bafd6a991b5315105b76777d8b4bcbf9</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-11-20 15:33:55</sys_updated_on>
+        <sys_updated_on>2024-02-05 16:54:57</sys_updated_on>
         <table/>
         <test display_value="DevTools - ScriptRemoveComments">b1ed62991b5315105b76777d8b4bcb3b</test>
         <timeout/>
@@ -50,9 +49,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-11-20 15:10:54</sys_created_on>
         <sys_id>cc0eea991b5315105b76777d8b4bcb59</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-11-20 15:33:55</sys_updated_on>
+        <sys_updated_on>2024-02-05 16:54:57</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -78,7 +77,7 @@
 	TestCase_ScriptRemoveComments(&#13;
 		'Line one // comment one\nLine two // comment two',&#13;
 		'Line one \nLine two ');&#13;
-	&#13;
+&#13;
 	TestCase_ScriptRemoveComments(&#13;
 		'var strText = "Hello World";\n/* a comment */\nstrText = "Hello Universe"',&#13;
 		'var strText = "Hello World";\n\nstrText = "Hello Universe"');&#13;
@@ -86,7 +85,53 @@
 		'var strText = "Hello World";\n/* a multi\nline comment */\nstrText = "Hello Universe"',&#13;
 		'var strText = "Hello World";\n\nstrText = "Hello Universe"');	&#13;
 &#13;
-	&#13;
+	TestCase_ScriptRemoveComments(&#13;
+		'/*\n'&#13;
+		+' * @tag1 hello\n'&#13;
+		+' * @tag2 world\n'		&#13;
+		+'*/\n'&#13;
+		+'\n'		&#13;
+		+'var Test = Class.create();\n'&#13;
+		+'\tTest.prototype = {\n'&#13;
+		+'\tinitialize: function() {\n'&#13;
+		+'\t},\n'&#13;
+		+'\ttype: \'Test\'\n'&#13;
+		+'};',&#13;
+&#13;
+		'\n'		&#13;
+		+'\n'&#13;
+		+'var Test = Class.create();\n'&#13;
+		+'\tTest.prototype = {\n'&#13;
+		+'\tinitialize: function() {\n'&#13;
+		+'\t},\n'&#13;
+		+'\ttype: \'Test\'\n'&#13;
+		+'};');	&#13;
+&#13;
+&#13;
+TestCase_ScriptRemoveComments(&#13;
+		'/*\n'&#13;
+		+' * @tag1 hello\n'&#13;
+		+' * @tag2 world\n'		&#13;
+		+'*/\n'&#13;
+		+'\n'		&#13;
+		+'var Test = Class.create();\n'&#13;
+		+'\tTest.prototype = {\n'&#13;
+		+'\t/* This is the initialize function */\n'&#13;
+		+'\tinitialize: function() {\n'&#13;
+		+'\t},\n'&#13;
+		+'\ttype: \'Test\'\n'&#13;
+		+'};',&#13;
+&#13;
+		'\n'		&#13;
+		+'\n'&#13;
+		+'var Test = Class.create();\n'&#13;
+		+'\tTest.prototype = {\n'&#13;
+		+'\t\n'&#13;
+		+'\tinitialize: function() {\n'&#13;
+		+'\t},\n'&#13;
+		+'\ttype: \'Test\'\n'&#13;
+		+'};');			&#13;
+&#13;
 	return test.GetResult();&#13;
 	&#13;
 })(outputs, steps, stepResult, assertEqual);</value>
