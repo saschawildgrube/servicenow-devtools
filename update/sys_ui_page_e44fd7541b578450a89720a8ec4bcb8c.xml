@@ -264,8 +264,10 @@ function DevToolsGetFormatConfig(grRecord)
 	
 	<h3>1.82.0 - 2024-TODO</h3>
 	<ol>
+		<li>GetTableFromSysId() now handles sys_documentation records properly.</li>
 		<li>GenerateAndSendCredentialsToUser() now returns false if the user record cannot be updated. This is the case if a user without security_admin priviliges tries to generate and send credentials for another security_admin user.</li>
 		<li>Added more patterns to GetEvaluatorErrorExceptionPatterns().</li>
+		<li>Added function GetRecordUri() as a replacement of the deprecated GetInstanceRecordURI().</li>
 	</ol>	
 	
 	<h3>1.81.0 - 2024-02-06</h3>
@@ -1694,13 +1696,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1506</sys_mod_count>
+        <sys_mod_count>1508</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-02-14 11:38:53</sys_updated_on>
+        <sys_updated_on>2024-02-20 09:55:31</sys_updated_on>
     </sys_ui_page>
 </record_update>
