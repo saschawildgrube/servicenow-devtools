@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_script">
     <sys_ui_script action="INSERT_OR_UPDATE">
         <active>true</active>
-        <description>Returns true if the current page is a form, false if not.</description>
+        <description>Returns an object containing all field data of the current form, or false if the current page does not contain a form.</description>
         <global>true</global>
         <ignore_in_now_experience>false</ignore_in_now_experience>
-        <name>x_snc_devtools.IsForm</name>
-        <script><![CDATA[function IsForm()
+        <name>x_snc_devtools.GetFormData</name>
+        <script><![CDATA[function GetFormData()
 {
-	if (typeof g_form == 'object')
+	if (IsForm() == false)
 	{
-		return true;
+		return false;
 	}
-	return false;
+	return g_form.getFormElement().serialize();
 }]]></script>
-        <script_name>IsForm</script_name>
+        <script_name>GetFormData</script_name>
         <sys_class_name>sys_ui_script</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2022-08-10 12:12:45</sys_created_on>
-        <sys_id>54f2bce0db19d150dcbdd03cd3961984</sys_id>
-        <sys_mod_count>0</sys_mod_count>
-        <sys_name>x_snc_devtools.IsForm</sys_name>
+        <sys_created_on>2024-02-22 10:40:20</sys_created_on>
+        <sys_id>dd01ad0d1b60c2100e0b2f836b4bcbaf</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>x_snc_devtools.GetFormData</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
-        <sys_update_name>sys_ui_script_54f2bce0db19d150dcbdd03cd3961984</sys_update_name>
+        <sys_update_name>sys_ui_script_dd01ad0d1b60c2100e0b2f836b4bcbaf</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-08-10 12:12:45</sys_updated_on>
+        <sys_updated_on>2024-02-22 10:54:58</sys_updated_on>
         <ui_type>0</ui_type>
         <use_scoped_format>false</use_scoped_format>
         <x_snc_devtools_global>true</x_snc_devtools_global>
