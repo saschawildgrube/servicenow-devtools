@@ -275,6 +275,7 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>GenerateAndSendCredentialsToUser() now returns false if the user record cannot be updated. This is the case if a user without security_admin priviliges tries to generate and send credentials for another security_admin user.</li>
 		<li>Added more patterns to GetEvaluatorErrorExceptionPatterns().</li>
 		<li>Added more exceptions to the business rule "sys_metadata - prevent useless checks".</li>
+		<li>GetParam() now also checks gs.action for parameters.</li>
 		<li>Added function GetRecordUri() as a replacement of the deprecated GetInstanceRecordURI().</li>
 	</ol>	
 	
@@ -1704,13 +1705,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1517</sys_mod_count>
+        <sys_mod_count>1518</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-02-23 16:30:37</sys_updated_on>
+        <sys_updated_on>2024-02-25 19:44:02</sys_updated_on>
     </sys_ui_page>
 </record_update>
