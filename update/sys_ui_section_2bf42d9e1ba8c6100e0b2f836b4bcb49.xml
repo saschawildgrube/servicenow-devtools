@@ -4,13 +4,13 @@
             <element>suffix</element>
             <position>0</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-02-26 08:07:02</sys_created_on>
-            <sys_id>05156d9e1ba8c6100e0b2f836b4bcb54</sys_id>
+            <sys_created_on>2024-02-26 08:20:17</sys_created_on>
+            <sys_id>1f18e5521be8c6100e0b2f836b4bcbbc</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="cmn_map_page" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">2bf42d9e1ba8c6100e0b2f836b4bcb49</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-02-26 08:07:02</sys_updated_on>
+            <sys_updated_on>2024-02-26 08:20:17</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -18,13 +18,13 @@
             <element>name</element>
             <position>1</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-02-26 08:07:02</sys_created_on>
-            <sys_id>85156d9e1ba8c6100e0b2f836b4bcb54</sys_id>
+            <sys_created_on>2024-02-26 08:20:17</sys_created_on>
+            <sys_id>9f18e5521be8c6100e0b2f836b4bcbbc</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="cmn_map_page" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">2bf42d9e1ba8c6100e0b2f836b4bcb49</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-02-26 08:07:02</sys_updated_on>
+            <sys_updated_on>2024-02-26 08:20:17</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -32,13 +32,13 @@
             <element>center_latitude</element>
             <position>2</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-02-26 08:07:02</sys_created_on>
-            <sys_id>09156d9e1ba8c6100e0b2f836b4bcb54</sys_id>
+            <sys_created_on>2024-02-26 08:20:17</sys_created_on>
+            <sys_id>1318e5521be8c6100e0b2f836b4bcbbd</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="cmn_map_page" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">2bf42d9e1ba8c6100e0b2f836b4bcb49</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-02-26 08:07:02</sys_updated_on>
+            <sys_updated_on>2024-02-26 08:20:17</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -46,55 +46,55 @@
             <element>center_longitude</element>
             <position>3</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-02-26 08:07:02</sys_created_on>
-            <sys_id>89156d9e1ba8c6100e0b2f836b4bcb54</sys_id>
+            <sys_created_on>2024-02-26 08:20:17</sys_created_on>
+            <sys_id>9318e5521be8c6100e0b2f836b4bcbbd</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="cmn_map_page" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">2bf42d9e1ba8c6100e0b2f836b4bcb49</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-02-26 08:07:02</sys_updated_on>
-            <sys_user/>
-            <type/>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>initial_zoom</element>
-            <position>4</position>
-            <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-02-26 08:07:02</sys_created_on>
-            <sys_id>0d156d9e1ba8c6100e0b2f836b4bcb54</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="cmn_map_page" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">2bf42d9e1ba8c6100e0b2f836b4bcb49</sys_ui_section>
-            <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-02-26 08:07:02</sys_updated_on>
-            <sys_user/>
-            <type/>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>refresh_on_zoom</element>
-            <position>5</position>
-            <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-02-26 08:07:02</sys_created_on>
-            <sys_id>8d156d9e1ba8c6100e0b2f836b4bcb54</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="cmn_map_page" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">2bf42d9e1ba8c6100e0b2f836b4bcb49</sys_ui_section>
-            <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-02-26 08:07:02</sys_updated_on>
+            <sys_updated_on>2024-02-26 08:20:17</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>use_advanced_configuration</element>
-            <position>6</position>
+            <position>4</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-02-26 08:07:02</sys_created_on>
-            <sys_id>01156d9e1ba8c6100e0b2f836b4bcb55</sys_id>
+            <sys_created_on>2024-02-26 08:20:17</sys_created_on>
+            <sys_id>1718e5521be8c6100e0b2f836b4bcbbd</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="cmn_map_page" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">2bf42d9e1ba8c6100e0b2f836b4bcb49</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-02-26 08:07:02</sys_updated_on>
+            <sys_updated_on>2024-02-26 08:20:17</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>initial_zoom</element>
+            <position>5</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-02-26 08:20:17</sys_created_on>
+            <sys_id>9718e5521be8c6100e0b2f836b4bcbbd</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="cmn_map_page" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">2bf42d9e1ba8c6100e0b2f836b4bcb49</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-02-26 08:20:17</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>refresh_on_zoom</element>
+            <position>6</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-02-26 08:20:17</sys_created_on>
+            <sys_id>1b18e5521be8c6100e0b2f836b4bcbbd</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="cmn_map_page" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">2bf42d9e1ba8c6100e0b2f836b4bcb49</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-02-26 08:20:17</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -102,13 +102,13 @@
             <element>disable_nav_bar</element>
             <position>7</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-02-26 08:07:02</sys_created_on>
-            <sys_id>81156d9e1ba8c6100e0b2f836b4bcb55</sys_id>
+            <sys_created_on>2024-02-26 08:20:17</sys_created_on>
+            <sys_id>9b18e5521be8c6100e0b2f836b4bcbbd</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="cmn_map_page" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">2bf42d9e1ba8c6100e0b2f836b4bcb49</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-02-26 08:07:02</sys_updated_on>
+            <sys_updated_on>2024-02-26 08:20:17</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -116,13 +116,13 @@
             <element>roles</element>
             <position>8</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-02-26 08:07:02</sys_created_on>
-            <sys_id>05156d9e1ba8c6100e0b2f836b4bcb55</sys_id>
+            <sys_created_on>2024-02-26 08:20:17</sys_created_on>
+            <sys_id>1f18e5521be8c6100e0b2f836b4bcbbd</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="cmn_map_page" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">2bf42d9e1ba8c6100e0b2f836b4bcb49</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-02-26 08:07:02</sys_updated_on>
+            <sys_updated_on>2024-02-26 08:20:17</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -130,13 +130,13 @@
             <element>.split</element>
             <position>9</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-02-26 08:07:02</sys_created_on>
-            <sys_id>85156d9e1ba8c6100e0b2f836b4bcb55</sys_id>
+            <sys_created_on>2024-02-26 08:20:17</sys_created_on>
+            <sys_id>9f18e5521be8c6100e0b2f836b4bcbbd</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="cmn_map_page" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">2bf42d9e1ba8c6100e0b2f836b4bcb49</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-02-26 08:07:02</sys_updated_on>
+            <sys_updated_on>2024-02-26 08:20:17</sys_updated_on>
             <sys_user/>
             <type>.split</type>
         </sys_ui_element>
@@ -144,41 +144,41 @@
             <element>sys_scope</element>
             <position>10</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-02-26 08:07:02</sys_created_on>
-            <sys_id>09156d9e1ba8c6100e0b2f836b4bcb55</sys_id>
+            <sys_created_on>2024-02-26 08:20:17</sys_created_on>
+            <sys_id>1318e5521be8c6100e0b2f836b4bcbbe</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="cmn_map_page" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">2bf42d9e1ba8c6100e0b2f836b4bcb49</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-02-26 08:07:02</sys_updated_on>
-            <sys_user/>
-            <type/>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>controls_size</element>
-            <position>11</position>
-            <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-02-26 08:07:02</sys_created_on>
-            <sys_id>89156d9e1ba8c6100e0b2f836b4bcb55</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="cmn_map_page" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">2bf42d9e1ba8c6100e0b2f836b4bcb49</sys_ui_section>
-            <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-02-26 08:07:02</sys_updated_on>
+            <sys_updated_on>2024-02-26 08:20:17</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>type</element>
-            <position>12</position>
+            <position>11</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-02-26 08:07:02</sys_created_on>
-            <sys_id>0d156d9e1ba8c6100e0b2f836b4bcb55</sys_id>
+            <sys_created_on>2024-02-26 08:20:17</sys_created_on>
+            <sys_id>a318e5521be8c6100e0b2f836b4bcbbe</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="cmn_map_page" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">2bf42d9e1ba8c6100e0b2f836b4bcb49</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-02-26 08:07:02</sys_updated_on>
+            <sys_updated_on>2024-02-26 08:20:17</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>controls_size</element>
+            <position>12</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-02-26 08:20:17</sys_created_on>
+            <sys_id>2718e5521be8c6100e0b2f836b4bcbbe</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="cmn_map_page" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">2bf42d9e1ba8c6100e0b2f836b4bcb49</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-02-26 08:20:17</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -186,13 +186,13 @@
             <element>type_selection</element>
             <position>13</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-02-26 08:07:02</sys_created_on>
-            <sys_id>8d156d9e1ba8c6100e0b2f836b4bcb55</sys_id>
+            <sys_created_on>2024-02-26 08:20:17</sys_created_on>
+            <sys_id>a718e5521be8c6100e0b2f836b4bcbbe</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="cmn_map_page" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">2bf42d9e1ba8c6100e0b2f836b4bcb49</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-02-26 08:07:02</sys_updated_on>
+            <sys_updated_on>2024-02-26 08:20:17</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -200,13 +200,13 @@
             <element>overview</element>
             <position>14</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-02-26 08:07:02</sys_created_on>
-            <sys_id>11156d9e1ba8c6100e0b2f836b4bcb56</sys_id>
+            <sys_created_on>2024-02-26 08:20:17</sys_created_on>
+            <sys_id>2b18e5521be8c6100e0b2f836b4bcbbe</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="cmn_map_page" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">2bf42d9e1ba8c6100e0b2f836b4bcb49</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-02-26 08:07:02</sys_updated_on>
+            <sys_updated_on>2024-02-26 08:20:17</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -214,13 +214,13 @@
             <element>show_device_location</element>
             <position>15</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-02-26 08:07:02</sys_created_on>
-            <sys_id>91156d9e1ba8c6100e0b2f836b4bcb56</sys_id>
+            <sys_created_on>2024-02-26 08:20:17</sys_created_on>
+            <sys_id>ab18e5521be8c6100e0b2f836b4bcbbe</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="cmn_map_page" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">2bf42d9e1ba8c6100e0b2f836b4bcb49</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-02-26 08:07:02</sys_updated_on>
+            <sys_updated_on>2024-02-26 08:20:17</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -228,13 +228,13 @@
             <element>.end_split</element>
             <position>16</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-02-26 08:07:02</sys_created_on>
-            <sys_id>15156d9e1ba8c6100e0b2f836b4bcb56</sys_id>
+            <sys_created_on>2024-02-26 08:20:17</sys_created_on>
+            <sys_id>2f18e5521be8c6100e0b2f836b4bcbbe</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="cmn_map_page" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">2bf42d9e1ba8c6100e0b2f836b4bcb49</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-02-26 08:07:02</sys_updated_on>
+            <sys_updated_on>2024-02-26 08:20:17</sys_updated_on>
             <sys_user/>
             <type>.end_split</type>
         </sys_ui_element>
@@ -242,13 +242,27 @@
             <element>script</element>
             <position>17</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-02-26 08:07:02</sys_created_on>
-            <sys_id>95156d9e1ba8c6100e0b2f836b4bcb56</sys_id>
+            <sys_created_on>2024-02-26 08:20:17</sys_created_on>
+            <sys_id>af18e5521be8c6100e0b2f836b4bcbbe</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="cmn_map_page" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">2bf42d9e1ba8c6100e0b2f836b4bcb49</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-02-26 08:07:02</sys_updated_on>
+            <sys_updated_on>2024-02-26 08:20:17</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>filter</element>
+            <position>18</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-02-26 08:20:17</sys_created_on>
+            <sys_id>2318e5521be8c6100e0b2f836b4bcbbf</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="cmn_map_page" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">2bf42d9e1ba8c6100e0b2f836b4bcb49</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-02-26 08:20:17</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
