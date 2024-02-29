@@ -45,6 +45,14 @@
 			//whatruns_object['table'] = GetStringValue(grRecord.table);
 			whatruns_object['name'] = GetStringValue(grRecord.name);	
 		}		
+		if (strClassName == 'sys_data_policy2') // Data Policies
+		{
+			whatruns_object['order'] = '';
+			whatruns_object['class_display_name'] = 'Data Policy';
+			whatruns_object['table'] = GetStringValue(grRecord.model_table);
+			whatruns_object['name'] = GetStringValue(grRecord.short_description);	
+		}			
+		
 		return whatruns_object;
 	}
 	
@@ -71,6 +79,36 @@
 
 			// INSERT
 			var aWhatRuns = Array();
+
+				// DATA POLICY
+				var grDP = new GlideRecord('sys_data_policy2');
+				grDP.addActiveQuery();
+				grDP.addQuery('model_table','=',strTable); // also consider parent tables!
+				grDP.query();
+				while (grDP.next())
+				{
+					var whatruns_object = MakeWhatRunsObjectFromRecord(grDP, 'before');
+					aWhatRuns.push(whatruns_object); 
+				}
+				if (aParentTables.length > 0)
+				{
+					var grDP = new GlideRecord('sys_data_policy2');
+					grDP.addActiveQuery();
+					grDP.addQuery('inherit','=','true');
+					var condition = grDP.addQuery('model_table','=',GetValue(aParentTables,0)); // also consider parent tables!
+					for (var nParentTable = 1; nParentTable < aParentTables.length; nParentTable++)
+					{
+						condition.addOrCondition('model_table','=',aParentTables[nParentTable]);
+					}
+					grDP.query();
+					while (grDP.next())
+					{
+						var whatruns_object = MakeWhatRunsObjectFromRecord(grDP, 'before');
+						aWhatRuns.push(whatruns_object); 
+					}
+				}
+			
+			
 			
 				// BEFORE
 				var grBR = new GlideRecord('sys_script');
@@ -168,6 +206,34 @@
 			
 			// UPDATE	
 			var aWhatRuns = Array();
+			
+				// DATA POLICY
+				var grDP = new GlideRecord('sys_data_policy2');
+				grDP.addActiveQuery();
+				grDP.addQuery('model_table','=',strTable); // also consider parent tables!
+				grDP.query();
+				while (grDP.next())
+				{
+					var whatruns_object = MakeWhatRunsObjectFromRecord(grDP, 'before');
+					aWhatRuns.push(whatruns_object); 
+				}
+				if (aParentTables.length > 0)
+				{
+					var grDP = new GlideRecord('sys_data_policy2');
+					grDP.addActiveQuery();
+					grDP.addQuery('inherit','=','true');
+					var condition = grDP.addQuery('model_table','=',GetValue(aParentTables,0)); // also consider parent tables!
+					for (var nParentTable = 1; nParentTable < aParentTables.length; nParentTable++)
+					{
+						condition.addOrCondition('model_table','=',aParentTables[nParentTable]);
+					}
+					grDP.query();
+					while (grDP.next())
+					{
+						var whatruns_object = MakeWhatRunsObjectFromRecord(grDP, 'before');
+						aWhatRuns.push(whatruns_object); 
+					}
+				}
 			
 				// BEFORE
 				var grBR = new GlideRecord('sys_script');
@@ -462,13 +528,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-03-29 08:27:19</sys_created_on>
         <sys_id>04193959dba64910b652edb3059619c9</sys_id>
-        <sys_mod_count>43</sys_mod_count>
+        <sys_mod_count>50</sys_mod_count>
         <sys_name>WhatRuns</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_04193959dba64910b652edb3059619c9</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-10-22 12:17:37</sys_updated_on>
+        <sys_updated_on>2024-02-23 14:05:07</sys_updated_on>
     </sys_script_include>
 </record_update>

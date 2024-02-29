@@ -11,14 +11,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-04-30 15:49:10</sys_created_on>
         <sys_id>128efb851b6a2110cd6153d16b4bcbc9</sys_id>
-        <sys_mod_count>12</sys_mod_count>
+        <sys_mod_count>14</sys_mod_count>
         <sys_name>x_snc_devtools.ui.generateandsendcredentials_button</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_properties_128efb851b6a2110cd6153d16b4bcbc9</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-02-06 13:18:11</sys_updated_on>
+        <sys_updated_on>2024-02-28 13:53:04</sys_updated_on>
         <type>boolean</type>
         <value>false</value>
         <write_roles/>

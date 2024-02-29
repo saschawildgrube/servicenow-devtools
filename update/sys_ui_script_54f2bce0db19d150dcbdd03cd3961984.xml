@@ -3,6 +3,7 @@
         <active>true</active>
         <description>Returns true if the current page is a form, false if not.</description>
         <global>true</global>
+        <ignore_in_now_experience>false</ignore_in_now_experience>
         <name>x_snc_devtools.IsForm</name>
         <script><![CDATA[function IsForm()
 {
@@ -27,5 +28,6 @@
         <sys_updated_on>2022-08-10 12:12:45</sys_updated_on>
         <ui_type>0</ui_type>
         <use_scoped_format>false</use_scoped_format>
+        <x_snc_devtools_global>true</x_snc_devtools_global>
     </sys_ui_script>
 </record_update>
