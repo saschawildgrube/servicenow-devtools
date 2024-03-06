@@ -122,13 +122,21 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 		var strUserSysId = CreateTechnicalUser(strName);
 		return JSON.stringify(strUserSysId);		
 	},	
-	
+
 	CreateTestUser: function()
 	{
 		var strName = GetStringValue(this.getParameter('sysparm_user_name'));
 		var strUserSysId = CreateTestUser(strName);
 		return JSON.stringify(strUserSysId);		
 	},		
+
+	GetAppUncommittedFiles: function()
+	{
+		var strAppSysId = GetStringValue(this.getParameter('sysparm_app_sys_id'));
+		var aUncommittedFiles = GetAppUncommittedFiles(strAppSysId);
+		Debug(JSON.stringify(aUncommittedFiles));
+		return JSON.stringify(aUncommittedFiles);		
+	},	
 
 	start: function()
 	{
@@ -214,13 +222,13 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-12 13:47:51</sys_created_on>
         <sys_id>7357b9131b8bb090edf3642aab4bcb10</sys_id>
-        <sys_mod_count>68</sys_mod_count>
+        <sys_mod_count>71</sys_mod_count>
         <sys_name>DevToolsClientAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_7357b9131b8bb090edf3642aab4bcb10</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-03-04 15:14:32</sys_updated_on>
+        <sys_updated_on>2024-03-05 11:45:04</sys_updated_on>
     </sys_script_include>
 </record_update>
