@@ -7,60 +7,65 @@
         <client_callable>false</client_callable>
         <description>Creates a new version baseline for the given application. Handle with care! This function is still experimental. </description>
         <name>AppVersionBaseline</name>
-        <script><![CDATA[function AppVersionBaseline(strApp)
+        <script><![CDATA[function AppVersionBaseline(vApp)
 {
-	var grApp = GetAppRecord(strApp);
-	if (IsValidRecord(grApp) == false)
-	{
-		return false;
-	}
-	var strScope = GetStringValue(grApp.scope);
-
-	var bResult = true;
-
 	var progresstracker = new ProgressTrackerAPI();
 	progresstracker.Start();
-	
+	progresstracker.SetPercentageProgress(1);
+
+	function Error(strMessage)
+	{
+		LogError('AppVersionBaseline: '+strMessage);
+		progresstracker.SetResult(null,false,strMessage);
+	}
+
+	var grApp = GetAppRecord(vApp);
+	if (IsValidRecord(grApp) == false)
+	{
+		Error('Application could not be loaded!');
+		return false;
+	}
+
+	var strScope = GetStringValue(grApp.scope);
+	var strAppName = GetAppName(grApp);
+	var strCurrentBranch = GetAppCurrentBranch(grApp);
+	var strNewBranch = GetStringValue(grApp.version);
+
+
 	// Sanitize app
-	progresstracker.SetPercentageProgress(5);
 	progresstracker.SetText('Sanitizing...');
 	AppSanity(grApp.sys_id);
 
-	Sleep(1);
-	
-	// Call AppSetDefaults function
+	//Sleep(1);
 	progresstracker.SetPercentageProgress(10);
+	
 	progresstracker.SetText('Setting defaults...');	
 	if (strScope != 'global')
 	{
 		RunScriptInScope(grApp.sys_id,'if (x_snc_devtools.IsValidFunction('+strScope+'.AppSetDefaults)) { '+strScope+'.AppSetDefaults(); }');
 	}
 
-	Sleep(1);
-	
-	// Call AppBaseline function
+	//Sleep(1);
 	progresstracker.SetPercentageProgress(15);
-	progresstracker.SetText('Calling AppBaseline() function...');		
+
+	progresstracker.SetText('Calling AppBaseline() function...');
 	if (strScope != 'global')
 	{
 		RunScriptInScope(grApp.sys_id,'if (x_snc_devtools.IsValidFunction('+strScope+'.AppBaseline)) { '+strScope+'.AppBaseline(); }');
 	}	
 
-	Sleep(1);
-	
-	// Remove post fixes from application names
+	//Sleep(1);
 	progresstracker.SetPercentageProgress(20);
-	progresstracker.SetText('Removing application name post fix...');		
-	grApp.name = GetAppName(grApp);
+
+	progresstracker.SetText('Removing application name post fix...');	
+	grApp.name = strAppName;
 	GlideRecordUpdate(grApp,true);
-	
 	RecordSaveToUpdateSet(grApp);
 	
-	Sleep(1);
-
-	// Update Dependency records (repo_url and manual)
+	//Sleep(1);
 	progresstracker.SetPercentageProgress(25);
-	progresstracker.SetText('Updating dependency records...');			
+
+	progresstracker.SetText('Updating dependency records...');		
 	var grDependencies = new GlideRecord('x_snc_devtools_dependency');
 	grDependencies.addQuery('sys_scope','=',grApp.sys_id);
 	grDependencies.query();
@@ -83,39 +88,79 @@
 		}
 	}
 		
-	// Set version and date in manual
-	//progresstracker.SetPercentageProgress(50);
-	//progresstracker.SetText('Updateing dependency records...');				
-	
-	// Commit to dev
-	
-	// create branch
+	//progresstracker.SetText('Updating release notes in manual...');
 
-	// switch back to dev branch
+	progresstracker.SetPercentageProgress(30);
+					
 	
-	// increase version number
+	progresstracker.SetText('Committing changes...');
+	var bResult = SourceControlCommitChangesToCurrentBranch(grApp,grApp.version+' baseline',false);
+	if (bResult == false)
+	{
+		Error('Failed to commit changes to current branch!');
+		return false;
+	}
 
-	// add new section in release notes
+	progresstracker.SetPercentageProgress(40);
 
-	// add post fix
+	progresstracker.SetText('Creating branch "'+strNewBranch+'"...');
+	bResult = SourceControlCreateBranch(grApp,strNewBranch,false);
+	if (bResult == false)
+	{
+		Error('Failed to create branch "'+strNewBranch+'"!');
+		return false;
+	}
 
-	// commit to dev
+	progresstracker.SetPercentageProgress(50);
+
+	progresstracker.SetText('Switching back to branch "'+strCurrentBranch+'"...');
+	bResult = SourceControlSwitchToBranch(grApp,strCurrentBranch,false);
+	if (bResult == false)
+	{
+		Error('Failed switching to branch "'+strCurrentBranch+'"!');
+		return false;
+	}
+
+	progresstracker.SetPercentageProgress(80);
+
+	progresstracker.SetText('Preparing new version...');
+	var strCurrentVersion = GetVersionFromString(GetStringValue(grApp.version));
+	var aVersion = strCurrentVersion.split('.');
+	var nMajor = GetIntegerValue(GetValue(aVersion,0));
+	var nNewMinor = GetIntegerValue(GetValue(aVersion,1)) + 1;
+	var strNewVersion = nMajor 	+ '.' + nNewMinor + '.0';
+	grApp.version = strNewVersion;
+	grApp.name = strAppName + ' WORK IN PROGRESS'
+	GlideRecordUpdate(grApp,true);
+	RecordSaveToUpdateSet(grApp);
+
+	// TODO: add new section in release notes
+
+	progresstracker.SetPercentageProgress(90);
+
+	progresstracker.SetText('Committing changes...');
+	var bResult = SourceControlCommitChangesToCurrentBranch(grApp,'Start working on '+strNewVersion,false);
+	if (bResult == false)
+	{
+		Error('Failed to commit changes to current branch!');
+		return false;
+	}	
 	
-	progresstracker.SetResult(null,bResult,'Version Baseline complete.');
+	progresstracker.SetResult(null,true,'Version Baseline complete.');
 	
-	return bResult;
+	return true;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-06-12 15:30:55</sys_created_on>
         <sys_id>7ac969a9dbc095109232dad1f39619c7</sys_id>
-        <sys_mod_count>31</sys_mod_count>
+        <sys_mod_count>44</sys_mod_count>
         <sys_name>AppVersionBaseline</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_7ac969a9dbc095109232dad1f39619c7</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-03-04 15:13:56</sys_updated_on>
+        <sys_updated_on>2024-03-06 16:45:43</sys_updated_on>
     </sys_script_include>
 </record_update>
