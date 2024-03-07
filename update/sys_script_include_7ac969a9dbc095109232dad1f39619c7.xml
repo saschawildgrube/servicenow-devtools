@@ -36,8 +36,7 @@
 	progresstracker.SetText('Sanitizing...');
 	AppSanity(grApp.sys_id);
 
-	//Sleep(1);
-	progresstracker.SetPercentageProgress(10);
+	progresstracker.SetPercentageProgress(5);
 	
 	progresstracker.SetText('Setting defaults...');	
 	if (strScope != 'global')
@@ -45,8 +44,7 @@
 		RunScriptInScope(grApp.sys_id,'if (x_snc_devtools.IsValidFunction('+strScope+'.AppSetDefaults)) { '+strScope+'.AppSetDefaults(); }');
 	}
 
-	//Sleep(1);
-	progresstracker.SetPercentageProgress(15);
+	progresstracker.SetPercentageProgress(10);
 
 	progresstracker.SetText('Calling AppBaseline() function...');
 	if (strScope != 'global')
@@ -54,16 +52,14 @@
 		RunScriptInScope(grApp.sys_id,'if (x_snc_devtools.IsValidFunction('+strScope+'.AppBaseline)) { '+strScope+'.AppBaseline(); }');
 	}	
 
-	//Sleep(1);
-	progresstracker.SetPercentageProgress(20);
+	progresstracker.SetPercentageProgress(15);
 
 	progresstracker.SetText('Removing application name post fix...');	
 	grApp.name = strAppName;
 	GlideRecordUpdate(grApp,true);
 	RecordSaveToUpdateSet(grApp);
 	
-	//Sleep(1);
-	progresstracker.SetPercentageProgress(25);
+	progresstracker.SetPercentageProgress(20);
 
 	progresstracker.SetText('Updating dependency records...');		
 	var grDependencies = new GlideRecord('x_snc_devtools_dependency');
@@ -90,18 +86,18 @@
 		
 	//progresstracker.SetText('Updating release notes in manual...');
 
-	progresstracker.SetPercentageProgress(30);
+	progresstracker.SetPercentageProgress(25);
 					
 	
 	progresstracker.SetText('Committing changes...');
-	var bResult = SourceControlCommitChangesToCurrentBranch(grApp,grApp.version+' baseline',false);
+	var bResult = SourceControlCommitToCurrentBranch(grApp,grApp.version+' baseline',false);
 	if (bResult == false)
 	{
 		Error('Failed to commit changes to current branch!');
 		return false;
 	}
 
-	progresstracker.SetPercentageProgress(40);
+	progresstracker.SetPercentageProgress(50);
 
 	progresstracker.SetText('Creating branch "'+strNewBranch+'"...');
 	bResult = SourceControlCreateBranch(grApp,strNewBranch,false);
@@ -111,7 +107,7 @@
 		return false;
 	}
 
-	progresstracker.SetPercentageProgress(50);
+	progresstracker.SetPercentageProgress(55);
 
 	progresstracker.SetText('Switching back to branch "'+strCurrentBranch+'"...');
 	bResult = SourceControlSwitchToBranch(grApp,strCurrentBranch,false);
@@ -121,7 +117,7 @@
 		return false;
 	}
 
-	progresstracker.SetPercentageProgress(80);
+	progresstracker.SetPercentageProgress(70);
 
 	progresstracker.SetText('Preparing new version...');
 	var strCurrentVersion = GetVersionFromString(GetStringValue(grApp.version));
@@ -134,12 +130,11 @@
 	GlideRecordUpdate(grApp,true);
 	RecordSaveToUpdateSet(grApp);
 
-	// TODO: add new section in release notes
 
-	progresstracker.SetPercentageProgress(90);
+	progresstracker.SetPercentageProgress(75);
 
 	progresstracker.SetText('Committing changes...');
-	var bResult = SourceControlCommitChangesToCurrentBranch(grApp,'Start working on '+strNewVersion,false);
+	var bResult = SourceControlCommitToCurrentBranch(grApp,'Start working on '+strNewVersion,false);
 	if (bResult == false)
 	{
 		Error('Failed to commit changes to current branch!');
@@ -154,13 +149,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-06-12 15:30:55</sys_created_on>
         <sys_id>7ac969a9dbc095109232dad1f39619c7</sys_id>
-        <sys_mod_count>44</sys_mod_count>
+        <sys_mod_count>49</sys_mod_count>
         <sys_name>AppVersionBaseline</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_7ac969a9dbc095109232dad1f39619c7</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-03-06 16:45:43</sys_updated_on>
+        <sys_updated_on>2024-03-07 14:18:51</sys_updated_on>
     </sys_script_include>
 </record_update>

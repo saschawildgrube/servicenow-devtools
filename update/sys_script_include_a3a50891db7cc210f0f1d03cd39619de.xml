@@ -2,14 +2,14 @@
     <sys_script_include action="INSERT_OR_UPDATE">
         <access>public</access>
         <active>true</active>
-        <api_name>x_snc_devtools.SourceControlCommitChangesToCurrentBranch</api_name>
+        <api_name>x_snc_devtools.SourceControlCommitToCurrentBranch</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Commits all uncommitted changes to the currently active branch of the given application.&#13;
 If bAsync is set to false, the function operates synchronously and will NOT return until the operation is completed. The return false indicates success by returning true or failure by returning false.&#13;
 If bAsync is true, the function will return the progress id of the triggered background process.</description>
-        <name>SourceControlCommitChangesToCurrentBranch</name>
-        <script><![CDATA[function SourceControlCommitChangesToCurrentBranch(vApp,strMessage,bAsync)
+        <name>SourceControlCommitToCurrentBranch</name>
+        <script><![CDATA[function SourceControlCommitToCurrentBranch(vApp,strMessage,bAsync)
 {
 	var grApp = GetAppRecord(vApp);
 	if (IsValidRecord(grApp) == false)
@@ -47,13 +47,13 @@ If bAsync is true, the function will return the progress id of the triggered bac
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-03-06 08:58:47</sys_created_on>
         <sys_id>a3a50891db7cc210f0f1d03cd39619de</sys_id>
-        <sys_mod_count>12</sys_mod_count>
-        <sys_name>SourceControlCommitChangesToCurrentBranch</sys_name>
+        <sys_mod_count>13</sys_mod_count>
+        <sys_name>SourceControlCommitToCurrentBranch</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_a3a50891db7cc210f0f1d03cd39619de</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-03-06 17:32:25</sys_updated_on>
+        <sys_updated_on>2024-03-07 09:58:31</sys_updated_on>
     </sys_script_include>
 </record_update>
