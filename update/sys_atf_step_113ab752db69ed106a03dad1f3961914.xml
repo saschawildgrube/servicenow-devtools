@@ -9,7 +9,6 @@
         <mugshots_cache_json/>
         <notes/>
         <order>3</order>
-        <snapshot/>
         <step_config display_value="DevTools - Check scoped app sanity">786a921f1b6c2090a89720a8ec4bcbc9</step_config>
         <sys_class_name>sys_atf_step</sys_class_name>
         <sys_created_by>admin</sys_created_by>
@@ -17,9 +16,9 @@
         <sys_id>113ab752db69ed106a03dad1f3961914</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>DevTools - Check scoped app sanity</sys_name>
-        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
-        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_113ab752db69ed106a03dad1f3961914</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2023-03-15 19:39:05</sys_updated_on>

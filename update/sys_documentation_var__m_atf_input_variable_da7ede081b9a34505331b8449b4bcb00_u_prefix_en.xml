@@ -11,12 +11,11 @@
             <sys_class_name>sys_documentation</sys_class_name>
             <sys_created_by>admin</sys_created_by>
             <sys_created_on>2021-08-26 07:29:15</sys_created_on>
-            <sys_id>0c5f1a481b9a34505331b8449b4bcbda</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_name>Prefix</sys_name>
-            <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+            <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
             <sys_policy/>
-            <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+            <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
             <sys_update_name>sys_documentation_var__m_atf_input_variable_da7ede081b9a34505331b8449b4bcb00_u_prefix_en</sys_update_name>
             <sys_updated_by>admin</sys_updated_by>
             <sys_updated_on>2021-08-26 07:29:15</sys_updated_on>

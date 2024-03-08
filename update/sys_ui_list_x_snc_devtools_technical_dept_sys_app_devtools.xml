@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_list parent="sys_app" relationship="" sys_domain="global" table="x_snc_devtools_technical_dept" version="2" view="devtools">
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>short_description</element>
+            <list_id display_value="x_snc_devtools_technical_dept" element="NULL" name="x_snc_devtools_technical_dept" parent="sys_app" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">4d7149631b1d61105b76777d8b4bcb85</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>0</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2023-03-06 17:08:34</sys_created_on>
+            <sys_id>097149631b1d61105b76777d8b4bcb86</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2023-03-06 17:08:34</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>id</element>
+            <list_id display_value="x_snc_devtools_technical_dept" element="NULL" name="x_snc_devtools_technical_dept" parent="sys_app" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">4d7149631b1d61105b76777d8b4bcb85</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>1</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2023-03-06 17:08:34</sys_created_on>
+            <sys_id>897149631b1d61105b76777d8b4bcb86</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2023-03-06 17:08:34</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>switch</element>
+            <list_id display_value="x_snc_devtools_technical_dept" element="NULL" name="x_snc_devtools_technical_dept" parent="sys_app" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">4d7149631b1d61105b76777d8b4bcb85</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>2</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2023-03-06 17:08:34</sys_created_on>
+            <sys_id>0d7149631b1d61105b76777d8b4bcb86</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2023-03-06 17:08:34</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element/>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <name>x_snc_devtools_technical_dept</name>
+            <parent>sys_app</parent>
+            <position/>
+            <relationship/>
+            <sum>false</sum>
+            <sys_class_name>sys_ui_list</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2023-03-06 17:08:34</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>4d7149631b1d61105b76777d8b4bcb85</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_snc_devtools_technical_dept</sys_name>
+            <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+            <sys_update_name>sys_ui_list_x_snc_devtools_technical_dept_sys_app_devtools</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2023-03-06 17:08:34</sys_updated_on>
+            <sys_user/>
+            <view display_value="DevTools" name="devtools">75e08353dbbf0450ba15a35305961913</view>
+            <view_name/>
+        </sys_ui_list>
+    </sys_ui_list>
+</record_update>

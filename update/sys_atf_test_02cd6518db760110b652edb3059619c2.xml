@@ -4,6 +4,7 @@
         <copied_from/>
         <description/>
         <enable_parameterized_testing>false</enable_parameterized_testing>
+        <fail_on_server_error>false</fail_on_server_error>
         <name>DevTools - HtmlRenderPageA4</name>
         <parameters/>
         <remember/>
@@ -13,9 +14,9 @@
         <sys_id>02cd6518db760110b652edb3059619c2</sys_id>
         <sys_mod_count>1</sys_mod_count>
         <sys_name>DevTools - HtmlRenderPageA4</sys_name>
-        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
-        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_test_02cd6518db760110b652edb3059619c2</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2022-04-07 15:19:40</sys_updated_on>

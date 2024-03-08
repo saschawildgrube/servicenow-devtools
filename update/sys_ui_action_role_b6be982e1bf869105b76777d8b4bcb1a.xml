@@ -6,13 +6,13 @@
         <sys_id>b6be982e1bf869105b76777d8b4bcb1a</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>List.snc_internal</sys_name>
-        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
-        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_ui_action display_value="List">d29ae78f1bf8dc10a89720a8ec4bcbd6</sys_ui_action>
         <sys_update_name>sys_ui_action_role_b6be982e1bf869105b76777d8b4bcb1a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2023-02-06 15:31:52</sys_updated_on>
-        <sys_user_role display_value="snc_internal" name="snc_internal">7fcaa702933002009c8579b4f47ffbde</sys_user_role>
+        <sys_user_role display_value="">7fcaa702933002009c8579b4f47ffbde</sys_user_role>
     </sys_ui_action_role>
 </record_update>
