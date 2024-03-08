@@ -9,26 +9,28 @@
         <name>InstanceScanSuiteOnApp</name>
         <script><![CDATA[function InstanceScanSuiteOnApp(strSuiteSysId, vApp, bDetailed)
 {
+	var progresstracker = new ProgressTrackerAPI();
+	progresstracker.Start();
+
 	if (InstanceScanIsRunning() == true)
 	{
+		progresstracker.SetResult(null,false,'Instance Scan is already running!');
 		return false;
 	}
-	
+
 	strSuiteSysId = GetStringValue(strSuiteSysId);
 	if (IsValidSysId(strSuiteSysId) == false)
 	{
+		progresstracker.SetResult(null,false,'No scan suite has been specified!');
 		return false;
 	}
 	
 	var grApp = GetAppRecord(vApp);
 	if (IsValidRecord(grApp) == false)
 	{
+		progresstracker.SetResult(null,false,'The specified application could not be loaded!');
 		return false;
 	}
-	
-	var nEstimatedSeconds = 60;
-	var progresstracker = new ProgressTrackerAPI();
-	progresstracker.Start(nEstimatedSeconds);
 		
 	var strUrl = GetInstanceURL()+'/api/sn_cicd/instance_scan/suite_scan/'+strSuiteSysId+'/scoped_apps';
 	var strBody = '{ app_scope_sys_ids : ["'+grApp.sys_id+'"]}';
@@ -40,6 +42,7 @@
 	
 	if (IsValidSysId(strUserSysId) == false)
 	{
+		progresstracker.SetResult(null,false,'The temporary technical user could not be created!');
 		return false;
 	}
 
@@ -55,10 +58,10 @@
 	}
 	catch (e)
 	{
+		progresstracker.SetResult(null,false,'Failed to perform the REST API call!');
 		return false;
 	}
 
-	
 	var grUserDelete = GetUserRecord(strUserSysId);
 	GlideRecordDelete(grUserDelete);
 	
@@ -67,11 +70,13 @@
 	var strProgressSysId = GetValue(result,'result','links','progress','id');
 	if (IsValidSysId(strProgressSysId) == false)
 	{
+		progresstracker.SetResult(null,false,'Could not receive progress id');
 		return false;
 	}
 	
 	var nStartTime = GetTimeNow();
 	
+	var nEstimatedSeconds = 60;
 	var nSecondsPassed = 0;
 	
 	var grProgress = new GlideRecord('sys_progress_worker');
@@ -96,7 +101,7 @@
 		{
 			nSecondsPassed = nNewSecondsPassed; 
 					
-			progresstracker.SetPercentageProgress(GetIntegerValue((nSecondsPassed / nEstimatedSeconds) * 90));
+			progresstracker.SetPercentageProgress(GetIntegerValue(((nSecondsPassed * 100) / nEstimatedSeconds) ));
 			var strText = 'Scan running for '+nSecondsPassed+' seconds.';
 			progresstracker.SetText(strText);
 		}
@@ -107,6 +112,7 @@
 	grScanResult.query();
 	if (grScanResult.next() == false)
 	{
+		progresstracker.SetResult(scanresults,false,'Could not load scan results!');
 		return false;
 	}
 	
@@ -128,13 +134,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-11-08 09:18:56</sys_created_on>
         <sys_id>9f5aef5ddb4f59106a03dad1f39619f6</sys_id>
-        <sys_mod_count>68</sys_mod_count>
+        <sys_mod_count>79</sys_mod_count>
         <sys_name>InstanceScanSuiteOnApp</sys_name>
-        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
-        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_9f5aef5ddb4f59106a03dad1f39619f6</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-12-18 09:23:04</sys_updated_on>
+        <sys_updated_on>2024-03-08 12:23:33</sys_updated_on>
     </sys_script_include>
 </record_update>

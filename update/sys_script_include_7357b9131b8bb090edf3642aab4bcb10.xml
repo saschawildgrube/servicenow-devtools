@@ -21,7 +21,7 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 		var strSysId = GetStringValue(this.getParameter('sysparm_sys_id'));
 		return GetTableFromSysId(strSysId);
 	},
-	
+
 	GetFormatConfig: function()
 	{
 		if (AppGetProperty('ui.formatting') == false)
@@ -46,7 +46,7 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 		}
 		return JSON.stringify(formatconfig);
 	},
-	
+
 	GetAllTables: function()
 	{
 		var bExtendingTables = GetBoolValue(this.getParameter('sysparm_extending_tables'));
@@ -76,7 +76,7 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 		return false;	
 	},
 	
-	InstanceScanSuiteOnApp: function(strSuiteSysId, strAppSysId, bDetailed)
+	InstanceScanSuiteOnApp: function()
 	{
 		var strSuiteSysId = GetStringValue(this.getParameter('sysparm_suite'));
 		var strAppSysId = GetStringValue(this.getParameter('sysparm_app'));
@@ -91,7 +91,6 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 	{
 		var bIsRunning = InstanceScanIsRunning();
 		return bIsRunning;
-		
 	},
 	
 	GetTestRecord: function()
@@ -122,7 +121,7 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 		var strUserSysId = CreateTechnicalUser(strName);
 		return JSON.stringify(strUserSysId);		
 	},	
-	
+
 	CreateTestUser: function()
 	{
 		var strName = GetStringValue(this.getParameter('sysparm_user_name'));
@@ -130,19 +129,111 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 		return JSON.stringify(strUserSysId);		
 	},		
 
+	AppVersionBaselineIsRunning: function()
+	{
+		return AppVersionBaselineIsRunning();
+	},
+
+	GetAppUncommittedFiles: function()
+	{
+		var strAppSysId = GetStringValue(this.getParameter('sysparm_app_sys_id'));
+		var aUncommittedFiles = GetAppUncommittedFiles(strAppSysId);
+		return JSON.stringify(aUncommittedFiles);		
+	},	
+
+	GetAppBranches: function()
+	{
+		var strAppSysId = GetStringValue(this.getParameter('sysparm_app_sys_id'));
+		var aBranches = GetAppBranches(strAppSysId);
+		return JSON.stringify(aBranches);		
+	},	
+
+	start: function()
+	{
+		var strWorkerId = '';
+		var strTrackerSourceTable = '';
+		var strTrackerType = '';
+
+		var strCommand = GetStringValue(this.getParameter("sysparm_ajax_processor_command"));
+		if (strCommand == 'app_version_baseline')
+		{
+			var strAppSysId = GetStringValue(this.getParameter("sysparm_ajax_processor_app_sys_id"));
+			if (strAppSysId == '')
+			{
+				LogError('DevToolsClientAPI.start(): AppVersionBaseline: no app_sys_id specified.');
+				return '';
+			}
+			var grApp = GetAppRecord(strAppSysId);
+			if (IsValidRecord(grApp) == false)
+			{
+				LogError('DevToolsClientAPI.start(): AppVersionBaseline: App not found.');
+				return '';
+			}
+
+			strTrackerSourceTable = 'sys_app';
+			strTrackerType = 'app_version_baseline';
+	
+			if (AppVersionBaselineIsRunning() == true)
+			{
+				LogError('DevToolsClientAPI.start(): AppVersionBaseline: Already running.');
+				return '';
+			}
+
+			var strProgressName = "Creating a new version baseline for application "+GetCleanAppName(grApp.name)+' '+grApp.version;
+
+			var params = {};
+			params['strAppSysId'] = strAppSysId;
+
+			strWorkerId = StartWorker(
+				strProgressName,
+				'x_snc_devtools.DevToolsWorkerAPI',
+				'AppVersionBaseline',
+				params);
+		}
+		else
+		{
+			LogError('DevToolsClientAPI.start(): Unknown command!');
+		}
+
+		
+		if (strWorkerId == '')
+		{
+			return '';
+		}
+
+		var nCountDown = 1000;
+		while (nCountDown > 0)
+		{
+			var grTracker = new GlideRecord('sys_execution_tracker');
+			grTracker.orderByDesc('sys_created_on');
+			grTracker.addQuery('source_table','=',strTrackerSourceTable);
+			grTracker.addQuery('type','=',strTrackerType);
+			grTracker.addQuery('state', 'IN', '0,1');
+			grTracker.query();
+			if (grTracker.next())
+			{
+				return GetStringValue(grTracker.sys_id);
+			}
+			nCountDown--;
+		}
+		
+		return strWorkerId;
+	},
+			
+
     type: 'DevToolsClientAPI'
 });]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-12 13:47:51</sys_created_on>
         <sys_id>7357b9131b8bb090edf3642aab4bcb10</sys_id>
-        <sys_mod_count>58</sys_mod_count>
+        <sys_mod_count>91</sys_mod_count>
         <sys_name>DevToolsClientAPI</sys_name>
-        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
-        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_7357b9131b8bb090edf3642aab4bcb10</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-11-07 09:45:08</sys_updated_on>
+        <sys_updated_on>2024-03-07 16:42:30</sys_updated_on>
     </sys_script_include>
 </record_update>

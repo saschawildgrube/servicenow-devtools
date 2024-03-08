@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_package_dependency_m2m">
     <sys_package_dependency_m2m action="INSERT_OR_UPDATE">
-        <dependency display_value="Service Portal - Core" source="com.glide.service-portal">aa8e3edddb540110b652edb305961916</dependency>
+        <dependency display_value="Service Portal - Core" source="com.glide.service-portal">8070c515b9d03110d0adbb64e3a1e9da</dependency>
         <min_version>1.1.0</min_version>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-01-13 09:54:27</sys_created_on>
         <sys_id>1c2fff0ddb098994bcced03cd3961924</sys_id>
         <sys_mod_count>0</sys_mod_count>
-        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2022-01-13 09:54:27</sys_updated_on>
     </sys_package_dependency_m2m>

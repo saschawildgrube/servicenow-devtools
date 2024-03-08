@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_script">
+    <sys_ui_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Retrieves a parameter supplied in the url.</description>
+        <global>true</global>
+        <ignore_in_now_experience>false</ignore_in_now_experience>
+        <name>x_snc_devtools.GetParam</name>
+        <script><![CDATA[function GetParam(strName)
+{
+	strName = GetStringValue(strName);
+	
+	var strUrl = GetCurrentFrameUrl();
+
+	var url = ParseUrl(strUrl);
+	var strParams = GetValue(url,'parameters');
+	var params = ParseUrlParameters(strParams);
+	
+	var strValue = '';
+	
+	strValue = GetValue(params,'sysparm_'+strName);
+	if (strValue == null)
+	{
+		strValue = GetValue(params,strName);
+	}
+	if (strValue == null)
+	{
+		var strUrlDecoded = decodeURIComponent(strUrl);
+		var url = ParseUrl(strUrlDecoded);
+		var strParams = GetValue(url,'parameters');
+		var params = ParseUrlParameters(strParams);
+		strValue = GetValue(params,'sysparm_'+strName);
+		if (strValue == null)
+		{
+			strValue = GetValue(params,strName);
+		}
+	}
+	return GetStringValue(strValue);
+}]]></script>
+        <script_name>GetParam</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-03-06 18:17:17</sys_created_on>
+        <sys_id>0817ce19db740610f0f1d03cd39619b4</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>x_snc_devtools.GetParam</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_ui_script_0817ce19db740610f0f1d03cd39619b4</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-03-07 09:37:39</sys_updated_on>
+        <ui_type>0</ui_type>
+        <use_scoped_format>false</use_scoped_format>
+        <x_snc_devtools_global>true</x_snc_devtools_global>
+    </sys_ui_script>
+</record_update>

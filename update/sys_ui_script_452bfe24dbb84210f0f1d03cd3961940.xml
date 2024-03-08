@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_script">
+    <sys_ui_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Client side user interface to baseline a new version for the given application.</description>
+        <global>true</global>
+        <ignore_in_now_experience>false</ignore_in_now_experience>
+        <name>x_snc_devtools.AppVersionBaseline</name>
+        <script><![CDATA[function AppVersionBaseline(strAppSysId,strVersion)
+{
+	var strAppSysId = GetStringValue(strAppSysId);
+	var strVersion = GetStringValue(strVersion);
+	var strTitle = 'DevTools - Application Version Baseline';
+
+	var bCheckedAlreadyRunning = false;
+	var bCheckedIfBranchExists = false;
+	var bCheckedUncommittedFiles = false;
+
+	StateStart();
+
+	function StateCheckAlreadyRunning()
+	{
+		ServerRequest(
+			'x_snc_devtools.DevToolsClientAPI',
+			'AppVersionBaselineIsRunning',
+			{},
+			StateCheckAlreadyRunningResponse);	
+		return;
+	}
+
+	function StateCheckAlreadyRunningResponse(bIsRunning)
+	{
+		if (bIsRunning == true)
+		{
+			DoModalMessage(
+				strTitle,
+				'An application baseline process is currently running.\n\nPlease wait a minute and try again!',
+				StateEnd);
+			return;
+		}
+		bCheckedAlreadyRunning = true;
+		StateStart();
+	}
+
+	function StateCheckForUncommittedFiles()
+	{
+		ServerRequest(
+			'x_snc_devtools.DevToolsClientAPI',
+			'GetAppUncommittedFiles',
+			{
+				app_sys_id: strAppSysId
+			},
+			StateCheckForUncommittedFilesResponse);	
+		return;
+	}
+
+	function StateCheckForUncommittedFilesResponse(aUncommittedFiles)
+	{
+		if (IsArray(aUncommittedFiles) == false)
+		{
+			StateError('Could not load uncommitted files.');
+			return;
+		}
+		if (aUncommittedFiles.length > 0)
+		{
+			DoModalMessage(
+				strTitle,
+				'There are uncommitted files. Please commit all changes before baseline!',
+				StateEnd);	
+			return;
+		}
+		bCheckedUncommittedFiles = true;
+		StateStart();
+	}
+
+	function StateCheckIfBranchExists()
+	{
+		ServerRequest(
+			'x_snc_devtools.DevToolsClientAPI',
+			'GetAppBranches',
+			{
+				app_sys_id: strAppSysId
+			},
+			StateCheckIfBranchExistsResponse);	
+		return;
+	}
+
+	function StateCheckIfBranchExistsResponse(aBranches)
+	{
+		if (IsArray(aBranches) == false)
+		{
+			StateError('Could not load branches.');
+			return;
+		}
+		if (ArrayValueExists(aBranches,strVersion) == true) 
+		{
+			DoModalMessage(
+				strTitle,
+				'There is already a branch named "'+strVersion+'".\n\nYou must set a different version to proceed!',
+				StateEnd);	
+			return;
+		}
+		bCheckedIfBranchExists = true;
+		StateStart();
+	}
+
+
+	function OnExecutionComplete(dialog,tracker)
+	{
+		var buttonViewResults = GetElementById('sysparm_button_view_results');
+		if (buttonViewResults)
+		{
+			buttonViewResults.style.display = "none";
+		}
+	
+		var buttonClose = GetElementById('sysparm_button_close');
+        if (buttonClose)
+		{
+            buttonClose.on('click', function()
+				{
+					StateEnd();
+				});
+        }
+	}
+	
+	function OnExecutionFailed(dialog)
+	{
+		StateError('Baselining failed!');
+	}
+	
+	function OnStatusUpdate(dialog)
+	{
+	}
+
+	function StateAbort()
+	{
+		DoModalMessage(
+			strTitle,
+			'Aborting...',
+			StateEnd);
+		return;	
+	}
+
+	function StateError(strErrorMessage)
+	{
+		DoModalMessage(
+			strTitle,
+			'ERROR: '+strErrorMessage,
+			StateEnd);		
+		return;	
+	}	
+
+	function StateEnd()
+	{
+		RedirectToRecord('sys_app',strAppSysId,'devtools',false,{ command: '' });
+	}
+
+	function StateStart()
+	{
+		if (bCheckedAlreadyRunning == false)
+		{
+			StateCheckAlreadyRunning();
+			return;
+		}		
+
+		if (bCheckedIfBranchExists == false)
+		{
+			StateCheckIfBranchExists();
+			return;
+		}
+
+		if (bCheckedUncommittedFiles == false)
+		{
+			StateCheckForUncommittedFiles();
+			return;
+		}
+
+
+
+		DoModalProgress(
+			strTitle,
+			'Application Version Baseline',
+			'x_snc_devtools.DevToolsClientAPI',
+			{
+				command: 'app_version_baseline',
+				app_sys_id: strAppSysId
+			},
+			{
+				close:
+				{
+					title: 'Close'
+				}
+			},
+			{
+				callbackOnExecutionComplete: OnExecutionComplete,
+				callbackOnExecutionFailed: OnExecutionFailed,
+				callbackOnStatusUpdate: OnStatusUpdate,
+			});
+	}
+
+
+}]]></script>
+        <script_name>AppVersionBaseline</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-03-04 14:12:06</sys_created_on>
+        <sys_id>452bfe24dbb84210f0f1d03cd3961940</sys_id>
+        <sys_mod_count>82</sys_mod_count>
+        <sys_name>x_snc_devtools.AppVersionBaseline</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_ui_script_452bfe24dbb84210f0f1d03cd3961940</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-03-07 16:41:19</sys_updated_on>
+        <ui_type>0</ui_type>
+        <use_scoped_format>false</use_scoped_format>
+        <x_snc_devtools_global>true</x_snc_devtools_global>
+    </sys_ui_script>
+</record_update>

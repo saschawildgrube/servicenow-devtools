@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.WaitForWorker</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Waits synchronously until the given progress reaches a final state.</description>
+        <name>WaitForWorker</name>
+        <script><![CDATA[function WaitForWorker(strProgressSysId)
+{
+	Debug('WaitForWorker: '+strProgressSysId);
+	var grProgress = GetRecord('sys_progress_worker',strProgressSysId);
+	if (grProgress == false)
+	{
+		return false;
+	}
+	var bProgress = true;
+	while (bProgress == true)
+	{
+		Debug();
+		if (grProgress.get(strProgressSysId))
+		{
+			var strState = GetStringValue(grProgress.state);  
+			if (strState != 'starting' && strState != 'running')
+			{
+				bProgress = false;
+			}
+		}
+		else
+		{
+			bProgress = false;
+		}
+	}
+	return true;	
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-03-06 17:26:57</sys_created_on>
+        <sys_id>89eab9d9db340610f0f1d03cd39619ae</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>WaitForWorker</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_89eab9d9db340610f0f1d03cd39619ae</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-03-08 12:12:23</sys_updated_on>
+    </sys_script_include>
+</record_update>

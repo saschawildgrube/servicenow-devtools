@@ -35,27 +35,15 @@ ProgressTrackerAPI.prototype =
 		return false;
 	},
 	
-	Start: function(nMax)
+	Start: function()
 	{
 		if (this.IsInitialized())
 		{
-			nMax = GetIntegerValue(nMax);
-			if (nMax <= 0)
-			{
-				nMax = 100;
-			}
-
 			strTable = 'sys_app';
 			
-			//this.tracker.setSourceTable("sys_app");
 			RunScriptInGlobalScope('param1.setSourceTable(param2);',this.tracker,strTable);
 
-			//this.tracker.run();
 			RunScriptInGlobalScope('param1.run();',this.tracker);
-
-			//this.tracker.setMaxProgressValue(nMax);
-			//x_snc_devtools.RunScriptInGlobalScope('param1.setMaxProgressValue(param2);',this.tracker,nMax);
-			
 		}
 	},
 	
@@ -113,13 +101,13 @@ ProgressTrackerAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-11-26 14:32:09</sys_created_on>
         <sys_id>1baddd5b1b9bd9105b76777d8b4bcb2a</sys_id>
-        <sys_mod_count>52</sys_mod_count>
+        <sys_mod_count>53</sys_mod_count>
         <sys_name>ProgressTrackerAPI</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_1baddd5b1b9bd9105b76777d8b4bcb2a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-01-16 12:53:18</sys_updated_on>
+        <sys_updated_on>2024-03-07 16:35:19</sys_updated_on>
     </sys_script_include>
 </record_update>

@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-05-03 16:33:03</sys_created_on>
         <sys_id>5085a78e1baee110cd6153d16b4bcb59</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
-        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
-        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_5085a78e1baee110cd6153d16b4bcb59</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-05-03 16:42:01</sys_updated_on>
+        <sys_updated_on>2024-03-08 12:16:37</sys_updated_on>
         <table/>
         <test display_value="DevTools - InstanceScanCheckOnApp">7365678e1baee110cd6153d16b4bcb76</test>
         <timeout/>
@@ -49,9 +49,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-05-03 16:33:03</sys_created_on>
         <sys_id>de85a78e1baee110cd6153d16b4bcbe2</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-05-03 16:42:01</sys_updated_on>
+        <sys_updated_on>2024-03-08 12:16:38</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -101,7 +101,6 @@
 	grCheck.priority = '1';&#13;
 	grCheck.sys_scope = 'global';&#13;
 	var strCheckSysId = GlideRecordInsert(grCheck);&#13;
-	//var strScriptInclude = '773b28041b12e910cd6153d16b4bcbe2'; // Script Include x_snc_devtools.InstanceScanCheckOnApp	&#13;
 &#13;
 	TestCase_InstanceScanCheckOnApp(null,null,false,false);&#13;
 	TestCase_InstanceScanCheckOnApp(strCheckSysId,grApp,false,true);&#13;

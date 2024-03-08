@@ -3,6 +3,7 @@
         <active>true</active>
         <description>Render any value as a string. In case of objects, the keys are displayed in alphabetical order. In case of arrays, the elements are displayed in the given order.</description>
         <global>true</global>
+        <ignore_in_now_experience>false</ignore_in_now_experience>
         <name>x_snc_devtools.RenderValue</name>
         <script><![CDATA[function RenderValue(vValue, bHideEmpty, bUnsortedKeys, nLevel)
 {
@@ -183,13 +184,14 @@
         <sys_id>d3d40478db930550bcced03cd396199c</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>x_snc_devtools.RenderValue</sys_name>
-        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
-        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_script_d3d40478db930550bcced03cd396199c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2022-05-03 17:24:39</sys_updated_on>
         <ui_type>0</ui_type>
         <use_scoped_format>false</use_scoped_format>
+        <x_snc_devtools_global>false</x_snc_devtools_global>
     </sys_ui_script>
 </record_update>

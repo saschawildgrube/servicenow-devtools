@@ -8,7 +8,6 @@
         <mugshots_cache_json/>
         <notes/>
         <order>1</order>
-        <snapshot/>
         <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
         <sys_class_name>sys_atf_step</sys_class_name>
         <sys_created_by>admin</sys_created_by>

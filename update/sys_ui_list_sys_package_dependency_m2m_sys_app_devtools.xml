@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_list parent="sys_app" relationship="" sys_domain="global" table="sys_package_dependency_m2m" version="2" view="devtools">
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>dependency</element>
+            <list_id display_value="sys_package_dependency_m2m" element="NULL" name="sys_package_dependency_m2m" parent="sys_app" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">247462bf1be3d1105b76777d8b4bcbf9</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>0</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2022-12-10 19:09:40</sys_created_on>
+            <sys_id>e47462bf1be3d1105b76777d8b4bcbfa</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2022-12-10 19:09:40</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>x_snc_devtools_versions</element>
+            <list_id display_value="sys_package_dependency_m2m" element="NULL" name="sys_package_dependency_m2m" parent="sys_app" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">247462bf1be3d1105b76777d8b4bcbf9</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>1</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2022-12-10 19:09:40</sys_created_on>
+            <sys_id>6c7462bf1be3d1105b76777d8b4bcbfa</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2022-12-10 19:09:40</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element/>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <name>sys_package_dependency_m2m</name>
+            <parent>sys_app</parent>
+            <position/>
+            <relationship/>
+            <sum>false</sum>
+            <sys_class_name>sys_ui_list</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2022-12-10 19:09:40</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>247462bf1be3d1105b76777d8b4bcbf9</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>sys_package_dependency_m2m</sys_name>
+            <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+            <sys_update_name>sys_ui_list_sys_package_dependency_m2m_sys_app_devtools</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2022-12-10 19:09:40</sys_updated_on>
+            <sys_user/>
+            <view display_value="DevTools" name="devtools">75e08353dbbf0450ba15a35305961913</view>
+            <view_name/>
+        </sys_ui_list>
+    </sys_ui_list>
+</record_update>

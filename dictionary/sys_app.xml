@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
-    <element attributes="metadata_link_exempt=true,synch_attachments=true,update_synch=true" audit="true" extends="sys_scope" label="Custom Application" max_length="40" name="sys_app" sizeclass="17" type="collection">
+    <element attributes="metadata_link_exempt=true,synch_attachments=true,update_synch=true" audit="true" db_object_id="9d4cb895b9103110d0adbb64e3a1e905" extends="sys_scope" label="Custom Application" max_length="40" name="sys_app" text_index="true" type="collection">
         <element label="Documentation" max_length="1024" name="x_snc_devtools_documentation_url" type="url"/>
         <element label="Maintainer" max_length="80" name="x_snc_devtools_maintainer" type="string"/>
         <element label="Maintainer Email" max_length="100" name="x_snc_devtools_maintainer_email" type="email"/>

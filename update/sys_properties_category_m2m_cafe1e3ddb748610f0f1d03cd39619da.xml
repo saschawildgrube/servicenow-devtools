@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties_category_m2m">
+    <sys_properties_category_m2m action="INSERT_OR_UPDATE">
+        <category display_value="devtools">331901f5db3f0c10ba15a35305961989</category>
+        <order>800</order>
+        <property display_value="x_snc_devtools.ui.baseline_button" name="x_snc_devtools.ui.baseline_button">fa6ddaf9db748610f0f1d03cd3961902</property>
+        <sys_class_name>sys_properties_category_m2m</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-03-08 09:18:41</sys_created_on>
+        <sys_id>cafe1e3ddb748610f0f1d03cd39619da</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_snc_devtools.ui.baseline_button.devtools</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_properties_category_m2m_cafe1e3ddb748610f0f1d03cd39619da</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-03-08 09:18:41</sys_updated_on>
+    </sys_properties_category_m2m>
+</record_update>

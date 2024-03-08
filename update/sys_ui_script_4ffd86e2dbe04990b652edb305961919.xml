@@ -31,13 +31,19 @@
 		function callbackResponse(response)
 		{
 			var result = response.responseXML.documentElement.getAttribute('answer');
+			if (result === null)
+			{
+				LogError('ServerRequest: The response is null. This indicates that an error occured on the server. Caution: Some errors during a server script execution triggered by client requests ARE NOT LOGGED!');
+				callbackResult(result);
+				return;
+			}
 			if (result == 'false')
 			{
 				callbackResult(false);
 				return;
 			}
 			var resultParsed = ParseJson(result);
-			if (resultParsed == false)
+			if (resultParsed === false)
 			{
 				callbackResult(result);
 				return;
@@ -49,6 +55,12 @@
 	{
 		ga.getXMLWait();
 		var result = ga.getAnswer();
+		if (result === null)
+		{
+			LogError('ServerRequest: The response is null. This indicates that an error occured on the server. Caution: Some errors during a server script execution triggered by client requests ARE NOT LOGGED!');
+			callbackResult(result);
+			return;
+		}
 		if (result == 'false')
 		{
 			return false;
@@ -70,15 +82,16 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-12-23 20:59:36</sys_created_on>
         <sys_id>4ffd86e2dbe04990b652edb305961919</sys_id>
-        <sys_mod_count>29</sys_mod_count>
+        <sys_mod_count>35</sys_mod_count>
         <sys_name>x_snc_devtools.ServerRequest</sys_name>
-        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
-        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_script_4ffd86e2dbe04990b652edb305961919</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-10-20 12:52:03</sys_updated_on>
+        <sys_updated_on>2024-03-08 08:45:24</sys_updated_on>
         <ui_type>0</ui_type>
         <use_scoped_format>false</use_scoped_format>
+        <x_snc_devtools_global>true</x_snc_devtools_global>
     </sys_ui_script>
 </record_update>

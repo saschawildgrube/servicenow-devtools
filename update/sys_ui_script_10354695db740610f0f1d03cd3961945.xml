@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_script">
+    <sys_ui_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Returns the current url.</description>
+        <global>true</global>
+        <ignore_in_now_experience>false</ignore_in_now_experience>
+        <name>x_snc_devtools.GetCurrentUrl</name>
+        <script><![CDATA[function GetCurrentUrl()
+{
+	return top.window.location.href;
+}]]></script>
+        <script_name>GetCurrentUrl</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-03-06 18:09:57</sys_created_on>
+        <sys_id>10354695db740610f0f1d03cd3961945</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>x_snc_devtools.GetCurrentUrl</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_ui_script_10354695db740610f0f1d03cd3961945</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-03-07 09:23:49</sys_updated_on>
+        <ui_type>0</ui_type>
+        <use_scoped_format>false</use_scoped_format>
+        <x_snc_devtools_global>true</x_snc_devtools_global>
+    </sys_ui_script>
+</record_update>

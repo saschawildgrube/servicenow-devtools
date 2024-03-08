@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_view">
+    <sys_ui_view action="INSERT_OR_UPDATE">
+        <group/>
+        <hidden>false</hidden>
+        <name>devtoolsdebuglog</name>
+        <roles/>
+        <sys_class_name>sys_ui_view</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-02-29 10:18:10</sys_created_on>
+        <sys_id>a3df15dbdbe40e10f0f1d03cd396190f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>DevTools Debug Log</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_ui_view_a3df15dbdbe40e10f0f1d03cd396190f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-02-29 10:18:10</sys_updated_on>
+        <title>DevTools Debug Log</title>
+        <user/>
+    </sys_ui_view>
+</record_update>

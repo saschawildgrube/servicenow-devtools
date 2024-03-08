@@ -7,7 +7,7 @@
         <source_scope display_value="CodeSanity WORK IN PROGRESS">8ed42c23dbad0510bcced03cd39619ce</source_scope>
         <source_table>sys_script_include</source_table>
         <source_type>2</source_type>
-        <status>2</status>
+        <status>3</status>
         <sys_class_name>sys_restricted_caller_access</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-03-14 12:16:16</sys_created_on>

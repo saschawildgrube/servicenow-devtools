@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.GetAppUncommittedFiles</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns an array of objects detailing the records that are currently not committed to the current source control branch of the given application. If the application is not linked to source control, the function returns false.</description>
+        <name>GetAppUncommittedFiles</name>
+        <script><![CDATA[function GetAppUncommittedFiles(vApp)
+{
+	var grApp = GetAppRecord(vApp);
+	if (grApp == false)
+	{
+		return false;
+	}
+	if (GetAppCurrentBranch(grApp) == '')
+	{
+		return false;
+	}
+	var aUncommittedFiles = [];
+
+	var grUpdateXml = new GlideRecord('sys_update_xml');
+	grUpdateXml.addQuery('application','=',grApp.sys_id);
+	grUpdateXml.addQuery('remote_update_set','=','');
+	grUpdateXml.query();
+	while (grUpdateXml.next())
+	{
+		var payload = ParseXml(grUpdateXml.payload);
+		if (payload != false)
+		{
+			var strClassName = GetValue(payload,'record_update','table');
+			var strSysId = GetValue(payload,'record_update',strClassName,'sys_id');
+			var grRecord = GetRecord(strClassName,strSysId);
+			if (IsValidRecord(grRecord) == true)
+			{
+				var uncommittedFile = Clone(grRecord);
+				aUncommittedFiles.push(uncommittedFile);
+			}
+		}
+	}
+	return aUncommittedFiles;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-03-05 10:53:04</sys_created_on>
+        <sys_id>66759374dbb88210f0f1d03cd39619d2</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>GetAppUncommittedFiles</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_66759374dbb88210f0f1d03cd39619d2</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-03-05 11:03:27</sys_updated_on>
+    </sys_script_include>
+</record_update>

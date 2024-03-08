@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_list parent="" relationship="" sys_domain="global" table="syslog_app_scope" version="2" view="devtoolsdebuglog">
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>sequence</element>
+            <list_id display_value="syslog_app_scope" element="NULL" name="syslog_app_scope" parent="NULL" relationship="NULL" sys_domain="global" view="a3df15dbdbe40e10f0f1d03cd396190f">5aed5279978a6510a6a07767f053af17</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>0</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2023-04-07 20:10:15</sys_created_on>
+            <sys_id>52ed5279978a6510a6a07767f053af19</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2023-04-07 20:10:15</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>sys_scope</element>
+            <list_id display_value="syslog_app_scope" element="NULL" name="syslog_app_scope" parent="NULL" relationship="NULL" sys_domain="global" view="a3df15dbdbe40e10f0f1d03cd396190f">5aed5279978a6510a6a07767f053af17</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>1</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2023-04-07 20:10:15</sys_created_on>
+            <sys_id>1aed5279978a6510a6a07767f053af19</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2023-04-07 20:10:15</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>message</element>
+            <list_id display_value="syslog_app_scope" element="NULL" name="syslog_app_scope" parent="NULL" relationship="NULL" sys_domain="global" view="a3df15dbdbe40e10f0f1d03cd396190f">5aed5279978a6510a6a07767f053af17</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>2</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2023-04-07 20:10:15</sys_created_on>
+            <sys_id>9aed5279978a6510a6a07767f053af19</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2023-04-07 20:10:15</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element/>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <name>syslog_app_scope</name>
+            <parent/>
+            <position/>
+            <relationship/>
+            <sum>false</sum>
+            <sys_class_name>sys_ui_list</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2023-04-07 20:10:15</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>5aed5279978a6510a6a07767f053af17</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>syslog_app_scope</sys_name>
+            <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+            <sys_update_name>sys_ui_list_syslog_app_scope_devtoolsdebuglog</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2023-04-07 20:10:15</sys_updated_on>
+            <sys_user/>
+            <view display_value="DevTools Debug Log" name="devtoolsdebuglog">a3df15dbdbe40e10f0f1d03cd396190f</view>
+            <view_name/>
+        </sys_ui_list>
+    </sys_ui_list>
+</record_update>

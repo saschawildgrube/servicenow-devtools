@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
-    <element attributes="no_labels=true,update_synch=true" db_object_id="a5376d20a920211076daa554cb57d9a6" extends="sysrule" label="View Rule" max_length="40" name="sysrule_view" text_index="true" type="collection">
+    <element attributes="no_labels=true,update_synch=true" db_object_id="319b7c11b9103110d0adbb64e3a1e9ad" extends="sysrule" label="View Rule" max_length="40" name="sysrule_view" text_index="true" type="collection">
         <element label="Table" max_length="40" name="x_snc_devtools_table" type="string"/>
     </element>
 </database>

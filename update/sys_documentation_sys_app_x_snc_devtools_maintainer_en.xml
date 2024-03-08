@@ -11,12 +11,11 @@
             <sys_class_name>sys_documentation</sys_class_name>
             <sys_created_by>admin</sys_created_by>
             <sys_created_on>2022-10-20 14:34:41</sys_created_on>
-            <sys_id>c76cfa1f47ea1510a4b0d4fe536d4387</sys_id>
             <sys_mod_count>1</sys_mod_count>
             <sys_name>Maintainer</sys_name>
-            <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+            <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
             <sys_policy/>
-            <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+            <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
             <sys_update_name>sys_documentation_sys_app_x_snc_devtools_maintainer_en</sys_update_name>
             <sys_updated_by>admin</sys_updated_by>
             <sys_updated_on>2022-10-20 14:35:21</sys_updated_on>

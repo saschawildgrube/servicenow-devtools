@@ -41,23 +41,7 @@
 		return false;
 	}
 	
-	var grProgress = new GlideRecord('sys_progress_worker');
-	var bProgress = true;
-	while (bProgress == true)
-	{
-		if (grProgress.get(strProgressSysId))
-		{
-			var strState = GetStringValue(grProgress.state);  
-			if (strState != 'starting' && strState != 'running')
-			{
-				bProgress = false;
-			}
-		}
-		else
-		{
-			bProgress = false;
-		}
-	}
+	WaitForWorker(strProgressSysId);
 	
 	var grScanResult = new GlideRecord('scan_result');
 	grScanResult.addQuery('progress_id','=',strProgressSysId);
@@ -73,13 +57,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-06-10 17:51:47</sys_created_on>
         <sys_id>8e853b7cdb44d510bcced03cd396190f</sys_id>
-        <sys_mod_count>22</sys_mod_count>
+        <sys_mod_count>23</sys_mod_count>
         <sys_name>InstanceScanPointScan</sys_name>
-        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
-        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_8e853b7cdb44d510bcced03cd396190f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-02 21:53:48</sys_updated_on>
+        <sys_updated_on>2024-03-06 17:28:31</sys_updated_on>
     </sys_script_include>
 </record_update>

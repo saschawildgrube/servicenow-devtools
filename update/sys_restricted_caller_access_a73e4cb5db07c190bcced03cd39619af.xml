@@ -4,7 +4,7 @@
         <operation>execute</operation>
         <rca_type>real_rca</rca_type>
         <source>f61e0cb5db07c190bcced03cd3961993</source>
-        <source_scope display_value="Wildgrube LAB">3a1561201b22c410a89720a8ec4bcb0f</source_scope>
+        <source_scope display_value="Wildgrube LAB WORK IN PROGRESS">3a1561201b22c410a89720a8ec4bcb0f</source_scope>
         <source_table>sys_script_include</source_table>
         <source_type>2</source_type>
         <status>2</status>
@@ -14,14 +14,14 @@
         <sys_id>a73e4cb5db07c190bcced03cd39619af</sys_id>
         <sys_mod_count>3</sys_mod_count>
         <sys_name>3a1561201b22c410a89720a8ec4bcb0f</sys_name>
-        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
-        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_restricted_caller_access_a73e4cb5db07c190bcced03cd39619af</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2023-10-06 12:34:37</sys_updated_on>
         <target>704694a81b1a74505331b8449b4bcb69</target>
-        <target_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</target_scope>
+        <target_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</target_scope>
         <target_table>sys_script_include</target_table>
         <target_type>2</target_type>
     </sys_restricted_caller_access>

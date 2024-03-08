@@ -3,6 +3,7 @@
         <active>true</active>
         <description>Identifies all records that are displayed on the current page by iterating over various html elements.</description>
         <global>true</global>
+        <ignore_in_now_experience>false</ignore_in_now_experience>
         <name>x_snc_devtools.IdentifyRecordsOnPage</name>
         <script><![CDATA[function IdentifyRecordsOnPage()
 {
@@ -61,13 +62,14 @@
         <sys_id>ceb0720bdb284d90b652edb3059619d2</sys_id>
         <sys_mod_count>13</sys_mod_count>
         <sys_name>x_snc_devtools.IdentifyRecordsOnPage</sys_name>
-        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
-        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_script_ceb0720bdb284d90b652edb3059619d2</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2022-04-20 11:30:25</sys_updated_on>
         <ui_type>0</ui_type>
         <use_scoped_format>false</use_scoped_format>
+        <x_snc_devtools_global>false</x_snc_devtools_global>
     </sys_ui_script>
 </record_update>

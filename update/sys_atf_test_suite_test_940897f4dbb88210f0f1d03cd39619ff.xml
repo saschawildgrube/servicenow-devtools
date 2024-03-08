@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_test_suite_test">
+    <sys_atf_test_suite_test action="INSERT_OR_UPDATE">
+        <abort_on_failure>false</abort_on_failure>
+        <order>100</order>
+        <sys_class_name>sys_atf_test_suite_test</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-03-05 10:53:57</sys_created_on>
+        <sys_id>940897f4dbb88210f0f1d03cd39619ff</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>140897f4dbb88210f0f1d03cd39619fb</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_test_suite_test_940897f4dbb88210f0f1d03cd39619ff</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-03-05 11:04:09</sys_updated_on>
+        <test display_value="DevTools - GetAppUncommittedFiles">140897f4dbb88210f0f1d03cd39619fb</test>
+        <test_suite display_value="DevTools">4a8550391b5b8850a89720a8ec4bcbd9</test_suite>
+    </sys_atf_test_suite_test>
+</record_update>
