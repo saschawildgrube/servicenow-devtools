@@ -268,9 +268,11 @@ function DevToolsGetFormatConfig(grRecord)
 
 	<h3>1.84.0 - 2024-TODO</h3>
 	<ol>
-		<li>Added function GetAppManualRecord().</li>
 		<li>The "Application Overview" page now also displays links to manual pages in global applications.</li>
-		<li>AppBaseline() now adds a new section in the manual "Release Notes" section (if it exists).</li>
+		<li>The "Version Baseline" button now also checks if there is a proper section in the "Release Notes" in the application manual before the actual baseline process is started.</li>
+		<li>AppVersionBaseline() now adds a new section in the manual "Release Notes" section (if it exists).</li>
+		<li>Added function GetAppManualRecord().</li>
+		<li>Added function AppVersionBaselineCheckReleaseNotes().</li>
 		<li>Added more patterns to GetEvaluatorErrorExceptionPatterns().</li>
 	</ol>
 
@@ -1750,13 +1752,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1554</sys_mod_count>
+        <sys_mod_count>1556</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-03-18 16:43:57</sys_updated_on>
+        <sys_updated_on>2024-03-18 18:38:49</sys_updated_on>
     </sys_ui_page>
 </record_update>
