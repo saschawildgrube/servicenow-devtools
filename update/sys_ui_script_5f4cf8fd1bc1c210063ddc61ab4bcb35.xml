@@ -1,37 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_script">
     <sys_ui_script action="INSERT_OR_UPDATE">
         <active>true</active>
-        <description>Appends the second given array to the first.</description>
+        <description>Returns the number of millisenconds passed since the start of the unix epoch.</description>
         <global>true</global>
         <ignore_in_now_experience>false</ignore_in_now_experience>
-        <name>x_snc_devtools.ArrayAppend</name>
-        <script><![CDATA[function ArrayAppend(vArray1, vArray2)
+        <name>x_snc_devtools.GetTimeNow</name>
+        <script><![CDATA[function GetTimeNow()
 {
-	var aResult = [];
-	if (IsArray(vArray1) == true)
-	{
-		aResult = vArray1;
-	}
-	if (IsArray(vArray2) == false)
-	{
-		return aResult;
-	}
-	aResult = aResult.concat(vArray2);
-	return aResult;
+	return GetIntegerValue(Date.now());
 }]]></script>
-        <script_name>ArrayAppend</script_name>
+        <script_name>GetTimeNow</script_name>
         <sys_class_name>sys_ui_script</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2022-01-06 15:47:08</sys_created_on>
-        <sys_id>f2ac8d43db34cd14b652edb3059619c0</sys_id>
-        <sys_mod_count>9</sys_mod_count>
-        <sys_name>x_snc_devtools.ArrayAppend</sys_name>
+        <sys_created_on>2024-03-20 12:23:38</sys_created_on>
+        <sys_id>5f4cf8fd1bc1c210063ddc61ab4bcb35</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_snc_devtools.GetTimeNow</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
-        <sys_update_name>sys_ui_script_f2ac8d43db34cd14b652edb3059619c0</sys_update_name>
+        <sys_update_name>sys_ui_script_5f4cf8fd1bc1c210063ddc61ab4bcb35</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-03-15 17:30:58</sys_updated_on>
+        <sys_updated_on>2024-03-20 12:23:38</sys_updated_on>
         <ui_type>0</ui_type>
         <use_scoped_format>false</use_scoped_format>
         <x_snc_devtools_global>true</x_snc_devtools_global>

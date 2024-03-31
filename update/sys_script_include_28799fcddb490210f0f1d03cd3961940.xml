@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.GetAppManualRecord</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns the record of the given application's manual UI Page, or false if the application does not have a manual UI Page.</description>
+        <name>GetAppManualRecord</name>
+        <script><![CDATA[function GetAppManualRecord(vApp)
+{
+	var grApp = GetAppRecord(vApp);
+	if (grApp == false)
+	{
+		return false;
+	}
+	var grPage = new GlideRecord('sys_ui_page');
+	grPage.addQuery('sys_scope',grApp.sys_id);
+	if (grApp.scope == 'global')
+	{
+		grPage.addQuery('name','ENDSWITH','_manual')
+	}
+	else
+	{
+		grPage.addQuery('name','=','manual');
+	}
+	grPage.query();
+	if (grPage.getRowCount() != 1)
+	{
+		return false;
+	}
+	if (grPage.next() != true)
+	{
+		return false;
+	}
+	return grPage;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-03-18 15:59:13</sys_created_on>
+        <sys_id>28799fcddb490210f0f1d03cd3961940</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>GetAppManualRecord</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_28799fcddb490210f0f1d03cd3961940</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-03-18 16:07:40</sys_updated_on>
+    </sys_script_include>
+</record_update>

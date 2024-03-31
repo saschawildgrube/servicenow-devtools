@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="x_snc_reactor_component">
+    <x_snc_reactor_component action="DELETE">
+        <content_css/>
+        <dependencies/>
+        <description>Loads the Google Maps API&#13;
+loading=async&amp;callback=initMap</description>
+        <jsx>false</jsx>
+        <module>false</module>
+        <name>GoogleMapsAPI</name>
+        <role>api</role>
+        <script/>
+        <source_type>url</source_type>
+        <sys_class_name>x_snc_reactor_component</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-03-08 14:25:13</sys_created_on>
+        <sys_id>b5f46735dbb88610f0f1d03cd396197c</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>GoogleMapsAPI</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>x_snc_reactor_component_b5f46735dbb88610f0f1d03cd396197c</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-03-08 14:27:23</sys_updated_on>
+        <type>script</type>
+        <ui_script/>
+        <url>https://maps.googleapis.com/maps/api/js?client=gme-servicenow&amp;libraries=visualization&amp;v=weekly</url>
+    </x_snc_reactor_component>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>bbdfc83f1ba93910699443f4bd4bcbe7</instance_id>
+        <instance_name>wildvancouver</instance_name>
+        <name>x_snc_reactor_component_b5f46735dbb88610f0f1d03cd396197c</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="x_snc_reactor_component"><x_snc_reactor_component action="INSERT_OR_UPDATE"><content_css/><dependencies/><description>Loads the Google Maps API&#13;
+loading=async&amp;callback=initMap</description><jsx>false</jsx><module>false</module><name>GoogleMapsAPI</name><role>api</role><script/><source_type>url</source_type><sys_class_name>x_snc_reactor_component</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2024-03-08 14:25:13</sys_created_on><sys_id>b5f46735dbb88610f0f1d03cd396197c</sys_id><sys_mod_count>1</sys_mod_count><sys_name>GoogleMapsAPI</sys_name><sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package><sys_policy/><sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope><sys_update_name>x_snc_reactor_component_b5f46735dbb88610f0f1d03cd396197c</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2024-03-08 14:27:23</sys_updated_on><type>script</type><ui_script/><url>https://maps.googleapis.com/maps/api/js?client=gme-servicenow&amp;libraries=visualization&amp;v=weekly</url></x_snc_reactor_component></record_update>]]></payload>
+        <payload_hash>-908682423</payload_hash>
+        <record_name>GoogleMapsAPI</record_name>
+        <reverted_from/>
+        <source>e521c361db784610f0f1d03cd3961960</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-03-08 14:27:24</sys_created_on>
+        <sys_id>d8a56f35dbb88610f0f1d03cd3961988</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>18e1e76293c0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-03-08 14:27:24</sys_updated_on>
+        <type>Reactor Component</type>
+        <update_guid>00a56f352ab8861019f992258c266588</update_guid>
+        <update_guid_history>00a56f352ab8861019f992258c266588:-908682423,6425e735a0b8861082847a46138ee788:-726045504</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="GoogleMapsAPI">9cf667b5dbb88610f0f1d03cd39619a3</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-03-08 14:33:08</sys_created_on>
+        <sys_db_object display_value="" name="x_snc_reactor_component">x_snc_reactor_component</sys_db_object>
+        <sys_id>0390712e96124c5289d846ff7de84b84</sys_id>
+        <sys_metadata>b5f46735dbb88610f0f1d03cd396197c</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>GoogleMapsAPI</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>x_snc_reactor_component_b5f46735dbb88610f0f1d03cd396197c</sys_update_name>
+        <sys_update_version display_value="x_snc_reactor_component_b5f46735dbb88610f0f1d03cd396197c">d8a56f35dbb88610f0f1d03cd3961988</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-03-08 14:33:08</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

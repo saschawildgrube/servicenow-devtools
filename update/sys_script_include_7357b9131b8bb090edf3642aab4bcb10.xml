@@ -134,6 +134,13 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 		return AppVersionBaselineIsRunning();
 	},
 
+	AppVersionBaselineCheckReleaseNotes: function()
+	{
+		var strAppSysId = GetStringValue(this.getParameter('sysparm_app_sys_id'));
+		var bResult = AppVersionBaselineCheckReleaseNotes(strAppSysId);
+		return JSON.stringify(bResult);		
+	},	
+
 	GetAppUncommittedFiles: function()
 	{
 		var strAppSysId = GetStringValue(this.getParameter('sysparm_app_sys_id'));
@@ -227,13 +234,13 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-12 13:47:51</sys_created_on>
         <sys_id>7357b9131b8bb090edf3642aab4bcb10</sys_id>
-        <sys_mod_count>91</sys_mod_count>
+        <sys_mod_count>94</sys_mod_count>
         <sys_name>DevToolsClientAPI</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_7357b9131b8bb090edf3642aab4bcb10</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-03-07 16:42:30</sys_updated_on>
+        <sys_updated_on>2024-03-19 17:36:57</sys_updated_on>
     </sys_script_include>
 </record_update>

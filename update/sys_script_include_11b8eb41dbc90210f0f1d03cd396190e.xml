@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.AppVersionBaselineCheckReleaseNotes</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Checks if the given application's manual page contains valid release notes.&#13;
+If the application has a manual page and if the manual page contains a "Release Notes" section, then it checks if there is a sub-section titled with the current version and the current date.&#13;
+Returns true, if no "Release Notes" section can be found OR the subsection exists, or false, if the sub-section does not exist.</description>
+        <name>AppVersionBaselineCheckReleaseNotes</name>
+        <script><![CDATA[function AppVersionBaselineCheckReleaseNotes(vApp)
+{
+	var grApp = GetAppRecord(vApp);
+	if (IsValidRecord(grApp) == false)
+	{
+		return false;
+	}
+	var grPage = GetAppManualRecord(grApp);
+	if (IsValidRecord(grPage) == false)
+	{
+		return true;
+	}
+	var strHtml = GetStringValue(grPage.html);
+	if (StringFind(strHtml,'<h2>Release Notes</h2>') == -1)
+	{
+		return true;
+	}
+	var strVersion = GetStringValue(grApp.version);
+	var strToday = GetDateNow();
+	var strVersionHeader = '<h3>'+strVersion+' - '+strToday+'</h3>';
+	if (StringFind(strHtml,strVersionHeader) == -1)
+	{
+		return false;
+	}
+	return true;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-03-18 17:07:38</sys_created_on>
+        <sys_id>11b8eb41dbc90210f0f1d03cd396190e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>AppVersionBaselineCheckReleaseNotes</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_11b8eb41dbc90210f0f1d03cd396190e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-03-18 17:07:38</sys_updated_on>
+    </sys_script_include>
+</record_update>

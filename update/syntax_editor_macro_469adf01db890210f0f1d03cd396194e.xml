@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="syntax_editor_macro">
+    <syntax_editor_macro action="INSERT_OR_UPDATE">
+        <comments>This editor macro creates the code necessary to access the function contained in the GetAppManualRecord script include.</comments>
+        <name>GetAppManualRecord</name>
+        <sys_class_name>syntax_editor_macro</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-03-18 15:59:27</sys_created_on>
+        <sys_id>469adf01db890210f0f1d03cd396194e</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>GetAppManualRecord</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>syntax_editor_macro_469adf01db890210f0f1d03cd396194e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-03-18 15:59:47</sys_updated_on>
+        <text>var GetAppManualRecord = x_snc_devtools.GetAppManualRecord;&#13;
+var grPage = GetAppManualRecord('x_snc_devtools');</text>
+    </syntax_editor_macro>
+</record_update>
