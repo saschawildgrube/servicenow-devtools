@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.StringReplaceMultiple</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Replaces multiple tokens in the given string. The tokens are passed in as an array of token objects that contain a key and a value member.</description>
+        <name>StringReplaceMultiple</name>
+        <script><![CDATA[function StringReplaceMultiple(strHaystack,aTokens)
+{
+	var strResult = GetStringValue(strHaystack);
+	aTokens = GetArrayValue(aTokens);
+	for (var nToken = 0; nToken < aTokens.length; nToken++)
+	{
+		var token = aTokens[nToken];
+		var strKey = GetStringValue(GetValue(token,'key'));
+		if (strKey != '')
+		{
+			var strValue = GetStringValue(GetValue(token,'value'));
+			strResult = StringReplace(strResult,strKey,strValue);
+		}
+	}
+	return strResult;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-04-13 09:31:37</sys_created_on>
+        <sys_id>1feab75d1bad4690063ddc61ab4bcbbd</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>StringReplaceMultiple</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_1feab75d1bad4690063ddc61ab4bcbbd</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-04-13 09:37:39</sys_updated_on>
+    </sys_script_include>
+</record_update>
