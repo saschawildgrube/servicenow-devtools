@@ -11,62 +11,73 @@
         <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
         <sys_class_name>sys_atf_step</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2021-06-09 12:42:37</sys_created_on>
-        <sys_id>a76a3143db6474943c6c09c2ba9619a7</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_created_on>2024-04-13 09:33:35</sys_created_on>
+        <sys_id>6a9b379d1bad4690063ddc61ab4bcb8b</sys_id>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
-        <sys_update_name>sys_atf_step_a76a3143db6474943c6c09c2ba9619a7</sys_update_name>
+        <sys_update_name>sys_atf_step_6a9b379d1bad4690063ddc61ab4bcb8b</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-04-18 18:59:18</sys_updated_on>
+        <sys_updated_on>2024-04-13 09:36:58</sys_updated_on>
         <table/>
-        <test display_value="DevTools - GetInstanceUrl">fc3a3d03db6474943c6c09c2ba961951</test>
+        <test display_value="DevTools - StringReplaceMultiple">276b339d1bad4690063ddc61ab4bcb7a</test>
         <timeout/>
         <warning_message/>
     </sys_atf_step>
-    <sys_variable_value action="delete_multiple" query="document_key=a76a3143db6474943c6c09c2ba9619a7"/>
+    <sys_variable_value action="delete_multiple" query="document_key=6a9b379d1bad4690063ddc61ab4bcb8b"/>
     <sys_variable_value action="INSERT_OR_UPDATE">
         <document>sys_atf_step</document>
-        <document_key>a76a3143db6474943c6c09c2ba9619a7</document_key>
+        <document_key>6a9b379d1bad4690063ddc61ab4bcb8b</document_key>
         <order>200</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2021-06-09 12:42:38</sys_created_on>
-        <sys_id>9e0b3143db6474943c6c09c2ba961924</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_created_on>2024-04-13 09:33:36</sys_created_on>
+        <sys_id>139b779d1bad4690063ddc61ab4bcb19</sys_id>
+        <sys_mod_count>2</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-04-18 18:59:18</sys_updated_on>
+        <sys_updated_on>2024-04-13 09:36:58</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
 	&#13;
 	test.SetResult(true);&#13;
 &#13;
-	function TestCase_GetInstanceUrl(vExpected)&#13;
+	function TestCase_StringReplaceMultiple(strHaystack, aTokens, vExpected)&#13;
 	{&#13;
-		function TestCase_GetInstanceUrl_CheckResult(vInput,vExpected,vResult)&#13;
+		function TestCase_StringReplaceMultiple_CheckResult(vInput,vExpected,vResult)&#13;
 		{&#13;
-			return (vExpected == vResult);&#13;
+			return (vExpected === vResult);&#13;
 		}&#13;
 &#13;
 		test.TestCase(&#13;
-			'Function GetInstanceUrl()',&#13;
-			GetInstanceUrl,&#13;
-			{},&#13;
+			'Function StringReplaceMultiple()',&#13;
+			StringReplaceMultiple,&#13;
+			{&#13;
+				'Haystack': strHaystack,&#13;
+				'Tokens': aTokens,&#13;
+			},&#13;
 			vExpected,&#13;
-			TestCase_GetInstanceUrl_CheckResult);&#13;
+			TestCase_StringReplaceMultiple_CheckResult);&#13;
 	}&#13;
 &#13;
-	if (gs.getProperty('glide.servlet.uri') == '')&#13;
-	{&#13;
-		test.Log('The pseudo system property "glide.servlet.uri" should not be empty. This indicates a instance configuration problem.');&#13;
-		test.SetResult(false);&#13;
-	}&#13;
+	TestCase_StringReplaceMultiple(null,{},'');&#13;
+	TestCase_StringReplaceMultiple('',null,'');&#13;
+	TestCase_StringReplaceMultiple('Hello World',[{ key: 'World', value: 'Universe' }],'Hello Universe');&#13;
+	TestCase_StringReplaceMultiple('Hello World',[{ key: 'bogus', value: 'Universe' }],'Hello World');&#13;
 &#13;
-	TestCase_GetInstanceUrl(gs.getProperty('glide.servlet.uri'));&#13;
-		&#13;
+&#13;
+	TestCase_StringReplaceMultiple(&#13;
+		'One Two One',&#13;
+		[&#13;
+			{ key: 'One', value: 'Alpha' },&#13;
+			{ key: 'Two', value: 'Beta' },&#13;
+			{ key: 'Three', value: 'Gamma' }&#13;
+&#13;
+		],&#13;
+		'Alpha Beta Alpha');&#13;
+&#13;
 	return test.GetResult();&#13;
 	&#13;
 })(outputs, steps, stepResult, assertEqual);</value>
@@ -74,15 +85,15 @@
     </sys_variable_value>
     <sys_variable_value action="INSERT_OR_UPDATE">
         <document>sys_atf_step</document>
-        <document_key>a76a3143db6474943c6c09c2ba9619a7</document_key>
+        <document_key>6a9b379d1bad4690063ddc61ab4bcb8b</document_key>
         <order>100</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2021-06-09 12:42:37</sys_created_on>
-        <sys_id>d60b3143db6474943c6c09c2ba961924</sys_id>
+        <sys_created_on>2024-04-13 09:33:36</sys_created_on>
+        <sys_id>1b9b779d1bad4690063ddc61ab4bcb18</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-06-09 12:42:37</sys_updated_on>
+        <sys_updated_on>2024-04-13 09:33:36</sys_updated_on>
         <value>3.1</value>
         <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
     </sys_variable_value>

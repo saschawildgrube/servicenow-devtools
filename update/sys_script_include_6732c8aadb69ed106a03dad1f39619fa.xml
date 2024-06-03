@@ -117,7 +117,29 @@ GitLabAPI.prototype = {
 	GetBranchesFromRepo: function(strProject)
 	{
 		strProject = this.GetProjectPath(strProject);
-		return this.Request('projects/'+strProject+'/repository/branches?per_page=100');
+		var aBranches = false;
+		var bContinue = true;
+		var nPage = 1;
+		var nPerPage = 100;
+		while (bContinue == true)
+		{
+			var aMoreBranches = this.Request(
+				'projects/'+strProject+'/repository/branches?per_page='+nPerPage+'&page='+nPage);
+			if (aMoreBranches != false)
+			{
+				aBranches = ArrayAppend(aBranches,aMoreBranches);
+				if (aMoreBranches.length < nPerPage)
+				{
+					bContinue = false;
+				}
+			}
+			else
+			{
+				bContinue = false;
+			}
+			nPage++;
+		}
+		return aBranches;
 	},
 
 	GetFilesFromBranch: function(strProject, strBranch, strPath)
@@ -177,13 +199,13 @@ GitLabAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-03-15 20:14:10</sys_created_on>
         <sys_id>6732c8aadb69ed106a03dad1f39619fa</sys_id>
-        <sys_mod_count>23</sys_mod_count>
+        <sys_mod_count>24</sys_mod_count>
         <sys_name>GitLabAPI</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_6732c8aadb69ed106a03dad1f39619fa</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-07-01 20:52:28</sys_updated_on>
+        <sys_updated_on>2024-04-08 16:28:31</sys_updated_on>
     </sys_script_include>
 </record_update>

@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-04-03 12:45:58</sys_created_on>
         <sys_id>59d1d0a097c22110a6a07767f053af0e</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_59d1d0a097c22110a6a07767f053af0e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-05-31 12:18:15</sys_updated_on>
+        <sys_updated_on>2024-04-18 19:13:05</sys_updated_on>
         <table/>
         <test display_value="DevTools - SetAppRepo">90c1546097c22110a6a07767f053af84</test>
         <timeout/>
@@ -35,9 +35,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-04-03 12:45:58</sys_created_on>
         <sys_id>5fd1d0a097c22110a6a07767f053af47</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-05-31 12:18:15</sys_updated_on>
+        <sys_updated_on>2024-04-18 19:13:05</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -65,12 +65,19 @@
 				&#13;
 				var grRepo = new GlideRecord('sys_repo_config');&#13;
 				grRepo.addQuery('sys_app','=',GetAppRecord(vInput['App']).sys_id);&#13;
-				grRepo.addQuery('url','=',vInput['Url']);&#13;
 				grRepo.query();&#13;
-				if (grRepo.getRowCount() != 1)&#13;
+				if (grRepo.getRowCount() == 1)&#13;
 				{&#13;
-					return false;&#13;
+					var grRepo = new GlideRecord('sys_repo_config');&#13;
+					grRepo.addQuery('sys_app','=',GetAppRecord(vInput['App']).sys_id);&#13;
+					grRepo.addQuery('url','=',vInput['Url']);&#13;
+					grRepo.query();&#13;
+					if (grRepo.getRowCount() != 1)&#13;
+					{&#13;
+						return false;&#13;
+					}&#13;
 				}&#13;
+&#13;
 				&#13;
 				var grDependency = new GlideRecord('x_snc_devtools_dependency');&#13;
 				grDependency.addQuery('dependency','=',GetAppRecord(vInput['App']).sys_id);&#13;

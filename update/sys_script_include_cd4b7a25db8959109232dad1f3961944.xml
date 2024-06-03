@@ -5,29 +5,32 @@
         <api_name>x_snc_devtools.GetScriptRecord</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Returns the GlideRecord object that contains the script from which GetScriptRecord() is called.</description>
+        <description>Returns the GlideRecord object that contains the script from which GetScriptRecord() is called or if nStackLevel is greater than 0, the record that contains the script that contains the code of the corresponding stack level.</description>
         <name>GetScriptRecord</name>
-        <script><![CDATA[function GetScriptRecord()
+        <script><![CDATA[function GetScriptRecord(nStackLevel)
 {
+	nStackLevel = GetIntegerValue(nStackLevel);
 	var aStack = GetCallStack();
-	if (aStack.length < 2)
+	if (aStack.length < 2 + nStackLevel)
 	{
 		return false;
 	}
-	var grRecord = GetRecord(GetValue(aStack,1,'sys_class_name'),GetValue(aStack,1,'sys_id'));
+	var grRecord = GetRecord(
+		GetValue(aStack,1 + nStackLevel,'sys_class_name'),
+		GetValue(aStack,1 + nStackLevel,'sys_id'));
 	return grRecord;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-08-01 14:28:14</sys_created_on>
         <sys_id>cd4b7a25db8959109232dad1f3961944</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>GetScriptRecord</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_cd4b7a25db8959109232dad1f3961944</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-08-01 14:47:39</sys_updated_on>
+        <sys_updated_on>2024-04-16 13:49:46</sys_updated_on>
     </sys_script_include>
 </record_update>

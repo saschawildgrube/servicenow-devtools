@@ -7,57 +7,43 @@
         <client_callable>false</client_callable>
         <description>If the given user is a "technical" user, the function returns true, otherwise false.</description>
         <name>IsTechnicalUser</name>
-        <script><![CDATA[function IsTechnicalUser(strValue)
+        <script><![CDATA[function IsTechnicalUser(vUser)
 {
-	var grUser = GetUserRecord(strValue);
+	var grUser = GetUserRecord(vUser);
 	if (IsValidRecord(grUser) == false)
 	{
 		return false;
 	}
-	return GetBoolValue(grUser.web_service_access_only);
-	/*
-	strUser = GetStringValue(strUser);
-	if (strUser == '')
+	var bWebServiceAccessOnly = GetBoolValue(grUser.web_service_access_only);
+	var bInternalIntegrationUser = GetBoolValue(grUser.internal_integration_user);
+	if (bWebServiceAccessOnly == false && bInternalIntegrationUser == false)
 	{
 		return false;
 	}
-	if (IsValidSysId(strUser))
-	{
-		var grUser = new GlideRecord('sys_user');
-		grUser.addQuery('sys_id',strUser);
-		grUser.addQuery('web_service_access_only','true');
-		grUser.query();
-		if (grUser.next() == true)
-		{
-			return true;
-		}
-	}
-	var grUser = new GlideRecord('sys_user');
-	grUser.addQuery('user_name',strUser);
-	grUser.addQuery('web_service_access_only','true');
-	grUser.query();
-	if (grUser.getRowCount() != 1)
+	var bFirstNameTechnical = GetBoolValue(grUser.first_name == 'Technical');
+	if (bFirstNameTechnical == false)
 	{
 		return false;
 	}
-	if (grUser.next() == true)
+	var strUserName = GetStringValue(grUser.user_name);
+	var bUserNameStartsWithTechnical = strUserName.startsWith('technical.');
+	if (bUserNameStartsWithTechnical == false)
 	{
-		return true;
+		return false;
 	}
-	return false;
-	*/
+	return true;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-04-21 15:12:02</sys_created_on>
         <sys_id>efe68e9b1befe010f28a0d81ec4bcbe1</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_mod_count>10</sys_mod_count>
         <sys_name>IsTechnicalUser</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_efe68e9b1befe010f28a0d81ec4bcbe1</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-05-31 11:51:09</sys_updated_on>
+        <sys_updated_on>2024-06-03 11:33:15</sys_updated_on>
     </sys_script_include>
 </record_update>

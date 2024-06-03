@@ -31,14 +31,7 @@
         <onclick/>
         <order>9999</order>
         <script><![CDATA[GlideRecordUpdate(current);
-/*var uri = action.getGlideURI();
-var strCurrentUrl = GetInstanceURL() + uri.toString();
-var url = ParseUrl(strCurrentUrl);
-var strParameters = GetStringValue(url['parameters']);
-var params = ParseUrlParameters(strParameters);
-var strParamRecordList = GetStringValue(params['sysparm_record_list']);
-var strParamRecordRow = GetStringValue(params['sysparm_record_row']);
-*/
+
 var strParamRecordList = GetParam('sysparm_record_list');
 var strParamRecordRow = GetParam('sysparm_record_row');
 var strParamView = GetParam('sysparm_view');
@@ -58,7 +51,7 @@ gs.setRedirect(strUri); ]]></script>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>d29ae78f1bf8dc10a89720a8ec4bcbd6</sys_id>
-        <sys_mod_count>48</sys_mod_count>
+        <sys_mod_count>49</sys_mod_count>
         <sys_name>List</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -66,7 +59,7 @@ gs.setRedirect(strUri); ]]></script>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_action_d29ae78f1bf8dc10a89720a8ec4bcbd6</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-02-06 15:32:22</sys_updated_on>
+        <sys_updated_on>2024-04-18 19:02:54</sys_updated_on>
         <table>global</table>
         <ui11_compatible>true</ui11_compatible>
         <ui16_compatible>false</ui16_compatible>

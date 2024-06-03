@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-08-01 14:29:25</sys_created_on>
         <sys_id>1d0c3e65db8959109232dad1f396193d</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>10</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_1d0c3e65db8959109232dad1f396193d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-08-01 14:44:19</sys_updated_on>
+        <sys_updated_on>2024-04-16 13:48:39</sys_updated_on>
         <table/>
         <test display_value="DevTools - GetScriptRecord">f5fbfa65db8959109232dad1f396190a</test>
         <timeout/>
@@ -35,58 +35,49 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-08-01 14:29:25</sys_created_on>
         <sys_id>710c3e65db8959109232dad1f39619bb</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>10</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-08-01 14:44:19</sys_updated_on>
+        <sys_updated_on>2024-04-16 13:48:39</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
 	&#13;
 	test.SetResult(true);&#13;
 &#13;
-	function TestCase_GetScriptRecord()&#13;
+	function TestCase_GetScriptRecord(nStackLevel,vExpected)&#13;
 	{&#13;
 		function TestCase_GetScriptRecord_CheckResult(vInput,vExpected,vResult)&#13;
 		{&#13;
-			if (IsValidRecord(vResult) == false)&#13;
+			if (vExpected == false)&#13;
 			{&#13;
-				return false;&#13;
+				return vExpected == vResult;&#13;
 			}&#13;
-			if (GetValue(vResult,'name') != 'TestAPI')&#13;
+			if (IsValidSysId(vExpected))&#13;
 			{&#13;
-				return false;&#13;
+				if (IsValidRecord(vResult) == false)&#13;
+				{&#13;
+					return false;&#13;
+				}&#13;
+				if (GetValue(vResult,'sys_id') != vExpected)&#13;
+				{&#13;
+					return false;&#13;
+				}&#13;
 			}&#13;
 			return true;&#13;
 		}&#13;
 &#13;
 		test.TestCase(&#13;
-			'Function GetScriptRecord() ',&#13;
+			'Function GetScriptRecord()',&#13;
 			GetScriptRecord,&#13;
 			{&#13;
+				'Stack level': nStackLevel&#13;
 			},&#13;
-			null,&#13;
+			vExpected,&#13;
 			TestCase_GetScriptRecord_CheckResult);&#13;
 	}&#13;
 &#13;
-	TestCase_GetScriptRecord();&#13;
-	&#13;
-	var grRecord = GetScriptRecord();&#13;
-	if (IsValidRecord(grRecord) == false)&#13;
-	{&#13;
-		test.Log('FAILED: GetScriptRecord() did not return a valid Record!');&#13;
-		test.SetResult(false);&#13;
-	}&#13;
-	else&#13;
-	{&#13;
-		test.Log(RenderRecordSummary(grRecord));&#13;
-		if (grRecord.sys_id != '1d0c3e65db8959109232dad1f396193d') // This test step&#13;
-		{&#13;
-			test.Log('FAILED: GetScriptRecord() did not return THIS test step\'s record!');&#13;
-			test.Setresult(false);&#13;
-		}&#13;
-	}&#13;
-&#13;
-&#13;
+	TestCase_GetScriptRecord(0,'206c5c211b567850577f43b5bb4bcb46'); // TestAPI&#13;
+	TestCase_GetScriptRecord(1,'1d0c3e65db8959109232dad1f396193d'); // This test step&#13;
 	&#13;
 	return test.GetResult();&#13;
 	&#13;

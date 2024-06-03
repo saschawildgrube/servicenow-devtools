@@ -66,42 +66,16 @@
 			else if (strClassName == 'sys_security_acl')
 			{
 				current.addQuery('advanced','=','true');
-			}					
+			}		
+			else if (strClassName == 'catalog_ui_policy')
+			{
+				current.addQuery('run_scripts','=','true');
+			}	
+			else if (strClassName == 'item_option_new')
+			{
+				current.addEncodedQuery('save_scriptISNOTEMPTY^ORpost_insert_scriptISNOTEMPTY^ORread_scriptISNOTEMPTY');
+			}									
 		}
-		/*
-		if (strEncodedQuery.indexOf('sys_class_name=sys_hub_flow_variable') == 0)
-		{
-			current.addQuery('virtual','=','true');
-		}
-		else if (strEncodedQuery.indexOf('sys_class_name=sys_hub_flow_input') == 0)
-		{
-			current.addQuery('virtual','=','true');
-		}		
-		else if (strEncodedQuery.indexOf('sys_class_name=sys_hub_flow_output') == 0)
-		{
-			current.addQuery('virtual','=','true');
-		}			
-		else if (strEncodedQuery.indexOf('sys_class_name=sys_hub_action_input') == 0)
-		{
-			current.addQuery('virtual','=','true');
-		}		
-		else if (strEncodedQuery.indexOf('sys_class_name=sys_hub_action_output') == 0)
-		{
-			current.addQuery('virtual','=','true');
-		}	
-		else if (strEncodedQuery.indexOf('sys_class_name=atf_input_variable') == 0)
-		{
-			current.addQuery('virtual','=','true');
-		}
-		else if (strEncodedQuery.indexOf('sys_class_name=sys_dictionary') == 0)
-		{
-			current.addQuery('virtual','=','true');
-		}
-		else if (strEncodedQuery.indexOf('sys_class_name=sys_security_acl') == 0)
-		{
-			current.addQuery('advanced','=','true');
-		}		
-		*/
 	}
 		
 
@@ -112,7 +86,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>b7fad21a1be06d105b76777d8b4bcbbe</sys_id>
-        <sys_mod_count>17</sys_mod_count>
+        <sys_mod_count>19</sys_mod_count>
         <sys_name>sys_metadata - prevent useless checks</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -120,7 +94,7 @@
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_b7fad21a1be06d105b76777d8b4bcbbe</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-02-26 16:51:42</sys_updated_on>
+        <sys_updated_on>2024-06-02 16:45:37</sys_updated_on>
         <template/>
         <when>before</when>
         <x_snc_datasilos_created>false</x_snc_datasilos_created>
