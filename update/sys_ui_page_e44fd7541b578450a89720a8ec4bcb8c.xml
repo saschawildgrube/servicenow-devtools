@@ -281,7 +281,7 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>The ATF test for AppSetRepo() failed if DevTools was not connected to a repository. this has been fixed.</li>
 		<li>The ATF test for GetInstanceUrl() now fails if glide.servlet.uri is not configured properly for the instance.</li>
 		<li>AppSanity() now uses GetAppRecord() and hence allows more parameter types.</li>
-		<li>InstallerAPI::DictionarySetValue() now uses GetDictionaryRecord().</li>
+		<li>InstallerAPI::DictionarySetValue() and TableColumnSetAttribute() now use GetDictionaryRecord().</li>
 	</ol>
 
 
@@ -1780,13 +1780,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1575</sys_mod_count>
+        <sys_mod_count>1576</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-06-03 08:41:30</sys_updated_on>
+        <sys_updated_on>2024-06-03 10:25:42</sys_updated_on>
     </sys_ui_page>
 </record_update>
