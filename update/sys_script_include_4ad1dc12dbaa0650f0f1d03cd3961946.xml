@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.InstanceScanCheckScriptOnly</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Runs a Instance Scan script only Check.</description>
+        <name>InstanceScanCheckScriptOnly</name>
+        <script><![CDATA[function InstanceScanCheckScriptOnly(strCheckSysId, bDetailed)
+{
+	if (InstanceScanIsRunning() == true)
+	{
+		return false;
+	}
+
+	var grCheck = GetRecord('scan_script_only_check',strCheckSysId);
+
+	if (IsValidRecord(grCheck) == false)
+	{
+		return false;
+	}
+	
+	var scan = new sn_instance_scan.ScanInstance();
+	var strProgressSysId = '';
+	try 
+	{
+		strProgressSysId = scan.triggerTestScan(strCheckSysId,'scan_script_only_check');
+	}
+	catch (e)
+	{
+	}
+	if (IsValidSysId(strProgressSysId) == false)
+	{
+		return false;
+	}
+	
+	WaitForWorker(strProgressSysId);
+	
+	var grScanResult = new GlideRecord('scan_result');
+	grScanResult.addQuery('progress_id','=',strProgressSysId);
+	grScanResult.query();
+	if (grScanResult.next() == false)
+	{
+		return false;
+	}
+	
+	return InstanceScanGetScanResults(grScanResult.sys_id,bDetailed);
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-06-04 12:08:56</sys_created_on>
+        <sys_id>4ad1dc12dbaa0650f0f1d03cd3961946</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>InstanceScanCheckScriptOnly</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_4ad1dc12dbaa0650f0f1d03cd3961946</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-06-04 13:12:58</sys_updated_on>
+    </sys_script_include>
+</record_update>
