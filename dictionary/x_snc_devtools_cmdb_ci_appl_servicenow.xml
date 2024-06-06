@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="ee9921bedba2c650f0f1d03cd39619c3" extends="cmdb_ci_appl" label="ServiceNow App" max_length="40" name="x_snc_devtools_cmdb_ci_appl_servicenow" type="collection">
+        <element label="Application Sys Id" max_length="32" name="app_sys_id" type="string"/>
+    </element>
+</database>
