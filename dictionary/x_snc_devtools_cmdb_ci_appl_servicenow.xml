@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element db_object_id="ee9921bedba2c650f0f1d03cd39619c3" extends="cmdb_ci_appl" label="ServiceNow App" max_length="40" name="x_snc_devtools_cmdb_ci_appl_servicenow" type="collection">
+        <element label="Application Instance Name" max_length="100" name="app_instance_name" type="string"/>
+        <element label="Application Name" max_length="200" name="app_name" type="string"/>
+        <element label="Application Scope Name" max_length="100" name="app_scope" type="string"/>
         <element label="Application Sys Id" max_length="32" name="app_sys_id" type="string"/>
     </element>
 </database>
