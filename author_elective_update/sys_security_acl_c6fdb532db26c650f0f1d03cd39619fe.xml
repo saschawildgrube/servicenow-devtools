@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl">
+    <sys_security_acl action="DELETE">
+        <active>true</active>
+        <admin_overrides>true</admin_overrides>
+        <advanced>false</advanced>
+        <condition/>
+        <description>Default access control on x_snc_devtools_cmdb_ci_appl_servicenow</description>
+        <local_or_existing>Local</local_or_existing>
+        <name>x_snc_devtools_cmdb_ci_appl_servicenow</name>
+        <operation display_value="create">create</operation>
+        <script/>
+        <security_attribute/>
+        <sys_class_name>sys_security_acl</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-06-06 09:18:19</sys_created_on>
+        <sys_id>c6fdb532db26c650f0f1d03cd39619fe</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_snc_devtools_cmdb_ci_appl_servicenow</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_security_acl_c6fdb532db26c650f0f1d03cd39619fe</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-06-06 09:18:19</sys_updated_on>
+        <type display_value="record">record</type>
+    </sys_security_acl>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>bbdfc83f1ba93910699443f4bd4bcbe7</instance_id>
+        <instance_name>wildvancouver</instance_name>
+        <name>sys_security_acl_c6fdb532db26c650f0f1d03cd39619fe</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl"><sys_security_acl action="INSERT_OR_UPDATE"><active>true</active><admin_overrides>true</admin_overrides><advanced>false</advanced><condition/><description>Default access control on x_snc_devtools_cmdb_ci_appl_servicenow</description><local_or_existing>Local</local_or_existing><name>x_snc_devtools_cmdb_ci_appl_servicenow</name><operation display_value="create">create</operation><script/><security_attribute/><sys_class_name>sys_security_acl</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2024-06-06 09:18:19</sys_created_on><sys_id>c6fdb532db26c650f0f1d03cd39619fe</sys_id><sys_mod_count>0</sys_mod_count><sys_name>x_snc_devtools_cmdb_ci_appl_servicenow</sys_name><sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package><sys_policy/><sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope><sys_update_name>sys_security_acl_c6fdb532db26c650f0f1d03cd39619fe</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2024-06-06 09:18:19</sys_updated_on><type display_value="record">record</type></sys_security_acl></record_update>]]></payload>
+        <payload_hash>-1443182491</payload_hash>
+        <record_name>x_snc_devtools_cmdb_ci_appl_servicenow</record_name>
+        <reverted_from/>
+        <source>ecd549e2db2e4650f0f1d03cd3961918</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-06-06 09:18:20</sys_created_on>
+        <sys_id>92fdf532db26c650f0f1d03cd3961902</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>18fecd78cdc0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-06-06 09:18:20</sys_updated_on>
+        <type>Access Control</type>
+        <update_guid>96fdf5322726c6501a188be1979bc301</update_guid>
+        <update_guid_history>96fdf5322726c6501a188be1979bc301:-1443182491</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-06-06 10:03:43</sys_created_on>
+        <sys_db_object display_value="" name="sys_security_acl">sys_security_acl</sys_db_object>
+        <sys_id>26d3bef899a4460a9c0e473c662daaa4</sys_id>
+        <sys_metadata>c6fdb532db26c650f0f1d03cd39619fe</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_snc_devtools_cmdb_ci_appl_servicenow</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent display_value="x_snc_devtools_cmdb_ci_appl_servicenow">62fdf532db26c650f0f1d03cd3961956</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sys_security_acl_c6fdb532db26c650f0f1d03cd39619fe</sys_update_name>
+        <sys_update_version display_value="sys_security_acl_c6fdb532db26c650f0f1d03cd39619fe">92fdf532db26c650f0f1d03cd3961902</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-06-06 10:03:43</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
