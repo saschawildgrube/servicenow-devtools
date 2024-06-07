@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.ConfigurationItemServiceNowAppInsertOrUpdateLocalApps</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Inserts or updates configuration items that represent the all ServieNow applications on the instance.  </description>
+        <name>ConfigurationItemServiceNowAppInsertOrUpdateLocalApps</name>
+        <script><![CDATA[function ConfigurationItemServiceNowAppInsertOrUpdateLocalApps()
+{
+	var bSuccess = true;
+	var strInstanceName = GetInstanceName();
+
+	var grApps = new GlideRecord('sys_app');
+	grApps.query();
+	while (grApps.next())
+	{
+		var app = Clone(grApps);
+		app.branch = GetAppCurrentBranch(grApps.sys_id);
+		var strResult = ConfigurationItemServiceNowAppInsertOrUpdate(strInstanceName,app);
+		if (IsValidSysId(strResult) == false)
+		{
+			bSuccess = false;
+		}
+	}
+
+	var grAppCIs = new GlideRecord('x_snc_devtools_cmdb_ci_appl_servicenow');
+	grAppCIs.query();
+	while (grAppCIs.next())
+	{
+		var grDependencies = new GlideRecord('x_snc_devtools_dependency');
+		grDependencies.addQuery('sys_scope','=',grAppCIs.app_sys_id);
+		grDependencies.query();
+		while (grDependencies.next())
+		{
+			var grAppCIDependency = new GlideRecord('x_snc_devtools_cmdb_ci_appl_servicenow');
+			grAppCIDependency.addQuery('app_sys_id','=',grDependencies.dependency);
+			grAppCIDependency.query();
+			if (grAppCIDependency.next())
+			{
+				var strResult = RecordInsertOrUpdate(
+					'cmdb_rel_ci',
+					{
+						parent: grAppCIs.sys_id,
+						child: grAppCIDependency.sys_id,
+						type: '1a9cb166f1571100a92eb60da2bce5c5'
+					},
+					{
+					},
+					{
+					},
+					false);
+				if (IsValidSysId(strResult) == false)
+				{
+					bSuccess = false;
+				}
+			}
+		}
+	}
+	return bSuccess;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-06-07 14:51:25</sys_created_on>
+        <sys_id>17c31897db224a50f0f1d03cd3961902</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>ConfigurationItemServiceNowAppInsertOrUpdateLocalApps</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_17c31897db224a50f0f1d03cd3961902</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-06-07 14:54:48</sys_updated_on>
+    </sys_script_include>
+</record_update>

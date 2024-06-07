@@ -188,6 +188,10 @@ function AppInstall()
 }
 		</pre>
 	</p>
+
+	<h3>CMDB CI Class "ServiceNow App"</h3>
+	<p>DevTools introduces a new CMDB CI class called "ServiceNow App" which represents a ServiceNow app (scoped or global) that is installed on an instance or provided in a Source Control System for installation.</p>
+	<p>Functions prefixed with "ConfigurationItemServiceNowApp" can be used to insert or update these CIs.</p>  
 	
 	<h3>Field Formatting</h3>
 	<p>DevTools can help to format (float) numbers in forms, related lists and list views in the classic UI - Polaris, however, is not supported yet! Follow these steps to activate the feature:</p>
@@ -270,6 +274,7 @@ function DevToolsGetFormatConfig(grRecord)
 	<ol>
 		<li>Added new CMDB CI class: "ServiceNow App" (x_snc_devtools_cmdb_ci_appl_servicenow).</li>
 		<li>Added function ConfigurationItemServiceNowAppInsertOrUpdate().</li>
+		<li>Added function ConfigurationItemServiceNowAppInsertOrUpdateLocalApps().</li>
 		<li>Added method InstallerAPI::ChoiceInsertOrUpdate().</li>
 		<li>Added method InstallerAPI::DiscoverySourceInsertOrUpdate().</li>
 		<li>Adding "DevTools" as a discovery source in AppInstall().</li>
@@ -1801,13 +1806,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1584</sys_mod_count>
+        <sys_mod_count>1586</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-06-07 11:13:49</sys_updated_on>
+        <sys_updated_on>2024-06-07 15:10:19</sys_updated_on>
     </sys_ui_page>
 </record_update>
