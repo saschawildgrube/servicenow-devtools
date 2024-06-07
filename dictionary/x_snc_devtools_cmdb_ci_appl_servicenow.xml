@@ -7,6 +7,7 @@
         <element label="Application Scope" max_length="20" name="app_scope" type="string"/>
         <element label="Application Short Description" max_length="1000" name="app_short_description" type="string"/>
         <element label="Application Sys Id" max_length="32" name="app_sys_id" type="string"/>
+        <element label="Unique Identifier" max_length="300" name="app_unique_identifier" read_only="true" type="string"/>
         <element label="Application Version" max_length="10" name="app_version" type="string"/>
     </element>
 </database>

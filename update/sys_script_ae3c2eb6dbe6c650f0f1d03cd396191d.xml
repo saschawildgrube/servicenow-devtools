@@ -36,14 +36,20 @@
 	if (strInstanceName != '')
 	{
 		current.name = current.app_name + '@' + current.app_instance_name;
+		current.app_unique_identifier = current.app_sys_id + '@' + current.app_instance_name;
+		current.operational_status = 1; // Operational (installed)
 	}
 	else if (strAppRepoUrl != '' && strAppRepoBranch != '')
 	{
 		current.name = current.app_name + '@' + strAppRepoUrl + '?' + strAppRepoBranch;
+		current.app_unique_identifier = current.app_sys_id + '@' + strAppRepoUrl + '?' + strAppRepoBranch;
+		current.operational_status = 5; // Ready (ready for installation)
 	}
 	else
 	{
 		current.name = current.app_name;
+		current.app_unique_identifier = current.app_sys_id;
+		current.operational_status = 2; // Non-Operational (unknown)
 	}
 	current.version = current.app_version;
 	current.short_description = current.app_short_description;
@@ -55,7 +61,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>ae3c2eb6dbe6c650f0f1d03cd396191d</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>x_snc_devtools_cmdb_ci_appl_s* - Update</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -63,7 +69,7 @@
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_ae3c2eb6dbe6c650f0f1d03cd396191d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-06-07 13:06:11</sys_updated_on>
+        <sys_updated_on>2024-06-07 13:42:10</sys_updated_on>
         <template/>
         <when>before</when>
         <x_snc_datasilos_created>false</x_snc_datasilos_created>
