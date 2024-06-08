@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.ConfigurationItemServiceNowAppInsertOrUpdate</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Inserts or updates a configuration item that represents the given ServieNow application (record or object) on the given instance.  </description>
+        <name>ConfigurationItemServiceNowAppInsertOrUpdate</name>
+        <script><![CDATA[function ConfigurationItemServiceNowAppInsertOrUpdate(
+	strInstanceName,
+	vApp)
+{
+	strInstanceName = GetStringValue(strInstanceName);
+
+	var strAppSysId = GetValue(vApp,'sys_id');
+	if (IsValidSysId(strAppSysId) == false)
+	{
+		return false;
+	}
+	var strAppName = GetValue(vApp,'name');
+	if (strAppName == '')
+	{
+		return false;
+	}
+	var strAppVersion = GetValue(vApp,'version');
+	if (strAppVersion == '')
+	{
+		return false;
+	}	
+	var strAppScope = GetValue(vApp,'scope');
+	if (strAppScope == '')
+	{
+		return false;
+	}		
+	var strAppShortDescription = GetValue(vApp,'short_description');
+
+	var strAppRepoUrl = GetValue(vApp,'x_snc_devtools_repo_url');
+	var strAppRepoBranch = GetValue(vApp,'branch');
+
+	return RecordInsertOrUpdate(
+			'x_snc_devtools_cmdb_ci_appl_servicenow',
+			{
+				app_sys_id: strAppSysId,
+				app_instance_name: strInstanceName
+			},
+			{
+			},
+			{
+				app_name: strAppName,
+				app_version: strAppVersion,
+				app_scope: strAppScope,
+				app_short_description: strAppShortDescription,
+				app_repo_url: strAppRepoUrl,
+				app_repo_branch: strAppRepoBranch
+			},
+			false);
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-06-05 15:03:35</sys_created_on>
+        <sys_id>56f20e66db228650f0f1d03cd396199e</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>ConfigurationItemServiceNowAppInsertOrUpdate</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_56f20e66db228650f0f1d03cd396199e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-06-07 12:59:37</sys_updated_on>
+    </sys_script_include>
+</record_update>

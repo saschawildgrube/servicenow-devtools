@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>true</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>x_snc_devtools_cmdb_ci_appl_servicenow</collection>
+        <condition/>
+        <description>Updates several fields of the CI based on the "app_" fields.</description>
+        <execute_function>false</execute_function>
+        <filter_condition/>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>x_snc_devtools_cmdb_ci_appl_s* - Update</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
+
+	var strInstanceName = GetStringValue(current.app_instance_name);
+	var strAppRepoUrl = GetStringValue(current.app_repo_url);
+	var strAppRepoBranch = GetStringValue(current.app_repo_branch);
+
+	if (strInstanceName != '')
+	{
+		current.name = current.app_name + '@' + current.app_instance_name;
+		current.app_unique_identifier = current.app_sys_id + '@' + current.app_instance_name;
+		current.operational_status = 1; // Operational (installed)
+	}
+	else if (strAppRepoUrl != '' && strAppRepoBranch != '')
+	{
+		current.name = current.app_name + '@' + strAppRepoUrl + '?' + strAppRepoBranch;
+		current.app_unique_identifier = current.app_sys_id + '@' + strAppRepoUrl + '?' + strAppRepoBranch;
+		current.operational_status = 5; // Ready (ready for installation)
+	}
+	else
+	{
+		current.name = current.app_name;
+		current.app_unique_identifier = current.app_sys_id;
+		current.operational_status = 2; // Non-Operational (unknown)
+	}
+	current.version = current.app_version;
+	current.short_description = current.app_short_description;
+
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-06-06 12:42:14</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>ae3c2eb6dbe6c650f0f1d03cd396191d</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>x_snc_devtools_cmdb_ci_appl_s* - Update</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_ae3c2eb6dbe6c650f0f1d03cd396191d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-06-07 13:42:10</sys_updated_on>
+        <template/>
+        <when>before</when>
+        <x_snc_datasilos_created>false</x_snc_datasilos_created>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=ae3c2eb6dbe6c650f0f1d03cd396191d"/>
+</record_update>

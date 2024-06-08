@@ -188,6 +188,10 @@ function AppInstall()
 }
 		</pre>
 	</p>
+
+	<h3>CMDB CI Class "ServiceNow App"</h3>
+	<p>DevTools introduces a new CMDB CI class called "ServiceNow App" which represents a ServiceNow app (scoped or global) that is installed on an instance or provided in a Source Control System for installation.</p>
+	<p>Functions prefixed with "ConfigurationItemServiceNowApp" can be used to insert or update these CIs.</p>  
 	
 	<h3>Field Formatting</h3>
 	<p>DevTools can help to format (float) numbers in forms, related lists and list views in the classic UI - Polaris, however, is not supported yet! Follow these steps to activate the feature:</p>
@@ -265,6 +269,19 @@ function DevToolsGetFormatConfig(grRecord)
 	<g2:no_escape>$[docapi.RenderLicense()]</g2:no_escape>
 	
 	<h2>Release Notes</h2>
+
+	<h3>1.89.0 - 2024-06-08</h3>
+	<ol>
+		<li>The previous version (number) was intentionally skipped - as a statement against right wing extremism, racism, fascism and any anti-democratic sentiment.</li>
+		<li>Added new CMDB CI class: "ServiceNow App" (x_snc_devtools_cmdb_ci_appl_servicenow).</li>
+		<li>Added function ConfigurationItemServiceNowAppInsertOrUpdate().</li>
+		<li>Added function ConfigurationItemServiceNowAppInsertOrUpdateLocalApps().</li>
+		<li>Added method InstallerAPI::ChoiceInsertOrUpdate().</li>
+		<li>Added method InstallerAPI::DiscoverySourceInsertOrUpdate().</li>
+		<li>Adding "DevTools" as a discovery source in AppInstall().</li>
+		<li>The Dependency View page now also displays the raw data if the logging verbosity is set to "debug".</li>
+	</ol>
+
 
 	<h3>1.87.0 - 2024-06-05</h3>
 	<ol>
@@ -1790,13 +1807,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1581</sys_mod_count>
+        <sys_mod_count>1588</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-06-05 09:33:43</sys_updated_on>
+        <sys_updated_on>2024-06-08 17:36:20</sys_updated_on>
     </sys_ui_page>
 </record_update>

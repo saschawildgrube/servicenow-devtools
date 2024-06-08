@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="cmdb_rel_type_suggest">
+    <cmdb_rel_type_suggest action="INSERT_OR_UPDATE">
+        <base_class>x_snc_devtools_cmdb_ci_appl_servicenow</base_class>
+        <child>true</child>
+        <cmdb_rel_type display_value="Used by::Uses">6afd799338a02000c18673032c71b87b</cmdb_rel_type>
+        <dependent_class>x_snc_devtools_cmdb_ci_appl_servicenow</dependent_class>
+        <parent>false</parent>
+        <relationship>child:6afd799338a02000c18673032c71b87b</relationship>
+        <sys_class_name>cmdb_rel_type_suggest</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-06-07 13:17:59</sys_created_on>
+        <sys_id>aa6e7783dbee0a50f0f1d03cd396193d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_snc_devtools_cmdb_ci_appl_servicenow</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>cmdb_rel_type_suggest_aa6e7783dbee0a50f0f1d03cd396193d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-06-07 13:17:59</sys_updated_on>
+    </cmdb_rel_type_suggest>
+</record_update>
