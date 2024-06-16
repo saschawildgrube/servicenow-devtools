@@ -270,6 +270,16 @@ function DevToolsGetFormatConfig(grRecord)
 	
 	<h2>Release Notes</h2>
 
+	<h3>1.90.0 - 2024-06-15</h3>
+	<ol>
+		<li>Added function GetGroupRecord().</li>
+		<li>Added function GetRoleRecord().</li>
+		<li>Added function IsPersonaRole().</li>
+		<li>Added function MaintainGroup().</li>
+		<li>GetTableFromSysId() now also finds credential records in discovery_credentials and sys_connection quickly.</li>
+	</ol>
+
+
 	<h3>1.89.0 - 2024-06-08</h3>
 	<ol>
 		<li>The previous version (number) was intentionally skipped - as a statement against right wing extremism, racism, fascism and any anti-democratic sentiment.</li>
@@ -1807,13 +1817,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1588</sys_mod_count>
+        <sys_mod_count>1597</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-06-08 17:36:20</sys_updated_on>
+        <sys_updated_on>2024-06-15 23:55:49</sys_updated_on>
     </sys_ui_page>
 </record_update>
