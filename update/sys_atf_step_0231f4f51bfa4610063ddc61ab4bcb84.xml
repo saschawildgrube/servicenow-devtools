@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-06-15 11:24:49</sys_created_on>
         <sys_id>0231f4f51bfa4610063ddc61ab4bcb84</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_0231f4f51bfa4610063ddc61ab4bcb84</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-06-15 23:10:54</sys_updated_on>
+        <sys_updated_on>2024-06-16 07:48:58</sys_updated_on>
         <table/>
         <test display_value="DevTools - MaintainGroup">c52174f51bfa4610063ddc61ab4bcbe4</test>
         <timeout/>
@@ -35,16 +35,16 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-06-15 11:24:50</sys_created_on>
         <sys_id>473138f51bfa4610063ddc61ab4bcb9d</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-06-15 23:10:54</sys_updated_on>
+        <sys_updated_on>2024-06-16 07:48:58</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
 	&#13;
 	test.SetResult(true);&#13;
 &#13;
-	function TestCase_MaintainGroup(vGroup, aRoles, vExpected)&#13;
+	function TestCase_MaintainGroup(vGroup, aRoles, values, vExpected)&#13;
 	{&#13;
 		function TestCase_MaintainGroup_CheckResult(vInput,vExpected,vResult)&#13;
 		{&#13;
@@ -73,6 +73,26 @@
 					}&#13;
 				}&#13;
 			}&#13;
+			aRoles = GetArrayValue(aRoles);&#13;
+			for (var nRole = 0; nRole &lt; aRoles.length; nRole++)&#13;
+			{&#13;
+				var grRole = GetRoleRecord(aRoles[nRole]);&#13;
+				if (IsValidRecord(grRole) == false)&#13;
+				{&#13;
+					test.Log('Invalid role specified!');&#13;
+					return false;&#13;
+				}&#13;
+				var grGroupRole = new GlideRecord('sys_group_has_role');&#13;
+				grGroupRole.addQuery('group','=',strGroupSysId);&#13;
+				grGroupRole.addQuery('role','=',grRole.sys_id);&#13;
+				grGroupRole.query();&#13;
+				if (grGroupRole.next() != true)&#13;
+				{&#13;
+					test.Log('Expected role is not assigned to group!');&#13;
+					return false;&#13;
+				}&#13;
+			}&#13;
+&#13;
 			return true;&#13;
 		}&#13;
 &#13;
@@ -82,17 +102,18 @@
 			{&#13;
 				'vGroup': vGroup,&#13;
 				'aRoles': aRoles,&#13;
+				'values': values&#13;
 			},&#13;
 			vExpected,&#13;
 			TestCase_MaintainGroup_CheckResult);&#13;
 	}&#13;
 &#13;
-	TestCase_MaintainGroup(null,[],false);&#13;
-	TestCase_MaintainGroup('TEST Service Desk',['itil'],true);&#13;
+	TestCase_MaintainGroup(null,[],null,false);&#13;
+	TestCase_MaintainGroup('TEST Service Desk',['itil'],null,true);&#13;
 &#13;
 	grGroup = MaintainGroup('TEST Admins',['admin']);&#13;
-	TestCase_MaintainGroup('TEST Admins',['itil'],true);&#13;
-	TestCase_MaintainGroup(grGroup,['itil'],true);&#13;
+	TestCase_MaintainGroup('TEST Admins',['itil'],null,true);&#13;
+	TestCase_MaintainGroup(grGroup,['itil'],null,true);&#13;
 &#13;
 	&#13;
 	return test.GetResult();&#13;
