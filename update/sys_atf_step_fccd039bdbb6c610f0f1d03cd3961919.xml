@@ -11,65 +11,57 @@
         <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
         <sys_class_name>sys_atf_step</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2023-04-14 16:06:54</sys_created_on>
-        <sys_id>3a2925c41b56e910cd6153d16b4bcb2b</sys_id>
-        <sys_mod_count>11</sys_mod_count>
+        <sys_created_on>2024-06-20 14:39:41</sys_created_on>
+        <sys_id>fccd039bdbb6c610f0f1d03cd3961919</sys_id>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
-        <sys_update_name>sys_atf_step_3a2925c41b56e910cd6153d16b4bcb2b</sys_update_name>
+        <sys_update_name>sys_atf_step_fccd039bdbb6c610f0f1d03cd3961919</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-06-21 12:41:27</sys_updated_on>
+        <sys_updated_on>2024-06-20 14:46:50</sys_updated_on>
         <table/>
-        <test display_value="DevTools - InstanceScanGetCheckFromQuery">f4f8ed841b56e910cd6153d16b4bcb49</test>
+        <test display_value="DevTools - InstanceScanIsScriptCheck">99bd4f5bdbb6c610f0f1d03cd39619a8</test>
         <timeout/>
         <warning_message/>
     </sys_atf_step>
-    <sys_variable_value action="delete_multiple" query="document_key=3a2925c41b56e910cd6153d16b4bcb2b"/>
+    <sys_variable_value action="delete_multiple" query="document_key=fccd039bdbb6c610f0f1d03cd3961919"/>
     <sys_variable_value action="INSERT_OR_UPDATE">
         <document>sys_atf_step</document>
-        <document_key>3a2925c41b56e910cd6153d16b4bcb2b</document_key>
+        <document_key>fccd039bdbb6c610f0f1d03cd3961919</document_key>
         <order>200</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2023-04-14 16:06:54</sys_created_on>
-        <sys_id>025925c41b56e910cd6153d16b4bcb03</sys_id>
-        <sys_mod_count>11</sys_mod_count>
+        <sys_created_on>2024-06-20 14:39:41</sys_created_on>
+        <sys_id>4acd039bdbb6c610f0f1d03cd3961972</sys_id>
+        <sys_mod_count>4</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-06-21 12:41:27</sys_updated_on>
+        <sys_updated_on>2024-06-20 14:46:50</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
 	&#13;
 	test.SetResult(true);&#13;
 &#13;
-	function TestCase_InstanceScanGetCheckFromQuery(strEncodedQuery, vExpected)&#13;
+	function TestCase_InstanceScanIsScriptCheck(vCheck, vExpected)&#13;
 	{&#13;
-		function TestCase_InstanceScanGetCheckFromQuery_CheckResult(vInput,vExpected,vResult)&#13;
+		function TestCase_InstanceScanIsScriptCheck_CheckResult(vInput,vExpected,vResult)&#13;
 		{&#13;
-			if (vExpected == false)&#13;
-			{&#13;
-				return (vExpected == vResult);&#13;
-			}&#13;
-			if (IsValidSysId(vExpected) == true)&#13;
-			{&#13;
-				return (GetStringValue(GetValue(vResult,'sys_id')) == vExpected)&#13;
-			}&#13;
-			return false;&#13;
+			return (vExpected == vResult);&#13;
 		}&#13;
 &#13;
 		test.TestCase(&#13;
-			'Function InstanceScanGetCheckFromQuery()',&#13;
-			InstanceScanGetCheckFromQuery,&#13;
+			'Function InstanceScanIsScriptCheck()',&#13;
+			InstanceScanIsScriptCheck,&#13;
 			{&#13;
-				'Query': strEncodedQuery&#13;
+				'vCheck': vCheck&#13;
 			},&#13;
 			vExpected,&#13;
-			TestCase_InstanceScanGetCheckFromQuery_CheckResult);&#13;
+			TestCase_InstanceScanIsScriptCheck_CheckResult);&#13;
 	}&#13;
 &#13;
-	TestCase_InstanceScanGetCheckFromQuery(null,false);&#13;
+	TestCase_InstanceScanIsScriptCheck(null,false);&#13;
 &#13;
 	var grCheck = new GlideRecord('scan_table_check');&#13;
 	grCheck.initialize();&#13;
@@ -77,23 +69,14 @@
 	grCheck.table = 'sys_metadata';&#13;
 	grCheck.name = 'TEST Table';&#13;
 	grCheck.insert();&#13;
-	TestCase_InstanceScanGetCheckFromQuery(&#13;
-		'sys_class_name=sys_ui_action'&#13;
-		+'^active=true'&#13;
-		+'^sys_policy!=protected^ORsys_policy=NULL'&#13;
-		+'^sys_id!='+grCheck.sys_id&#13;
-		+'^sys_id=fd55755b1b4bb090edf3642aab4bcbe5',&#13;
-		grCheck.sys_id);&#13;
+	TestCase_InstanceScanIsScriptCheck(grCheck,false);&#13;
 &#13;
-	&#13;
 	var grCheck = new GlideRecord('scan_linter_check');&#13;
 	grCheck.initialize();&#13;
 	grCheck.sys_scope = 'global';&#13;
 	grCheck.name = 'TEST Linter';&#13;
 	grCheck.insert();&#13;
-	TestCase_InstanceScanGetCheckFromQuery(&#13;
-		'sys_class_name=sys_data_source^sys_policy!=protected^ORsys_policy=NULL^sys_id!='+grCheck.sys_id+'d39619f9^sys_id=f1638afb1b073110063ddc61ab4bcb2d',&#13;
-		grCheck.sys_id);&#13;
+	TestCase_InstanceScanIsScriptCheck(grCheck,true);	&#13;
 	&#13;
 	return test.GetResult();&#13;
 	&#13;
@@ -102,15 +85,15 @@
     </sys_variable_value>
     <sys_variable_value action="INSERT_OR_UPDATE">
         <document>sys_atf_step</document>
-        <document_key>3a2925c41b56e910cd6153d16b4bcb2b</document_key>
+        <document_key>fccd039bdbb6c610f0f1d03cd3961919</document_key>
         <order>100</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2023-04-14 16:06:54</sys_created_on>
-        <sys_id>4a5925c41b56e910cd6153d16b4bcb02</sys_id>
+        <sys_created_on>2024-06-20 14:39:41</sys_created_on>
+        <sys_id>82cd039bdbb6c610f0f1d03cd3961972</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-04-14 16:06:54</sys_updated_on>
+        <sys_updated_on>2024-06-20 14:39:41</sys_updated_on>
         <value>3.1</value>
         <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
     </sys_variable_value>

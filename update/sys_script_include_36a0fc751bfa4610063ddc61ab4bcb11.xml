@@ -10,28 +10,35 @@
         <script><![CDATA[function MaintainGroup(vGroup,aRoles,values)
 {
 	var grGroup = GetGroupRecord(vGroup);
+	var strName = '';
 	if (IsValidRecord(grGroup) == false)
 	{
-		var strName = GetStringValue(vGroup);
+		strName = GetStringValue(vGroup);
 		if (strName == '')
 		{
 			return false;
 		}
-		var strGroupSysId = RecordInsertOrUpdate(
-			'sys_user_group',
-			{
-				name: strName
-			},
-			{},
-			values,
-			false);
-		grGroup = GetGroupRecord(strGroupSysId);
 	}
+	else
+	{
+		strName = GetStringValue(grGroup.name);
+	}
+	var strGroupSysId = RecordInsertOrUpdate(
+		'sys_user_group',
+		{
+			name: strName
+		},
+		{},
+		values,
+		false);
+	grGroup = GetGroupRecord(strGroupSysId);
+
 	if (IsValidRecord(grGroup) == false)
 	{
 		return false;
 	}	
-	// Are there unexpected groups?
+	
+	// Remove unexpected roles
 	var grGroupRoles = new GlideRecord('sys_group_has_role');	
 	grGroupRoles.addQuery('group','=',grGroup.sys_id);
 	grGroupRoles.query();
@@ -48,7 +55,7 @@
 		}
 	}
 
-	// Add missing groups
+	// Add missing roles
 	for (var nRole = 0; nRole < aRoles.length; nRole++)
 	{
 		var grRole = GetRoleRecord(aRoles[nRole]);
@@ -70,13 +77,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-06-15 11:23:31</sys_created_on>
         <sys_id>36a0fc751bfa4610063ddc61ab4bcb11</sys_id>
-        <sys_mod_count>14</sys_mod_count>
+        <sys_mod_count>16</sys_mod_count>
         <sys_name>MaintainGroup</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_36a0fc751bfa4610063ddc61ab4bcb11</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-06-16 07:49:48</sys_updated_on>
+        <sys_updated_on>2024-06-19 09:55:16</sys_updated_on>
     </sys_script_include>
 </record_update>

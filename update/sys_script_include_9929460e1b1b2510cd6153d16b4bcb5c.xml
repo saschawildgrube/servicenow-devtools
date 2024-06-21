@@ -53,12 +53,13 @@
 					{
 						if (aPackages[nPackage]['dependency_status_summary'] == 'missing')
 						{
+							// Conflicting compatible versions and missing packages
 							aPackages[nPackage] = Clone(currentpackage);
 							strStatusSummary = 'missing';
-							//aPackages[nPackage]['dependency_status_'] = strStatusSummary;
 						}
 						else
 						{
+							// Conflicting compatible versions with an existing package (not missing)
 							aPackages[nPackage]['compatible_versions'] = '';
 							strStatusSummary = 'conflicting_versions';
 							aPackages[nPackage]['dependency_status'] = strStatusSummary;
@@ -67,16 +68,23 @@
 					}
 					else
 					{
+						// Compatible versions are compatible 
 						if (CompareVersion(strMinimalCommonVersion,aPackages[nPackage]['version']) > 0)
 						{
-							aPackages[nPackage] = Clone(currentpackage);
-							if (CompareDependencyStatus(strStatusSummary,currentpackage['dependency_status_summary']) < 0) 
+							// Minimum common version is higher than in the existing package: the package is replaced if it is not missing
+							if (aPackages[nPackage]['dependency_status'] != 'missing')
 							{
-								strStatusSummary = currentpackage['dependency_status_summary'];
+								aPackages[nPackage] = Clone(currentpackage);
+								if (CompareDependencyStatus(
+									strStatusSummary,currentpackage['dependency_status_summary']) < 0) 
+								{
+									strStatusSummary = currentpackage['dependency_status_summary'];
+								}
 							}
 						}
 						else
 						{
+							// The minimum compatible version is lower than in the existing package - so the compatible version is updated
 							aPackages[nPackage]['compatible_versions'] = strMinimalCommonVersion;
 						}
 					}
@@ -109,7 +117,10 @@
 		}
 		else
 		{
-			if (CompareDependencyStatus(strStatusSummary,aPackages[aPackages.length-1]['dependency_status_summary']) > 0)
+			if (CompareDependencyStatus(
+				strStatusSummary,
+				aPackages[aPackages.length-1]['dependency_status_summary'])
+				> 0)
 			{
 				aPackages[aPackages.length-1]['dependency_status_summary'] = strStatusSummary;
 			}
@@ -122,13 +133,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-06-09 16:37:44</sys_created_on>
         <sys_id>9929460e1b1b2510cd6153d16b4bcb5c</sys_id>
-        <sys_mod_count>59</sys_mod_count>
+        <sys_mod_count>69</sys_mod_count>
         <sys_name>GetDependencyListFromTree</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_9929460e1b1b2510cd6153d16b4bcb5c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-10-27 17:08:39</sys_updated_on>
+        <sys_updated_on>2024-06-19 13:30:41</sys_updated_on>
     </sys_script_include>
 </record_update>
