@@ -5,7 +5,14 @@
         <api_name>x_snc_devtools.HttpRequest</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Performs a single synchronous http request.</description>
+        <description>Performs a single synchronous http request.&#13;
+The vInput parameter can either contain the target url as a string or a parameter object.&#13;
+Values in the parameter object are:&#13;
+- url: the url to be requested&#13;
+- requestbody: the string to be sent as the request body. If provided the method is set to "post", if not then "get"&#13;
+- basicauth: An object containing values "username" and "password"&#13;
+- response: A string to specify how the result should be returned by HttpRequest. If set to "RESTResponseV2" an object is returned if the request did not run into an exception, otherwise the function returns the response body.&#13;
+- headers: An array of objects representing a header. A header object should contain values "name" and "value".</description>
         <name>HttpRequest</name>
         <script><![CDATA[function HttpRequest(vInput)
 {
@@ -25,15 +32,20 @@
 		}
 	}
 
+	if (IsValidUrl(strUrl) == false)
+	{
+		return false;
+	}
+
 	var strRequestBody = GetStringValue(GetValue(params,'requestbody'));
 	var http = new sn_ws.RESTMessageV2();
 	if (strRequestBody == '')
 	{
-		http.setHttpMethod("get");
+		http.setHttpMethod('get');
 	}
 	else
 	{
-		http.setHttpMethod("post");
+		http.setHttpMethod('post');
 		http.setRequestBody(strRequestBody);
 	}
 
@@ -66,6 +78,13 @@
 		LogError(e);
 		return false;
 	}
+
+	var strResponse = GetStringValue(GetValue(vInput,'response'));
+	if (strResponse == 'RESTResponseV2')
+	{
+		return response;
+	}
+
 	var body = response.getBody();
 	return body;
 }]]></script>
@@ -73,13 +92,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 09:10:34</sys_created_on>
         <sys_id>be520f981bd38450a89720a8ec4bcbab</sys_id>
-        <sys_mod_count>10</sys_mod_count>
+        <sys_mod_count>15</sys_mod_count>
         <sys_name>HttpRequest</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_be520f981bd38450a89720a8ec4bcbab</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-06-09 12:38:45</sys_updated_on>
+        <sys_updated_on>2024-06-29 08:51:42</sys_updated_on>
     </sys_script_include>
 </record_update>
