@@ -170,6 +170,38 @@ DocumentationAPI.prototype = {
 		}
 		return strHtml;	
 	},
+
+	RenderConnectionAndCredentialAliases: function()
+	{
+		if (this.m_bInit == false)
+		{
+			return this.RenderError();
+		}	
+		var grAlias = new GlideRecord('sys_alias');
+		grAlias.addQuery('sys_scope','=',this.m_strAppSysId);
+		grAlias.orderBy('name');
+		grAlias.query();
+
+		var strHtml = '';
+		if (grAlias.getRowCount() == 0)
+		{
+			strHtml += '<p>This app does not contain any connection or credential aliases.</p>';
+		}
+		else
+		{
+			strHtml += '<ul>';
+			while (grAlias.next())
+			{
+				var strDescription = 'ID: '+HtmlEncode(grAlias.getValue('id'));
+				strHtml += this.RenderListItem(
+					grAlias.getValue('name')+' ('+grAlias.getDisplayValue('type')+')',
+					GetInstanceRecordPath('sys_alias',grAlias.sys_id),
+					strDescription);
+			}
+			strHtml += '</ul>';
+		}
+		return strHtml;	
+	},	
 	
 	RenderEvents: function()
 	{
@@ -674,13 +706,13 @@ DocumentationAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-01-20 15:26:20</sys_created_on>
         <sys_id>98912146db31e490ba15a353059619b6</sys_id>
-        <sys_mod_count>156</sys_mod_count>
+        <sys_mod_count>158</sys_mod_count>
         <sys_name>DocumentationAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>protected</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_98912146db31e490ba15a353059619b6</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-04-16 09:24:52</sys_updated_on>
+        <sys_updated_on>2024-07-01 14:38:22</sys_updated_on>
     </sys_script_include>
 </record_update>
