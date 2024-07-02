@@ -7,10 +7,9 @@
         <client_callable>false</client_callable>
         <description>AppBuilder adds various application files to a scoped app. The function should be mostly idempotent.</description>
         <name>AppBuilder</name>
-        <script><![CDATA[function AppBuilder(strAppSysIdOrScopeName, strParentAppSysIdOrScopeName, strAppMenuSeparator, nAppMenuOrderStart)
+        <script><![CDATA[function AppBuilder(vApp, vParentApp, strAppMenuSeparator, nAppMenuOrderStart)
 {
-
-	var strAppScope = '';
+	var strAppScope = '';	
 	var strParentAppScope = '';
 	
 	function Log(strText)
@@ -28,78 +27,47 @@
 		x_snc_devtools.Log('DevTools AppBuilder: '+strContext+strText);
 	}
 	
-	strAppSysIdOrScopeName = GetStringValue(strAppSysIdOrScopeName);
-	strParentAppSysIdOrScopeName = GetStringValue(strParentAppSysIdOrScopeName);
 	strAppMenuSeparator = GetStringValue(strAppMenuSeparator);
 	nAppMenuOrderStart = GetIntegerValue(nAppMenuOrderStart);
-		
-	var strAppSysId = '';
-	var grApp = false;
 	
-	if (IsValidSysId(strAppSysIdOrScopeName) == false)
+	var grApp = GetAppRecord(vApp);
+	if (grApp == false)
 	{
-		strAppScope = strAppSysIdOrScopeName;
-		grApp = new GlideRecord('sys_app');
-		grApp.addQuery('scope','=',strAppSysIdOrScopeName);
-		grApp.query();
-		if (grApp.getRowCount() != 1)
-		{
-			Log('Error: App not found with scope name: '+strAppScope);
-			return false;
-		}
-		grApp.next();
-		strAppSysId = GetStringValue(grApp.sys_id); 
+		Log('Error: Could not load app: '+vApp);
+		return false;
 	}
-	else
+
+	if (grApp.scope == 'global')
 	{
-		strAppSysId = strAppSysIdOrScopeName;
-		grApp = GetRecord('sys_app',strAppSysId);
-		if (grApp == false)
-		{
-			Log('Error: App not found with sys_id: '+strAppSysId);
-			return false;
-		}
-		strAppScope = GetStringValue(grApp.scope);
+		Log('Error: AppBuilder does not support global apps!');
+		return false;
 	}
-	
+
+	var strAppSysId = GetStringValue(grApp.sys_id);
+	strAppScope = GetStringValue(grApp.scope);	
+
 	if (strAppScope == 'x_snc_devtools')
 	{
 		Log('Error: Do not use AppBuilder() on DevTools itself!');
 		return false;
 	}
-	
 
+	var grParentApp = null;
 	var strParentAppSysId = '';
-	var grParentApp = false;
-	
-	if (IsValidSysId(strParentAppSysIdOrScopeName) == false)
+	if (vParentApp != null)
 	{
-		strParentAppScope = strParentAppSysIdOrScopeName;
-		grParentApp = new GlideRecord('sys_app');
-		grParentApp.addQuery('scope','=',strParentAppSysIdOrScopeName);
-		grParentApp.query();
-		if (grParentApp.getRowCount() == 1)
+		grParentApp = GetAppRecord(vParentApp);
+		if (grParentApp == false)
 		{
-			Log('Parent app has been identified.');
-			grParentApp.next();
-			strParentAppSysId = GetStringValue(grParentApp.sys_id); 
+			Log('Error: Could not load parent app: '+vParentApp);
+			return false;		
 		}
+		strParentAppSysId = GetStringValue(grParentApp.sys_id); 
+		strParentAppScope = GetStringValue(grParentApp.scope); 
 	}
-	else
-	{
-		strParentAppSysId = strParentAppSysIdOrScopeName;
-		grParentApp = GetRecord('sys_app',strParentAppSysId);
-		if (grParentApp == true)
-		{
-			strParentAppScope = GetStringValue(grParentApp.scope);
-			Log('Parent app is identified.');
-		}
-	}	
-	
 	
 	var strAppName = GetAppName(strAppSysId);
 	var strParentAppName = GetAppName(strParentAppSysId);
-	var nAppMenuOrderStart = GetIntegerValue(nAppMenuOrderStart);
 	
 	Log('Working on app "'+strAppName+'"');
 	
@@ -930,13 +898,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-07 15:15:09</sys_created_on>
         <sys_id>753cb10c1b6afc50577f43b5bb4bcb58</sys_id>
-        <sys_mod_count>143</sys_mod_count>
+        <sys_mod_count>146</sys_mod_count>
         <sys_name>AppBuilder</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_753cb10c1b6afc50577f43b5bb4bcb58</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-03-18 18:42:43</sys_updated_on>
+        <sys_updated_on>2024-07-02 09:52:07</sys_updated_on>
     </sys_script_include>
 </record_update>
