@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="syntax_editor_macro">
+    <syntax_editor_macro action="DELETE">
+        <comments>This editor macro creates the code necessary to access the function contained in the ConfigurationItemServiceNowAppInsertOrUpdateLocalApps script include.</comments>
+        <name>ConfigurationItemServiceNowAppInsertOrUp</name>
+        <sys_class_name>syntax_editor_macro</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-06-07 14:54:57</sys_created_on>
+        <sys_id>c39450d7db224a50f0f1d03cd396198b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>ConfigurationItemServiceNowAppInsertOrUp</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>syntax_editor_macro_c39450d7db224a50f0f1d03cd396198b</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-06-07 14:54:57</sys_updated_on>
+        <text>var ConfigurationItemServiceNowAppInsertOrUpdateLocalApps = x_snc_devtools.ConfigurationItemServiceNowAppInsertOrUpdateLocalApps;
+ConfigurationItemServiceNowAppInsertOrUpdateLocalApps();</text>
+    </syntax_editor_macro>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>bbdfc83f1ba93910699443f4bd4bcbe7</instance_id>
+        <instance_name>wildvancouver</instance_name>
+        <name>syntax_editor_macro_c39450d7db224a50f0f1d03cd396198b</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="syntax_editor_macro"><syntax_editor_macro action="INSERT_OR_UPDATE"><comments>This editor macro creates the code necessary to access the function contained in the ConfigurationItemServiceNowAppInsertOrUpdateLocalApps script include.</comments><name>ConfigurationItemServiceNowAppInsertOrUp</name><sys_class_name>syntax_editor_macro</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2024-06-07 14:54:57</sys_created_on><sys_id>c39450d7db224a50f0f1d03cd396198b</sys_id><sys_mod_count>0</sys_mod_count><sys_name>ConfigurationItemServiceNowAppInsertOrUp</sys_name><sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package><sys_policy/><sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope><sys_update_name>syntax_editor_macro_c39450d7db224a50f0f1d03cd396198b</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2024-06-07 14:54:57</sys_updated_on><text>var ConfigurationItemServiceNowAppInsertOrUpdateLocalApps = x_snc_devtools.ConfigurationItemServiceNowAppInsertOrUpdateLocalApps;
+ConfigurationItemServiceNowAppInsertOrUpdateLocalApps();</text></syntax_editor_macro></record_update>]]></payload>
+        <payload_hash>-1130786353</payload_hash>
+        <record_name>ConfigurationItemServiceNowAppInsertOrUp</record_name>
+        <reverted_from/>
+        <source>52fba6b6dbe6c650f0f1d03cd3961907</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-06-07 14:54:57</sys_created_on>
+        <sys_id>cb9450d7db224a50f0f1d03cd396198d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>18ff332179b0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-06-07 14:54:57</sys_updated_on>
+        <type>Editor Macro</type>
+        <update_guid>cf9450d7a3224a50b7a58ac741de038c</update_guid>
+        <update_guid_history>cf9450d7a3224a50b7a58ac741de038c:-1130786353</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="ConfigurationItemServiceNowAppInsertOrUp">f71e2e2bdb87c210f0f1d03cd39619a5</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-07-03 17:15:32</sys_created_on>
+        <sys_db_object display_value="" name="syntax_editor_macro">syntax_editor_macro</sys_db_object>
+        <sys_id>389aadbeab4c4af89e2bec4c3f45da49</sys_id>
+        <sys_metadata>c39450d7db224a50f0f1d03cd396198b</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>ConfigurationItemServiceNowAppInsertOrUp</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>syntax_editor_macro_c39450d7db224a50f0f1d03cd396198b</sys_update_name>
+        <sys_update_version display_value="syntax_editor_macro_c39450d7db224a50f0f1d03cd396198b">cb9450d7db224a50f0f1d03cd396198d</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-07-03 17:15:32</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
