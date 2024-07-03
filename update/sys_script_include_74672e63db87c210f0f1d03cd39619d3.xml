@@ -34,77 +34,24 @@ Returns the Sys ID of the created or updated CMDB CI representing the applicatio
 			dependency);
 		if (IsValidSysId(strDependencyCiSysId))
 		{
-			ConfigurationItemServiceNowAppDependencyInsertOrUpdate(strCiSysId,strDependencyCiSysId);
+			ConfigurationItemServiceNowAppDependencyInsertOrUpdate(
+				strCiSysId,
+				strDependencyCiSysId);
 		}
-		/*if (bResult == false)
-		{
-			bSuccess = false;
-		}*/
-
-		// Add dependencies if available
-		
-		/*var app = aApps[nApp];
-		var strCiSysId = ConfigurationItemServiceNowAppInsertOrUpdate(
-			strInstanceName,
-			app);
-		if (IsValidSysId(strCiSysId) == false)
-		{
-			bSuccess = false;
-		}*/
-
-		
 	}
-
-/*
-		var grAppCIs = new GlideRecord('x_snc_devtools_cmdb_ci_appl_servicenow');
-		grAppCIs.query();
-		while (grAppCIs.next())
-		{
-			var grDependencies = new GlideRecord('x_snc_devtools_dependency');
-			grDependencies.addQuery('sys_scope','=',grAppCIs.app_sys_id);
-			grDependencies.query();
-			while (grDependencies.next())
-			{
-				var grAppCIDependency = new GlideRecord('x_snc_devtools_cmdb_ci_appl_servicenow');
-				grAppCIDependency.addQuery('app_sys_id','=',grDependencies.dependency);
-				grAppCIDependency.query();
-				if (grAppCIDependency.next())
-				{
-					var strResult = RecordInsertOrUpdate(
-						'cmdb_rel_ci',
-						{
-							parent: grAppCIs.sys_id,
-							child: grAppCIDependency.sys_id,
-							type: strRelTypeSysId
-						},
-						{
-						},
-						{
-						},
-						false);
-					if (IsValidSysId(strResult) == false)
-					{
-						bSuccess = false;
-					}
-				}
-			}
-		}
-
-	}
-*/
 	return strCiSysId;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-07-03 16:46:06</sys_created_on>
         <sys_id>74672e63db87c210f0f1d03cd39619d3</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>ConfigurationItemServiceNowAppInsertOrUpdateFromTree</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_74672e63db87c210f0f1d03cd39619d3</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-07-03 16:59:20</sys_updated_on>
+        <sys_updated_on>2024-07-03 17:59:38</sys_updated_on>
     </sys_script_include>
 </record_update>
