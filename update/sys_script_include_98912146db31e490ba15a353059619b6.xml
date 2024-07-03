@@ -170,6 +170,38 @@ DocumentationAPI.prototype = {
 		}
 		return strHtml;	
 	},
+
+	RenderConnectionAndCredentialAliases: function()
+	{
+		if (this.m_bInit == false)
+		{
+			return this.RenderError();
+		}	
+		var grAlias = new GlideRecord('sys_alias');
+		grAlias.addQuery('sys_scope','=',this.m_strAppSysId);
+		grAlias.orderBy('name');
+		grAlias.query();
+
+		var strHtml = '';
+		if (grAlias.getRowCount() == 0)
+		{
+			strHtml += '<p>This app does not contain any connection or credential aliases.</p>';
+		}
+		else
+		{
+			strHtml += '<ul>';
+			while (grAlias.next())
+			{
+				var strDescription = 'ID: '+HtmlEncode(grAlias.getValue('id'));
+				strHtml += this.RenderListItem(
+					grAlias.getValue('name')+' ('+grAlias.getDisplayValue('type')+')',
+					GetInstanceRecordPath('sys_alias',grAlias.sys_id),
+					strDescription);
+			}
+			strHtml += '</ul>';
+		}
+		return strHtml;	
+	},	
 	
 	RenderEvents: function()
 	{
@@ -182,15 +214,23 @@ DocumentationAPI.prototype = {
 		grEvent.orderBy('event_name');
 		grEvent.query();
 
-		var strHtml = '<ul>';
-		while (grEvent.next())
+		var strHtml = '';
+		if (grEvent.getRowCount() == 0)
 		{
-			strHtml += this.RenderListItem(
-				grEvent.getValue('event_name'),
-				'',
-				grEvent.getValue('description'));
+			strHtml += '<p>This app does not contain events.</p>';
 		}
-		strHtml += '</ul>';
+		else
+		{
+			strHtml += '<ul>';
+			while (grEvent.next())
+			{
+				strHtml += this.RenderListItem(
+					grEvent.getValue('event_name'),
+					'',
+					grEvent.getValue('description'));
+			}
+			strHtml += '</ul>';
+		}
 		return strHtml;			
 	},
 	
@@ -206,19 +246,27 @@ DocumentationAPI.prototype = {
 		grSUA.addActiveQuery();
 		grSUA.query();
 
-		var strHtml = '<ul>';
-		while (grSUA.next())
+		var strHtml = '';
+		if (grSUA.getRowCount() == 0)
 		{
-			var strName = grSUA.getValue('name');
-			var strTable = grSUA.getValue('table');
-			var strComments = GetStringValue(grSUA.getValue('comments'));
-
-			strHtml += this.RenderListItem(
-				strName + ' ('+strTable+')',
-				GetInstanceRecordPath('sys_ui_action',grSUA.sys_id),
-				strComments);
+			strHtml += '<p>This app does not contain any UI Actions.</p>';
 		}
-		strHtml += '</ul>';
+		else
+		{
+			strHtml += '<ul>';
+			while (grSUA.next())
+			{
+				var strName = grSUA.getValue('name');
+				var strTable = grSUA.getValue('table');
+				var strComments = GetStringValue(grSUA.getValue('comments'));
+
+				strHtml += this.RenderListItem(
+					strName + ' ('+strTable+')',
+					GetInstanceRecordPath('sys_ui_action',grSUA.sys_id),
+					strComments);
+			}
+			strHtml += '</ul>';
+		}
 		return strHtml;
 	},
 	
@@ -235,17 +283,25 @@ DocumentationAPI.prototype = {
 		grSSI.orderBy('name');
 		grSSI.query();
 
-		var strHtml = '<ul>';
-		while (grSSI.next())
+		var strHtml = '';
+		if (grSSI.getRowCount() == 0)
 		{
-			var strDescription = HtmlEncode(grSSI.getValue('description'));
-			
-			strHtml += this.RenderListItem(
-				grSSI.getValue('name'),
-				GetInstanceRecordPath('sys_script_include',grSSI.sys_id),
-				strDescription);
+			strHtml += '<p>This app does not contain any Script Includes.</p>';
 		}
-		strHtml += '</ul>';
+		else
+		{
+			strHtml += '<ul>';
+			while (grSSI.next())
+			{
+				var strDescription = HtmlEncode(grSSI.getValue('description'));
+				
+				strHtml += this.RenderListItem(
+					grSSI.getValue('name'),
+					GetInstanceRecordPath('sys_script_include',grSSI.sys_id),
+					strDescription);
+			}
+			strHtml += '</ul>';
+		}
 		return strHtml;
 	},
 	
@@ -262,17 +318,25 @@ DocumentationAPI.prototype = {
 		grSUS.orderBy('name');
 		grSUS.query();
 
-		var strHtml = '<ul>';
-		while (grSUS.next())
+		var strHtml = '';
+		if (grSUS.getRowCount() == 0)
 		{
-			//var strDescription = HtmlEncode(grSUS.getValue('description'));
-			
-			strHtml += this.RenderListItem(
-				grSUS.getValue('script_name'),
-				'/sys_ui_script.do?sys_id='+grSUS.sys_id,
-				grSUS.getValue('description'));
+			strHtml += '<p>This app does not contain any UI Scripts.</p>';
 		}
-		strHtml += '</ul>';
+		else
+		{
+			strHtml += '<ul>';
+			while (grSUS.next())
+			{
+				//var strDescription = HtmlEncode(grSUS.getValue('description'));
+				
+				strHtml += this.RenderListItem(
+					grSUS.getValue('script_name'),
+					'/sys_ui_script.do?sys_id='+grSUS.sys_id,
+					grSUS.getValue('description'));
+			}
+			strHtml += '</ul>';
+		}
 		return strHtml;
 	},	
 
@@ -288,19 +352,27 @@ DocumentationAPI.prototype = {
 		grSS.addActiveQuery();
 		grSS.query();
 
-		var strHtml = '<ul>';
-		while (grSS.next())
+		var strHtml = '';
+		if (grSS.getRowCount() == 0)
 		{
-			var strName = grSS.getValue('name');
-			var strCollection = grSS.getValue('collection');
-			var strDescription = grSS.getValue('description');
-			
-			strHtml += this.RenderListItem(
-				strName +' ('+strCollection+')',
-				GetInstanceRecordPath('sys_script',grSS.sys_id),
-				strDescription);
+			strHtml += '<p>This app does not contain any Business Rules.</p>';
 		}
-		strHtml += '</ul>';
+		else
+		{
+			strHtml += '<ul>';
+			while (grSS.next())
+			{
+				var strName = grSS.getValue('name');
+				var strCollection = grSS.getValue('collection');
+				var strDescription = grSS.getValue('description');
+				
+				strHtml += this.RenderListItem(
+					strName +' ('+strCollection+')',
+					GetInstanceRecordPath('sys_script',grSS.sys_id),
+					strDescription);
+			}
+			strHtml += '</ul>';
+		}
 		return strHtml;
 	},
 
@@ -361,19 +433,26 @@ DocumentationAPI.prototype = {
 		grSC.query();
 
 		
-		var strHtml = '<ul>';
-		while (grSC.next())
+		var strHtml = '';
+		if (grSC.getRowCount() == 0)
 		{
-			var strDescription = GetStringValue(grSC.getValue('html_description'));
-			strDescription = strDescription.replace('<p>','');
-			strDescription = strDescription.replace('</p>','');
-						
-			strHtml += this.RenderListItem(
-				grSC.getValue('name'),
-				'/sys_atf_step_config.do?sys_id='+grSC.sys_id,
-				strDescription);
+			strHtml += '<p>This app does not contain any Test Step Configurations.</p>';
 		}
-		strHtml += '</ul>';
+		else
+		{
+			while (grSC.next())
+			{
+				var strDescription = GetStringValue(grSC.getValue('html_description'));
+				strDescription = strDescription.replace('<p>','');
+				strDescription = strDescription.replace('</p>','');
+							
+				strHtml += this.RenderListItem(
+					grSC.getValue('name'),
+					'/sys_atf_step_config.do?sys_id='+grSC.sys_id,
+					strDescription);
+			}
+			strHtml += '</ul>';
+		}
 		return strHtml;	
 	},
 	
@@ -389,15 +468,22 @@ DocumentationAPI.prototype = {
 		grSEP.orderBy('name');
 		grSEP.query();
 
-		var strHtml = '<ul>';
-		while (grSEP.next())
+		var strHtml = '';
+		if (grSEP.getRowCount() == 0)
 		{
-			strHtml += this.RenderListItem(
-				grSEP.getValue('name'),
-				GetInstanceRecordPath('sys_extension_point',grSEP.sys_id),
-				grSEP.getValue('description') + '<pre>'+grSEP.getValue('example')+'</pre>');
+			strHtml += '<p>This app does not contain any Extension Points.</p>';
 		}
-		strHtml += '</ul>';
+		else
+		{
+			while (grSEP.next())
+			{
+				strHtml += this.RenderListItem(
+					grSEP.getValue('name'),
+					GetInstanceRecordPath('sys_extension_point',grSEP.sys_id),
+					grSEP.getValue('description') + '<pre>'+grSEP.getValue('example')+'</pre>');
+			}
+			strHtml += '</ul>';
+		}
 		return strHtml;
 	},	
 	
@@ -412,15 +498,22 @@ DocumentationAPI.prototype = {
 		grSC.orderBy('name');
 		grSC.query();
 
-		var strHtml = '<ul>';
-		while (grSC.next())
+		var strHtml = '';
+		if (grSC.getRowCount() == 0)
 		{
-			strHtml += this.RenderListItem(
-				grSC.getValue('name'),
-				GetInstanceRecordPath('scan_check',grSC.sys_id),
-				grSC.getValue('short_description'));
+			strHtml += '<p>This app does not contain any Instance Scan Checks.</p>';
 		}
-		strHtml += '</ul>';
+		else
+		{
+			while (grSC.next())
+			{
+				strHtml += this.RenderListItem(
+					grSC.getValue('name'),
+					GetInstanceRecordPath('scan_check',grSC.sys_id),
+					grSC.getValue('short_description'));
+			}
+			strHtml += '</ul>';
+		}
 		return strHtml;
 	},
 	
@@ -435,18 +528,25 @@ DocumentationAPI.prototype = {
 		grSEM.orderBy('name');
 		grSEM.query();
 
-		var strHtml = '<ul>';
-		while (grSEM.next())
+		var strHtml = '';
+		if (grSEM.getRowCount() == 0)
 		{
-			var strDescription = HtmlEncode(grSEM.getValue('comments'));
-			var strText = GetStringValue(grSEM.getValue('text'));
-			
-			strHtml += this.RenderListItem(
-				grSEM.getValue('name'),
-				GetInstanceRecordPath('syntax_editor_macro',grSEM.sys_id),
-				strDescription + '<br/>' + '<pre>'+strText+'</pre>');
+			strHtml += '<p>This app does not contain any Syntax Editor Macros.</p>';
 		}
-		strHtml += '</ul>';
+		else
+		{
+			while (grSEM.next())
+			{
+				var strDescription = HtmlEncode(grSEM.getValue('comments'));
+				var strText = GetStringValue(grSEM.getValue('text'));
+				
+				strHtml += this.RenderListItem(
+					grSEM.getValue('name'),
+					GetInstanceRecordPath('syntax_editor_macro',grSEM.sys_id),
+					strDescription + '<br/>' + '<pre>'+strText+'</pre>');
+			}
+			strHtml += '</ul>';
+		}
 		return strHtml;
 	},	
 	
@@ -462,43 +562,50 @@ DocumentationAPI.prototype = {
 		grWSD.query();
 		
 		var strHtml = '';
-		while (grWSD.next())
+		if (grWSD.getRowCount() == 0)
 		{
-			var strName = GetStringValue(grWSD.getValue('name'));
-			var strLink = HtmlRenderLink(
-				GetInstanceRecordPath('sys_ws_definition',
-				grWSD.sys_id),strName,true);
-			strHtml += '<h4>'+strLink+'</h4>';
-			
-			var strShortDescription = HtmlEncode(grWSD.getValue('short_description'));
-			strHtml += '<p>'+strShortDescription+'</p>';
-			
-			var grWSO = new GlideRecord('sys_ws_operation');
-			grWSO.addQuery('sys_scope','=',this.m_strAppSysId);
-			grWSO.orderBy('name');
-			grWSO.query();
-			
-			strHtml += '<ul>';
-			while (grWSO.next())
+			strHtml += '<p>This app does not contain any REST APIs.</p>';
+		}
+		else
+		{
+			while (grWSD.next())
 			{
-				var strShortDescription = HtmlEncode(grWSO.getValue('short_description'));
-				if (strShortDescription != '')
-				{
-					strShortDescription += '<br/>';
-				}
+				var strName = GetStringValue(grWSD.getValue('name'));
+				var strLink = HtmlRenderLink(
+					GetInstanceRecordPath('sys_ws_definition',
+					grWSD.sys_id),strName,true);
+				strHtml += '<h4>'+strLink+'</h4>';
 				
-				strHtml += this.RenderListItem(
-					grWSO.getValue('name'),
-					GetInstanceRecordPath('sys_ws_operation',grWSO.sys_id),
-					strShortDescription
-					+'Method: '+grWSO.getValue('http_method')+'<br/>'
-					+'URI: '+grWSO.getValue('operation_uri')+'<br/>');		
+				var strShortDescription = HtmlEncode(grWSD.getValue('short_description'));
+				strHtml += '<p>'+strShortDescription+'</p>';
+				
+				var grWSO = new GlideRecord('sys_ws_operation');
+				grWSO.addQuery('sys_scope','=',this.m_strAppSysId);
+				grWSO.orderBy('name');
+				grWSO.query();
+				
+				strHtml += '<ul>';
+				while (grWSO.next())
+				{
+					var strShortDescription = HtmlEncode(grWSO.getValue('short_description'));
+					if (strShortDescription != '')
+					{
+						strShortDescription += '<br/>';
+					}
+					
+					strHtml += this.RenderListItem(
+						grWSO.getValue('name'),
+						GetInstanceRecordPath('sys_ws_operation',grWSO.sys_id),
+						strShortDescription
+						+'Method: '+grWSO.getValue('http_method')+'<br/>'
+						+'URI: '+grWSO.getValue('operation_uri')+'<br/>');		
+				}
+				strHtml += '</ul>';
+				
+				
+				//GetInstanceRecordPath('sys_wd_definition',grWSD.sys_id),
+				//strShortDescription + strResources);
 			}
-			strHtml += '</ul>';
-			
-			
-			//GetInstanceRecordPath('sys_wd_definition',grWSD.sys_id),
-			//strShortDescription + strResources);
 		}
 		return strHtml;
 	},
@@ -674,13 +781,13 @@ DocumentationAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-01-20 15:26:20</sys_created_on>
         <sys_id>98912146db31e490ba15a353059619b6</sys_id>
-        <sys_mod_count>156</sys_mod_count>
+        <sys_mod_count>162</sys_mod_count>
         <sys_name>DocumentationAPI</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>protected</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_98912146db31e490ba15a353059619b6</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-04-16 09:24:52</sys_updated_on>
+        <sys_updated_on>2024-07-03 09:12:04</sys_updated_on>
     </sys_script_include>
 </record_update>

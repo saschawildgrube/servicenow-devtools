@@ -270,6 +270,24 @@ function DevToolsGetFormatConfig(grRecord)
 	
 	<h2>Release Notes</h2>
 
+	<h3>1.93.0 - 2024-07-03</h3>
+	<ol>
+		<li>Added method InstallerAPI::DictionaryOverrideSetValue().</li>
+		<li>Added method InstallerAPI::SetTableDefaultOrder().</li>
+		<li>Added function GetDictionaryOverrideRecord().</li>
+		<li>Added function GetBaseTable().</li>
+		<li>Added function SetAppInfo().</li>
+		<li>Added function MakeUrlParameters().</li>
+		<li>Added function GetAppRecordsWithCredentialPollution() and business rules on sys_app and sys_metadata to show a warning if polluted records are found.</li>
+		<li>The baseline procedure now checks if there are records with credential pollution and prevents baselining in that case.</li> 
+		<li>Added method DocumentationAPI::RenderConnectionAndCredentialAliases().</li>
+		<li>All DocumentationAPI::Render*() methods now render a text indicating that there are no records contained in the documented app.</li>
+		<li>Added function GetInstanceRecordUrl() as a replacement of the deprecated GetInstanceRecordURL().</li>
+		<li>Added more patterns to GetEvaluatorErrorExceptionPatterns().</li>
+		<li>AppBuilder() now prevents being used on global apps.</li>
+	</ol>
+
+
 	<h3>1.92.0 - 2024-06-29</h3>
 	<ol>
 		<li>HttpRequest() supports the value "response" as part of its input parameter object to control how the response of the request should be provided. If the response value is set to "RESTResponseV2" the function will return the RESTResponseV2 object if the request did not throw an exception.</li>
@@ -290,7 +308,7 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>MakeUserName() now converts all name components to strings to avoid runtime errors.</li>
 		<li>RecordTransporterRecordPack() now rejects packing sys_dictionary and sys_dictionary_override records as these may have differing Sys IDs on different instances.</li>
 		<li>InstallerAPI::RecordSetValue() now rejects working on sys_dictionary (or derived) and sys_dictionary_override records.</li>
-		<li>AppInstall() now longer sets the logging verbosity to "debug".</li>
+		<li>AppInstall() no longer sets the logging verbosity to "debug".</li>
 	</ol>
 
 
@@ -804,7 +822,7 @@ while (grDept.next())
 		<li>Added function Base64Decode().</li>
 		<li>Added function Base64Encode().</li>
 		<li>Added function InstallerAPI::InsertFieldToFormSection() and updated AppInstall() accordingly.</li>
-		<li>AppBuilder() now longer creates code to set the removed log.active property in AppSetDefaults().</li>
+		<li>AppBuilder() no longer creates code to set the removed log.active property in AppSetDefaults().</li>
 		<li>The Dependency Viewer now keeps hiding packages when using the tab navigation.</li>
 		<li>Improved links in DocumentationAPI functions and in the manual.</li>
 		<li>GetCleanAppName() now also trims the name to avoid leading or trailing whitespaces.</li>
@@ -856,7 +874,7 @@ while (grDept.next())
 		<li>InstanceScanSuiteOnApp() now also accepts different parameter types to specify the app (same as GetAppRecord).</li> 
 		<li>GetType() can now deal with objects that return null.</li>
 		<li>Functions RenderValue() and Clone() can now deal with objects that do not have a default value (like "wiki" GlideElement fields as used in kb_knowledge).</li>
-		<li>AppBuilder() now longer adds the call to x_snc_devtools.AppInstall() in the AppInstall() function - dependency installation should be handled via InstallApp().</li>
+		<li>AppBuilder() no longer adds the call to x_snc_devtools.AppInstall() in the AppInstall() function - dependency installation should be handled via InstallApp().</li>
 		<li>Function AppBuilderAddSyntaxEditorMacro() is now available for all scopes. Added ATF test and syntax edit macro for the function. Added more robust parameter validation.</li>
 		<li>Function GetPackageDependencyList() now also includes circular dependency packages. And the Dependency Viewer shows the circular dependencies in the "List" view.</li>
 		<li>Function InstallApp() now returns false of circular dependencies are detected.</li>
@@ -1159,7 +1177,7 @@ while (grDept.next())
 		<li>AppBuilder() now creates the system property "logging.verbosity" for the application and the created AppSetDefaults() functions sets the property to "info" by default.</li>
 		<li>The "Save" UI action no longer shows on the "Many to Many Definition" form.</li>
 		<li>GetParentRecord() can now properly handle sys_choice records that refer to sys_dictionary entries of a parent table.</li>
-		<li>The manual template now longer contains Quebec as a supported platform version.</li>
+		<li>The manual template no longer contains Quebec as a supported platform version.</li>
 		<li>Added table sys_filter_option_dynamic to the link directory.</li>
 		<li>Added tables label and label_entry to the link directory.</li>
 	</ol>
@@ -1640,7 +1658,7 @@ gs.invalidateCache();
 	
 	<h3>1.15.0 - 2021-05-05</h3>
 	<ol>
-		<li>WARNING: New York is now longer actively supported.</li>
+		<li>WARNING: New York is no longer actively supported.</li>
 		<li>Added function IsTechnicalUser() to check if a given user is a technical user (i.e. web_service_access_only is set to true).</li>
 		<li>Added function IsProperty() to check if a given system property exists.</li>
 		<li>Added function AppSetProperty() to set a DevTools system property to a value.</li> 
@@ -1848,13 +1866,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1618</sys_mod_count>
+        <sys_mod_count>1634</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-06-29 11:05:39</sys_updated_on>
+        <sys_updated_on>2024-07-03 12:49:05</sys_updated_on>
     </sys_ui_page>
 </record_update>

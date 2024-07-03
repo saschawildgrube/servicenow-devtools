@@ -18,6 +18,7 @@
 	var bCheckedIfBranchExists = false;
 	var bCheckedReleaseNotes = false;
 	var bCheckedUncommittedFiles = false;
+	var bCheckedForRecordsWithCredentialPollution = false;
 
 	StateStart();
 
@@ -44,6 +45,37 @@
 		bCheckedAlreadyRunning = true;
 		StateStart();
 	}
+
+function StateCheckIfBranchExists()
+	{
+		ServerRequest(
+			'x_snc_devtools.DevToolsClientAPI',
+			'GetAppBranches',
+			{
+				app_sys_id: strAppSysId
+			},
+			StateCheckIfBranchExistsResponse);	
+		return;
+	}
+
+	function StateCheckIfBranchExistsResponse(aBranches)
+	{
+		if (IsArray(aBranches) == false)
+		{
+			StateError('Could not load branches.');
+			return;
+		}
+		if (ArrayValueExists(aBranches,strVersion) == true) 
+		{
+			DoModalMessage(
+				strTitle,
+				'There is already a branch named "'+strVersion+'".\n\nYou must set a different version to proceed!',
+				StateEnd);	
+			return;
+		}
+		bCheckedIfBranchExists = true;
+		StateStart();
+	}	
 
 	function StateCheckReleaseNotes()
 	{
@@ -72,6 +104,37 @@
 		bCheckedReleaseNotes = true;
 		StateStart();
 	}	
+
+	function StateCheckForRecordsWithCredentialPollution()
+	{
+		ServerRequest(
+			'x_snc_devtools.DevToolsClientAPI',
+			'GetAppRecordsWithCredentialPollution',
+			{
+				app_sys_id: strAppSysId
+			},
+			StateCheckForRecordsWithCredentialPollutionResponse);	
+		return;
+	}
+
+	function StateCheckForRecordsWithCredentialPollutionResponse(aPollutedRecords)
+	{
+		if (IsArray(aPollutedRecords) == false)
+		{
+			StateError('Could not load polluted records files.');
+			return;
+		}
+		if (aPollutedRecords.length > 0)
+		{
+			DoModalMessage(
+				strTitle,
+				'There are records that contain credentials. Remove all credentials before committing these records. If such records have been committed already, the affected credentials MUST BE CHANGED!',
+				StateEnd);	
+			return;
+		}
+		bCheckedForRecordsWithCredentialPollution = true;
+		StateStart();
+	}
 
 	function StateCheckForUncommittedFiles()
 	{
@@ -104,36 +167,6 @@
 		StateStart();
 	}
 
-	function StateCheckIfBranchExists()
-	{
-		ServerRequest(
-			'x_snc_devtools.DevToolsClientAPI',
-			'GetAppBranches',
-			{
-				app_sys_id: strAppSysId
-			},
-			StateCheckIfBranchExistsResponse);	
-		return;
-	}
-
-	function StateCheckIfBranchExistsResponse(aBranches)
-	{
-		if (IsArray(aBranches) == false)
-		{
-			StateError('Could not load branches.');
-			return;
-		}
-		if (ArrayValueExists(aBranches,strVersion) == true) 
-		{
-			DoModalMessage(
-				strTitle,
-				'There is already a branch named "'+strVersion+'".\n\nYou must set a different version to proceed!',
-				StateEnd);	
-			return;
-		}
-		bCheckedIfBranchExists = true;
-		StateStart();
-	}
 
 
 	function OnExecutionComplete(dialog,tracker)
@@ -206,13 +239,17 @@
 			return;
 		}
 
+		if (bCheckedForRecordsWithCredentialPollution == false)
+		{
+			StateCheckForRecordsWithCredentialPollution();
+			return;
+		}
+
 		if (bCheckedUncommittedFiles == false)
 		{
 			StateCheckForUncommittedFiles();
 			return;
 		}
-
-
 
 		DoModalProgress(
 			strTitle,
@@ -242,14 +279,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-03-04 14:12:06</sys_created_on>
         <sys_id>452bfe24dbb84210f0f1d03cd3961940</sys_id>
-        <sys_mod_count>91</sys_mod_count>
+        <sys_mod_count>94</sys_mod_count>
         <sys_name>x_snc_devtools.AppVersionBaseline</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_script_452bfe24dbb84210f0f1d03cd3961940</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-03-20 12:22:43</sys_updated_on>
+        <sys_updated_on>2024-07-03 12:52:59</sys_updated_on>
         <ui_type>0</ui_type>
         <use_scoped_format>false</use_scoped_format>
         <x_snc_devtools_global>true</x_snc_devtools_global>

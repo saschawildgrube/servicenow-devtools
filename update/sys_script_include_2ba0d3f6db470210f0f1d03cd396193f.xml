@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.GetBaseTable</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns the base table of the given table, or the table itself if it is not extending any other table.</description>
+        <name>GetBaseTable</name>
+        <script><![CDATA[function GetBaseTable(strTable)
+{
+	var aSysMetaData = [
+		'ldap_server_config',
+		'sys_rest_message',
+		'sys_auth_profile_basic',
+		'ws_security_x509_profile_outbound',
+		'sys_soap_message.basic_auth_password',
+		'oauth_entity',
+		'sys_rest_message_fn',
+		'ws_security_username_profile_outbound',
+		'sys_soap_message_function',
+		'sys_soap_message_function',
+		'jwt_verifier_map',
+		'sys_sg_custom_map_provider',
+		'sys_sg_custom_map_provider',
+		'sys_auth_profile_oauth2.password',
+		'sys_data_source.scp_password','sys_data_source',
+		'jwt_keystore_aliases'
+		];
+	if (ArrayValueExists(aSysMetaData,strTable) == true)
+	{
+		return 'sys_metadata';
+	}
+	if (IsValidTable(strTable) == false)
+	{
+		return false;
+	}
+	var strParentTable = GetParentTable(strTable);
+	if (strParentTable != false)
+	{
+		return GetBaseTable(strParentTable);
+	}
+	return strTable;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-07-01 11:53:03</sys_created_on>
+        <sys_id>2ba0d3f6db470210f0f1d03cd396193f</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>GetBaseTable</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_2ba0d3f6db470210f0f1d03cd396193f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-07-03 10:02:11</sys_updated_on>
+    </sys_script_include>
+</record_update>

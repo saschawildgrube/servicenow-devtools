@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.SetAppInfo</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Sets the maintainer (team) name, maintainer email address, documentation and repository url for the given application.</description>
+        <name>SetAppInfo</name>
+        <script><![CDATA[function SetAppInfo(vApp,strMaintainer,strMaintainerEmail,strDocumentationUrl,strRepoUrl)
+{
+	var grApp = GetAppRecord(vApp);
+	if (IsValidRecord(grApp) == false)
+	{
+		return false;
+	}
+	strMaintainer = GetStringValue(strMaintainer);
+	if (strMaintainer != '')
+	{
+		grApp.x_snc_devtools_maintainer = strMaintainer;
+	}
+	strMaintainerEmail = GetStringValue(strMaintainerEmail);
+	if (strMaintainerEmail != '')
+	{
+		if (IsValidEmail(strMaintainerEmail) == false)
+		{
+			return false;
+		}
+		grApp.x_snc_devtools_maintainer_email = strMaintainerEmail;
+	}
+	strDocumentationUrl = GetStringValue(strDocumentationUrl);
+	if (strDocumentationUrl != '')
+	{
+		if (IsValidUrl(strDocumentationUrl) == false)
+		{
+			return false;
+		}
+		grApp.x_snc_devtools_documentation_url = strDocumentationUrl;
+	}
+	strRepoUrl = GetStringValue(strRepoUrl);
+	if (strRepoUrl != '')
+	{
+		if (IsValidUrl(strRepoUrl) == false)
+		{
+			return false;
+		}
+	}
+	grApp.update();
+
+	if (IsValidUrl(strRepoUrl) == true)
+	{
+		SetAppRepo(grApp,strRepoUrl);
+	}
+	return true;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-07-01 12:29:53</sys_created_on>
+        <sys_id>7d8893fedb470210f0f1d03cd39619da</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>SetAppInfo</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_7d8893fedb470210f0f1d03cd39619da</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-07-01 12:59:38</sys_updated_on>
+    </sys_script_include>
+</record_update>
