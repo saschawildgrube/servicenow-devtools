@@ -5,10 +5,12 @@
         <api_name>x_snc_devtools.GetAppRecordsWithCredentialPollution</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Returns an array with records which contain credentials contained in the given application.</description>
+        <description>Returns an array with records which contain credentials contained in the given application.&#13;
+The parameter bGeneric controls if a generic search should be performed - which may catch records in tables not defined OOTB but is significantly slower.</description>
         <name>GetAppRecordsWithCredentialPollution</name>
-        <script><![CDATA[function GetAppRecordsWithCredentialPollution(vApp)
+        <script><![CDATA[function GetAppRecordsWithCredentialPollution(vApp,bGeneric)
 {
+	bGeneric = GetBoolValue(bGeneric);
 	var grApp = GetAppRecord(vApp);
 	if (grApp == false)
 	{
@@ -16,40 +18,62 @@
 	}
 	var aRecords = [];
 
-	var grRecords = new GlideRecord('ldap_server_config');
-	grRecords.addQuery('sys_scope','=',grApp.sys_id);
-	var condition = grRecords.addQuery('password','!=',null);
-	condition.addOrCondition('dn','!=','');
-	grRecords.query();
-	while (grRecords.next())
+	function AddRecords(strTable,aElements)
 	{
-		var record =
+		var grRecords = new GlideRecord(strTable);
+		grRecords.addQuery('sys_scope','=',grApp.sys_id);
+		var condition = grRecords.addQuery(GetValue(aElements,0),'!=','');
+		for (var nElement = 1; nElement < aElements.length; nElement++)
 		{
-			sys_id: GetStringValue(grRecords.sys_id),
-			sys_class_name: GetStringValue(grRecords.getRecordClassName()),
-			name: GetStringValue(grRecords.name)
-		};
-		aRecords.push(record);
+			condition.addOrCondition(aElements[nElement],'!=','');
+		}
+		grRecords.query();
+		while (grRecords.next())
+		{
+			var record =
+			{
+				sys_id: GetStringValue(grRecords.sys_id),
+				sys_class_name: GetStringValue(grRecords.getRecordClassName()),
+				name: GetStringValue(grRecords.name)
+			};
+			aRecords.push(record);
+		}
 	}
 
-	var grRecords = new GlideRecord('sys_data_source');
-	grRecords.addQuery('sys_scope','=',grApp.sys_id);
-	var condition = grRecords.addQuery('jdbc_user_name','!=',null);
-	condition.addOrCondition('scp_user_name','!=','');
-	condition.addOrCondition('jdbc_password','!=','');
-	condition.addOrCondition('scp_password','!=','');
-	grRecords.query();
-	while (grRecords.next())
+	if (bGeneric == true)
 	{
-		var record =
+		var grDict = new GlideRecord('sys_dictionary');
+		var or = grDict.addQuery('internal_type','=','password2');
+		or.addOrCondition('internal_type','=','password');
+		grDict.query();
+		while (grDict.next())
 		{
-			sys_id: GetStringValue(grRecords.sys_id),
-			sys_class_name: GetStringValue(grRecords.getRecordClassName()),
-			name: GetStringValue(grRecords.name),
-		};
-		aRecords.push(record);
+			var strTable = x_snc_devtools.GetStringValue(grDict.name);
+			if (GetBaseTable(strTable) == 'sys_metadata')
+			{
+				AddRecords(strTable,[GetStringValue(grDict.element)]);
+			}
+		}
+		return aRecords;	
 	}
 
+	
+
+	AddRecords('ldap_server_config',['password','dn']);
+	AddRecords('sys_data_source',['jdbc_user_name','jdbc_password','scp_user_name','scp_password']);
+	AddRecords('sys_rest_message',['basic_auth_password']);
+	AddRecords('sys_auth_profile_basic',['password']);
+	AddRecords('ws_security_x509_profile_outbound',['key_store_password']);
+	AddRecords('sys_soap_message',['basic_auth_password']);
+	AddRecords('oauth_entity',['client_secret']);
+	AddRecords('sys_rest_message_fn',['basic_auth_password']);
+	AddRecords('ws_security_username_profile_outbound',['password']);
+	AddRecords('sys_soap_message_function',['basic_auth_password','key_store_password']);
+	AddRecords('jwt_verifier_map',['shared_key']);
+	AddRecords('sys_sg_custom_map_provider',
+		['map_provider_app_secret','location_provider_app_secret']);
+	AddRecords('sys_auth_profile_oauth2',['password']);
+	AddRecords('jwt_keystore_aliases',['signing_key_password']);
 
 	return aRecords;
 }]]></script>
@@ -57,13 +81,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-07-02 10:31:34</sys_created_on>
         <sys_id>d69480d7dbc74210f0f1d03cd3961948</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>11</sys_mod_count>
         <sys_name>GetAppRecordsWithCredentialPollution</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_d69480d7dbc74210f0f1d03cd3961948</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-07-02 13:25:03</sys_updated_on>
+        <sys_updated_on>2024-07-03 10:29:58</sys_updated_on>
     </sys_script_include>
 </record_update>
