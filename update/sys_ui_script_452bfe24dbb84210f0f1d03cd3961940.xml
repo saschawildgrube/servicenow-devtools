@@ -19,6 +19,7 @@
 	var bCheckedReleaseNotes = false;
 	var bCheckedUncommittedFiles = false;
 	var bCheckedForRecordsWithCredentialPollution = false;
+	var bUserConfirmation = false;
 
 	StateStart();
 
@@ -46,7 +47,7 @@
 		StateStart();
 	}
 
-function StateCheckIfBranchExists()
+	function StateCheckIfBranchExists()
 	{
 		ServerRequest(
 			'x_snc_devtools.DevToolsClientAPI',
@@ -167,7 +168,45 @@ function StateCheckIfBranchExists()
 		StateStart();
 	}
 
+	function StateUserConfirmation()
+	{
+		ServerRequest(
+			'x_snc_devtools.DevToolsClientAPI',
+			'AppVersionBaselineGetMessage',
+			{
+			},
+			StateUserConfirmationGetMessageResponse);	
+		return;
+	}
 
+	function StateUserConfirmationGetMessageResponse(strMessage)
+	{
+		if (strMessage == '')
+		{
+			bUserConfirmation = true;
+			StateStart();
+			return;
+		}
+		DoModalConfirm(
+			strTitle,
+			strMessage
+			+'\n\n'
+			+'Ready to baseline?',
+			StateUserConfirmationUserResponse);
+	}
+
+	function StateUserConfirmationUserResponse(bResult)
+	{
+		if (bResult == false)
+		{
+			StateEnd();
+			return;
+		}
+		bUserConfirmation = true;
+		StateStart();		
+	}
+
+			
 
 	function OnExecutionComplete(dialog,tracker)
 	{
@@ -225,7 +264,7 @@ function StateCheckIfBranchExists()
 		{
 			StateCheckAlreadyRunning();
 			return;
-		}		
+		}
 
 		if (bCheckedIfBranchExists == false)
 		{
@@ -248,6 +287,12 @@ function StateCheckIfBranchExists()
 		if (bCheckedUncommittedFiles == false)
 		{
 			StateCheckForUncommittedFiles();
+			return;
+		}
+
+		if (bUserConfirmation == false)
+		{
+			StateUserConfirmation();
 			return;
 		}
 
@@ -279,14 +324,14 @@ function StateCheckIfBranchExists()
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-03-04 14:12:06</sys_created_on>
         <sys_id>452bfe24dbb84210f0f1d03cd3961940</sys_id>
-        <sys_mod_count>94</sys_mod_count>
+        <sys_mod_count>98</sys_mod_count>
         <sys_name>x_snc_devtools.AppVersionBaseline</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_script_452bfe24dbb84210f0f1d03cd3961940</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-07-03 12:52:59</sys_updated_on>
+        <sys_updated_on>2024-07-04 14:31:34</sys_updated_on>
         <ui_type>0</ui_type>
         <use_scoped_format>false</use_scoped_format>
         <x_snc_devtools_global>true</x_snc_devtools_global>

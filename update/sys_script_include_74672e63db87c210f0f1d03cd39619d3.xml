@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.ConfigurationItemServiceNowAppInsertOrUpdateFromTree</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Inserts or updates configuration items that represent the all ServieNow apps from a dependency tree object. &#13;
+Returns the Sys ID of the created or updated CMDB CI representing the application at the root of the tree. </description>
+        <name>ConfigurationItemServiceNowAppInsertOrUpdateFromTree</name>
+        <script><![CDATA[function ConfigurationItemServiceNowAppInsertOrUpdateFromTree(strInstanceName,dependencytree)
+{
+	strInstanceName = GetStringValue(strInstanceName);
+	
+	if (IsObject(dependencytree) == false)
+	{
+		return false;
+	}
+
+	var strCiSysId = ConfigurationItemServiceNowAppInsertOrUpdate(
+		strInstanceName,
+		dependencytree);
+	if (IsValidSysId(strCiSysId) == false)
+	{
+		return false;
+	}
+
+	var aDependencies = GetArrayValue(GetValue(dependencytree,'_dependencies'));
+	for (var nDependency = 0; nDependency < aDependencies.length; nDependency++)
+	{
+		var dependency = aDependencies[nDependency];
+		var strDependencyCiSysId = ConfigurationItemServiceNowAppInsertOrUpdateFromTree(
+			strInstanceName,
+			dependency);
+		if (IsValidSysId(strDependencyCiSysId))
+		{
+			ConfigurationItemServiceNowAppDependencyInsertOrUpdate(
+				strCiSysId,
+				strDependencyCiSysId);
+		}
+	}
+	return strCiSysId;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-07-03 16:46:06</sys_created_on>
+        <sys_id>74672e63db87c210f0f1d03cd39619d3</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>ConfigurationItemServiceNowAppInsertOrUpdateFromTree</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_74672e63db87c210f0f1d03cd39619d3</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-07-03 17:59:38</sys_updated_on>
+    </sys_script_include>
+</record_update>

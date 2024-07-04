@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <copied_from/>
+        <description>Run Server Side Validation Script</description>
+        <display_name>Run Server Side Script</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>1</order>
+        <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-07-03 15:22:45</sys_created_on>
+        <sys_id>85449eefdb07c210f0f1d03cd3961972</sys_id>
+        <sys_mod_count>21</sys_mod_count>
+        <sys_name>Run Server Side Script</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_step_85449eefdb07c210f0f1d03cd3961972</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-07-03 17:34:26</sys_updated_on>
+        <table/>
+        <test display_value="DevTools - ConfigurationItemServiceNowAppInsertOrUpdateFromList">c024d6efdb07c210f0f1d03cd39619ef</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=85449eefdb07c210f0f1d03cd3961972"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>85449eefdb07c210f0f1d03cd3961972</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-07-03 15:22:45</sys_created_on>
+        <sys_id>33449eefdb07c210f0f1d03cd39619fc</sys_id>
+        <sys_mod_count>21</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-07-03 17:34:26</sys_updated_on>
+        <value>(function(outputs, steps, stepResult, assertEqual)&#13;
+{&#13;
+	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
+	&#13;
+	test.SetResult(true);&#13;
+&#13;
+	function TestCase_ConfigurationItemServiceNowAppInsertOrUpdateFromList(&#13;
+		strInstanceName, aApps, vExpected)&#13;
+	{&#13;
+		function TestCase_ConfigurationItemServiceNowAppInsertOrUpdateFromList_CheckResult(&#13;
+			vInput,vExpected,vResult)&#13;
+		{&#13;
+			if (vExpected != false)&#13;
+			{&#13;
+				var aResults = [];&#13;
+				var grCI = new GlideRecord('x_snc_devtools_cmdb_ci_appl_servicenow');&#13;
+				grCI.addQuery('name','STARTSWITH','_TEST');&#13;
+				grCI.orderBy('name');&#13;
+				grCI.query();&#13;
+				while (grCI.next())&#13;
+				{&#13;
+					var grRel = new GlideRecord('cmdb_rel_ci');&#13;
+					grRel.addQuery('parent','=',grCI.sys_id);&#13;
+					grRel.query();&#13;
+					aResults.push({&#13;
+							name: GetStringValue(grCI.name),&#13;
+							dependency_count: GetIntegerValue(grRel.getRowCount())			&#13;
+						});					&#13;
+				}&#13;
+				test.Log('Found in the CMDB:');&#13;
+				test.Log(aResults);	&#13;
+&#13;
+			&#13;
+				if (vResult == false)&#13;
+				{&#13;
+					test.Log('Function did not return true.');&#13;
+					return false;&#13;
+				}&#13;
+&#13;
+				var aExpected = GetArrayValue(vExpected);&#13;
+				for (var nExpected = 0; nExpected &lt; aExpected.length; nExpected++)&#13;
+				{&#13;
+					if (ArrayValueExists(aResults,aExpected[nExpected]) == false)&#13;
+					{&#13;
+						test.Log('Expected result object not found.');&#13;
+						return false;&#13;
+					}&#13;
+				}&#13;
+&#13;
+				return true;&#13;
+			}&#13;
+			return (vExpected == vResult);&#13;
+		}&#13;
+&#13;
+		test.TestCase(&#13;
+			'Function ConfigurationItemServiceNowAppInsertOrUpdateFromList()',&#13;
+			ConfigurationItemServiceNowAppInsertOrUpdateFromList,&#13;
+			{&#13;
+				'strInstanceName': strInstanceName,&#13;
+				'aApps': aApps,&#13;
+			},&#13;
+			vExpected,&#13;
+			TestCase_ConfigurationItemServiceNowAppInsertOrUpdateFromList_CheckResult);&#13;
+	}&#13;
+&#13;
+	TestCase_ConfigurationItemServiceNowAppInsertOrUpdateFromList(null,null,false);&#13;
+	TestCase_ConfigurationItemServiceNowAppInsertOrUpdateFromList('testinstance',null,false);&#13;
+	TestCase_ConfigurationItemServiceNowAppInsertOrUpdateFromList('testinstance',[],false);&#13;
+	TestCase_ConfigurationItemServiceNowAppInsertOrUpdateFromList('testinstance',{},false);&#13;
+&#13;
+	var strBetaSysId = GetPseudoSysId(true);&#13;
+	var strGammaSysId = GetPseudoSysId(true);&#13;
+&#13;
+	var aApps = [&#13;
+		{&#13;
+			sys_id: GetPseudoSysId(true),&#13;
+			name: '_TEST Alpha',&#13;
+			scope: 'x_test_alpha',&#13;
+			version: '2.0.0',&#13;
+			x_snc_devtools_repo_url: 'https://example.com/test/alpha.git',&#13;
+			branch: '2.0.0',&#13;
+			_dependencies: [&#13;
+				{&#13;
+					dependency: strBetaSysId&#13;
+				},&#13;
+				{&#13;
+					dependency: strGammaSysId&#13;
+				}&#13;
+			]&#13;
+		},&#13;
+		{&#13;
+			sys_id: strBetaSysId,&#13;
+			name: '_TEST Beta',&#13;
+			scope: 'x_test_beta',&#13;
+			version: '1.1.0',&#13;
+			x_snc_devtools_repo_url: 'https://example.com/test/beta.git',&#13;
+			branch: 'master',&#13;
+		},&#13;
+		{&#13;
+			sys_id: strGammaSysId,&#13;
+			name: '_TEST Gamma',&#13;
+			scope: 'x_test_gamma',&#13;
+			version: '3.5.0',&#13;
+			x_snc_devtools_repo_url: 'https://example.com/test/gamma.git',&#13;
+			branch: 'branch01',&#13;
+			&#13;
+		}&#13;
+	];&#13;
+		&#13;
+	TestCase_ConfigurationItemServiceNowAppInsertOrUpdateFromList('testinstance',aApps,&#13;
+		[&#13;
+			{name: '_TEST Alpha@testinstance', dependency_count: 2},&#13;
+			{name: '_TEST Beta@testinstance', dependency_count: 0},&#13;
+			{name: '_TEST Gamma@testinstance', dependency_count: 0}&#13;
+		]);&#13;
+	TestCase_ConfigurationItemServiceNowAppInsertOrUpdateFromList('',aApps,&#13;
+		[&#13;
+			{name: '_TEST Alpha@https://example.com/test/alpha.git@2.0.0', dependency_count: 2},&#13;
+			{name: '_TEST Beta@https://example.com/test/beta.git@master', dependency_count: 0},&#13;
+			{name: '_TEST Gamma@https://example.com/test/gamma.git@branch01', dependency_count: 0}&#13;
+		]);&#13;
+		&#13;
+	return test.GetResult();&#13;
+	&#13;
+})(outputs, steps, stepResult, assertEqual);</value>
+        <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>85449eefdb07c210f0f1d03cd3961972</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-07-03 15:22:45</sys_created_on>
+        <sys_id>7b449eefdb07c210f0f1d03cd39619fb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-07-03 15:22:45</sys_updated_on>
+        <value>3.1</value>
+        <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
+    </sys_variable_value>
+</record_update>
