@@ -275,6 +275,7 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>Added function ConfigurationItemServiceNowAppInsertOrUpdateFromTree().</li>
 		<li>Added function ConfigurationItemServiceNowAppInsertOrUpdateFromList().</li>
 		<li>Added DevTools view for the CMDB CI ServiceNow App list view.</li>
+		<li>The name of a ServiceNow App CI is no longer truncated in list views.</li> 
 		<li>GetPseudoSysId() now supports the bRandom parameter to return a random pseudo Sys ID.</li>
 	</ol>
 
@@ -1875,13 +1876,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1637</sys_mod_count>
+        <sys_mod_count>1638</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-07-03 21:41:18</sys_updated_on>
+        <sys_updated_on>2024-07-04 07:07:27</sys_updated_on>
     </sys_ui_page>
 </record_update>
