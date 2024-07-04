@@ -59,7 +59,7 @@ GitLabAPI.prototype = {
 	
 	Error: function(strMessage)
 	{
-		LogError('GitLabAPI: ERROR: '+strMessage);
+		LogError('GitLabAPI: ERROR:\n\n'+strMessage);
 	},
 	
 	GetRequestCount: function()
@@ -89,7 +89,10 @@ GitLabAPI.prototype = {
 		var strErrorMessage = GetStringValue(GetValue(response,'error'));
 		if (strErrorMessage != '')
 		{
-			this.Error('GitLab API returned: "'+RenderValue(strErrorMessage)+'"');
+			this.Error(
+				'GitHub API returned: "'+strErrorMessage+'"\n\n'
+				+'Url: '+strUrl+'\n\n'
+				+'Response: '+RenderValue(response));
 			return false;
 		}
 		return response;
@@ -199,13 +202,13 @@ GitLabAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-03-15 20:14:10</sys_created_on>
         <sys_id>6732c8aadb69ed106a03dad1f39619fa</sys_id>
-        <sys_mod_count>24</sys_mod_count>
+        <sys_mod_count>25</sys_mod_count>
         <sys_name>GitLabAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_6732c8aadb69ed106a03dad1f39619fa</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-04-08 16:28:31</sys_updated_on>
+        <sys_updated_on>2024-07-04 13:14:07</sys_updated_on>
     </sys_script_include>
 </record_update>
