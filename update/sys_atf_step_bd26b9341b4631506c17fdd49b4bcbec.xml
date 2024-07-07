@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-10-20 10:53:50</sys_created_on>
         <sys_id>bd26b9341b4631506c17fdd49b4bcbec</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_bd26b9341b4631506c17fdd49b4bcbec</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-11-27 16:24:22</sys_updated_on>
+        <sys_updated_on>2024-07-06 11:59:18</sys_updated_on>
         <table/>
         <test display_value="DevTools - CreateTechnicalUser">781639341b4631506c17fdd49b4bcb47</test>
         <timeout/>
@@ -35,9 +35,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-10-20 10:53:51</sys_created_on>
         <sys_id>4326f9341b4631506c17fdd49b4bcb75</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-11-27 16:24:22</sys_updated_on>
+        <sys_updated_on>2024-07-06 11:59:18</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -57,7 +57,16 @@
 				return false;&#13;
 			}&#13;
 			test.Log('Created User: '+RenderValue(GetUserRecord(vResult),true));&#13;
-						&#13;
+			var aRoles = GetRolesFromUser(vResult);&#13;
+			var vRole = GetRoleRecord(vInput['strRole'])&#13;
+			if (IsValidRecord(vRole) == true)&#13;
+			{&#13;
+				if (ArrayValueExists(aRoles,GetStringValue(vRole.sys_id)) == false)&#13;
+				{&#13;
+					test.Log('Requested role not found!');&#13;
+					return false;&#13;
+				}&#13;
+			}&#13;
 			return true;&#13;
 		}&#13;
 &#13;
@@ -65,9 +74,9 @@
 			'Function CreateTechnicalUser()',&#13;
 			CreateTechnicalUser,&#13;
 			{&#13;
-				'Name': strName,&#13;
-				'Role': strRole,&#13;
-				'Password': strPassword&#13;
+				'strName': strName,&#13;
+				'strRole': strRole,&#13;
+				'strPassword': strPassword&#13;
 			},&#13;
 			vExpected,&#13;
 			TestCase_CreateTechnicalUser_CheckResult);&#13;
@@ -77,8 +86,12 @@
 	TestCase_CreateTechnicalUser('DevTools Test',null,null,true);&#13;
 	TestCase_CreateTechnicalUser('devtools.test',null,null,false);&#13;
 &#13;
-	TestCase_CreateTechnicalUser('DevTools Test2 Admin','admin',null,true);&#13;
-	TestCase_CreateTechnicalUser('DevTools Test3','','123password456',true);&#13;
+	TestCase_CreateTechnicalUser('DevTools Test ITIL','itil',null,true);&#13;
+&#13;
+	TestCase_CreateTechnicalUser('DevTools Test Bogus','bogus',null,false);&#13;
+&#13;
+	TestCase_CreateTechnicalUser('DevTools Test Admin','admin',null,true);&#13;
+	TestCase_CreateTechnicalUser('DevTools Test NoRole','','123password456',true);&#13;
 	&#13;
 	return test.GetResult();&#13;
 	&#13;

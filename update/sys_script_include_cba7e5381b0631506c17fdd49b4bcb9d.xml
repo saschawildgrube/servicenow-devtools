@@ -21,7 +21,7 @@
 	if (strRole != '')
 	{
 		var grRole = new GlideRecord('sys_user_role');
-		grRole.addQuery('name','=','admin');
+		grRole.addQuery('name','=',strRole);
 		grRole.query();
 		if (grRole.next() == false)
 		{
@@ -72,6 +72,11 @@
 		grUserHasRole.user = strUserSysId;
 		grUserHasRole.role = strRoleSysId;
 		var strUserHasRole = GlideRecordInsert(grUserHasRole);	
+		if (IsValidSysId(strUserHasRole) == false)
+		{
+			RecordDelete('sys_user',strUserSysId);
+			return false;
+		}
 	}
 	
 	return strUserSysId;
@@ -80,13 +85,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-10-20 09:50:29</sys_created_on>
         <sys_id>cba7e5381b0631506c17fdd49b4bcb9d</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_name>CreateTechnicalUser</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_cba7e5381b0631506c17fdd49b4bcb9d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-11-27 16:19:46</sys_updated_on>
+        <sys_updated_on>2024-07-06 11:38:23</sys_updated_on>
     </sys_script_include>
 </record_update>
