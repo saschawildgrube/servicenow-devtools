@@ -12,7 +12,8 @@ Values in the parameter object are:&#13;
 - requestbody: the string to be sent as the request body. If provided the method is set to "post", if not then "get"&#13;
 - basicauth: An object containing values "username" and "password"&#13;
 - response: A string to specify how the result should be returned by HttpRequest. If set to "RESTResponseV2" an object is returned if the request did not run into an exception, otherwise the function returns the response body.&#13;
-- headers: An array of objects representing a header. A header object should contain values "name" and "value".</description>
+- headers: An array of objects representing a header. A header object should contain values "name" and "value".&#13;
+- mid_server: the name of a MID server to be used to relay the request.</description>
         <name>HttpRequest</name>
         <script><![CDATA[function HttpRequest(vInput)
 {
@@ -97,13 +98,13 @@ Values in the parameter object are:&#13;
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 09:10:34</sys_created_on>
         <sys_id>be520f981bd38450a89720a8ec4bcbab</sys_id>
-        <sys_mod_count>16</sys_mod_count>
+        <sys_mod_count>17</sys_mod_count>
         <sys_name>HttpRequest</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_be520f981bd38450a89720a8ec4bcbab</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-07-12 08:23:29</sys_updated_on>
+        <sys_updated_on>2024-07-12 11:34:42</sys_updated_on>
     </sys_script_include>
 </record_update>
