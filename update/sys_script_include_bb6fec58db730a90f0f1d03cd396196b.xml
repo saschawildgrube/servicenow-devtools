@@ -66,7 +66,11 @@ The encoded query shall prevent Instance Scan to load those records where the ch
 				sys_script:
 				{
 					query: 'advanced=true'
-				}
+				},
+				sys_ui_page:
+				{
+					query: 'processing_scriptISNOTEMPTY^ORclient_scriptISNOTEMPTY'
+				}				
 			}
 		};
 
@@ -105,13 +109,13 @@ The encoded query shall prevent Instance Scan to load those records where the ch
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-07-30 12:30:38</sys_created_on>
         <sys_id>bb6fec58db730a90f0f1d03cd396196b</sys_id>
-        <sys_mod_count>15</sys_mod_count>
+        <sys_mod_count>16</sys_mod_count>
         <sys_name>InstanceScanGetEncodedQueryToPreventUselessChecks</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_bb6fec58db730a90f0f1d03cd396196b</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-07-31 12:17:02</sys_updated_on>
+        <sys_updated_on>2024-07-31 15:49:23</sys_updated_on>
     </sys_script_include>
 </record_update>
