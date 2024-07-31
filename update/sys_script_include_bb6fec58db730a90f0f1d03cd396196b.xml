@@ -22,44 +22,67 @@ The encoded query shall prevent Instance Scan to load those records where the ch
 		return false;
 	}
 
+	var transactionCache = new x_snc_devtools.TransactionCacheAPI('DEVTOOLS');
+	
+	var rules = transactionCache.GetItem('InstanceScanGetEncodedQueryToPreventUselessChecks');
 
-	var rules =
+	if (IsObject(rules) == false)
 	{
-		script: 
+		rules =
 		{
-			sys_dictionary:
+			script: 
 			{
-				query: 'virtual=true',
-				derived: true
-			},
-			sys_security_acl:
+				sys_dictionary:
+				{
+					query: 'virtual=true',
+					derived: true
+				},
+				sys_security_acl:
+				{
+					query: 'advanced=true'
+				},
+				catalog_ui_policy:
+				{
+					query: 'run_scripts=true'
+				},
+				item_option_new:
+				{
+					query: 'save_scriptISNOTEMPTY^ORpost_insert_scriptISNOTEMPTY^ORread_scriptISNOTEMPTY'
+				},
+				sys_data_source:
+				{
+					query: 'type=CUSTOM^ORformat=Custom (Parse by Script)'
+				},
+				sys_transform_entry:
+				{
+					query: 'use_source_script=true'
+				},
+				sc_cat_item:
+				{
+					query: 'entitlement_scriptISNOTEMPTY^ORdelivery_plan_scriptISNOTEMPTY',
+					derived: true
+				},
+				sys_script:
+				{
+					query: 'advanced=true'
+				}
+			}
+		};
+
+		var gsep = new GlideScriptedExtensionPoint();
+		var eps = gsep.getExtensions('DevTools');
+		for (var nEP = 0; nEP < eps.length; nEP++)
+		{
+			var ep = eps[nEP];
+			if (IsValidFunction(ep.GetEncodedQueryToPreventUselessChecks))
 			{
-				query: 'advanced=true'
-			},
-			catalog_ui_policy:
-			{
-				query: 'run_scripts=true'
-			},
-			item_option_new:
-			{
-				query: 'save_scriptISNOTEMPTY^ORpost_insert_scriptISNOTEMPTY^ORread_scriptISNOTEMPTY'
-			},
-			sys_data_source:
-			{
-				query: 'type=CUSTOM^ORformat=Custom (Parse by Script)'
-			},
-			sys_transform_entry:
-			{
-				query: 'use_source_script=true'
-			},
-			sc_cat_item:
-			{
-				query: 'entitlement_scriptISNOTEMPTY^ORdelivery_plan_scriptISNOTEMPTY',
-				derived: true
+				rules = ep.GetEncodedQueryToPreventUselessChecks(rules);
 			}
 		}
-	};
+		transactionCache.SetItem('InstanceScanGetEncodedQueryToPreventUselessChecks',rules);
+	}
 
+	
 	var aClassNames = GetKeys(GetValue(rules,strType));
 	for (var nClassName = 0; nClassName < aClassNames.length; nClassName++)
 	{
@@ -81,13 +104,13 @@ The encoded query shall prevent Instance Scan to load those records where the ch
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-07-30 12:30:38</sys_created_on>
         <sys_id>bb6fec58db730a90f0f1d03cd396196b</sys_id>
-        <sys_mod_count>10</sys_mod_count>
+        <sys_mod_count>14</sys_mod_count>
         <sys_name>InstanceScanGetEncodedQueryToPreventUselessChecks</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_bb6fec58db730a90f0f1d03cd396196b</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-07-30 18:46:18</sys_updated_on>
+        <sys_updated_on>2024-07-31 10:25:58</sys_updated_on>
     </sys_script_include>
 </record_update>
