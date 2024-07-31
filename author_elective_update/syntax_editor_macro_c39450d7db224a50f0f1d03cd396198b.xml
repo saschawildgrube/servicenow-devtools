@@ -19,7 +19,7 @@ ConfigurationItemServiceNowAppInsertOrUpdateLocalApps();</text>
     </syntax_editor_macro>
     <sys_update_version action="INSERT_OR_UPDATE">
         <action>DELETE</action>
-        <application display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <application display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</application>
         <file_path/>
         <instance_id>bbdfc83f1ba93910699443f4bd4bcbe7</instance_id>
         <instance_name>wildvancouver</instance_name>
@@ -53,10 +53,10 @@ ConfigurationItemServiceNowAppInsertOrUpdateLocalApps();</text></syntax_editor_m
         <sys_metadata>c39450d7db224a50f0f1d03cd396198b</sys_metadata>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>ConfigurationItemServiceNowAppInsertOrUp</sys_name>
-        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_parent/>
         <sys_policy/>
-        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
         <sys_update_name>syntax_editor_macro_c39450d7db224a50f0f1d03cd396198b</sys_update_name>
         <sys_update_version display_value="syntax_editor_macro_c39450d7db224a50f0f1d03cd396198b">cb9450d7db224a50f0f1d03cd396198d</sys_update_version>
