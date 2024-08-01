@@ -16,7 +16,7 @@
 		
 		strHtml += '<h2>'+strTitle+'</h2>';
 		
-		strHtml += '<div style="border-left-width: 20px; border-left-color: lightgrey; border-left-style: solid; margin-bottom: 10px;">';
+		strHtml += '<div style="border-left-width: 20px; border-left-color: lightgrey; border-left-style: solid; margin-bottom: 10px; padding-right: 10px; padding-left: 10px">';
 		var strHtmlElement = RunScriptInGlobalScope("var strHtml = '';" + strScript + "result = strHtml");
 		strHtml += strHtmlElement;
 		strHtml += '</div>';
@@ -45,7 +45,9 @@
 		'Info Message',
 		"strHtml += x_snc_devtools.HtmlRenderInfo('This is an info message');");		
 
-
+	strHtml += HtmlRenderGalleryElement(
+		'Rounded Box',
+		"strHtml += x_snc_devtools.HtmlRenderRoundedBox('This is a rounded box');");	
 	
 	var aTabs = [
 		{
@@ -148,13 +150,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-11-09 08:17:02</sys_created_on>
         <sys_id>ba45287ddb43d9106a03dad1f39619a2</sys_id>
-        <sys_mod_count>46</sys_mod_count>
+        <sys_mod_count>49</sys_mod_count>
         <sys_name>HtmlRenderPageGallery</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_ba45287ddb43d9106a03dad1f39619a2</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-01-23 21:34:05</sys_updated_on>
+        <sys_updated_on>2024-08-01 06:55:36</sys_updated_on>
     </sys_script_include>
 </record_update>
