@@ -12,7 +12,7 @@
         <change_fields>false</change_fields>
         <client_callable>false</client_callable>
         <collection>sys_metadata</collection>
-        <condition>/* IsActive() is not required */</condition>
+        <condition>/* IsActive() is not required */ 1==1</condition>
         <description>Display the evaluator errors (warnings) that occured within a configurable time span.</description>
         <execute_function>false</execute_function>
         <filter_condition/>
@@ -38,7 +38,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>582ce6521b857110cd6153d16b4bcbdf</sys_id>
-        <sys_mod_count>19</sys_mod_count>
+        <sys_mod_count>22</sys_mod_count>
         <sys_name>sys_metadata - show evaluator errors</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -46,7 +46,7 @@
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_582ce6521b857110cd6153d16b4bcbdf</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-08-15 15:03:02</sys_updated_on>
+        <sys_updated_on>2024-08-15 17:50:21</sys_updated_on>
         <template/>
         <when>before</when>
         <x_snc_datasilos_created>false</x_snc_datasilos_created>
