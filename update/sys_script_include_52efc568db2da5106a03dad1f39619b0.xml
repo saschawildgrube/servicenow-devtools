@@ -5,12 +5,27 @@
         <api_name>x_snc_devtools.GitHubAPI</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Interface to the GitHub API.</description>
+        <description>Interface to the GitHub API.
+|
+Methods:
+* initialize()
+* SetCredential()
+* SetMidServer()
+* SetBasicAuth()
+* SetApiUrl()
+* GetApiUrl()
+* Error()
+* GetRequestCount()
+* Request()
+* GetPublicReposFromOwner()
+* GetBranchesFromRepo()
+* GetFilesFromBranch()
+* GetFile()</description>
         <name>GitHubAPI</name>
         <script><![CDATA[var GitHubAPI = Class.create();
-GitHubAPI.prototype = {
+GitHubAPI.prototype = { 
 	
-    initialize: function(vAuthentication)
+    initialize: function()
 	{
 		this.SetApiUrl('https://api.github.com/');
 		this.m_basicauth = { username: '', password: ''};
@@ -237,13 +252,13 @@ GitHubAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-03-09 21:01:35</sys_created_on>
         <sys_id>52efc568db2da5106a03dad1f39619b0</sys_id>
-        <sys_mod_count>73</sys_mod_count>
+        <sys_mod_count>76</sys_mod_count>
         <sys_name>GitHubAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_52efc568db2da5106a03dad1f39619b0</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-08-15 09:45:29</sys_updated_on>
+        <sys_updated_on>2024-08-15 09:49:26</sys_updated_on>
     </sys_script_include>
 </record_update>
