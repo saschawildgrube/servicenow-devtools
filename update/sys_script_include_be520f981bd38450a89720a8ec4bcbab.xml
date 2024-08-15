@@ -9,7 +9,8 @@
 The vInput parameter can either contain the target url as a string or a parameter object.&#13;
 Values in the parameter object are:&#13;
 - url: the url to be requested&#13;
-- requestbody: the string to be sent as the request body. If provided the method is set to "post", if not then "get"&#13;
+- method: the http verb to be used (e.g. "get", "post", etc.)&#13;
+- requestbody: the string to be sent as the request body. If provided the method is set to "post" no matter what is specified in the method parameter.&#13;
 - basicauth: An object containing values "username" and "password"&#13;
 - response: A string to specify how the result should be returned by HttpRequest. If set to "RESTResponseV2" an object is returned if the request did not run into an exception, otherwise the function returns the response body.&#13;
 - headers: An array of objects representing a header. A header object should contain values "name" and "value".&#13;
@@ -38,15 +39,25 @@ Values in the parameter object are:&#13;
 		return false;
 	}
 
-	var strRequestBody = GetStringValue(GetValue(params,'requestbody'));
-	var http = new sn_ws.RESTMessageV2();
-	if (strRequestBody == '')
+	var strMethod = GetStringValue(GetValue(params,'method'));
+	if (strMethod != '')
 	{
-		http.setHttpMethod('get');
+		http.setHttpMethod(strMethod);
 	}
 	else
 	{
-		http.setHttpMethod('post');
+		strMethod = 'get';
+		http.setHttpMethod('get');
+	}
+
+	var strRequestBody = GetStringValue(GetValue(params,'requestbody'));
+	var http = new sn_ws.RESTMessageV2();
+	if (strRequestBody != '')
+	{
+		if (strMethod != 'post')
+		{
+			http.setHttpMethod('post');
+		}
 		http.setRequestBody(strRequestBody);
 	}
 
@@ -98,13 +109,13 @@ Values in the parameter object are:&#13;
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 09:10:34</sys_created_on>
         <sys_id>be520f981bd38450a89720a8ec4bcbab</sys_id>
-        <sys_mod_count>17</sys_mod_count>
+        <sys_mod_count>19</sys_mod_count>
         <sys_name>HttpRequest</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_be520f981bd38450a89720a8ec4bcbab</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-07-12 11:34:42</sys_updated_on>
+        <sys_updated_on>2024-08-15 15:30:41</sys_updated_on>
     </sys_script_include>
 </record_update>
