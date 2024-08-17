@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.MakeCsv</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Creates a CSV file based on the given parameters.</description>
+        <name>MakeCsv</name>
+        <script><![CDATA[function MakeCsv(aData,strSeparator,strQuote,strEscapedQuote,strEol)
+{
+	aData = GetArrayValue(aData);
+	if (aData.length == 0)
+	{
+		return '';
+	}
+	strSeparator = GetStringValue(strSeparator);
+	if (strSeparator == '')
+	{
+		strSeparator = ',';
+	}
+	strQuote = GetStringValue(strQuote);
+	if (strQuote == '')
+	{
+		strQuote = '"';
+	}
+	strEscapedQuote = GetStringValue(strEscapedQuote);
+	if (strEscapedQuote == '')
+	{
+		strEscapedQuote = '""';
+	}
+	strEol = GetStringValue(strEol);
+	if (strEol == '')
+	{
+		strEol = '\r\n';
+	}
+	var aHeaders = [];
+	for (var nRow = 0; nRow < aData.length; nRow++)
+	{
+		var row = aData[nRow];
+		aHeaders = ArrayAppend(aHeaders,GetKeys(row));
+	}
+	aHeaders = ArrayUnique(aHeaders);
+
+	if (aHeaders.length == 0)
+	{
+		return '';
+	}
+
+	var strCsv = "";
+	for (var nHeader = 0; nHeader < aHeaders.length; nHeader++)
+	{
+		if (strCsv != '')
+		{
+			strCsv += strSeparator;
+		}
+		var strHeader = aHeaders[nHeader];
+		strCsv += strQuote + strHeader + strQuote;
+	}
+
+	for (var nRow = 0; nRow < aData.length; nRow++)	
+	{
+		strCsv += strEol;
+		var strRow = '';
+		for (var nHeader = 0; nHeader < aHeaders.length; nHeader++)
+		{
+			if (strRow != '')
+			{
+				strRow += strSeparator;
+			}
+			var strValue = GetValue(aData,nRow,aHeaders[nHeader]);
+			strValue = StringReplace(strValue,'\r\n','\n');
+			strValue = StringReplace(strValue,'\r','\n');
+			strValue = StringReplace(strValue,'\n',strEol);
+			//strValue = StringDecodeUTF8(strValue);
+			strValue = StringReplace(strValue,strQuote,strEscapedQuote);
+			strRow += strQuote  + strValue + strQuote;
+		}
+		strCsv += strRow;
+	}
+					
+	return strCsv;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-08-17 12:32:06</sys_created_on>
+        <sys_id>c657dd82db481a10f0f1d03cd396198d</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>MakeCsv</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_c657dd82db481a10f0f1d03cd396198d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-08-17 12:52:47</sys_updated_on>
+    </sys_script_include>
+</record_update>
