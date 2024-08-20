@@ -30,12 +30,14 @@ Values in the parameter object are:&#13;
 		strUrl = GetStringValue(GetValue(vInput,'url'));
 		if (strUrl == '')
 		{
+			LogError('HttpRequest: No url specified!');
 			return false;
 		}
 	}
 
 	if (IsValidUrl(strUrl) == false)
 	{
+		LogError('HttpRequest: Url invalid: '+strUrl);
 		return false;
 	}
 
@@ -84,6 +86,24 @@ Values in the parameter object are:&#13;
 	var strMidServer = GetStringValue(GetValue(params,'mid_server'));
 	if (strMidServer != '')
 	{
+		var grAgent = new GlideRecord('ecc_agent');
+		grAgent.addQuery('name','=',strMidServer);
+		grAgent.query();
+		if (grAgent.getRowCount() > 1)
+		{
+			LogError('HttpRequest: Found more than one MID server with name: "'+strMidServer+'"');
+			return false;
+		}
+		if (grAgent.next() == false)
+		{
+			LogError('HttpRequest: Could find MID server named: "'+strMidServer+'"');
+			return false;
+		}
+		if (grAgent.status != 'Up')
+		{
+			LogError('HttpRequest: MID server "'+strMidServer+'" is not in status "Up"!');
+			return false;
+		}
 		http.setMIDServer(strMidServer);	
 	}
 	http.setEndpoint(strUrl);
@@ -93,7 +113,7 @@ Values in the parameter object are:&#13;
 	}
 	catch (e)
 	{
-		LogError(e);
+		LogError('HttpRequest: http.execute threw an exception: ' + RenderValue(e));
 		return false;
 	}
 
@@ -110,13 +130,13 @@ Values in the parameter object are:&#13;
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 09:10:34</sys_created_on>
         <sys_id>be520f981bd38450a89720a8ec4bcbab</sys_id>
-        <sys_mod_count>20</sys_mod_count>
+        <sys_mod_count>26</sys_mod_count>
         <sys_name>HttpRequest</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_be520f981bd38450a89720a8ec4bcbab</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-08-15 17:05:04</sys_updated_on>
+        <sys_updated_on>2024-08-20 15:55:43</sys_updated_on>
     </sys_script_include>
 </record_update>
