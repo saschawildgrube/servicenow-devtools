@@ -43,7 +43,6 @@ If bAsync is true, the function will return the progress id of the triggered bac
 	if (grProgress != false)
 	{
 		var strStateCode = GetStringValue(grProgress.state_code);  
-		Debug(grProgress);
 		if (strStateCode != 'success')
 		{
 			return false;
@@ -55,13 +54,13 @@ If bAsync is true, the function will return the progress id of the triggered bac
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-03-06 12:51:59</sys_created_on>
         <sys_id>839cf451db300610f0f1d03cd3961970</sys_id>
-        <sys_mod_count>14</sys_mod_count>
+        <sys_mod_count>15</sys_mod_count>
         <sys_name>SourceControlSwitchToBranch</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_839cf451db300610f0f1d03cd3961970</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-08-25 14:24:36</sys_updated_on>
+        <sys_updated_on>2024-08-25 14:41:34</sys_updated_on>
     </sys_script_include>
 </record_update>
