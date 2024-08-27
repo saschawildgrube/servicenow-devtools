@@ -246,6 +246,21 @@
 		RecordSetValue('sys_script',grBR.sys_id,'filter_condition','');
 	}
 	
+	Log('Deleting sys_ui_list records referring to non-existing tables...');
+	var grUL = new GlideRecord('sys_ui_list');
+	grUL.addQuery('sys_scope','=',strAppSysId);
+	grUL.query();
+	while (grUL.next())
+	{
+		var strTable = grUL.getValue('name');
+		Log('Checking record: '+ RenderRecordSummary(grUL));
+		
+		if (IsValidTable(strTable) == false)
+		{
+			Log('Table '+strTable+' does not exist. Deleting record!');
+			RecordDelete('sys_ui_list',grUL.sys_id);
+		}
+	}	
 	
 	Log('Completed!');
 	
@@ -256,13 +271,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-02-23 08:18:05</sys_created_on>
         <sys_id>f5a58b38dbaee010ba15a35305961957</sys_id>
-        <sys_mod_count>74</sys_mod_count>
+        <sys_mod_count>77</sys_mod_count>
         <sys_name>AppSanity</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_f5a58b38dbaee010ba15a35305961957</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-08-16 09:57:02</sys_updated_on>
+        <sys_updated_on>2024-08-27 15:05:56</sys_updated_on>
     </sys_script_include>
 </record_update>

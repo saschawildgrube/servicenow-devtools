@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_list action="DELETE" parent="sys_app" relationship="" sys_domain="global" table="x_snc_devtools_technical_depth" version="2" view="devtools">
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>short_description</element>
+            <list_id display_value="x_snc_devtools_technical_depth" element="NULL" name="x_snc_devtools_technical_depth" parent="sys_app" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">d3af70ef1bd961105b76777d8b4bcb02</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>0</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2023-03-06 17:00:48</sys_created_on>
+            <sys_id>9faf70ef1bd961105b76777d8b4bcb02</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2023-03-06 17:00:48</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>id</element>
+            <list_id display_value="x_snc_devtools_technical_depth" element="NULL" name="x_snc_devtools_technical_depth" parent="sys_app" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">d3af70ef1bd961105b76777d8b4bcb02</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>1</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2023-03-06 17:00:48</sys_created_on>
+            <sys_id>13af70ef1bd961105b76777d8b4bcb03</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2023-03-06 17:00:48</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>switch</element>
+            <list_id display_value="x_snc_devtools_technical_depth" element="NULL" name="x_snc_devtools_technical_depth" parent="sys_app" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">d3af70ef1bd961105b76777d8b4bcb02</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>2</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2023-03-06 17:00:48</sys_created_on>
+            <sys_id>93af70ef1bd961105b76777d8b4bcb03</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2023-03-06 17:00:48</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element/>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <name>x_snc_devtools_technical_depth</name>
+            <parent>sys_app</parent>
+            <position/>
+            <relationship/>
+            <sum>false</sum>
+            <sys_class_name>sys_ui_list</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2023-03-06 17:00:48</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>d3af70ef1bd961105b76777d8b4bcb02</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_snc_devtools_technical_depth</sys_name>
+            <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+            <sys_update_name>sys_ui_list_x_snc_devtools_technical_depth_sys_app_devtools</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2023-03-06 17:00:48</sys_updated_on>
+            <sys_user/>
+            <view display_value="DevTools" name="devtools">75e08353dbbf0450ba15a35305961913</view>
+            <view_name/>
+        </sys_ui_list>
+    </sys_ui_list>
+<sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>00dfd44b1b640a14a43dcb7b234bcbf2</instance_id>
+        <instance_name>wildwashington</instance_name>
+        <name>sys_ui_list_x_snc_devtools_technical_depth_sys_app_devtools</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_list parent="sys_app" relationship="" sys_domain="global" table="x_snc_devtools_technical_depth" version="2" view="devtools">
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>short_description</element>
+            <list_id display_value="x_snc_devtools_technical_depth" element="NULL" name="x_snc_devtools_technical_depth" parent="sys_app" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">d3af70ef1bd961105b76777d8b4bcb02</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>0</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2023-03-06 17:00:48</sys_created_on>
+            <sys_id>9faf70ef1bd961105b76777d8b4bcb02</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2023-03-06 17:00:48</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>id</element>
+            <list_id display_value="x_snc_devtools_technical_depth" element="NULL" name="x_snc_devtools_technical_depth" parent="sys_app" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">d3af70ef1bd961105b76777d8b4bcb02</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>1</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2023-03-06 17:00:48</sys_created_on>
+            <sys_id>13af70ef1bd961105b76777d8b4bcb03</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2023-03-06 17:00:48</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>switch</element>
+            <list_id display_value="x_snc_devtools_technical_depth" element="NULL" name="x_snc_devtools_technical_depth" parent="sys_app" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">d3af70ef1bd961105b76777d8b4bcb02</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>2</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2023-03-06 17:00:48</sys_created_on>
+            <sys_id>93af70ef1bd961105b76777d8b4bcb03</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2023-03-06 17:00:48</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element/>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <name>x_snc_devtools_technical_depth</name>
+            <parent>sys_app</parent>
+            <position/>
+            <relationship/>
+            <sum>false</sum>
+            <sys_class_name>sys_ui_list</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2023-03-06 17:00:48</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>d3af70ef1bd961105b76777d8b4bcb02</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_snc_devtools_technical_depth</sys_name>
+            <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+            <sys_update_name>sys_ui_list_x_snc_devtools_technical_depth_sys_app_devtools</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2023-03-06 17:00:48</sys_updated_on>
+            <sys_user/>
+            <view display_value="DevTools" name="devtools">75e08353dbbf0450ba15a35305961913</view>
+            <view_name/>
+        </sys_ui_list>
+    </sys_ui_list>
+</record_update>]]></payload>
+        <payload_hash>2127458771</payload_hash>
+        <record_name>Custom Application.x_snc_devtools_technical_depth</record_name>
+        <reverted_from/>
+        <source>fb3d4454c35cda505a37f90705013195</source>
+        <source_table>sys_upgrade_history</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-08-24 06:32:54</sys_created_on>
+        <sys_id>1dbd4818c35cda505a37f907050131c9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19183167c2f0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-08-24 06:32:54</sys_updated_on>
+        <type>List Layout</type>
+        <update_guid>d5bd48181f5cda5004be7ea930fc20c9</update_guid>
+        <update_guid_history>d5bd48181f5cda5004be7ea930fc20c9:0,0211aba7c3c05a50ccedfe7f52838026:0,d02c9b6714805a50a30a700910ad199d:0,fb73e8f58a00525055738a1fdc77d854:0,490cc3a112881250e570928b418f0f83:0,04e0b7a0c2f346504929c46fde2f7aca:0,dfde3ae4abff065033827240778d2082:0,04e79c009d77c250d11cc01429c17343:0,058f0c4cd8f3c250f26b2141be44a0df:0,e691edbc10d78e50d4bfd4edfe128096:0,e217d2a0e09b4e5013b1c6f1b256cb37:0,d7905844a213ca50c584468a42dfa73d:0,8156c800cddf8a50233472dd1b1204ca:0,07d935efa5074a50173d7b7dcfe7d6c9:0,312da92bf6c34a5076c9a18d06b921d6:0,0617345e998fc2501914e78631caad83:0,0f937cde804fc250f2c072791bb180c8:0,6d710cfb4a7a4a106f810de28348a21f:0,d8f433275d3a4a1049cd0e9f409fbddd:0,f2076502bcbe821050e66bb8c00f8f0a:0,22df55ce2d3e8210ff9548972462011e:0,7342af718c36821045f23e76c4c769a0:0,5d6b5f713ef28210a78dcab0aa117f0c:0,447b42e79b2e8a10fc95fa8fa01b6fc1:0,d4878a2b39ea8a10ef15b8e18d3ea7ad:0,8db785eec46a46108bf403c1522e8b30:0,07310da640e206105002a126a3722156:0,620f7b7571e28210789a3cecc508caf2:0,9691fb31e7a282100869b9f043d0ca60:0,ef8b533570f8c610c8b887d59d18d729:0,22297f7c1878c210954b1b06b793376f:0,1e52c10eabe1f550b8a33b4a9ddf8475:0,e961cd86e0e1f550147a6342d1d84f74:-833394221,ae283ad5f321b550ce89b2f57a96475e:0,2b373291c921b5503372fb05eb7f371c:1376278486,6a5282be3d99f9109c8e362f6f53e674:0,1e81ce3a3c99f910879207d9db379df2:1376278486,3d1cb1a56f59b510a8ec82951f65960e:0,fd4bb5610f59b510764e6188ae3bd524:1376278486,52f4dca9afc9bd10bf0ec62cdc6b9d86:0,27e3d86551c9bd109584f01e02b5adb5:-833394221,a7ade41c11747d10cb175b9273dd058f:0,2cdce4d48e747d10d7a3897df5d5be23:1376278486,d5d27238e4d47110db8a931453158073:0,6ce1feb07bd4711076aaa137e643b19c:1376278486,e5ee30a50a97251058542dffe9058f99:0,012ebc218a972510b9d15b02e7ca4844:-833394221,6ac0403f268be110aae9f1b79486c82d:0,cbdf33e7078be110199ed31d5678c4d1:1376278486,f91b1096812a25103b1516ac8e5aca17:0,1c5a5c12d42a2510f72779693676fe8a:1376278486,430bdabbb456a110274ae407366ee5e9:0,942ada77bc56a1109ff784b8204b7d80:1376278486,4841b671d2422150483b546fbbe5fd3d:0,3f70be3d960221502c42a200c3d870ed:1376278486,743b44697ecaad10a1e8a2bbe40f400c:0,1faf70ef7ed961109d771dc6009eb204:-299023979,318ff8afd5d96110cd319ad02720958f:711849870</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-08-27 15:02:58</sys_created_on>
+        <sys_db_object display_value="" name="sys_ui_list">sys_ui_list</sys_db_object>
+        <sys_id>0cc08ccf63f0421ab077a555c6c4a284</sys_id>
+        <sys_metadata>d3af70ef1bd961105b76777d8b4bcb02</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_snc_devtools_technical_depth</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sys_ui_list_x_snc_devtools_technical_depth_sys_app_devtools</sys_update_name>
+        <sys_update_version display_value="sys_ui_list_x_snc_devtools_technical_depth_sys_app_devtools">1dbd4818c35cda505a37f907050131c9</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-08-27 15:02:58</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
