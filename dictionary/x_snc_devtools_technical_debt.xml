@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element attributes="update_synch=true" db_object_id="3fdff8231b5e2110cd6153d16b4bcb63" extends="sys_metadata" label="Technical Debt" max_length="40" name="x_snc_devtools_technical_debt" type="collection">
+        <element display="true" label="Short Description" mandatory="true" max_length="80" name="short_description" type="string"/>
         <element label="Description" max_length="2000" name="description" type="string"/>
         <element label="ID" max_length="20" name="id" type="string"/>
-        <element display="true" label="Short Description" mandatory="true" max_length="80" name="short_description" type="string"/>
         <element label="Switch" max_length="40" name="switch" type="boolean"/>
     </element>
 </database>

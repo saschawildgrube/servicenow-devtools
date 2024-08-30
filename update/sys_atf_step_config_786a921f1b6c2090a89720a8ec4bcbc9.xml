@@ -20,6 +20,7 @@ generateDescription();
         <name>DevTools - Check scoped app sanity</name>
         <order>9000</order>
         <outputs/>
+        <performance_include>false</performance_include>
         <step_env display_value="Server - Independent">6c2bcea1870312009dccc9ded0e3ecca</step_env>
         <step_execution_generator><![CDATA[(function executeStep(inputs, outputs, stepResult, timeout)
 {
@@ -329,14 +330,14 @@ generateDescription();
         <sys_id>786a921f1b6c2090a89720a8ec4bcbc9</sys_id>
         <sys_mod_count>94</sys_mod_count>
         <sys_name>DevTools - Check scoped app sanity</sys_name>
-        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
-        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_config_786a921f1b6c2090a89720a8ec4bcbc9</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2024-07-16 08:48:47</sys_updated_on>
         <template_reminder>TBD</template_reminder>
-        <type display_value="Test Step" name="sys_atf_step">cf50cdd1b9d03110d0adbb64e3a1e917</type>
+        <type display_value="Test Step" name="sys_atf_step">c9aae00783e0021000d5ccc0deaad354</type>
         <wizard_redirect/>
     </sys_atf_step_config>
     <sys_translated_text action="delete_multiple" query="documentkey=786a921f1b6c2090a89720a8ec4bcbc9"/>

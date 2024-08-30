@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element db_object_id="ee9921bedba2c650f0f1d03cd39619c3" extends="cmdb_ci_appl" label="ServiceNow App" max_length="40" name="x_snc_devtools_cmdb_ci_appl_servicenow" type="collection">
-        <element label="Application Instance Name" max_length="100" name="app_instance_name" type="string"/>
-        <element label="Application Name" max_length="200" name="app_name" type="string"/>
-        <element label="Application Repository Branch" max_length="30" name="app_repo_branch" type="string"/>
+        <element label="Unique Identifier" max_length="300" name="app_unique_identifier" read_only="true" type="string"/>
         <element label="Application Repository Url" max_length="1024" name="app_repo_url" type="url"/>
+        <element label="Application Name" max_length="200" name="app_name" type="string"/>
         <element label="Application Scope" max_length="20" name="app_scope" type="string"/>
         <element label="Application Short Description" max_length="1000" name="app_short_description" type="string"/>
-        <element label="Application Sys Id" max_length="32" name="app_sys_id" type="string"/>
-        <element label="Unique Identifier" max_length="300" name="app_unique_identifier" read_only="true" type="string"/>
         <element label="Application Version" max_length="10" name="app_version" type="string"/>
+        <element label="Application Instance Name" max_length="100" name="app_instance_name" type="string"/>
+        <element label="Application Sys Id" max_length="32" name="app_sys_id" type="string"/>
+        <element label="Application Repository Branch" max_length="30" name="app_repo_branch" type="string"/>
     </element>
 </database>

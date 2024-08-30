@@ -19,7 +19,7 @@ InstanceScanGetEncodedQueryToPreventUselessChecks();</text>
     </syntax_editor_macro>
     <sys_update_version action="INSERT_OR_UPDATE">
         <action>DELETE</action>
-        <application display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <application display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</application>
         <file_path/>
         <instance_id>bbdfc83f1ba93910699443f4bd4bcbe7</instance_id>
         <instance_name>wildvancouver</instance_name>
@@ -44,7 +44,7 @@ InstanceScanGetEncodedQueryToPreventUselessChecks();</text></syntax_editor_macro
         <update_guid_history>9a098edca1b70a90073adb877c7a7e7c:-1957664187</update_guid_history>
     </sys_update_version>
     <sys_metadata_delete action="INSERT_OR_UPDATE">
-        <sys_audit_delete display_value="InstanceScanGetEncodedQueryToPreventUsel">a3198edcdbb70a90f0f1d03cd39619d7</sys_audit_delete>
+        <sys_audit_delete display_value="">a3198edcdbb70a90f0f1d03cd39619d7</sys_audit_delete>
         <sys_class_name>sys_metadata_delete</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-07-30 19:00:42</sys_created_on>
@@ -53,10 +53,10 @@ InstanceScanGetEncodedQueryToPreventUselessChecks();</text></syntax_editor_macro
         <sys_metadata>92098edcdbb70a90f0f1d03cd396197b</sys_metadata>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>InstanceScanGetEncodedQueryToPreventUsel</sys_name>
-        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_parent/>
         <sys_policy/>
-        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
         <sys_update_name>syntax_editor_macro_92098edcdbb70a90f0f1d03cd396197b</sys_update_name>
         <sys_update_version display_value="syntax_editor_macro_92098edcdbb70a90f0f1d03cd396197b">96098edcdbb70a90f0f1d03cd396197d</sys_update_version>

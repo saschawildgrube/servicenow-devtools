@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element attributes="update_synch=true" db_object_id="cef79168973b9550a6a07767f053af05" extends="sys_metadata" label="Dependency" max_length="40" name="x_snc_devtools_dependency" type="collection">
-        <element label="Dependency" mandatory="true" max_length="32" name="dependency" reference="sys_package" reference_qual="name!=Global^EQ" reference_qual_condition="name!=Global^EQ" type="reference"/>
-        <element label="Documentation" max_length="1024" name="documentation_url" type="url"/>
-        <element display="true" label="Name" max_length="100" name="name" type="string"/>
-        <element label="Package Class" max_length="200" name="package_class" read_only="true" type="string"/>
         <element attributes="no_truncate=true" label="Reason" max_length="4000" name="reason" type="string"/>
-        <element label="Repository" max_length="1024" name="repo_url" type="url"/>
+        <element label="Package Class" max_length="200" name="package_class" read_only="true" type="string"/>
+        <element label="Dependency" mandatory="true" max_length="32" name="dependency" reference="sys_package" reference_qual="name!=Global^EQ" reference_qual_condition="name!=Global^EQ" type="reference"/>
         <element label="Compatible Versions" max_length="40" name="versions" type="string"/>
+        <element display="true" label="Name" max_length="100" name="name" type="string"/>
+        <element label="Repository" max_length="1024" name="repo_url" type="url"/>
+        <element label="Documentation" max_length="1024" name="documentation_url" type="url"/>
         <index name="index">
             <element name="dependency"/>
         </index>
