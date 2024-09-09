@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.GetSharedApplicationRecord</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns the shared application record based on the given app or shared application Sys Id.</description>
+        <name>GetSharedApplicationRecord</name>
+        <script><![CDATA[function GetSharedApplicationRecord(vAppOrSysId)
+{
+	var grSharedApp = new GlideRecord('x_snc_devtools_shared_application');
+	if (grSharedApp.get(vAppOrSysId) == true)
+	{
+		return grSharedApp;
+	}
+
+	var grApp = GetAppRecord(vAppOrSysId);
+	if (IsValidRecord(grApp) == false)
+	{
+		return false;
+	}
+	var grSharedApp = new GlideRecord('x_snc_devtools_shared_application');
+	grSharedApp.addQuery('application','=',grApp.sys_id);
+	grSharedApp.query();
+	if (grSharedApp.next() == false)
+	{
+		return false;
+	}
+	return grSharedApp;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-09-09 07:39:33</sys_created_on>
+        <sys_id>c8857a99c3e492105a37f907050131c2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>GetSharedApplicationRecord</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_c8857a99c3e492105a37f907050131c2</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-09-09 07:39:33</sys_updated_on>
+    </sys_script_include>
+</record_update>
