@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="52d9aed9c3a492105a37f9070501313f" label="Shared Application" max_length="40" name="x_snc_devtools_shared_application" type="collection">
+        <element label="Maintainer Email" mandatory="true" max_length="100" name="maintainer_email" type="email"/>
+        <element label="Repository" mandatory="true" max_length="1024" name="repo_url" type="url"/>
+        <element label="Documentation" mandatory="true" max_length="1024" name="documentation_url" type="url"/>
+        <element display="true" label="Application" mandatory="true" max_length="32" name="application" reference="sys_app" type="reference"/>
+        <element label="Maintainer" mandatory="true" max_length="80" name="maintainer" type="string"/>
+        <index name="index">
+            <element name="application"/>
+        </index>
+    </element>
+</database>
