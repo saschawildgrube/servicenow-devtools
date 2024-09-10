@@ -73,14 +73,16 @@ gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData
 	
 	<h2>Features</h2>
 
-	<h3>Script Includes and UI scripts</h3>
-	<p>DevTools contains a wide variety of functions and classes (server-side and client-side) for re-use. Please refer to the reference section for details.</p>
+	<h3>Script Includes and UI Scripts</h3>
+	<p>DevTools contains a wide variety of functions and classes (server-side and client-side) for re-use.</p>
+	<p>Please refer to the reference section for details.</p>
 	
 	<h3>UI Actions</h3>
 	<p>DevTools contains a number of very helpful UI Actions. One of the most powerful features is the "Save" button with active scope switching capabilities. Never ever loose changes because of switching between scopes and browser tabs at the same time.</p>
+	<p>Please refer to the reference section for details.</p>
 	
 	<h3>Cross Scope Scripting</h3>
-	<p>The function&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=cc44a1c91b4b7450edf3642aab4bcb13" target="_blank">RunScriptInScope()</a>&#160;allows to execute code in any scope no matter what the current execution scope is. The function&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=7303bde9db30a410ba15a35305961968" target="_blank">RunScriptInGlobalScope()</a>&#160;specifically allows code execution in the global scope from any other other scope. This allows the use of API functions and classes which are only available in the global scope and NOT in scoped scripts. This allows more flexibility when developing scoped apps - and effectively removes any barriers between apps. The authors of DevTools believe that this is a good thing. Application scopes are NOT a security boundary. Scoped APIs have just not been implemented completely - so using these techniques serves as a workaround for incomplete scoped API implementation. It also allows scoped apps to interact with each other which would otherwise be impossible. We also believe that deployments via update sets are a method of the past. Features should always be deployed as part of scoped (or global scoped) applications via source control or AppRepo. This however requires such apps to perform installation steps - like manipulations of OOTB records - which would not be possible from within their own scope. Hence cross scope scripting techniques finally enable fully automated deployment pipelines without the need of any manual interventions.</p>
+	<p>The function&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=cc44a1c91b4b7450edf3642aab4bcb13" target="_blank">RunScriptInScope()</a>&#160;allows to execute code in any scope no matter what the current execution scope is. The function&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=7303bde9db30a410ba15a35305961968" target="_blank">RunScriptInGlobalScope()</a>&#160;specifically allows code execution in the global scope from any other other scope. This allows the use of API functions and classes which are only available in the global scope and NOT in scoped scripts. This allows more flexibility when developing scoped apps - and effectively removes any barriers between apps. The authors of DevTools believe that this is a good thing. Application scopes are NOT a security boundary. Scoped APIs have just not been implemented completely - so using these techniques serves as a workaround for incomplete scoped API implementation. It also allows scoped apps to interact with each other which would otherwise be impossible. I also believe that deployments via update sets are a method of the past. Features should always be deployed as part of scoped (or global scoped) applications via source control or AppRepo. This however requires such apps to perform installation steps - like manipulations of OOTB records - which would not be possible from within their own scope. Hence cross scope scripting techniques finally enable fully automated deployment pipelines without the need of any manual interventions.</p>
 	<p>To enable cross scope scripting the system property&#160;<a href="/nav_to.do?uri=sys_properties.do?sys_id=9e52826587120300cf2d5fb736cb0b7f" target="_blank">glide.record.legacy_cross_scope_access_policy_in_script</a>&#160;must be set to true. As of the release of this DevTools version the only publicly accessible documentation of the system property's behaviour can be found in the knowledge base article&#160;<a href="https://support.servicenow.com/kb?id=kb_article_view&amp;sysparm_article=KB0779287" target="_blank">KB0779287</a>.</p>
 	
 	<h3>Baseline Application Version</h3>
@@ -96,6 +98,19 @@ gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData
 		<li>Increase the minor version</li>
 		<li>Add the postfix "WORK IN PROGRESS" to the application name</li>
 	</ol>
+
+	<h3>Shared Applications</h3>
+	<p>A "Shared Application" is an application that is created and developed by a 3rd party, members of the open source community, a different department or organization. The application is hence "shared" by that other entity and imported to your own organization.</p>
+	<p>This requires such shared application to be treated differently than applications that are created and developed by your own organization:</p>
+	<ul>
+		<li>Set maintainer and maintainer emails will differ as your own teams must embrace ownership shared applications.</li>
+		<li>The set documentation url should link to your own organization's knowledge management system.</li>
+		<li>The set repository url should point to your own organization's source control system repository for the application.</li>
+		<li>Whenever a change seems to be required in a shared application a hard choice is to be made: either you can contact the original author and ask for the change or your team(s) make the change themselves. The latter comes with a downside: Any change made may have to be backported into future versions of that shared application.</li>
+		<li>When baselining a new version into your source control repository, a shared application must also be treated in a different way. E.g. the "new" version must not be associated with the current date in the release notes and the version number should not be increased during baselining.</li> 
+	</ul>
+	<p>DevTools helps you with all of that (except for the decisions how required changes are made). By adding a record in the "Shared Applications" table for a shared application, the application is managed properly during baseline.</p> 
+
 	
 	<h3>Dependency Management</h3>
 	<p>In an ideal world all customizations are implemented in scoped apps (and some global scoped apps if there are really good reasons). And in that same ideal world, non of these apps have any dependencies. Each app can be installed and uninstalled independently. The real corporate world, however, is complex, messy and full of dependencies. For good reasons, separate capablities are implemented as separate apps and hence these apps have dependencies to each other. For example: apps add fields to tables that are defined in other apps, they run scripts from other apps, or rely on logic implemented in flows from other apps.</p>
@@ -2035,13 +2050,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1748</sys_mod_count>
+        <sys_mod_count>1750</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-09-10 08:06:14</sys_updated_on>
+        <sys_updated_on>2024-09-10 08:35:31</sys_updated_on>
     </sys_ui_page>
 </record_update>
