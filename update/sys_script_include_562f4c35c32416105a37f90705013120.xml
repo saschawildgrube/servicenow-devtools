@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.Deprecated</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>The function is to be called from within code that is considered as deprecated - and hence is expected to be removed in a future major version.  It issues a warning to the log and the screen.</description>
+        <name>Deprecated</name>
+        <script><![CDATA[function Deprecated()
+{
+	var strWarning = 'Deprecation Warning!\n';
+	
+	var aCallStack = GetCallStack();
+	grDeprecated = GetRecord(
+		GetValue(aCallStack,1,'sys_class_name'),
+		GetValue(aCallStack,1,'sys_id'));
+	if (IsValidRecord(grDeprecated))
+	{
+		strWarning += 'Deprecated code: '+RenderRecordSummary(grDeprecated) + '\n';
+	}
+	grCaller = GetRecord(
+		GetValue(aCallStack,2,'sys_class_name'),
+		GetValue(aCallStack,2,'sys_id'));
+	if (IsValidRecord(grCaller))
+	{
+		strWarning += 'Calling code: '+RenderRecordSummary(grCaller) + '\n';
+	}	
+
+	LogWarning(strWarning);
+	gs.addErrorMessage(HtmlEncode(strWarning));
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-09-10 08:50:35</sys_created_on>
+        <sys_id>562f4c35c32416105a37f90705013120</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>Deprecated</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_562f4c35c32416105a37f90705013120</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-09-10 09:06:02</sys_updated_on>
+    </sys_script_include>
+</record_update>
