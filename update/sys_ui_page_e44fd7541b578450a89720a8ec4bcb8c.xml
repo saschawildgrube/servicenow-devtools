@@ -114,19 +114,20 @@ gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData
 		<li>Select "Do not allow bypassing the above settings".</li>
 		<li>Click button "Create".</li>
 	</ol> 
-<!--
+
 	<p>Perform the following steps to protect a branch in GitLab:</p>
 	<ol>
-		<li>Navigate to GitHub.</li>
-		<li>Navigate to the repository.</li>
+		<li>Navigate to GitLab.</li>
+		<li>Navigate to the project.</li>
 		<li>Navigate to "Settings".</li>
-		<li>Navigate to "Branches".</li>
-		<li>Click button "Add rule".</li>
-		<li>Under "Branch name pattern" enter the name of the branch to be protected.</li>
+		<li>Navigate to "Repository".</li>
+		<li>Scroll to "Protected branches" and click button "Expand".</li>
+		<li>Click button "Add protected branch".</li>
 		<li>Select "Require a pull request before merging".</li>
-		<li>Select "Lock branch".</li>
-		<li>Select "Do not allow bypassing the above settings".</li>
-		<li>Click button "Create".</li>
+		<li>Select the branch to be protected.</li>
+		<li>Under "Allowed to merge" then under "Roles" select "No one".</li>
+		<li>Under "Allowed to push and merge" then under "Roles" select "No one".</li>
+		<li>Click button "Protect".</li>
 	</ol> 	
 -->
 	<h3>Shared Applications</h3>
@@ -359,6 +360,7 @@ function DevToolsGetFormatConfig(grRecord)
 	<h3>1.103.0 - TODO</h3>
 	<ol>
 		<li>Added steps to protect a branch in GitHub to the manual.</li>
+		<li>Added steps to protect a branch in GitLab to the manual.</li>
 	</ol>
 
 
@@ -2102,13 +2104,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1765</sys_mod_count>
+        <sys_mod_count>1766</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-10-14 14:10:10</sys_updated_on>
+        <sys_updated_on>2024-10-14 14:33:32</sys_updated_on>
     </sys_ui_page>
 </record_update>
