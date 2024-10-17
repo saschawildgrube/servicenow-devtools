@@ -265,14 +265,42 @@
 	while (grUL.next())
 	{
 		var strTable = grUL.getValue('name');
-		Log('Checking record: '+ RenderRecordSummary(grUL));
 		
 		if (IsValidTable(strTable) == false)
 		{
+			Log('sys_ui_list record refers to an invalid table: '+ RenderRecordSummary(grUL));
 			Log('Table '+strTable+' does not exist. Deleting record!');
 			RecordDelete('sys_ui_list',grUL.sys_id);
 		}
 	}	
+
+	Log('Moving sn_pipeline_environment records to the global scope...');
+	if (IsValidTable('sn_pipeline_environment') == true)
+	{
+		
+		var grPE = new GlideRecord('sn_pipeline_environment');
+		grPE.addQuery('sys_scope','=',strAppSysId);
+		grPE.query();
+		while (grPE.next())
+		{
+			Log('Moving record: '+ RenderRecordSummary(grPE));
+			RecordSetValue('sn_pipeline_environment',grPE.sys_id,'sys_scope','global');
+		}		
+	}
+
+	Log('Moving sn_pipeline_pipeline records to the global scope...');
+	if (IsValidTable('sn_pipeline_pipeline') == true)
+	{
+		var grPP = new GlideRecord('sn_pipeline_pipeline');
+		grPP.addQuery('sys_scope','=',strAppSysId);
+		grPP.query();
+		while (grPP.next())
+		{
+			Log('Moving record: '+ RenderRecordSummary(grPP));
+			RecordSetValue('sn_pipeline_pipeline',grPP.sys_id,'sys_scope','global');
+		}		
+	}
+
 	
 	Log('Completed!');
 	
@@ -283,13 +311,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-02-23 08:18:05</sys_created_on>
         <sys_id>f5a58b38dbaee010ba15a35305961957</sys_id>
-        <sys_mod_count>79</sys_mod_count>
+        <sys_mod_count>83</sys_mod_count>
         <sys_name>AppSanity</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_f5a58b38dbaee010ba15a35305961957</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-08-28 12:59:02</sys_updated_on>
+        <sys_updated_on>2024-10-17 11:43:34</sys_updated_on>
     </sys_script_include>
 </record_update>
