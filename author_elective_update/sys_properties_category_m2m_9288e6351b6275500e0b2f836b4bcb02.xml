@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties_category_m2m">
+    <sys_properties_category_m2m action="DELETE">
+        <category display_value="devtools">331901f5db3f0c10ba15a35305961989</category>
+        <order>1900</order>
+        <property display_value="x_snc_devtools.ui.createtechnicaluser_button" name="x_snc_devtools.ui.createtechnicaluser_button">d3e5e5b41b0631506c17fdd49b4bcbda</property>
+        <sys_class_name>sys_properties_category_m2m</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-11-17 13:39:12</sys_created_on>
+        <sys_id>9288e6351b6275500e0b2f836b4bcb02</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>x_snc_devtools.ui.createtechnicaluser_button.devtools</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_properties_category_m2m_9288e6351b6275500e0b2f836b4bcb02</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-10-16 11:09:33</sys_updated_on>
+    </sys_properties_category_m2m>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>00dfd44b1b640a14a43dcb7b234bcbf2</instance_id>
+        <instance_name>wildwashington</instance_name>
+        <name>sys_properties_category_m2m_9288e6351b6275500e0b2f836b4bcb02</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties_category_m2m"><sys_properties_category_m2m action="INSERT_OR_UPDATE"><category display_value="devtools">331901f5db3f0c10ba15a35305961989</category><order>1900</order><property display_value="x_snc_devtools.ui.createtechnicaluser_button" name="x_snc_devtools.ui.createtechnicaluser_button">d3e5e5b41b0631506c17fdd49b4bcbda</property><sys_class_name>sys_properties_category_m2m</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2023-11-17 13:39:12</sys_created_on><sys_id>9288e6351b6275500e0b2f836b4bcb02</sys_id><sys_mod_count>3</sys_mod_count><sys_name>x_snc_devtools.ui.createtechnicaluser_button.devtools</sys_name><sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package><sys_policy/><sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope><sys_update_name>sys_properties_category_m2m_9288e6351b6275500e0b2f836b4bcb02</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2024-10-16 11:09:33</sys_updated_on></sys_properties_category_m2m></record_update>]]></payload>
+        <payload_hash>581722136</payload_hash>
+        <record_name>x_snc_devtools.ui.createtechnicaluser_button.devtools</record_name>
+        <reverted_from/>
+        <source>979320b5c32816105a37f90705013175</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-10-16 11:09:33</sys_created_on>
+        <sys_id>ae49c6d983d9961000d5ccc0deaad36f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1929504cec30000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-10-16 11:09:33</sys_updated_on>
+        <type>Category Property</type>
+        <update_guid>e249c6d988d996107b3ed59f554bfa6f</update_guid>
+        <update_guid_history>e249c6d988d996107b3ed59f554bfa6f:581722136,3e7d8c94ce5cda50344a2738b52d6976:0,fdd06b2741c05a501012dc08139bd784:0,7eebdfe38d805a5074ed8037dea9b9d2:0,3043ec75150052506e777c1d5a4e0bb5:0,a2cb8721cb88125048895021908d358e:0,aea07b20c2f34650c8916903228f0c62:0,a39e32a443ff0650eb5a4ca8d6ddf1b8:0,5da790cc7637c2501c304dfebd5957de:0,384fc00cd4f3c25075623ce5925098a5:0,ee41257cb2d78e509f72d843f4a4d0de:0,17d6da207b9b4e50562eb0b0027b1161:0,8b5050042413ca50907315eabf06a867:0,6e164c8c509f8a50e2a72ceabdd5fdeb:0,c699396fdb074a50e0750aa87d600967:0,33dc2da735c34a50f81a2c9129fe8272:0,c5d6f8daea8fc2503e6b6f7280c9f31c:0,2e53749eeb4fc25046d9e32a94c456b0:0,3bf00c7bfd7a4a1093e1dcda86b7afa7:0,6ea473a39e3a4a10d5eb6b831c8ef163:0,1bc6e58eae7e821003a8015a79812ddb:0,bd9f594e3c3e821057cea11c3ea05fd7:0,dc12e7315736821062d0ba581d99a516:0,fe2b573194f28210a67b73d4ede8d3ab:0,d43bc667992e8a108471e92c1d948cfa:0,514702e75cea8a10448cd63d85c43146:0,a477896e856a4610d0212259b474ad6f:0,9c01816696e20610f355a249df5091bf:0,6bbebff104e282108c02cdb698a1e8f2:0,bc5133fdef62821033e315354481e4ee:0,bb5b5bb1acf8c610bb378db5cf93dc6a:0,a57dc77d2b78c61072f23466d08be1c3:0,2ee8ffb8ba78c21056a32faf3e3dde42:16186644</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-10-17 11:28:10</sys_created_on>
+        <sys_db_object display_value="" name="sys_properties_category_m2m">sys_properties_category_m2m</sys_db_object>
+        <sys_id>563d3ed8b4ac4941a212bc63dd304499</sys_id>
+        <sys_metadata>9288e6351b6275500e0b2f836b4bcb02</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_snc_devtools.ui.createtechnicaluser_button.devtools</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sys_properties_category_m2m_9288e6351b6275500e0b2f836b4bcb02</sys_update_name>
+        <sys_update_version display_value="sys_properties_category_m2m_9288e6351b6275500e0b2f836b4bcb02">ae49c6d983d9961000d5ccc0deaad36f</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-10-17 11:28:10</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
