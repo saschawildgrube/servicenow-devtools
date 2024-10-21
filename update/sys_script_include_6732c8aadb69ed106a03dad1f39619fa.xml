@@ -22,7 +22,8 @@ Methods:&#13;
 * GetTreePath()&#13;
 * GetBranchesFromRepo()&#13;
 * GetFilesFromBranch()&#13;
-* GetFile()</description>
+* GetFile()&#13;
+* ProtectBranchReadOnly()</description>
         <name>GitLabAPI</name>
         <script><![CDATA[var GitLabAPI = Class.create();
 GitLabAPI.prototype = {
@@ -89,8 +90,25 @@ GitLabAPI.prototype = {
 		return this.m_nRequestCount;
 	},
 	
-	Request: function(strPath)
+	Request: function(vInput)
 	{
+
+		var strPath = '';
+		if (!IsObject(vInput))
+		{
+			strPath = GetStringValue(vInput);
+		}
+		else
+		{
+			params = vInput;
+			strPath = GetStringValue(GetValue(vInput,'path'));
+			if (strPath == '')
+			{
+				LogError('GitLabAPI::Request: No path specified!');
+				return false;
+			}
+		}
+
 		this.m_nRequestCount++;
 		
 		var strUrl = this.GetApiUrl()+strPath;
@@ -110,6 +128,18 @@ GitLabAPI.prototype = {
 			params.mid_server = this.m_strMidServer;
 		}	
 		
+		var strMethod = GetStringValue(GetValue(vInput,'method'));
+		if (strMethod != '')
+		{
+			params.method = strMethod;
+		}
+
+		var strRequestBody = GetStringValue(GetValue(vInput,'requestbody'));
+		if (strRequestBody != '')
+		{
+			params.requestbody = strRequestBody;
+		}	
+
 		var strResponse = HttpRequest(params);
 		var response = ParseJson(strResponse);
 		
@@ -128,7 +158,7 @@ GitLabAPI.prototype = {
 		if (strErrorMessage != '')
 		{
 			this.Error(
-				'GitHub API returned: "'+strErrorMessage+'"\n\n'
+				'GitLab API returned: "'+strErrorMessage+'"\n\n'
 				+'Url: '+strUrl+'\n\n'
 				+'Response: '+RenderValue(response));
 			return false;
@@ -232,6 +262,34 @@ GitLabAPI.prototype = {
 		return response;
 	},	
 
+	ProtectBranchReadOnly: function(strProject, strBranch)
+	{
+		// https://docs.gitlab.com/ee/api/protected_branches.html#protect-repository-branches
+		
+		strProject = this.GetProjectPath(strProject);
+		strBranch = GetStringValue(strBranch);
+
+		var strPath = '/projects/'+strProject+'/protected_branches?';
+
+		strPath += 'name=' + strBranch;
+		strPath += '&push_access_level=40';
+		strPath += '&merge_access_level=40';
+		strPath += '&unprotect_access_level=40'; 
+
+		var response = this.Request(
+			{
+				path: strPath,
+				method: 'post' 
+			});
+
+		if (response == false)
+		{
+			this.Error('ProtectBranchReadOnly: Request failed.');
+			return false;
+		}
+
+		return true;
+	},
 
 	
     type: 'GitLabAPI'
@@ -240,13 +298,13 @@ GitLabAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-03-15 20:14:10</sys_created_on>
         <sys_id>6732c8aadb69ed106a03dad1f39619fa</sys_id>
-        <sys_mod_count>38</sys_mod_count>
+        <sys_mod_count>53</sys_mod_count>
         <sys_name>GitLabAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_6732c8aadb69ed106a03dad1f39619fa</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-08-28 12:58:48</sys_updated_on>
+        <sys_updated_on>2024-10-21 13:13:17</sys_updated_on>
     </sys_script_include>
 </record_update>
