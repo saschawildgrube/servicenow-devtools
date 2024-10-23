@@ -31,14 +31,14 @@
 	var strCurrentBranch = GetAppCurrentBranch(grApp);
 	var strNewBranch = GetStringValue(grApp.version);
 	var strVersion = GetStringValue(grApp.version);
-	var strRepoUrl = GetStringValue(grApp.x_snc_devtools_repo_url);	
-
+	
 	var grSharedApp = GetSharedApplicationRecord(grApp);
 
 
 	if (IsValidRecord(grSharedApp) == false)
 	{
 		// Default: Baselining an application version
+		var strRepoUrl = GetStringValue(grApp.x_snc_devtools_repo_url);	
 
 		progresstracker.SetText('Sanitizing...');
 		AppSanity(grApp.sys_id);
@@ -77,10 +77,10 @@
 			var grDependencyApp = GetAppRecord(grDependencies.dependency);
 			if (IsValidRecord(grDependencyApp) == true)
 			{
-				var strRepoUrl = GetStringValue(grDependencyApp.x_snc_devtools_repo_url);
-				if (IsValidUrl(strRepoUrl))
+				var strDepRepoUrl = GetStringValue(grDependencyApp.x_snc_devtools_repo_url);
+				if (IsValidUrl(strDepRepoUrl))
 				{
-					grDependencies.repo_url = strRepoUrl;
+					grDependencies.repo_url = strDepRepoUrl;
 				}
 				var strDocumentationUrl = GetStringValue(grDependencyApp.x_snc_devtools_documentation_url);
 				if (IsValidUrl(strDocumentationUrl))
@@ -219,6 +219,8 @@
 		GlideRecordUpdate(grApp,true);
 		RecordSaveToUpdateSet(grApp);
 		
+		var strRepoUrl = GetStringValue(grApp.x_snc_devtools_repo_url);
+
 		progresstracker.SetPercentageProgress(20);
 
 		progresstracker.SetText('Updating dependency records...');		
@@ -230,10 +232,10 @@
 			var grDependencyApp = GetAppRecord(grDependencies.dependency);
 			if (IsValidRecord(grDependencyApp) == true)
 			{
-				var strRepoUrl = GetStringValue(grDependencyApp.x_snc_devtools_repo_url);
-				if (IsValidUrl(strRepoUrl))
+				var strDepRepoUrl = GetStringValue(grDependencyApp.x_snc_devtools_repo_url);
+				if (IsValidUrl(strDepRepoUrl))
 				{
-					grDependencies.repo_url = strRepoUrl;
+					grDependencies.repo_url = strDepRepoUrl;
 				}
 				var strDocumentationUrl = GetStringValue(grDependencyApp.x_snc_devtools_documentation_url);
 				if (IsValidUrl(strDocumentationUrl))
@@ -311,13 +313,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-06-12 15:30:55</sys_created_on>
         <sys_id>7ac969a9dbc095109232dad1f39619c7</sys_id>
-        <sys_mod_count>63</sys_mod_count>
+        <sys_mod_count>64</sys_mod_count>
         <sys_name>AppVersionBaseline</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_7ac969a9dbc095109232dad1f39619c7</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-10-18 16:19:00</sys_updated_on>
+        <sys_updated_on>2024-10-23 12:02:18</sys_updated_on>
     </sys_script_include>
 </record_update>
