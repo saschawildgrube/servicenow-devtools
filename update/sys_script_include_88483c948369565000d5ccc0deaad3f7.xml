@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.CreateTestForRecord</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Creates a new test for a given record - if the type of record is supported - and adds the test to the default test suite of the application IF the application has a default test suite.</description>
+        <name>CreateTestForRecord</name>
+        <script><![CDATA[function CreateTestForRecord(grRecord)
+{
+	if (IsValidRecord(grRecord) == false)
+	{
+		return false;
+	}
+
+	if (grRecord.getRecordClassName() != 'sys_script_include')
+	{
+		return false;
+	}
+
+	var strTestSysId = '';
+
+	var grApp = GetAppRecord(grRecord.sys_scope);
+	if (IsValidRecord(grApp) == true)
+	{
+		var strTestSuite = GetAppDefaultTestSuite(grApp);
+		if (IsValidSysId(strTestSuite) == true)
+		{
+			strTestSysId = AppBuilderAddTestToSuite(strTestSuite); 
+		} 
+	}
+
+
+	var strTestName = GetAppName(grApp);
+	if (strTestName == false)
+	{
+		return false; 
+	}
+	strTestName += ' - ';
+	strTestName += grRecord.name;
+
+
+	if (IsValidSysId(strTestSysId) == false)
+	{
+		var grTest = new GlideRecord('sys_atf_test');
+		grTest.initialize();
+		grTest.sys_scope = grRecord.sys_scope;
+		grTest.name = strTestName;
+		grTest.active = true;
+		strTestSysId = GlideRecordInsert(grTest);
+		
+		if (IsValidSysId(strTestSysId) == false)
+		{
+			return false;
+		}
+	}
+	else
+	{
+		RecordSetValue('sys_atf_test',strTestSysId,'name',strTestName);
+	}
+
+	AddScriptTestStep(strTestSysId);
+	
+	return strTestSysId;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-10-25 12:58:34</sys_created_on>
+        <sys_id>88483c948369565000d5ccc0deaad3f7</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>CreateTestForRecord</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_88483c948369565000d5ccc0deaad3f7</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-10-25 13:40:13</sys_updated_on>
+    </sys_script_include>
+</record_update>

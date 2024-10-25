@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="DELETE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.DemoCode2</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>A demo functions that returns "Hello Name" where "Name" is the value of the parameter. If no name is given, the function should just return "Hello"</description>
+        <name>DemoCode2</name>
+        <script><![CDATA[function DemoCode2(strName)
+{
+	
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-10-25 13:42:49</sys_created_on>
+        <sys_id>5ba2015483a9565000d5ccc0deaad391</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>DemoCode2</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_5ba2015483a9565000d5ccc0deaad391</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-10-25 13:42:49</sys_updated_on>
+    </sys_script_include>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>00dfd44b1b640a14a43dcb7b234bcbf2</instance_id>
+        <instance_name>wildwashington</instance_name>
+        <name>sys_script_include_5ba2015483a9565000d5ccc0deaad391</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_script_include"&gt;&lt;sys_script_include action="INSERT_OR_UPDATE"&gt;&lt;access&gt;package_private&lt;/access&gt;&lt;active&gt;true&lt;/active&gt;&lt;api_name&gt;x_snc_devtools.DemoCode2&lt;/api_name&gt;&lt;caller_access/&gt;&lt;client_callable&gt;false&lt;/client_callable&gt;&lt;description&gt;A demo functions that returns "Hello Name" where "Name" is the value of the parameter. If no name is given, the function should just return "Hello"&lt;/description&gt;&lt;name&gt;DemoCode2&lt;/name&gt;&lt;script&gt;&lt;![CDATA[function DemoCode2(strName)
+{
+	
+}]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script_include&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2024-10-25 13:42:49&lt;/sys_created_on&gt;&lt;sys_id&gt;5ba2015483a9565000d5ccc0deaad391&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_name&gt;DemoCode2&lt;/sys_name&gt;&lt;sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools"&gt;d689f6901bd38450a89720a8ec4bcbfd&lt;/sys_package&gt;&lt;sys_policy&gt;read&lt;/sys_policy&gt;&lt;sys_scope display_value="DevTools WORK IN PROGRESS"&gt;d689f6901bd38450a89720a8ec4bcbfd&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_include_5ba2015483a9565000d5ccc0deaad391&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2024-10-25 13:42:49&lt;/sys_updated_on&gt;&lt;/sys_script_include&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>-903227436</payload_hash>
+        <record_name>DemoCode2</record_name>
+        <reverted_from/>
+        <source>979320b5c32816105a37f90705013175</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-10-25 13:42:49</sys_created_on>
+        <sys_id>d3a2015483a9565000d5ccc0deaad394</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>192c3ea5c2b0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-10-25 13:42:49</sys_updated_on>
+        <type>Script Include</type>
+        <update_guid>d7a201545fa956501a1de665fb2d0b93</update_guid>
+        <update_guid_history>d7a201545fa956501a1de665fb2d0b93:-903227436</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-10-25 13:43:26</sys_created_on>
+        <sys_db_object display_value="" name="sys_script_include">sys_script_include</sys_db_object>
+        <sys_id>222cbc2fb514400294d317a491151784</sys_id>
+        <sys_metadata>5ba2015483a9565000d5ccc0deaad391</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>DemoCode2</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent/>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sys_script_include_5ba2015483a9565000d5ccc0deaad391</sys_update_name>
+        <sys_update_version display_value="sys_script_include_5ba2015483a9565000d5ccc0deaad391">d3a2015483a9565000d5ccc0deaad394</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-10-25 13:43:26</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

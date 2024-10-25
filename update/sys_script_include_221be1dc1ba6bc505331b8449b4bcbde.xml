@@ -9,20 +9,13 @@
         <name>AppBuilderAddTestToSuite</name>
         <script><![CDATA[function AppBuilderAddTestToSuite(strSuiteSysId)
 {
-	function Log(strText)
-	{
-		x_snc_devtools.Log('AppBuilderAddTestToSuite: '+strText);
-	}
-	
 	if (IsValidSysId(strSuiteSysId) == false)
 	{
-		Log('Error: no valid sys id provided.');
 		return false;
 	}
 	var grSuite = GetRecord('sys_atf_test_suite',strSuiteSysId);
 	if (grSuite == false)
 	{
-		Log('Error: Test suite not found with sys_id: '+strSuiteSysId);
 		return false;
 	}
 	
@@ -48,7 +41,6 @@
 	
 	if (IsValidSysId(strTestSysId) == false)
 	{
-		Log('Error: Failed to add new test!');
 		return false;
 	}
 	
@@ -62,7 +54,6 @@
 	var strTestSuiteTestSysId = GlideRecordInsert(grTestSuiteTest);
 	if (IsValidSysId(strTestSuiteTestSysId) == false)
 	{
-		Log('Error: Failed to add new test to suite!');
 		return false;
 	}
 	
@@ -82,21 +73,19 @@
 	}
 	*/
 	
-	
 	return strTestSysId;
-	
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-08 08:35:19</sys_created_on>
         <sys_id>221be1dc1ba6bc505331b8449b4bcbde</sys_id>
-        <sys_mod_count>11</sys_mod_count>
+        <sys_mod_count>13</sys_mod_count>
         <sys_name>AppBuilderAddTestToSuite</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_221be1dc1ba6bc505331b8449b4bcbde</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-08-28 12:58:42</sys_updated_on>
+        <sys_updated_on>2024-10-25 12:56:48</sys_updated_on>
     </sys_script_include>
 </record_update>
