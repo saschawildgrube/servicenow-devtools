@@ -39,6 +39,7 @@
 	var grResult = new GlideRecord('sys_atf_test_result');
 	grResult.setLimit(1);
 	grResult.orderByDesc('end_time');
+	grResult.addQuery('test','=',grTest.sys_id);
 	grResult.query();
 	if (grResult.next() == false)
 	{
@@ -51,13 +52,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-10-25 15:27:24</sys_created_on>
         <sys_id>d64add10832d565000d5ccc0deaad3ba</sys_id>
-        <sys_mod_count>19</sys_mod_count>
+        <sys_mod_count>20</sys_mod_count>
         <sys_name>RunTest</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_d64add10832d565000d5ccc0deaad3ba</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-10-27 14:36:16</sys_updated_on>
+        <sys_updated_on>2024-10-27 18:06:10</sys_updated_on>
     </sys_script_include>
 </record_update>
