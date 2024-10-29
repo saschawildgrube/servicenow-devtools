@@ -19,7 +19,7 @@
 
 	if (GetRecord('sys_one_extend_capability',strGenericPromptCapabilitySysId) == false)
 	{
-		LogError('The Generic Prompt Capability does not exist. Validate the installation of the Generative AI Controller plugin.');
+		LogError('Prompt: The Generic Prompt Capability does not exist. Validate the installation of the Generative AI Controller plugin.');
 		return false;
 	}
 
@@ -52,10 +52,7 @@
 		return false;
 	}
 
-	//x_snc_devtools.Log(response);
-
 	var strStatus = GetValue(response,'status');
-	
 	if (strStatus == 'error')
 	{
 
@@ -63,7 +60,7 @@
 		if (strMessage == 'CapabilityId/DefinitionId combination is invalid or missing.')
 		{
 			var strUrl = GetInstanceRecordUrl('sys_one_extend_capability',strGenericPromptCapabilitySysId);
-			LogError('A default Capability Definition Config must be set for the Generic Prompt Capability:\n' + strUrl);
+			LogError('Prompt: A default Capability Definition Config must be set for the Generic Prompt Capability:\n' + strUrl);
 			return false;
 		}
 
@@ -71,32 +68,34 @@
 		return false;
 	}
 
+	var strStatus = GetStringValue(GetValue(response,'capabilities',strGenericPromptCapabilitySysId,'status'));
+	if (strStatus == 'error')
+	{
+		LogError('Prompt:\n' + RenderValue(response));
+		return false;
+	}
+
 	var strAnswer = GetStringValue(GetValue(response,'capabilities',strGenericPromptCapabilitySysId,'response'));
 
-	/*outputs['provider'] = capabilityResponse["provider"];
-  	outputs['error'] = capabilityResponse["error"];
-    outputs['response'] = capabilityResponse["response"];
-    outputs['status'] = capabilityResponse["status"];
-    outputs['__step_status__.code'] = capabilityResponse["status"];
-    outputs['__step_status__.message'] = capabilityResponse["error"];	
-*/
-	//var strAnswer = x_snc_devtools.GetValue(response,'response');
-
+	if (strAnswer == '')
+	{
+		LogError('Prompt: Response string is empty.');
+		return false;
+	}
 
 	return strAnswer;
-
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-10-29 04:43:21</sys_created_on>
         <sys_id>8cece71583e91e5000d5ccc0deaad30e</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>Prompt</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_8cece71583e91e5000d5ccc0deaad30e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-10-29 04:59:00</sys_updated_on>
+        <sys_updated_on>2024-10-29 05:14:15</sys_updated_on>
     </sys_script_include>
 </record_update>
