@@ -365,7 +365,7 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>Added system property "x_snc_devtools.ui.createtest_button" to control if the "Create Test" button should be visible.</li>
 		<li>Added function CreateTestForRecord().</li>
 		<li>GetTestRecord() is now more strict and supports global Script Includes.</li>
-		<li>The "Background Scripts" menu item now points to the "modern" version.</li> 
+		<li>The "Background Scripts" menu item now points to the "modern" version and stays in the same tab.</li> 
 		<li>Fixed a defect in UI Script ServerRequest() that caused a client-side error if the request fails and no callback function is specified.</li>
 		<li>HtmlRenderWhatRuns() caused a deprecation warning when opening the "What Runs" page. this has been fixed.</li>
 	</ol>
@@ -2137,13 +2137,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1794</sys_mod_count>
+        <sys_mod_count>1795</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-10-28 17:06:58</sys_updated_on>
+        <sys_updated_on>2024-10-29 13:40:08</sys_updated_on>
     </sys_ui_page>
 </record_update>
