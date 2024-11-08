@@ -9,7 +9,7 @@
         <name>WaitForWorker</name>
         <script><![CDATA[function WaitForWorker(strProgressSysId,nSleepForSeconds)
 {
-	nSleepForSeconds = GetIntegerValue(nWaitForSeconds);
+	nSleepForSeconds = GetIntegerValue(nSleepForSeconds);
 	var grProgress = GetRecord('sys_progress_worker',strProgressSysId);
 	if (grProgress == false)
 	{
@@ -38,13 +38,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-03-06 17:26:57</sys_created_on>
         <sys_id>89eab9d9db340610f0f1d03cd39619ae</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>WaitForWorker</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_89eab9d9db340610f0f1d03cd39619ae</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-11-08 14:24:43</sys_updated_on>
+        <sys_updated_on>2024-11-08 14:26:42</sys_updated_on>
     </sys_script_include>
 </record_update>
