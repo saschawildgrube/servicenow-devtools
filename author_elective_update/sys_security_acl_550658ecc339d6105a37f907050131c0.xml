@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl">
+    <sys_security_acl action="DELETE">
+        <active>true</active>
+        <admin_overrides>true</admin_overrides>
+        <advanced>true</advanced>
+        <condition/>
+        <description>Allow read for records in incident, always.</description>
+        <local_or_existing>Local</local_or_existing>
+        <name>incident</name>
+        <operation display_value="read">read</operation>
+        <script/>
+        <security_attribute display_value="x_snc_devtools__ACL_550658ecc339d6105a37f907050131c0">9b3698ecc339d6105a37f9070501313d</security_attribute>
+        <sys_class_name>sys_security_acl</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-11-07 15:22:52</sys_created_on>
+        <sys_id>550658ecc339d6105a37f907050131c0</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>incident</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_security_acl_550658ecc339d6105a37f907050131c0</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-11-07 15:23:11</sys_updated_on>
+        <type display_value="record">record</type>
+    </sys_security_acl>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>00dfd44b1b640a14a43dcb7b234bcbf2</instance_id>
+        <instance_name>wildwashington</instance_name>
+        <name>sys_security_acl_550658ecc339d6105a37f907050131c0</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl"><sys_security_acl action="INSERT_OR_UPDATE"><active>true</active><admin_overrides>true</admin_overrides><advanced>true</advanced><condition/><description>Allow read for records in incident, always.</description><local_or_existing>Local</local_or_existing><name>incident</name><operation display_value="read">read</operation><script/><security_attribute display_value="x_snc_devtools__ACL_550658ecc339d6105a37f907050131c0">9b3698ecc339d6105a37f9070501313d</security_attribute><sys_class_name>sys_security_acl</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2024-11-07 15:22:52</sys_created_on><sys_id>550658ecc339d6105a37f907050131c0</sys_id><sys_mod_count>1</sys_mod_count><sys_name>incident</sys_name><sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package><sys_policy/><sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope><sys_update_name>sys_security_acl_550658ecc339d6105a37f907050131c0</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2024-11-07 15:23:11</sys_updated_on><type display_value="record">record</type></sys_security_acl></record_update>]]></payload>
+        <payload_hash>-401805248</payload_hash>
+        <record_name>incident</record_name>
+        <reverted_from/>
+        <source>fc681db283e1169000d5ccc0deaad393</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-11-07 15:23:12</sys_created_on>
+        <sys_id>2c56dcecc339d6105a37f9070501319d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1930738f0220000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-11-07 15:23:12</sys_updated_on>
+        <type>Access Control</type>
+        <update_guid>6056dcec3e39d6100e52ca49577a689d</update_guid>
+        <update_guid_history>6056dcec3e39d6100e52ca49577a689d:-401805248,6f369cec8039d610afcd837bd210e114:1338511918</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-11-07 15:23:52</sys_created_on>
+        <sys_db_object display_value="" name="sys_security_acl">sys_security_acl</sys_db_object>
+        <sys_id>1aaaf409440242e8a7212f9b1f788990</sys_id>
+        <sys_metadata>550658ecc339d6105a37f907050131c0</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>incident</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent display_value="incident">d6496c4b83a0021000d5ccc0deaad390</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sys_security_acl_550658ecc339d6105a37f907050131c0</sys_update_name>
+        <sys_update_version display_value="sys_security_acl_550658ecc339d6105a37f907050131c0">2c56dcecc339d6105a37f9070501319d</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-11-07 15:23:52</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
