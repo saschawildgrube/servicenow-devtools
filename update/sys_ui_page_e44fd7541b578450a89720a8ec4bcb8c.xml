@@ -394,6 +394,7 @@ function DevToolsGetFormatConfig(grRecord)
 
 	<h3>1.106.0 - TODO</h3>
 	<ol>
+		<li>Added UI Script ArrayRemoveValue().</li>
 		<li>Improved IsValidUrl() to detect more valid urls.</li>
 	</ol>
 
@@ -2195,13 +2196,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1822</sys_mod_count>
+        <sys_mod_count>1823</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-11-08 22:14:30</sys_updated_on>
+        <sys_updated_on>2024-11-10 19:25:21</sys_updated_on>
     </sys_ui_page>
 </record_update>
