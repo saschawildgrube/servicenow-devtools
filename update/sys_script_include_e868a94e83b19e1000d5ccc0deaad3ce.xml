@@ -10,117 +10,111 @@ THIS CLASS IS NOT YET FULLY IMPLEMENTED!</description>
         <name>AzureDevOpsAPI</name>
         <script><![CDATA[var AzureDevOpsAPI = Class.create();
 AzureDevOpsAPI.prototype = {
-	
-    initialize: function(strApiUrl)
+
+	initialize: function(strApiUrl)
 	{
 		this.SetApiUrl(strApiUrl);
-		this.m_basicauth = { username: '', password: ''};
+		this.m_strPat = '';
 		this.m_strMidServer = '';
 		this.m_nRequestCount = 0;
-    },
-	
+	},
+
 	SetCredential: function(strCredSysId)
 	{
 		var provider = new sn_cc.StandardCredentialsProvider();
+		if (IsObject(provider) == false)
+		{
+			LogError('AzureDevOpsAPI::SetCredential failed to initialize sn_cc.StandardCredentialsProvider.');
+			return;
+		}
 		var credential = provider.getCredentialByID(strCredSysId);
-		
-		this.SetBasicAuth(
-			credential.getAttribute("user_name"),
-			credential.getAttribute("password"));
+		if (IsObject(credential) == false)
+		{
+			LogError('AzureDevOpsAPI::SetCredential getCredentialByID("'+strCredSysId+'") failed.');
+			return;
+		}
+		this.SetPat(credential.getAttribute("password"));
 	},
 
-	// if only the password is used but no username, remove the username parameter!
-	SetBasicAuth: function(strUsername, strPassword)
+	SetPat: function(strPat)
 	{
-		this.m_basicauth = {
-			username: strUsername,
-			password: strPassword
-		};
+		this.m_strPat = GetStringValue(strPat);
 	},
 
 	SetMidServer: function(strMidServer)
 	{
 		this.m_strMidServer = GetStringValue(strMidServer);
-	},	
-	
+	},
+
 	SetApiUrl: function(strApiUrl)
 	{
 		strApiUrl = GetStringValue(strApiUrl);
 		if (IsValidUrl(strApiUrl) == false)
 		{
 			this.m_strApiUrl = '';
-			return false;
-		}
+			return;
+		}		
 		if (strApiUrl.endsWith('/') == false)
 		{
 			strApiUrl = strApiUrl+'/';
 		}
 		this.m_strApiUrl = strApiUrl;
-		return true;
 	},
 
 	GetApiUrl: function()
 	{
 		return this.m_strApiUrl;
 	},
-	
+
 	Error: function(strMessage)
 	{
 		LogError('AzureDevOpsAPI: ERROR:\n\n'+strMessage);
-	},
-	
+	},	
+
 	GetRequestCount: function()
 	{
 		return this.m_nRequestCount;
 	},
-	
+
+
 	Request: function(vInput)
 	{
-
 		var strPath = '';
-		if (!IsObject(vInput))
+		if (IsObject(vInput) == false)
 		{
 			strPath = GetStringValue(vInput);
 		}
 		else
 		{
-			params = vInput;
 			strPath = GetStringValue(GetValue(vInput,'path'));
 			if (strPath == '')
 			{
-				LogError('AzureDevOpsAPI::Request: No path specified!');
+				Error('Request: No path specified!');
 				return false;
 			}
 		}
-
 		this.m_nRequestCount++;
-		
-		var strUrl = this.GetApiUrl()+strPath;
+		var strUrl = this.GetApiUrl() + strPath;
+
 		if (strUrl.indexOf('?') != -1)
-		{
-			strUrl += '&';
-		}
-		else
 		{
 			strUrl += '?';
 		}
-		strUrl += 'api-version=7.2-preview.1';
+		else
+		{
+			strUrl += '&';
+		}
+		strUrl += 'api-version=7.0';
+
 		var params = {
-			url: strUrl,
-			headers:
-				[
-					{
-						name: 'BASIC',
-						value: this.m_basicauth.password
-					}
-				]
+			url: strUrl
 		};
 
 		if (this.m_strMidServer != '')
 		{
 			params.mid_server = this.m_strMidServer;
-		}	
-		
+		}
+
 		var strMethod = GetStringValue(GetValue(vInput,'method'));
 		if (strMethod != '')
 		{
@@ -131,210 +125,186 @@ AzureDevOpsAPI.prototype = {
 		if (strRequestBody != '')
 		{
 			params.requestbody = strRequestBody;
-		}	
+		}
 
-		var strResponse = HttpRequest(params);
-		var response = ParseJson(strResponse);
-		
-		/*
-		// Error handling
-		var strErrorMessage = GetStringValue(GetValue(response,'error'));
-		
-		if (strErrorMessage == '')
-		{
-			// The GitLab REST API sometimes reports errors in "error", sometimes in "message". 
-			var strMessage = GetStringValue(GetValue(response,'message'));
-			if (strMessage != '')
+		var strAuthorization = 'Basic ' + gs.base64Encode(':' + this.m_strPat);
+
+		params.headers = [
 			{
-				strErrorMessage = strMessage;
+				name: 'Authorization',
+				value: strAuthorization
+			},
+			{
+				name: 'Content-Type',
+				value: 'application/json'
+			}
+		];
+
+		params.response = 'RESTResponseV2';
+	
+		var response = HttpRequest(params);
+		
+		if (response.statusCode >= 200 && response.statusCode < 300)
+		{
+			if (response.body && response.body.trim() !== '')
+			{
+				return JSON.parse(response.body);
+			}
+			else
+			{
+				return {};
 			}
 		}
-		
-		if (strErrorMessage != '')
+		else
 		{
 			this.Error(
-				'GitLab API returned: "'+strErrorMessage+'"\n\n'
+				'AzurDevOps API failed with status: '+response.statusCode+'\n\n'
 				+'Url: '+strUrl+'\n\n'
-				+'Response: '+RenderValue(response));
+				+'Response Body:\n'+RenderValue(response.body));
 			return false;
 		}
-		*/
-		return response;
 	},
 
 	GetOrganizationPath: function(strOrganization)
 	{
-		strOrganization = GetStringValue(strOrganization);
-		strOrganization = encodeURIComponent(strOrganization);
-		return strOrganization;
+		return encodeURIComponent(GetStringValue(strOrganization));
 	},
 
 	GetProjectPath: function(strProject)
 	{
+		return encodeURIComponent(GetStringValue(strProject));
+	},
+
+	GetApiPath: function(strOrganization, strProject)
+	{
+		var strPath = this.GetOrganizationPath(strOrganization);
 		strProject = GetStringValue(strProject);
-		strProject = encodeURIComponent(strProject);
-		return strProject;
-	},
-
-	GetApiPath: function(strOrganization,strProject)
-	{
-		var strUri = this.GetOrganizationPath(strOrganization);
-		strUri += '/';
-		strUri += this.GetProjectPath(strProject);
-		strUri += '/_apis/';
-		return strUri;
-	},	
-
-	GetReposFromProject: function(strOrganization,strProject)
-	{
-		var strUri = GetApiPath(strOrganization,strProject);
-		strUri += 'repositories';
-		return this.Request(strUri);
-	},
-
-
-/*
-	GetTreePath: function(strTree)
-	{
-		strTree = GetStringValue(strTree);
-		strTree = encodeURIComponent(strTree);
-		return strTree;
-	},	
-*/
-
-	GetBranchesFromRepo: function(strOrganization,strProject,strRepo)
-	{
-		/*
-		strProject = this.GetProjectPath(strProject);
-		var aBranches = false;
-		var bContinue = true;
-		var nPage = 1;
-		var nPerPage = 100;
-		while (bContinue == true)
+		if (strProject != '')
 		{
-			var aMoreBranches = this.Request(
-				'projects/'+strProject+'/repository/branches?per_page='+nPerPage+'&page='+nPage);
-			if (aMoreBranches != false)
-			{
-				aBranches = ArrayAppend(aBranches,aMoreBranches);
-				if (aMoreBranches.length < nPerPage)
-				{
-					bContinue = false;
-				}
-			}
-			else
-			{
-				bContinue = false;
-			}
-			nPage++;
+			strPath += '/' + this.GetProjectPath(strProject);
 		}
-		return aBranches;
-		*/
-		// NOT YET IMPLEMENTED
-		return false;
+		strPath += '/_apis/';
+		return strPath;
 	},
 
-	GetFilesFromBranch: function(strOrganization, strProject, strRepo, strBranch, strPath)
+
+	GetPublicProjects: function(strOrganization)
 	{
-		/*
-		strProject = this.GetProjectPath(strProject);
-		strBranch = GetStringValue(strBranch);
-		strPath = this.GetTreePath(strPath);
-		var aFiles = [];
-		var bContinue = true;
-		var nPage = 1;
-		while (bContinue == true)
+		var strUri = this.GetOrganizationPath(strOrganization) + '/_apis/projects';
+		var response = this.Request({ path: strUri });
+		if (!response)
 		{
-			var response = this.Request('projects/'+strProject+'/repository/tree/'+strPath+'?ref='+strBranch+'&recursive=true&per_page=100&page='+nPage);
-			var aItems = GetArrayValue(response);
-			if (aItems.length > 0)
-			{
-				for (var nItem = 0; nItem < aItems.length; nItem++)
-				{
-					var item = aItems[nItem];
-					var strType = GetValue(item,'type');
-					if (strType == 'blob')
-					{
-						aFiles.push(GetValue(item,'path'));
-					}
-				}
-			}
-			else
-			{
-				bContinue = false;
-			}
-			nPage++;
+			this.Error('GetPublicProjects: Request failed.');
+			return false;
 		}
-		return aFiles;
-		*/
-		// NOT YET IMPLEMENTED
-		return false;
+		return response;
+	},
+
+	GetReposFromProject: function(strOrganization, strProject)
+	{
+		var strUri = this.GetApiPath(strOrganization, strProject) + 'git/repositories';
+		var response = this.Request({ path: strUri });
+		if (!response)
+		{
+			this.Error('GetReposFromProject: Request failed.');
+			return false;
+		}
+		return response;
 	},
 
 
-	
+	GetBranchesFromRepo: function(strOrganization, strProject, strRepo)
+	{
+		var strUri = this.GetApiPath(strOrganization, strProject);
+		strUri += 'git/repositories/' + encodeURIComponent(strRepo) + '/refs?filter=heads/';
+		var response = this.Request({ path: strUri });
+		if (!response)
+		{
+			this.Error('GetBranchesFromRepo: Request failed.');
+			return false;
+		}
+		return response;
+	},
+
+
+	GetFilesFromBranch: function(strOrganization, strProject, strRepo, strBranchName, strPath)
+	{
+		strPath = GetStringValue(strPath);
+		var strUri = this.GetApiPath(strOrganization, strProject);
+		strUri += 'git/repositories/' + encodeURIComponent(strRepoId);
+		strUri += '/items?versionType=branch&version=' + encodeURIComponent(strBranchName);
+		if (strPath != '')
+		{
+			strUri += '&scopePath=' + encodeURIComponent(strPath);
+		}
+		var response = this.Request({ path: strUri });
+		if (!response)
+		{
+			this.Error('GetFilesFromBranch: Request failed.');
+			return false;
+		}
+		return response;
+	},
+
+
 	GetFile: function(strOrganization, strProject, strRepo, strBranch, strFilePath)
 	{
-/*		strProject = this.GetProjectPath(strProject);
-		strBranch = GetStringValue(strBranch);
-		strFilePath = this.GetTreePath(strFilePath);
-		var response = this.Request('projects/'+strProject+'/repository/files/'+strFilePath+'?ref='+strBranch);
-		if (response == false)
+		var strUri = this.GetApiPath(strOrganization, strProject);
+		strUri += 'git/repositories/' + encodeURIComponent(strRepo);
+		strUri += '/items?versionType=branch&version=' + encodeURIComponent(strBranch);
+		strUri += '&path=' + encodeURIComponent(strFilePath) + '&includeContent=true';
+
+		var response = this.Request({ path: strUri });
+		if (!response)
 		{
 			this.Error('GetFile: Request failed.');
 			return false;
 		}
 		return response;
-		*/
-		// NOT YET IMPLEMENTED
-		return false;
-	},	
+	},
+
 
 	ProtectBranchReadOnly: function(strOrganization, strProject, strRepo, strBranch)
 	{
-/*		
-		strProject = this.GetProjectPath(strProject);
-		strBranch = GetStringValue(strBranch);
 
-		var strPath = 'projects/'+strProject+'/protected_branches?';
+		//https://learn.microsoft.com/en-us/rest/api/azure/devops/git/refs/update-ref?view=azure-devops-rest-5.0&tabs=HTTP
 
-		strPath += 'name=' + strBranch;
-		strPath += '&push_access_level=40';
-		strPath += '&merge_access_level=40';
-		strPath += '&unprotect_access_level=40'; 
+		var strUri = this.GetApiPath(strOrganization, strProject);
+		strUri += 'git/repositories/' + encodeURIComponent(strRepoId) + '/refs';
+		strUri += '?filter=' + encodeURIComponent('heads/' + strBranch);
+
+		var body = {
+			"isLocked": true
+		};
 
 		var response = this.Request(
 			{
-				path: strPath,
-				method: 'post' 
+				path: strRefUpdateUri,
+				method: 'PATCH',
+				requestbody: JSON.stringify(body)
 			});
 
-		if (response == false)
+		if (!response)
 		{
-			this.Error('ProtectBranchReadOnly: Request failed.');
+			this.Error('ProtectBranchReadOnly: Failed to lock the branch.');
 			return false;
 		}
-		return true;
-
-*/
-		// NOT YET IMPLEMENTED
-		return false;
+		return response;
 	},
 
-	
-    type: 'AzureDevOpsAPI'
+	type: 'AzureDevOpsAPI'
 };]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-11-12 13:12:37</sys_created_on>
         <sys_id>e868a94e83b19e1000d5ccc0deaad3ce</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>16</sys_mod_count>
         <sys_name>AzureDevOpsAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_e868a94e83b19e1000d5ccc0deaad3ce</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-11-12 13:36:21</sys_updated_on>
+        <sys_updated_on>2024-11-26 15:01:06</sys_updated_on>
     </sys_script_include>
 </record_update>
