@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_list parent="" relationship="" sys_domain="global" table="x_snc_devtools_dependency" version="2" view="devtools">
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>name</element>
+            <list_id display_value="x_snc_devtools_dependency" element="NULL" name="x_snc_devtools_dependency" parent="NULL" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">5ee027c3834a5e1000d5ccc0deaad341</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>0</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-11-28 10:48:50</sys_created_on>
+            <sys_id>5ae027c3834a5e1000d5ccc0deaad343</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-11-28 10:48:50</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>dependency</element>
+            <list_id display_value="x_snc_devtools_dependency" element="NULL" name="x_snc_devtools_dependency" parent="NULL" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">5ee027c3834a5e1000d5ccc0deaad341</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>1</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-11-28 10:48:50</sys_created_on>
+            <sys_id>12e027c3834a5e1000d5ccc0deaad344</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-11-28 10:48:50</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>documentation_url</element>
+            <list_id display_value="x_snc_devtools_dependency" element="NULL" name="x_snc_devtools_dependency" parent="NULL" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">5ee027c3834a5e1000d5ccc0deaad341</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>2</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-11-28 10:48:50</sys_created_on>
+            <sys_id>92e027c3834a5e1000d5ccc0deaad344</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-11-28 10:48:50</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>package_class</element>
+            <list_id display_value="x_snc_devtools_dependency" element="NULL" name="x_snc_devtools_dependency" parent="NULL" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">5ee027c3834a5e1000d5ccc0deaad341</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>3</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-11-28 10:48:50</sys_created_on>
+            <sys_id>16e027c3834a5e1000d5ccc0deaad344</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-11-28 10:48:50</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>reason</element>
+            <list_id display_value="x_snc_devtools_dependency" element="NULL" name="x_snc_devtools_dependency" parent="NULL" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">5ee027c3834a5e1000d5ccc0deaad341</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>4</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-11-28 10:48:50</sys_created_on>
+            <sys_id>96e027c3834a5e1000d5ccc0deaad344</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-11-28 10:48:50</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>repo_url</element>
+            <list_id display_value="x_snc_devtools_dependency" element="NULL" name="x_snc_devtools_dependency" parent="NULL" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">5ee027c3834a5e1000d5ccc0deaad341</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>5</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-11-28 10:48:50</sys_created_on>
+            <sys_id>1ae027c3834a5e1000d5ccc0deaad344</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-11-28 10:48:50</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>versions</element>
+            <list_id display_value="x_snc_devtools_dependency" element="NULL" name="x_snc_devtools_dependency" parent="NULL" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">5ee027c3834a5e1000d5ccc0deaad341</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>6</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-11-28 10:48:50</sys_created_on>
+            <sys_id>9ae027c3834a5e1000d5ccc0deaad344</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-11-28 10:48:50</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element/>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <name>x_snc_devtools_dependency</name>
+            <parent/>
+            <position/>
+            <relationship/>
+            <sum>false</sum>
+            <sys_class_name>sys_ui_list</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-11-28 10:48:50</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>5ee027c3834a5e1000d5ccc0deaad341</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_snc_devtools_dependency</sys_name>
+            <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+            <sys_update_name>sys_ui_list_x_snc_devtools_dependency_devtools</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-11-28 10:48:50</sys_updated_on>
+            <sys_user/>
+            <view display_value="DevTools" name="devtools">75e08353dbbf0450ba15a35305961913</view>
+            <view_name/>
+        </sys_ui_list>
+    </sys_ui_list>
+</record_update>
