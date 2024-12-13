@@ -5,12 +5,30 @@
         <api_name>x_snc_devtools.AzureDevOpsAPI</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Interface to the AzureDevOps API.&#13;
-THIS CLASS IS NOT YET FULLY IMPLEMENTED!</description>
+        <description>Interface to the AzureDevOps API
+|
+Methods:
+* initialize()
+* SetCredential()
+* SetPat()
+* SetMidServer()
+* SetApiUrl()
+* GetApiUrl()
+* Error()
+* GetRequestCount()
+* Request()
+* GetOrganizationPath()
+* GetProjectPath()
+* GetApiPath()
+* GetPublicProjects()
+* GetReposFromProject()
+* GetBranchesFromRepo()
+* GetFilesFromBranch()
+* GetFile()
+* ProtectBranchReadOnly()</description>
         <name>AzureDevOpsAPI</name>
         <script><![CDATA[var AzureDevOpsAPI = Class.create();
 AzureDevOpsAPI.prototype = {
-
 	initialize: function(strApiUrl)
 	{
 		this.SetApiUrl(strApiUrl);
@@ -80,6 +98,7 @@ AzureDevOpsAPI.prototype = {
 	Request: function(vInput)
 	{
 		var strPath = '';
+		var strResponse = 'RESTResponseV2';
 		if (IsObject(vInput) == false)
 		{
 			strPath = GetStringValue(vInput);
@@ -92,11 +111,14 @@ AzureDevOpsAPI.prototype = {
 				Error('Request: No path specified!');
 				return false;
 			}
+			if (GetStringValue(GetValue(vInput, 'response')))
+			{
+				strResponse = GetStringValue(GetValue(vInput, 'response'));
+			}
 		}
 		this.m_nRequestCount++;
 		var strUrl = this.GetApiUrl() + strPath;
-
-		if (strUrl.indexOf('?') != -1)
+		if (strUrl.indexOf('?') === -1)
 		{
 			strUrl += '?';
 		}
@@ -128,7 +150,7 @@ AzureDevOpsAPI.prototype = {
 		}
 
 		var strAuthorization = 'Basic ' + gs.base64Encode(':' + this.m_strPat);
-
+		
 		params.headers = [
 			{
 				name: 'Authorization',
@@ -139,21 +161,18 @@ AzureDevOpsAPI.prototype = {
 				value: 'application/json'
 			}
 		];
-
-		params.response = 'RESTResponseV2';
-	
-		var response = HttpRequest(params);
 		
-		if (response.statusCode >= 200 && response.statusCode < 300)
+		params.response = strResponse;
+		
+		var response = HttpRequest(params);
+		if(strResponse == 'plain')
 		{
-			if (response.body && response.body.trim() !== '')
-			{
-				return JSON.parse(response.body);
-			}
-			else
-			{
-				return {};
-			}
+			return response;
+		}
+		else if (response.getStatusCode() >= 200 && response.getStatusCode() < 300 && strResponse == 'RESTResponseV2')
+		{
+			var strBody = GetStringValue(response.getBody());
+			return ParseJson(strBody);
 		}
 		else
 		{
@@ -231,15 +250,27 @@ AzureDevOpsAPI.prototype = {
 	{
 		strPath = GetStringValue(strPath);
 		var strUri = this.GetApiPath(strOrganization, strProject);
-		strUri += 'git/repositories/' + encodeURIComponent(strRepoId);
-		strUri += '/items?versionType=branch&version=' + encodeURIComponent(strBranchName);
-		if (strPath != '')
-		{
-			strUri += '&scopePath=' + encodeURIComponent(strPath);
-		}
-		var response = this.Request({ path: strUri });
-		if (!response)
-		{
+		strUri += 'git/repositories/' + encodeURIComponent(strRepo) + '/itemsbatch';
+
+		var requestBody = {
+			itemDescriptors: [
+				{
+					path: strPath || "/", 
+					version: encodeURIComponent(strBranchName),
+					versionType: "branch",
+					recursionLevel: "Full" // Rekursives Abrufen aller Dateien und Verzeichnisse
+				}
+			],
+			includeContentMetadata: true
+		};
+
+		var response = this.Request({
+			path: strUri,
+			method: 'POST',
+			requestbody: JSON.stringify(requestBody)
+		});
+
+		if (!response) {
 			this.Error('GetFilesFromBranch: Request failed.');
 			return false;
 		}
@@ -252,9 +283,11 @@ AzureDevOpsAPI.prototype = {
 		var strUri = this.GetApiPath(strOrganization, strProject);
 		strUri += 'git/repositories/' + encodeURIComponent(strRepo);
 		strUri += '/items?versionType=branch&version=' + encodeURIComponent(strBranch);
-		strUri += '&path=' + encodeURIComponent(strFilePath) + '&includeContent=true';
+		strUri += '&scopePath=' + encodeURIComponent(strFilePath) + '&includeContent=true';
 
-		var response = this.Request({ path: strUri });
+		var response = this.Request({ path: strUri,  response: "plain"});
+
+		gs.info(strUri);
 		if (!response)
 		{
 			this.Error('GetFile: Request failed.');
@@ -264,10 +297,10 @@ AzureDevOpsAPI.prototype = {
 	},
 
 
-	ProtectBranchReadOnly: function(strOrganization, strProject, strRepo, strBranch)
+	ProtectBranchReadOnly: function(strOrganization, strProject, strRepoId, strBranch)
 	{
 
-		//https://learn.microsoft.com/en-us/rest/api/azure/devops/git/refs/update-ref?view=azure-devops-rest-5.0&tabs=HTTP
+		//https://url.us.m.mimecastprotect.com/s/G3kFCo2gZJtDP3oEXunFDIpSDfF?domain=learn.microsoft.com
 
 		var strUri = this.GetApiPath(strOrganization, strProject);
 		strUri += 'git/repositories/' + encodeURIComponent(strRepoId) + '/refs';
@@ -279,7 +312,7 @@ AzureDevOpsAPI.prototype = {
 
 		var response = this.Request(
 			{
-				path: strRefUpdateUri,
+				path: strUri,
 				method: 'PATCH',
 				requestbody: JSON.stringify(body)
 			});
@@ -298,13 +331,13 @@ AzureDevOpsAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-11-12 13:12:37</sys_created_on>
         <sys_id>e868a94e83b19e1000d5ccc0deaad3ce</sys_id>
-        <sys_mod_count>16</sys_mod_count>
+        <sys_mod_count>18</sys_mod_count>
         <sys_name>AzureDevOpsAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_e868a94e83b19e1000d5ccc0deaad3ce</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-11-26 15:01:06</sys_updated_on>
+        <sys_updated_on>2024-12-13 11:27:23</sys_updated_on>
     </sys_script_include>
 </record_update>
