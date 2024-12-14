@@ -5,7 +5,30 @@
         <api_name>x_snc_devtools.DevToolsClientAPI</api_name>
         <caller_access/>
         <client_callable>true</client_callable>
-        <description>The DevToolsClientAPI is a client callable proxy for ajax calls to some of the functions provided by DevTools.</description>
+        <description>The DevToolsClientAPI is a client callable proxy for ajax calls to some of the functions provided by DevTools.
+|
+Methods:
+* GetParentTable()
+* GetTableFromSysId()
+* GetFormatConfig()
+* GetAllTables()
+* SetScopeForSystemPropertiesUI()
+* InstanceScanSuiteOnApp()
+* InstanceScanIsRunning()
+* GetTestRecord()
+* CreateTestForRecord()
+* GetSharedApplicationRecord()
+* CreateUserByEmail()
+* CreateTechnicalUser()
+* CreateTestUser()
+* AppVersionBaselineIsRunning()
+* AppVersionBaselineGetMessage()
+* AppVersionBaselineCheckReleaseNotes()
+* GetAppRecordsWithCredentialPollution()
+* GetAppUncommittedFiles()
+* GetAppBranches()
+* AddScriptTestStep()
+* start()</description>
         <name>DevToolsClientAPI</name>
         <script><![CDATA[var DevToolsClientAPI = Class.create();
 DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
@@ -316,6 +339,42 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 				'AppVersionBaseline',
 				params);
 		}
+		if (strCommand == 'source_control_commit')
+		{
+			var strAppSysId = GetStringValue(this.getParameter("sysparm_ajax_processor_app_sys_id"));
+			if (strAppSysId == '')
+			{
+				LogError('DevToolsClientAPI.start(): SourceControlCommitToCurrentBranch: no app_sys_id specified.');
+				return '';
+			}
+			var grApp = GetAppRecord(strAppSysId);
+			if (IsValidRecord(grApp) == false)
+			{
+				LogError('DevToolsClientAPI.start(): SourceControlCommitToCurrentBranch: App not found.');
+				return '';
+			}
+
+			var strMessage = GetStringValue(this.getParameter("sysparm_ajax_processor_message"));
+
+			strTrackerSourceTable = 'sys_app';
+			strTrackerType = 'source_control_commit';
+
+			var strCurrentBranch = GetAppCurrentBranch(grApp);
+	
+			var strProgressName =
+				'Committing files to branch "'+strCurrentBranch+'" for app: '
+				+GetCleanAppName(grApp.name);
+
+			var params = {};
+			params['strAppSysId'] = strAppSysId;
+			params['strMessage'] = strMessage;
+
+			strWorkerId = StartWorker(
+				strProgressName,
+				'x_snc_devtools.DevToolsWorkerAPI',
+				'SourceControlCommitToCurrentBranch',
+				params);
+		}
 		else
 		{
 			LogError('DevToolsClientAPI.start(): Unknown command!');
@@ -353,13 +412,13 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-12 13:47:51</sys_created_on>
         <sys_id>7357b9131b8bb090edf3642aab4bcb10</sys_id>
-        <sys_mod_count>112</sys_mod_count>
+        <sys_mod_count>113</sys_mod_count>
         <sys_name>DevToolsClientAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_7357b9131b8bb090edf3642aab4bcb10</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-10-25 13:42:35</sys_updated_on>
+        <sys_updated_on>2024-12-14 18:45:55</sys_updated_on>
     </sys_script_include>
 </record_update>
