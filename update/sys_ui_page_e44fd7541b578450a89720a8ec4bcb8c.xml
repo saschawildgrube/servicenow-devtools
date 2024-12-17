@@ -401,6 +401,7 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>UI Script GetElementById() can now also be used on UI pages (where no g_form object is available).</li>
 		<li>GetParentRecord() and the "Up" button now support ais_child_table, ais_datasource_attribute, ais_search_source and ais_datasource_field_attribute.</li>
 		<li>Added more patterns to GetEvaluatorErrorExceptionPatterns().</li>
+		<li>InstanceReset() now hides the menu "Process Mining".</li>
 	</ol>
 
 
@@ -2254,13 +2255,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1873</sys_mod_count>
+        <sys_mod_count>1874</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-12-17 15:00:15</sys_updated_on>
+        <sys_updated_on>2024-12-17 15:39:23</sys_updated_on>
     </sys_ui_page>
 </record_update>
