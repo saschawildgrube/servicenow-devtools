@@ -21,6 +21,8 @@
 		docapi.RenderDescription();  
 	]</g2:no_escape>	
 
+	<p>Special thanks go to&#160;<a href="mailto:k.janssen@posteo.de">Kevin Janssen</a>&#160;for his contribution to the AzureDevOpsAPI class.</p>
+
 	<h2>Disclaimer</h2>
 	<g2:no_escape>$[docapi.RenderDisclaimer()]</g2:no_escape>	
 	
@@ -394,6 +396,7 @@ function DevToolsGetFormatConfig(grRecord)
 
 	<h3>1.109.0 - TODO</h3>
 	<ol>
+		<li>Added special thanks to Kevin Janssen for his contribution to the AzureDevOpsAPI class to the manual.</li>
 		<li>Added UI Script SourceControlCommit().</li>
 		<li>Business rule "sys_metadata - set scope to record scope" now sets the scope properly for new records where the scope of the new record is defined by an url parameter.</li> 
 		<li>DevToolsWorkerAPI now supports SourceControlCommitToCurrentBranch().</li>
@@ -2255,13 +2258,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1874</sys_mod_count>
+        <sys_mod_count>1876</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-12-17 15:39:23</sys_updated_on>
+        <sys_updated_on>2024-12-24 15:37:02</sys_updated_on>
     </sys_ui_page>
 </record_update>
