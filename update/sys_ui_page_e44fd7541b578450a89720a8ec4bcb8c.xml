@@ -402,6 +402,7 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>Business rule "sys_metadata - set scope to record scope" now sets the scope properly for new records where the scope of the new record is defined by an url parameter.</li> 
 		<li>DevToolsWorkerAPI now supports SourceControlCommitToCurrentBranch().</li>
 		<li>GetAppUncommittedFiles() now returns files sorted by sys_name.</li>
+		<li>MakeJson() now handles potential exceptions thrown by JSON.stringify().</li>
 		<li>UI Script GetElementById() can now also be used on UI pages (where no g_form object is available).</li>
 		<li>GetParentRecord() and the "Up" button now support ais_child_table, ais_datasource_attribute, ais_search_source and ais_datasource_field_attribute.</li>
 		<li>Added more patterns to GetEvaluatorErrorExceptionPatterns().</li>
@@ -2259,13 +2260,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1877</sys_mod_count>
+        <sys_mod_count>1878</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-12-25 16:17:50</sys_updated_on>
+        <sys_updated_on>2024-12-25 20:20:01</sys_updated_on>
     </sys_ui_page>
 </record_update>
