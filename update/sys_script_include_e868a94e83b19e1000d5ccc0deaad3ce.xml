@@ -111,9 +111,9 @@ AzureDevOpsAPI.prototype = {
 				Error('Request: No path specified!');
 				return false;
 			}
-			if (GetStringValue(GetValue(vInput, 'response')))
+			if (GetStringValue(GetValue(vInput, 'response')) == 'plain')
 			{
-				strResponse = GetStringValue(GetValue(vInput, 'response'));
+				strResponse = 'plain';
 			}
 		}
 		this.m_nRequestCount++;
@@ -165,23 +165,28 @@ AzureDevOpsAPI.prototype = {
 		params.response = strResponse;
 		
 		var response = HttpRequest(params);
-		if(strResponse == 'plain')
-		{
-			return response;
-		}
-		else if (response.getStatusCode() >= 200 && response.getStatusCode() < 300 && strResponse == 'RESTResponseV2')
+		if (strResponse == 'RESTResponseV2')
 		{
 			var strBody = GetStringValue(response.getBody());
-			return ParseJson(strBody);
+			if (response.getStatusCode() >= 200 && response.getStatusCode() < 300)
+			{
+				
+				return ParseJson(strBody);
+			}
+			else
+			{
+				this.Error(
+					'AzurDevOps API failed with status: '+response.statusCode+'\n\n'
+					+'Url: '+strUrl+'\n\n'
+					+'Response Body:\n'+strBody);
+				return false;
+			}
 		}
 		else
 		{
-			this.Error(
-				'AzurDevOps API failed with status: '+response.statusCode+'\n\n'
-				+'Url: '+strUrl+'\n\n'
-				+'Response Body:\n'+RenderValue(response.body));
-			return false;
+			return response;
 		}
+		
 	},
 
 	GetOrganizationPath: function(strOrganization)
@@ -301,7 +306,7 @@ AzureDevOpsAPI.prototype = {
 		strUri += '/items?versionType=branch&version=' + encodeURIComponent(strBranch);
 		strUri += '&scopePath=' + encodeURIComponent(strFilePath) + '&includeContent=true';
 
-		var response = this.Request({ path: strUri,  response: "plain"});
+		var response = this.Request({ path: strUri,  response: 'plain' });
 
 		gs.info(strUri);
 		if (!response)
@@ -330,7 +335,7 @@ AzureDevOpsAPI.prototype = {
 			{
 				path: strUri,
 				method: 'PATCH',
-				requestbody: JSON.stringify(body)
+				requestbody: MakeJson(body)
 			});
 
 		if (!response)
@@ -347,13 +352,13 @@ AzureDevOpsAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-11-12 13:12:37</sys_created_on>
         <sys_id>e868a94e83b19e1000d5ccc0deaad3ce</sys_id>
-        <sys_mod_count>19</sys_mod_count>
+        <sys_mod_count>21</sys_mod_count>
         <sys_name>AzureDevOpsAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_e868a94e83b19e1000d5ccc0deaad3ce</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-12-27 11:22:19</sys_updated_on>
+        <sys_updated_on>2024-12-27 11:43:21</sys_updated_on>
     </sys_script_include>
 </record_update>
