@@ -72,13 +72,13 @@ The function has been fully implemented using the ArtificalDeveloper using ChatG
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-12-31 12:42:34</sys_created_on>
         <sys_id>51377535c33a12905a37f90705013142</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>GetDependencyRecord</sys_name>
-        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
-        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_51377535c33a12905a37f90705013142</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-12-31 12:56:01</sys_updated_on>
+        <sys_updated_on>2025-01-03 09:33:22</sys_updated_on>
     </sys_script_include>
 </record_update>
