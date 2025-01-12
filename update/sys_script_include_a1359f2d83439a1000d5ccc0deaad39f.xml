@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.Transliterate</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Transliterates the given text string into latin letters.&#13;
+Currently only Ukrainian is supported.</description>
+        <name>Transliterate</name>
+        <script><![CDATA[function Transliterate(strText) 
+{
+	var strResult = GetStringValue(strText);
+
+	var transliteration = {
+		ua:
+		{ 
+			regular:
+			{
+				'а': 'a',
+				'б': 'b', 
+				'в': 'v',
+				'г': 'h',
+				'ґ': 'g',
+				'д': 'd',
+				'е': 'e',
+				'є': 'ie',
+				'ж': 'zh',
+				'з': 'z',
+				'и': 'y',
+				'і': 'i',
+				'ї': 'i',
+				'й': 'i',
+				'к': 'k',
+				'л': 'l',
+				'м': 'm',
+				'н': 'n',
+				'о': 'o',
+				'п': 'p',
+				'р': 'r',
+				'с': 's',
+				'т': 't',
+				'у': 'u',
+				'ф': 'f',
+				'х': 'kh',
+				'ц': 'ts',
+				'ч': 'ch',
+				'ш': 'sh',
+				'щ': 'shch',
+				'ю': 'iu',
+				'я': 'ia'
+			},
+
+			ignored: ['ь', 'Ь', '\u0027', '\u2019', '\u02BC'],
+
+			special:
+			{
+				'зг': 'zgh',
+				'ЗГ': 'ZGH',
+				'Зг': 'Zgh'
+			},
+
+			first:
+			{
+				'є': 'ye',
+				'Є': 'Ye',
+				'ї': 'yi',
+				'Ї': 'Yi',
+				'й': 'y',
+				'Й': 'Y',
+				'ю': 'yu',
+				'Ю': 'Yu',
+				'я': 'ya',
+				'Я': 'Ya'
+			}
+		}
+	};
+
+	function TransliterateByRule(strText,transliteration)
+	{
+		var strResult = GetStringValue(strText);
+		
+		// Delete ignored characters
+		var aIgnored = GetValue(transliteration,'ignored');
+		for (var nIgnored = 0; nIgnored < aIgnored.length; nIgnored++) 
+		{
+			var char = aIgnored[nIgnored];
+			strResult = StringReplace(strResult,char,'');
+		}
+
+		// Handle special cases
+		var special = GetValue(transliteration,'special');
+		var aSpecialKeys = GetKeys(special);
+		for (var nSpecial = 0; nSpecial < aSpecialKeys.length; nSpecial++) 
+		{
+			var key = aSpecialKeys[nSpecial];
+			var value = special[key];
+			//strResult = strResult.split(key).join(value);
+			strResult = StringReplace(strResult,key,value);
+		}
+
+		// Handle first characters of words
+		var first = GetValue(transliteration,'first');
+		var aFirstKeys = GetKeys(first);
+		for (var nFirst = 0; nFirst < aFirstKeys.length; nFirst++) 
+		{
+			var key = aFirstKeys[nFirst];
+			var value = first[key];
+			var regExp = new RegExp(`(^|\\s)${key}`, 'g');
+			strResult = strResult.replace(regExp, `$1${value}`);
+		}
+
+		// Process remaining characters using main table
+		var regular = GetValue(transliteration,'regular');
+		var aRegularKeys = GetKeys(regular);
+		for (var nRegular = 0; nRegular < aRegularKeys.length; nRegular++) 
+		{
+			var key = aRegularKeys[nRegular];
+			var value = regular[key];
+	
+			var upperKey = key.toUpperCase();
+			var strFirstChar = value.charAt(0);
+			var upperValue = strFirstChar.toUpperCase() + value.slice(1);
+			strResult = StringReplace(strResult,upperKey,upperValue);
+			strResult = StringReplace(strResult,key,value);
+		}
+		return strResult;
+	}
+
+
+	strResult = TransliterateByRule(strResult,transliteration.ua);
+
+	return strResult;
+}
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-01-12 11:14:48</sys_created_on>
+        <sys_id>a1359f2d83439a1000d5ccc0deaad39f</sys_id>
+        <sys_mod_count>17</sys_mod_count>
+        <sys_name>Transliterate</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_a1359f2d83439a1000d5ccc0deaad39f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-01-12 13:37:49</sys_updated_on>
+    </sys_script_include>
+</record_update>
