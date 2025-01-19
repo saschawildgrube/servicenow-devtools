@@ -11,245 +11,26 @@
 {
 	var strHtml = '';
 	
-	// STYLES
-	strHtml += HtmlRenderStyle('table.appstatus, th.appstatus, td.appstatus { border: 1px solid; padding: 2px; vertical-align: top }');	
-
-
-	var status = GetApplicationStatus();
-	var applications = GetValue(status,'applications');
-	var aAppKeys = GetKeys(applications);
-	
 	strHtml += '<h1>DevTools Application Overview</h1>';
-	
+
 	var strAppListLink = GetInstanceListURL('sys_app','devtools');
 	strHtml += '<p>'+HtmlRenderLink(strAppListLink,'List view',true)+'</p>';
+
+	strHtml += HtmlRenderApplications();
 	
-	
-	var aAppTable = [];
-	
-	var aHeaderRow = [];
-	aHeaderRow.push({ header: true, content: 'Name'} );
-	aHeaderRow.push({ header: true, content: 'Version'} );
-	aHeaderRow.push({ header: true, content: 'Scope'} );
-	aHeaderRow.push({ header: true, content: 'Maintainer'} );
-	aHeaderRow.push({ header: true, content: 'Links'} );
-	aHeaderRow.push({ header: true, content: 'Repository<br/>Branch'} );
-	aHeaderRow.push({ header: true, content: 'Test Suite<br/>Last Run'} );
-	aHeaderRow.push({ header: true, content: 'Test Suite<br/>Failed Tests'} );
-	
-	var columns = GetValue(status,'columns');
-	var aColumns = GetKeys(columns);
-	for (var nColumn = 0; nColumn < aColumns.length; nColumn++)
-	{
-		var strColumn = aColumns[nColumn];
-		var column = GetValue(columns,strColumn);
-		var strHeader = GetStringValue(GetValue(column,'header'));
-		if (strHeader == '')
-		{
-			strHeader = strColumn;
-		}
-		aHeaderRow.push({ header: true, content: strHeader} );
-	}
-	
-	aAppTable.push(aHeaderRow);	
-	
-	for (var nApp = 0; nApp < aAppKeys.length; nApp++)
-	{
-		var app = GetValue(applications,aAppKeys[nApp]);
-		
-		var aRow = [];
-		
-		var strAppName = GetStringValue(app.name);
-		strAppName = StringReplace(strAppName,'WORK IN PROGRESS','(WIP)');
-
-		var strAppLink = GetInstanceRecordUrl('sys_app',app.sys_id,'devtools');
-		aRow.push(HtmlRenderLink(strAppLink,strAppName,true));
-		
-		aRow.push(GetStringValue(app.version));
-		
-		aRow.push(GetStringValue(app.scope));
-		
-		var strMaintainer = GetStringValue(app.x_snc_devtools_maintainer);
-		if (GetStringValue(app.x_snc_devtools_maintainer_email) != '')
-		{
-			strMaintainer += '<br/>' + HtmlRenderLink('mailto:'+app.x_snc_devtools_maintainer_email,app.x_snc_devtools_maintainer_email,true); 
-		}
-		
-		aRow.push(strMaintainer);
-
-		var strLinks = '';
-
-		var strStudioLink = GetInstanceUrl() + '$studio.do?sysparm_transaction_scope=' + app.sys_id;
-		if (strLinks != '')
-		{
-			strLinks += '&#160;|&#160;';
-		}
-		strLinks += HtmlRenderLink(strStudioLink,'Studio',true);	
-
-		var strLogUrl = GetInstanceListURL('syslog_app_scope','devtools','sys_scope='+app.sys_id);
-		if (strLinks != '')
-		{
-			strLinks += '&#160;|&#160;';
-		}
-		strLinks += HtmlRenderLink(strLogUrl,'Log',true);	
-
-		var strDependencyUrl = 
-			GetInstanceUrl() + 'nav_to.do?uri=%2Fx_snc_devtools_dependencies.do%3Fpackage%3D'+app.sys_id;
-		if (strLinks != '')
-		{
-			strLinks += '&#160;|&#160;';
-		}
-		strLinks += HtmlRenderLink(strDependencyUrl,'Dependencies',true);		
-
-		var strDefaultTestSuiteSysId = GetAppDefaultTestSuite(app.sys_id);
-		if (IsValidSysId(strDefaultTestSuiteSysId) == true)
-		{
-			var strTestSuiteUrl = GetStringValue(GetInstanceRecordUrl('sys_atf_test_suite',strDefaultTestSuiteSysId,'devtools'));
-			if (strLinks != '')
-			{
-				strLinks += '&#160;|&#160;';
-			}
-			strLinks += HtmlRenderLink(strTestSuiteUrl,'Test Suite',true);
-		}			
-		
-		var grPage = GetAppManualRecord(app.sys_id);
-		if (IsValidRecord(grPage))
-		{
-			var strEndpoint = GetStringValue(grPage.endpoint);
-			if (app.scope == 'global')
-			{
-				strEndpoint = GetStringValue(grPage.name)+'.do';
-			}
-			var strManualLink = GetInstanceUrl() + 'nav_to.do?uri=%2F' + strEndpoint;
-			if (strLinks != '')
-			{
-				strLinks += '&#160;|&#160;';
-			}
-			strLinks += HtmlRenderLink(strManualLink,'Manual',true);
-		}
-
-		
-		var strDocUrl = GetStringValue(app.x_snc_devtools_documentation_url);
-		if (strDocUrl != '')
-		{
-			if (strLinks != '')
-			{
-				strLinks += '&#160;|&#160;';
-			}
-			strLinks += HtmlRenderLink(strDocUrl,'Docs',true);
-		}
-/*
-		var strRepoUrl = GetStringValue(app.x_snc_devtools_repo_url);
-		if (strRepoUrl != '')
-		{
-			if (strLinks != '')
-			{
-				strLinks += '&#160;|&#160;';
-			}
-			strLinks += HtmlRenderLink(strRepoUrl,'Repo',true);
-		}		
-*/		
-	
-		aRow.push(strLinks);
-		
-		
-		var strCurrentBranch = GetAppCurrentBranch(app.sys_id);
-		if (strCurrentBranch == false)
-		{
-			strCurrentBranch = '';
-		}
-		var strRepoUrl = GetStringValue(app.x_snc_devtools_repo_url);
-		if (strRepoUrl == '')
-		{
-			var grRepo = new GlideRecord('sys_repo_config');
-			grRepo.addQuery('sys_app','=',app.sys_id);
-			grRepo.query();
-			if (grRepo.next())
-			{
-				strRepoUrl = GetStringValue(grRepo.url);
-			}
-		}
-		if (strRepoUrl != '')
-		{
-			strCurrentBranch = HtmlRenderLink(strRepoUrl,strCurrentBranch,true);
-		}		
-		aRow.push(strCurrentBranch);	
-
-
-		// Default Test Suite
-
-		var strAppSysId = GetStringValue(app.sys_id);
-		var strDefaultTestSuiteName = GetCleanAppName(app.name);
-
-		var strTestSuiteLastRun = '';
-		var strTestSuiteFailed = '';
-
-		var grTestSuite = new GlideRecord('sys_atf_test_suite');
-		grTestSuite.addQuery('sys_scope','=',app.sys_id);
-		grTestSuite.addQuery('name','=',strDefaultTestSuiteName);
-		grTestSuite.query();
-		if (grTestSuite.next() == true)
-		{
-			var grTestSuiteResult = new GlideRecord('sys_atf_test_suite_result');
-			grTestSuiteResult.addQuery('test_suite','=',grTestSuite.sys_id);
-			grTestSuiteResult.orderByDesc('sys_updated_on');
-			grTestSuiteResult.query();
-			if (grTestSuiteResult.next() == true)
-			{
-				var strResultUrl = GetInstanceRecordUrl('sys_atf_test_suite_result',grTestSuiteResult.sys_id);
-				strTestSuiteLastRun = HtmlRenderLink(strResultUrl,grTestSuiteResult.sys_updated_on,true);
-				//var nMinutes = GetIntegerValue(grScanResult.execution_time / 60 / 1000);
-				//strContent += '<br/>';
-/*				var nMinutes = GetIntegerValue(grScanResult.execution_time / 60 / 1000);
-				if (nMinutes == 0)
-				{
-					strContent += 'less than 1 minute';
-				}
-				else if (nMinutes == 1)
-				{
-					strContent += '1 minute';
-				}
-				else
-				{
-					strContent += nMinutes + ' minutes';
-				}
-				*/				
-				strTestSuiteFailed = GetStringValue(grTestSuiteResult.failure_count);
-			}
-
-		}
-
-		aRow.push(strTestSuiteLastRun);	
-		aRow.push( { content: strTestSuiteFailed, horizontal: 'right' } ); 
-
-		
-		for (var nColumn = 0; nColumn < aColumns.length; nColumn++)
-		{
-			var strColumn = aColumns[nColumn];
-			var column = GetValue(columns,strColumn);
-			var strHorizontal = GetValue(column,'horizontal');
-			var strContent = GetValue(app,strColumn);
-			aRow.push({ horizontal: strHorizontal, content: strContent });
-		}		
-				
-		aAppTable.push(aRow);
-	}
-	
-	strHtml += HtmlRenderTable(aAppTable,'appstatus');	
-
 	return strHtml;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-12-22 09:55:34</sys_created_on>
         <sys_id>008896e71bb791505b76777d8b4bcb9a</sys_id>
-        <sys_mod_count>65</sys_mod_count>
+        <sys_mod_count>66</sys_mod_count>
         <sys_name>HtmlRenderPageApplications</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_008896e71bb791505b76777d8b4bcb9a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-11-12 11:47:19</sys_updated_on>
+        <sys_updated_on>2025-01-19 12:34:16</sys_updated_on>
     </sys_script_include>
 </record_update>
