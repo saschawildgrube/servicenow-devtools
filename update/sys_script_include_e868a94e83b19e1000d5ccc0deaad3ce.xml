@@ -215,7 +215,7 @@ AzureDevOpsAPI.prototype = {
 	{
 		var strUri = this.GetOrganizationPath(strOrganization) + '/_apis/projects';
 		var response = this.Request({ path: strUri });
-		if (!response)
+		if (response == false)
 		{
 			this.Error('GetPublicProjects: Request failed.');
 			return false;
@@ -227,7 +227,7 @@ AzureDevOpsAPI.prototype = {
 	{
 		var strUri = this.GetApiPath(strOrganization, strProject) + 'git/repositories';
 		var response = this.Request({ path: strUri });
-		if (!response)
+		if (response == false)
 		{
 			this.Error('GetReposFromProject: Request failed.');
 			return false;
@@ -241,7 +241,7 @@ AzureDevOpsAPI.prototype = {
 		var strUri = this.GetApiPath(strOrganization, strProject);
 		strUri += 'git/repositories/' + encodeURIComponent(strRepo) + '/refs?filter=heads/';
 		var response = this.Request({ path: strUri });
-		if (!response)
+		if (response == false)
 		{
 			this.Error('GetBranchesFromRepo: Request failed.');
 			return false;
@@ -274,7 +274,7 @@ AzureDevOpsAPI.prototype = {
 			requestbody: MakeJson(requestBody)
 		});
 
-		if (!response)
+		if (response == false)
 		{
 			this.Error('GetFilesFromBranch: Request failed.');
 			return false;
@@ -305,7 +305,7 @@ AzureDevOpsAPI.prototype = {
 		strUri += '&scopePath=' + encodeURIComponent(strFilePath) + '&includeContent=true';
 
 		var response = this.Request({ path: strUri,  format: 'raw' });
-		if (!response)
+		if (response == false)
 		{
 			this.Error('GetFile: Request failed.');
 			return false;
@@ -334,7 +334,7 @@ AzureDevOpsAPI.prototype = {
 				requestbody: MakeJson(body)
 			});
 
-		if (!response)
+		if (response == false)
 		{
 			this.Error('ProtectBranchReadOnly: Failed to lock the branch.');
 			return false;
@@ -348,13 +348,13 @@ AzureDevOpsAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-11-12 13:12:37</sys_created_on>
         <sys_id>e868a94e83b19e1000d5ccc0deaad3ce</sys_id>
-        <sys_mod_count>33</sys_mod_count>
+        <sys_mod_count>36</sys_mod_count>
         <sys_name>AzureDevOpsAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_e868a94e83b19e1000d5ccc0deaad3ce</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-01-23 14:48:05</sys_updated_on>
+        <sys_updated_on>2025-01-23 15:25:22</sys_updated_on>
     </sys_script_include>
 </record_update>
