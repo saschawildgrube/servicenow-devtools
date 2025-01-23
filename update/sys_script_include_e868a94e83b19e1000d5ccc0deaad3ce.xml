@@ -98,7 +98,9 @@ AzureDevOpsAPI.prototype = {
 	Request: function(vInput)
 	{
 		var strPath = '';
-		var strResponse = 'RESTResponseV2';
+		//var strResponse = 'RESTResponseV2';
+		var strResponse = '';
+
 		if (IsObject(vInput) == false)
 		{
 			strPath = GetStringValue(vInput);
@@ -247,7 +249,8 @@ AzureDevOpsAPI.prototype = {
 			this.Error('GetBranchesFromRepo: Request failed.');
 			return false;
 		}
-		return response;
+		var aBranches = GetArrayValue(GetValue(ParseJson(response),'value'));
+		return aBranches;
 	},
 
 
@@ -352,13 +355,13 @@ AzureDevOpsAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-11-12 13:12:37</sys_created_on>
         <sys_id>e868a94e83b19e1000d5ccc0deaad3ce</sys_id>
-        <sys_mod_count>21</sys_mod_count>
+        <sys_mod_count>23</sys_mod_count>
         <sys_name>AzureDevOpsAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_e868a94e83b19e1000d5ccc0deaad3ce</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-12-27 11:43:21</sys_updated_on>
+        <sys_updated_on>2025-01-23 08:45:32</sys_updated_on>
     </sys_script_include>
 </record_update>
