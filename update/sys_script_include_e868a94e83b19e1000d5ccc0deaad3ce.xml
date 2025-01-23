@@ -98,8 +98,7 @@ AzureDevOpsAPI.prototype = {
 	Request: function(vInput)
 	{
 		var strPath = '';
-		//var strResponse = 'RESTResponseV2';
-		var strResponse = '';
+		var strFormat = GetStringValue(GetValue(vInput, 'format'));
 
 		if (IsObject(vInput) == false)
 		{
@@ -112,10 +111,6 @@ AzureDevOpsAPI.prototype = {
 			{
 				Error('Request: No path specified!');
 				return false;
-			}
-			if (GetStringValue(GetValue(vInput, 'response')) == 'plain')
-			{
-				strResponse = 'plain';
 			}
 		}
 		this.m_nRequestCount++;
@@ -164,31 +159,33 @@ AzureDevOpsAPI.prototype = {
 			}
 		];
 		
-		params.response = strResponse;
+		params.response = 'RESTResponseV2';
 		
 		var response = HttpRequest(params);
-		if (strResponse == 'RESTResponseV2')
+
+		if (response == false)
 		{
-			var strBody = GetStringValue(response.getBody());
-			if (response.getStatusCode() >= 200 && response.getStatusCode() < 300)
-			{
-				
-				return ParseJson(strBody);
-			}
-			else
-			{
-				this.Error(
-					'AzurDevOps API failed with status: '+response.statusCode+'\n\n'
-					+'Url: '+strUrl+'\n\n'
-					+'Response Body:\n'+strBody);
-				return false;
-			}
+			this.Error(
+				'AzurDevOps API: HttpRequest failed:\n'
+				+'Params:\n\n'
+				+RenderValue(params));
+			return false;	
 		}
-		else
+	
+		var strBody = GetStringValue(response.getBody());
+		if (response.getStatusCode() >= 200 && response.getStatusCode() < 300)
 		{
-			return response;
+			if (strFormat == 'raw')
+			{
+				return strBody;
+			}
+			return ParseJson(strBody);
 		}
-		
+		this.Error(
+			'AzurDevOps API failed with status: '+response.statusCode+'\n\n'
+			+'Url: '+strUrl+'\n\n'
+			+'Response Body:\n'+strBody);
+		return false;
 	},
 
 	GetOrganizationPath: function(strOrganization)
@@ -249,8 +246,7 @@ AzureDevOpsAPI.prototype = {
 			this.Error('GetBranchesFromRepo: Request failed.');
 			return false;
 		}
-		var aBranches = GetArrayValue(GetValue(ParseJson(response),'value'));
-		return aBranches;
+		return response;
 	},
 
 
@@ -283,22 +279,21 @@ AzureDevOpsAPI.prototype = {
 			this.Error('GetFilesFromBranch: Request failed.');
 			return false;
 		}
-
-		var aShell = GetArrayValue(response);
-		var aItems = GetArrayValue(GetValue(aShell,0));
+		var aFiles = [];
+		var aItems = GetArrayValue(GetValue(response,'value',0));
 		if (aItems.length > 0)
 		{
 			for (var nItem = 0; nItem < aItems.length; nItem++)
 			{
 				var item = aItems[nItem];
-				var strType = GetValue(item,'type');
+				var strType = GetValue(item,'gitObjectType');
 				if (strType == 'blob')
 				{
 					aFiles.push(GetValue(item,'path'));
 				}
 			}
 		}
-		return aItems;
+		return aFiles;
 	},
 
 
@@ -309,9 +304,7 @@ AzureDevOpsAPI.prototype = {
 		strUri += '/items?versionType=branch&version=' + encodeURIComponent(strBranch);
 		strUri += '&scopePath=' + encodeURIComponent(strFilePath) + '&includeContent=true';
 
-		var response = this.Request({ path: strUri,  response: 'plain' });
-
-		gs.info(strUri);
+		var response = this.Request({ path: strUri,  format: 'raw' });
 		if (!response)
 		{
 			this.Error('GetFile: Request failed.');
@@ -355,13 +348,13 @@ AzureDevOpsAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-11-12 13:12:37</sys_created_on>
         <sys_id>e868a94e83b19e1000d5ccc0deaad3ce</sys_id>
-        <sys_mod_count>23</sys_mod_count>
+        <sys_mod_count>33</sys_mod_count>
         <sys_name>AzureDevOpsAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_e868a94e83b19e1000d5ccc0deaad3ce</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-01-23 08:45:32</sys_updated_on>
+        <sys_updated_on>2025-01-23 14:48:05</sys_updated_on>
     </sys_script_include>
 </record_update>
