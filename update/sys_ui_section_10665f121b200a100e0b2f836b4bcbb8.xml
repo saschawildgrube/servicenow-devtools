@@ -3,25 +3,25 @@
         <sys_ui_annotation action="INSERT_OR_UPDATE">
             <is_plain_text>false</is_plain_text>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-02-26 16:23:18</sys_created_on>
-            <sys_id>7ea653521b200a100e0b2f836b4bcbe0</sys_id>
+            <sys_created_on>2025-01-27 10:32:28</sys_created_on>
+            <sys_id>af8c10e2c39f96905a37f90705013126</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-02-26 16:23:18</sys_updated_on>
+            <sys_updated_on>2025-01-27 10:32:28</sys_updated_on>
             <text>UI Policy Form Description</text>
             <type display_value="Section Details">19756e5ec3313000bac1addbdfba8f18</type>
         </sys_ui_annotation>
         <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>7ea653521b200a100e0b2f836b4bcbe0</element>
+            <element>af8c10e2c39f96905a37f90705013126</element>
             <position>0</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-02-26 16:23:18</sys_created_on>
-            <sys_id>3ea6d3521b200a100e0b2f836b4bcb1c</sys_id>
+            <sys_created_on>2025-01-27 10:32:28</sys_created_on>
+            <sys_id>678c10e2c39f96905a37f907050131aa</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="sys_ui_policy" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">10665f121b200a100e0b2f836b4bcbb8</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-02-26 16:23:18</sys_updated_on>
+            <sys_updated_on>2025-01-27 10:32:28</sys_updated_on>
             <sys_user/>
             <type>annotation</type>
         </sys_ui_element>
@@ -29,13 +29,13 @@
             <element>.begin_split</element>
             <position>1</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-02-26 16:23:18</sys_created_on>
-            <sys_id>bea6d3521b200a100e0b2f836b4bcb1c</sys_id>
+            <sys_created_on>2025-01-27 10:32:28</sys_created_on>
+            <sys_id>eb8c10e2c39f96905a37f907050131aa</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="sys_ui_policy" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">10665f121b200a100e0b2f836b4bcbb8</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-02-26 16:23:18</sys_updated_on>
+            <sys_updated_on>2025-01-27 10:32:28</sys_updated_on>
             <sys_user/>
             <type>.begin_split</type>
         </sys_ui_element>
@@ -43,111 +43,125 @@
             <element>table</element>
             <position>2</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-02-26 16:23:18</sys_created_on>
-            <sys_id>32a6d3521b200a100e0b2f836b4bcb1d</sys_id>
+            <sys_created_on>2025-01-27 10:32:28</sys_created_on>
+            <sys_id>638c10e2c39f96905a37f907050131ab</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="sys_ui_policy" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">10665f121b200a100e0b2f836b4bcbb8</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-02-26 16:23:18</sys_updated_on>
+            <sys_updated_on>2025-01-27 10:32:28</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>x_snc_devtools_table</element>
+            <position>3</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-01-27 10:32:28</sys_created_on>
+            <sys_id>e78c10e2c39f96905a37f907050131ab</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="sys_ui_policy" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">10665f121b200a100e0b2f836b4bcbb8</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-01-27 10:32:28</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>.split</element>
-            <position>3</position>
+            <position>4</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-02-26 16:23:18</sys_created_on>
-            <sys_id>b2a6d3521b200a100e0b2f836b4bcb1d</sys_id>
+            <sys_created_on>2025-01-27 10:32:28</sys_created_on>
+            <sys_id>6f8c10e2c39f96905a37f907050131ab</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="sys_ui_policy" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">10665f121b200a100e0b2f836b4bcbb8</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-02-26 16:23:18</sys_updated_on>
+            <sys_updated_on>2025-01-27 10:32:28</sys_updated_on>
             <sys_user/>
             <type>.split</type>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>sys_scope</element>
-            <position>4</position>
+            <position>5</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-02-26 16:23:18</sys_created_on>
-            <sys_id>36a6d3521b200a100e0b2f836b4bcb1d</sys_id>
+            <sys_created_on>2025-01-27 10:32:28</sys_created_on>
+            <sys_id>e38c10e2c39f96905a37f907050131ac</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="sys_ui_policy" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">10665f121b200a100e0b2f836b4bcbb8</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-02-26 16:23:18</sys_updated_on>
+            <sys_updated_on>2025-01-27 10:32:28</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>active</element>
-            <position>5</position>
+            <position>6</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-02-26 16:23:18</sys_created_on>
-            <sys_id>b6a6d3521b200a100e0b2f836b4bcb1d</sys_id>
+            <sys_created_on>2025-01-27 10:32:28</sys_created_on>
+            <sys_id>6b8c10e2c39f96905a37f907050131ac</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="sys_ui_policy" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">10665f121b200a100e0b2f836b4bcbb8</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-02-26 16:23:18</sys_updated_on>
+            <sys_updated_on>2025-01-27 10:32:28</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>model_id</element>
-            <position>6</position>
+            <position>7</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-02-26 16:23:19</sys_created_on>
-            <sys_id>3aa6d3521b200a100e0b2f836b4bcb1d</sys_id>
+            <sys_created_on>2025-01-27 10:32:28</sys_created_on>
+            <sys_id>ef8c10e2c39f96905a37f907050131ac</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="sys_ui_policy" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">10665f121b200a100e0b2f836b4bcbb8</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-02-26 16:23:19</sys_updated_on>
+            <sys_updated_on>2025-01-27 10:32:28</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>.end_split</element>
-            <position>7</position>
+            <position>8</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-02-26 16:23:19</sys_created_on>
-            <sys_id>baa6d3521b200a100e0b2f836b4bcb1d</sys_id>
+            <sys_created_on>2025-01-27 10:32:28</sys_created_on>
+            <sys_id>678c10e2c39f96905a37f907050131ad</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="sys_ui_policy" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">10665f121b200a100e0b2f836b4bcbb8</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-02-26 16:23:19</sys_updated_on>
+            <sys_updated_on>2025-01-27 10:32:28</sys_updated_on>
             <sys_user/>
             <type>.end_split</type>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>short_description</element>
-            <position>8</position>
+            <position>9</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-02-26 16:23:19</sys_created_on>
-            <sys_id>3ea6d3521b200a100e0b2f836b4bcb1d</sys_id>
+            <sys_created_on>2025-01-27 10:32:28</sys_created_on>
+            <sys_id>eb8c10e2c39f96905a37f907050131ad</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="sys_ui_policy" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">10665f121b200a100e0b2f836b4bcbb8</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-02-26 16:23:19</sys_updated_on>
+            <sys_updated_on>2025-01-27 10:32:28</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>conditions</element>
-            <position>9</position>
+            <position>10</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-02-26 16:23:19</sys_created_on>
-            <sys_id>bea6d3521b200a100e0b2f836b4bcb1d</sys_id>
+            <sys_created_on>2025-01-27 10:32:28</sys_created_on>
+            <sys_id>638c10e2c39f96905a37f907050131ae</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="sys_ui_policy" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">10665f121b200a100e0b2f836b4bcbb8</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-02-26 16:23:19</sys_updated_on>
+            <sys_updated_on>2025-01-27 10:32:28</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
