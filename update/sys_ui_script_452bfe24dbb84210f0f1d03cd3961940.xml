@@ -15,6 +15,7 @@
 	strDate = strDate.substring(0,10);
 
 	var bCheckedAlreadyRunning = false;
+	var bCheckedShowStopper = false;
 	var bCheckedIfBranchExists = false;
 	var bCheckedReleaseNotes = false;
 	var bCheckedUncommittedFiles = false;
@@ -46,6 +47,24 @@
 		bCheckedAlreadyRunning = true;
 		StateStart();
 	}
+
+	function StateCheckShowStopper()
+	{
+		var bShowStopper = GetBoolValue(g_form.getValue('x_snc_devtools_showstopper'));
+		
+		if (bShowStopper)
+		{
+			DoModalMessage(
+				strTitle,
+				'The app is flagged to contain a showstopper. This issue must be resolved (and the flag unset) before the application can be baselined.',
+				StateEnd);	
+			return;
+		}
+		bCheckedShowStopper = true;
+		StateStart();
+
+		return;
+	}	
 
 	function StateCheckIfBranchExists()
 	{
@@ -266,6 +285,13 @@
 			return;
 		}
 
+		if (bCheckedShowStopper == false)
+		{
+			StateCheckShowStopper();
+			return;
+		}
+
+
 		if (bCheckedIfBranchExists == false)
 		{
 			StateCheckIfBranchExists();
@@ -324,14 +350,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-03-04 14:12:06</sys_created_on>
         <sys_id>452bfe24dbb84210f0f1d03cd3961940</sys_id>
-        <sys_mod_count>100</sys_mod_count>
+        <sys_mod_count>102</sys_mod_count>
         <sys_name>x_snc_devtools.AppVersionBaseline</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_script_452bfe24dbb84210f0f1d03cd3961940</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-12-25 19:23:06</sys_updated_on>
+        <sys_updated_on>2025-01-27 09:47:45</sys_updated_on>
         <ui_type>0</ui_type>
         <use_scoped_format>false</use_scoped_format>
         <x_snc_devtools_global>true</x_snc_devtools_global>

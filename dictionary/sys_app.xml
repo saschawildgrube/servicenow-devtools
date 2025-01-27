@@ -4,5 +4,7 @@
         <element label="Maintainer" max_length="80" name="x_snc_devtools_maintainer" type="string"/>
         <element label="Maintainer Email" max_length="100" name="x_snc_devtools_maintainer_email" type="email"/>
         <element label="Repository" max_length="1024" name="x_snc_devtools_repo_url" type="url"/>
+        <element label="Showstopper" max_length="40" name="x_snc_devtools_showstopper" type="boolean"/>
+        <element label="Details" max_length="2000" name="x_snc_devtools_showstopper_details" type="string"/>
     </element>
 </database>
