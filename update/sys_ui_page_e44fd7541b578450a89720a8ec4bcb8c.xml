@@ -40,7 +40,7 @@
 	
 	<h2>Installation</h2>
 	<ol>
-		<li style="color: red; font-weight: bold;">Set the system property&#160;<a href="/nav_to.do?uri=sys_properties.do?sys_id=9e52826587120300cf2d5fb736cb0b7f" target="_blank">glide.record.legacy_cross_scope_access_policy_in_script</a>&#160;to "true". If the system property does not exist, it must be created (in global scope and type true/false).</li> 
+		<li style="color: red; font-weight: bold;">Set the system property&#160;<a href="/nav_to.do?uri=sys_properties.do?sys_id=9e52826587120300cf2d5fb736cb0b7f" target="_blank">glide.record.legacy_cross_scope_access_policy_in_script</a>&#160;to "true". If the system property does not exist, it must be created (in "global" scope and with type "true/false").</li> 
 		<g2:no_escape>$[
 			docapi.RenderInstallationInstructionsImportFromSourceControl(
 				'DevTools',
@@ -2309,13 +2309,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1914</sys_mod_count>
+        <sys_mod_count>1915</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-01-27 12:47:30</sys_updated_on>
+        <sys_updated_on>2025-01-27 15:26:35</sys_updated_on>
     </sys_ui_page>
 </record_update>
