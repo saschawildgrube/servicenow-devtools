@@ -399,6 +399,8 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>IsValidVersion() now supports the bSemantic parameter to check explicitly against a three component semantic version.</li>
 		<li>Added more patterns to GetEvaluatorErrorExceptionPatterns().</li>
 		<li>SetCurrentScope() now returns true if the given scope Sys ID was valid and an attempt wasmade to set the scope, or false if not.</li>
+		<li>Updated DevTools view for sys_ui_policy to resemble the advanced view.</li>
+		<li>Added view rule for sys_ui_policy to enforce the new DevTools view.</li>
 	</ol>
 
 
@@ -2311,13 +2313,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1921</sys_mod_count>
+        <sys_mod_count>1922</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-02-06 20:54:29</sys_updated_on>
+        <sys_updated_on>2025-02-14 17:04:33</sys_updated_on>
     </sys_ui_page>
 </record_update>
