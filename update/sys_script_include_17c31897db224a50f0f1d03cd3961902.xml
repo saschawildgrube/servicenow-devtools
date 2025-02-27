@@ -5,7 +5,7 @@
         <api_name>x_snc_devtools.ConfigurationItemServiceNowAppInsertOrUpdateLocalApps</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Inserts or updates configuration items that represent the all ServieNow applications on the instance.  </description>
+        <description>Inserts or updates configuration items that represent all ServiceNow applications on the instance.  </description>
         <name>ConfigurationItemServiceNowAppInsertOrUpdateLocalApps</name>
         <script><![CDATA[function ConfigurationItemServiceNowAppInsertOrUpdateLocalApps()
 {
@@ -55,13 +55,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-06-07 14:51:25</sys_created_on>
         <sys_id>17c31897db224a50f0f1d03cd3961902</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_name>ConfigurationItemServiceNowAppInsertOrUpdateLocalApps</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_17c31897db224a50f0f1d03cd3961902</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-08-28 12:58:40</sys_updated_on>
+        <sys_updated_on>2025-02-21 10:58:37</sys_updated_on>
     </sys_script_include>
 </record_update>
