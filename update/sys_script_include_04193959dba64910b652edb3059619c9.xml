@@ -59,6 +59,13 @@
 			whatruns_object['table'] = GetStringValue(grRecord.table);
 			whatruns_object['name'] = GetStringValue(grRecord.name);	
 		}	
+		if (strClassName == 'sys_ui_policy') // UI Policy
+		{
+			whatruns_object['order'] = GetIntegerValue(grRecord.order);
+			whatruns_object['class_display_name'] = 'UI Policy';
+			whatruns_object['table'] = GetStringValue(grRecord.table);
+			whatruns_object['name'] = GetStringValue(grRecord.short_description);	
+		}			
 
 		return whatruns_object;
 	}
@@ -444,6 +451,21 @@
 			
 				whatruns_table['display'] = aWhatRuns;
 
+				// UI POLICIES
+				var grUIP = new GlideRecord('sys_ui_policy');
+				grUIP.orderBy('order');
+				grUIP.addActiveQuery();
+				var condition = grUIP.addQuery('table','=',strTable);
+				for (var nParentTable = 0; nParentTable < aParentTables.length; nParentTable++)
+				{
+					condition.addOrCondition('table','=',aParentTables[nParentTable]);
+				}
+				grUIP.query();
+				while (grUIP.next())
+				{
+					var whatruns_object = MakeWhatRunsObjectFromRecord(grUIP, 'during');
+					aWhatRuns.push(whatruns_object); 
+				}		
 
 
 				// UI ACTIONS
@@ -555,13 +577,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-03-29 08:27:19</sys_created_on>
         <sys_id>04193959dba64910b652edb3059619c9</sys_id>
-        <sys_mod_count>56</sys_mod_count>
+        <sys_mod_count>57</sys_mod_count>
         <sys_name>WhatRuns</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_04193959dba64910b652edb3059619c9</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-08-28 12:58:39</sys_updated_on>
+        <sys_updated_on>2025-02-28 10:27:33</sys_updated_on>
     </sys_script_include>
 </record_update>
