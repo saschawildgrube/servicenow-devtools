@@ -21,7 +21,7 @@
 		docapi.RenderDescription();  
 	]</g2:no_escape>	
 
-	<p>Special thanks go to&#160;<a href="mailto:k.janssen@posteo.de">Kevin Janssen</a>&#160;for his contribution to the AzureDevOpsAPI class and &#160;<a href="https://github.com/denysbulakh/transliterate-ukrainian/blob/main/translit.js">Denys Bulakh</a>&#160;who provided the groundwork for Ukrainian transliteration mechanism in function Transliterate().</p>
+	<p>Special thanks go to&#160;<a href="mailto:k.janssen@posteo.de">Kevin Janssen</a>&#160;for his contribution to the AzureDevOpsAPI class and &#160;<a href="https://github.com/denysbulakh/transliterate-ukrainian/blob/main/translit.js">Denys Bulakh</a>&#160;who provided the groundwork for the Ukrainian transliteration mechanism in function Transliterate().</p>
 
 	<h2>Disclaimer</h2>
 	<g2:no_escape>$[docapi.RenderDisclaimer()]</g2:no_escape>	
@@ -339,6 +339,13 @@ function DevToolsGetFormatConfig(grRecord)
 </pre>
 <p>"your_table" is the technical name of the table in which records should be sorted (or ranked). "order" is the name of the integer field that defines the ordering sequence.</p>
 <p>The "current" object is null in an after delete async business rule, hence the conditional statements.</p>
+
+	<h3>Interactive Lengthy Processes</h3>
+	<p>Implementing a user-interactive lengthy process is not trivial. Follow the steps below - and make use of some DevTools components - to create a lengthy operation that is triggered by the user, propagaes progress information to the user interface and reports back the result. The following checklist goes top-down, it starts at the "top" from the user interface and goes "down" to the backend function.</p>
+
+	<ol>
+		<li></li>
+	</ol>
 	
 	<h2>Further Guidance</h2>
 
@@ -2337,13 +2344,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1935</sys_mod_count>
+        <sys_mod_count>1937</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-02-28 11:20:23</sys_updated_on>
+        <sys_updated_on>2025-03-04 16:34:19</sys_updated_on>
     </sys_ui_page>
 </record_update>
