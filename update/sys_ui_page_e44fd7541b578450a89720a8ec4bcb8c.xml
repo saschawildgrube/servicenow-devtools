@@ -340,27 +340,27 @@ function DevToolsGetFormatConfig(grRecord)
 <p>"your_table" is the technical name of the table in which records should be sorted (or ranked). "order" is the name of the integer field that defines the ordering sequence.</p>
 <p>The "current" object is null in an after delete async business rule, hence the conditional statements.</p>
 
-	<h3>Interactive Lengthy Operations</h3>
-	<p>Implementing a user-interactive lengthy process is not trivial. Follow the steps below - and make use of some DevTools components - to create a lengthy operation that is triggered by the user, propagaes progress information to the user interface and reports back the result. The following checklist goes bottom-up, it starts at the "bottom" with the function that performs the lengthy operation and goes "up" to the user interface.</p>
+	<h3>Interactive Lengthy Processes</h3>
+	<p>Implementing a user-interactive lengthy process is not trivial. Follow the steps below - and make use of some DevTools components - to create a lengthy process that is triggered by the user, propagaes progress information to the user interface and reports back the result. The following checklist goes bottom-up, it starts at the "bottom" with the function that performs the lengthy process and goes "up" to the user interface.</p>
 
 	<ol>
-		<li>Create a Script Include with a single function that performs the lengthy operation. Example:&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=7ac969a9dbc095109232dad1f39619c7" target="_blank">x_snc_devtools.AppVersionBaseline</a></li>
-		<li>Add progress tracking to the function that performs the lengthy operation using the&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=1baddd5b1b9bd9105b76777d8b4bcb2a" target="_blank">x_snc_devtools.ProgressTrackerAPI</a>&#160;class. The following exampe illustrates how to use the ProgressTrackerAPI class:</li>
-		<pre>
+		<li>Create a Script Include with a single function that performs the lengthy process. Example:&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=7ac969a9dbc095109232dad1f39619c7" target="_blank">x_snc_devtools.AppVersionBaseline</a></li>
+		<li>Add progress tracking to the function that performs the lengthy process using the&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=1baddd5b1b9bd9105b76777d8b4bcb2a" target="_blank">x_snc_devtools.ProgressTrackerAPI</a>&#160;class. The following boilerplate code illustrates how to use the ProgressTrackerAPI class:</li>
+<pre>
 var progresstracker = new x_snc_devtools.ProgressTrackerAPI();
 
 progresstracker.Start();
-progresstracker.SetText('Starting lengthy operation...');
+progresstracker.SetText('Starting lengthy process...');
 progresstracker.SetPercentageProgress(1);
 
 // Do something lengthy...
 
-progresstracker.SetText('Continuing lengthy operation...');
+progresstracker.SetText('Continuing lengthy process...');
 progresstracker.SetPercentageProgress(50);
 
 // Do more lengthy things...
 
-progresstracker.SetText('Finishing lengthy operation...');
+progresstracker.SetText('Finishing lengthy process...');
 progresstracker.SetPercentageProgress(90);
 
 // Do one more thing...
@@ -368,15 +368,203 @@ progresstracker.SetPercentageProgress(90);
 progresstracker.SetPercentageProgress(100);
 
 // Report success
-progresstracker.SetResult(null,true,'Operation complete.');
+progresstracker.SetResult(null,true,'Lengthy process complete.');
 
 // or failure
-progresstracker.SetResult(null,false,'Operation failed!');
-		</pre>
-		<li>Create a Script Include and add a "WorkerAPI" class (if it does not exist in the application yet). The Worker API class is required to run a function asynchornously in a separate process. Create a member function with exactly the same name is the Script Include function that performs the lengthy operation. Example:&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=6689d2abdb535d106a03dad1f396197d" target="_blank">x_snc_devtools.DevToolsWorkerAPI</a>.</li>
+progresstracker.SetResult(null,false,'Lengthy process failed!');
+</pre>
+		<li>Create a Script Include and add a "WorkerAPI" class (if it does not exist in the application yet). The Worker API class is required to run a function asynchornously in a separate process. Create a member function with exactly the same name is the Script Include function that performs the lengthy process. Example:&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=6689d2abdb535d106a03dad1f396197d" target="_blank">x_snc_devtools.DevToolsWorkerAPI</a>.</li>
 		<li>Create a Script Include and add a "ClientAPI" class (if it does not exist in the application yet). The Client API class is required to execute a server side script from the client side. Example:&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=7357b9131b8bb090edf3642aab4bcb10" target="_blank">x_snc_devtools.DevToolsClientAPI</a>.</li>
 		<li>Set the ClientAPI Script Include to be "Client callable".</li>
-		<li>Add the function "start" to the ClientAPI class. The "start" function is used to invoke lengthy operations. Study the DevToolsClientAPI::start() function on how to receive parameters (using this.getParameter()), how to determine which lengthy operation is requested (using the "sysparm_ajax_processor_command" parameter) and how to return result data to the client (using x_snc_devtools.MakeJson()).</li>
+		<li>Add the function "start" to the ClientAPI class. The "start" function is used to invoke lengthy processes. The function has to receive parameters (using this.getParameter()), dertermine which lengthy process is requested (using the "sysparm_ajax_processor_command" parameter), initiate the lengthy process as an asynchonous process (using WorkerAPI) and return the Sys Id of the worker record back to the client. Example:&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=7357b9131b8bb090edf3642aab4bcb10" target="_blank">x_snc_devtools.DevToolsClientAPI</a>. Check out the following boilerplate code:</li>
+<pre>
+start: function()
+{
+	if (gs.hasRole('x_your_scope.your_role') == false)
+	{
+		return '';
+	}
+
+	var strWorkerId = '';
+	var strTrackerSourceTable = '';
+	var strTrackerType = '';
+
+	var strCommand = x_snc_devtools.GetStringValue(
+		this.getParameter("sysparm_ajax_processor_command"));
+	if (strCommand == 'your_lengthy_process')
+	{
+		var strRecordSysId = x_snc_devtools.GetStringValue(this.getParameter("sysparm_ajax_processor_record_sys_id"));
+		if (strRecordSysId == '')
+		{
+			x_snc_devtools.LogError('YourClientAPI.start(): YourLengthyProcess: no record_sys_id specified.');
+			return '';
+		}
+		var grRecord = x_snc_devtools.GetRecord('your_table',strRecordSysId);
+		if (x_snc_devtools.IsValidRecord(grRecord) == false)
+		{
+			x_snc_devtools.LogError('YourClientAPI.start(): YourLengthyProcess: Record not found.');
+			return '';
+		}
+
+		strTrackerSourceTable = 'your_table';
+		strTrackerType = 'your_lengthy_process';
+
+		var strProgressName = "Processing record "+grRecord.number;
+
+		var params = {};
+		params['strRecordSysId'] = strRecordSysId;
+
+		strWorkerId = x_snc_devtools.StartWorker(
+			strProgressName,
+			'x_your_scope.ClientWorkerAPI',
+			'YourLengthyProcess',
+			params);
+	}
+	else
+	{
+		LogError('AgileClientAPI.start(): Unknown command!');
+	}
+
+	
+	if (strWorkerId == '')
+	{
+		return '';
+	}
+
+	var nCountDown = 1000;
+	while (nCountDown > 0)
+	{
+		var grTracker = new GlideRecord('sys_execution_tracker');
+		grTracker.orderByDesc('sys_created_on');
+		grTracker.addQuery('source_table','=',strTrackerSourceTable);
+		grTracker.addQuery('type','=',strTrackerType);
+		grTracker.addQuery('state', 'IN', '0,1');
+		grTracker.query();
+		if (grTracker.next())
+		{
+			return x_snc_devtools.GetStringValue(grTracker.sys_id);
+		}
+		nCountDown--;
+	}
+
+	return strWorkerId;
+},
+</pre>
+		<li>Add a UI Script containing a client-side function that performs the user interaction to prepare and start the lengthy process and shows its progress. 		Example:&#160;<a href="/nav_to.do?uri=sys_ui_script.do?sys_id=452bfe24dbb84210f0f1d03cd3961940" target="_blank">x_snc_devtools.DevToolsClientAPI</a>. Check out the following boilerplate code:
+		</li>
+<pre>
+function YourLengthyProcess(strRecordSysId)
+{
+	var strRecordSysId = GetStringValue(strRecordSysId);
+	var strTitle = 'Your Lengthy Process';
+	
+	var bUserConfirmation = false;
+
+	StateStart();
+
+	function StateUserConfirmation()
+	{
+		DoModalConfirm(
+			strTitle,
+			strMessage
+			+'\n\n'
+			+'Ready to start the lengthy process?',
+			StateUserConfirmationUserResponse);
+	}
+
+	function StateUserConfirmationUserResponse(bResult)
+	{
+		if (bResult == false)
+		{
+			StateEnd();
+			return;
+		}
+		bUserConfirmation = true;
+		StateStart();		
+	}
+
+			
+
+	function OnExecutionComplete(dialog,tracker)
+	{
+		var buttonViewResults = GetElementById('sysparm_button_view_results');
+		if (buttonViewResults)
+		{
+			buttonViewResults.style.display = "none";
+		}
+
+		var buttonClose = GetElementById('sysparm_button_close');
+		if (buttonClose)
+		{
+			buttonClose.on('click', function()
+				{
+					StateEnd();
+				});
+		}
+	}
+	
+	function OnExecutionFailed(dialog)
+	{
+		StateError('Lengthy Process failed!');
+	}
+	
+	function OnStatusUpdate(dialog)
+	{
+	}
+
+	function StateAbort()
+	{
+		DoModalMessage(
+			strTitle,
+			'Aborting...',
+			StateEnd);
+		return;	
+	}
+
+	function StateError(strErrorMessage)
+	{
+		DoModalMessage(
+			strTitle,
+			'ERROR: '+strErrorMessage,
+			StateEnd);		
+		return;	
+	}	
+
+	function StateEnd()
+	{
+		RedirectToRecord('your_table',strRecordSysId,'');
+	}
+
+	function StateStart()
+	{
+		if (bUserConfirmation == false)
+		{
+			StateUserConfirmation();
+			return;
+		}
+
+		DoModalProgress(
+			strTitle,
+			'Lengthy Process',
+			'x_snc_agile.AgileClientAPI',
+			{
+				command: 'your_lengthy_process',
+				record_sys_id: strRecordItemSysId
+			},
+			{
+				close:
+				{
+					title: 'Close'
+				}
+			},
+			{
+				callbackOnExecutionComplete: OnExecutionComplete,
+				callbackOnExecutionFailed: OnExecutionFailed,
+				callbackOnStatusUpdate: OnStatusUpdate,
+			});
+	}
+}
+</pre>
 	</ol>
 	
 	<h2>Further Guidance</h2>
@@ -435,7 +623,7 @@ progresstracker.SetResult(null,false,'Operation failed!');
 
 	<h3>1.116.0 - TODO</h3>
 	<ol>
-		<li>TODO: Document changes here...</li>
+		<li>Added guidance on how to build "Interactive Lengthy Processes" to the manual.</li>
 	</ol>
 
 
@@ -2376,13 +2564,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1949</sys_mod_count>
+        <sys_mod_count>1958</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-03-04 20:25:34</sys_updated_on>
+        <sys_updated_on>2025-03-05 12:35:38</sys_updated_on>
     </sys_ui_page>
 </record_update>
