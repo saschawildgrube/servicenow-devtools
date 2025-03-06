@@ -374,6 +374,7 @@ progresstracker.SetResult(null,true,'Lengthy process complete.');
 progresstracker.SetResult(null,false,'Lengthy process failed!');
 </pre>
 		<li>Create a Script Include and add a "WorkerAPI" class (if it does not exist in the application yet). The Worker API class is required to run a function asynchornously in a separate process. Create a member function with exactly the same name is the Script Include function that performs the lengthy process. Example:&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=6689d2abdb535d106a03dad1f396197d" target="_blank">x_snc_devtools.DevToolsWorkerAPI</a>.</li>
+		<li>Configure the WorkerAPI Script Include to be accessible from "All application scopes".</li>
 		<li>Create a Script Include and add a "ClientAPI" class (if it does not exist in the application yet). The Client API class is required to execute a server side script from the client side. Example:&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=7357b9131b8bb090edf3642aab4bcb10" target="_blank">x_snc_devtools.DevToolsClientAPI</a>.</li>
 		<li>Set the ClientAPI Script Include to be "Client callable".</li>
 		<li>Add the function "start" to the ClientAPI class. The "start" function is used to invoke lengthy processes. The function has to receive parameters (using this.getParameter()), dertermine which lengthy process is requested (using the "sysparm_ajax_processor_command" parameter), initiate the lengthy process as an asynchonous process (using WorkerAPI) and return the Sys Id of the worker record back to the client. Example:&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=7357b9131b8bb090edf3642aab4bcb10" target="_blank">x_snc_devtools.DevToolsClientAPI</a>. Check out the following boilerplate code:</li>
@@ -624,6 +625,7 @@ function YourLengthyProcess(strRecordSysId)
 	<h3>1.116.0 - TODO</h3>
 	<ol>
 		<li>Added guidance on how to build "Interactive Lengthy Processes" to the manual.</li>
+		<li>Improved html layout in HtmlRenderProcessMap() by ending the floating area.</li> 
 	</ol>
 
 
@@ -2564,13 +2566,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1958</sys_mod_count>
+        <sys_mod_count>1960</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-03-05 12:35:38</sys_updated_on>
+        <sys_updated_on>2025-03-06 10:56:29</sys_updated_on>
     </sys_ui_page>
 </record_update>
