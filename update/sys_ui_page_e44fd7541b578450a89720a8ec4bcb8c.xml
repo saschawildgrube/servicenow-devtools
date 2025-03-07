@@ -377,7 +377,7 @@ progresstracker.SetResult(null,false,'Lengthy process failed!');
 		<li>Configure the WorkerAPI Script Include to be accessible from "All application scopes".</li>
 		<li>Create a Script Include and add a "ClientAPI" class (if it does not exist in the application yet). The Client API class is required to execute a server side script from the client side. Example:&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=7357b9131b8bb090edf3642aab4bcb10" target="_blank">x_snc_devtools.DevToolsClientAPI</a>.</li>
 		<li>Set the ClientAPI Script Include to be "Client callable".</li>
-		<li>Add the function "start" to the ClientAPI class. The "start" function is used to invoke lengthy processes. The function has to receive parameters (using this.getParameter()), dertermine which lengthy process is requested (using the "sysparm_ajax_processor_command" parameter), initiate the lengthy process as an asynchonous process (using WorkerAPI) and return the Sys Id of the worker record back to the client. Example:&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=7357b9131b8bb090edf3642aab4bcb10" target="_blank">x_snc_devtools.DevToolsClientAPI</a>. Check out the following boilerplate code:</li>
+		<li>Add the function "start" to the ClientAPI class. The "start" function is used to invoke lengthy processes. The function has to receive parameters (using this.getParameter()), dertermine which lengthy process is requested (using the "sysparm_ajax_processor_command" parameter), initiate the lengthy process as an asynchonous process (using the Worker API class) and return the Sys Id of the worker record back to the client. Example:&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=7357b9131b8bb090edf3642aab4bcb10" target="_blank">x_snc_devtools.DevToolsClientAPI</a>. Check out the following boilerplate code:</li>
 <pre>
 start: function()
 {
@@ -547,10 +547,10 @@ function YourLengthyProcess(strRecordSysId)
 		DoModalProgress(
 			strTitle,
 			'Lengthy Process',
-			'x_snc_agile.AgileClientAPI',
+			'x_your_scope.YourClientAPI',
 			{
 				command: 'your_lengthy_process',
-				record_sys_id: strRecordItemSysId
+				record_sys_id: strRecordSysId
 			},
 			{
 				close:
@@ -566,9 +566,9 @@ function YourLengthyProcess(strRecordSysId)
 	}
 }
 </pre>
+<li>Add a client-side script that triggers the client-side function. E.g. a client-side UI Action that adds a button on a form. Example:&#160;<a href="/nav_to.do?uri=sys_ui_action.do?sys_id=869da5addbc095109232dad1f3961993" target="_blank">UI Action: "Baseline Version"</a>.
+		</li>
 	</ol>
-	
-	<h2>Further Guidance</h2>
 
 	<h3>How to unblock Instance Scan?</h3>
 	<p>On rare occasions an Instance Scan run does not finish properly and remains in an undefined state. This prevents further Instance Scan checks to run. Follow these instructions to unblock Instance Scan and to enable further scan operations:</p>
@@ -2567,13 +2567,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1962</sys_mod_count>
+        <sys_mod_count>1968</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-03-06 15:21:16</sys_updated_on>
+        <sys_updated_on>2025-03-07 14:28:45</sys_updated_on>
     </sys_ui_page>
 </record_update>
