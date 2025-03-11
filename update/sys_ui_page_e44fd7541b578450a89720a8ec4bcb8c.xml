@@ -569,6 +569,7 @@ function YourLengthyProcess(strRecordSysId)
 <li>Add a client-side script that triggers the client-side function. E.g. a client-side UI Action that adds a button on a form. Example:&#160;<a href="/nav_to.do?uri=sys_ui_action.do?sys_id=869da5addbc095109232dad1f3961993" target="_blank">UI Action: "Baseline Version"</a>.
 		</li>
 	</ol>
+	<p>Once all components are in place, the procedure can be tested. Note that if a server-side script that is triggered through a client AJAX request runs into an evaluator error such errors ARE NOT LOGGED. This is annoying and makes debugging more difficult. If your process shows unexpected behavior, use debug logging to narow down the code that fails.</p> 
 
 	<h3>How to unblock Instance Scan?</h3>
 	<p>On rare occasions an Instance Scan run does not finish properly and remains in an undefined state. This prevents further Instance Scan checks to run. Follow these instructions to unblock Instance Scan and to enable further scan operations:</p>
@@ -622,7 +623,7 @@ function YourLengthyProcess(strRecordSysId)
 	
 	<h2>Release Notes</h2>
 
-	<h3>1.116.0 - TODO</h3>
+	<h3>1.116.0 - 2025-03-11</h3>
 	<ol>
 		<li>GetArrayValue() now supports the delimiter parameter.</li>
 		<li>Added guidance on how to build "Interactive Lengthy Processes" to the manual.</li>
@@ -2569,13 +2570,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1970</sys_mod_count>
+        <sys_mod_count>1971</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-03-11 15:51:38</sys_updated_on>
+        <sys_updated_on>2025-03-11 16:45:21</sys_updated_on>
     </sys_ui_page>
 </record_update>
