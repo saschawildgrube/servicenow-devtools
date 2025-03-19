@@ -662,6 +662,37 @@
 	}	
 
 
+	// Adding script include "DevToolsIsTechnicalUser"
+	var grSSI = new GlideRecord('sys_script_include');
+	grSSI.addQuery('sys_scope','=',strAppSysId);
+	grSSI.addQuery('name','=','DevToolsIsTechnicalUser');
+	grSSI.query();
+	if (grSSI.getRowCount() != 0)
+	{
+		Log('Script include "DevToolsIsTechnicalUser" already exists...');
+	}
+	else
+	{
+		Log('Adding script include "DevToolsIsTechnicalUser"...');
+		var grSSI = new GlideRecord('sys_script_include');
+		grSSI.initialize();
+		grSSI.name = 'DevToolsIsTechnicalUser';
+		grSSI.description = "The DevToolsIsTechnicalUser function is called by the DevTools extension point instance class and should return true if the given grUser GlideRecord object represents a valid technical user.";
+		grSSI.sys_scope = strAppSysId;
+		grSSI.access = 'public';
+		grSSI.caller_access = '1';
+		grSSI.script = 
+			"function DevToolsIsTechnicalUser(grUser)\n"
+			+"{\n"
+			+"\t// TODO: Modify or remove this code - return true if the given grUser is a valid technical user...\n"
+			+"\n"
+			+"\treturn false;\n"
+			+"}";
+		strSSI = GlideRecordInsert(grSSI);
+		Log('Script include "DevToolsIsTechnicalUser": '+RenderValue(strSSI));	
+	}		
+
+
 
 	Log('Adding UI Page "Manual"...');
 	var strHtml = RecordGetValue('sys_ui_page','790addc91b584d90edf3642aab4bcbb6','html');  // template_manual ui page
@@ -930,13 +961,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-07 15:15:09</sys_created_on>
         <sys_id>753cb10c1b6afc50577f43b5bb4bcb58</sys_id>
-        <sys_mod_count>149</sys_mod_count>
+        <sys_mod_count>150</sys_mod_count>
         <sys_name>AppBuilder</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_753cb10c1b6afc50577f43b5bb4bcb58</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-11-07 09:42:41</sys_updated_on>
+        <sys_updated_on>2025-03-18 07:33:33</sys_updated_on>
     </sys_script_include>
 </record_update>
