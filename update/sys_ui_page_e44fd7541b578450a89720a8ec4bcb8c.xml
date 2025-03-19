@@ -626,6 +626,8 @@ function YourLengthyProcess(strRecordSysId)
 	<h3>1.117.0 - TODO</h3>
 	<ol>
 		<li>The DevTools extension point now supports the IsTechnicalUser() member function, which can be used to override the default behavior of the IsTechnicalUser() Script Include function which determines if a user is a technical user. Extended AppBuilder() to create the DevToolsIsTechnicalUser() function.</li>
+		<li>Added function CreateTinyUrl().</li>
+		<li>Refactored HtmlRenderPageEvaluatorLog() to use CreateTinyUrl().</li>
 		<li>Added UI Script StringFormat().</li>
 		<li>ExecuteBusinessRuleShowRecentEvaluatorErrors() now shows a condensed error message if the recently logged evaluator errors are not logged during a transaction of the current user. This prevents spamming developers too much with evaluator errors unrelated to their work.</li>  
 		<li>On the evaluator error log list a message is displayed to inform the maintainer of DevTools on evaluator errors caused by OOTB records.</li>
@@ -2581,13 +2583,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1978</sys_mod_count>
+        <sys_mod_count>1979</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-03-18 17:00:14</sys_updated_on>
+        <sys_updated_on>2025-03-19 10:45:16</sys_updated_on>
     </sys_ui_page>
 </record_update>
