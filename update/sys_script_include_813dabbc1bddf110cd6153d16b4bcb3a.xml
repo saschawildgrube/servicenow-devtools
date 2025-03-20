@@ -38,6 +38,7 @@
 		'Access Control: \'sys_decision_input\' : Line(1) column(0)', // Decision tables
 		'"dependent_value" is not defined.',
 		'Cannot read property "device_type" from null',
+		'"sn_atf_tg" is not defined.',
 		
 		'60b1d53fef12110', // 60b1d53fef1211002841f7f775c0fb54
 		'293eb723d723210', // 293eb723d7232100b6bddb0c82520320
@@ -94,13 +95,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-09-13 12:47:41</sys_created_on>
         <sys_id>813dabbc1bddf110cd6153d16b4bcb3a</sys_id>
-        <sys_mod_count>77</sys_mod_count>
+        <sys_mod_count>78</sys_mod_count>
         <sys_name>GetEvaluatorErrorExceptionPatterns</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_813dabbc1bddf110cd6153d16b4bcb3a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-03-18 16:59:46</sys_updated_on>
+        <sys_updated_on>2025-03-20 08:57:01</sys_updated_on>
     </sys_script_include>
 </record_update>
