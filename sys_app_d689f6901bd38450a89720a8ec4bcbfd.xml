@@ -15,7 +15,7 @@
         <license_model>none</license_model>
         <logo/>
         <menu/>
-        <name>DevTools</name>
+        <name>DevTools WORK IN PROGRESS</name>
         <package_json/>
         <private>false</private>
         <restrict_table_access>false</restrict_table_access>
@@ -43,7 +43,7 @@ DevTools contains a number of Script Includes with useful javascript functions a
         <user_role/>
         <vendor/>
         <vendor_prefix/>
-        <version>1.118.0</version>
+        <version>1.119.0</version>
         <x_snc_azure_test_x_snc_devtools_showstopper>false</x_snc_azure_test_x_snc_devtools_showstopper>
         <x_snc_azure_test_x_snc_devtools_showstopper_details/>
         <x_snc_devtools_documentation_url>https://www.wildgrube.com/servicenow-devtools</x_snc_devtools_documentation_url>
