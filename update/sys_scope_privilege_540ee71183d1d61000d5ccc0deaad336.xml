@@ -16,7 +16,7 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2024-10-16 18:29:35</sys_updated_on>
         <target_name>AppInstall</target_name>
-        <target_scope display_value="Airline WORK IN PROGRESS">54ee8da3dbd64110b652edb305961973</target_scope>
+        <target_scope/>
         <target_type>sys_script_include</target_type>
     </sys_scope_privilege>
 </record_update>

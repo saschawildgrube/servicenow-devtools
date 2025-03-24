@@ -4,7 +4,7 @@
         <operation>execute</operation>
         <rca_type>real_rca</rca_type>
         <source>2863be58db2a4510bcced03cd39619be</source>
-        <source_scope display_value="Airline WORK IN PROGRESS">54ee8da3dbd64110b652edb305961973</source_scope>
+        <source_scope/>
         <source_table>sys_script_include</source_table>
         <source_type>2</source_type>
         <status>2</status>

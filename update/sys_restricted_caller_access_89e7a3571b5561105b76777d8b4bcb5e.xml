@@ -4,7 +4,7 @@
         <operation>execute</operation>
         <rca_type>real_rca</rca_type>
         <source>b8e35407db774510b652edb3059619bf</source>
-        <source_scope display_value="Agile WORK IN PROGRESS">65135483db774510b652edb3059619c8</source_scope>
+        <source_scope/>
         <source_table>sys_script_include</source_table>
         <source_type>2</source_type>
         <status>2</status>

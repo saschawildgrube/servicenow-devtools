@@ -16,7 +16,7 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2023-10-07 19:16:56</sys_updated_on>
         <target_name>x_snc_agile_backlog_item</target_name>
-        <target_scope display_value="Agile WORK IN PROGRESS">65135483db774510b652edb3059619c8</target_scope>
+        <target_scope/>
         <target_type>sys_db_object</target_type>
     </sys_scope_privilege>
 </record_update>
