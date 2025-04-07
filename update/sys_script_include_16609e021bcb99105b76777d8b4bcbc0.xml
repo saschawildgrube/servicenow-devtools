@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Renders a html style tag. </description>
+        <mobile_callable>false</mobile_callable>
         <name>HtmlRenderStyle</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function HtmlRenderStyle(strStyle)
 {
 	return '<style>\n' + GetStringValue(strStyle) + '\n</style>\n';

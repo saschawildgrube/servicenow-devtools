@@ -7,7 +7,9 @@
         <client_callable>false</client_callable>
         <description>Sends an email if the supplied params object contains non-empty values for "subject", "body" and "recipients" and if the "glide.email.smtp.active" system property is set to true.&#13;
 The default sender name is defined in the system property "glide.email.username". It can be set using the "from" value in the params object.</description>
+        <mobile_callable>false</mobile_callable>
         <name>SendMail</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function SendMail(params)
 {
 	if (GetBoolValue(GetProperty('glide.email.smtp.active')) == false)

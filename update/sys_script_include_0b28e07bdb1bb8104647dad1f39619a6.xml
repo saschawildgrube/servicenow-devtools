@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Renders a string with a technical summary of a record including its table name, sys_id, number if available and other text data that can help to identify the record while debugging.</description>
+        <mobile_callable>false</mobile_callable>
         <name>RenderRecordSummary</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function RenderRecordSummary(grRecord)
 {
 	if (IsExistingRecord(grRecord) == false)

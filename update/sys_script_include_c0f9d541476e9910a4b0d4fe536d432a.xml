@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Strips postfixes indicating unfinished work from an application name based on the given string.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetCleanAppName</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetCleanAppName(strAppName)
 {
 	strAppName = GetStringValue(strAppName);

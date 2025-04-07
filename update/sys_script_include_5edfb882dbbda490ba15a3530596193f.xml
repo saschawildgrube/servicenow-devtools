@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns true if the given string is a valid version number, false if not.</description>
+        <mobile_callable>false</mobile_callable>
         <name>IsValidVersion</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function IsValidVersion(strVersion,bSemantic)
 {
 	strVersion = GetStringValue(strVersion);

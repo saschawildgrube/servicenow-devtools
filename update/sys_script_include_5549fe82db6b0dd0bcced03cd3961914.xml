@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Finds a string in a string based on a regular expression.</description>
+        <mobile_callable>false</mobile_callable>
         <name>StringFindRegEx</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function StringFindRegEx(strHaystack, strPattern, strOptions)
 {
 	strHaystack = GetStringValue(strHaystack);

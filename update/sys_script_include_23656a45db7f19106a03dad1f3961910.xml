@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Renders all dependencies of the given package.</description>
+        <mobile_callable>false</mobile_callable>
         <name>HtmlRenderDependencies</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function HtmlRenderDependencies(vPackage, strMode, aHidePackages)
 {
 	strMode = GetStringValue(strMode);

@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Calls the function restoreLocation on the given GlideRecord object. This function is yet another cross-scope wrapper for a function that is not available in scope for no reason.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GlideRecordRestoreLocation</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GlideRecordRestoreLocation(grRecord)
 {
 	if (IsValidRecord(grRecord) == false)

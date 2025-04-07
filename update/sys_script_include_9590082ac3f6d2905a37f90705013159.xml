@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Synchronizes all dependencies of the given app based on the now current repository settings.</description>
+        <mobile_callable>false</mobile_callable>
         <name>AppSyncAllDependencies</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function AppSyncAllDependencies(vApp)
 {
 	var grApp = GetAppRecord(vApp);

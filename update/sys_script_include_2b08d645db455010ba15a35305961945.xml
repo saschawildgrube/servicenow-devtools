@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns the sys_id of the record that has been created or found in the given test step.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetRecordFromTestStep</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetRecordFromTestStep(strStepSysId)
 {
 	if (steps == undefined)

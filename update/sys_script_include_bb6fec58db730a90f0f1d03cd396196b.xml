@@ -7,7 +7,9 @@
         <client_callable>false</client_callable>
         <description>Based on the given class name and strTypeInstance Scan check GlideRecord object the function returns the encoded query to be added to a query for a sys_metadata derived record.&#13;
 The encoded query shall prevent Instance Scan to load those records where the check will not provide any meaningful results.</description>
+        <mobile_callable>false</mobile_callable>
         <name>InstanceScanGetEncodedQueryToPreventUselessChecks</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function InstanceScanGetEncodedQueryToPreventUselessChecks(strClassName,strType)
 {
 	strClassName = GetStringValue(strClassName);

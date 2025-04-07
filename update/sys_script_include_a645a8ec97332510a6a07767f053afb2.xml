@@ -7,7 +7,9 @@
         <client_callable>false</client_callable>
         <description>Binds all functions of the given object to the given object. This is needed to access the "this" object within every function of the class.&#13;
 Javascript is inherently broken and the fact that this function is even necessary can serve as proof.</description>
+        <mobile_callable>false</mobile_callable>
         <name>BindAllFunctionsToThis</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function BindAllFunctionsToThis(vValue)
 {
 	if (GetType(vValue) != 'Object')

@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Renders the page that redirects to the evaluator log.</description>
+        <mobile_callable>false</mobile_callable>
         <name>HtmlRenderPageEvaluatorLog</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function HtmlRenderPageEvaluatorLog()
 {
 	var strQuery = 'sys_created_on>javascript:gs.beginningOfToday()^source=Evaluator';

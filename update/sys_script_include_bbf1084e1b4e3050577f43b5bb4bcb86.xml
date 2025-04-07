@@ -7,7 +7,9 @@
         <client_callable>false</client_callable>
         <description>Measure the average performance of a query in milliseconds from the perspective of a given user based on a defined number of repetitions.&#13;
 The result is returned as a JSON object.</description>
+        <mobile_callable>false</mobile_callable>
         <name>PerformanceQuery</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function PerformanceQuery(strName, strTable, strQuery, strOrderBy, nLimit, strUser, nRepetitions)
 {
 	strName = GetStringValue(strName);

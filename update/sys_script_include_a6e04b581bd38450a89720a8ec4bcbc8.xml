@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Render any value as a string. In case of objects, the keys are displayed in alphabetical order. In case of arrays, the elements are displayed in the given order. In case of a GlideRecord, the table name, sys_id and number (if available) are displayed on top, and a selected choice of fields leads the list of values despite the alphabetical order.</description>
+        <mobile_callable>false</mobile_callable>
         <name>RenderValue</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function RenderValue(vValue, bHideEmpty, bUnsortedKeys, bCompactOutput, nLevel)
 {
 	bHideEmpty = GetBoolValue(bHideEmpty);

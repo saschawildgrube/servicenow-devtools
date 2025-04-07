@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Removes a value from an array.</description>
+        <mobile_callable>false</mobile_callable>
         <name>ArrayRemoveValue</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function ArrayRemoveValue(aArray, vValue)
 {
 	aArray = GetArrayValue(aArray);

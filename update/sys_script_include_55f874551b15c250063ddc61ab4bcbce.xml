@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns the array of elements that are contained in both given arrays.</description>
+        <mobile_callable>false</mobile_callable>
         <name>ArrayIntersection</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function ArrayIntersection(aArray1, aArray2)
 {
 	aArray1 = GetArrayValue(aArray1);

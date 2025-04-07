@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Sleeps for the given amount of seconds. This function serves as an alternative to gs.sleep() which is not supported in scoped apps.</description>
+        <mobile_callable>false</mobile_callable>
         <name>Sleep</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function Sleep(nSeconds)
 {
 	nSeconds = GetIntegerValue(nSeconds);

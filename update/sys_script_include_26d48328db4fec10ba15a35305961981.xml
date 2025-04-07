@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Renders a date/time value as an UTC ISO string.</description>
+        <mobile_callable>false</mobile_callable>
         <name>RenderDateTime</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function RenderDateTime(vDateTime)
 {
 	if (vDateTime === false || vDateTime == null || vDateTime == undefined)

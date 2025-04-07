@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Renders the DevTools Html Gallery page</description>
+        <mobile_callable>false</mobile_callable>
         <name>HtmlRenderPageGallery</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function HtmlRenderPageGallery()
 {
 

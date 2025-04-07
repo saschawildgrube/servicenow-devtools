@@ -39,7 +39,9 @@ Methods:
 * RenderInstallationInstructionsAppInstall()
 * RenderInstallationInstructionsRunTestSuite()
 * RenderError()</description>
+        <mobile_callable>false</mobile_callable>
         <name>DocumentationAPI</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[var DocumentationAPI = Class.create();
 DocumentationAPI.prototype =
 {

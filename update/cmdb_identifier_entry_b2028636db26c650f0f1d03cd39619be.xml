@@ -8,6 +8,8 @@
         <exact_count_match>false</exact_count_match>
         <hybrid_entry_ci_criterion_attributes/>
         <identifier display_value="x_snc_devtools_cmdb_ci_appl_servicenow">c2c18ef2db26c650f0f1d03cd3961941</identifier>
+        <main_attributes/>
+        <main_table/>
         <order>100</order>
         <sys_class_name>cmdb_identifier_entry</sys_class_name>
         <sys_created_by>admin</sys_created_by>

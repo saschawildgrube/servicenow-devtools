@@ -16,7 +16,9 @@ Values in the parameter object are:&#13;
 - response: A string to specify how the result should be returned by HttpRequest. If set to "RESTResponseV2" an object is returned if the request did not run into an exception, otherwise the function returns the response body.&#13;
 - headers: An array of objects representing a header. A header object should contain values "name" and "value".&#13;
 - mid_server: the name of a MID server to be used to relay the request.</description>
+        <mobile_callable>false</mobile_callable>
         <name>HttpRequest</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function HttpRequest(vInput)
 {
 	var params = {};

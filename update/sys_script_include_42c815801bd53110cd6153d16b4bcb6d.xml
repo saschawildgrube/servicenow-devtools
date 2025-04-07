@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns true if the given url is most likely related to the primary request of a page load. If there is an indicator of a secondary request (that is a request that is triggered by the inital page load) the function returns false.</description>
+        <mobile_callable>false</mobile_callable>
         <name>IsPrimaryRequestUrl</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function IsPrimaryRequestUrl(strUrl)
 {
 	strUrl = GetStringValue(strUrl);

@@ -26,7 +26,9 @@ Methods:
 * GetFilesFromBranch()
 * GetFile()
 * ProtectBranchReadOnly()</description>
+        <mobile_callable>false</mobile_callable>
         <name>AzureDevOpsAPI</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[var AzureDevOpsAPI = Class.create();
 AzureDevOpsAPI.prototype = {
 	initialize: function(strApiUrl)

@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>The function creates a syntax editor macro in the given application scope.</description>
+        <mobile_callable>false</mobile_callable>
         <name>AppBuilderAddSyntaxEditorMacro</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function AppBuilderAddSyntaxEditorMacro(strAppSysId,strName,strText,strComments)
 {
 	strAppSysId = GetStringValue(strAppSysId);

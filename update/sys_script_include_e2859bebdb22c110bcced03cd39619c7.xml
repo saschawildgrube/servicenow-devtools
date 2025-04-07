@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Get an application record based on sys_id or scope name.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetAppRecord</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetAppRecord(vValue)
 {
 	if (IsValidRecord(vValue))

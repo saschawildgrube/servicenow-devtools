@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns the parent table of the given table. False if the given table does not exist or is not derived from another table.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetParentTable</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetParentTable(strTable)
 {
 	var cache = new TransactionCacheAPI('DEVTOOLS');

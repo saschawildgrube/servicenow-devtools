@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns true if the given value is an array. False if not.</description>
+        <mobile_callable>false</mobile_callable>
         <name>IsArray</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function IsArray(vInput)
 {
 	var strType = GetType(vInput);

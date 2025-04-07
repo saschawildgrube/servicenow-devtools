@@ -6,7 +6,9 @@
         <caller_access>1</caller_access>
         <client_callable>false</client_callable>
         <description>Drops an existing database index.</description>
+        <mobile_callable>false</mobile_callable>
         <name>DatabaseIndexDrop</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function DatabaseIndexDrop(strTable, strName)
 {
 	strTable = GetStringValue(strTable);

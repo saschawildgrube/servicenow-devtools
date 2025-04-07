@@ -7,7 +7,9 @@
         <client_callable>false</client_callable>
         <description>Transliterates the given text string into latin letters.&#13;
 Currently only Ukrainian is supported.</description>
+        <mobile_callable>false</mobile_callable>
         <name>Transliterate</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function Transliterate(strText) 
 {
 	var strResult = GetStringValue(strText);

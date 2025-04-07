@@ -49,7 +49,9 @@ Methods:&#13;
 * DefineFormSection()&#13;
 * DefineList()&#13;
 * RecordTransporterPackageUnpack()</description>
+        <mobile_callable>false</mobile_callable>
         <name>InstallerAPI</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[var InstallerAPI = Class.create();
 InstallerAPI.prototype =
 {
@@ -1202,4 +1204,15 @@ InstallerAPI.prototype =
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2025-02-28 12:01:15</sys_updated_on>
     </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>704694a81b1a74505331b8449b4bcb69</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-02-28 12:00:04</sys_created_on>
+        <sys_id>fe7365309388a610ae97b4aa6aba10b9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-02-28 12:00:04</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>

@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns true if domain separation is supported and active on a given table, false if not.</description>
+        <mobile_callable>false</mobile_callable>
         <name>IsTableDomainSeparated</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function IsTableDomainSeparated(strTable)
 {
 	strTable = GetStringValue(strTable);

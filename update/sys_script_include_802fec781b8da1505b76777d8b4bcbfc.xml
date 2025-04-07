@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Performs an instance scan using a specific suite on an application  and all of the apps dependencies.</description>
+        <mobile_callable>false</mobile_callable>
         <name>InstanceScanSuiteOnAppWithDependencies</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function InstanceScanSuiteOnAppWithDependencies(strSuiteSysId, vApp, bDetailed)
 {
 	if (InstanceScanIsRunning() == true)

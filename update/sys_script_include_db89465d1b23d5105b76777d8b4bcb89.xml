@@ -7,7 +7,9 @@
         <client_callable>false</client_callable>
         <description>Returns the ATF test record for the given record if a matching ATF test exists.&#13;
 Script Includes and Scan Checks are supported.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetTestRecord</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetTestRecord(grRecord)
 {
 	if (IsValidRecord(grRecord) == false)

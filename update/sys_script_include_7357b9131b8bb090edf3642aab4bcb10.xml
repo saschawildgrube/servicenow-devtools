@@ -29,7 +29,9 @@ Methods:
 * GetAppBranches()
 * AddScriptTestStep()
 * start()</description>
+        <mobile_callable>false</mobile_callable>
         <name>DevToolsClientAPI</name>
+        <sandbox_callable>true</sandbox_callable>
         <script><![CDATA[var DevToolsClientAPI = Class.create();
 DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 {

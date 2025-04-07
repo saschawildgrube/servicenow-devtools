@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Produces a log output</description>
+        <mobile_callable>false</mobile_callable>
         <name>Log</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function Log(vPayload)
 {
 	gs.info(PrepareLogInfo(vPayload));

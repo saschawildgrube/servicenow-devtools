@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Gets an array with the names of all functions of a given object. </description>
+        <mobile_callable>false</mobile_callable>
         <name>GetFunctions</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetFunctions(vValue)
 {
 	var aProperties = GetProperties(vValue);

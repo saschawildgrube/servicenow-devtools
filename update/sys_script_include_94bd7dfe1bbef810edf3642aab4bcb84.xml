@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Shorthand to get a single value from a record from a table based on its sys_id.</description>
+        <mobile_callable>false</mobile_callable>
         <name>RecordGetValue</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function RecordGetValue(strTable,strSysId,strColumn)
 {
 	var grRecord = GetRecord(strTable,strSysId);

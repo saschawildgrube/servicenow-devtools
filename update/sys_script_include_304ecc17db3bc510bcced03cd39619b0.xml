@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns the sys_id of a system property based on its name. </description>
+        <mobile_callable>false</mobile_callable>
         <name>GetScopeSysIdFromPropertyName</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetScopeSysIdFromPropertyName(strName)
 {
 	strName = GetStringValue(strName);

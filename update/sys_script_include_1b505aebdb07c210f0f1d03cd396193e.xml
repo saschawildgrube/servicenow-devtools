@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Inserts or updates configuration items that represent the all ServiceNow apps from an array of objects representing apps.  </description>
+        <mobile_callable>false</mobile_callable>
         <name>ConfigurationItemServiceNowAppInsertOrUpdateFromList</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function ConfigurationItemServiceNowAppInsertOrUpdateFromList(strInstanceName,aApps)
 {
 	var bSuccess = true;

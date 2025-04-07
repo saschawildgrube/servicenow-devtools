@@ -7,7 +7,9 @@
         <client_callable>false</client_callable>
         <description>Generates a new password for the user, sets the user name if required, sets the password needs reset flag and sends the new credentials to the user via mail.&#13;
 This requires the "glide.email.smtp.active" system property to be "true".</description>
+        <mobile_callable>false</mobile_callable>
         <name>GenerateAndSendCredentialsToUser</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GenerateAndSendCredentialsToUser(vUser)
 {
 	var grUser = GetUserRecord(vUser);

@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Runs the default test suite of the given application and all of its dependencies (in reverse order) if ATF execution is active and the default test suite contains only tests with server-side steps. Returns an object containing the suite result records of all given applications, or false if the application could not be found.</description>
+        <mobile_callable>false</mobile_callable>
         <name>RunDefaultTestSuitesWithDependencies</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function RunDefaultTestSuitesWithDependencies(vApp)
 {
 	var grApp = GetAppRecord(vApp);

@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Performs a number of changes to a scoped app's assets to maintain application sanity. E.g., the function removes the copied_from attribute in atf tests, removes unneccesary field level ACLs and removes the is_private flag from system properties.</description>
+        <mobile_callable>false</mobile_callable>
         <name>AppSanity</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function AppSanity(vApp)
 {
 	function Log(vValue)

@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns the current record based on either an existing current object or (if not available) based on the current url.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetCurrentRecord</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetCurrentRecord()
 {
 	if (typeof current != 'undefined')

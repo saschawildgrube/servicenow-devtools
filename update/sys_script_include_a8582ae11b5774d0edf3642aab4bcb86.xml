@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns the DevTools link directory with many useful links for admins and developers.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetLinkDirectory</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetLinkDirectory()
 {
 	var linkdirectory =
@@ -1031,4 +1033,15 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2024-11-28 10:55:21</sys_updated_on>
     </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>a8582ae11b5774d0edf3642aab4bcb86</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-10-14 16:06:23</sys_created_on>
+        <sys_id>9f0abcb81b5992106a8db8449b4bcba9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-10-14 16:06:23</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>

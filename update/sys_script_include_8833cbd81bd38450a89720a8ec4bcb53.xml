@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Parses a string and returns a time value.</description>
+        <mobile_callable>false</mobile_callable>
         <name>ParseDateTime</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function ParseDateTime(strDateTime/*, strTimeZone*/)
 {
 	strDateTime = GetStringValue(strDateTime);

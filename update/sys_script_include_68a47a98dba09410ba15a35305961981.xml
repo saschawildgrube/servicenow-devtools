@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Checks if a value exists in an array and returns true in that case, otherwise false.</description>
+        <mobile_callable>false</mobile_callable>
         <name>ArrayValueExists</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function ArrayValueExists(aArray,vValue)
 {
 	if (Array.isArray(aArray) == false)

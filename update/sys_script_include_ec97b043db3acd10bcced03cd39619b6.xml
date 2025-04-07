@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Get a country record based on sys_id, name or ISO3 code.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetCountryRecord</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetCountryRecord(strValue)
 {
 	strValue = GetStringValue(strValue);

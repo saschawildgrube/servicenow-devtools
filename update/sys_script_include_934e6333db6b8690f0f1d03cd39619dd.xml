@@ -7,7 +7,9 @@
         <client_callable>false</client_callable>
         <description>Returns true if the current user session is associated with impersonated user.&#13;
 Warning: Surprisingly the function returns true when executed in a scripted ATF test step.</description>
+        <mobile_callable>false</mobile_callable>
         <name>IsUserImpersonating</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function IsUserImpersonating()
 {
 	return RunScriptInGlobalScope(

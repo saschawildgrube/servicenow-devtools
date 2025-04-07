@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns the URI of a table's list in the instance.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetInstanceListURI</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetInstanceListURI(strTable,strView,strEncodedQuery,nFirstRow)
 {
 	strTable = GetStringValue(strTable);

@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns true of the given string identifies a database view. False if not.</description>
+        <mobile_callable>false</mobile_callable>
         <name>IsValidDatabaseView</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function IsValidDatabaseView(strView)
 {
 	var grSDV = new GlideRecord('sys_db_view');

@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Impersonates a user based on a user's sys id.</description>
+        <mobile_callable>false</mobile_callable>
         <name>UserImpersonate</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function UserImpersonate(strUserSysId)
 {
 	return RunScriptInGlobalScope(

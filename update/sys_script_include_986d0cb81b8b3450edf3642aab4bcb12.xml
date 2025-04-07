@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Appends the second given array to the first.</description>
+        <mobile_callable>false</mobile_callable>
         <name>ArrayAppend</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function ArrayAppend(vArray1, vArray2)
 {
 	var aResult = [];

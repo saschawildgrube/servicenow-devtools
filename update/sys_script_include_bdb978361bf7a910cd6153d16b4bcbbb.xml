@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Renders an ordered list based on an array.</description>
+        <mobile_callable>false</mobile_callable>
         <name>HtmlRenderOrderedList</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function HtmlRenderOrderedList(aItems)
 {
 	var strHtml = '';

@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Retrieves the evaluator errors logged in the last given amount of minutes.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetRecentEvaluatorErrors</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetRecentEvaluatorErrors(nMinutes)
 {
 	nMinutes = GetIntegerValue(nMinutes);

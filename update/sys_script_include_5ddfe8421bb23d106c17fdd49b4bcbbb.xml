@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Deletes all records from a Record Transporter Package but keeps track on the Sys IDs of the deleted records to enable delta deletions in future deliveries.</description>
+        <mobile_callable>false</mobile_callable>
         <name>RecordTransporterPackageReset</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function RecordTransporterPackageReset(vPackage)
 {
 	var grPackage = RecordTransporterGetPackageRecord(vPackage);

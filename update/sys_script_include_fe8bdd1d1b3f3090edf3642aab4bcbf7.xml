@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Parses a csv formatted string into an array of objects representing each row.</description>
+        <mobile_callable>false</mobile_callable>
         <name>ParseCsv</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function ParseCsv(strCsv)
 {
 	var strDelimiter = ',';

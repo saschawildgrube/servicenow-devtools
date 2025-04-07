@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns an object that contains all details of all tables, including a list of tables that are extended from a table if requested.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetAllTables</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetAllTables(bExtendingTables)
 {
 	bExtendingTables = GetBoolValue(bExtendingTables);

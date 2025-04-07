@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns true if the given check is a script check, false if not.</description>
+        <mobile_callable>false</mobile_callable>
         <name>InstanceScanIsScriptCheck</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function InstanceScanIsScriptCheck(vCheck)
 {
 	var grCheck = GetRecord('scan_check',vCheck);

@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns true of the current user has the provided role explicitly. Returns true if that is the case, returns false if not. If an admin does not explicitly have that role, it will also return false.</description>
+        <mobile_callable>false</mobile_callable>
         <name>IsUserHasRoleExactly</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function IsUserHasRoleExactly(strRole,strUserSysId)
 {
 	strRole = GetStringValue(strRole);

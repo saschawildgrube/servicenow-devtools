@@ -25,7 +25,9 @@ Methods:
 * TestCase_HttpRequest()
 * TestCase_HttpRequest_CheckResult()
 * TestCase()</description>
+        <mobile_callable>false</mobile_callable>
         <name>TestAPI</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[var TestAPI = Class.create();
 TestAPI.prototype =
 {

@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Sets a color in a UX Style.</description>
+        <mobile_callable>false</mobile_callable>
         <name>UxStyleSetColor</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function UxStyleSetColor(
 	strSysId,
 	strColorName,

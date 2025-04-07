@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns all properties of a given object or an empty array if the given value has no properties.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetProperties</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetProperties(vValue)
 {
 	if (GetType(vValue) != 'Object')

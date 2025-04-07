@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Create a PDF file based on html and attaches the created file as an attachment to the given record.</description>
+        <mobile_callable>false</mobile_callable>
         <name>CreatePDFFromHtml</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function CreatePDFFromHtml(strTable,strRecordSysId,strFileName,strHtml,strPageSize,strOrientation,nMarginTopBottom,nMarginLeftRight,bPageNumbers)
 {
 	strTable = GetStringValue(strTable);

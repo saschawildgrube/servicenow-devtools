@@ -8,7 +8,9 @@
         <description>Commits all uncommitted changes to the currently active branch of the given application.&#13;
 If bAsync is set to false, the function operates synchronously and will NOT return until the operation is completed. The return false indicates success by returning true or failure by returning false.&#13;
 If bAsync is true, the function will return the progress id of the triggered background process.</description>
+        <mobile_callable>false</mobile_callable>
         <name>SourceControlCommitToCurrentBranch</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function SourceControlCommitToCurrentBranch(vApp,strMessage,bAsync)
 {
 	var grApp = GetAppRecord(vApp);

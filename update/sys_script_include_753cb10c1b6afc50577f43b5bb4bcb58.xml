@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>AppBuilder adds various application files to a scoped app. The function should be mostly idempotent.</description>
+        <mobile_callable>false</mobile_callable>
         <name>AppBuilder</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function AppBuilder(vApp, vParentApp, strAppMenuSeparator, nAppMenuOrderStart)
 {
 	var strAppScope = '';	

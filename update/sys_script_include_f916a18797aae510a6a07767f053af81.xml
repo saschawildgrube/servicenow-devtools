@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns a semantic version string from the given string (which may be an application name including a version or a branch name).</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetVersionFromString</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetVersionFromString(strInput)
 {
 	strInput = GetStringValue(strInput);

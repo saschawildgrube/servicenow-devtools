@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Delets all attachments of a given record.</description>
+        <mobile_callable>false</mobile_callable>
         <name>RecordAttachmentDeleteAll</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function RecordAttachmentDeleteAll(strTable,strRecordSysId)
 {
 	var grRecord = GetRecord(strTable,strRecordSysId);

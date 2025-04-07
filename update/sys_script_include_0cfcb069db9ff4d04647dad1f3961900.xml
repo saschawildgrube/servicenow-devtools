@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Renders an HTML link.</description>
+        <mobile_callable>false</mobile_callable>
         <name>HtmlRenderLink</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function HtmlRenderLink(strUrl,strText,bExternal)
 {
 	strUrl = GetStringValue(strUrl);

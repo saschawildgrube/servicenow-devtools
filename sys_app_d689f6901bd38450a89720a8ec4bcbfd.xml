@@ -44,8 +44,6 @@ DevTools contains a number of Script Includes with useful javascript functions a
         <vendor/>
         <vendor_prefix/>
         <version>1.119.0</version>
-        <x_snc_azure_test_x_snc_devtools_showstopper>false</x_snc_azure_test_x_snc_devtools_showstopper>
-        <x_snc_azure_test_x_snc_devtools_showstopper_details/>
         <x_snc_devtools_documentation_url>https://www.wildgrube.com/servicenow-devtools</x_snc_devtools_documentation_url>
         <x_snc_devtools_maintainer>Sascha Wildgrube</x_snc_devtools_maintainer>
         <x_snc_devtools_maintainer_email>sascha.wildgrube@servicenow.com</x_snc_devtools_maintainer_email>

@@ -54,7 +54,7 @@
         <update_guid_history>f30d17f538679e10a0cbe8945a30d7d8:-1614168449</update_guid_history>
     </sys_update_version>
     <sys_metadata_delete action="INSERT_OR_UPDATE">
-        <sys_audit_delete display_value="A Linter Check that always triggers a finding">2733847733abde10037396382e5c7b1b</sys_audit_delete>
+        <sys_audit_delete display_value="">2733847733abde10037396382e5c7b1b</sys_audit_delete>
         <sys_class_name>sys_metadata_delete</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-02-12 16:09:59</sys_created_on>

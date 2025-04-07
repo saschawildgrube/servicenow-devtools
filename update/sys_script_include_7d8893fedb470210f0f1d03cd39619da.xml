@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Sets the maintainer (team) name, maintainer email address, documentation and repository url for the given application.</description>
+        <mobile_callable>false</mobile_callable>
         <name>SetAppInfo</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function SetAppInfo(vApp,strMaintainer,strMaintainerEmail,strDocumentationUrl,strRepoUrl)
 {
 	var grApp = GetAppRecord(vApp);

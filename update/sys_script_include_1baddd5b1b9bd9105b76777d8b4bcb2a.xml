@@ -14,7 +14,9 @@ Methods:
 * SetPercentageProgress()
 * SetText()
 * SetResult()</description>
+        <mobile_callable>false</mobile_callable>
         <name>ProgressTrackerAPI</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[var ProgressTrackerAPI = Class.create();
 ProgressTrackerAPI.prototype =
 { 

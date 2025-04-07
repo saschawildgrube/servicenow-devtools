@@ -7,7 +7,9 @@
         <client_callable>false</client_callable>
         <description>Returns true if DevTools is active, false if not.&#13;
 The main driver is the system property "glide.record.legacy_cross_scope_access_policy_in_script".</description>
+        <mobile_callable>false</mobile_callable>
         <name>IsActive</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function IsActive()
 {
 	return GetBoolValue(GetProperty('glide.record.legacy_cross_scope_access_policy_in_script'));

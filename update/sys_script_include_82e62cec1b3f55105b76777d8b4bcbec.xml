@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Retireves all dependencies of the given package as an object tree.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetPackageDependencyTree</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetPackageDependencyTree(vPackage,aCurrentPath)
 {
 	function GetDependencyStatusSummary(aStatusValues)

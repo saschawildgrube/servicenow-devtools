@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns the boolean state of the switch of a technical debt record if it exists, or false if it does not exist.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetTechnicalDebtSwitchState</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetTechnicalDebtSwitchState(vApp,strId)
 {
 	strId = GetStringValue(strId);

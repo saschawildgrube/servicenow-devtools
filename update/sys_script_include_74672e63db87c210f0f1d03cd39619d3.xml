@@ -7,7 +7,9 @@
         <client_callable>false</client_callable>
         <description>Inserts or updates configuration items that represent the all ServiceNow apps from a dependency tree object. &#13;
 Returns the Sys ID of the created or updated CMDB CI representing the application at the root of the tree. </description>
+        <mobile_callable>false</mobile_callable>
         <name>ConfigurationItemServiceNowAppInsertOrUpdateFromTree</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function ConfigurationItemServiceNowAppInsertOrUpdateFromTree(strInstanceName,dependencytree)
 {
 	strInstanceName = GetStringValue(strInstanceName);

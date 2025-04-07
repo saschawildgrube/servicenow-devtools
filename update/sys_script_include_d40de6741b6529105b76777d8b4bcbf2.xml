@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Converts a string or binary stream into a base64 encoded string.</description>
+        <mobile_callable>false</mobile_callable>
         <name>Base64Encode</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function Base64Encode(vInput)
 {
 	if (vInput == null)

@@ -24,7 +24,9 @@ Methods:&#13;
 * GetFilesFromBranch()&#13;
 * GetFile()&#13;
 * ProtectBranchReadOnly()</description>
+        <mobile_callable>false</mobile_callable>
         <name>GitLabAPI</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[var GitLabAPI = Class.create();
 GitLabAPI.prototype = {
 	

@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns the index of the needle string within the haystack string, -1 if the needle is not contained in the haystack. </description>
+        <mobile_callable>false</mobile_callable>
         <name>StringFind</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function StringFind(strHaystack, strNeedle)
 {
 	strHaystack = GetStringValue(strHaystack);

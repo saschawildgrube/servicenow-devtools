@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Packs all sys_translated_text records referring to application file records contained in the given package scope.</description>
+        <mobile_callable>false</mobile_callable>
         <name>RecordTransporterPackagePackTranslatedText</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function RecordTransporterPackagePackTranslatedText(vPackage,query)
 {
 	var grPackage = RecordTransporterGetPackageRecord(vPackage);

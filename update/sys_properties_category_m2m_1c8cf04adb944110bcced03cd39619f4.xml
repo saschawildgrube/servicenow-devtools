@@ -2,7 +2,7 @@
     <sys_properties_category_m2m action="INSERT_OR_UPDATE">
         <category display_value="devtools.instance.deployment">c0438614dbec5410ba15a3530596199e</category>
         <order>100</order>
-        <property display_value="com.glide.apps.include_my_deletes" name="com.glide.apps.include_my_deletes">cd2afffcc378c2105a37f90705013136</property>
+        <property display_value="com.glide.apps.include_my_deletes" name="com.glide.apps.include_my_deletes">0b15a30b1b3b42104e7955306b4bcba2</property>
         <sys_class_name>sys_properties_category_m2m</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-12-09 15:30:57</sys_created_on>

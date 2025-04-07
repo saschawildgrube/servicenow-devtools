@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Queries an existing record based on query values or inserts a new record into a table with the specified values if the record does not exist. The bUpdate parameter controls if the existing record should be updated with the given values or not.</description>
+        <mobile_callable>false</mobile_callable>
         <name>RecordQueryOrInsert</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function RecordQueryOrInsert(strTable,query,values,bUpdate)
 {
 	strTable = GetStringValue(strTable);

@@ -7,7 +7,9 @@
         <client_callable>false</client_callable>
         <description>Makes a number of changes to OOTB records to remove or hide not needed features. Use with great care! Undoing some of these changes might be difficult.&#13;
 For safety reasons the current date (as an iso formatted string) must be passed as a parameter.  </description>
+        <mobile_callable>false</mobile_callable>
         <name>InstanceReset</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function InstanceReset(strSafetyToken)
 {
 	strSafetyToken = GetStringValue(strSafetyToken);   

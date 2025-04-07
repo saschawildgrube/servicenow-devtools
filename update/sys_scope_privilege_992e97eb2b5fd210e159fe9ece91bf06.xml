@@ -16,7 +16,7 @@
         <sys_updated_by>technical._atf_deployer_api</sys_updated_by>
         <sys_updated_on>2025-01-31 03:12:12</sys_updated_on>
         <target_name>discovery_credentials</target_name>
-        <target_scope display_value="EU Decide Process">b9bd30bac31f1a905a37f907050131ad</target_scope>
+        <target_scope display_value="">b9bd30bac31f1a905a37f907050131ad</target_scope>
         <target_type>sys_db_object</target_type>
     </sys_scope_privilege>
 </record_update>

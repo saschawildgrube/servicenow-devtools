@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns a valid user (log) name without blanks, all lowercase based on the given string(s).</description>
+        <mobile_callable>false</mobile_callable>
         <name>MakeUserName</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function MakeUserName(vNameComponents)
 {
 	var aNameComponents = GetArrayValue(vNameComponents);

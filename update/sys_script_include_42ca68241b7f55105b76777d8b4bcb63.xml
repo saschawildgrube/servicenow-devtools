@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Get a package record based on sys_id, scope name, name or the record itself.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetPackageRecord</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetPackageRecord(vValue)
 {
 	var grApp = GetAppRecord(vValue);

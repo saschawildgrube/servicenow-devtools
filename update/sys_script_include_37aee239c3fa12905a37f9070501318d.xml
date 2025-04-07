@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns a Repository Configuration record based on the given parameter.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetRepoConfigRecord</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetRepoConfigRecord(vRepoConfig)
 {
     var record = new GlideRecord('sys_repo_config');

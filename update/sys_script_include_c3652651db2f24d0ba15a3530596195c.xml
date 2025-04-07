@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns the number of milliseconds passed since the start of the unix epoch.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetTimeNow</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetTimeNow()
 {
 	return GetIntegerValue(Date.now());

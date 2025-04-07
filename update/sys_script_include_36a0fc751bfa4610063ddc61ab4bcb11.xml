@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Creates or updates the given group and ensures that only the given roles are assigned.</description>
+        <mobile_callable>false</mobile_callable>
         <name>MaintainGroup</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function MaintainGroup(vGroup,aRoles,values)
 {
 	var grGroup = GetGroupRecord(vGroup);
