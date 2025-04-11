@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Based on a given encoded query string, the function returns the GlideRecord object of the requested Instance Scan check, false if the encoded query is unrelated to Instance Scan.</description>
+        <mobile_callable>false</mobile_callable>
         <name>InstanceScanGetCheckFromQuery</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function InstanceScanGetCheckFromQuery(strEncodedQuery)
 {
 /*

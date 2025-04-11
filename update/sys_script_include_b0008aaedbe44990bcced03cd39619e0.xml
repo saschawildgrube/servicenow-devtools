@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Sets a value to an object (or array) that is (or is not yet) part of an recursive object (or array) without generating errors if the object (or array) does not exist yet. In case of an array, any preceding elements are added as null if they do not yet exist.</description>
+        <mobile_callable>false</mobile_callable>
         <name>SetValue</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function SetValue(vValue, vObject, vKey1, vKey2, vKey3, vKey4, vKey5, vKey6, vKey7, vKey8, vKey9, vKey10)
 {
 	if (IsObject(vObject) == false && IsArray(vObject) == false)

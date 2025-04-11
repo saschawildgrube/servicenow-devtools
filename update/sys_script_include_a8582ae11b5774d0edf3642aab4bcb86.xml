@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns the DevTools link directory with many useful links for admins and developers.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetLinkDirectory</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetLinkDirectory()
 {
 	var linkdirectory =
@@ -725,6 +727,36 @@
 			];
 	}
 
+	if (IsAppInstalled('sn_aia') == true)
+	{
+		linkdirectory['Now Assist AI Agents'] =
+		[
+			{
+				table: 'sn_aia_agent'
+			},
+			{
+				table: 'sn_aia_agent_config'
+			},			
+			{
+				table: 'sn_aia_tool'
+			},			
+			{
+				table: 'sn_aia_agent_tool_m2m'
+			},			
+			{
+				table: 'sn_aia_usecase'
+			},			
+			{
+				table: 'sn_aia_trigger_configuration'
+			},
+			{
+				table: 'sn_aia_team'
+			},			
+			{
+				table: 'sn_aia_team_member'
+			}	
+		];
+	}
 	
 	if (GetPackageVersion('d4ebbe99db140110b652edb305961926') != false)
 	{
@@ -1022,13 +1054,24 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-19 17:03:37</sys_created_on>
         <sys_id>a8582ae11b5774d0edf3642aab4bcb86</sys_id>
-        <sys_mod_count>136</sys_mod_count>
+        <sys_mod_count>139</sys_mod_count>
         <sys_name>GetLinkDirectory</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_a8582ae11b5774d0edf3642aab4bcb86</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-11-28 10:55:21</sys_updated_on>
+        <sys_updated_on>2025-04-07 11:02:55</sys_updated_on>
     </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>a8582ae11b5774d0edf3642aab4bcb86</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-10-14 16:06:23</sys_created_on>
+        <sys_id>9f0abcb81b5992106a8db8449b4bcba9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-10-14 16:06:23</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>

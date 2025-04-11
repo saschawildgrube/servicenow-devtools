@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Retrieves information about the app's dependencies to other apps and required versions.</description>
+        <mobile_callable>false</mobile_callable>
         <name>AppGetDependencies</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function AppGetDependencies()
 {
 	return GetValue(GetPackageDependencyTree('x_snc_devtools'),'_dependencies');

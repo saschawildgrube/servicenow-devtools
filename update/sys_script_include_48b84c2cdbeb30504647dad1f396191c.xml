@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns a string that represents a version of the input string that does not exceed the specified length. The last characters are replaced by a hash-based alpha-numeric postfix to avoid string collisions.  </description>
+        <mobile_callable>false</mobile_callable>
         <name>GetShortUniqueString</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetShortUniqueString(strInput, nMaxLength)
 {
 	strInput = GetStringValue(strInput);

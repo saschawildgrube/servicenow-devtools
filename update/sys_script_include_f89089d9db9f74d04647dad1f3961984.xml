@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Inserts a new record into a table with the specified values if the columns exist.</description>
+        <mobile_callable>false</mobile_callable>
         <name>RecordInsert</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function RecordInsert(strTable,values)
 {
 	strTable = GetStringValue(strTable);

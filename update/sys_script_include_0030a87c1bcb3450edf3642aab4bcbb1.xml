@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Removed any left over temporary functions and references in update sets.</description>
+        <mobile_callable>false</mobile_callable>
         <name>CleanUpTemporaryFunctions</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function CleanUpTemporaryFunctions()
 {
 	var grSUX = new GlideRecord('sys_update_xml');

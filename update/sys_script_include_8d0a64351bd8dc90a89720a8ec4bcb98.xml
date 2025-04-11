@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Checks if two values are equal. The function also supports arrays and can ignore the order of array elements while comparing.</description>
+        <mobile_callable>false</mobile_callable>
         <name>IsEqual</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function IsEqual(vValue1, vValue2, bIgnoreOrder)
 {
 	if (IsArray(vValue1) && IsArray(vValue2))

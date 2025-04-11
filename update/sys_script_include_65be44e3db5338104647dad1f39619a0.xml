@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns an array with the names the active roles of a user.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetRoleNamesFromUser</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetRoleNamesFromUser(strUserSysId)
 {
 	var aRoleSysIds = GetRolesFromUser(strUserSysId);

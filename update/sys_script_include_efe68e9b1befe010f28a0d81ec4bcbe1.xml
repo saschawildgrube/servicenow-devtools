@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>If the given user is a "technical" user, the function returns true, otherwise false.</description>
+        <mobile_callable>false</mobile_callable>
         <name>IsTechnicalUser</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function IsTechnicalUser(vUser)
 {
 	var grUser = GetUserRecord(vUser);

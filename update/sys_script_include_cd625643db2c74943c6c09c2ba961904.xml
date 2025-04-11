@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Executes the update member function of a glide record in global scope. If bGhost is set to true, the record update will not trigger any system field updates or workflows.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GlideRecordUpdate</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GlideRecordUpdate(record, bGhost)
 {
 	if (IsValidRecord(record) == false)

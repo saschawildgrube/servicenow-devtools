@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns the database views which use a given table. </description>
+        <mobile_callable>false</mobile_callable>
         <name>GetDatabaseViewsFromTable</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetDatabaseViewsFromTable(strTable)
 {
 	strTable = GetStringValue(strTable);

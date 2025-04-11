@@ -8,7 +8,9 @@
         <description>Checks if the given application's manual page contains valid release notes.&#13;
 If the application has a manual page and if the manual page contains a "Release Notes" section, then it checks if there is a sub-section titled with the current version and the current date.&#13;
 Returns true, if no "Release Notes" section can be found OR the subsection exists, or false, if the sub-section does not exist.</description>
+        <mobile_callable>false</mobile_callable>
         <name>AppVersionBaselineCheckReleaseNotes</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function AppVersionBaselineCheckReleaseNotes(vApp)
 {
 	var grApp = GetAppRecord(vApp);

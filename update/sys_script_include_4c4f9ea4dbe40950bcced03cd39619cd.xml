@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Retrieves formatting information for the fields of the given record in the given table.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetFormatConfig</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetFormatConfig(strTable,strSysId)
 {
 	if (IsValidTable(strTable) == false)

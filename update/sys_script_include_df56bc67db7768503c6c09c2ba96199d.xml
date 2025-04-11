@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Shorthand to get a record from a table based on a sys_id or a GlideRecord object. If the bNoCrossScope parameter is set to true, GetRecord will not attempt to load the record from the global scope if it cannot load it from within the application scope.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetRecord</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetRecord(strTable,vRecord,bNoCrossScope)
 {
 	if (IsValidTable(strTable) == false)

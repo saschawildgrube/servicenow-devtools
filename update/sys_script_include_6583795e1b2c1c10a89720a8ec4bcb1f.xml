@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns an integer value.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetIntegerValue</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetIntegerValue(vValue)
 {
 	if (vValue === true)

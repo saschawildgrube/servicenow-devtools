@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Adds query conditions to a GlideRecord based on the given parameter. This can be either an encoded query string or an object containing columns and values to be compared directly.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GlideRecordAddQuery</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GlideRecordAddQuery(grRecord,query)
 {
 	if (IsValidRecord(grRecord) == false)

@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Checks if the current application contains records containing credentials and displays a warning. </description>
+        <mobile_callable>false</mobile_callable>
         <name>ExecuteBusinessRuleShowCredentialPollution</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function ExecuteBusinessRuleShowCredentialPollution(grCurrent)
 {
 	if (gs.isInteractive() == false)

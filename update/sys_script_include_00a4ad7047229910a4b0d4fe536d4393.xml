@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns true if the given string is "snake_case", false if not.</description>
+        <mobile_callable>false</mobile_callable>
         <name>IsSnakeCase</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function IsSnakeCase(strString)
 {
 	return StringCheckRegEx(strString,'^([a-z][a-z0-9]*)+(_[a-z][a-z0-9]*)*$');

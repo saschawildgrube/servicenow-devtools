@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns the call stack in a structured format.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetCallStack</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetCallStack()
 {	
 	var strStackTrace = GetStackTrace();
@@ -91,4 +93,15 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2024-09-09 10:33:55</sys_updated_on>
     </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>c4435bacdbc5d510dcbdd03cd3961947</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-08-14 14:54:21</sys_created_on>
+        <sys_id>9990e6491b0456106a8db8449b4bcb18</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-08-14 14:54:21</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>

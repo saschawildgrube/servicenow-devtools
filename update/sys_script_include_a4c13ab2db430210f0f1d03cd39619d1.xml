@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns the dictionary override record based on the given table and column name if it exists.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetDictionaryOverrideRecord</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetDictionaryOverrideRecord(strTable, strElement)
 {
 	strTable = GetStringValue(strTable);

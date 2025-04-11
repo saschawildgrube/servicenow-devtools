@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Creates a new version baseline for the given application. Handle with care! This function is still experimental. </description>
+        <mobile_callable>false</mobile_callable>
         <name>AppVersionBaseline</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function AppVersionBaseline(vApp)
 {
 	var progresstracker = new ProgressTrackerAPI();
@@ -322,4 +324,15 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2024-10-23 12:02:18</sys_updated_on>
     </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>7ac969a9dbc095109232dad1f39619c7</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-12-06 13:46:10</sys_created_on>
+        <sys_id>393651f1939e5250959b7fda2bba10a5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-12-06 13:46:10</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>

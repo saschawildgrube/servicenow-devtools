@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Checks if a table is fully cross-scope accessible. The function returns true if the access is set to public and apps from other scopes are allowed to perform read, create, update and delete operations.</description>
+        <mobile_callable>false</mobile_callable>
         <name>IsTableCrossScopeAccessible</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function IsTableCrossScopeAccessible(strTable)
 {
 	strTable = GetStringValue(strTable);

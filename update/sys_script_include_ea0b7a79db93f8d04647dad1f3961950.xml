@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns the url path of a specific record in the instance.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetInstanceRecordPath</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetInstanceRecordPath(strTable,strSysId,strView,params)
 {
 	var strUri = GetRecordUri(strTable,strSysId,strView,params);

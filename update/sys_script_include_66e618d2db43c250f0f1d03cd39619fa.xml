@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns an object with "username", "password" and "apikey" values (which are populated depending on the credential type) if the given credential alias can be resolved, otherwise false.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetCredentialFromAlias</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetCredentialFromAlias(strCredentialAliasId)
 {
 	var grAlias = new GlideRecord('sys_alias');

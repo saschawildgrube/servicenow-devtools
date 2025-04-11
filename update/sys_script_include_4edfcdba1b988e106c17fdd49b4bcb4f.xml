@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns the uri path of a specific record.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetRecordUri</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetRecordUri(strTable,strSysId,strView,params)
 {
 	if (IsValidTable(strTable) == false)

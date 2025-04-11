@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Renders the given time as an UTC iso string.</description>
+        <mobile_callable>false</mobile_callable>
         <name>RenderTime</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function RenderTime(vDateTime)
 {
 	var strDatetime = RenderDateTime(vDateTime);

@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns the name of the ATF test that is or should be associated with the given record.</description>
+        <mobile_callable>false</mobile_callable>
         <name>MakeTestNameForRecord</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function MakeTestNameForRecord(grRecord)
 {
 	if (IsValidRecord(grRecord) == false)

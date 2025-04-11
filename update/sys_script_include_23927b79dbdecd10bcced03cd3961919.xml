@@ -7,7 +7,9 @@
         <client_callable>false</client_callable>
         <description>Creates the raw data for a QRCode based on a given input string.&#13;
 The result is provided as an array of rows containing arrays of boolean values for each column.</description>
+        <mobile_callable>false</mobile_callable>
         <name>CreateQRCodeRawData</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function CreateQRCodeRawData(strPayload)
 {
 	strPayload = GetStringValue(strPayload);

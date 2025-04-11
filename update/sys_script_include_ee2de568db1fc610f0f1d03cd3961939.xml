@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Renders the callstack for error reporting or logging purposes.</description>
+        <mobile_callable>false</mobile_callable>
         <name>RenderCallStack</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function RenderCallStack(aStack)
 {
 	aStack = GetArrayValue(aStack);

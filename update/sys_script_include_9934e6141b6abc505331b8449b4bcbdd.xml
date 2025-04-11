@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Get the parent record of a given record if it is possible.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetParentRecord</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetParentRecord(strTable,strSysId)
 {
 	if (IsValidTable(strTable) == false)

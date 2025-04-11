@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Renders a tab navigation, where the current tab is highlighted.</description>
+        <mobile_callable>false</mobile_callable>
         <name>HtmlRenderTabNavigation</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function HtmlRenderTabNavigation(aTabs,strCurrentId)
 {
 	aTabs = GetArrayValue(aTabs);

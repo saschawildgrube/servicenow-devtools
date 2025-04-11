@@ -7,7 +7,9 @@
         <client_callable>false</client_callable>
         <description>Creates a copy of the given value.&#13;
 If the parameter bSortKeys is set to true and the given value is an object, the resulting object contains its members sorted alphabetically. </description>
+        <mobile_callable>false</mobile_callable>
         <name>Clone</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function Clone(vValue,bSortKeys)
 {
 	var strType = GetType(vValue);

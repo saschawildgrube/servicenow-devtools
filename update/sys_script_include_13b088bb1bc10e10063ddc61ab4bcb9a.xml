@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Increases a value by the given amount in an object (or array) that is (or is not yet) part of an recursive object (or array) without generating errors if the object (or array) does not exist yet. In case of an array, any preceding elements are added as null if they do not yet exist.</description>
+        <mobile_callable>false</mobile_callable>
         <name>SetValueIncrement</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function SetValueIncrement(vValueToAdd, vObject, vKey1, vKey2, vKey3, vKey4, vKey5, vKey6, vKey7, vKey8, vKey9, vKey10)
 {
 	var vCurrentValue = GetValue(vObject, vKey1, vKey2, vKey3, vKey4, vKey5, vKey6, vKey7, vKey8, vKey9, vKey10);

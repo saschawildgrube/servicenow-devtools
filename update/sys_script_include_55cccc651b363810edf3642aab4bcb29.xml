@@ -6,7 +6,9 @@
         <caller_access>1</caller_access>
         <client_callable>false</client_callable>
         <description>Creates a new database index if it doesn't exist yet. Warning, there is no way to undo that operation!</description>
+        <mobile_callable>false</mobile_callable>
         <name>DatabaseIndexCreate</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function DatabaseIndexCreate(strTable, aColumns, bUnique)
 {
 	strTable = GetStringValue(strTable);

@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Decodes a base64 encoded string and returns the original binary stream or string.</description>
+        <mobile_callable>false</mobile_callable>
         <name>Base64Decode</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function Base64Decode(strEncoded)
 {
 	var vDecoded = RunScriptInGlobalScope('result = GlideStringUtil.base64Decode(param1);',strEncoded);

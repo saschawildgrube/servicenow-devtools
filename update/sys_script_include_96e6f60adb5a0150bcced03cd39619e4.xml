@@ -24,7 +24,9 @@ Methods:
 * CreateBitmapFile()
 * getLittleEndianHex()
 * HtmlRenderImage()</description>
+        <mobile_callable>false</mobile_callable>
         <name>ImageAPI</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[var ImageAPI = Class.create();
 ImageAPI.prototype =
 {

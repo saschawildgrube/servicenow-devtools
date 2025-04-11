@@ -2,8 +2,10 @@
     <sys_security_acl action="INSERT_OR_UPDATE">
         <active>true</active>
         <admin_overrides>true</admin_overrides>
-        <advanced>true</advanced>
+        <advanced>false</advanced>
+        <applies_to/>
         <condition/>
+        <decision_type>allow</decision_type>
         <description>Default access control on x_snc_devtools_shared_application</description>
         <local_or_existing>Local</local_or_existing>
         <name>x_snc_devtools_shared_application</name>

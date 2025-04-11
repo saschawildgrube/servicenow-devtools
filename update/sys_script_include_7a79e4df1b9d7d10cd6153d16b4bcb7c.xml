@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Renders a script into an html output that causes a page redirect to the given url. </description>
+        <mobile_callable>false</mobile_callable>
         <name>HtmlRenderRedirect</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function HtmlRenderRedirect(strUrl)
 {
 	strUrl = GetStringValue(strUrl);

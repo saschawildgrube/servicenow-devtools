@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Replaces all occurrences of a string by another string in a string.</description>
+        <mobile_callable>false</mobile_callable>
         <name>StringReplace</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function StringReplace(strHaystack,strNeedle,strReplace)
 {
 	strHaystack = GetStringValue(strHaystack);

@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Synchronizes the name and other fields from the referenced package.</description>
+        <mobile_callable>false</mobile_callable>
         <name>SyncDependency</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function SyncDependency(grDependency)
 {
 	if (IsValidRecord(grDependency) == false)

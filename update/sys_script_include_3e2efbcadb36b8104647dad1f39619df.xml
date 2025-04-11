@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns true of the given value is a valid function. False if not.</description>
+        <mobile_callable>false</mobile_callable>
         <name>IsValidFunction</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function IsValidFunction(vValue)
 {
 	if (GetType(vValue) == 'function')

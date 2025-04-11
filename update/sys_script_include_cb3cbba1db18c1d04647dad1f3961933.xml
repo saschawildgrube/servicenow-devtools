@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Renders the given date/time  according to the current user's preferences.</description>
+        <mobile_callable>false</mobile_callable>
         <name>RenderDateTimeUser</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function RenderDateTimeUser(vDateTime)
 {
 	var gdt = new GlideDateTime(vDateTime);

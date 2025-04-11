@@ -75,7 +75,9 @@ Methods:
 * CreateServicePortalWidget()
 * GetAllServicePortalWidgets()
 * GetServicePortalWidget()</description>
+        <mobile_callable>false</mobile_callable>
         <name>TestDataAPI</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[var TestDataAPI = Class.create(); 
 TestDataAPI.prototype =
 {

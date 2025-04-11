@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns the result of an instance scan as a single object. </description>
+        <mobile_callable>false</mobile_callable>
         <name>InstanceScanGetScanResults</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function InstanceScanGetScanResults(strScanResultSysId, bDetailed)
 {
 	strScanResultSysId = GetStringValue(strScanResultSysId);

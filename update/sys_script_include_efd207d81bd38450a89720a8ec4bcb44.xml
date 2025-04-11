@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Loads all local test messages for an "application".</description>
+        <mobile_callable>false</mobile_callable>
         <name>LoadMessages</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function LoadMessages(strApplication, strLanguage)
 {
 	strLanguage = GetStringValue(strLanguage);

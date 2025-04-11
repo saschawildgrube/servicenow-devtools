@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Renders a script in Html.</description>
+        <mobile_callable>false</mobile_callable>
         <name>HtmlRenderScript</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function HtmlRenderScript(strScript,bModule)
 {
 	strScript = GetStringValue(strScript);

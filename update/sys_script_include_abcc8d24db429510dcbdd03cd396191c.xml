@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns true if the given string is "PascalCase", false if not.</description>
+        <mobile_callable>false</mobile_callable>
         <name>IsPascalCase</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function IsPascalCase(strString)
 {
 	return StringCheckRegEx(strString,'^[A-Z][A-Za-z0-9]*$');

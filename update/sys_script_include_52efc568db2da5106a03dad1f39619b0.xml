@@ -22,7 +22,9 @@ Methods:
 * GetFilesFromBranch()
 * GetFile()
 * ProtectBranchReadOnly()</description>
+        <mobile_callable>false</mobile_callable>
         <name>GitHubAPI</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[var GitHubAPI = Class.create();
 GitHubAPI.prototype = { 
 	

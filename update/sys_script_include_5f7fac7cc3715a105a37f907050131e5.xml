@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Runs the default test suite of the given application if ATF execution is active and the test suite contains only tests with server-side steps. Returns the Suite Result record if the execution took place, false if not.</description>
+        <mobile_callable>false</mobile_callable>
         <name>RunDefaultTestSuite</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function RunDefaultTestSuite(vApp)
 {
 	var grApp = GetAppRecord(vApp);

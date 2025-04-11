@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Parses a string and returns an object or false in case of failure (instead of pointlessly throwing an exception).</description>
+        <mobile_callable>false</mobile_callable>
         <name>ParseJson</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function ParseJson(strJson)
 {
 	try

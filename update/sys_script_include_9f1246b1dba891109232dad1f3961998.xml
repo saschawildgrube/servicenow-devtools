@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Saves the given record to the current Update Set.</description>
+        <mobile_callable>false</mobile_callable>
         <name>RecordSaveToUpdateSet</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function RecordSaveToUpdateSet(record)
 {
 	if (IsValidRecord(record) == false)

@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Merges two objects or arrays.</description>
+        <mobile_callable>false</mobile_callable>
         <name>Merge</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function Merge(vValue1, vValue2)
 {
 	if (IsObject(vValue1) == true && vValue2 === null)

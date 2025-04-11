@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns true if Polaris is to be used for the current page and given or current session user.</description>
+        <mobile_callable>false</mobile_callable>
         <name>IsPolaris</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function IsPolaris(strUserSysId)
 {
 	var strUserSysId = GetStringValue(strUserSysId);

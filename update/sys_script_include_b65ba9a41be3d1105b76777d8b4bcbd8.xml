@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns true if the current execution context is an ATF test. False if not.</description>
+        <mobile_callable>false</mobile_callable>
         <name>IsTestRunning</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function IsTestRunning(strContext)
 {
 	// 1. Attempt: via callstack: if a script from atf_test_step is in the stack, we're called from an ATF

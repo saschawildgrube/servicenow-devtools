@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Runs a test if ATF execution is enabled and the test contains only server-side steps. Returns the Test Results object if the test was executed, false if not. </description>
+        <mobile_callable>false</mobile_callable>
         <name>RunTest</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function RunTest(vTest)
 {
 	var grTest = GetRecord('sys_atf_test',vTest);

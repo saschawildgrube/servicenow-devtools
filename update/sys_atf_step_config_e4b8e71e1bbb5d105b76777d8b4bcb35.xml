@@ -120,7 +120,7 @@ gr.insert();
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2024-11-30 09:18:41</sys_updated_on>
         <template_reminder>TBD</template_reminder>
-        <type display_value="Test Step" name="sys_atf_step">c9aae00783e0021000d5ccc0deaad354</type>
+        <type display_value="Test Step" name="sys_atf_step">844d8f97d1e302104f34ba60d8b7c1dc</type>
         <wizard_redirect/>
     </sys_atf_step_config>
     <sys_translated_text action="delete_multiple" query="documentkey=e4b8e71e1bbb5d105b76777d8b4bcb35"/>

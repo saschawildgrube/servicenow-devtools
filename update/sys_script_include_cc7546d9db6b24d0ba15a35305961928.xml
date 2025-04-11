@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns the operation (of a business rule) based on the provided record.</description>
+        <mobile_callable>false</mobile_callable>
         <name>BusinessRuleGetOperation</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function BusinessRuleGetOperation(record)
 {
 	var strOperation = '';

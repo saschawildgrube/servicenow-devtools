@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns the length of the given parameter or 0 if the parameter is not defined or null.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetLength</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetLength(vParam)
 {
 	if (typeof vParam == 'undefined')

@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Inserts or updates a configuration item that represents the given ServiceNow application (record or object) on the given instance.  </description>
+        <mobile_callable>false</mobile_callable>
         <name>ConfigurationItemServiceNowAppInsertOrUpdate</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function ConfigurationItemServiceNowAppInsertOrUpdate(
 	strInstanceName,
 	vApp)

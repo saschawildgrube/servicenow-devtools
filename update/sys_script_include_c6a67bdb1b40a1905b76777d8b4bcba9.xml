@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Renders an array as a text with delimiters between elements.</description>
+        <mobile_callable>false</mobile_callable>
         <name>RenderArray</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function RenderArray(aArray, strDelimiter, strDelimiterLast)
 {
 	aArray = GetArrayValue(aArray);

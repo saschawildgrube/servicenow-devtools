@@ -32,7 +32,7 @@
 	<ul>
 		<g2:no_escape>$[
 			docapi.RenderSystemRequirements(
-				'Washington,Xanadu,Yokohama',
+				'Xanadu,Yokohama',
 				true,
 				AppGetDependencies());
 		]</g2:no_escape>	
@@ -81,7 +81,7 @@ gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData
 	
 	<h3>Sending a Prompt to a Large Language Model (LLM)</h3>
 
-	<p>The function&#160;<a href="/sys_script_include.do?sys_id=8cece71583e91e5000d5ccc0deaad30e" target="_blank">Prompt()</a>&#160;can be used to send a prompt direct to a large language model, but it requires some setup:</p>
+	<p>The function&#160;<a href="/sys_script_include.do?sys_id=8cece71583e91e5000d5ccc0deaad30e" target="_blank">Prompt()</a>&#160;can be used to send a prompt directly to a large language model, but it requires some setup:</p>
 	<ol>
 		<li>Navigate to&#160;<a href="/now/app-manager/home/" target="_blank">Plugins</a></li>
 		<li>Click button "Sync with Store"</li>
@@ -209,7 +209,7 @@ Set a default config for the generic prompt capability: /nav_to.do?uri=sys_one_e
 	
 	<p>Developers may create their own Application Files which also can contain script fields. In some cases such script fields are not used - but also scanned by Instance Scan linter checks. The DevTools extension point allows to inject additional rules that can help to avoid useless checks on such records. To define and inject such rules follow these steps</p>
 	<ol>
-		<li>Implement the&#160;<a href="/nav_to.do?uri=sys_extension_point.do?sys_id=e3a183be1bae7010edf3642aab4bcbdc" target="_blank">DevTools extension point</a>.</li>
+		<li>Implement the&#160;<a href="/nav_to.do?uri=sys_extension_point.do?sys_id=e3a183be1bae7010edf3642aab4bcbdc" target="_blank">DevTools Extension Point</a>.</li>
 		<li>Implement the function GetEncodedQueryToPreventUselessChecks using the following template:
 <pre>
 function GetEncodedQueryToPreventUselessChecks(rules)
@@ -622,6 +622,19 @@ function YourLengthyProcess(strRecordSysId)
 	<g2:no_escape>$[docapi.RenderLicense()]</g2:no_escape>
 	
 	<h2>Release Notes</h2>
+
+	<h3>1.119.0 - 2025-04-11</h3>
+	<ol>
+		<li>Washington is no longer actively supported.</li>
+		<li>UI Actions "Up", "Save" and "List" now require the admin role. Since Xanadu the explicit roles plugin is no longer shipped and the snc_internal role is no longer available OOTB.</li>
+		<li>Added function IsAppInstalled().</li>
+		<li>GetPackageDependencyTree() now marks dependencies with missing Sys Ids as "undefined".</li>
+		<li>GetDependencyListFromTree() now handles dependencies without Sys Ids properly.</li>
+		<li>Added more patterns to GetEvaluatorErrorExceptionPatterns().</li>
+		<li>Updated all UI Action action names to contain the prefix "devtools_" and to follow a consistent naming convention.</li> 
+		<li>Improved ATF test for GetRecordsFromUpdateXml() to avoid false-negatives.</li>
+	</ol>
+
 
 	<h3>1.118.0 - 2025-03-21</h3>
 	<ol>
@@ -2594,13 +2607,24 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1987</sys_mod_count>
+        <sys_mod_count>1999</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-03-21 12:59:51</sys_updated_on>
+        <sys_updated_on>2025-04-11 14:19:18</sys_updated_on>
     </sys_ui_page>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>e44fd7541b578450a89720a8ec4bcb8c</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-04-07 07:40:19</sys_created_on>
+        <sys_id>a47490859374a610959b7fda2bba1073</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-04-07 07:40:19</sys_updated_on>
+        <table>sys_ui_page</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>

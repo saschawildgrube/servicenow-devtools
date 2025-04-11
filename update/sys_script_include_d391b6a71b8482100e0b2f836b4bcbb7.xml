@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns the default test suite of the given application or false if the application or the default test suite does not exist.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetAppDefaultTestSuite</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetAppDefaultTestSuite(vApp)
 {
 	var grApp = GetAppRecord(vApp);

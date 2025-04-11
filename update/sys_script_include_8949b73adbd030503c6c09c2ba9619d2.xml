@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Generate a hexadecimal SHA 256 hash string. </description>
+        <mobile_callable>false</mobile_callable>
         <name>GetHash</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetHash(vInput)
 {
 	var strString = GetStringValue(vInput);

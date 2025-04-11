@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Retrieves the given Record Transporter Package by its Sys ID or ID.</description>
+        <mobile_callable>false</mobile_callable>
         <name>RecordTransporterGetPackageRecord</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function RecordTransporterGetPackageRecord(vPackage)
 {
 	var grPackage = GetRecord('x_snc_devtools_transporter_package',vPackage);

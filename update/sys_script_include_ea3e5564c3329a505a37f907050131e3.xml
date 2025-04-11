@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Retrieves an array of records from a given Update Xml record.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetRecordsFromUpdateXml</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetRecordsFromUpdateXml(vUpdateXml)
 {
 	var grUpdateXml = GetRecord('sys_update_xml',vUpdateXml);

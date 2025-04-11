@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_package_dependency_m2m">
     <sys_package_dependency_m2m action="INSERT_OR_UPDATE">
-        <dependency display_value="UI Policy Rules" source="com.glide.ui_policy">7f6528438320021000d5ccc0deaad39f</dependency>
+        <dependency display_value="UI Policy Rules" source="com.glide.ui_policy">b2950b53d12302104f34ba60d8b7c1f1</dependency>
         <min_version>1.0.0</min_version>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-01-27 10:16:38</sys_created_on>

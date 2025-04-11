@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Runs the AppInstall function of the given app and of all its dependencies.</description>
+        <mobile_callable>false</mobile_callable>
         <name>InstallApp</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function InstallApp(vApp, bStopOnError)
 {
 	var timeStart = GetTimeNow();

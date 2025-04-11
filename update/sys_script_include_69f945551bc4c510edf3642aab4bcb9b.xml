@@ -7,7 +7,9 @@
         <client_callable>false</client_callable>
         <description>Executes the setValue member function of a glide record in global scope for all values provided in the given object.&#13;
 If one of the keys is the "sys_id" the new Sys ID will only be set if the GlideRecord::newRecord() function has been executed before.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GlideRecordSetValues</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GlideRecordSetValues(record,values)
 {
 	if (IsValidRecord(record) == false)

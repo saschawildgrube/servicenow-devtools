@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Sets an attribute of a table to a given value.</description>
+        <mobile_callable>false</mobile_callable>
         <name>TableSetAttribute</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function TableSetAttribute(strTable,strAttributeKey,strAttributeValue)
 {
 	strTable = GetStringValue(strTable);

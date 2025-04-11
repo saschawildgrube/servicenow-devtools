@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns true if an Instance Scan scan is currently running, false if not. </description>
+        <mobile_callable>false</mobile_callable>
         <name>InstanceScanIsRunning</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function InstanceScanIsRunning()
 {
 	var grScanResult = new GlideRecord('scan_result');

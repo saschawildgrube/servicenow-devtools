@@ -7,7 +7,9 @@
         <client_callable>false</client_callable>
         <description>Returns an object with "apikey", "username" and "password" fields or false if the credential object is null.&#13;
 Logs an error if the details cannot be provided.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetDetailsFromCredential</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetDetailsFromCredential(credential)
 {
 	if (credential == null)

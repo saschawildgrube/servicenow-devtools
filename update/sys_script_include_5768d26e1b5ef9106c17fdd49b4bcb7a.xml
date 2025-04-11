@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>If the given user is a "test" user, the function returns true, otherwise false.</description>
+        <mobile_callable>false</mobile_callable>
         <name>IsTestUser</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function IsTestUser(vUser)
 {
 	var grUser = GetUserRecord(vUser);

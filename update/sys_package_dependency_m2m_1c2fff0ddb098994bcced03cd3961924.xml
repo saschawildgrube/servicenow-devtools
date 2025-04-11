@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_package_dependency_m2m">
     <sys_package_dependency_m2m action="INSERT_OR_UPDATE">
-        <dependency display_value="Service Portal - Core" source="com.glide.service-portal">07baac0783e0021000d5ccc0deaad300</dependency>
+        <dependency display_value="Service Portal - Core" source="com.glide.service-portal">386d4bd7d1e302104f34ba60d8b7c1bb</dependency>
         <min_version>1.1.0</min_version>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-01-13 09:54:27</sys_created_on>

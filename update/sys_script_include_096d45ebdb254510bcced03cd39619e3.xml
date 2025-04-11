@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns true if Domain Separation is installed on the instance. Keep in mind, domain separation may or may not be active.</description>
+        <mobile_callable>false</mobile_callable>
         <name>IsDomainSeparationInstalled</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function IsDomainSeparationInstalled()
 {
 	return IsValidTable('sys_application_property');

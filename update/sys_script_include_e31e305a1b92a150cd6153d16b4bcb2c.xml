@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns the components of an email as an object, false if the given string is not a valid email.</description>
+        <mobile_callable>false</mobile_callable>
         <name>ParseEmail</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function ParseEmail(strEmail)
 {
 	strEmail = GetStringValue(strEmail);

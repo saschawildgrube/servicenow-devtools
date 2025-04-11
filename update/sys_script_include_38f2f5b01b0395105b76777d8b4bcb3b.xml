@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns true if the given parameter is an integer value, returns false if not.</description>
+        <mobile_callable>false</mobile_callable>
         <name>IsInteger</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function IsInteger(vValue)
 {
 	if (GetType(vValue) != 'number')

@@ -14,7 +14,9 @@ Methods:
 * InstallApp()
 * AppVersionBaseline()
 * SourceControlCommitToCurrentBranch()</description>
+        <mobile_callable>false</mobile_callable>
         <name>DevToolsWorkerAPI</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[var DevToolsWorkerAPI = Class.create();
 DevToolsWorkerAPI.prototype = {
     initialize: function() {

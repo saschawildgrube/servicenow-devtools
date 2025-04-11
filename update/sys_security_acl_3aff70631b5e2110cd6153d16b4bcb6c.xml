@@ -3,7 +3,9 @@
         <active>true</active>
         <admin_overrides>true</admin_overrides>
         <advanced>false</advanced>
+        <applies_to/>
         <condition/>
+        <decision_type>allow</decision_type>
         <description>Default access control on x_snc_devtools_technical_debt</description>
         <local_or_existing/>
         <name>x_snc_devtools_technical_debt</name>

@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns a user-friendly number of bytes using KB, MB and GB where appropriate.</description>
+        <mobile_callable>false</mobile_callable>
         <name>RenderBytes</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function RenderBytes(nBytes)
 {
 	if (GetType(nBytes) != 'number' && GetType(nBytes) != 'ScopedGlideElement')

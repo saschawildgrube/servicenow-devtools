@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Creates a new user based on a given Email address and assigns the specified groups. Returns the Sys ID of the new user if successful or false if the email address is not valid or a user with that email address already exists.</description>
+        <mobile_callable>false</mobile_callable>
         <name>CreateUserByEmail</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function CreateUserByEmail(strEmail,aGroups)
 {
 	strEmail = GetStringValue(strEmail);

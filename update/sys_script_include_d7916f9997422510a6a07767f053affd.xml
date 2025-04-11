@@ -8,7 +8,9 @@
         <description>Returns the pipeline name of the given instance. If no (technical) instance name is specified it returns the pipeline name of the current instance.&#13;
 The "pipeline name" is the name of the instance that reflects its role in the pipeline. Typical names are "dev", "test" and "prod". In order to map technical instance names to pipeline names an application must implement the DevTools extension point and implement the DevToolsGetPipelineName() function.&#13;
 If no mapping is available, the function returns the technical name of the given (or current) instance.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetInstancePipelineName</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetInstancePipelineName(strInstanceName)
 {
 	strInstanceName = GetStringValue(strInstanceName);

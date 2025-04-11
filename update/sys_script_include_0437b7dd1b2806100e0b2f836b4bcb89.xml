@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns true if the given sys_dictionary record is a read-only "cloned" record of a "TTP" ("Table per Partition") table.</description>
+        <mobile_callable>false</mobile_callable>
         <name>IsClonedDictionary</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function IsClonedDictionary(grSD)
 {
 	if (IsValidRecord(grSD) == false)

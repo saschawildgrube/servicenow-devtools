@@ -7,7 +7,9 @@
         <client_callable>false</client_callable>
         <description>Checks if the given string is a syntactically correct sys_id. Returns true if it is, false if not.&#13;
 Considers special Sys IDs for fx_currency and the "Default view" in sys_ui_view.</description>
+        <mobile_callable>false</mobile_callable>
         <name>IsValidSysId</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function IsValidSysId(strSysId)
 {
 	strSysId = GetStringValue(strSysId);

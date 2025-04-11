@@ -4,7 +4,7 @@
         <operation>execute</operation>
         <rca_type>real_rca</rca_type>
         <source>68e552e9c3d892905a37f9070501310f</source>
-        <source_scope display_value="ScanBugs">0ac5e8fa832d061000d5ccc0deaad36b</source_scope>
+        <source_scope display_value="">0ac5e8fa832d061000d5ccc0deaad36b</source_scope>
         <source_table>sys_script_include</source_table>
         <source_type>2</source_type>
         <status>3</status>

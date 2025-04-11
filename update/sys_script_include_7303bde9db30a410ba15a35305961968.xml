@@ -8,7 +8,9 @@
         <description>Run any script in the global scope even if the context is a scoped application. Note that the script will be placed into a function body so you cannot assume that declared local variables will be valid after its execution. To return a value from the script, set the "result" variable.&#13;
 WARNING: Using this function might be considered as a violation of security policies.&#13;
 Please make sure any use is based on conscious choice and careful assessment. </description>
+        <mobile_callable>false</mobile_callable>
         <name>RunScriptInGlobalScope</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function RunScriptInGlobalScope(strScript, param1, param2, param3, param4, param5, param6, param7)
 {
 	// WARNING: Using this function might be considered as a violation of security policies.

@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Adds a value to an array if it doesn't exist yet. Returns the resulting array.</description>
+        <mobile_callable>false</mobile_callable>
         <name>ArrayPushUnique</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function ArrayPushUnique(vArray, vValue)
 {
 	vArray = GetArrayValue(vArray);

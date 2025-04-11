@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Adds (or substracts) a given number of days to (or from) a given time value (in milliseconds).</description>
+        <mobile_callable>false</mobile_callable>
         <name>TimeAddDays</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function TimeAddDays(nTime, nDays)
 {
 	nTime = GetIntegerValue(nTime);

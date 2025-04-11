@@ -7,7 +7,9 @@
         <client_callable>false</client_callable>
         <description>Returns an array with records which contain credentials contained in the given application.&#13;
 The parameter bGeneric controls if a generic search should be performed - which may catch records in tables not defined OOTB but is significantly slower.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetAppRecordsWithCredentialPollution</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetAppRecordsWithCredentialPollution(vApp,bGeneric)
 {
 	bGeneric = GetBoolValue(bGeneric);

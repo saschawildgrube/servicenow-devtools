@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns true of the given table exists. False if not.</description>
+        <mobile_callable>false</mobile_callable>
         <name>IsValidTable</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function IsValidTable(strTable)
 {
 	strTable = GetStringValue(strTable);

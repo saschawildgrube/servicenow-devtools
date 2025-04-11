@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Creates a new technical user based on a given name, an optional role and password. Returns the Sys ID of the new user if successful or false if the user could not be created or if the specified role could not be found.</description>
+        <mobile_callable>false</mobile_callable>
         <name>CreateTechnicalUser</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function CreateTechnicalUser(strName,strRole,strPassword)
 {
 	strName = GetStringValue(strName);

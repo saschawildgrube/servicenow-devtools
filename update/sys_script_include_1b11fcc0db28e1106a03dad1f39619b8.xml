@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Renders the DevTools dependencies page.</description>
+        <mobile_callable>false</mobile_callable>
         <name>HtmlRenderPageDependencies</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function HtmlRenderPageDependencies()
 {
 	var strPackage = GetParam('package');

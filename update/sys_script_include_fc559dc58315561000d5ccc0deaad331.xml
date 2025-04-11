@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Sets a single value in a UX Style.</description>
+        <mobile_callable>false</mobile_callable>
         <name>UxStyleSetValue</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function UxStyleSetValue(
 	strSysId, vValue,
 	vKey1, vKey2, vKey3, vKey4, vKey5, vKey6, vKey7, vKey8, vKey9, vKey10)

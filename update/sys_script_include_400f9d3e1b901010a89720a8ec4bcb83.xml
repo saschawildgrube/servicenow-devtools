@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns a string value in all cases. Arrays and objects are converted into comma separated strings.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetStringValue</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetStringValue(vInput)
 {
 	if (vInput == undefined)

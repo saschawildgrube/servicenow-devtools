@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Packs a given record into a Record Transporter Package.</description>
+        <mobile_callable>false</mobile_callable>
         <name>RecordTransporterRecordPack</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function RecordTransporterRecordPack(vPackage,vRecordOrTable,strSysId)
 {
 	var grPackage = RecordTransporterGetPackageRecord(vPackage);

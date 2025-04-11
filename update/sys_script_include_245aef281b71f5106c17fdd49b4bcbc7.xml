@@ -7,7 +7,9 @@
         <client_callable>false</client_callable>
         <description>The function managers the order field in a given table. The given Sys ID identifies the record for which a new order value should be set and respected by all other records. The new order value is the new position of the given record. If the new order value is beyond the total number of records in the table, the record will be placed at the end.&#13;
 The Sys ID and new order parameters are optional. If null, an existing order will be maintained but the order values will be put in an exact sequence, if they are not already.</description>
+        <mobile_callable>false</mobile_callable>
         <name>RecordManageOrder</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function RecordManageOrder(strTable,strColumn,strSysId,nNewOrder)
 {
 	strTable = GetStringValue(strTable);

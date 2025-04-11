@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns all groups of a given user. An additional filter can be applied to the groups to be returned.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetGroupsFromUser</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetGroupsFromUser(strUserSysId,strFilterQuery)
 {
 	var GetStringValue = x_snc_devtools.GetStringValue;

@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns the record of the given application's manual UI Page, or false if the application does not have a manual UI Page.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetAppManualRecord</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetAppManualRecord(vApp)
 {
 	var grApp = GetAppRecord(vApp);

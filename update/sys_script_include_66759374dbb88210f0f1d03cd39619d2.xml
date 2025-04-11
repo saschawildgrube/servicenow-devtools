@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns an array of objects detailing the records that are currently not committed to the current source control branch of the given application. If the application is not linked to source control, the function returns false.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetAppUncommittedFiles</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetAppUncommittedFiles(vApp)
 {
 	var grApp = GetAppRecord(vApp);

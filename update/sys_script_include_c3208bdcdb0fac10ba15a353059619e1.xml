@@ -8,7 +8,9 @@
         <description>A function to process large amounts of records using a callback function. The function makes use of a specified date/time field to determine which record to process next. Multiple instances of a background script can run using this function to work on large amounts of records in a table without interfering with each other.&#13;
 For large tables it is imperative to add an index on the date time field!&#13;
 If the ghost parameter is set to true, records are updated with setWorkflow(false) to avoid business rules etc. being triggered.</description>
+        <mobile_callable>false</mobile_callable>
         <name>RecordBulkProcessor</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function RecordBulkProcessor(grRecords,callbackRecordProcessor,strFieldDateTime,nMaxRecords,nMaxSeconds,callbackLog,nLogFrequency,bGhost)
 {
 	var GetStringValue = x_snc_devtools.GetStringValue;

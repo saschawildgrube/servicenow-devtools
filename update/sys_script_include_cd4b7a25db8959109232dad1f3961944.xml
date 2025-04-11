@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns the GlideRecord object that contains the script from which GetScriptRecord() is called or if nStackLevel is greater than 0, the record that contains the script that contains the code of the corresponding stack level.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetScriptRecord</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetScriptRecord(nStackLevel)
 {
 	nStackLevel = GetIntegerValue(nStackLevel);

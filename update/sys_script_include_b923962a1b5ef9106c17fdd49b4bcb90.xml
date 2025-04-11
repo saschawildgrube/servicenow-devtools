@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Creates a new test user based on a given name. Returns the Sys ID of the new user if successful or false if the user could not be created.</description>
+        <mobile_callable>false</mobile_callable>
         <name>CreateTestUser</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function CreateTestUser(strName)
 {
 	strName = GetStringValue(strName);

@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Renders an error message in Html.</description>
+        <mobile_callable>false</mobile_callable>
         <name>HtmlRenderWarning</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function HtmlRenderWarning(strText)
 {
 	strText = GetStringValue(strText);

@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Renders the html tag required to include a script via url (e.g. from a CDN).</description>
+        <mobile_callable>false</mobile_callable>
         <name>HtmlRenderScriptUrl</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function HtmlRenderScriptUrl(strUrl,bModule)
 {
 	strUrl = GetStringValue(strUrl);
