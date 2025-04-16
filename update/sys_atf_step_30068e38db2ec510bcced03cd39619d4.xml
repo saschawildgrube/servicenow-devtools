@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-03-27 20:01:06</sys_created_on>
         <sys_id>30068e38db2ec510bcced03cd39619d4</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_30068e38db2ec510bcced03cd39619d4</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-03-27 20:05:09</sys_updated_on>
+        <sys_updated_on>2025-04-16 06:39:31</sys_updated_on>
         <table/>
         <test display_value="DevTools - StringReplace">16f54e38db2ec510bcced03cd396190f</test>
         <timeout/>
@@ -49,9 +49,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-03-27 20:01:06</sys_created_on>
         <sys_id>da068e38db2ec510bcced03cd39619a3</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-03-27 20:05:09</sys_updated_on>
+        <sys_updated_on>2025-04-16 06:39:31</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -76,6 +76,9 @@
 	TestCase_StringReplace('This is a haystack with a needle.','needle','gold nugget','This is a haystack with a gold nugget.');&#13;
 	TestCase_StringReplace('This is a haystack with a needle.','whatever','gold nugget','This is a haystack with a needle.');&#13;
 	TestCase_StringReplace('ABC abc ABC abc','ABC','123','123 abc 123 abc');&#13;
+&#13;
+	TestCase_StringReplace('A string with a {{placeholder}}.','{{placeholder}}','meaning','A string with a meaning.');&#13;
+	TestCase_StringReplace('A string with a {{placeholder}}.','placeholder','meaning','A string with a {{meaning}}.');	&#13;
 &#13;
 	&#13;
 	return test.GetResult();&#13;
