@@ -9,7 +9,9 @@
 WARNING: This function is still experimental. Handle with great care.&#13;
 Make sure your work is backed-up before use.&#13;
 When running as a background script, unset the "Record for rollback" option - otherwise the function will not work!</description>
+        <mobile_callable>false</mobile_callable>
         <name>TableReparent</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function TableReparent(strTable, strNewParentTable)
 {
 	strTable = GetStringValue(strTable);
@@ -55,13 +57,13 @@ When running as a background script, unset the "Record for rollback" option - ot
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-04-09 15:28:06</sys_created_on>
         <sys_id>1530f39e978ee510a6a07767f053af44</sys_id>
-        <sys_mod_count>23</sys_mod_count>
+        <sys_mod_count>24</sys_mod_count>
         <sys_name>TableReparent</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_1530f39e978ee510a6a07767f053af44</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-04-14 09:08:03</sys_updated_on>
+        <sys_updated_on>2024-08-28 12:58:40</sys_updated_on>
     </sys_script_include>
 </record_update>

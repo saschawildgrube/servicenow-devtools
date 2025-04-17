@@ -8,6 +8,7 @@
         <name>DevTools - HtmlRenderWarning</name>
         <parameters/>
         <remember/>
+        <sn_atf_tg_generated>false</sn_atf_tg_generated>
         <sys_class_name>sys_atf_test</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-12-03 13:34:19</sys_created_on>

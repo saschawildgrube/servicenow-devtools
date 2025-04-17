@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.IsAppShared</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns true if the given application is a "shared" application - i.e. whether it has a record in x_snc_devtools_shared_application pointing to it. False if not.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>IsAppShared</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function IsAppShared(vApp)
+{
+	var grApp = GetAppRecord(vApp);
+	if (IsValidRecord(grApp) == false)
+	{
+		return false;
+	}
+	var grSharedApp = new GlideRecord('x_snc_devtools_shared_application');
+	grSharedApp.addQuery('application','=',grApp.sys_id);
+	grSharedApp.query();
+	if (grSharedApp.next() == false)
+	{
+		return false;
+	}
+	return true;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-09-09 07:04:26</sys_created_on>
+        <sys_id>8add6651c3e492105a37f907050131de</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>IsAppShared</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_8add6651c3e492105a37f907050131de</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-09-10 13:53:55</sys_updated_on>
+    </sys_script_include>
+</record_update>

@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns true of the current user has the provided role explicitly. Returns true if that is the case, returns false if not. If an admin does not explicitly have that role, it will also return false.</description>
+        <mobile_callable>false</mobile_callable>
         <name>IsUserHasRoleExactly</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function IsUserHasRoleExactly(strRole,strUserSysId)
 {
 	strRole = GetStringValue(strRole);
@@ -46,13 +48,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-06-19 16:36:15</sys_created_on>
         <sys_id>ed932af4dbe55010ba15a3530596191d</sys_id>
-        <sys_mod_count>16</sys_mod_count>
+        <sys_mod_count>17</sys_mod_count>
         <sys_name>IsUserHasRoleExactly</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_ed932af4dbe55010ba15a3530596191d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-04-26 06:03:15</sys_updated_on>
+        <sys_updated_on>2024-08-28 12:59:01</sys_updated_on>
     </sys_script_include>
 </record_update>

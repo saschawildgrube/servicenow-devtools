@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns true if the given value is an object. False if not.</description>
+        <mobile_callable>false</mobile_callable>
         <name>IsObject</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function IsObject(vInput)
 {
 	var strType = GetType(vInput);
@@ -26,13 +28,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-03-02 16:14:14</sys_created_on>
         <sys_id>2db5f49bdba26c10ba15a353059619f1</sys_id>
-        <sys_mod_count>11</sys_mod_count>
+        <sys_mod_count>12</sys_mod_count>
         <sys_name>IsObject</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_2db5f49bdba26c10ba15a353059619f1</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-03-02 20:25:13</sys_updated_on>
+        <sys_updated_on>2024-08-28 12:58:43</sys_updated_on>
     </sys_script_include>
 </record_update>

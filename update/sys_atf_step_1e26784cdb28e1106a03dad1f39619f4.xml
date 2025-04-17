@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-01-17 12:33:26</sys_created_on>
         <sys_id>1e26784cdb28e1106a03dad1f39619f4</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_1e26784cdb28e1106a03dad1f39619f4</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-01-17 12:40:23</sys_updated_on>
+        <sys_updated_on>2024-07-29 15:21:49</sys_updated_on>
         <table/>
         <test display_value="DevTools - HtmlRenderTabNavigation">8216f44cdb28e1106a03dad1f396191c</test>
         <timeout/>
@@ -49,9 +49,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-01-17 12:33:26</sys_created_on>
         <sys_id>fe267c4cdb28e1106a03dad1f39619c1</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-01-17 12:40:23</sys_updated_on>
+        <sys_updated_on>2024-07-29 15:21:49</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -68,8 +68,8 @@
 			'Function HtmlRenderTabNavigation()',&#13;
 			HtmlRenderTabNavigation,&#13;
 			{&#13;
-				'Tabs': aTabs,&#13;
-				'Current Id': strCurrentId&#13;
+				'aTabs': aTabs,&#13;
+				'strCurrentId': strCurrentId&#13;
 			},&#13;
 			vExpected,&#13;
 			TestCase_HtmlRenderTabNavigation_CheckResult);&#13;
@@ -94,7 +94,10 @@
 			}			&#13;
 		];	&#13;
 &#13;
-	TestCase_HtmlRenderTabNavigation(aTabs,'alpha','&lt;div class="tabs2_strip tabs2_strip_default" id="tabs2_list" style="display: block;" role="tablist" aria-label="Section Tab Lists"&gt;&lt;span class="tab_header"&gt;&lt;span class="tabs2_tab tabs2_active" tabindex="0" role="tab" aria-selected="true" aria-controls=""&gt;&lt;span mandatory="true" aria-hidden="true" class="label_description" style="margin-right: 2px; visibility: hidden; display: none;"&gt;*&lt;/span&gt;&lt;span class="tab_caption_text"&gt;Alpha&lt;/span&gt;&lt;/span&gt;&lt;img class="tab_spacer" src="images/s.gifx" width="4" height="24"&gt;&lt;/span&gt;&lt;span class="tab_header"&gt;&lt;span class="tabs2_tab" tabindex="-1" role="tab" aria-selected="false"&gt;&lt;span mandatory="true" aria-hidden="true" class="label_description" style="margin-right: 2px; visibility: hidden; display: none;"&gt;*&lt;/span&gt;&lt;span class="tab_caption_text"&gt;&lt;a href="?tab=beta"&gt;Beta&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;&lt;img class="tab_spacer" src="images/s.gifx" width="4" height="24"&gt;&lt;/span&gt;&lt;span class="tab_header"&gt;&lt;span class="tabs2_tab" tabindex="-1" role="tab" aria-selected="false"&gt;&lt;span mandatory="true" aria-hidden="true" class="label_description" style="margin-right: 2px; visibility: hidden; display: none;"&gt;*&lt;/span&gt;&lt;span class="tab_caption_text"&gt;&lt;a href="?tab=gamma"&gt;Gamma&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;&lt;img class="tab_spacer" src="images/s.gifx" width="4" height="24"&gt;&lt;/span&gt;&lt;/div&gt;');&#13;
+	TestCase_HtmlRenderTabNavigation(&#13;
+		aTabs,&#13;
+		'alpha',&#13;
+		'&lt;div class="tabs2_strip tabs2_strip_default" style="display: block;" role="tablist"&gt;&lt;span class="tab_header"&gt;&lt;span class="tabs2_tab tabs2_active" tabindex="0" role="tab" aria-selected="true" aria-controls=""&gt;&lt;span mandatory="true" aria-hidden="true" class="label_description" style="margin-right: 2px; visibility: hidden; display: none;"&gt;*&lt;/span&gt;&lt;span class="tab_caption_text"&gt;Alpha&lt;/span&gt;&lt;/span&gt;&lt;img class="tab_spacer" src="images/s.gifx" width="4" height="24"&gt;&lt;/span&gt;&lt;span class="tab_header"&gt;&lt;span class="tabs2_tab" tabindex="-1" role="tab" aria-selected="false"&gt;&lt;span mandatory="true" aria-hidden="true" class="label_description" style="margin-right: 2px; visibility: hidden; display: none;"&gt;*&lt;/span&gt;&lt;span class="tab_caption_text"&gt;&lt;a href="?tab=beta"&gt;Beta&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;&lt;img class="tab_spacer" src="images/s.gifx" width="4" height="24"&gt;&lt;/span&gt;&lt;span class="tab_header"&gt;&lt;span class="tabs2_tab" tabindex="-1" role="tab" aria-selected="false"&gt;&lt;span mandatory="true" aria-hidden="true" class="label_description" style="margin-right: 2px; visibility: hidden; display: none;"&gt;*&lt;/span&gt;&lt;span class="tab_caption_text"&gt;&lt;a href="?tab=gamma"&gt;Gamma&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;&lt;img class="tab_spacer" src="images/s.gifx" width="4" height="24"&gt;&lt;/span&gt;&lt;/div&gt;');&#13;
 	&#13;
 	return test.GetResult();&#13;
 	&#13;

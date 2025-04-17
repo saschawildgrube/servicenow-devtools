@@ -5,8 +5,10 @@
         <api_name>x_snc_devtools.ConfigurationItemServiceNowAppInsertOrUpdate</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Inserts or updates a configuration item that represents the given ServieNow application (record or object) on the given instance.  </description>
+        <description>Inserts or updates a configuration item that represents the given ServiceNow application (record or object) on the given instance.  </description>
+        <mobile_callable>false</mobile_callable>
         <name>ConfigurationItemServiceNowAppInsertOrUpdate</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function ConfigurationItemServiceNowAppInsertOrUpdate(
 	strInstanceName,
 	vApp)
@@ -44,14 +46,28 @@
 	var strAppRepoUrl = GetStringValue(GetValue(vApp,'x_snc_devtools_repo_url'));
 	var strAppRepoBranch = GetStringValue(GetValue(vApp,'branch'));
 
-	return RecordInsertOrUpdate(
-			'x_snc_devtools_cmdb_ci_appl_servicenow',
-			{
+	var query = {};
+	if (strInstanceName != '')
+	{
+		query = {
 				app_sys_id: strAppSysId,
 				app_instance_name: strInstanceName
-			},
-			{
-			},
+			};
+	}
+	else
+	{
+		query = {
+				app_sys_id: strAppSysId,
+				app_repo_url: strAppRepoUrl,
+				app_repo_branch: strAppRepoBranch,
+				app_instance_name: ''
+			};
+	}
+
+	return RecordInsertOrUpdate(
+			'x_snc_devtools_cmdb_ci_appl_servicenow',
+			query,
+			{},
 			{
 				app_name: strAppName,
 				app_version: strAppVersion,
@@ -66,13 +82,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-06-05 15:03:35</sys_created_on>
         <sys_id>56f20e66db228650f0f1d03cd396199e</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_mod_count>15</sys_mod_count>
         <sys_name>ConfigurationItemServiceNowAppInsertOrUpdate</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_56f20e66db228650f0f1d03cd396199e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-07-04 18:10:08</sys_updated_on>
+        <sys_updated_on>2025-02-21 10:57:47</sys_updated_on>
     </sys_script_include>
 </record_update>

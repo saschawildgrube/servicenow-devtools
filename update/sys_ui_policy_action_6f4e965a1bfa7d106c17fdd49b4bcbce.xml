@@ -3,6 +3,8 @@
         <cleared>false</cleared>
         <disabled>ignore</disabled>
         <field>payload_content</field>
+        <field_message/>
+        <field_message_type/>
         <mandatory>ignore</mandatory>
         <sys_class_name>sys_ui_policy_action</sys_class_name>
         <sys_created_by>admin</sys_created_by>
@@ -18,6 +20,9 @@
         <sys_updated_on>2023-12-01 12:27:19</sys_updated_on>
         <table>x_snc_devtools_transporter_record</table>
         <ui_policy display_value="Transporter Record - Action &quot;Delete&quot;">e41ed25a1bfa7d106c17fdd49b4bcb90</ui_policy>
+        <value/>
+        <value_action/>
         <visible>false</visible>
     </sys_ui_policy_action>
+    <sys_translated_text action="delete_multiple" query="documentkey=6f4e965a1bfa7d106c17fdd49b4bcbce"/>
 </record_update>

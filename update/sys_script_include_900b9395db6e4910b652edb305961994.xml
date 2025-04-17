@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Renders any value using RenderValue() into an html document.</description>
+        <mobile_callable>false</mobile_callable>
         <name>HtmlRenderValue</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function HtmlRenderValue(vValue)
 {
 	var strHtml = HtmlRenderPreformatted(RenderValue(vValue));
@@ -16,13 +18,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-03-29 15:29:50</sys_created_on>
         <sys_id>900b9395db6e4910b652edb305961994</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>HtmlRenderValue</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_900b9395db6e4910b652edb305961994</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-01-24 17:17:20</sys_updated_on>
+        <sys_updated_on>2024-08-28 12:58:52</sys_updated_on>
     </sys_script_include>
 </record_update>

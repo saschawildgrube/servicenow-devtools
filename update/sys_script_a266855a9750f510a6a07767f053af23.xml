@@ -12,7 +12,7 @@
         <change_fields>false</change_fields>
         <client_callable>false</client_callable>
         <collection>sysrule_view</collection>
-        <condition/>
+        <condition>IsActive()</condition>
         <description>Display a message that informs the developer on how to set a table from another scope.</description>
         <execute_function>false</execute_function>
         <filter_condition/>
@@ -29,19 +29,6 @@
         <role_conditions>admin</role_conditions>
         <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
 	
-	/*
-	var strTable = GetStringValue(current.table);
-	if (strTable == '')
-	{
-		strTable = 'THE_TABLE';
-	}
-	gs.addInfoMessage(		
-		HtmlEncode(
-			'OOTB the GUI does not allow to apply the View Rule to a table in a different scope.\n'
-			+'But you can set the table value running the following background script:\n'
-			+'x_snc_devtools.RecordSetValue("sysrule_view","'+current.sys_id+'","table","'+strTable+'",true);'));
-*/
-
 	gs.addInfoMessage(		
 		HtmlEncode(
 			'OOTB the GUI does not allow to apply the View Rule to a table in a different scope.\n'
@@ -55,7 +42,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>a266855a9750f510a6a07767f053af23</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_mod_count>14</sys_mod_count>
         <sys_name>sysrule_view - show hint to set table</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -63,7 +50,7 @@
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_a266855a9750f510a6a07767f053af23</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-10-22 14:12:41</sys_updated_on>
+        <sys_updated_on>2025-01-27 10:10:31</sys_updated_on>
         <template/>
         <when>before_display</when>
         <x_snc_datasilos_created>false</x_snc_datasilos_created>

@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-01-13 13:49:48</sys_created_on>
         <sys_id>82412cb21b98ed905b76777d8b4bcbcc</sys_id>
-        <sys_mod_count>10</sys_mod_count>
+        <sys_mod_count>14</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_82412cb21b98ed905b76777d8b4bcbcc</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-02-22 14:49:25</sys_updated_on>
+        <sys_updated_on>2024-08-16 09:48:58</sys_updated_on>
         <table/>
         <test display_value="DevTools - GetPackageDependencyList">3631a8b21b98ed905b76777d8b4bcb3b</test>
         <timeout/>
@@ -49,9 +49,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-01-13 13:49:48</sys_created_on>
         <sys_id>ee412cb21b98ed905b76777d8b4bcbfd</sys_id>
-        <sys_mod_count>10</sys_mod_count>
+        <sys_mod_count>14</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-02-22 14:49:25</sys_updated_on>
+        <sys_updated_on>2024-08-16 09:48:58</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -103,12 +103,15 @@
 	grPackagePackage.addQuery('name','=','Package');&#13;
 	grPackagePackage.query();&#13;
 	grPackagePackage.next();&#13;
+	test.Log(grPackagePackage);&#13;
+	test.Log('');&#13;
 &#13;
 	var grPackageServicePortal = new GlideRecord('sys_plugins');&#13;
 	grPackageServicePortal.addQuery('name','=','Service Portal - Core');&#13;
 	grPackageServicePortal.query();&#13;
 	grPackageServicePortal.next();&#13;
-	&#13;
+	test.Log(grPackageServicePortal);&#13;
+	test.Log('');&#13;
 	&#13;
 	var grDependency = new GlideRecord('x_snc_devtools_dependency');&#13;
 	grDependency.initialize();&#13;
@@ -116,6 +119,8 @@
 	grDependency.dependency = grPackagePackage.sys_id;&#13;
 	grDependency.name = 'Package';&#13;
 	grDependency.insert();&#13;
+	test.Log(grDependency);&#13;
+	test.Log('');	&#13;
 	TestCase_GetPackageDependencyList('x_snc_devtools',{ count: 2, dependency_status_summary: 'ok' });		&#13;
 &#13;
 	var grDependency = new GlideRecord('x_snc_devtools_dependency');&#13;
@@ -125,6 +130,8 @@
 	grDependency.name = 'Service Portal - Core';&#13;
 	grDependency.versions = '1000.0.0';&#13;
 	grDependency.insert();&#13;
+	test.Log(grDependency);&#13;
+	test.Log('');		&#13;
 	TestCase_GetPackageDependencyList('x_snc_devtools',{ count: 3, dependency_status_summary: 'incompatible_version' });&#13;
 	&#13;
 	&#13;
@@ -134,6 +141,8 @@
 	grDependency.dependency = GetPseudoSysId();&#13;
 	grDependency.name = 'Pseudo';&#13;
 	grDependency.insert();&#13;
+	test.Log(grDependency);&#13;
+	test.Log('');		&#13;
 	TestCase_GetPackageDependencyList('x_snc_devtools',{ count: 4, dependency_status_summary: 'missing' });&#13;
 	&#13;
 	// "Service Portal - Core" now also has a dependency to "Pseudo" - so two different packages depend on the same package and duplicates are removed&#13;
@@ -143,6 +152,8 @@
 	grDependency.dependency = GetPseudoSysId();&#13;
 	grDependency.name = 'Pseudo';&#13;
 	grDependency.insert();&#13;
+	test.Log(grDependency);&#13;
+	test.Log('');		&#13;
 	TestCase_GetPackageDependencyList('x_snc_devtools',{ count: 4, dependency_status_summary: 'missing' });	&#13;
 &#13;
 	// "Service Portal - Core" now has a dependency to "DevTools" - this would be a circular dependency which is not allowed!  &#13;
@@ -152,6 +163,8 @@
 	grDependency.dependency = grApp.sys_id;&#13;
 	grDependency.name = 'DevTools';&#13;
 	grDependency.insert();&#13;
+	test.Log(grDependency);&#13;
+	test.Log('');		&#13;
 	TestCase_GetPackageDependencyList('x_snc_devtools',{ count: 5, dependency_status_summary: 'circular' });&#13;
 	&#13;
 	&#13;

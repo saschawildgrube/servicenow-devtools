@@ -8,7 +8,9 @@
         <description>Creates a new branch based on the currently active branch of the given application.&#13;
 If bAsync is set to false, the function operates synchronously and will NOT return until the operation is completed. The return false indicates success by returning true or failure by returning false.&#13;
 If bAsync is true, the function will return the progress id of the triggered background process.</description>
+        <mobile_callable>false</mobile_callable>
         <name>SourceControlCreateBranch</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function SourceControlCreateBranch(vApp,strNewBranch,bAsync)
 {
 	var grApp = GetAppRecord(vApp);
@@ -23,6 +25,8 @@ If bAsync is true, the function will return the progress id of the triggered bac
 	}
 	bAsync = GetBoolValue(bAsync);
 
+	SetCurrentScope(grApp.sys_id);
+
 	var cb = sn_vcs.AppSourceControl.createBranch();
 	cb.setSysApp(GetStringValue(grApp.sys_id));
 	cb.setBranchName(strNewBranch);
@@ -33,7 +37,7 @@ If bAsync is true, the function will return the progress id of the triggered bac
 		return strProgressSysId;
 	}
 	
-	WaitForWorker(strProgressSysId);
+	WaitForWorker(strProgressSysId,2);
 
 	var grProgress = GetRecord('sys_progress_worker',strProgressSysId);
 	if (grProgress != false)
@@ -50,13 +54,13 @@ If bAsync is true, the function will return the progress id of the triggered bac
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-03-06 12:36:13</sys_created_on>
         <sys_id>0c09f05ddbfcc210f0f1d03cd39619e2</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>SourceControlCreateBranch</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_0c09f05ddbfcc210f0f1d03cd39619e2</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-03-06 17:33:27</sys_updated_on>
+        <sys_updated_on>2024-11-08 14:58:47</sys_updated_on>
     </sys_script_include>
 </record_update>

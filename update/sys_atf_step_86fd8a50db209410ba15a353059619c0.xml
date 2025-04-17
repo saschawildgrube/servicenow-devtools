@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-04-29 08:42:23</sys_created_on>
         <sys_id>86fd8a50db209410ba15a353059619c0</sys_id>
-        <sys_mod_count>10</sys_mod_count>
+        <sys_mod_count>12</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_86fd8a50db209410ba15a353059619c0</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-11-30 16:31:38</sys_updated_on>
+        <sys_updated_on>2025-03-11 13:54:26</sys_updated_on>
         <table/>
         <test display_value="DevTools - GetArrayValue">97cdc650db209410ba15a353059619dc</test>
         <timeout/>
@@ -35,59 +35,56 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-04-29 08:42:23</sys_created_on>
         <sys_id>749e0690db209410ba15a353059619fe</sys_id>
-        <sys_mod_count>10</sys_mod_count>
+        <sys_mod_count>12</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-11-30 16:31:38</sys_updated_on>
-        <value>var strLog = '';&#13;
-function Log(strText)&#13;
+        <sys_updated_on>2025-03-11 13:54:26</sys_updated_on>
+        <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
-	strLog = strLog + "\n" + strText;&#13;
-}&#13;
-(function(outputs, steps, stepResult, assertEqual)&#13;
-{&#13;
-	var bResult = true;&#13;
+	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
 	&#13;
+	test.SetResult(true);&#13;
 &#13;
-	function TestCase_GetArrayValue(vInput, vExpected)&#13;
+	function TestCase_GetArrayValue(vValue, strDelimiter, vExpected)&#13;
 	{&#13;
-		Log('TestCase_GetArrayValue');&#13;
-		Log('Input: '+RenderValue(vInput));&#13;
-		Log('Expected: '+RenderValue(vExpected));&#13;
-		var vResult = GetArrayValue(vInput);&#13;
-		Log('Result  : '+RenderValue(vResult));&#13;
-		if (IsEqual(vResult,vExpected) == false)&#13;
+		function TestCase_GetArrayValue_CheckResult(vInput,vExpected,vResult)&#13;
 		{&#13;
-			bResult = false;&#13;
-			Log('Test case FAILED');&#13;
+			return IsEqual(vExpected,vResult);&#13;
 		}&#13;
-		Log('');&#13;
+&#13;
+		test.TestCase(&#13;
+			'Function GetArrayValue()',&#13;
+			GetArrayValue,&#13;
+			{&#13;
+				'vValue': vValue,&#13;
+				'strDelimiter': strDelimiter,&#13;
+			},&#13;
+			vExpected,&#13;
+			TestCase_GetArrayValue_CheckResult);&#13;
 	}&#13;
 &#13;
-	TestCase_GetArrayValue(null,[]);&#13;
-	TestCase_GetArrayValue(false,[]);&#13;
-	TestCase_GetArrayValue('',[]);&#13;
-	TestCase_GetArrayValue([],[]);&#13;
-	TestCase_GetArrayValue(['Alpha'],['Alpha']);&#13;
-	TestCase_GetArrayValue('John',['John']);&#13;
-	TestCase_GetArrayValue('John,Albert',['John','Albert']);&#13;
-	TestCase_GetArrayValue(new String('John,Albert'),['John','Albert']);&#13;
-	TestCase_GetArrayValue(0,[0]);&#13;
-	TestCase_GetArrayValue(42,[42]);&#13;
-	TestCase_GetArrayValue(3.14,[3.14]);&#13;
+	TestCase_GetArrayValue(null,null,[]);&#13;
+	TestCase_GetArrayValue(false,null,[]);&#13;
+	TestCase_GetArrayValue('',null,[]);&#13;
+	TestCase_GetArrayValue([],null,[]);&#13;
+	TestCase_GetArrayValue(['Alpha'],null,['Alpha']);&#13;
+	TestCase_GetArrayValue('John',null,['John']);&#13;
+	TestCase_GetArrayValue('John,Albert',null,['John','Albert']);&#13;
+	TestCase_GetArrayValue('John\nAlbert','\n',['John','Albert']);&#13;
+	TestCase_GetArrayValue(new String('John,Albert'),null,['John','Albert']);&#13;
+	TestCase_GetArrayValue(0,null,[0]);&#13;
+	TestCase_GetArrayValue(42,null,[42]);&#13;
+	TestCase_GetArrayValue(3.14,null,[3.14]);&#13;
 	&#13;
 	var testdata = new TestDataAPI('_ATF_DEVTOOLS_');&#13;
 	var strTestItemSysId = testdata.CreateTestItem('Comma separated values','Alpha,Beta');&#13;
 	Log(RenderValue(testdata.GetAllData()));&#13;
 	var grTestItem = GetRecord('x_snc_devtools_test',strTestItemSysId);&#13;
-	TestCase_GetArrayValue(grTestItem.value,['Alpha','Beta']);&#13;
+	TestCase_GetArrayValue(grTestItem.value,null,['Alpha','Beta']);&#13;
 	&#13;
+	return test.GetResult();&#13;
 	&#13;
-&#13;
-	&#13;
-	stepResult.setOutputMessage(strLog);&#13;
-	return bResult;&#13;
-	&#13;
-})(outputs, steps, stepResult, assertEqual);</value>
+})(outputs, steps, stepResult, assertEqual);&#13;
+</value>
         <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
     </sys_variable_value>
     <sys_variable_value action="INSERT_OR_UPDATE">

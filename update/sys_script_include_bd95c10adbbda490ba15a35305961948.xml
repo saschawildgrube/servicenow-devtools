@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Checks if the first version is compatible to the second version - whereas the first version is the version of an installed application and the second version is a requirement. </description>
+        <mobile_callable>false</mobile_callable>
         <name>IsVersionCompatible</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function IsVersionCompatible(strVersion1, strVersion2)
 {
 	strVersion1 = GetStringValue(strVersion1);
@@ -61,13 +63,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-01-20 13:26:05</sys_created_on>
         <sys_id>bd95c10adbbda490ba15a35305961948</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_name>IsVersionCompatible</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_bd95c10adbbda490ba15a35305961948</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-04-07 11:24:12</sys_updated_on>
+        <sys_updated_on>2024-08-28 12:58:56</sys_updated_on>
     </sys_script_include>
 </record_update>

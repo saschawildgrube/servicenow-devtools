@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Inserts or updates a record based on the given criteria.</description>
+        <mobile_callable>false</mobile_callable>
         <name>RecordInsertOrUpdate</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function RecordInsertOrUpdate(strTable,query,valuesInsert,valuesUpdate,bGhost)
 {
 	strTable = GetStringValue(strTable);
@@ -73,13 +75,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-11-30 10:58:42</sys_created_on>
         <sys_id>18eff8021bf23d106c17fdd49b4bcb66</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name>RecordInsertOrUpdate</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_18eff8021bf23d106c17fdd49b4bcb66</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-11-30 13:39:29</sys_updated_on>
+        <sys_updated_on>2024-08-28 12:58:40</sys_updated_on>
     </sys_script_include>
 </record_update>

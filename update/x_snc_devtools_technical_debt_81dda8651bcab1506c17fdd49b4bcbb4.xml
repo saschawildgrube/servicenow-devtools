@@ -2,20 +2,20 @@
     <x_snc_devtools_technical_debt action="INSERT_OR_UPDATE">
         <description>The UI action "Save" and the deactivated business rule "sysrule_view - show hint to set table" are remainders of an old way to help admins creating cross scope sysrule_view records.&#13;
 Once the new feature is confirmed, the code should be removed.</description>
-        <id>sysrule_view_scopes</id>
+        <id/>
         <short_description>Old code to help admins creating cross-scope sysrule_view records</short_description>
         <switch>false</switch>
         <sys_class_name>x_snc_devtools_technical_debt</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-10-22 13:34:58</sys_created_on>
         <sys_id>81dda8651bcab1506c17fdd49b4bcbb4</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name>Old code to help admins creating cross-scope sysrule_view records</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>x_snc_devtools_technical_debt_81dda8651bcab1506c17fdd49b4bcbb4</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-10-22 13:35:05</sys_updated_on>
+        <sys_updated_on>2024-07-29 11:48:37</sys_updated_on>
     </x_snc_devtools_technical_debt>
 </record_update>

@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_section caption="When to Apply" section_id="4da0847333abde10037396382e5c7be7" sys_domain="global" table="sys_ui_policy" version="3" view="devtools">
+        <sys_ui_annotation action="INSERT_OR_UPDATE">
+            <is_plain_text>false</is_plain_text>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-02-12 16:08:05</sys_created_on>
+            <sys_id>3bc20c3733abde10037396382e5c7bb8</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-02-12 16:08:05</sys_updated_on>
+            <text>&lt;span class="annotation-text"&gt;${gs.getMessage('UI Policy Global Field Description')}&lt;/span&gt;</text>
+            <type display_value="Section Details">19756e5ec3313000bac1addbdfba8f18</type>
+        </sys_ui_annotation>
+        <sys_ui_annotation action="INSERT_OR_UPDATE">
+            <is_plain_text>false</is_plain_text>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-02-12 16:08:05</sys_created_on>
+            <sys_id>3fc20c3733abde10037396382e5c7bb8</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-02-12 16:08:05</sys_updated_on>
+            <text>&lt;span class="annotation-text"&gt;${gs.getMessage('UI Policy Reverse if false Field Description')}&lt;/span&gt;</text>
+            <type display_value="Section Details">19756e5ec3313000bac1addbdfba8f18</type>
+        </sys_ui_annotation>
+        <sys_ui_annotation action="INSERT_OR_UPDATE">
+            <is_plain_text>false</is_plain_text>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-02-12 16:08:05</sys_created_on>
+            <sys_id>b3c20c3733abde10037396382e5c7bb9</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-02-12 16:08:05</sys_updated_on>
+            <text>&lt;span class="annotation-text"&gt;${gs.getMessage('UI Policy Inherit Field Description')}&lt;/span&gt;</text>
+            <type display_value="Section Details">19756e5ec3313000bac1addbdfba8f18</type>
+        </sys_ui_annotation>
+        <sys_ui_annotation action="INSERT_OR_UPDATE">
+            <is_plain_text>false</is_plain_text>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-02-12 16:08:05</sys_created_on>
+            <sys_id>ffc20c3733abde10037396382e5c7bb8</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-02-12 16:08:05</sys_updated_on>
+            <text>&lt;span class="annotation-text"&gt;${gs.getMessage('UI Policy On load Field Description')}&lt;/span&gt;</text>
+            <type display_value="Section Details">19756e5ec3313000bac1addbdfba8f18</type>
+        </sys_ui_annotation>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.begin_split</element>
+            <position>0</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-02-12 16:08:05</sys_created_on>
+            <sys_id>73c24c3733abde10037396382e5c7b58</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="When to Apply" display_value="When to Apply" name="sys_ui_policy" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">4da0847333abde10037396382e5c7be7</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-02-12 16:08:05</sys_updated_on>
+            <sys_user/>
+            <type>.begin_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>order</element>
+            <position>1</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-02-12 16:08:05</sys_created_on>
+            <sys_id>f7c24c3733abde10037396382e5c7b58</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="When to Apply" display_value="When to Apply" name="sys_ui_policy" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">4da0847333abde10037396382e5c7be7</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-02-12 16:08:05</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.split</element>
+            <position>2</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-02-12 16:08:05</sys_created_on>
+            <sys_id>7fc24c3733abde10037396382e5c7b58</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="When to Apply" display_value="When to Apply" name="sys_ui_policy" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">4da0847333abde10037396382e5c7be7</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-02-12 16:08:05</sys_updated_on>
+            <sys_user/>
+            <type>.split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.end_split</element>
+            <position>3</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-02-12 16:08:05</sys_created_on>
+            <sys_id>f3c24c3733abde10037396382e5c7b59</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="When to Apply" display_value="When to Apply" name="sys_ui_policy" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">4da0847333abde10037396382e5c7be7</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-02-12 16:08:05</sys_updated_on>
+            <sys_user/>
+            <type>.end_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>conditions</element>
+            <position>4</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-02-12 16:08:05</sys_created_on>
+            <sys_id>7bc24c3733abde10037396382e5c7b59</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="When to Apply" display_value="When to Apply" name="sys_ui_policy" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">4da0847333abde10037396382e5c7be7</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-02-12 16:08:05</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.begin_split</element>
+            <position>5</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-02-12 16:08:05</sys_created_on>
+            <sys_id>ffc24c3733abde10037396382e5c7b59</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="When to Apply" display_value="When to Apply" name="sys_ui_policy" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">4da0847333abde10037396382e5c7be7</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-02-12 16:08:05</sys_updated_on>
+            <sys_user/>
+            <type>.begin_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>3bc20c3733abde10037396382e5c7bb8</element>
+            <position>6</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-02-12 16:08:05</sys_created_on>
+            <sys_id>77c24c3733abde10037396382e5c7b5a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="When to Apply" display_value="When to Apply" name="sys_ui_policy" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">4da0847333abde10037396382e5c7be7</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-02-12 16:08:05</sys_updated_on>
+            <sys_user/>
+            <type>annotation</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>global</element>
+            <position>7</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-02-12 16:08:05</sys_created_on>
+            <sys_id>fbc24c3733abde10037396382e5c7b5a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="When to Apply" display_value="When to Apply" name="sys_ui_policy" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">4da0847333abde10037396382e5c7be7</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-02-12 16:08:05</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>view</element>
+            <position>8</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-02-12 16:08:05</sys_created_on>
+            <sys_id>73c24c3733abde10037396382e5c7b5b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="When to Apply" display_value="When to Apply" name="sys_ui_policy" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">4da0847333abde10037396382e5c7be7</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-02-12 16:08:05</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>3fc20c3733abde10037396382e5c7bb8</element>
+            <position>9</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-02-12 16:08:05</sys_created_on>
+            <sys_id>f7c24c3733abde10037396382e5c7b5b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="When to Apply" display_value="When to Apply" name="sys_ui_policy" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">4da0847333abde10037396382e5c7be7</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-02-12 16:08:05</sys_updated_on>
+            <sys_user/>
+            <type>annotation</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>reverse_if_false</element>
+            <position>10</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-02-12 16:08:05</sys_created_on>
+            <sys_id>7fc24c3733abde10037396382e5c7b5b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="When to Apply" display_value="When to Apply" name="sys_ui_policy" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">4da0847333abde10037396382e5c7be7</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-02-12 16:08:05</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.split</element>
+            <position>11</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-02-12 16:08:05</sys_created_on>
+            <sys_id>f3c24c3733abde10037396382e5c7b5c</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="When to Apply" display_value="When to Apply" name="sys_ui_policy" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">4da0847333abde10037396382e5c7be7</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-02-12 16:08:05</sys_updated_on>
+            <sys_user/>
+            <type>.split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>ffc20c3733abde10037396382e5c7bb8</element>
+            <position>12</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-02-12 16:08:05</sys_created_on>
+            <sys_id>7bc24c3733abde10037396382e5c7b5c</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="When to Apply" display_value="When to Apply" name="sys_ui_policy" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">4da0847333abde10037396382e5c7be7</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-02-12 16:08:05</sys_updated_on>
+            <sys_user/>
+            <type>annotation</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>on_load</element>
+            <position>13</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-02-12 16:08:05</sys_created_on>
+            <sys_id>ffc24c3733abde10037396382e5c7b5c</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="When to Apply" display_value="When to Apply" name="sys_ui_policy" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">4da0847333abde10037396382e5c7be7</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-02-12 16:08:05</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>b3c20c3733abde10037396382e5c7bb9</element>
+            <position>14</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-02-12 16:08:05</sys_created_on>
+            <sys_id>77c24c3733abde10037396382e5c7b5d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="When to Apply" display_value="When to Apply" name="sys_ui_policy" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">4da0847333abde10037396382e5c7be7</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-02-12 16:08:05</sys_updated_on>
+            <sys_user/>
+            <type>annotation</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>inherit</element>
+            <position>15</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-02-12 16:08:05</sys_created_on>
+            <sys_id>fbc24c3733abde10037396382e5c7b5d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="When to Apply" display_value="When to Apply" name="sys_ui_policy" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">4da0847333abde10037396382e5c7be7</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-02-12 16:08:05</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.end_split</element>
+            <position>16</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-02-12 16:08:05</sys_created_on>
+            <sys_id>73c24c3733abde10037396382e5c7b5e</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="When to Apply" display_value="When to Apply" name="sys_ui_policy" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">4da0847333abde10037396382e5c7be7</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-02-12 16:08:05</sys_updated_on>
+            <sys_user/>
+            <type>.end_split</type>
+        </sys_ui_element>
+        <sys_ui_section action="INSERT_OR_UPDATE">
+            <caption>When to Apply</caption>
+            <header>false</header>
+            <name>sys_ui_policy</name>
+            <roles/>
+            <sys_class_name>sys_ui_section</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-02-12 15:58:36</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>4da0847333abde10037396382e5c7be7</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>sys_ui_policy</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+            <sys_update_name>sys_ui_section_4da0847333abde10037396382e5c7be7</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-02-12 15:58:36</sys_updated_on>
+            <sys_user/>
+            <title>false</title>
+            <view display_value="DevTools" name="devtools">75e08353dbbf0450ba15a35305961913</view>
+            <view_name/>
+        </sys_ui_section>
+    </sys_ui_section>
+</record_update>

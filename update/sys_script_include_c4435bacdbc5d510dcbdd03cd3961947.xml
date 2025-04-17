@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns the call stack in a structured format.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetCallStack</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetCallStack()
 {	
 	var strStackTrace = GetStackTrace();
@@ -40,6 +42,16 @@
 					var bAddToStack = true;
 					if (aStack.length == 0)
 					{
+						// Xanadu includes the script include "VAUtils" into the stack trace (for no obvious reason) 
+						if (GetStringValue(grRecord.getValue('name')) == 'VAUtils')
+						{
+							bAddToStack = false;
+						}		
+						// Some Washington instances include the script include "AjaxRiskUtil" into the stack trace (for no obvious reason) 
+						if (GetStringValue(grRecord.getValue('name')) == 'AjaxRiskUtil')
+						{
+							bAddToStack = false;
+						}												
 						if (GetStringValue(grRecord.getValue('name')) == 'RunScriptInScope')
 						{
 							bAddToStack = false;
@@ -72,13 +84,24 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-07-29 13:52:38</sys_created_on>
         <sys_id>c4435bacdbc5d510dcbdd03cd3961947</sys_id>
-        <sys_mod_count>32</sys_mod_count>
+        <sys_mod_count>35</sys_mod_count>
         <sys_name>GetCallStack</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_c4435bacdbc5d510dcbdd03cd3961947</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-08-01 15:00:40</sys_updated_on>
+        <sys_updated_on>2024-09-09 10:33:55</sys_updated_on>
     </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>c4435bacdbc5d510dcbdd03cd3961947</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-08-14 14:54:21</sys_created_on>
+        <sys_id>9990e6491b0456106a8db8449b4bcb18</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-08-14 14:54:21</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>

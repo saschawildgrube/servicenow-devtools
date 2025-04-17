@@ -6,9 +6,12 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Runs the AppInstall function of the given app and of all its dependencies.</description>
+        <mobile_callable>false</mobile_callable>
         <name>InstallApp</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function InstallApp(vApp, bStopOnError)
 {
+	var timeStart = GetTimeNow();
 	var aPackages = GetPackageDependencyList(vApp);
 	if (aPackages == false)
 	{
@@ -92,7 +95,7 @@
 					}
 					else
 					{
-						strLog += StringFormat('InstallApp: {0}: Application does not contain the AppInstall script include.\n',strName);
+						strLog += StringFormat('InstallApp: {0}: Does not contain the AppInstall Script Include.\n',strName);
 					}
 					
 				}
@@ -109,17 +112,21 @@
 		}
 	}
 
+	var timeEnd = GetTimeNow();
+
+	var strLogStartEnd = 'InstallApp: Start Time: ' + RenderDateTime(timeStart) + '\n';
+	strLogStartEnd +=    'InstallApp: End Time  : ' + RenderDateTime(timeEnd) + '\n'; 
 
 	var strSummaryText = '';
 	if (bResult == true)
 	{
 		strSummaryText = StringFormat('Installed application "{0}" and all of its dependencies successfully!',strAppName);
-		Log('InstallApp: '+ strSummaryText + '\n' + strLog);
+		Log('InstallApp: '+ strSummaryText + '\n' + strLogStartEnd + strLog);
 	}
 	else
 	{
 		strSummaryText = StringFormat('Installed application "{0}" and all of its dependencies failed!',strAppName);
-		LogError('InstallApp: '+ strSummaryText+ '\n' + strLog);
+		LogError('InstallApp: '+ strSummaryText+ '\n' + strLogStartEnd + strLog);
 	}
 	
 	progresstracker.SetResult(null,bResult,strSummaryText);
@@ -130,13 +137,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-02-01 17:59:14</sys_created_on>
         <sys_id>075093381b74e1105b76777d8b4bcb90</sys_id>
-        <sys_mod_count>32</sys_mod_count>
+        <sys_mod_count>37</sys_mod_count>
         <sys_name>InstallApp</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_075093381b74e1105b76777d8b4bcb90</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-03-04 12:47:00</sys_updated_on>
+        <sys_updated_on>2024-10-08 12:33:59</sys_updated_on>
     </sys_script_include>
 </record_update>

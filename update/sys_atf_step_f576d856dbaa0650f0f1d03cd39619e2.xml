@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-06-04 12:29:13</sys_created_on>
         <sys_id>f576d856dbaa0650f0f1d03cd39619e2</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>16</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_f576d856dbaa0650f0f1d03cd39619e2</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-06-04 14:29:20</sys_updated_on>
+        <sys_updated_on>2024-07-24 11:48:28</sys_updated_on>
         <table/>
         <test display_value="DevTools - InstanceScanCheckScriptOnly">58569456dbaa0650f0f1d03cd39619a3</test>
         <timeout/>
@@ -35,46 +35,61 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-06-04 12:29:13</sys_created_on>
         <sys_id>83765c56dbaa0650f0f1d03cd39619c8</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>16</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-06-04 14:29:21</sys_updated_on>
+        <sys_updated_on>2024-07-24 11:48:28</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
 	&#13;
 	test.SetResult(true);&#13;
+	&#13;
+	var strProperty = 'x_snc_devtools.test';&#13;
 &#13;
-	var strCheck = '45d05f3d773011108bd73a91fa5a998b';&#13;
-	var strProperty = 'glide.ui.user_cookie.max_life_span_in_days';&#13;
+&#13;
+	test.Log('Creating a script only check:');&#13;
+	var grCheck = new GlideRecord('scan_script_only_check');&#13;
+	grCheck.initialize();&#13;
+	grCheck.name = 'A Script Only Check that a finding depending on the value of a system property';&#13;
+	grCheck.script =&#13;
+		"(function (finding) {"&#13;
+		+"    var grProp = new GlideRecord('sys_properties');"&#13;
+		+"    grProp.addQuery('name','=','"+strProperty+"');"&#13;
+		+"    grProp.query();"	&#13;
+		+"    if (grProp.next())"			&#13;
+		+"    {"		&#13;
+		+"       if (grProp.value == 'true')"&#13;
+		+"       {"&#13;
+		+"          finding.setCurrentSource(grProp);"&#13;
+		+"          finding.increment();"&#13;
+		+"       }"&#13;
+		+"    }"		&#13;
+		+"})(finding);";&#13;
+	var strCheckSysId = GlideRecordInsert(grCheck);&#13;
+&#13;
 &#13;
 	var aExpectedFindings = [];&#13;
 	var aUnexpectedFindings = [];&#13;
+&#13;
+	SetProperty(strProperty,'true',true);&#13;
+	test.Log(GetProperty(strProperty));&#13;
 &#13;
 	var grProp = new GlideRecord('sys_properties');&#13;
-    grProp.get('name', strProperty);&#13;
+    grProp.addQuery('name','=',strProperty);&#13;
+	grProp.query();&#13;
+	grProp.next();&#13;
 	var strPropSysId = GetStringValue(grProp.sys_id);&#13;
+	test.Log(strPropSysId);&#13;
 &#13;
-	var nValue = GetProperty(strProperty); &#13;
-&#13;
-	if (nValue &gt; 30)&#13;
-	{&#13;
-		aExpectedFindings.push(strPropSysId);&#13;
-	}&#13;
-	else&#13;
-	{&#13;
-		aUnexpectedFindings.push(strPropSysId);&#13;
-	}&#13;
-	test.TestCase_InstanceScanCheckScriptOnly(strCheck,aExpectedFindings,aUnexpectedFindings);&#13;
-&#13;
-	SetProperty(strProperty,29);&#13;
+	SetProperty(strProperty,'false');&#13;
 	var aExpectedFindings = [];&#13;
 	var aUnexpectedFindings = [strPropSysId];&#13;
-	test.TestCase_InstanceScanCheckScriptOnly(strCheck,aExpectedFindings,aUnexpectedFindings);&#13;
+	test.TestCase_InstanceScanCheckScriptOnly(strCheckSysId,aExpectedFindings,aUnexpectedFindings);&#13;
 &#13;
-	SetProperty(strProperty,31);&#13;
+	SetProperty(strProperty,'true');&#13;
 	var aExpectedFindings = [strPropSysId];&#13;
 	var aUnexpectedFindings = [];&#13;
-	test.TestCase_InstanceScanCheckScriptOnly(strCheck,aExpectedFindings,aUnexpectedFindings);	&#13;
+	test.TestCase_InstanceScanCheckScriptOnly(strCheckSysId,aExpectedFindings,aUnexpectedFindings);	&#13;
 &#13;
 	return test.GetResult();&#13;
 	&#13;

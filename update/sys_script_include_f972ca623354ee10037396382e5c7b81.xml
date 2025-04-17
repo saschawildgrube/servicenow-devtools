@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.ExecuteBusinessRuleShowOotbEvaluatorErrorsHint</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Checks if there are recent evaluator errors (warnings) and displays the most recent one to a user.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>ExecuteBusinessRuleShowOotbEvaluatorErrorsHint</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function ExecuteBusinessRuleShowOotbEvaluatorErrorsHint(current, previous)
+{
+	if (gs.isInteractive() == false)
+	{
+		return;
+	}
+
+	var strCurrentUrl = GetCurrentUrl();
+	if (IsPrimaryRequestUrl(strCurrentUrl) == false)
+	{
+		return;
+	}
+	
+	var strOperation = BusinessRuleGetOperation(current);
+	if (strOperation != 'query')
+	{
+		return;
+	}
+	
+	var transactionCache = new TransactionCacheAPI('DEVTOOLS');
+	var strRunningAlready = transactionCache.GetItem('show_ootb_eval_errors_hint_running');
+	if (strRunningAlready == 'true')
+	{
+		return;
+	}
+	transactionCache.SetItem('show_ootb_eval_errors_hint_running','true');
+
+	if (IsActive() == false)
+	{
+		return;
+	}
+	
+	var nMinutes = GetIntegerValue(AppGetProperty('ui.show_evaluator_errors.minutes'));
+	if (nMinutes < 1)
+	{
+		return;
+	}	
+
+	var strEncodedQuery = current.getEncodedQuery();
+
+	if (	(strEncodedQuery.indexOf('source=Evaluator') == -1)
+			&&
+			(strEncodedQuery.indexOf('sourceSTARTSWITHEvaluator') == -1)) 
+	{
+		return;
+	}
+	
+	var strDevToolsMaintainerEmail = ''; 
+	var grApp = GetAppRecord('x_snc_devtools');
+	if (IsValidRecord(grApp) == true)
+	{
+		strDevToolsMaintainerEmail = GetStringValue(grApp.x_snc_devtools_maintainer_email);
+	}
+
+	var strMessageMaintainerEmail = '';
+	if (IsValidEmail(strDevToolsMaintainerEmail) == true)
+	{
+		strMessageMaintainerEmail = StringFormat(
+			'via mail: <a href="mailto:{0}">{0}</a>',
+			strDevToolsMaintainerEmail);
+	}
+
+	var strMessage = StringFormat(
+		'In case you see evaluator errors that seem to be caused by OOTB components please inform the Devtools maintainer{0}.',
+		strMessageMaintainerEmail);
+
+	gs.addInfoMessage(strMessage);
+
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-03-18 11:00:31</sys_created_on>
+        <sys_id>f972ca623354ee10037396382e5c7b81</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>ExecuteBusinessRuleShowOotbEvaluatorErrorsHint</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_f972ca623354ee10037396382e5c7b81</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-03-18 14:08:56</sys_updated_on>
+    </sys_script_include>
+</record_update>

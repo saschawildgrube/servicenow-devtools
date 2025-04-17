@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-26 07:28:20</sys_created_on>
         <sys_id>8147a83bdb1bb8104647dad1f3961993</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_8147a83bdb1bb8104647dad1f3961993</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-08-08 14:37:31</sys_updated_on>
+        <sys_updated_on>2024-09-10 08:59:56</sys_updated_on>
         <table/>
         <test display_value="DevTools - RenderRecordSummary">d027e43bdb1bb8104647dad1f396190f</test>
         <timeout/>
@@ -49,9 +49,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-26 07:28:20</sys_created_on>
         <sys_id>ed18a07bdb1bb8104647dad1f3961994</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-08-08 14:37:31</sys_updated_on>
+        <sys_updated_on>2024-09-10 08:59:56</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -73,6 +73,12 @@
 &#13;
 	TestCase_RenderRecordSummary(null,'');&#13;
 	TestCase_RenderRecordSummary('','');&#13;
+&#13;
+	TestCase_RenderRecordSummary({&#13;
+			sys_id: GetPseudoSysId(),&#13;
+			sys_class_name: 'test'&#13;
+		},'');&#13;
+&#13;
 	TestCase_RenderRecordSummary(new GlideRecord('x_snc_devtools_test'),'');&#13;
 &#13;
 	var testdata = new TestDataAPI('_ATF_DEVTOOLS_');&#13;

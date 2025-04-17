@@ -19,6 +19,7 @@
         <override_menu_roles>false</override_menu_roles>
         <query>syslog_list.do?sysparm_view=DevTools&amp;sysparm_view_forced=true&amp;sysparm_order=sys_created_on&amp;sysparm_order_direction=desc&amp;sysparm_query=sys_created_on&gt;javascript:gs.beginningOfLast30Minutes()</query>
         <report/>
+        <require_confirmation>false</require_confirmation>
         <roles/>
         <sys_class_name>sys_app_module</sys_class_name>
         <sys_created_by>admin</sys_created_by>

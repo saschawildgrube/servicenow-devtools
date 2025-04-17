@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_action">
     <sys_ui_action action="INSERT_OR_UPDATE">
-        <action_name>go_to_test</action_name>
+        <action_name>devtools_appfile_nav_test</action_name>
         <active>true</active>
         <client>true</client>
         <client_script_v2><![CDATA[function onClick(g_form) {
 
 }]]></client_script_v2>
         <comments>Navigates to the test associated to a script include if the test exists.</comments>
-        <condition>AppGetProperty('ui.gototest_button') &amp;&amp; IsTestAvailableForRecord(current)</condition>
+        <condition>IsActive() &amp;&amp; AppGetProperty('ui.gototest_button') &amp;&amp; IsTestAvailableForRecord(current)</condition>
         <form_action>true</form_action>
         <form_button>true</form_button>
         <form_button_v2>false</form_button_v2>
@@ -32,6 +32,8 @@
         <order>9500</order>
         <script><![CDATA[function onClickGoToTest()
 {
+	function StateEnd() {}
+
 	var strTitle = 'DevTools - Go To Test';
 	var test = ServerRequest('x_snc_devtools.DevToolsClientAPI','GetTestRecord',
 		{
@@ -40,7 +42,8 @@
 		});
 	if (test == false)
 	{
-		DoModalMessage(strTitle,'No test available!');	
+		DoModalMessage(strTitle,'No test available!',StateEnd);	
+		return;
 	}
 	else
 	{
@@ -57,7 +60,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>650746991b23d5105b76777d8b4bcb34</sys_id>
-        <sys_mod_count>17</sys_mod_count>
+        <sys_mod_count>21</sys_mod_count>
         <sys_name>Go to Test</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -65,9 +68,20 @@
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_action_650746991b23d5105b76777d8b4bcb34</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-08-12 11:51:52</sys_updated_on>
+        <sys_updated_on>2025-04-09 16:36:24</sys_updated_on>
         <table>global</table>
         <ui11_compatible>true</ui11_compatible>
         <ui16_compatible>false</ui16_compatible>
     </sys_ui_action>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>650746991b23d5105b76777d8b4bcb34</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-04-09 16:27:35</sys_created_on>
+        <sys_id>374028b993b0aa10959b7fda2bba103b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-04-09 16:27:35</sys_updated_on>
+        <table>sys_ui_action</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>

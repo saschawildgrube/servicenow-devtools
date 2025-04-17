@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns true if the given parameter is an integer value, returns false if not.</description>
+        <mobile_callable>false</mobile_callable>
         <name>IsInteger</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function IsInteger(vValue)
 {
 	if (GetType(vValue) != 'number')
@@ -24,13 +26,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-11-06 11:23:05</sys_created_on>
         <sys_id>38f2f5b01b0395105b76777d8b4bcb3b</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>IsInteger</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_38f2f5b01b0395105b76777d8b4bcb3b</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-11-06 11:23:05</sys_updated_on>
+        <sys_updated_on>2024-08-28 12:58:44</sys_updated_on>
     </sys_script_include>
 </record_update>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.Prompt</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Sends a prompt to an LLM.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>Prompt</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function Prompt(strPrompt)
+{
+	strPrompt = GetStringValue(strPrompt);	
+	if (strPrompt == '')
+	{
+		return false;
+	}
+
+
+	var gsep = new GlideScriptedExtensionPoint();
+	var eps = gsep.getExtensions('DevTools');
+	for (var nEP = 0; nEP < eps.length; nEP++)
+	{
+		var ep = eps[nEP];
+		if (IsValidFunction(ep.Prompt))
+		{
+			var strAnswer = ep.Prompt(strPrompt);
+			if (strAnswer !== false)
+			{
+				if (strAnswer != '')
+				{
+					return strAnswer;
+				}
+			}
+		}
+	}		
+
+	var strGenericPromptCapabilitySysId = AppGetProperty('prompt.capability');
+
+	if (GetRecord('sys_one_extend_capability',strGenericPromptCapabilitySysId) == false)
+	{
+		LogError('Prompt: The Generic Prompt Capability does not exist. Validate the installation of the Generative AI Controller plugin. Also verify if the SysId of the generic prompt capability is set in the x_snc_devtools.prompt.capability system property.');
+		return false;
+	}
+
+	var request = {
+		executionRequests:
+			[
+				{
+					payload:
+					{
+						prompt: strPrompt
+					},
+					capabilityId: strGenericPromptCapabilitySysId,
+					//definitionId: '4a3486e953f04210ea08ddeeff7b12d8'
+					
+				}
+			],
+		mode: 'sync'
+	};
+
+	var response = null;
+	try
+	{
+		response = sn_one_extend.OneExtendUtil.execute(request);
+	}
+	catch(e)
+	{
+		x_snc_devtools.LogError('Prompt: ' + e);
+		return false;
+	}
+
+	var strStatus = GetValue(response,'status');
+	if (strStatus == 'error')
+	{
+
+		var strMessage = GetValue(response,'message');
+		if (strMessage == 'CapabilityId/DefinitionId combination is invalid or missing.')
+		{
+			var strUrl = GetInstanceRecordUrl('sys_one_extend_capability',strGenericPromptCapabilitySysId);
+			LogError('Prompt: A default Capability Definition Config must be set for the Generic Prompt Capability:\n' + strUrl);
+			return false;
+		}
+
+		x_snc_devtools.LogError(response);
+		return false;
+	}
+
+	var strStatus2 = GetStringValue(GetValue(response,'capabilities',strGenericPromptCapabilitySysId,'status'));
+	if (strStatus2 == 'error')
+	{
+		LogError('Prompt:\n' + RenderValue(response));
+		return false;
+	}
+
+	var strAnswer = GetStringValue(GetValue(response,'capabilities',strGenericPromptCapabilitySysId,'response'));
+
+	if (strAnswer == '')
+	{
+		LogError('Prompt: Response string is empty.');
+		return false;
+	}
+
+	var strLog = 'Prompt:\n';
+	strLog += strPrompt;
+	strLog += '\n\n';
+	strLog += '_________________________________________________\n';
+	strLog += 'Answer:\n';
+	strLog += strAnswer;
+	Log(strLog);
+
+	return strAnswer;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-10-29 04:43:21</sys_created_on>
+        <sys_id>8cece71583e91e5000d5ccc0deaad30e</sys_id>
+        <sys_mod_count>22</sys_mod_count>
+        <sys_name>Prompt</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_8cece71583e91e5000d5ccc0deaad30e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-12-17 10:53:38</sys_updated_on>
+    </sys_script_include>
+</record_update>

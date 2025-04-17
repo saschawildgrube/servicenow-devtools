@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.RunDefaultTestSuitesWithDependencies</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Runs the default test suite of the given application and all of its dependencies (in reverse order) if ATF execution is active and the default test suite contains only tests with server-side steps. Returns an object containing the suite result records of all given applications, or false if the application could not be found.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>RunDefaultTestSuitesWithDependencies</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function RunDefaultTestSuitesWithDependencies(vApp)
+{
+	var grApp = GetAppRecord(vApp);
+	if (IsValidRecord(grApp) == false)
+	{
+		return false;
+	}
+
+	var results = {};
+	var aPackageList = GetPackageDependencyList(vApp);
+	for (var nPackage = 0; nPackage < aPackageList.length; nPackage++)
+	{
+		if (GetValue(aPackageList,nPackage,'dependency_status') != 'circular')
+		{
+			var strAppSysId = GetValue(aPackageList,nPackage,'sys_id');
+			var grApp = GetAppRecord(strAppSysId);
+			if (IsValidRecord(grApp))
+			{
+				if (grApp.getRecordClassName() == 'sys_app')
+				{
+					var result = RunDefaultTestSuite(strAppSysId);
+					results[aPackageList[nPackage].sys_id] = result;
+				}
+			}
+		}
+	}	
+	return results;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-11-08 12:38:59</sys_created_on>
+        <sys_id>f85ab4b8c3b15a105a37f9070501316a</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>RunDefaultTestSuitesWithDependencies</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_f85ab4b8c3b15a105a37f9070501316a</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-11-08 12:53:48</sys_updated_on>
+    </sys_script_include>
+</record_update>

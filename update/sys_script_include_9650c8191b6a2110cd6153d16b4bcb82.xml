@@ -7,7 +7,9 @@
         <client_callable>false</client_callable>
         <description>Generates a new password for the user, sets the user name if required, sets the password needs reset flag and sends the new credentials to the user via mail.&#13;
 This requires the "glide.email.smtp.active" system property to be "true".</description>
+        <mobile_callable>false</mobile_callable>
         <name>GenerateAndSendCredentialsToUser</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GenerateAndSendCredentialsToUser(vUser)
 {
 	var grUser = GetUserRecord(vUser);
@@ -67,7 +69,7 @@ This requires the "glide.email.smtp.active" system property to be "true".</descr
 		return false;
 	}
 	
-	var strInstanceUrl = GetInstanceURL();
+	var strInstanceUrl = GetInstanceUrl();
 		
 	var strMessage = 'Hello ';
 		strMessage += grUser.first_name + ' ';
@@ -97,13 +99,13 @@ This requires the "glide.email.smtp.active" system property to be "true".</descr
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-04-30 15:57:51</sys_created_on>
         <sys_id>9650c8191b6a2110cd6153d16b4bcb82</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_name>GenerateAndSendCredentialsToUser</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_9650c8191b6a2110cd6153d16b4bcb82</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-02-08 13:45:44</sys_updated_on>
+        <sys_updated_on>2024-09-17 20:06:37</sys_updated_on>
     </sys_script_include>
 </record_update>

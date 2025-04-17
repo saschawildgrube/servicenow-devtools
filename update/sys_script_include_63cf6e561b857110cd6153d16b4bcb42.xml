@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Checks if there are recent evaluator errors (warnings) and displays the most recent one to a user.</description>
+        <mobile_callable>false</mobile_callable>
         <name>ExecuteBusinessRuleShowRecentEvaluatorErrors</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function ExecuteBusinessRuleShowRecentEvaluatorErrors(current, previous)
 {
 	if (gs.isInteractive() == false)
@@ -19,6 +21,11 @@
 	{
 		return;
 	}
+
+	if (strCurrentUrl.indexOf('syslog_list.do') != -1)
+	{
+		return false;
+	}	
 	
 	
 	var strOperation = BusinessRuleGetOperation(current);
@@ -33,9 +40,13 @@
 	{
 		return;
 	}
-	transactionCache.SetItem('show_eval_errors_running','true');		
+	transactionCache.SetItem('show_eval_errors_running','true');
+
+	if (IsActive() == false)
+	{
+		return;
+	}
 	
-	//gs.addInfoMessage(strCurrentUrl);
 	var nMinutes = GetIntegerValue(AppGetProperty('ui.show_evaluator_errors.minutes'));
 	if (nMinutes < 1)
 	{
@@ -44,27 +55,40 @@
 	
 	
 	var aErrors = GetRecentEvaluatorErrors(nMinutes);
-	//var aErrors = [];
-	
-	var strEvaluatorLogUri = 'x_snc_devtools_evaluator_log.do'
-		//'now/nav/ui/classic/params/target/syslog_list.do%3Fsysparm_query%3Dsys_created_on%253Ejavascript%3Ags.beginningOfLast15Minutes()%255Esource%253DEvaluator%26sysparm_first_row%3D1%26sysparm_view%3DDevTools';
-	
-	//gs.addErrorMessage(RenderValue(aErrors));
+
+	var strEvaluatorLogUri = 'x_snc_devtools_evaluator_log.do';
 	
 	if (aErrors.length > 0)
 	{
-		var error = GetValue(aErrors,0);
-		var strMessage = StringFormat('{0} evaluator error(s) have been logged in the last {1} minutes.',aErrors.length,nMinutes);
-		strMessage += '<br/>';
-		strMessage += 'Most recent error:';
-		strMessage += '<br/>';
-		strMessage += '_____START____';
-		strMessage += '<br/>';
-		strMessage += HtmlEncode(error.message);
-		strMessage += '<br/>';
-		strMessage += '_____END____';
-		strMessage += '<br/>';
-		strMessage += HtmlRenderLink(GetInstanceURL()+strEvaluatorLogUri,'Please review the evaluator error log',true);
+		var nLogTriggeredByUser = -1;
+		var strUserName = gs.getUserName();
+		for (var nLog = 0; nLog < aErrors.length; nLog++)
+		{
+			if (strUserName == GetStringValue(aErrors[nLog].sys_created_by))
+			{
+				nLogTriggeredByUser = nLog;
+				nLog = aErrors.length;
+			}
+		}
+
+
+		var error = GetValue(aErrors,Math.max(0,nLogTriggeredByUser));
+		var strMessage = StringFormat('{0} evaluator error(s) have been logged in the last {1} minutes. ',aErrors.length,nMinutes);
+
+		if (nLogTriggeredByUser != -1)
+		{
+			strMessage += '<br/>';
+			strMessage += 'Most recent error logged during a transactions triggered by you:';
+			strMessage += '<br/>';
+			strMessage += '_____START____';
+			strMessage += '<br/>';
+			strMessage += HtmlEncode(error.message);
+			strMessage += '<br/>';
+			strMessage += '_____END____';
+			strMessage += '<br/>';
+		}
+
+		strMessage += HtmlRenderLink(GetInstanceUrl()+strEvaluatorLogUri,'Please review the evaluator error log',true);
 		
 		strMessage += '<br/>';
 		if (AppGetProperty('logging.verbosity') == 'debug')
@@ -80,13 +104,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-09-05 13:55:22</sys_created_on>
         <sys_id>63cf6e561b857110cd6153d16b4bcb42</sys_id>
-        <sys_mod_count>84</sys_mod_count>
+        <sys_mod_count>102</sys_mod_count>
         <sys_name>ExecuteBusinessRuleShowRecentEvaluatorErrors</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_63cf6e561b857110cd6153d16b4bcb42</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-09-20 16:50:11</sys_updated_on>
+        <sys_updated_on>2025-03-18 10:51:21</sys_updated_on>
     </sys_script_include>
 </record_update>

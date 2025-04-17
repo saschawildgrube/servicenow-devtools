@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="x_snc_devtools_technical_debt">
+    <x_snc_devtools_technical_debt action="INSERT_OR_UPDATE">
+        <description>GetInstance(New)Record(Uri|Path)() functions (Script Include and UI Scripts) are deprecated and should be replaced by functions following this naming schema: Get(New)Record*().&#13;
+Functions starting with "GetInstance" must include the instance url. </description>
+        <id/>
+        <short_description>GetInstance(New)Record(Uri|Path)() functions are deprecated</short_description>
+        <switch>false</switch>
+        <sys_class_name>x_snc_devtools_technical_debt</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-09-09 11:34:06</sys_created_on>
+        <sys_id>b7cbe759c3e892105a37f907050131f2</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>GetInstance(New)Record(Uri|Path)() functions are deprecated</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>x_snc_devtools_technical_debt_b7cbe759c3e892105a37f907050131f2</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-09-09 11:36:17</sys_updated_on>
+    </x_snc_devtools_technical_debt>
+</record_update>

@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns true if an Instance Scan scan is currently running, false if not. </description>
+        <mobile_callable>false</mobile_callable>
         <name>InstanceScanIsRunning</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function InstanceScanIsRunning()
 {
 	var grScanResult = new GlideRecord('scan_result');
@@ -16,30 +18,33 @@
 	grScanResult.query();
 	if (grScanResult.next())
 	{
-		var grTracker = new GlideRecord('sys_execution_tracker');
-		grTracker.addQuery('state','=','1');
-		grTracker.setLimit(1);
-		grTracker.orderByDesc('updated_on');
-		grTracker.name = 'Instance Scan';
-		grTracker.query();
-		if (grTracker.next())
-		{
-			return true;
-		}
+		return true;
 	}
+
+	var grTracker = new GlideRecord('sys_execution_tracker');
+	grTracker.addQuery('state','=','1');
+	grTracker.addQuery('name','=','Instance Scan');
+	grTracker.setLimit(1);
+	grTracker.orderByDesc('updated_on');
+	grTracker.query();
+	if (grTracker.next())
+	{
+		return true;
+	}
+	
 	return false;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-12-02 21:52:42</sys_created_on>
         <sys_id>8c8c79dd1baf95105b76777d8b4bcbff</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>10</sys_mod_count>
         <sys_name>InstanceScanIsRunning</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_8c8c79dd1baf95105b76777d8b4bcbff</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-03-07 12:47:05</sys_updated_on>
+        <sys_updated_on>2024-09-09 10:53:22</sys_updated_on>
     </sys_script_include>
 </record_update>

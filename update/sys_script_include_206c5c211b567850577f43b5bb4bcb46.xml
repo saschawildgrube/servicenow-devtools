@@ -5,10 +5,32 @@
         <api_name>x_snc_devtools.TestAPI</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>The TestAPI class supports scripted tests. </description>
+        <description>The TestAPI class supports scripted tests. 
+|
+Methods:
+* initialize()
+* Log()
+* SetContext()
+* SetResult()
+* GetResult()
+* TestCase_GetValue()
+* TestCase_GetRecord()
+* TestCase_GetRecord_CheckResult()
+* TestCase_RecordGetValue()
+* TestCase_IsRecordAccessibleByUser()
+* TestCase_InstanceScanCheck()
+* TestCase_InstanceScanCheck_CheckResult()
+* TestCase_InstanceScanCheckScriptOnly()
+* TestCase_InstanceScanCheckScriptOnly_CheckResult()
+* TestCase_HttpRequest()
+* TestCase_HttpRequest_CheckResult()
+* TestCase()</description>
+        <mobile_callable>false</mobile_callable>
         <name>TestAPI</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[var TestAPI = Class.create();
-TestAPI.prototype = {
+TestAPI.prototype =
+{
     initialize: function(outputs, steps, stepResult, assertEqual, strContext)
 	{
 		this.m_strLog = '\n';
@@ -235,10 +257,10 @@ TestAPI.prototype = {
 			'Check: ' + strCheckName + '\non Record: ' + RenderRecordSummary(GetRecord(strTable,strRecordSysId)),
 			InstanceScanCheckOnRecord,
 			{
-				'Check SysId': strCheckSysId,
-				'Table': strTable,
-				'Record SysId': strRecordSysId,
-				'Detailed': false
+				'strCheckSysId': strCheckSysId,
+				'strTable': strTable,
+				'strRecordSysId': strRecordSysId,
+				'bDetailed': false
 			},
 			vExpected,
 			TestCase_InstanceScanCheck_CheckResult,
@@ -477,10 +499,100 @@ TestAPI.prototype = {
 				GetValue(vInput,GetValue(aInputKeys,9))
 			);
 		}
+		else if (aInputKeys.length == 11)
+		{
+			vResult = callbackFunction(
+				GetValue(vInput,GetValue(aInputKeys,0)),
+				GetValue(vInput,GetValue(aInputKeys,1)),
+				GetValue(vInput,GetValue(aInputKeys,2)),
+				GetValue(vInput,GetValue(aInputKeys,3)),
+				GetValue(vInput,GetValue(aInputKeys,4)),
+				GetValue(vInput,GetValue(aInputKeys,5)),
+				GetValue(vInput,GetValue(aInputKeys,6)),
+				GetValue(vInput,GetValue(aInputKeys,7)),
+				GetValue(vInput,GetValue(aInputKeys,8)),
+				GetValue(vInput,GetValue(aInputKeys,9)),
+				GetValue(vInput,GetValue(aInputKeys,10))
+			);
+		}
+		else if (aInputKeys.length == 12)
+		{
+			vResult = callbackFunction(
+				GetValue(vInput,GetValue(aInputKeys,0)),
+				GetValue(vInput,GetValue(aInputKeys,1)),
+				GetValue(vInput,GetValue(aInputKeys,2)),
+				GetValue(vInput,GetValue(aInputKeys,3)),
+				GetValue(vInput,GetValue(aInputKeys,4)),
+				GetValue(vInput,GetValue(aInputKeys,5)),
+				GetValue(vInput,GetValue(aInputKeys,6)),
+				GetValue(vInput,GetValue(aInputKeys,7)),
+				GetValue(vInput,GetValue(aInputKeys,8)),
+				GetValue(vInput,GetValue(aInputKeys,9)),
+				GetValue(vInput,GetValue(aInputKeys,10)),
+				GetValue(vInput,GetValue(aInputKeys,11))
+			);
+		}		
+		else if (aInputKeys.length == 13)
+		{
+			vResult = callbackFunction(
+				GetValue(vInput,GetValue(aInputKeys,0)),
+				GetValue(vInput,GetValue(aInputKeys,1)),
+				GetValue(vInput,GetValue(aInputKeys,2)),
+				GetValue(vInput,GetValue(aInputKeys,3)),
+				GetValue(vInput,GetValue(aInputKeys,4)),
+				GetValue(vInput,GetValue(aInputKeys,5)),
+				GetValue(vInput,GetValue(aInputKeys,6)),
+				GetValue(vInput,GetValue(aInputKeys,7)),
+				GetValue(vInput,GetValue(aInputKeys,8)),
+				GetValue(vInput,GetValue(aInputKeys,9)),
+				GetValue(vInput,GetValue(aInputKeys,10)),
+				GetValue(vInput,GetValue(aInputKeys,11)),
+				GetValue(vInput,GetValue(aInputKeys,12))
+			);
+		}				
+		else if (aInputKeys.length == 14)
+		{
+			vResult = callbackFunction(
+				GetValue(vInput,GetValue(aInputKeys,0)),
+				GetValue(vInput,GetValue(aInputKeys,1)),
+				GetValue(vInput,GetValue(aInputKeys,2)),
+				GetValue(vInput,GetValue(aInputKeys,3)),
+				GetValue(vInput,GetValue(aInputKeys,4)),
+				GetValue(vInput,GetValue(aInputKeys,5)),
+				GetValue(vInput,GetValue(aInputKeys,6)),
+				GetValue(vInput,GetValue(aInputKeys,7)),
+				GetValue(vInput,GetValue(aInputKeys,8)),
+				GetValue(vInput,GetValue(aInputKeys,9)),
+				GetValue(vInput,GetValue(aInputKeys,10)),
+				GetValue(vInput,GetValue(aInputKeys,11)),
+				GetValue(vInput,GetValue(aInputKeys,12)),
+				GetValue(vInput,GetValue(aInputKeys,13))
+			);
+		}				
+		else if (aInputKeys.length == 15)
+		{
+			vResult = callbackFunction(
+				GetValue(vInput,GetValue(aInputKeys,0)),
+				GetValue(vInput,GetValue(aInputKeys,1)),
+				GetValue(vInput,GetValue(aInputKeys,2)),
+				GetValue(vInput,GetValue(aInputKeys,3)),
+				GetValue(vInput,GetValue(aInputKeys,4)),
+				GetValue(vInput,GetValue(aInputKeys,5)),
+				GetValue(vInput,GetValue(aInputKeys,6)),
+				GetValue(vInput,GetValue(aInputKeys,7)),
+				GetValue(vInput,GetValue(aInputKeys,8)),
+				GetValue(vInput,GetValue(aInputKeys,9)),
+				GetValue(vInput,GetValue(aInputKeys,10)),
+				GetValue(vInput,GetValue(aInputKeys,11)),
+				GetValue(vInput,GetValue(aInputKeys,12)),
+				GetValue(vInput,GetValue(aInputKeys,13)),
+				GetValue(vInput,GetValue(aInputKeys,14))
+			);
+		}								
 		else
 		{
 			this.SetResult(false);
-			this.Log('ERROR: No support for that amount of parameters!');
+			this.Log('ERROR: TestAPI does not support that amount of parameters!');
 		}
 		stopwatch.Stop();
 		
@@ -516,13 +628,13 @@ TestAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-08-30 13:48:05</sys_created_on>
         <sys_id>206c5c211b567850577f43b5bb4bcb46</sys_id>
-        <sys_mod_count>81</sys_mod_count>
+        <sys_mod_count>87</sys_mod_count>
         <sys_name>TestAPI</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_206c5c211b567850577f43b5bb4bcb46</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-06-04 13:22:34</sys_updated_on>
+        <sys_updated_on>2024-10-15 09:48:01</sys_updated_on>
     </sys_script_include>
 </record_update>

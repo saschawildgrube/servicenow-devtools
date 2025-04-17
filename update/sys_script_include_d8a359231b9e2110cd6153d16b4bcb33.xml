@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Produces a warning log output</description>
+        <mobile_callable>false</mobile_callable>
         <name>LogWarning</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function LogWarning(vPayload)
 {
 	gs.warn(PrepareLogWarning(vPayload));
@@ -15,13 +17,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-04-25 11:30:47</sys_created_on>
         <sys_id>d8a359231b9e2110cd6153d16b4bcb33</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>LogWarning</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_d8a359231b9e2110cd6153d16b4bcb33</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-05-03 16:53:58</sys_updated_on>
+        <sys_updated_on>2024-08-28 12:58:59</sys_updated_on>
     </sys_script_include>
 </record_update>

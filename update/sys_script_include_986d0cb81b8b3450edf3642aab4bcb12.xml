@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Appends the second given array to the first.</description>
+        <mobile_callable>false</mobile_callable>
         <name>ArrayAppend</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function ArrayAppend(vArray1, vArray2)
 {
 	var aResult = [];
@@ -25,13 +27,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-04 11:35:19</sys_created_on>
         <sys_id>986d0cb81b8b3450edf3642aab4bcb12</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>ArrayAppend</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_986d0cb81b8b3450edf3642aab4bcb12</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-10-04 11:45:17</sys_updated_on>
+        <sys_updated_on>2024-08-28 12:58:52</sys_updated_on>
     </sys_script_include>
 </record_update>

@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Performs an instance scan point scan on a specific record</description>
+        <mobile_callable>false</mobile_callable>
         <name>InstanceScanPointScan</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function InstanceScanPointScan(strTable, strRecordSysId, bDetailed)
 {
 	if (InstanceScanIsRunning() == true)
@@ -41,7 +43,7 @@
 		return false;
 	}
 	
-	WaitForWorker(strProgressSysId);
+	WaitForWorker(strProgressSysId,1);
 	
 	var grScanResult = new GlideRecord('scan_result');
 	grScanResult.addQuery('progress_id','=',strProgressSysId);
@@ -57,13 +59,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-06-10 17:51:47</sys_created_on>
         <sys_id>8e853b7cdb44d510bcced03cd396190f</sys_id>
-        <sys_mod_count>23</sys_mod_count>
+        <sys_mod_count>25</sys_mod_count>
         <sys_name>InstanceScanPointScan</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_8e853b7cdb44d510bcced03cd396190f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-03-06 17:28:31</sys_updated_on>
+        <sys_updated_on>2024-11-08 14:56:50</sys_updated_on>
     </sys_script_include>
 </record_update>

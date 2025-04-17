@@ -6,23 +6,32 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns the instance root url.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetInstanceUrl</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetInstanceUrl()
 {
 	// This property does not really exist. It is hardcoded in the script layer:
-	return gs.getProperty('glide.servlet.uri');
+	var strUrl = gs.getProperty('glide.servlet.uri');
+
+	// Fallback in case the instance is affected by CS7578850 / PRB1590051
+	if (strUrl == 'http://localhost:8080/glide/')
+	{
+		strUrl = 'https://' + gs.getProperty('instance_name') + '.service-now.com/';
+	}
+	return strUrl;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-12-05 10:12:47</sys_created_on>
         <sys_id>bde5e6e31b72f1106c17fdd49b4bcb37</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>GetInstanceUrl</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_bde5e6e31b72f1106c17fdd49b4bcb37</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-12-05 10:12:47</sys_updated_on>
+        <sys_updated_on>2024-09-19 05:27:10</sys_updated_on>
     </sys_script_include>
 </record_update>

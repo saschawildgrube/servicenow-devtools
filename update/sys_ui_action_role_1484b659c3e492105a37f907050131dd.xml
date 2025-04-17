@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_action_role">
+    <sys_ui_action_role action="INSERT_OR_UPDATE">
+        <sys_class_name>sys_ui_action_role</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-09-09 07:34:16</sys_created_on>
+        <sys_id>1484b659c3e492105a37f907050131dd</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Go to Shared App Config.admin</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_ui_action display_value="Go to Shared App Config">7a747259c3e492105a37f90705013138</sys_ui_action>
+        <sys_update_name>sys_ui_action_role_1484b659c3e492105a37f907050131dd</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-09-09 07:34:16</sys_updated_on>
+        <sys_user_role display_value="admin" name="admin">2831a114c611228501d4ea6c309d626d</sys_user_role>
+    </sys_ui_action_role>
+</record_update>

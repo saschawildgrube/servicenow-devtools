@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns the current url if possible, if not it returns the instance root url.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetCurrentUrl</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetCurrentUrl()
 {
 	var strUri = '';
@@ -14,24 +16,24 @@
 	{
 		try
 		{
-			// getFlideURL() sometimes crashes with a null pointer exception... 
+			// getGlideURI() sometimes crashes with a null pointer exception... 
 			strUri = gs.action.getGlideURI();
 		}
 		catch(e) {}
 	}
-	return GetInstanceURL()+strUri;
+	return GetInstanceUrl()+strUri;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-07-23 19:21:48</sys_created_on>
         <sys_id>bcd41d5c1b18f950cd6153d16b4bcbcd</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>GetCurrentUrl</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_bcd41d5c1b18f950cd6153d16b4bcbcd</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-07-23 19:26:08</sys_updated_on>
+        <sys_updated_on>2024-08-28 12:58:56</sys_updated_on>
     </sys_script_include>
 </record_update>

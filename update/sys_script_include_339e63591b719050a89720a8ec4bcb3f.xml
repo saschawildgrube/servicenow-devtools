@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>This script installs DevTools</description>
+        <mobile_callable>false</mobile_callable>
         <name>AppInstall</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function AppInstall()
 {	
 	var installer = new InstallerAPI(GetAppName('x_snc_devtools'));
@@ -38,6 +40,9 @@
 	installer.ActivateBusinessRule('ccaf8afec3302200f7d1ca3adfba8f14',false);
 	installer.ActivateClientScript('5d19f53ac3302200f7d1ca3adfba8f36',false);
 	installer.ActivateClientScript('3c5ffd7ac3302200f7d1ca3adfba8f22',false);
+
+	// Disable the business rule "Abort delete on shaerdservice.worker" (introduced in Xanadu) that prevents a specific technical user to be renamed - which clashes with the recommended naming convention for technical users
+	installer.ActivateBusinessRule('78d255d8534731106e33ddeeff7b128e',false);
 	
 	// Disable the OOTB "Execute Now" UI action on sysauto_script - so that DevTools' UI action can take its part
 	installer.ActivateUiAction('31db53d1a9fe07590053c90a05c57084',false);
@@ -96,6 +101,10 @@
 
 	// CMDB 
 	installer.DiscoverySourceInsertOrUpdate('DevTools','devtools');
+
+	// Generative AI Controller
+	// Deactivate the ACL that prevents non-maint users from seeing all fields of a One Extend Capability (bug)
+	installer.ActivateACL('12eff632438302106c3603295bb8f242',false);
 	
 	return installer.Finish();
 }]]></script>
@@ -103,13 +112,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-07-03 21:35:10</sys_created_on>
         <sys_id>339e63591b719050a89720a8ec4bcb3f</sys_id>
-        <sys_mod_count>101</sys_mod_count>
+        <sys_mod_count>107</sys_mod_count>
         <sys_name>AppInstall</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_339e63591b719050a89720a8ec4bcb3f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-07-04 07:05:35</sys_updated_on>
+        <sys_updated_on>2025-02-19 23:03:43</sys_updated_on>
     </sys_script_include>
 </record_update>

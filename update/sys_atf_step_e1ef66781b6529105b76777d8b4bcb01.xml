@@ -22,7 +22,7 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2023-03-10 22:42:22</sys_updated_on>
         <table/>
-        <test display_value="DevTools  - Base64Decode">f9dfe2781b6529105b76777d8b4bcb30</test>
+        <test display_value="DevTools - Base64Decode">f9dfe2781b6529105b76777d8b4bcb30</test>
         <timeout/>
         <warning_message/>
     </sys_atf_step>

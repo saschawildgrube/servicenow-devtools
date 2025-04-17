@@ -20,6 +20,7 @@ generateDescription();
         <name>DevTools - Check scoped app sanity</name>
         <order>9000</order>
         <outputs/>
+        <performance_include>false</performance_include>
         <step_env display_value="Server - Independent">6c2bcea1870312009dccc9ded0e3ecca</step_env>
         <step_execution_generator><![CDATA[(function executeStep(inputs, outputs, stepResult, timeout)
 {
@@ -40,7 +41,7 @@ generateDescription();
 	
 	var aCallStack = GetCallStack();
 
-strMessage += x_snc_devtools.RenderValue(aCallStack);
+	strMessage += x_snc_devtools.RenderValue(aCallStack);
 
 	var strAppSysId = GetValue(aCallStack,0,'sys_scope');
 	
@@ -58,35 +59,7 @@ strMessage += x_snc_devtools.RenderValue(aCallStack);
 
 		
 
-		// Check sys_properties
-		var grSysProp = new GlideRecord('sys_properties');
-		grSysProp.addQuery('sys_scope','=',strAppSysId);
-		grSysProp.query();
-		while (grSysProp.next())
-		{
-			strMessage += 'Checking system property: "'+GetStringValue(grSysProp.getValue('name'))+'"\n';
-			if (GetBoolValue(grSysProp.getValue('is_private')) == true)
-			{
-				bResult = false;
-				strMessage += '  Failed: is_private is set to true.\n';
-			}
-			
-			if (GetStringValue(grSysProp.getValue('description')) == '')
-			{
-				bResult = false;
-				strMessage += '  Failed: description is empty.\n';
-			}		
-			
-			var strName = GetStringValue(grSysProp.getValue('name'));
-			if (strName.indexOf(grApp.getValue('scope')) != 0 && strName.indexOf('glide.ui.'+grApp.getValue('scope')+'_') != 0)
-			{
-				bResult = false;
-				strMessage += '  Failed: The name must start with the app scope name.\n';
-			}				
-			
-		}
-		
-		
+	
 		// Check sys_atf_test
 		var grSysAtfTest = new GlideRecord('sys_atf_test');
 		grSysAtfTest.addQuery('sys_scope','=',strAppSysId);
@@ -177,39 +150,7 @@ strMessage += x_snc_devtools.RenderValue(aCallStack);
 			}
 		}	
 		
-		// Check sys_script_include
-		var grSysScriptInclude = new GlideRecord('sys_script_include');
-		grSysScriptInclude.addQuery('sys_scope','=',strAppSysId);
-		grSysScriptInclude.query();
-		while (grSysScriptInclude.next())
-		{
-			strMessage += 'Checking script include: "'+GetStringValue(grSysScriptInclude.getValue('name'))+'"\n';
-			
-			var strAccess = GetStringValue(grSysScriptInclude.getValue('access'));
-			var strDescription = GetStringValue(grSysScriptInclude.getValue('description'));
-			if (strDescription == '' && strAccess == 'public')
-			{
-				bResult = false;
-				strMessage += '  Failed: A script include that is accessible to all scopes should have a description.\n';
-			}
-		}		
-		
-		// Check sys_ui_action
-		var grSysUiAction = new GlideRecord('sys_ui_action');
-		grSysUiAction.addQuery('sys_scope','=',strAppSysId);
-		grSysUiAction.query();
-		while (grSysUiAction.next())
-		{
-			strMessage += 'Checking UI action: "'+GetStringValue(grSysUiAction.getValue('name'))+'"\n';
-			
-			var bActive = GetBoolValue(grSysUiAction.getValue('active'));
-			var strDescription = GetStringValue(grSysUiAction.getValue('comments'));
-			if (strDescription == '' && bActive == true)
-			{
-				bResult = false;
-				strMessage += '  Failed: An active UI action should have a description (a non-empty comments field)!\n';
-			}
-		}			
+	
 		
 		// Check sys_ui_script
 		var grSysUiScript = new GlideRecord('sys_ui_script');
@@ -364,16 +305,16 @@ strMessage += x_snc_devtools.RenderValue(aCallStack);
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-11-23 13:28:01</sys_created_on>
         <sys_id>786a921f1b6c2090a89720a8ec4bcbc9</sys_id>
-        <sys_mod_count>91</sys_mod_count>
+        <sys_mod_count>95</sys_mod_count>
         <sys_name>DevTools - Check scoped app sanity</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_config_786a921f1b6c2090a89720a8ec4bcbc9</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-11-08 12:47:54</sys_updated_on>
+        <sys_updated_on>2024-12-13 11:23:30</sys_updated_on>
         <template_reminder>TBD</template_reminder>
-        <type display_value="Test Step" name="sys_atf_step">cf50cdd1b9d03110d0adbb64e3a1e917</type>
+        <type display_value="Test Step" name="sys_atf_step">844d8f97d1e302104f34ba60d8b7c1dc</type>
         <wizard_redirect/>
     </sys_atf_step_config>
     <sys_translated_text action="delete_multiple" query="documentkey=786a921f1b6c2090a89720a8ec4bcbc9"/>

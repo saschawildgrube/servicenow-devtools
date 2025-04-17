@@ -12,7 +12,7 @@
         <change_fields>false</change_fields>
         <client_callable>false</client_callable>
         <collection>sys_atf_test_suite_test</collection>
-        <condition/>
+        <condition>IsActive()</condition>
         <description>Ensures that the record that marks an ATF test's association to a suite has the same scope as the ATF suite. </description>
         <execute_function>false</execute_function>
         <filter_condition/>
@@ -41,7 +41,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>4d9b9daa1bfeb810edf3642aab4bcb0a</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_name>sys_atf_test_suite_test - match scopes</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -49,7 +49,7 @@
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_4d9b9daa1bfeb810edf3642aab4bcb0a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-02-19 18:11:20</sys_updated_on>
+        <sys_updated_on>2024-08-16 09:53:17</sys_updated_on>
         <template/>
         <when>before</when>
         <x_snc_datasilos_created>false</x_snc_datasilos_created>

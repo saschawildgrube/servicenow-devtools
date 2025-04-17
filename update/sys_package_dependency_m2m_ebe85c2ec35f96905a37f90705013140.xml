@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_package_dependency_m2m">
+    <sys_package_dependency_m2m action="INSERT_OR_UPDATE">
+        <dependency display_value="UI Policy Rules" source="com.glide.ui_policy">b2950b53d12302104f34ba60d8b7c1f1</dependency>
+        <min_version>1.0.0</min_version>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-01-27 10:16:38</sys_created_on>
+        <sys_id>ebe85c2ec35f96905a37f90705013140</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-01-27 10:16:38</sys_updated_on>
+    </sys_package_dependency_m2m>
+</record_update>

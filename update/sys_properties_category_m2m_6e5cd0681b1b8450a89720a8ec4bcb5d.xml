@@ -2,7 +2,7 @@
     <sys_properties_category_m2m action="INSERT_OR_UPDATE">
         <category display_value="devtools.instance.debug">c23c90681b1b8450a89720a8ec4bcb8f</category>
         <order>300</order>
-        <property display_value="com.glide.hub.flow_engine.debug" name="com.glide.hub.flow_engine.debug">a64aec1b73011300097f6508caf6a7e1</property>
+        <property display_value="">a64aec1b73011300097f6508caf6a7e1</property>
         <sys_class_name>sys_properties_category_m2m</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 15:43:21</sys_created_on>

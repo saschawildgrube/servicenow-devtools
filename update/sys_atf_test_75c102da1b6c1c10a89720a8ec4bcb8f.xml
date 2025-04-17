@@ -8,6 +8,7 @@
         <name>DevTools - GetIntegerValue</name>
         <parameters/>
         <remember/>
+        <sn_atf_tg_generated>false</sn_atf_tg_generated>
         <sys_class_name>sys_atf_test</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-05 12:54:28</sys_created_on>

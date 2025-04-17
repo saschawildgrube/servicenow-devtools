@@ -12,7 +12,7 @@
         <change_fields>false</change_fields>
         <client_callable>false</client_callable>
         <collection>sys_flow_context</collection>
-        <condition/>
+        <condition>IsActive()</condition>
         <description>Implements the workaround to the issue described in KB0998966.</description>
         <execute_function>false</execute_function>
         <filter_condition/>
@@ -65,7 +65,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>ad95de3247f6d510a4b0d4fe536d432b</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>10</sys_mod_count>
         <sys_name>sys_flow_context - set domain</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -73,7 +73,7 @@
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_ad95de3247f6d510a4b0d4fe536d432b</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-02-19 18:12:01</sys_updated_on>
+        <sys_updated_on>2024-08-16 09:53:22</sys_updated_on>
         <template/>
         <when>before</when>
         <x_snc_datasilos_created>false</x_snc_datasilos_created>

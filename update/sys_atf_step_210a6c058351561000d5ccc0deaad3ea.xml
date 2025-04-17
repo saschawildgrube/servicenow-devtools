@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <copied_from/>
+        <description>Run Server Side Validation Script</description>
+        <display_name>Run Server Side Script</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>1</order>
+        <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-10-15 09:34:51</sys_created_on>
+        <sys_id>210a6c058351561000d5ccc0deaad3ea</sys_id>
+        <sys_mod_count>11</sys_mod_count>
+        <sys_name>Run Server Side Script</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_step_210a6c058351561000d5ccc0deaad3ea</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-10-15 12:39:05</sys_updated_on>
+        <table/>
+        <test display_value="DevTools - RecordSetValueJson">cef9e8058351561000d5ccc0deaad33e</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=210a6c058351561000d5ccc0deaad3ea"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>210a6c058351561000d5ccc0deaad3ea</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-10-15 09:34:51</sys_created_on>
+        <sys_id>210a6c058351561000d5ccc0deaad3ec</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-10-15 09:34:51</sys_updated_on>
+        <value>3.1</value>
+        <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>210a6c058351561000d5ccc0deaad3ea</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-10-15 09:34:51</sys_created_on>
+        <sys_id>690a6c058351561000d5ccc0deaad3ec</sys_id>
+        <sys_mod_count>11</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-10-15 12:39:05</sys_updated_on>
+        <value>(function(outputs, steps, stepResult, assertEqual)&#13;
+{&#13;
+	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
+	&#13;
+	test.SetResult(true);&#13;
+&#13;
+	function TestCase_RecordSetValueJson(&#13;
+		strTable,strSysId,strField,vValue,&#13;
+		bGhost,&#13;
+		vKey1, vKey2, vKey3, vKey4, vKey5, vKey6, vKey7, vKey8, vKey9, vKey10,&#13;
+		vExpected)&#13;
+	{&#13;
+		function TestCase_RecordSetValueJson_CheckResult(vInput,vExpected,vResult)&#13;
+		{&#13;
+			test.Log('Specified record:');&#13;
+			var grRecord = GetRecord(vInput['strTable'],vInput['strSysId']);&#13;
+			test.Log(RenderValue(grRecord));&#13;
+			if (vExpected == true)&#13;
+			{&#13;
+				var vFieldValue = GetValue(grRecord,strField);&#13;
+				var vJsonObject = ParseJson(vFieldValue);&#13;
+				&#13;
+				if (GetValue(vJsonObject,vKey1, vKey2, vKey3, vKey4, vKey5, vKey6, vKey7, vKey8, vKey9, vKey10) != vValue)&#13;
+				{&#13;
+					test.Log('Unexpected value in json object:');&#13;
+					test.Log(vJsonObject);&#13;
+					return false;	&#13;
+				}&#13;
+			}&#13;
+			return (vExpected == vResult);&#13;
+		}&#13;
+&#13;
+		test.TestCase(&#13;
+			'Function RecordSetValueJson()',&#13;
+			RecordSetValueJson,&#13;
+			{&#13;
+				strTable: strTable,&#13;
+				strSysId: strSysId,&#13;
+				strField: strField,&#13;
+				vValue: vValue,&#13;
+				bGhost: bGhost,&#13;
+				vKey1: vKey1,&#13;
+				vKey2: vKey2,&#13;
+				vKey3: vKey3,&#13;
+				vKey4: vKey4,&#13;
+				vKey5: vKey6,&#13;
+				vKey6: vKey6,&#13;
+				vKey7: vKey7,&#13;
+				vKey8: vKey8,&#13;
+				vKey9: vKey9,&#13;
+				vKey10: vKey10&#13;
+			},&#13;
+			vExpected,&#13;
+			TestCase_RecordSetValueJson_CheckResult);&#13;
+	}&#13;
+&#13;
+	var grTest = new GlideRecord('x_snc_devtools_test');&#13;
+	grTest.initialize();&#13;
+	grTest.name = 'Test1';&#13;
+	grTest.value = '{}';&#13;
+	var strTestSysId = grTest.insert();&#13;
+&#13;
+	TestCase_RecordSetValueJson(&#13;
+		null,null,null,&#13;
+		null,null,null,null,null,null,null,null,null,null,null,null,&#13;
+		false);&#13;
+&#13;
+	TestCase_RecordSetValueJson(&#13;
+		'x_snc_devtools_test',strTestSysId,null,null,&#13;
+		null,null,null,null,null,null,null,null,null,null,null,&#13;
+		false);&#13;
+&#13;
+	TestCase_RecordSetValueJson(&#13;
+		'x_snc_devtools_test',strTestSysId,'value',&#13;
+		'Hello Word',false,'message',null,null,null,null,null,null,null,null,null,&#13;
+		true);&#13;
+&#13;
+	TestCase_RecordSetValueJson(&#13;
+		'x_snc_devtools_test',strTestSysId,'value',&#13;
+		'Hello Universe',false,'message2',null,null,null,null,null,null,null,null,null,&#13;
+		true);		&#13;
+&#13;
+&#13;
+	return test.GetResult();&#13;
+	&#13;
+})(outputs, steps, stepResult, assertEqual);</value>
+        <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
+    </sys_variable_value>
+</record_update>

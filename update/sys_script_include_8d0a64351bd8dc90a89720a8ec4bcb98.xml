@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Checks if two values are equal. The function also supports arrays and can ignore the order of array elements while comparing.</description>
+        <mobile_callable>false</mobile_callable>
         <name>IsEqual</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function IsEqual(vValue1, vValue2, bIgnoreOrder)
 {
 	if (IsArray(vValue1) && IsArray(vValue2))
@@ -57,13 +59,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-04-21 06:58:57</sys_created_on>
         <sys_id>8d0a64351bd8dc90a89720a8ec4bcb98</sys_id>
-        <sys_mod_count>22</sys_mod_count>
+        <sys_mod_count>23</sys_mod_count>
         <sys_name>IsEqual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_8d0a64351bd8dc90a89720a8ec4bcb98</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-06-22 16:28:11</sys_updated_on>
+        <sys_updated_on>2024-08-28 12:58:51</sys_updated_on>
     </sys_script_include>
 </record_update>

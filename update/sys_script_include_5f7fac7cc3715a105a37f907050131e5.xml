@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.RunDefaultTestSuite</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Runs the default test suite of the given application if ATF execution is active and the test suite contains only tests with server-side steps. Returns the Suite Result record if the execution took place, false if not.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>RunDefaultTestSuite</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function RunDefaultTestSuite(vApp)
+{
+	var grApp = GetAppRecord(vApp);
+	if (IsValidRecord(grApp) == false)
+	{
+		return false;
+	}
+
+	var strDefaultTestSuiteName = GetCleanAppName(grApp.name);
+
+	var grTestSuite = new GlideRecord('sys_atf_test_suite');
+	grTestSuite.addQuery('sys_scope','=',grApp.sys_id);
+	grTestSuite.addQuery('name','=',strDefaultTestSuiteName);
+	grTestSuite.query();
+	if (grTestSuite.next() == false)
+	{
+		return false;
+	}
+
+	return RunTestSuite(grTestSuite);
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-11-08 11:51:39</sys_created_on>
+        <sys_id>5f7fac7cc3715a105a37f907050131e5</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>RunDefaultTestSuite</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_5f7fac7cc3715a105a37f907050131e5</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-11-08 11:55:44</sys_updated_on>
+    </sys_script_include>
+</record_update>

@@ -34,7 +34,7 @@
         <function_field>false</function_field>
         <internal_type display_value="">translated_text</internal_type>
         <mandatory>false</mandatory>
-        <max_length>40</max_length>
+        <max_length>200</max_length>
         <name>x_snc_devtools_test</name>
         <next_element/>
         <primary>false</primary>
@@ -58,7 +58,7 @@
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_dictionary_x_snc_devtools_test_value</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-12-01 16:33:13</sys_updated_on>
+        <sys_updated_on>2024-10-15 12:40:57</sys_updated_on>
         <table_reference>false</table_reference>
         <text_index>false</text_index>
         <unique>false</unique>

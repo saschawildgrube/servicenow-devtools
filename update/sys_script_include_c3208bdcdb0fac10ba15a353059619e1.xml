@@ -8,7 +8,9 @@
         <description>A function to process large amounts of records using a callback function. The function makes use of a specified date/time field to determine which record to process next. Multiple instances of a background script can run using this function to work on large amounts of records in a table without interfering with each other.&#13;
 For large tables it is imperative to add an index on the date time field!&#13;
 If the ghost parameter is set to true, records are updated with setWorkflow(false) to avoid business rules etc. being triggered.</description>
+        <mobile_callable>false</mobile_callable>
         <name>RecordBulkProcessor</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function RecordBulkProcessor(grRecords,callbackRecordProcessor,strFieldDateTime,nMaxRecords,nMaxSeconds,callbackLog,nLogFrequency,bGhost)
 {
 	var GetStringValue = x_snc_devtools.GetStringValue;
@@ -167,13 +169,13 @@ If the ghost parameter is set to true, records are updated with setWorkflow(fals
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-03-18 15:15:16</sys_created_on>
         <sys_id>c3208bdcdb0fac10ba15a353059619e1</sys_id>
-        <sys_mod_count>45</sys_mod_count>
+        <sys_mod_count>46</sys_mod_count>
         <sys_name>RecordBulkProcessor</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_c3208bdcdb0fac10ba15a353059619e1</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-12-12 19:36:39</sys_updated_on>
+        <sys_updated_on>2024-08-28 12:58:56</sys_updated_on>
     </sys_script_include>
 </record_update>

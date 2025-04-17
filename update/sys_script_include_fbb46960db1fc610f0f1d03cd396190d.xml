@@ -7,7 +7,9 @@
         <client_callable>false</client_callable>
         <description>Returns an object with "apikey", "username" and "password" fields or false if the credential object is null.&#13;
 Logs an error if the details cannot be provided.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetDetailsFromCredential</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetDetailsFromCredential(credential)
 {
 	if (credential == null)
@@ -49,13 +51,13 @@ Logs an error if the details cannot be provided.</description>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-07-06 14:54:31</sys_created_on>
         <sys_id>fbb46960db1fc610f0f1d03cd396190d</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>GetDetailsFromCredential</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_fbb46960db1fc610f0f1d03cd396190d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-07-06 15:45:10</sys_updated_on>
+        <sys_updated_on>2024-08-28 12:59:02</sys_updated_on>
     </sys_script_include>
 </record_update>

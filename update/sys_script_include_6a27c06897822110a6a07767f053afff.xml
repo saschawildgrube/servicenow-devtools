@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Sets the source code repository url for the given application.</description>
+        <mobile_callable>false</mobile_callable>
         <name>SetAppRepo</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function SetAppRepo(vApp,strUrl)
 {
 	strUrl = GetStringValue(strUrl);
@@ -71,13 +73,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-04-03 12:06:06</sys_created_on>
         <sys_id>6a27c06897822110a6a07767f053afff</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>SetAppRepo</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_6a27c06897822110a6a07767f053afff</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-05-31 12:13:55</sys_updated_on>
+        <sys_updated_on>2024-08-28 12:58:48</sys_updated_on>
     </sys_script_include>
 </record_update>

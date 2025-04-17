@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <copied_from/>
+        <description>Log: </description>
+        <display_name>Log</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes>No strategy identified for testing.</notes>
+        <order>1</order>
+        <step_config display_value="Log">58ab71985f30220012b44adb7f46661e</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-08-25 15:11:22</sys_created_on>
+        <sys_id>56ed8fa0c3dc5e505a37f90705013192</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Log</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_step_56ed8fa0c3dc5e505a37f90705013192</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-08-25 15:11:22</sys_updated_on>
+        <table/>
+        <test display_value="DevTools - SourceControlApplyRemoteChanges">47cc43a0c3dc5e505a37f9070501313d</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=56ed8fa0c3dc5e505a37f90705013192"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>56ed8fa0c3dc5e505a37f90705013192</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-08-25 15:11:23</sys_created_on>
+        <sys_id>f5fd8be0c3dc5e505a37f90705013114</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-08-25 15:11:23</sys_updated_on>
+        <value/>
+        <variable display_value="Log">523c79985f30220012b44adb7f46663a</variable>
+    </sys_variable_value>
+    <sys_element_mapping action="delete_multiple" query="table=var__m_atf_input_variable_58ab71985f30220012b44adb7f46661e^id=56ed8fa0c3dc5e505a37f90705013192"/>
+</record_update>

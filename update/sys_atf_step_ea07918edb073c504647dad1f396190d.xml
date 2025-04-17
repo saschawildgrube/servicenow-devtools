@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-08 14:10:02</sys_created_on>
         <sys_id>ea07918edb073c504647dad1f396190d</sys_id>
-        <sys_mod_count>12</sys_mod_count>
+        <sys_mod_count>13</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_ea07918edb073c504647dad1f396190d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-10-20 13:40:28</sys_updated_on>
+        <sys_updated_on>2024-11-27 13:30:42</sys_updated_on>
         <table/>
         <test display_value="DevTools - GetTableFromSysId">eef6dd4edb073c504647dad1f39619d5</test>
         <timeout/>
@@ -49,9 +49,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-08 14:10:02</sys_created_on>
         <sys_id>de67518edb073c504647dad1f39619cb</sys_id>
-        <sys_mod_count>12</sys_mod_count>
+        <sys_mod_count>13</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-10-20 13:40:28</sys_updated_on>
+        <sys_updated_on>2024-11-27 13:30:42</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -93,7 +93,13 @@
 	TestCase_GetTableFromSysId(strIncidentSysId,'incident');&#13;
 	&#13;
 	// Records in cmdb_ci&#13;
-	TestCase_GetTableFromSysId('0e7a06157f10310016181ccebefa91ce','cmdb_ci_service_group');&#13;
+	var grCI = new GlideRecord('cmdb_ci_service_group');&#13;
+	grCI.setLimit(1);&#13;
+	grCI.query();&#13;
+	if (grCI.next() == true)&#13;
+	{&#13;
+		TestCase_GetTableFromSysId(grCI.sys_id,'cmdb_ci_service_group');&#13;
+	}&#13;
 	&#13;
 	// Users&#13;
 	var grUser = new GlideRecord('sys_user');&#13;

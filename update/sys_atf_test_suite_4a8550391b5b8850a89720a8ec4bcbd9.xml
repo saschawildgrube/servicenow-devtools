@@ -5,6 +5,7 @@
         <input_filter/>
         <name>DevTools</name>
         <parent/>
+        <sn_atf_tg_generated>false</sn_atf_tg_generated>
         <sys_class_name>sys_atf_test_suite</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-03-02 12:26:05</sys_created_on>

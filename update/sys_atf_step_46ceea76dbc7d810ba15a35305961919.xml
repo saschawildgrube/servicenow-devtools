@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-09-08 12:07:08</sys_created_on>
         <sys_id>46ceea76dbc7d810ba15a35305961919</sys_id>
-        <sys_mod_count>17</sys_mod_count>
+        <sys_mod_count>18</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_46ceea76dbc7d810ba15a35305961919</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-06-29 08:42:43</sys_updated_on>
+        <sys_updated_on>2024-11-28 13:55:11</sys_updated_on>
         <table/>
         <test display_value="DevTools - HttpRequest">08aee676dbc7d810ba15a353059619ba</test>
         <timeout/>
@@ -35,9 +35,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-09-08 12:07:08</sys_created_on>
         <sys_id>be4fa2b6dbc7d810ba15a353059619dc</sys_id>
-        <sys_mod_count>17</sys_mod_count>
+        <sys_mod_count>18</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-06-29 08:42:43</sys_updated_on>
+        <sys_updated_on>2024-11-28 13:55:11</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -88,21 +88,20 @@
 	}&#13;
 &#13;
 	TestCase_HttpRequest('',false);&#13;
-	TestCase_HttpRequest('http://www.example.com','&lt;title&gt;Example Domain&lt;/title&gt;');&#13;
 	TestCase_HttpRequest(GetInstanceUrl(),'window.NOW.');	&#13;
 &#13;
 	var params = {&#13;
-		url: 'http://www.example.com',&#13;
+		url: GetInstanceUrl(),&#13;
 		method: 'get'&#13;
 	};&#13;
-	TestCase_HttpRequest(params,'&lt;title&gt;Example Domain&lt;/title&gt;');	&#13;
+	TestCase_HttpRequest(params,'window.NOW.');	&#13;
 &#13;
 	var params = {&#13;
-		url: 'http://www.example.com',&#13;
+		url: GetInstanceUrl(),&#13;
 		method: 'get',&#13;
 		response: 'RESTResponseV2'&#13;
 	};&#13;
-	TestCase_HttpRequest(params,'&lt;title&gt;Example Domain&lt;/title&gt;');	&#13;
+	TestCase_HttpRequest(params,'window.NOW.');	&#13;
 &#13;
 &#13;
 	return test.GetResult();&#13;

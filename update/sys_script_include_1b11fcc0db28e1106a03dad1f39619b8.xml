@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Renders the DevTools dependencies page.</description>
+        <mobile_callable>false</mobile_callable>
         <name>HtmlRenderPageDependencies</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function HtmlRenderPageDependencies()
 {
 	var strPackage = GetParam('package');
@@ -53,13 +55,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-01-17 12:12:54</sys_created_on>
         <sys_id>1b11fcc0db28e1106a03dad1f39619b8</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_name>HtmlRenderPageDependencies</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_1b11fcc0db28e1106a03dad1f39619b8</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-03-10 15:46:33</sys_updated_on>
+        <sys_updated_on>2024-08-28 12:58:41</sys_updated_on>
     </sys_script_include>
 </record_update>

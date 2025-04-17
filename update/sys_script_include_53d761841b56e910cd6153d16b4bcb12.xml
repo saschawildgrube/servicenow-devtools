@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Based on a given encoded query string, the function returns the GlideRecord object of the requested Instance Scan check, false if the encoded query is unrelated to Instance Scan.</description>
+        <mobile_callable>false</mobile_callable>
         <name>InstanceScanGetCheckFromQuery</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function InstanceScanGetCheckFromQuery(strEncodedQuery)
 {
 /*
@@ -23,6 +25,12 @@
 
 	Sometimes "active=true" is contained in the query, sometimes not.
 */	
+
+	strEncodedQuery = GetStringValue(strEncodedQuery);
+	if (strEncodedQuery == '')
+	{
+		return false;
+	}
 	
 	function IsInstanceScanQuery(strEncodedQuery)
 	{
@@ -31,7 +39,6 @@
 		{
 			return false;
 		}
-		//if (strEncodedQuery.indexOf('active=true^sys_policy!=protected^ORsys_policy=NULL^sys_id!=') == -1)
 		if (strEncodedQuery.indexOf('^sys_policy!=protected^ORsys_policy=NULL^sys_id!=') == -1)
 		{
 			return false;
@@ -44,7 +51,7 @@
 		return false;
 	}
 
-	strEncodedQuery = GetStringValue(strEncodedQuery);
+	
 	var nPos = strEncodedQuery.indexOf('^sys_id!=');
 	if (nPos == -1)
 	{
@@ -64,13 +71,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-04-14 16:02:48</sys_created_on>
         <sys_id>53d761841b56e910cd6153d16b4bcb12</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_name>InstanceScanGetCheckFromQuery</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_53d761841b56e910cd6153d16b4bcb12</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-06-21 12:43:09</sys_updated_on>
+        <sys_updated_on>2024-08-28 12:58:46</sys_updated_on>
     </sys_script_include>
 </record_update>

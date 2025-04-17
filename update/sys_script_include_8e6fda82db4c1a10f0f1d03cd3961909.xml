@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.RedirectToUrl</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Redirects to the given url if it is valid. </description>
+        <mobile_callable>false</mobile_callable>
+        <name>RedirectToUrl</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function RedirectToUrl(strUrl)
+{
+	strUrl = GetStringValue(strUrl);
+	if (strUrl == '')
+	{
+		return false;
+	}
+	gs.setRedirect(strUrl);
+	return true;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-08-17 17:23:08</sys_created_on>
+        <sys_id>8e6fda82db4c1a10f0f1d03cd3961909</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>RedirectToUrl</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_8e6fda82db4c1a10f0f1d03cd3961909</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-08-28 12:58:51</sys_updated_on>
+    </sys_script_include>
+</record_update>

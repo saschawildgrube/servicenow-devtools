@@ -8,7 +8,9 @@
         <description>Switches the given application to the given branch.&#13;
 If bAsync is set to false, the function operates synchronously and will NOT return until the operation is completed. The return false indicates success by returning true or failure by returning false.&#13;
 If bAsync is true, the function will return the progress id of the triggered background process.</description>
+        <mobile_callable>false</mobile_callable>
         <name>SourceControlSwitchToBranch</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function SourceControlSwitchToBranch(vApp,strBranch,bAsync)
 {
 	var grApp = GetAppRecord(vApp);
@@ -23,12 +25,13 @@ If bAsync is true, the function will return the progress id of the triggered bac
 	}
 	bAsync = GetBoolValue(bAsync);
 
+	SetCurrentScope(grApp.sys_id);
 
 	var stb = sn_vcs.AppSourceControl.switchToBranch();
-	stb.setSysApp(grApp.sys_id)
+	stb.setSysApp(grApp.sys_id);
 	stb.setStashMessage('Switching to branch "'+strBranch+'"');
 	stb.setBranchName(strBranch);
-	stb.setPreserveOutgoingChanges(false);
+	stb.setPreserveOutgoingChanges(true);
 	var strProgressSysId = stb.start();
 
 	if (bAsync == true)
@@ -36,7 +39,7 @@ If bAsync is true, the function will return the progress id of the triggered bac
 		return strProgressSysId;
 	}
 
-	WaitForWorker(strProgressSysId);
+	WaitForWorker(strProgressSysId,2);
 
 	var grProgress = GetRecord('sys_progress_worker',strProgressSysId);
 	if (grProgress != false)
@@ -53,13 +56,13 @@ If bAsync is true, the function will return the progress id of the triggered bac
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-03-06 12:51:59</sys_created_on>
         <sys_id>839cf451db300610f0f1d03cd3961970</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>17</sys_mod_count>
         <sys_name>SourceControlSwitchToBranch</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_839cf451db300610f0f1d03cd3961970</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-03-06 17:33:14</sys_updated_on>
+        <sys_updated_on>2024-11-08 14:58:03</sys_updated_on>
     </sys_script_include>
 </record_update>

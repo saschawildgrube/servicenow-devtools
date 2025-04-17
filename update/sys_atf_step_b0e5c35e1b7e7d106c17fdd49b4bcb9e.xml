@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-12-01 15:20:09</sys_created_on>
         <sys_id>b0e5c35e1b7e7d106c17fdd49b4bcb9e</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_b0e5c35e1b7e7d106c17fdd49b4bcb9e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-06-21 09:19:24</sys_updated_on>
+        <sys_updated_on>2024-08-15 16:55:39</sys_updated_on>
         <table/>
         <test display_value="DevTools - RecordTransporterRecordPack">6ac5035e1b7e7d106c17fdd49b4bcbaa</test>
         <timeout/>
@@ -35,9 +35,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-12-01 15:20:09</sys_created_on>
         <sys_id>2de5c35e1b7e7d106c17fdd49b4bcbce</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-06-21 09:19:24</sys_updated_on>
+        <sys_updated_on>2024-08-15 16:55:39</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -60,9 +60,9 @@
 			'Function RecordTransporterRecordPack()',&#13;
 			RecordTransporterRecordPack,&#13;
 			{&#13;
-				'Package': vPackage,&#13;
-				'Record or Table': vRecordOrTable,&#13;
-				'Sys ID': strSysId&#13;
+				'vPackage': vPackage,&#13;
+				'vRecordOrTable': vRecordOrTable,&#13;
+				'strSysId': strSysId&#13;
 			},&#13;
 			vExpected,&#13;
 			TestCase_RecordTransporterRecordPack_CheckResult);&#13;

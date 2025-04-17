@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Adds (or substracts) a given number of days to (or from) a given time value (in milliseconds).</description>
+        <mobile_callable>false</mobile_callable>
         <name>TimeAddDays</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function TimeAddDays(nTime, nDays)
 {
 	nTime = GetIntegerValue(nTime);
@@ -18,13 +20,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-12-12 18:29:58</sys_created_on>
         <sys_id>aec14d07db148910bcced03cd396195d</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>TimeAddDays</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_aec14d07db148910bcced03cd396195d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-12-12 18:29:58</sys_updated_on>
+        <sys_updated_on>2024-08-28 12:58:55</sys_updated_on>
     </sys_script_include>
 </record_update>

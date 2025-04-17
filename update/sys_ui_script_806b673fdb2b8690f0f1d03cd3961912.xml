@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_script">
+    <sys_ui_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Opens the dialog to choose a test runner and runs a test suite.</description>
+        <global>true</global>
+        <ignore_in_now_experience>false</ignore_in_now_experience>
+        <name>x_snc_devtools.DoModalRunTestSuite</name>
+        <script><![CDATA[function DoModalRunTestSuite(strTestSuiteSysId)
+{
+	var gwtm = new GwtMessage();
+	var dialog = new GlideModal("atf_pick_a_browser");
+	dialog.setPreference("test_suite_sys_id", ''+strTestSuiteSysId);
+	dialog.setWidth("600");
+	dialog.setTitle(gwtm.getMessage("Pick a Browser"));
+	dialog.setPreference("focusTrap", true);
+	dialog.render();
+}]]></script>
+        <script_name>DoModalRunTestSuite</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-07-29 12:53:01</sys_created_on>
+        <sys_id>806b673fdb2b8690f0f1d03cd3961912</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>x_snc_devtools.DoModalRunTestSuite</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_ui_script_806b673fdb2b8690f0f1d03cd3961912</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-07-29 12:54:35</sys_updated_on>
+        <ui_type>0</ui_type>
+        <use_scoped_format>false</use_scoped_format>
+        <x_snc_devtools_global>true</x_snc_devtools_global>
+    </sys_ui_script>
+</record_update>

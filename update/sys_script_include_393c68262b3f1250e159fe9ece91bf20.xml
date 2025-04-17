@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.HtmlRenderProcessMap</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Renders a process map-like representation based on a given object.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>HtmlRenderProcessMap</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function HtmlRenderProcessMap(aNodes, nLevel, callbackRenderNode)
+{
+	if (IsArray(aNodes) == false)
+	{
+		return '';
+	}
+	
+	nLevel = GetIntegerValue(nLevel);
+	
+	if (IsFunction(callbackRenderNode) == false)
+	{
+		callbackRenderNode = HtmlRenderRoundedBox;
+	}
+	
+	var strHtml = '';
+	
+	var strHtmlCenter = '';
+	var strHtmlLeftColumn = '';
+	var strHtmlRightColumn = '';
+
+	for (var nNode = 0; nNode < aNodes.length; nNode++)
+	{
+		var nCurrentNode = nNode;
+
+		if (nLevel == 0)
+		{
+			strHtmlCenter += callbackRenderNode(GetValue(aNodes[nCurrentNode],'content'));
+			strHtmlCenter += HtmlRenderProcessMap(
+				GetValue(aNodes[nCurrentNode],'_nodes'),
+				nLevel+1, callbackRenderNode);			
+		}
+		if (nLevel == 1)
+		{
+			var strHtmlColumn = '';
+
+				strHtmlColumn += callbackRenderNode(
+					GetValue(aNodes[nCurrentNode],'content'));
+				
+			strHtmlColumn += HtmlRenderProcessMap(
+				GetValue(aNodes[nCurrentNode],'_nodes'),
+				nLevel+1, callbackRenderNode);
+
+			if (nNode < (aNodes.length/2))
+			{
+				strHtmlLeftColumn += strHtmlColumn;
+			}
+			else
+			{
+				strHtmlRightColumn += strHtmlColumn;
+			}
+		}
+
+		if (nLevel > 1)
+		{
+			var nPadding = 20 * (nLevel-1);
+		
+			strHtmlCenter += '<div style="padding-left: '+nPadding+'px;">\n';
+				strHtmlCenter += callbackRenderNode(
+					GetValue(aNodes[nCurrentNode],'content'));
+			strHtmlCenter += '</div>';			
+
+			strHtmlCenter += HtmlRenderProcessMap(
+				GetValue(aNodes[nCurrentNode],'_nodes'),
+				nLevel+1, callbackRenderNode);			
+
+			
+		}
+
+
+	}
+
+	strHtml += strHtmlCenter;
+
+	if (nLevel == 1)
+	{
+		strHtml += '<div style="width: 48%; float: left;">';
+			strHtml += strHtmlLeftColumn;
+		strHtml += '</div>';
+
+		strHtml += '<div style="width: 48%; float: right">';
+			strHtml += strHtmlRightColumn;
+		strHtml += '</div>';
+		
+		strHtml += '<div style="clear: both;"/>';
+
+	}
+	
+	return strHtml;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-02-21 08:12:17</sys_created_on>
+        <sys_id>393c68262b3f1250e159fe9ece91bf20</sys_id>
+        <sys_mod_count>17</sys_mod_count>
+        <sys_name>HtmlRenderProcessMap</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_393c68262b3f1250e159fe9ece91bf20</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-03-06 10:44:08</sys_updated_on>
+    </sys_script_include>
+</record_update>

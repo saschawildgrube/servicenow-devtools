@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns the dictionary override record based on the given table and column name if it exists.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetDictionaryOverrideRecord</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetDictionaryOverrideRecord(strTable, strElement)
 {
 	strTable = GetStringValue(strTable);
@@ -31,13 +33,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-07-01 09:35:59</sys_created_on>
         <sys_id>a4c13ab2db430210f0f1d03cd39619d1</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name>GetDictionaryOverrideRecord</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_a4c13ab2db430210f0f1d03cd39619d1</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-07-01 09:37:11</sys_updated_on>
+        <sys_updated_on>2024-08-28 12:58:54</sys_updated_on>
     </sys_script_include>
 </record_update>

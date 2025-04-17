@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_script">
+    <sys_ui_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Committs all uncommitted files of the given application to the current branch.</description>
+        <global>true</global>
+        <ignore_in_now_experience>false</ignore_in_now_experience>
+        <name>x_snc_devtools.SourceControlCommit</name>
+        <script><![CDATA[function SourceControlCommit(strAppSysId,strMessage)
+{
+	var strAppSysId = GetStringValue(strAppSysId);
+	var strMessage = GetStringValue(strMessage);
+	var strTitle = 'Commit Files to Source Control';
+
+	var bCheckedUncommittedFiles = false;
+
+	StateStart();
+
+	function StateCheckForUncommittedFiles()
+	{
+		ServerRequest(
+			'x_snc_devtools.DevToolsClientAPI',
+			'GetAppUncommittedFiles',
+			{
+				app_sys_id: strAppSysId
+			},
+			StateCheckForUncommittedFilesResponse);	
+		return;
+	}
+
+	function StateCheckForUncommittedFilesResponse(aUncommittedFiles)
+	{
+		if (IsArray(aUncommittedFiles) == false)
+		{
+			StateError('Could not load uncommitted files.');
+			return;
+		}
+		if (aUncommittedFiles.length == 0)
+		{
+			DoModalMessage(
+				strTitle,
+				'There are no uncommitted files.',
+				StateEnd);	
+			return;
+		}
+		bCheckedUncommittedFiles = true;
+		StateStart();
+	}
+
+	function OnExecutionComplete(dialog,tracker)
+	{
+		var buttonViewResults = GetElementById('sysparm_button_view_results');
+		if (buttonViewResults)
+		{
+			buttonViewResults.style.display = "none";
+		}
+	
+		var buttonClose = GetElementById('sysparm_button_close');
+        if (buttonClose)
+		{
+            buttonClose.on('click', function()
+				{
+					dialog.destroy();
+				});
+        }
+	}
+	
+	function OnExecutionFailed(dialog)
+	{
+		StateError('Committing uncommitted files failed!');
+	}
+	
+	function OnStatusUpdate(dialog)
+	{
+	}
+
+	function StateError(strErrorMessage)
+	{
+		DoModalMessage(
+			strTitle,
+			'ERROR: '+strErrorMessage,
+			StateEnd);		
+		return;	
+	}	
+
+	function StateEnd()
+	{
+	}
+
+	function StateStart()
+	{
+		if (bCheckedUncommittedFiles == false)
+		{
+			StateCheckForUncommittedFiles();
+			return;
+		}
+
+		DoModalProgress(
+			strTitle,
+			'Commit files to current branch',
+			'x_snc_devtools.DevToolsClientAPI',
+			{
+				command: 'source_control_commit',
+				app_sys_id: strAppSysId,
+				message: strMessage
+			},
+			{
+				close:
+				{
+					title: 'Close'
+				}
+			},
+			{
+				callbackOnExecutionComplete: OnExecutionComplete,
+				callbackOnExecutionFailed: OnExecutionFailed,
+				callbackOnStatusUpdate: OnStatusUpdate,
+			});
+	}
+
+
+}]]></script>
+        <script_name>SourceControlCommit</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-12-14 18:51:45</sys_created_on>
+        <sys_id>68c7ebd883a6da1000d5ccc0deaad39c</sys_id>
+        <sys_mod_count>11</sys_mod_count>
+        <sys_name>x_snc_devtools.SourceControlCommit</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_ui_script_68c7ebd883a6da1000d5ccc0deaad39c</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-12-25 19:23:16</sys_updated_on>
+        <ui_type>0</ui_type>
+        <use_scoped_format>false</use_scoped_format>
+        <x_snc_devtools_global>true</x_snc_devtools_global>
+    </sys_ui_script>
+</record_update>

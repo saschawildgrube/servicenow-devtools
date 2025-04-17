@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns patterns found in evaluator errors, which should be ignored - as they are produced by OOTB components.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetEvaluatorErrorExceptionPatterns</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetEvaluatorErrorExceptionPatterns()
 {
 	var aPatterns = [
@@ -28,6 +30,18 @@
 		'sn_sow.SOWBannerAnnouncements.getAnnouncementIds()',
 		'com.glide.script.RhinoEcmaError: "current_page" is not defined.', // triggered by CMDB CI Dashboard view
 		'ACONF0000934: VCONF0007365', // Caused by an OOTB Instance Scan check
+		'function trecord() {return', 
+		// !!((current.sys_scope != 'global') && (current.sys_package == 'global'));}trecord();
+		"Access Control: 'sys_polaris_configurable_menu_item' : Line(1) column(0)",
+		'new global.ProductContent().refreshContent("adoptionblueprints", "content.zip");',
+		'com.glide.script.RhinoEcmaError: null is not a function', // ServiceNow IDE?
+		'1: null()', // Source unknown
+		'Access Control: \'sys_decision_input\' : Line(3) column(0)', // Decision tables
+		'Access Control: \'sys_decision_input\' : Line(1) column(0)', // Decision tables
+		'"dependent_value" is not defined.',
+		'Cannot read property "device_type" from null',
+		'"sn_atf_tg" is not defined.',
+		
 		'60b1d53fef12110', // 60b1d53fef1211002841f7f775c0fb54
 		'293eb723d723210', // 293eb723d7232100b6bddb0c82520320
 		'708da435db83170', // 708da435db831700dd14596e5e96194e
@@ -47,6 +61,31 @@
 		'1c8878bbd703210', // 1c8878bbd7032100b9bc43d60e6103c8
 		'16a82be2ff90100', // 16a82be2ff901000dada1c57f27f9de9
 		'2e0e7d71fc38711', // 2e0e7d71fc387110f87736513ef7b26e
+		'ee3617977731111', // ee36179777311110114329354f5a991d
+		'b21bda22b4ee3c1', // b21bda22b4ee3c10f87755e926c386b9
+		'd9607ab477f1211', // d9607ab477f12110eba8fe21fe5a9939
+		'af31245c7701111', // af31245c770111108bd73a91fa5a9912
+		'3b709a5353fe711', // 3b709a5353fe71104a61ddeeff7b129b
+		'af8c43f15723130', // af8c43f157231300cc25b7d4ef94f9cc     
+		'02af2d1f77aa111', // 02af2d1f77aa1110866ea2059f5a99c8
+		'ea804ac70b61311', // ea804ac70b613110985f8a8db777b25f 
+		'5642295aff32021', // 5642295aff320210363bffffffffff5b 
+		'ab2b14c3cb00330', // ab2b14c3cb003300449b78d5634c9c27
+		'562f4c35c324161', // 562f4c35c32416105a37f90705013120
+		'1b30fd935382b01', // 1b30fd935382b0109706ddeeff7b12d4
+		'12cc48e25b36501', // 12cc48e25b3650100977ca225681c7b7     
+		'abef9ea14310211', // abef9ea1431021109fa864cec7b8f2c8
+		'bbe4bd395312101', // bbe4bd3953121010bca8ddeeff7b1208
+		'8626cb31b796301', // 8626cb31b7963010a0cde36cae11a951    
+		'2fe059e37f37021', // 2fe059e37f3702101ea008a6cc866516 
+		'18b1356a3770300', // 18b1356a37703000158bbfc8bcbe5d65
+		'b08ad3635374111', // b08ad363537411106883ddeeff7b12db
+		'2a2e54780a0a0b0', // 2a2e54780a0a0b0500957d4debce8ed6
+		'070b7693ff63210', // 070b7693ff632100956cffffffffff04
+		'0e3de1e0ff23210', // 0e3de1e0ff232100956cffffffffff94
+		'048b7dcf4343121', // 048b7dcf434312101df4f03a5ab8f286
+		'a3afad577307101', // a3afad5773071010a0a79329faf6a7f7
+		'18d763a97769211', // 18d763a9776921101b53c5ed3c5a9933
 		
 		// Flow Designer
 		'"actionOrder" is not defined.',
@@ -64,13 +103,24 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-09-13 12:47:41</sys_created_on>
         <sys_id>813dabbc1bddf110cd6153d16b4bcb3a</sys_id>
-        <sys_mod_count>43</sys_mod_count>
+        <sys_mod_count>84</sys_mod_count>
         <sys_name>GetEvaluatorErrorExceptionPatterns</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_813dabbc1bddf110cd6153d16b4bcb3a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-07-03 12:22:24</sys_updated_on>
+        <sys_updated_on>2025-04-08 13:48:32</sys_updated_on>
     </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>813dabbc1bddf110cd6153d16b4bcb3a</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-04-07 11:06:18</sys_created_on>
+        <sys_id>799341459338a610959b7fda2bba10e8</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-04-07 11:06:18</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>

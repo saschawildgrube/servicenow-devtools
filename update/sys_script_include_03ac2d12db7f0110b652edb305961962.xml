@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns the specified url parameter as a string value.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetParam</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetParam(strParam)
 {
 	strParam = GetStringValue(strParam);
@@ -37,13 +39,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-06-02 13:20:47</sys_created_on>
         <sys_id>03ac2d12db7f0110b652edb305961962</sys_id>
-        <sys_mod_count>25</sys_mod_count>
+        <sys_mod_count>26</sys_mod_count>
         <sys_name>GetParam</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_03ac2d12db7f0110b652edb305961962</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-02-28 13:05:35</sys_updated_on>
+        <sys_updated_on>2024-08-28 12:58:38</sys_updated_on>
     </sys_script_include>
 </record_update>

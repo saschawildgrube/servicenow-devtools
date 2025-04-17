@@ -5,24 +5,34 @@
         <api_name>x_snc_devtools.MakeJson</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Convers an object into a JSON string.</description>
+        <description>Converts an object into a JSON string.</description>
+        <mobile_callable>false</mobile_callable>
         <name>MakeJson</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function MakeJson(vInput)
 {
 	vInput = Clone(vInput,true);
-	return JSON.stringify(vInput,null,'\t');
+	try
+	{
+		var strJson = JSON.stringify(vInput,null,'\t');
+	}
+	catch (e)
+	{
+		return false;
+	}
+	return strJson;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-11-30 09:23:16</sys_created_on>
         <sys_id>764aa80e1b723d106c17fdd49b4bcb58</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_name>MakeJson</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_764aa80e1b723d106c17fdd49b4bcb58</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-01-16 09:09:12</sys_updated_on>
+        <sys_updated_on>2024-12-25 20:07:39</sys_updated_on>
     </sys_script_include>
 </record_update>

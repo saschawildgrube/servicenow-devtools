@@ -22,7 +22,7 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2022-10-27 12:50:32</sys_updated_on>
         <table/>
-        <test display_value="DevTools - GetInstanceListURL">a2c662a9db3e9110f359c19115961922</test>
+        <test display_value="DevTools - GetInstanceListURL (deprecated)">a2c662a9db3e9110f359c19115961922</test>
         <timeout/>
         <warning_message/>
     </sys_atf_step>

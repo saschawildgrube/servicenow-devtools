@@ -22,7 +22,7 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2021-12-01 14:32:21</sys_updated_on>
         <table/>
-        <test display_value="DevTools - TestDataAPI - TEST">41ba5491db5b74d04647dad1f396199e</test>
+        <test display_value="DevTools - TestDataAPI">41ba5491db5b74d04647dad1f396199e</test>
         <timeout/>
         <warning_message/>
     </sys_atf_step>

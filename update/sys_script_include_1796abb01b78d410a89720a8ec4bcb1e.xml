@@ -5,12 +5,83 @@
         <api_name>x_snc_devtools.TestDataAPI</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>A class to create test data records.</description>
+        <description>A class to create test data records.
+|
+Methods:
+* initialize()
+* SetPrefix()
+* GetPrefix()
+* GetAllData()
+* DeleteAllData()
+* GetAllRecordsFromTable()
+* DeleteAllRecordsByName()
+* CreateRecord()
+* GetRecord()
+* CreateTestItem()
+* GetAllTestItems()
+* GetTestItem()
+* CreateUser()
+* GetAllUsers()
+* GetUser()
+* CreateGroup()
+* GetAllGroups()
+* GetGroup()
+* CreateRole()
+* GetAllRoles()
+* GetRole()
+* CreateCompany()
+* GetAllCompanies()
+* GetCompany()
+* CreateContract()
+* GetAllContracts()
+* GetContract()
+* CreateIncident()
+* GetAllIncidents()
+* GetIncident()
+* CreateIncidentTask()
+* GetAllIncidentTasks()
+* GetIncidentTask()
+* CreateChangeRequest()
+* GetAllChangeRequests()
+* GetChangeRequest()
+* CreateChangeTask()
+* GetAllChangeTasks()
+* GetChangeTask()
+* CreateProblem()
+* GetAllProblems()
+* GetProblem()
+* CreateProblemTask()
+* GetAllProblemTasks()
+* GetProblemTask()
+* CreateRequest()
+* GetAllRequests()
+* GetRequest()
+* CreateRequestItem()
+* GetAllRequestItems()
+* GetRequestItem()
+* CreateRequestTask()
+* GetAllRequestTasks()
+* GetRequestTask()
+* GetAllConfigurationItems()
+* GetConfigurationItem()
+* CreateDatabaseView()
+* GetDatabaseViewPrefix()
+* GetDatabaseViewName()
+* GetAllDatabaseViews()
+* GetDataBaseView()
+* CreateScriptInclude()
+* GetAllScriptIncludes()
+* GetScriptInclude()
+* CreateServicePortalWidget()
+* GetAllServicePortalWidgets()
+* GetServicePortalWidget()</description>
+        <mobile_callable>false</mobile_callable>
         <name>TestDataAPI</name>
-        <script><![CDATA[var TestDataAPI = Class.create();
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var TestDataAPI = Class.create(); 
 TestDataAPI.prototype =
 {
-	initialize:function(strPrefix)
+	initialize:function(strPrefix) 
 	{
 		this.SetPrefix(strPrefix);
 	},
@@ -1382,13 +1453,13 @@ TestDataAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-13 14:53:39</sys_created_on>
         <sys_id>1796abb01b78d410a89720a8ec4bcb1e</sys_id>
-        <sys_mod_count>194</sys_mod_count>
+        <sys_mod_count>197</sys_mod_count>
         <sys_name>TestDataAPI</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>protected</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_1796abb01b78d410a89720a8ec4bcb1e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-06-03 11:43:08</sys_updated_on>
+        <sys_updated_on>2024-09-10 08:41:52</sys_updated_on>
     </sys_script_include>
 </record_update>

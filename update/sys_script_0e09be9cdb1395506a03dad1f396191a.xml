@@ -12,7 +12,7 @@
         <change_fields>false</change_fields>
         <client_callable>false</client_callable>
         <collection>sys_app</collection>
-        <condition/>
+        <condition>IsActive()</condition>
         <description>If the system property "x_snc_devtools.ui.force_scope" is set to true, the current scope is set to the scope of the application when loading its form. This is to avoid the annoying message about being in the wrong scope.</description>
         <execute_function>false</execute_function>
         <filter_condition/>
@@ -41,7 +41,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>0e09be9cdb1395506a03dad1f396191a</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_name>sys_app - set scope to record scope</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -49,7 +49,7 @@
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_0e09be9cdb1395506a03dad1f396191a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-02-19 18:07:43</sys_updated_on>
+        <sys_updated_on>2024-08-16 09:53:15</sys_updated_on>
         <template/>
         <when>before_display</when>
         <x_snc_datasilos_created>false</x_snc_datasilos_created>

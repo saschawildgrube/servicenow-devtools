@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-12-01 17:33:45</sys_created_on>
         <sys_id>bc187fb01b6755105b76777d8b4bcb58</sys_id>
-        <sys_mod_count>21</sys_mod_count>
+        <sys_mod_count>22</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_bc187fb01b6755105b76777d8b4bcb58</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-02 16:50:12</sys_updated_on>
+        <sys_updated_on>2025-03-20 08:44:15</sys_updated_on>
         <table/>
         <test display_value="DevTools - InstanceScanCheckOnRecord">d808bbb01b6755105b76777d8b4bcb88</test>
         <timeout/>
@@ -49,9 +49,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-12-01 17:33:45</sys_created_on>
         <sys_id>b7283fb01b6755105b76777d8b4bcbb7</sys_id>
-        <sys_mod_count>21</sys_mod_count>
+        <sys_mod_count>22</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-02 16:50:12</sys_updated_on>
+        <sys_updated_on>2025-03-20 08:44:15</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -89,17 +89,9 @@
 			TestCase_InstanceScanCheckOnRecord_CheckResult);&#13;
 	}&#13;
 &#13;
-	test.Log('Using an OOTB check against a sys_app');&#13;
-	&#13;
-	var strCheckSysId = '8be6ae7f8742101001c8de05b7cb0b55'; // OOTB check "Unintentional Cross Scope privileges"&#13;
 	var grApp = GetAppRecord('x_snc_devtools');&#13;
-	TestCase_InstanceScanCheckOnRecord('','sys_app',grApp.sys_id,false);&#13;
-	TestCase_InstanceScanCheckOnRecord('','sys_app','12345678901234567890123456789012',false);&#13;
-	TestCase_InstanceScanCheckOnRecord(strCheckSysId,'sys_app','12345678901234567890123456789012',false);&#13;
-	TestCase_InstanceScanCheckOnRecord(strCheckSysId,'sys_app',grApp.sys_id,true);&#13;
 	&#13;
 	test.Log('Using a mock check against a sys_app');&#13;
-	&#13;
 	var grCheck = new GlideRecord('scan_table_check');&#13;
 	grCheck.initialize();&#13;
 	grCheck.name = 'Test1';&#13;
@@ -110,9 +102,12 @@
 	grCheck.priority = '1';&#13;
 	grCheck.sys_scope = 'global';&#13;
 	var strCheckSysId = GlideRecordInsert(grCheck);&#13;
-	//test.Log(RenderValue(grCheck));&#13;
+&#13;
+	TestCase_InstanceScanCheckOnRecord('','sys_app',grApp.sys_id,false);&#13;
+	TestCase_InstanceScanCheckOnRecord('','sys_app','12345678901234567890123456789012',false);&#13;
+	TestCase_InstanceScanCheckOnRecord(strCheckSysId,'sys_app','12345678901234567890123456789012',false);&#13;
 	TestCase_InstanceScanCheckOnRecord(strCheckSysId,'sys_app',grApp.sys_id,true);&#13;
-	&#13;
+&#13;
 	test.Log('Using a mock check against a sys_script_include');&#13;
 	var grCheck = new GlideRecord('scan_table_check');&#13;
 	grCheck.initialize();&#13;

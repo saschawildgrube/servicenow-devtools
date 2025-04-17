@@ -1,18 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update>
     <sys_ui_section caption="" section_id="c803d6cddb055010ba15a3530596191c" sys_domain="global" table="sys_atf_test_suite" version="3" view="devtools">
         <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>active</element>
+            <element>.begin_split</element>
             <position>0</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2020-05-26 13:28:52</sys_created_on>
-            <sys_id>d813d6cddb055010ba15a353059619ae</sys_id>
+            <sys_created_on>2024-08-10 12:56:23</sys_created_on>
+            <sys_id>523f11331b730a10063ddc61ab4bcbc2</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="sys_atf_test_suite" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">c803d6cddb055010ba15a3530596191c</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2020-05-26 13:28:52</sys_updated_on>
+            <sys_updated_on>2024-08-10 12:56:23</sys_updated_on>
+            <sys_user/>
+            <type>.begin_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>name</element>
+            <position>1</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-08-10 12:56:23</sys_created_on>
+            <sys_id>1a3f11331b730a10063ddc61ab4bcbc2</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="sys_atf_test_suite" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">c803d6cddb055010ba15a3530596191c</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-08-10 12:56:23</sys_updated_on>
             <sys_user/>
             <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.split</element>
+            <position>2</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-08-10 12:56:23</sys_created_on>
+            <sys_id>9a3f11331b730a10063ddc61ab4bcbc2</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="sys_atf_test_suite" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">c803d6cddb055010ba15a3530596191c</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-08-10 12:56:23</sys_updated_on>
+            <sys_user/>
+            <type>.split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>active</element>
+            <position>3</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-08-10 12:56:23</sys_created_on>
+            <sys_id>1e3f11331b730a10063ddc61ab4bcbc2</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="sys_atf_test_suite" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">c803d6cddb055010ba15a3530596191c</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-08-10 12:56:23</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.end_split</element>
+            <position>4</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-08-10 12:56:23</sys_created_on>
+            <sys_id>9e3f11331b730a10063ddc61ab4bcbc2</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="sys_atf_test_suite" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">c803d6cddb055010ba15a3530596191c</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-08-10 12:56:23</sys_updated_on>
+            <sys_user/>
+            <type>.end_split</type>
         </sys_ui_element>
         <sys_ui_section action="INSERT_OR_UPDATE">
             <caption/>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.GetRecordsFromUpdateXml</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Retrieves an array of records from a given Update Xml record.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>GetRecordsFromUpdateXml</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function GetRecordsFromUpdateXml(vUpdateXml)
+{
+	var grUpdateXml = GetRecord('sys_update_xml',vUpdateXml);
+	if (IsValidRecord(grUpdateXml) == false)
+	{
+		return false;
+	}
+
+	var aRecords = [];
+
+	var payload = ParseXml(grUpdateXml.payload);
+	if (payload == false)
+	{
+		return false;
+	}
+
+	var strClassName = GetValue(payload,'record_update','table');
+	var strSysId = GetValue(payload,'record_update',strClassName,'sys_id');
+	var grRecord = GetRecord(strClassName,strSysId);
+	if (IsValidRecord(grRecord) == true)
+	{
+		var record = Clone(grRecord);
+		aRecords.push(record);
+	}
+
+	var sys_choice = GetValue(payload,'record_update','sys_choice');
+	if (IsObject(sys_choice) == true)
+	{
+		var strSysId = GetValue(sys_choice,'sys_choice_set','sys_id');
+		var grRecord = GetRecord('sys_choice_set',strSysId);
+		if (IsValidRecord(grRecord) == true)
+		{
+			var record = Clone(grRecord);
+			aRecords.push(record);
+		}	
+	}
+
+	var sys_dictionary = GetValue(payload,'record_update','sys_dictionary');
+	if (IsObject(sys_dictionary) == true)
+	{
+		var strSysId = GetValue(sys_dictionary,'sys_id');
+		var grRecord = GetRecord('sys_dictionary',strSysId);
+		if (IsValidRecord(grRecord) == true)
+		{
+			var record = Clone(grRecord);
+			aRecords.push(record);
+		}	
+	}
+
+	var sys_documentation = GetValue(payload,'record_update','sys_documentation');
+	if (IsObject(sys_documentation) == true)
+	{
+		var strSysId = GetValue(sys_documentation,'sys_documentation','sys_id');
+		var grRecord = GetRecord('sys_documentation',strSysId);
+		if (IsValidRecord(grRecord) == true)
+		{
+			var record = Clone(grRecord);
+			aRecords.push(record);
+		}	
+	}			
+	return aRecords;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-12-27 13:43:47</sys_created_on>
+        <sys_id>ea3e5564c3329a505a37f907050131e3</sys_id>
+        <sys_mod_count>13</sys_mod_count>
+        <sys_name>GetRecordsFromUpdateXml</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_ea3e5564c3329a505a37f907050131e3</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-01-03 09:33:22</sys_updated_on>
+    </sys_script_include>
+</record_update>

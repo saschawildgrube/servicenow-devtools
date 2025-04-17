@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sysrule_view">
     <sysrule_view action="INSERT_OR_UPDATE">
-        <active>false</active>
+        <active>true</active>
         <advanced>false</advanced>
         <condition/>
         <description/>
@@ -21,7 +21,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>23f52dde1ba8c6100e0b2f836b4bcb98</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>DevTools - cmn_map_page</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -29,7 +29,7 @@
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sysrule_view_23f52dde1ba8c6100e0b2f836b4bcb98</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-02-26 08:16:05</sys_updated_on>
+        <sys_updated_on>2025-02-14 17:06:48</sys_updated_on>
         <table>cmn_map_page</table>
         <view>DevTools</view>
         <x_snc_devtools_table>cmn_map_page</x_snc_devtools_table>

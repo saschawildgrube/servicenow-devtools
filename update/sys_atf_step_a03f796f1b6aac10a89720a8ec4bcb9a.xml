@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-03-03 16:21:12</sys_created_on>
         <sys_id>a03f796f1b6aac10a89720a8ec4bcb9a</sys_id>
-        <sys_mod_count>14</sys_mod_count>
+        <sys_mod_count>15</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_a03f796f1b6aac10a89720a8ec4bcb9a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-10-10 12:54:23</sys_updated_on>
+        <sys_updated_on>2024-10-15 09:37:56</sys_updated_on>
         <table/>
         <test display_value="DevTools - RecordSetValue">e9ee356f1b6aac10a89720a8ec4bcb4c</test>
         <timeout/>
@@ -49,9 +49,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-03-03 16:21:12</sys_created_on>
         <sys_id>ec41caef1b6aac10a89720a8ec4bcb01</sys_id>
-        <sys_mod_count>14</sys_mod_count>
+        <sys_mod_count>15</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-10-10 12:54:23</sys_updated_on>
+        <sys_updated_on>2024-10-15 09:37:56</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -115,86 +115,7 @@
 &#13;
 	return test.GetResult();&#13;
 	&#13;
-})(outputs, steps, stepResult, assertEqual);&#13;
-&#13;
-/*&#13;
-var strLog = '';&#13;
-function Log(strText)&#13;
-{&#13;
-	strLog = strLog + "\n" + strText;&#13;
-}&#13;
-(function(outputs, steps, stepResult, assertEqual)&#13;
-{&#13;
-	var RenderValue = x_snc_devtools.RenderValue;&#13;
-&#13;
-	var bResult = true;&#13;
-	&#13;
-	function TestCase_RecordSetValue(strInputTable, strInputSysId, strInputField, vInputValue, bInputGhost, bExpected)&#13;
-	{&#13;
-		Log('TestCase_RecordSetValue');&#13;
-		Log('Input Table: '+RenderValue(strInputTable));&#13;
-		Log('Input SysId: '+RenderValue(strInputSysId));&#13;
-		Log('Input Field: '+RenderValue(strInputField));&#13;
-		Log('Input Value: '+RenderValue(vInputValue));&#13;
-		Log('Input Ghost: '+RenderValue(bInputGhost));&#13;
-		Log('Expected   : '+RenderValue(bExpected));&#13;
-		var vResult = RecordSetValue(strInputTable, strInputSysId, strInputField, vInputValue, bInputGhost);&#13;
-		Log('Result  : '+RenderValue(vResult));&#13;
-		&#13;
-		if (IsEqual(vResult,bExpected) == false)&#13;
-		{&#13;
-			bResult = false;&#13;
-			Log('FAILED: Unexpected return value.');&#13;
-		}&#13;
-		else&#13;
-		{&#13;
-			if (bExpected == true)&#13;
-			{&#13;
-				var grRecord = new GlideRecord(strInputTable);&#13;
-				if (grRecord.get(strInputSysId) == false)&#13;
-				{&#13;
-					Log('UNDEFINED: Record could not be loaded.');&#13;
-				}&#13;
-				else&#13;
-				{&#13;
-					var vResultValue = grRecord.getValue(strInputField)&#13;
-					if (IsEqual(vResultValue,vInputValue) == false)&#13;
-					{&#13;
-						bResult = false;&#13;
-						Log('FAILED: Value has not been set.');&#13;
-					}&#13;
-				}&#13;
-			}&#13;
-		}&#13;
-		Log('');&#13;
-	}&#13;
-&#13;
-	&#13;
-	var grTest = new GlideRecord('x_snc_devtools_test');&#13;
-	grTest.initialize();&#13;
-	grTest.value = 'Hello Europe';&#13;
-	var strSysId = grTest.insert();&#13;
-	TestCase_RecordSetValue('x_snc_devtools_test',strSysId,'value','Hello World',false,true);&#13;
-	&#13;
-	TestCase_RecordSetValue('thistabledoesnotexist','invalidsys_id','value','Hello World',false,false);&#13;
-	TestCase_RecordSetValue('x_snc_devtools_test','invalidsysid','value','Hello World',false,false);&#13;
-	TestCase_RecordSetValue('x_snc_devtools_test',strSysId,'thisvaluedoesnotexist','Hello World',false,false);&#13;
-&#13;
-	&#13;
-	var grIncident = new GlideRecord('incident');&#13;
-	grIncident.initialize();&#13;
-	grIncident.short_description = 'Hello Earth';&#13;
-	var strSysId = grIncident.insert();&#13;
-	TestCase_RecordSetValue('incident',strSysId,'short_description','Hello Universe',true,true);&#13;
-	&#13;
-	&#13;
-	&#13;
-	stepResult.setOutputMessage(strLog);&#13;
-	return bResult;&#13;
-	&#13;
-})(outputs, steps, stepResult, assertEqual);&#13;
-&#13;
-*/</value>
+})(outputs, steps, stepResult, assertEqual);</value>
         <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
     </sys_variable_value>
 </record_update>

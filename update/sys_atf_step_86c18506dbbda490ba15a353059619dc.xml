@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-01-20 13:08:30</sys_created_on>
         <sys_id>86c18506dbbda490ba15a353059619dc</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_86c18506dbbda490ba15a353059619dc</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-12-06 13:10:50</sys_updated_on>
+        <sys_updated_on>2025-01-27 16:21:23</sys_updated_on>
         <table/>
         <test display_value="DevTools - IsValidVersion">8e710506dbbda490ba15a35305961984</test>
         <timeout/>
@@ -35,53 +35,56 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-01-20 13:08:30</sys_created_on>
         <sys_id>88628146dbbda490ba15a353059619a9</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-12-06 13:10:50</sys_updated_on>
-        <value>var strLog = '';&#13;
-function Log(strText)&#13;
+        <sys_updated_on>2025-01-27 16:21:24</sys_updated_on>
+        <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
-	strLog = strLog + "\n" + strText;&#13;
-}&#13;
-(function(outputs, steps, stepResult, assertEqual)&#13;
-{&#13;
-	var RenderValue = x_snc_devtools.RenderValue;&#13;
-&#13;
-	var bResult = true;&#13;
+	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
 	&#13;
+	test.SetResult(true);&#13;
 &#13;
-	function TestCase_IsValidVersion(vInput, vExpected)&#13;
+	function TestCase_IsValidVersion(strVersion, bSemantic, vExpected)&#13;
 	{&#13;
-		Log('TestCase_IsValidVersion');&#13;
-		Log('Input: '+RenderValue(vInput));&#13;
-		Log('Expected: '+RenderValue(vExpected));&#13;
-		var vResult = IsValidVersion(vInput);&#13;
-		Log('Result  : '+RenderValue(vResult));&#13;
-		if (vResult != vExpected)&#13;
+		function TestCase_IsValidVersion_CheckResult(vInput,vExpected,vResult)&#13;
 		{&#13;
-			bResult = false;&#13;
-			Log('Test case FAILED');&#13;
+			return (vExpected == vResult);&#13;
 		}&#13;
-		Log('');&#13;
+&#13;
+		test.TestCase(&#13;
+			'Function IsValidVersion()',&#13;
+			IsValidVersion,&#13;
+			{&#13;
+				'strVersion': strVersion,&#13;
+				'bSemantic': bSemantic&#13;
+			},&#13;
+			vExpected,&#13;
+			TestCase_IsValidVersion_CheckResult);&#13;
 	}&#13;
-	&#13;
-	TestCase_IsValidVersion('1',true);&#13;
-	TestCase_IsValidVersion('1.0',true);&#13;
-	TestCase_IsValidVersion('1.1.1',true);&#13;
-	TestCase_IsValidVersion('1.1.1',true);&#13;
-	TestCase_IsValidVersion('1.1.1.0',true);&#13;
-&#13;
-	TestCase_IsValidVersion(null,false);&#13;
-	TestCase_IsValidVersion('',false);&#13;
-	TestCase_IsValidVersion('a',false);&#13;
-	TestCase_IsValidVersion('1.0a',false);&#13;
-	TestCase_IsValidVersion('!',false);&#13;
-	TestCase_IsValidVersion('1.',false);&#13;
-	TestCase_IsValidVersion('1..1.',false);&#13;
 &#13;
 	&#13;
-	stepResult.setOutputMessage(strLog);&#13;
-	return bResult;&#13;
+	TestCase_IsValidVersion('1',false,true);&#13;
+	TestCase_IsValidVersion('1.0',false,true);&#13;
+	TestCase_IsValidVersion('1.1.1',false,true);&#13;
+	TestCase_IsValidVersion('2.10.0',false,true);&#13;
+	TestCase_IsValidVersion('1.1.1.0',false,true);&#13;
+&#13;
+	TestCase_IsValidVersion('1',true,false);&#13;
+	TestCase_IsValidVersion('1.0',true,false);&#13;
+	TestCase_IsValidVersion('1.1.1',true,true);&#13;
+	TestCase_IsValidVersion('2.10.0',true,true);&#13;
+	TestCase_IsValidVersion('1.1.1.0',true,false);&#13;
+&#13;
+	TestCase_IsValidVersion(null,false,false);&#13;
+	TestCase_IsValidVersion('',false,false);&#13;
+	TestCase_IsValidVersion('a',false,false);&#13;
+	TestCase_IsValidVersion('1.0a',false,false);&#13;
+	TestCase_IsValidVersion('!',false,false);&#13;
+	TestCase_IsValidVersion('1.',false,false);&#13;
+	TestCase_IsValidVersion('1..1.',false,false);&#13;
+&#13;
+&#13;
+	return test.GetResult();&#13;
 	&#13;
 })(outputs, steps, stepResult, assertEqual);</value>
         <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>

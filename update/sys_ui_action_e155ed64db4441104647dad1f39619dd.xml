@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_action">
     <sys_ui_action action="INSERT_OR_UPDATE">
-        <action_name>save</action_name>
+        <action_name>devtools_save</action_name>
         <active>true</active>
         <client>false</client>
         <client_script_v2><![CDATA[function onClick(g_form) {
 
 }]]></client_script_v2>
         <comments>Global Save button with scope change capability</comments>
-        <condition>(current.canCreate() || current.canWrite() ) &amp;&amp; (AppGetProperty('ui.save_button') == true)  &amp;&amp; (current.getRecordClassName() != 'sys_m2m')</condition>
+        <condition>IsActive() &amp;&amp; (current.canCreate() || current.canWrite() ) &amp;&amp; (AppGetProperty('ui.save_button') == true)  &amp;&amp; (current.getRecordClassName() != 'sys_m2m')</condition>
         <form_action>true</form_action>
         <form_button>true</form_button>
         <form_button_v2>false</form_button_v2>
@@ -59,7 +59,6 @@ if (strClassName == 'sysrule_view')
 */
 
 
-//var bUiScriptSetGlobal = false;
 if (strClassName == 'sys_ui_script')
 {
 	if (current.sys_scope != 'global')
@@ -68,7 +67,10 @@ if (strClassName == 'sys_ui_script')
 		{
 			current.global = false;
 			current.x_snc_devtools_global = true;
-			//bUiScriptSetGlobal = true;
+		}
+		else
+		{
+			current.x_snc_devtools_global = false;
 		}
 	}
 }
@@ -107,7 +109,6 @@ if (bDoUpdate == true)
 	}
 	else
 	{
-		SetCurrentScope(current.sys_scope);
 		GlideRecordUpdate(current,IsGhostRequiredForRecordUpdate(current));
 	}
 }
@@ -144,7 +145,7 @@ RedirectToRecord(current,GetParam('sysparm_view'));]]></script>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>e155ed64db4441104647dad1f39619dd</sys_id>
-        <sys_mod_count>78</sys_mod_count>
+        <sys_mod_count>92</sys_mod_count>
         <sys_name>Save</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -152,9 +153,20 @@ RedirectToRecord(current,GetParam('sysparm_view'));]]></script>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_action_e155ed64db4441104647dad1f39619dd</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-03-15 17:47:15</sys_updated_on>
+        <sys_updated_on>2025-04-09 16:53:37</sys_updated_on>
         <table>global</table>
         <ui11_compatible>true</ui11_compatible>
         <ui16_compatible>false</ui16_compatible>
     </sys_ui_action>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>e155ed64db4441104647dad1f39619dd</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-04-09 16:33:37</sys_created_on>
+        <sys_id>c0b1243d93b0aa10959b7fda2bba10d2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-04-09 16:33:37</sys_updated_on>
+        <table>sys_ui_action</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>

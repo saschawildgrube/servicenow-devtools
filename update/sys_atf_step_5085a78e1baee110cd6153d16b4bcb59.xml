@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-05-03 16:33:03</sys_created_on>
         <sys_id>5085a78e1baee110cd6153d16b4bcb59</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>10</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_5085a78e1baee110cd6153d16b4bcb59</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-03-08 12:16:37</sys_updated_on>
+        <sys_updated_on>2024-09-10 12:03:57</sys_updated_on>
         <table/>
         <test display_value="DevTools - InstanceScanCheckOnApp">7365678e1baee110cd6153d16b4bcb76</test>
         <timeout/>
@@ -49,9 +49,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-05-03 16:33:03</sys_created_on>
         <sys_id>de85a78e1baee110cd6153d16b4bcbe2</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>10</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-03-08 12:16:38</sys_updated_on>
+        <sys_updated_on>2024-09-10 12:03:57</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -60,6 +60,13 @@
 &#13;
 	function TestCase_InstanceScanCheckOnApp(strCheckSysId, vApp, bDetailed, vExpected)&#13;
 	{&#13;
+		if (InstanceScanIsRunning() == true)&#13;
+		{&#13;
+			this.SetResult(false);&#13;
+			this.Log('WARNING: Another Instance Scan scan is currently running.\nA platform deficiency prevents multiple Instance Scan scans to run at the same time.\nAs a result, the test case cannot be executed right now.\nPlease try again later!\n');&#13;
+			return;&#13;
+		}	&#13;
+&#13;
 		function TestCase_InstanceScanCheckOnApp_CheckResult(vInput,vExpected,vResult)&#13;
 		{&#13;
 			var bFinding = false;&#13;
@@ -80,9 +87,9 @@
 			'Function InstanceScanCheckOnApp()',&#13;
 			InstanceScanCheckOnApp,&#13;
 			{&#13;
-				'Check': strCheckSysId,&#13;
-				'App': vApp,&#13;
-				'Detailed': bDetailed&#13;
+				'strCheckSysId': strCheckSysId,&#13;
+				'vApp': vApp,&#13;
+				'bDetailed': bDetailed&#13;
 			},&#13;
 			vExpected,&#13;
 			TestCase_InstanceScanCheckOnApp_CheckResult);&#13;
@@ -93,14 +100,16 @@
 	test.Log('Using a mock check against DevTools');&#13;
 	var grCheck = new GlideRecord('scan_table_check');&#13;
 	grCheck.initialize();&#13;
-	grCheck.name = 'Test2';&#13;
-	grCheck.short_description = 'Test2';&#13;
+	grCheck.name = 'Test';&#13;
+	grCheck.short_description = 'Test';&#13;
 	grCheck.category = 'performance';&#13;
 	grCheck.table = 'sys_script_include';&#13;
-	grCheck.conditions = 'active=true^EQ';&#13;
 	grCheck.priority = '1';&#13;
+	grCheck.advanced = true;&#13;
+	grCheck.script = '(function (engine) { engine.finding.increment(); })(engine);';&#13;
 	grCheck.sys_scope = 'global';&#13;
 	var strCheckSysId = GlideRecordInsert(grCheck);&#13;
+	test.Log(grCheck);&#13;
 &#13;
 	TestCase_InstanceScanCheckOnApp(null,null,false,false);&#13;
 	TestCase_InstanceScanCheckOnApp(strCheckSysId,grApp,false,true);&#13;

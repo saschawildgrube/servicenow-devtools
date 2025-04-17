@@ -15,7 +15,8 @@
 	}
 	else
 	{
-		top.window.location.href = strUrl;
+		//top.window.location.href = strUrl;
+		document.location.href = strUrl;
 	}
 }]]></script>
         <script_name>RedirectToUrl</script_name>
@@ -23,16 +24,16 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-11-23 19:28:47</sys_created_on>
         <sys_id>ec25cbd2db9fd5106a03dad1f3961954</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>x_snc_devtools.RedirectToUrl</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_script_ec25cbd2db9fd5106a03dad1f3961954</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-11-23 19:34:36</sys_updated_on>
+        <sys_updated_on>2024-09-09 11:10:30</sys_updated_on>
         <ui_type>0</ui_type>
         <use_scoped_format>false</use_scoped_format>
-        <x_snc_devtools_global>false</x_snc_devtools_global>
+        <x_snc_devtools_global>true</x_snc_devtools_global>
     </sys_ui_script>
 </record_update>

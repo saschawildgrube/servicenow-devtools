@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_script">
     <sys_ui_script action="INSERT_OR_UPDATE">
         <active>true</active>
-        <description>Reloads the current page. If the parameter bNotIfDirty is set to true, a dirty form will not be reloaded. Specify any fields that should be ignored when comparing the initial form field content with the curent state. </description>
+        <description>Reloads the current page. If the parameter bNotIfDirty is set to true, a dirty form will not be reloaded. Specify any fields that should be ignored when comparing the initial form field content with the current state. </description>
         <global>true</global>
         <ignore_in_now_experience>false</ignore_in_now_experience>
         <name>x_snc_devtools.Reload</name>
@@ -23,14 +23,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-02-22 10:33:41</sys_created_on>
         <sys_id>2a40610d1b60c2100e0b2f836b4bcb54</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>x_snc_devtools.Reload</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_script_2a40610d1b60c2100e0b2f836b4bcb54</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-02-22 13:35:20</sys_updated_on>
+        <sys_updated_on>2024-11-29 13:25:47</sys_updated_on>
         <ui_type>0</ui_type>
         <use_scoped_format>false</use_scoped_format>
         <x_snc_devtools_global>true</x_snc_devtools_global>

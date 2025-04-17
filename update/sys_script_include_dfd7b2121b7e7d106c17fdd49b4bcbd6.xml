@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Verifies if the given Record Transporter Package ID Suffix is valid.</description>
+        <mobile_callable>false</mobile_callable>
         <name>RecordTransporterIsValidPackageIDSuffix</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function RecordTransporterIsValidPackageIDSuffix(strIDSuffix)
 {
 	return StringCheckRegEx(strIDSuffix,'^[a-z0-9_\\-]{1,20}$');
@@ -15,13 +17,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-12-01 14:24:29</sys_created_on>
         <sys_id>dfd7b2121b7e7d106c17fdd49b4bcbd6</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>RecordTransporterIsValidPackageIDSuffix</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_dfd7b2121b7e7d106c17fdd49b4bcbd6</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-12-01 14:24:29</sys_updated_on>
+        <sys_updated_on>2024-08-28 12:58:59</sys_updated_on>
     </sys_script_include>
 </record_update>

@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Renders a the outcome of the WhatRuns() function for the given tables.</description>
+        <mobile_callable>false</mobile_callable>
         <name>HtmlRenderWhatRuns</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function HtmlRenderWhatRuns(vTables)
 {
 	
@@ -54,14 +56,14 @@
 			strHtml += '<p>';
 			
 			strHtml += HtmlRenderLink(
-				GetInstanceListURL(strTable,'','',0),
+				GetInstanceListUrl(strTable,'','',0),
 				'List',
 				true);	
 			
 			strHtml += '&#160;|&#160;'; 		
 			
 			strHtml += HtmlRenderLink(
-				GetInstanceURL()
+				GetInstanceUrl()
 					+'/nav_to.do?uri=personalize_all.do%3Fsysparm_rules_table%3D'+strTable+'%26sysparm_rules_label%3D'+strTable,
 				'All Configuration',
 				true);
@@ -102,7 +104,7 @@
 						strHtml += '</td>';
 						strHtml += '<td style="vertical-align: top; padding-right: 5px;">';
 						strHtml += HtmlRenderLink(
-							GetInstanceRecordURL(
+							GetInstanceRecordUrl(
 								whatruns_object.class_name,
 								whatruns_object.sys_id),
 							whatruns_object.name,
@@ -130,16 +132,11 @@
 					strHtml += '<td style="vertical-align: top; padding-right: 20px;">';
 						strHtml += HtmlRenderWhatRunsPhase('Update',GetValue(whatruns_table,'update'));
 					strHtml += '</td>';
-					/*strHtml += '<td style="vertical-align: top; padding-right: 20px;">';
-					strHtml += '</td>';*/
 				strHtml += '</tr>';
 			strHtml += '<tbody></table>';
 		}
 		
 	}
-	
-	
-	//strHtml += HtmlRenderValue(whatruns);
 	
 	return strHtml;
 }]]></script>
@@ -147,13 +144,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-03-29 08:13:08</sys_created_on>
         <sys_id>9f273595dba64910b652edb305961981</sys_id>
-        <sys_mod_count>53</sys_mod_count>
+        <sys_mod_count>58</sys_mod_count>
         <sys_name>HtmlRenderWhatRuns</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_9f273595dba64910b652edb305961981</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-03-13 16:49:30</sys_updated_on>
+        <sys_updated_on>2025-03-19 12:13:14</sys_updated_on>
     </sys_script_include>
 </record_update>

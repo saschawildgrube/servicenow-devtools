@@ -5,19 +5,52 @@
         <api_name>x_snc_devtools.DevToolsClientAPI</api_name>
         <caller_access/>
         <client_callable>true</client_callable>
-        <description>The DevToolsClientAPI is a client callable proxy for ajax calls to some of the functions provided by DevTools.</description>
+        <description>The DevToolsClientAPI is a client callable proxy for ajax calls to some of the functions provided by DevTools.
+|
+Methods:
+* GetParentTable()
+* GetTableFromSysId()
+* GetFormatConfig()
+* GetAllTables()
+* SetScopeForSystemPropertiesUI()
+* InstanceScanSuiteOnApp()
+* InstanceScanIsRunning()
+* GetTestRecord()
+* CreateTestForRecord()
+* GetSharedApplicationRecord()
+* CreateUserByEmail()
+* CreateTechnicalUser()
+* CreateTestUser()
+* AppVersionBaselineIsRunning()
+* AppVersionBaselineGetMessage()
+* AppVersionBaselineCheckReleaseNotes()
+* GetAppRecordsWithCredentialPollution()
+* GetAppUncommittedFiles()
+* GetAppBranches()
+* AddScriptTestStep()
+* start()</description>
+        <mobile_callable>false</mobile_callable>
         <name>DevToolsClientAPI</name>
+        <sandbox_callable>true</sandbox_callable>
         <script><![CDATA[var DevToolsClientAPI = Class.create();
 DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 {
 	GetParentTable: function()
 	{
+		if (gs.hasRole('admin') == false)
+		{
+			return false;
+		}			
 		var strTable = GetStringValue(this.getParameter('sysparm_table'));
 		return GetParentTable(strTable);
 	},
 	
 	GetTableFromSysId: function()
 	{
+		if (gs.hasRole('admin') == false)
+		{
+			return false;
+		}			
 		var strSysId = GetStringValue(this.getParameter('sysparm_sys_id'));
 		return GetTableFromSysId(strSysId);
 	},
@@ -44,14 +77,18 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 		{
 			var formatconfig = GetFormatConfig(strTable,strSysId);
 		}
-		return JSON.stringify(formatconfig);
+		return MakeJson(formatconfig);
 	},
 
 	GetAllTables: function()
 	{
+		if (gs.hasRole('admin') == false)
+		{
+			return false;
+		}			
 		var bExtendingTables = GetBoolValue(this.getParameter('sysparm_extending_tables'));
 		var tables = GetAllTables(bExtendingTables);
-		return JSON.stringify(tables);
+		return MakeJson(tables);
 	},
 	
 	SetScopeForSystemPropertiesUI: function()
@@ -78,13 +115,17 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 	
 	InstanceScanSuiteOnApp: function()
 	{
+		if (gs.hasRole('admin') == false)
+		{
+			return false;
+		}			
 		var strSuiteSysId = GetStringValue(this.getParameter('sysparm_suite'));
 		var strAppSysId = GetStringValue(this.getParameter('sysparm_app'));
 		var bDetailed = GetBoolValue(this.getParameter('sysparm_detailed'));
 		
 		var result = InstanceScanSuiteOnApp(strSuiteSysId, strAppSysId, bDetailed);
 		
-		return JSON.stringify(result);
+		return MakeJson(result);
 	},
 	
 	InstanceScanIsRunning: function()
@@ -95,6 +136,10 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 	
 	GetTestRecord: function()
 	{
+		if (gs.hasRole('admin') == false)
+		{
+			return false;
+		}
 		var strTable = GetStringValue(this.getParameter('sysparm_table'));
 		var strSysId = GetStringValue(this.getParameter('sysparm_sys_id'));
 		var grRecord = GetRecord(strTable,strSysId);
@@ -103,30 +148,72 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 			return false;
 		}
 		var grTest = GetTestRecord(grRecord);
-		return JSON.stringify(Clone(grTest));
+		return MakeJson(grTest);
+	},
+
+	CreateTestForRecord: function()
+	{
+		if (gs.hasRole('admin') == false)
+		{
+			return false;
+		}
+		var strTable = GetStringValue(this.getParameter('sysparm_table'));
+		var strSysId = GetStringValue(this.getParameter('sysparm_sys_id'));
+		var grRecord = GetRecord(strTable,strSysId);
+		if (IsValidRecord(grRecord) == false)
+		{
+			return false;
+		}
+		var strTestSysId = CreateTestForRecord(grRecord);
+		return strTestSysId;
+	},
+
+
+
+	GetSharedApplicationRecord: function()
+	{
+		if (gs.hasRole('admin') == false)
+		{
+			return false;
+		}		
+		var vAppOrSysId = GetStringValue(this.getParameter('sysparm_app_or_sys_id'));
+		var grSharedApp = GetSharedApplicationRecord(vAppOrSysId);
+		return MakeJson(grSharedApp);
 	},
 	
 	CreateUserByEmail: function()
 	{
+		if (gs.hasRole('user_admin') == false)
+		{
+			return false;
+		}		
 		var strEmail = GetStringValue(this.getParameter('sysparm_email'));
 		var strGroups = GetProperty('devtools.createuserbyemail.groups');
 		var aGroups = GetArrayValue(strGroups);
 		var strUserSysId = CreateUserByEmail(strEmail,aGroups);
-		return JSON.stringify(strUserSysId);		
+		return strUserSysId;		
 	},
 	
 	CreateTechnicalUser: function()
 	{
+		if (gs.hasRole('user_admin') == false)
+		{
+			return false;
+		}
 		var strName = GetStringValue(this.getParameter('sysparm_user_name'));
 		var strUserSysId = CreateTechnicalUser(strName);
-		return JSON.stringify(strUserSysId);		
+		return strUserSysId;		
 	},	
 
 	CreateTestUser: function()
 	{
+		if (gs.hasRole('user_admin') == false)
+		{
+			return false;
+		}
 		var strName = GetStringValue(this.getParameter('sysparm_user_name'));
 		var strUserSysId = CreateTestUser(strName);
-		return JSON.stringify(strUserSysId);		
+		return strUserSysId;		
 	},		
 
 	AppVersionBaselineIsRunning: function()
@@ -136,40 +223,85 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 
 	AppVersionBaselineGetMessage: function()
 	{
-		var strMessage = GetStringValue(AppGetProperty('baseline.message'));
-		return JSON.stringify(strMessage);
+		if (gs.hasRole('admin') == false)
+		{
+			return false;
+		}			
+		var strAppSysId = GetStringValue(this.getParameter('sysparm_app_sys_id'));
+		if (IsAppShared(strAppSysId) == true)
+		{
+			var strMessage = GetStringValue(AppGetProperty('baseline.sharedapp.message'));
+		}
+		else
+		{
+			var strMessage = GetStringValue(AppGetProperty('baseline.message'));
+		}
+		return MakeJson(strMessage);
 	},
 
 	AppVersionBaselineCheckReleaseNotes: function()
 	{
+		if (gs.hasRole('admin') == false)
+		{
+			return false;
+		}			
 		var strAppSysId = GetStringValue(this.getParameter('sysparm_app_sys_id'));
 		var bResult = AppVersionBaselineCheckReleaseNotes(strAppSysId);
-		return JSON.stringify(bResult);		
+		return MakeJson(bResult);		
 	},	
 
 	GetAppRecordsWithCredentialPollution: function()
 	{
+		if (gs.hasRole('admin') == false)
+		{
+			return false;
+		}			
 		var strAppSysId = GetStringValue(this.getParameter('sysparm_app_sys_id'));
 		var aPollutedRecords = GetAppRecordsWithCredentialPollution(strAppSysId);
-		return JSON.stringify(aPollutedRecords);		
+		return MakeJson(aPollutedRecords);		
 	},	
 
 	GetAppUncommittedFiles: function()
 	{
+		if (gs.hasRole('admin') == false)
+		{
+			return false;
+		}			
 		var strAppSysId = GetStringValue(this.getParameter('sysparm_app_sys_id'));
 		var aUncommittedFiles = GetAppUncommittedFiles(strAppSysId);
-		return JSON.stringify(aUncommittedFiles);		
+		var strJson = MakeJson(aUncommittedFiles);
+		return strJson;		
 	},	
 
 	GetAppBranches: function()
 	{
+		if (gs.hasRole('admin') == false)
+		{
+			return false;
+		}			
 		var strAppSysId = GetStringValue(this.getParameter('sysparm_app_sys_id'));
 		var aBranches = GetAppBranches(strAppSysId);
-		return JSON.stringify(aBranches);		
+		return MakeJson(aBranches);		
 	},	
+
+	AddScriptTestStep: function()
+	{
+		if (gs.hasRole('admin') == false)
+		{
+			return false;
+		}		
+		var strTestSysId = GetStringValue(this.getParameter('sysparm_test_sys_id'));
+		var strStepSysId = AddScriptTestStep(strTestSysId);
+		return MakeJson(strStepSysId);
+	},
 
 	start: function()
 	{
+		if (gs.hasRole('admin') == false)
+		{
+			return '';
+		}
+
 		var strWorkerId = '';
 		var strTrackerSourceTable = '';
 		var strTrackerType = '';
@@ -210,6 +342,42 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 				'AppVersionBaseline',
 				params);
 		}
+		if (strCommand == 'source_control_commit')
+		{
+			var strAppSysId = GetStringValue(this.getParameter("sysparm_ajax_processor_app_sys_id"));
+			if (strAppSysId == '')
+			{
+				LogError('DevToolsClientAPI.start(): SourceControlCommitToCurrentBranch: no app_sys_id specified.');
+				return '';
+			}
+			var grApp = GetAppRecord(strAppSysId);
+			if (IsValidRecord(grApp) == false)
+			{
+				LogError('DevToolsClientAPI.start(): SourceControlCommitToCurrentBranch: App not found.');
+				return '';
+			}
+
+			var strMessage = GetStringValue(this.getParameter("sysparm_ajax_processor_message"));
+
+			strTrackerSourceTable = 'sys_app';
+			strTrackerType = 'source_control_commit';
+
+			var strCurrentBranch = GetAppCurrentBranch(grApp);
+	
+			var strProgressName =
+				'Committing files to branch "'+strCurrentBranch+'" for app: '
+				+GetCleanAppName(grApp.name);
+
+			var params = {};
+			params['strAppSysId'] = strAppSysId;
+			params['strMessage'] = strMessage;
+
+			strWorkerId = StartWorker(
+				strProgressName,
+				'x_snc_devtools.DevToolsWorkerAPI',
+				'SourceControlCommitToCurrentBranch',
+				params);
+		}
 		else
 		{
 			LogError('DevToolsClientAPI.start(): Unknown command!');
@@ -247,13 +415,13 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-12 13:47:51</sys_created_on>
         <sys_id>7357b9131b8bb090edf3642aab4bcb10</sys_id>
-        <sys_mod_count>101</sys_mod_count>
+        <sys_mod_count>121</sys_mod_count>
         <sys_name>DevToolsClientAPI</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_7357b9131b8bb090edf3642aab4bcb10</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-07-04 16:59:35</sys_updated_on>
+        <sys_updated_on>2024-12-25 20:23:22</sys_updated_on>
     </sys_script_include>
 </record_update>

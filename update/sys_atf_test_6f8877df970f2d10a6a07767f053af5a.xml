@@ -8,6 +8,7 @@
         <name>DevTools - GetLength</name>
         <parameters/>
         <remember/>
+        <sn_atf_tg_generated>false</sn_atf_tg_generated>
         <sys_class_name>sys_atf_test</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-06-01 11:39:57</sys_created_on>

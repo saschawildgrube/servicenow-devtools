@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="maintainer_email" label="Maintainer Email" language="en" table="x_snc_devtools_shared_application">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>maintainer_email</element>
+            <help/>
+            <hint/>
+            <label>Maintainer Email</label>
+            <language>en</language>
+            <name>x_snc_devtools_shared_application</name>
+            <plural>Maintainer Emails</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-09-09 06:48:09</sys_created_on>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Maintainer Email</sys_name>
+            <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+            <sys_update_name>sys_documentation_x_snc_devtools_shared_application_maintainer_email_en</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-09-09 06:48:09</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

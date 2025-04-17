@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element attributes="update_synch=true" db_object_id="b701e8751bfeb9106c17fdd49b4bcb5e" extends="sys_metadata" label="Transporter Package" max_length="40" name="x_snc_devtools_transporter_package" type="collection">
-        <element label="Description" max_length="2000" name="description" type="string"/>
         <element label="ID" max_length="80" name="id" read_only="true" type="string"/>
-        <element label="ID Suffix" max_length="20" name="id_suffix" type="string"/>
         <element display="true" label="Name" mandatory="true" max_length="40" name="name" type="string"/>
+        <element label="ID Suffix" max_length="20" name="id_suffix" type="string"/>
+        <element label="Description" max_length="2000" name="description" type="string"/>
     </element>
 </database>

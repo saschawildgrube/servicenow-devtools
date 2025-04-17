@@ -14,7 +14,7 @@
         <sys_update_name>sys_atf_test_suite_test_c4a3d9b81be9e5105b76777d8b4bcb4a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2023-03-14 06:54:51</sys_updated_on>
-        <test display_value="DevTools  - StringFormat">c8a3d9b81be9e5105b76777d8b4bcb46</test>
+        <test display_value="DevTools - StringFormat">c8a3d9b81be9e5105b76777d8b4bcb46</test>
         <test_suite display_value="DevTools">4a8550391b5b8850a89720a8ec4bcbd9</test_suite>
     </sys_atf_test_suite_test>
 </record_update>

@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-05 12:39:33</sys_created_on>
         <sys_id>e775a10d1b4b7450edf3642aab4bcb23</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_e775a10d1b4b7450edf3642aab4bcb23</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-10-06 13:53:00</sys_updated_on>
+        <sys_updated_on>2024-08-14 14:42:11</sys_updated_on>
         <table/>
         <test display_value="DevTools - RunScriptInScope">8655edc91b4b7450edf3642aab4bcb9c</test>
         <timeout/>
@@ -35,9 +35,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-05 12:39:33</sys_created_on>
         <sys_id>bbe5a50d1b4b7450edf3642aab4bcb60</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-10-06 13:53:00</sys_updated_on>
+        <sys_updated_on>2024-08-14 14:42:11</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -63,11 +63,15 @@
 	var strScript = "";&#13;
 	strScript += "result = 'Hello '+param1+' from scope '+gs.getCurrentScopeName();"; &#13;
 	&#13;
-	TestCase_RunScriptInScope('d689f6901bd38450a89720a8ec4bcbfd',strScript,'John',null,'Hello John from scope x_snc_devtools'); // Scope x_snc_devtools&#13;
 	TestCase_RunScriptInScope('global',strScript,'Jane',null,'Hello Jane from scope rhino.global');&#13;
-	TestCase_RunScriptInScope('ebe42450739b13005754660c4cf6a7b1',strScript,'John',null,'Hello John from scope sn_incident_atf'); // Scope sn_incident_atf&#13;
+&#13;
+	TestCase_RunScriptInScope('d689f6901bd38450a89720a8ec4bcbfd',strScript,'John',null,'Hello John from scope x_snc_devtools'); // Scope x_snc_devtools&#13;
 &#13;
 	&#13;
+	&#13;
+	//TestCase_RunScriptInScope('ebe42450739b13005754660c4cf6a7b1',strScript,'John',null,'Hello John from scope sn_incident_atf'); // Scope sn_incident_atf&#13;
+&#13;
+	TestCase_RunScriptInScope('5d9789f3eb51310007e48c1cf106fe9e',strScript,'John',null,'Hello John from scope sn_devstudio');&#13;
 	&#13;
 	var strScript = "";&#13;
 	strScript += "var gi = new GlideImpersonate();";   // Do something that would provoke an error in a scoped application&#13;

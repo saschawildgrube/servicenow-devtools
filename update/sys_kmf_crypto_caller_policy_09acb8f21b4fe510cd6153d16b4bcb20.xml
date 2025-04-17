@@ -3,7 +3,7 @@
         <active>true</active>
         <approval_type/>
         <check_script_hash>false</check_script_hash>
-        <crypto_module display_value="com_snc_core_automation_connection_credential_glideencrypter">550cd0b07722201099808d1168106121</crypto_module>
+        <crypto_module display_value="global.com_snc_core_automation_connection_credential_glideencrypter">550cd0b07722201099808d1168106121</crypto_module>
         <crypto_spec display_value="com_snc_core_automation_connection_credential_glideencrypter --- Symmetric Key Wrapping/Unwrapping">110cd0b07722201099808d1168106123</crypto_spec>
         <granular_operation/>
         <identity_group_alias/>

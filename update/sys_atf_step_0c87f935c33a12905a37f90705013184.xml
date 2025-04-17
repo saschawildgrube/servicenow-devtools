@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <copied_from/>
+        <description>Run Server Side Validation Script</description>
+        <display_name>Run Server Side Script</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>1</order>
+        <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-12-31 12:42:59</sys_created_on>
+        <sys_id>0c87f935c33a12905a37f90705013184</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Run Server Side Script</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_step_0c87f935c33a12905a37f90705013184</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-12-31 12:54:14</sys_updated_on>
+        <table/>
+        <test display_value="DevTools - GetDependencyRecord">4c87f935c33a12905a37f90705013178</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=0c87f935c33a12905a37f90705013184"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>0c87f935c33a12905a37f90705013184</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-12-31 12:42:59</sys_created_on>
+        <sys_id>8487f935c33a12905a37f90705013186</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-12-31 12:42:59</sys_updated_on>
+        <value>3.1</value>
+        <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>0c87f935c33a12905a37f90705013184</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-12-31 12:42:59</sys_created_on>
+        <sys_id>8c87f935c33a12905a37f90705013186</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-12-31 12:54:14</sys_updated_on>
+        <value>(function(outputs, steps, stepResult, assertEqual)&#13;
+{&#13;
+	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
+	&#13;
+	test.SetResult(true);&#13;
+&#13;
+	function TestCase_GetDependencyRecord(vSource, vTarget, vExpected)&#13;
+	{&#13;
+		function TestCase_GetDependencyRecord_CheckResult(vInput,vExpected,vResult)&#13;
+		{&#13;
+			if (vExpected == true)&#13;
+			{&#13;
+				if (IsValidRecord(vResult) == false)&#13;
+				{&#13;
+					return false;&#13;
+				}&#13;
+				if (vResult.getRecordClassName() != 'x_snc_devtools_dependency')&#13;
+				{&#13;
+					return false;&#13;
+				}&#13;
+				return true;&#13;
+			}&#13;
+			return (vExpected == vResult);&#13;
+		}&#13;
+&#13;
+		test.TestCase(&#13;
+			'Function GetDependencyRecord()',&#13;
+			GetDependencyRecord,&#13;
+			{&#13;
+				'vSource': vSource,&#13;
+				'vTarget': vTarget&#13;
+			},&#13;
+			vExpected,&#13;
+			TestCase_GetDependencyRecord_CheckResult);&#13;
+	}&#13;
+&#13;
+	TestCase_GetDependencyRecord(null,null,false);&#13;
+&#13;
+	TestCase_GetDependencyRecord('x_snc_devtools',null,false);&#13;
+	TestCase_GetDependencyRecord(null,'x_snc_devtools',false);&#13;
+&#13;
+	var grApp = new GlideRecord('sys_app');&#13;
+	grApp.name = 'TEST';&#13;
+	grApp.scope = 'test';&#13;
+	var strAppSysId = GlideRecordInsert(grApp);&#13;
+&#13;
+	var grAppDevTools = GetAppRecord('x_snc_devtools');&#13;
+&#13;
+	var grDependency = new GlideRecord('x_snc_devtools_dependency');&#13;
+	grDependency.sys_scope = grApp.sys_id;&#13;
+	grDependency.dependency = grAppDevTools.sys_id;&#13;
+	grDependency.versions = '1.0.0';&#13;
+	var strDependencySysid = GlideRecordInsert(grDependency);&#13;
+&#13;
+	TestCase_GetDependencyRecord(grDependency,null,true);&#13;
+	TestCase_GetDependencyRecord(grDependency.sys_id,null,true);&#13;
+&#13;
+	TestCase_GetDependencyRecord('test','x_snc_devtools',true);&#13;
+	TestCase_GetDependencyRecord(grApp,grAppDevTools,true);&#13;
+	TestCase_GetDependencyRecord(grApp.sys_id,grAppDevTools.sys_id,true);&#13;
+&#13;
+	TestCase_GetDependencyRecord('x_snc_devtools','test',false);&#13;
+	TestCase_GetDependencyRecord(grAppDevTools,grApp,false);&#13;
+	TestCase_GetDependencyRecord(grAppDevTools.sys_id,grApp.sys_id,false);&#13;
+&#13;
+&#13;
+	&#13;
+	return test.GetResult();&#13;
+	&#13;
+})(outputs, steps, stepResult, assertEqual);</value>
+        <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
+    </sys_variable_value>
+</record_update>

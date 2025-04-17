@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_kmf_crypto_caller_policy">
+    <sys_kmf_crypto_caller_policy action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <approval_type/>
+        <check_script_hash>false</check_script_hash>
+        <crypto_module display_value="instance_level_glide_encrypter">401fa53c5b6220106cdba88ddc81c754</crypto_module>
+        <crypto_spec display_value="instance_level_glide_encrypter --- Symmetric Key Wrapping/Unwrapping">9e1f293c5b6220106cdba88ddc81c797</crypto_spec>
+        <granular_operation/>
+        <identity_group_alias/>
+        <impersonation>false</impersonation>
+        <instance_recipient/>
+        <owner>00dfd44b1b640a14a43dcb7b234bcbf2</owner>
+        <policy_name>AutoGen-scope-x_snc_devtools-instance_level_glide_encrypter</policy_name>
+        <result>track</result>
+        <script_hash/>
+        <script_table/>
+        <signature_data/>
+        <specify_purpose>false</specify_purpose>
+        <sys_class_name>sys_kmf_crypto_caller_policy</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-10-16 11:38:25</sys_created_on>
+        <sys_id>edef06d1831d961000d5ccc0deaad328</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_kmf_crypto_caller_policy_edef06d1831d961000d5ccc0deaad328</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-10-16 11:38:25</sys_updated_on>
+        <target_role/>
+        <target_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</target_scope>
+        <target_script/>
+        <type>3</type>
+        <used>false</used>
+    </sys_kmf_crypto_caller_policy>
+</record_update>

@@ -33,7 +33,7 @@
         <function_definition/>
         <function_field>false</function_field>
         <internal_type display_value="String">string</internal_type>
-        <mandatory>true</mandatory>
+        <mandatory>false</mandatory>
         <max_length>20</max_length>
         <name>x_snc_devtools_technical_debt</name>
         <next_element/>
@@ -58,7 +58,7 @@
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_dictionary_x_snc_devtools_technical_debt_id</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-04-25 11:08:57</sys_updated_on>
+        <sys_updated_on>2024-07-29 11:42:57</sys_updated_on>
         <table_reference>false</table_reference>
         <text_index>false</text_index>
         <unique>false</unique>

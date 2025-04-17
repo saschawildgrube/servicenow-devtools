@@ -8,6 +8,7 @@
         <name>DevTools - ParseCsv</name>
         <parameters/>
         <remember/>
+        <sn_atf_tg_generated>false</sn_atf_tg_generated>
         <sys_class_name>sys_atf_test</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-11-16 15:12:06</sys_created_on>

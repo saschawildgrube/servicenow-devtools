@@ -5,12 +5,47 @@
         <api_name>x_snc_devtools.DocumentationAPI</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>The DocumentationAPI helps to render fragments of an HTML page that documents the components of a scoped application.</description>
+        <description>The DocumentationAPI helps to render fragments of an HTML page that documents the components of a scoped application.
+|
+Methods:
+* initialize()
+* RenderHeader()
+* RenderDescription()
+* RenderListItem()
+* RenderCopyright()
+* RenderDisclaimer()
+* RenderLicense()
+* RenderRoles()
+* RenderProperties()
+* RenderTables()
+* RenderConnectionAndCredentialAliases()
+* RenderEvents()
+* RenderUIActions()
+* RenderScriptIncludes()
+* RenderUIScripts()
+* RenderBusinessRules()
+* RenderScheduledJobs()
+* RenderTestStepConfigurations()
+* RenderExtensionPoints()
+* RenderInstanceScanChecks()
+* RenderEditorMacros()
+* RenderRestApis()
+* RenderDependencies()
+* RenderTechnicalDebts()
+* RenderSystemRequirements()
+* RenderInstallationInstructionsImportFromSourceControl()
+* RenderInstallationInstructionsBackgroundScript()
+* RenderInstallationInstructionsConfigureTableCrossScopeAccess()
+* RenderInstallationInstructionsAppInstall()
+* RenderInstallationInstructionsRunTestSuite()
+* RenderError()</description>
+        <mobile_callable>false</mobile_callable>
         <name>DocumentationAPI</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[var DocumentationAPI = Class.create();
-DocumentationAPI.prototype = {
-    
-	initialize: function(vApp)
+DocumentationAPI.prototype =
+{
+	initialize: function(vApp)  
 	{
 		this.m_bInit = false;
 		this.m_strAppSysId = '';
@@ -18,9 +53,9 @@ DocumentationAPI.prototype = {
 		this.m_strAppVersion = '';
 		this.m_strScope = '';
 		this.m_bGitHubRepeat = false;
-		this.m_bTestSuiteRepeat = false;
-		
-		if (IsValidSysId(vApp) == true)
+		this.m_bTestSuiteRepeat = false;   
+
+		if (IsValidSysId(vApp) == true)   
 		{
 			this.m_strAppSysId = GetStringValue(vApp);
 		}
@@ -171,6 +206,59 @@ DocumentationAPI.prototype = {
 		return strHtml;	
 	},
 
+	RenderTables: function()
+	{
+		if (this.m_bInit == false)
+		{
+			return this.RenderError();
+		}	
+		var grDBO = new GlideRecord('sys_db_object');
+		grDBO.addQuery('sys_scope','=',this.m_strAppSysId);
+		grDBO.orderBy('label');
+		grDBO.query();
+
+		var strHtml = '';
+		if (grDBO.getRowCount() == 0)
+		{
+			strHtml += '<p>This app does not add any tables.</p>';
+		}
+		else
+		{
+			strHtml += '<ul>';
+			while (grDBO.next())
+			{
+				var strDetails = '';
+
+				var strParentTable = GetParentTable(grDBO.getValue('name'));
+				if (strParentTable != '')
+				{
+					var grParent = new GlideRecord('sys_db_object');
+					grParent.addQuery('name','=',strParentTable);
+					grParent.query();
+					if (grParent.next())
+					{
+						var strParentTableLink = HtmlRenderLink(
+							GetInstanceRecordPath('sys_db_object',grParent.sys_id),
+							grParent.label+' (' + grParent.name + ')',
+							true);
+						strDetails += 'The table is derived from table&#160;'+strParentTableLink+'.<br/>';
+					}
+				}
+				else
+				{
+					strDetails += 'The table is not derived from any other table.';
+				}
+				strHtml += this.RenderListItem(
+					grDBO.getValue('label') + ' (' + grDBO.getValue('name') + ')',
+					GetInstanceRecordPath('sys_db_object',grDBO.sys_id),
+					strDetails);
+			}
+			strHtml += '</ul>';
+		}
+		return strHtml;	
+	},
+
+
 	RenderConnectionAndCredentialAliases: function()
 	{
 		if (this.m_bInit == false)
@@ -294,7 +382,7 @@ DocumentationAPI.prototype = {
 			while (grSSI.next())
 			{
 				var strDescription = HtmlEncode(grSSI.getValue('description'));
-				
+
 				strHtml += this.RenderListItem(
 					grSSI.getValue('name'),
 					GetInstanceRecordPath('sys_script_include',grSSI.sys_id),
@@ -613,7 +701,91 @@ DocumentationAPI.prototype = {
 		}
 		return strHtml;
 	},
-	
+
+	RenderDependencies: function()
+	{
+		if (this.m_bInit == false)
+		{
+			return this.RenderError();
+		}	
+		var grDep = new GlideRecord('x_snc_devtools_dependency');
+		grDep.addQuery('sys_scope','=',this.m_strAppSysId);
+		grDep.orderBy('dependency.name');
+		grDep.query();
+
+		var strHtml = '';
+		if (grDep.getRowCount() == 0)
+		{
+			strHtml += '<p>This app does not have any dependencies.</p>';
+		}
+		else
+		{
+			strHtml += '<ul>';
+			while (grDep.next())
+			{
+				var strDetails = '';
+				strDetails += 'Compatible Versions: '+grDep.versions + '<br/>';
+				strDetails += 'Repository url:&#160;'+HtmlRenderLink(grDep.repo_url,'',true) + '<br/>';
+				strDetails += grDep.reason + '<br/>';
+			
+				var strLink = GetStringValue(grDep.documentation_url);
+				if (IsValidUrl(strLink) == false)
+				{
+					strLink = GetInstanceRecordPath('sys_app',grDep.dependency);
+				}
+			
+				strHtml += this.RenderListItem(
+					grDep.getValue('name'),
+					strLink,
+					strDetails);
+			}
+			strHtml += '</ul>';
+		}
+		return strHtml;	
+	},
+
+
+	RenderTechnicalDebts: function()
+	{
+		if (this.m_bInit == false)
+		{
+			return this.RenderError();
+		}	
+		var grTD = new GlideRecord('x_snc_devtools_technical_debt');
+		grTD.addQuery('sys_scope','=',this.m_strAppSysId);
+		grTD.orderBy('short_description');
+		grTD.query();
+
+		var strHtml = '';
+		if (grTD.getRowCount() == 0)
+		{
+			strHtml += '<p>No technical debt has been documented for this application.</p>';
+		}
+		else
+		{
+			strHtml += '<ul>';
+			while (grTD.next())
+			{
+				var strDetails = '';
+				strDetails += grTD.description + '<br/>';
+				var strID = GetStringValue(grTD.id);
+				if (strID != '')
+				{
+					strDetails += 'Switch: '+GetBoolValue(grTD.getValue('switch')) + '<br/>';
+				}
+			
+			
+				strHtml += this.RenderListItem(
+					grTD.short_description,
+					GetInstanceRecordPath('x_snc_devtools_technical_debt',grTD.sys_id),
+					strDetails);
+			}
+			strHtml += '</ul>';
+		}
+		return strHtml;	
+	},
+
+
 	RenderSystemRequirements: function(aSupportedReleases,bGitHubAccessRequired,aDependencies)
 	{
 		aSupportedReleases = GetArrayValue(aSupportedReleases);
@@ -778,13 +950,13 @@ DocumentationAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-01-20 15:26:20</sys_created_on>
         <sys_id>98912146db31e490ba15a353059619b6</sys_id>
-        <sys_mod_count>165</sys_mod_count>
+        <sys_mod_count>262</sys_mod_count>
         <sys_name>DocumentationAPI</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>protected</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_98912146db31e490ba15a353059619b6</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-07-06 16:49:49</sys_updated_on>
+        <sys_updated_on>2024-08-28 12:58:53</sys_updated_on>
     </sys_script_include>
 </record_update>

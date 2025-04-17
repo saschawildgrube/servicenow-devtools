@@ -8,6 +8,7 @@
         <name>DevTools - IsEqual</name>
         <parameters/>
         <remember/>
+        <sn_atf_tg_generated>false</sn_atf_tg_generated>
         <sys_class_name>sys_atf_test</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-04-21 07:29:05</sys_created_on>

@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-12-02 22:04:21</sys_created_on>
         <sys_id>dc0ff9d51bef95105b76777d8b4bcb78</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_dc0ff9d51bef95105b76777d8b4bcb78</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-02 22:04:21</sys_updated_on>
+        <sys_updated_on>2024-09-09 10:53:47</sys_updated_on>
         <table/>
         <test display_value="DevTools - InstanceScanIsRunning">7fde35d51bef95105b76777d8b4bcb43</test>
         <timeout/>
@@ -35,9 +35,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-12-02 22:04:21</sys_created_on>
         <sys_id>2dbf71991bef95105b76777d8b4bcbd0</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-02 22:04:21</sys_updated_on>
+        <sys_updated_on>2024-09-09 10:53:47</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -54,17 +54,14 @@
 			null);&#13;
 	}&#13;
 &#13;
-	// The function InstanceScanIsRunning() checks the current state of the platform&#13;
-	// No way has been identified to reliable test the function in a deterministic way&#13;
-	&#13;
-	if (InstanceScanIsRunning() == false)&#13;
-	{&#13;
-		TestCase_InstanceScanIsRunning(false);&#13;
-	}&#13;
-	else&#13;
-	{&#13;
-		TestCase_InstanceScanIsRunning(true);&#13;
-	}&#13;
+&#13;
+	TestCase_InstanceScanIsRunning(false);&#13;
+&#13;
+	var grScanResult = new GlideRecord('scan_result');&#13;
+	grScanResult.initialize();&#13;
+	grScanResult.state = 'in_progress';&#13;
+	grScanResult.insert();&#13;
+	TestCase_InstanceScanIsRunning(true);&#13;
 	&#13;
 	return test.GetResult();&#13;
 	&#13;

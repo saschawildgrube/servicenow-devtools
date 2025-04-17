@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_form_sections form_id="2a50007333abde10037396382e5c7bda" sys_domain="global" table="sys_ui_policy" version="3">
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>0</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-02-12 15:57:21</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>2650007333abde10037396382e5c7bdc</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="sys_ui_policy" name="sys_ui_policy" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">2a50007333abde10037396382e5c7bda</sys_ui_form>
+            <sys_ui_section caption="NULL" display_value="" name="sys_ui_policy" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">10665f121b200a100e0b2f836b4bcbb8</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-02-12 15:57:21</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>1</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-02-12 15:58:36</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>c1a0c47333abde10037396382e5c7b66</sys_id>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="sys_ui_policy" name="sys_ui_policy" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">2a50007333abde10037396382e5c7bda</sys_ui_form>
+            <sys_ui_section caption="When to Apply" display_value="When to Apply" name="sys_ui_policy" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">4da0847333abde10037396382e5c7be7</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-02-12 16:01:06</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>2</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-02-12 16:01:41</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>0a5188b333abde10037396382e5c7b7b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="sys_ui_policy" name="sys_ui_policy" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">2a50007333abde10037396382e5c7bda</sys_ui_form>
+            <sys_ui_section caption="Script" display_value="Script" name="sys_ui_policy" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">4a5188b333abde10037396382e5c7b79</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-02-12 16:01:41</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form action="INSERT_OR_UPDATE">
+            <name>sys_ui_policy</name>
+            <roles/>
+            <sys_class_name>sys_ui_form</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-02-12 15:57:21</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>2a50007333abde10037396382e5c7bda</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>sys_ui_policy</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+            <sys_update_name>sys_ui_form_sections_2a50007333abde10037396382e5c7bda</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-02-12 15:57:21</sys_updated_on>
+            <sys_user/>
+            <view display_value="DevTools" name="devtools">75e08353dbbf0450ba15a35305961913</view>
+            <view_name/>
+        </sys_ui_form>
+    </sys_ui_form_sections>
+</record_update>

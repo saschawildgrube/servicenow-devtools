@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Retireves all dependencies of the given package as a list of objects sorted by deployment order.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetPackageDependencyList</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetPackageDependencyList(vPackage)
 {
 	var dependencytree = GetPackageDependencyTree(vPackage);
@@ -21,13 +23,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-01-13 13:47:42</sys_created_on>
         <sys_id>77c060b21b98ed905b76777d8b4bcba0</sys_id>
-        <sys_mod_count>29</sys_mod_count>
+        <sys_mod_count>30</sys_mod_count>
         <sys_name>GetPackageDependencyList</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_77c060b21b98ed905b76777d8b4bcba0</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-06-09 16:39:29</sys_updated_on>
+        <sys_updated_on>2024-08-28 12:58:49</sys_updated_on>
     </sys_script_include>
 </record_update>

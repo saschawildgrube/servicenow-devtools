@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="x_snc_devtools_technical_debt">
     <x_snc_devtools_technical_debt action="INSERT_OR_UPDATE">
         <description>The function GetInstanceRecordPath() is deprecated and replaced by function GetRecordUri().</description>
-        <id>deprecated_girp</id>
+        <id/>
         <short_description>GetInstanceRecordPath() is deprecated</short_description>
         <switch>false</switch>
         <sys_class_name>x_snc_devtools_technical_debt</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-02-15 09:39:54</sys_created_on>
         <sys_id>9ca0d53e1b988e106c17fdd49b4bcba3</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>GetInstanceRecordPath() is deprecated</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>x_snc_devtools_technical_debt_9ca0d53e1b988e106c17fdd49b4bcba3</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-02-15 09:39:54</sys_updated_on>
+        <sys_updated_on>2024-07-29 11:48:18</sys_updated_on>
     </x_snc_devtools_technical_debt>
 </record_update>

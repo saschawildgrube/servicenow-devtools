@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns true if the given string contains a valid, fully qualified Url, false if not.</description>
+        <mobile_callable>false</mobile_callable>
         <name>IsValidUrl</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function IsValidUrl(strUrl)
 {
 
@@ -20,7 +22,7 @@
 			+ '(([a-z0-9-.]*)\\.([a-z]{2,20})|'+strRegexIPv4+'|localhost)' // HOST with TLD or IP or "localhost"
 			+ '(\\:[0-9]{2,5})?' // PORT
 			+ '(\\/([a-z0-9!$%\\/\\(\\)=@+~,:\\-_]\\.?)+)*\\/?' // PATH allowing double slashes and commas, equal signs...
-			+ '(\\?([a-z\\:+&$_.-][a-z0-9;:@&%=+\\/\\(\\)$_.\\?\\{\\}\\-]*)?)?' // GET Query      
+			+ '(\\?([a-z\\:+&$_.-][a-z0-9;:@&%=+\\/\\(\\)$_.\\?\\{\\}\\-\\\'\\!]*)?)?' // GET Query      
 			+ '(#([a-z!_\\.\\-\\/][a-z0-9:&%!+\\/=$_\\.\\?\\-]*)?)?' // ANCHOR 
 			;
 		
@@ -57,13 +59,24 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-01-04 11:46:09</sys_created_on>
         <sys_id>2b7ea9771b88e1905b76777d8b4bcbc4</sys_id>
-        <sys_mod_count>9</sys_mod_count>
+        <sys_mod_count>18</sys_mod_count>
         <sys_name>IsValidUrl</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_2b7ea9771b88e1905b76777d8b4bcbc4</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-09-21 07:20:21</sys_updated_on>
+        <sys_updated_on>2024-11-08 22:13:26</sys_updated_on>
     </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>2b7ea9771b88e1905b76777d8b4bcbc4</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-10-27 18:57:10</sys_created_on>
+        <sys_id>3fcd54c91b2512106a8db8449b4bcbe5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-10-27 18:57:10</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>

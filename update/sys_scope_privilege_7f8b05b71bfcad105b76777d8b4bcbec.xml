@@ -16,7 +16,7 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2023-02-10 15:59:49</sys_updated_on>
         <target_name>PromptQuestionAboutRecords</target_name>
-        <target_scope display_value="ChatGPT WORK IN PROGRESS">f68927f3dbd0e1106a03dad1f39619f3</target_scope>
+        <target_scope/>
         <target_type>sys_script_include</target_type>
     </sys_scope_privilege>
 </record_update>

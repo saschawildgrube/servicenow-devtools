@@ -9,11 +9,16 @@
 The vInput parameter can either contain the target url as a string or a parameter object.&#13;
 Values in the parameter object are:&#13;
 - url: the url to be requested&#13;
-- requestbody: the string to be sent as the request body. If provided the method is set to "post", if not then "get"&#13;
+- method: the http verb to be used (e.g. "get", "post", etc.)&#13;
+- requestbody: the string to be sent as the request body. If provided the method is set to "post" no matter what is specified in the method parameter.&#13;
 - basicauth: An object containing values "username" and "password"&#13;
+- credential: The Sys Id of a credential record (can be OAuth 2.0 or Basic Auth)&#13;
 - response: A string to specify how the result should be returned by HttpRequest. If set to "RESTResponseV2" an object is returned if the request did not run into an exception, otherwise the function returns the response body.&#13;
-- headers: An array of objects representing a header. A header object should contain values "name" and "value".</description>
+- headers: An array of objects representing a header. A header object should contain values "name" and "value".&#13;
+- mid_server: the name of a MID server to be used to relay the request.</description>
+        <mobile_callable>false</mobile_callable>
         <name>HttpRequest</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function HttpRequest(vInput)
 {
 	var params = {};
@@ -28,24 +33,33 @@ Values in the parameter object are:&#13;
 		strUrl = GetStringValue(GetValue(vInput,'url'));
 		if (strUrl == '')
 		{
+			LogError('HttpRequest: No url specified!');
 			return false;
 		}
 	}
 
 	if (IsValidUrl(strUrl) == false)
 	{
+		LogError('HttpRequest: Url invalid: '+strUrl);
 		return false;
 	}
 
-	var strRequestBody = GetStringValue(GetValue(params,'requestbody'));
 	var http = new sn_ws.RESTMessageV2();
-	if (strRequestBody == '')
+
+	var strMethod = GetStringValue(GetValue(params,'method'));
+	if (strMethod == '')
 	{
-		http.setHttpMethod('get');
+		strMethod = 'get';
 	}
-	else
+	http.setHttpMethod(strMethod);
+
+	var strRequestBody = GetStringValue(GetValue(params,'requestbody'));
+	if (strRequestBody != '')
 	{
-		http.setHttpMethod('post');
+		if (strMethod == 'get')
+		{
+			http.setHttpMethod('post');
+		}
 		http.setRequestBody(strRequestBody);
 	}
 
@@ -58,7 +72,14 @@ Values in the parameter object are:&#13;
 		http.setRequestHeader(strName, strValue);
 	}
 	
+	var strCredentialSysId = GetValue(params,'credential');
 	var oBasicAuth = GetValue(params,'basicauth');
+	if (IsValidSysId(strCredentialSysId) == true && IsObject(oBasicAuth) == true)
+	{
+			LogError('HttpRequest: Ambiguous authentication parameters');
+			return false;			
+	}
+
 	if (IsObject(oBasicAuth) == true)
 	{
 		var strUserName = GetStringValue(GetValue(oBasicAuth,'username'));
@@ -68,6 +89,89 @@ Values in the parameter object are:&#13;
 			http.setBasicAuth(strUserName,strPassword);
 		}
 	}
+
+	if (IsValidSysId(strCredentialSysId) == true)
+	{
+		var grCredential = GetRecord('discovery_credentials',strCredentialSysId);
+		if (IsValidRecord(grCredential) == false)
+		{
+			LogError('HttpRequest: Could not load credential record: "'+strCredentialSysId+'"');
+			return false;			
+		}
+
+		var strType = GetStringValue(grCredential.type);
+		if (strType == 'basic_auth')
+		{
+			var grCredential = GetRecord('basic_auth_credentials',strCredentialSysId);
+			if (IsValidRecord(grCredential) == false)
+			{
+				LogError('HttpRequest: Could not load Basic Auth credential record: "'+strCredentialSysId+'"');
+				return false;			
+			}
+
+			var provider = new sn_cc.StandardCredentialsProvider();
+			var credential = provider.getCredentialByID(grCredential.sys_id);
+		
+			http.setBasicAuth(
+				credential.getAttribute("user_name"),
+				credential.getAttribute("password"));
+		}
+		if (strType == 'oauth_2_0')
+		{
+			var grCredential = GetRecord('oauth_2_0_credentials',strCredentialSysId);
+			if (IsValidRecord(grCredential) == false)
+			{
+				LogError('HttpRequest: Could not load OAuth 2.0 credential record: "'+strCredentialSysId+'"');
+				return false;			
+			}			
+
+			var strProfileSysId = GetStringValue(grCredential.oauth_entity_profile);
+			
+			var grProfile = GetRecord('oauth_entity_profile',strProfileSysId);
+			if (IsValidRecord(grProfile) == false)
+			{
+				LogError('HttpRequest: Could not load OAuth2 profile record: "'+strProfileSysId+'"');
+				return false;			
+			}
+			try
+			{
+				http.setRequestorProfile('oauth_2_0_credentials',strCredentialSysId); 
+				http.setAuthenticationProfile('oauth2', strProfileSysId);
+			}
+			catch (e)
+			{
+				LogError('HttpRequest: Failed to initialize OAuth 2.0 authentication: '+e);
+				return false;			
+			}
+
+		}
+	}
+
+
+
+	var strMidServer = GetStringValue(GetValue(params,'mid_server'));
+	if (strMidServer != '')
+	{
+		var grAgent = new GlideRecord('ecc_agent');
+		grAgent.addQuery('name','=',strMidServer);
+		grAgent.query();
+		if (grAgent.getRowCount() > 1)
+		{
+			LogError('HttpRequest: Found more than one MID server with name: "'+strMidServer+'"');
+			return false;
+		}
+		if (grAgent.next() == false)
+		{
+			LogError('HttpRequest: Could find MID server named: "'+strMidServer+'"');
+			return false;
+		}
+		if (grAgent.status != 'Up')
+		{
+			LogError('HttpRequest: MID server "'+strMidServer+'" is not in status "Up"!');
+			return false;
+		}
+		http.setMIDServer(strMidServer);	
+	}
 	http.setEndpoint(strUrl);
 	try 
 	{
@@ -75,7 +179,7 @@ Values in the parameter object are:&#13;
 	}
 	catch (e)
 	{
-		LogError(e);
+		LogError('HttpRequest: http.execute threw an exception: ' + RenderValue(e));
 		return false;
 	}
 
@@ -86,19 +190,20 @@ Values in the parameter object are:&#13;
 	}
 
 	var body = response.getBody();
+
 	return body;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 09:10:34</sys_created_on>
         <sys_id>be520f981bd38450a89720a8ec4bcbab</sys_id>
-        <sys_mod_count>15</sys_mod_count>
+        <sys_mod_count>45</sys_mod_count>
         <sys_name>HttpRequest</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_be520f981bd38450a89720a8ec4bcbab</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-06-29 08:51:42</sys_updated_on>
+        <sys_updated_on>2025-02-26 10:51:50</sys_updated_on>
     </sys_script_include>
 </record_update>

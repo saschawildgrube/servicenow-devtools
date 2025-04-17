@@ -12,7 +12,7 @@
         <change_fields>false</change_fields>
         <client_callable>false</client_callable>
         <collection>sysrule_view</collection>
-        <condition/>
+        <condition>IsActive()</condition>
         <description>Sets the x_snc_devtools_table field if it is empty</description>
         <execute_function>false</execute_function>
         <filter_condition/>
@@ -29,11 +29,6 @@
         <role_conditions/>
         <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
 	
-	/*if (IsValidTable(current.table) == true && current.x_snc_devtools_table != current.table)
-	{
-		current.x_snc_devtools_table = current.table;
-	}*/
-	
 	if (IsValidTable(current.x_snc_devtools_table) == false)
 	{
 		current.x_snc_devtools_table = current.table;
@@ -48,8 +43,6 @@
 		}
 	}
 	
-
-	
 	
 })(current, previous);]]></script>
         <sys_class_name>sys_script</sys_class_name>
@@ -58,7 +51,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>e1be20a51bcab1506c17fdd49b4bcbca</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_mod_count>14</sys_mod_count>
         <sys_name>sysrule_view - prepare table</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -66,7 +59,7 @@
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_e1be20a51bcab1506c17fdd49b4bcbca</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-10-22 14:35:00</sys_updated_on>
+        <sys_updated_on>2024-08-16 09:53:26</sys_updated_on>
         <template/>
         <when>before_display</when>
         <x_snc_datasilos_created>false</x_snc_datasilos_created>

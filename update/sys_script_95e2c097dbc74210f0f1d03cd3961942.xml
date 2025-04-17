@@ -12,10 +12,11 @@
         <change_fields>false</change_fields>
         <client_callable>false</client_callable>
         <collection>sys_metadata</collection>
-        <condition/>
+        <condition>/* IsActive() is not required */ 1==1</condition>
         <description>Warn admins if the current application contains records with credentials.</description>
         <execute_function>false</execute_function>
-        <filter_condition/>
+        <filter_condition table="sys_metadata">null<item endquery="false" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </filter_condition>
         <is_rest>false</is_rest>
         <message/>
         <name>sys_metadata - show credential pollution</name>
@@ -38,7 +39,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>95e2c097dbc74210f0f1d03cd3961942</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_name>sys_metadata - show credential pollution</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -46,7 +47,7 @@
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_95e2c097dbc74210f0f1d03cd3961942</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-07-03 21:53:05</sys_updated_on>
+        <sys_updated_on>2024-08-16 07:21:31</sys_updated_on>
         <template/>
         <when>before_display</when>
         <x_snc_datasilos_created>false</x_snc_datasilos_created>

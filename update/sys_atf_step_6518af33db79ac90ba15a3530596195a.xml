@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-01-26 11:41:52</sys_created_on>
         <sys_id>6518af33db79ac90ba15a3530596195a</sys_id>
-        <sys_mod_count>17</sys_mod_count>
+        <sys_mod_count>18</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_6518af33db79ac90ba15a3530596195a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-11-11 09:45:20</sys_updated_on>
+        <sys_updated_on>2024-07-11 08:41:35</sys_updated_on>
         <table/>
         <test display_value="DevTools - GetRolesFromUser">6118af33db79ac90ba15a35305961910</test>
         <timeout/>
@@ -35,9 +35,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-01-26 11:41:52</sys_created_on>
         <sys_id>2518af33db79ac90ba15a3530596195b</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-10-25 11:06:15</sys_updated_on>
+        <sys_updated_on>2024-07-11 08:41:35</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -77,6 +77,7 @@
 	&#13;
 	Log('User Alice has the USER role');&#13;
 	TestCase_GetRolesFromUser(strUserAlice,[strRoleUser]);&#13;
+	TestCase_GetRolesFromUser(GetUserRecord(strUserAlice),[strRoleUser]);&#13;
 &#13;
 	Log('User Bob has the USER and the MANAGER role');&#13;
 	TestCase_GetRolesFromUser(strUserBob,[strRoleUser,strRoleManager]);&#13;

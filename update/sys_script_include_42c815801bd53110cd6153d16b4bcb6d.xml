@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns true if the given url is most likely related to the primary request of a page load. If there is an indicator of a secondary request (that is a request that is triggered by the inital page load) the function returns false.</description>
+        <mobile_callable>false</mobile_callable>
         <name>IsPrimaryRequestUrl</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function IsPrimaryRequestUrl(strUrl)
 {
 	strUrl = GetStringValue(strUrl);
@@ -14,11 +16,7 @@
 	{
 		return false;
 	}
-	if (strUrl == GetInstanceURL())
-	{
-		return false;
-	}
-	if (strUrl.length > 500)
+	if (strUrl == GetInstanceUrl())
 	{
 		return false;
 	}
@@ -57,13 +55,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-09-10 18:06:04</sys_created_on>
         <sys_id>42c815801bd53110cd6153d16b4bcb6d</sys_id>
-        <sys_mod_count>14</sys_mod_count>
+        <sys_mod_count>22</sys_mod_count>
         <sys_name>IsPrimaryRequestUrl</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_42c815801bd53110cd6153d16b4bcb6d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-11-09 12:36:06</sys_updated_on>
+        <sys_updated_on>2025-03-18 10:50:36</sys_updated_on>
     </sys_script_include>
 </record_update>

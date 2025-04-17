@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns an array with the names the active roles of a user.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetRoleNamesFromUser</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetRoleNamesFromUser(strUserSysId)
 {
 	var aRoleSysIds = GetRolesFromUser(strUserSysId);
@@ -27,13 +29,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-25 10:59:00</sys_created_on>
         <sys_id>65be44e3db5338104647dad1f39619a0</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>GetRoleNamesFromUser</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_65be44e3db5338104647dad1f39619a0</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-10-25 11:11:11</sys_updated_on>
+        <sys_updated_on>2024-08-28 12:58:47</sys_updated_on>
     </sys_script_include>
 </record_update>

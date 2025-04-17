@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Renders the given time as an UTC iso string.</description>
+        <mobile_callable>false</mobile_callable>
         <name>RenderTime</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function RenderTime(vDateTime)
 {
 	var strDatetime = RenderDateTime(vDateTime);
@@ -16,13 +18,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-03-31 15:45:23</sys_created_on>
         <sys_id>3fd17d06db628d10b652edb305961911</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>RenderTime</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_3fd17d06db628d10b652edb305961911</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-04-19 17:31:47</sys_updated_on>
+        <sys_updated_on>2024-08-28 12:58:44</sys_updated_on>
     </sys_script_include>
 </record_update>

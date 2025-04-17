@@ -22,7 +22,7 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2023-05-11 11:37:33</sys_updated_on>
         <table/>
-        <test display_value="DevTools  - StringFormat">c8a3d9b81be9e5105b76777d8b4bcb46</test>
+        <test display_value="DevTools - StringFormat">c8a3d9b81be9e5105b76777d8b4bcb46</test>
         <timeout/>
         <warning_message/>
     </sys_atf_step>

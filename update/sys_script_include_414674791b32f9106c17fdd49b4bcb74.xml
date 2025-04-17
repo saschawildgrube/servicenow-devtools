@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Packs a given record into a Record Transporter Package.</description>
+        <mobile_callable>false</mobile_callable>
         <name>RecordTransporterRecordPack</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function RecordTransporterRecordPack(vPackage,vRecordOrTable,strSysId)
 {
 	var grPackage = RecordTransporterGetPackageRecord(vPackage);
@@ -35,13 +37,17 @@
 
 	var aUnsupportedClasses = [
 		'sys_dictionary',
-		'sys_dictionary_override'
+		'sys_dictionary_override',
+		'label',
+		'label_group_m2m',
+		'label_user_m2m'
 		];
 	for (var nClass = 0; nClass < aUnsupportedClasses.length; nClass++)
 	{
 		var strUnsupportedClass = aUnsupportedClasses[nClass];
 		if (strUnsupportedClass == strClassName)
 		{
+			LogError('RecordTransporterRecordPack was called to pack a record of an unsupported class: '+strClassName);
 			return false;
 		} 
 		if (IsDerivedFromTable(strClassName,strUnsupportedClass) == true)
@@ -80,13 +86,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-11-29 15:43:49</sys_created_on>
         <sys_id>414674791b32f9106c17fdd49b4bcb74</sys_id>
-        <sys_mod_count>19</sys_mod_count>
+        <sys_mod_count>22</sys_mod_count>
         <sys_name>RecordTransporterRecordPack</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_policy>read</sys_policy>
+        <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_414674791b32f9106c17fdd49b4bcb74</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-06-21 09:20:12</sys_updated_on>
+        <sys_updated_on>2024-12-13 11:17:44</sys_updated_on>
     </sys_script_include>
 </record_update>

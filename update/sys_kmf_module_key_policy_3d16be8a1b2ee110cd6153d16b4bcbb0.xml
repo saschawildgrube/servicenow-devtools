@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_kmf_module_key_policy">
     <sys_kmf_module_key_policy action="INSERT_OR_UPDATE">
-        <crypto_module display_value="password_reset">d41c3789773630100a9bcac5ec5a99e2</crypto_module>
+        <crypto_module display_value="sn_pwdreset_ah.password_reset">d41c3789773630100a9bcac5ec5a99e2</crypto_module>
         <key_type display_value="Symmetric Key Encryption Key">ca005cf7c7103300af4d43c6f0976328</key_type>
         <last_enforced>2023-05-03 13:05:45</last_enforced>
         <result>reject</result>

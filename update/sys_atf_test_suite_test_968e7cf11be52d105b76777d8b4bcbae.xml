@@ -14,7 +14,7 @@
         <sys_update_name>sys_atf_test_suite_test_968e7cf11be52d105b76777d8b4bcbae</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2023-03-13 16:51:45</sys_updated_on>
-        <test display_value="DevTools  - HtmlRenderWhatRuns">968e7cf11be52d105b76777d8b4bcbaa</test>
+        <test display_value="DevTools - HtmlRenderWhatRuns">968e7cf11be52d105b76777d8b4bcbaa</test>
         <test_suite display_value="DevTools">4a8550391b5b8850a89720a8ec4bcbd9</test_suite>
     </sys_atf_test_suite_test>
 </record_update>
