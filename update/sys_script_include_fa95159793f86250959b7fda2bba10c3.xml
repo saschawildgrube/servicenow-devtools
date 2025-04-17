@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.ExecuteBusinessRuleShowWrongBranchWarning</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Checks if the current application is linked to a non-dev branch on a DEV environment.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>ExecuteBusinessRuleShowWrongBranchWarning</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function ExecuteBusinessRuleShowWrongBranchWarning(grCurrent)
+{
+	if (gs.isInteractive() == false)
+	{
+		return;
+	}
+
+	var transactionCache = new TransactionCacheAPI('DEVTOOLS');
+	var strRunningAlready = transactionCache.GetItem('show_wrong_branch_warning_running');
+	if (strRunningAlready == 'true')
+	{
+		return;
+	}
+	transactionCache.SetItem('show_wrong_branch_warning_running','true');		
+
+	if (IsActive() == false)
+	{
+		return;
+	}	
+
+	var bActive = GetBoolValue(AppGetProperty('ui.show_wrong_branch_warning.active'));
+	if (bActive == false)
+	{
+		return;
+	}	
+	
+	var strAppSysId = GetRecordScopeSysId(grCurrent);
+	if (strAppSysId == false)
+	{
+		return;
+	}
+
+	var grApp = GetAppRecord(strAppSysId);
+	if (IsValidRecord(grApp) == false)
+	{
+		return;
+	}
+
+	if (grApp.getRecordClassName() != 'sys_app')
+	{
+		return;
+	}
+
+	var strCurrentBranch = GetAppCurrentBranch(grApp);
+	if (strCurrentBranch != '')
+	{
+		
+		var strInstancePipelineName = GetInstancePipelineName();
+		if (strInstancePipelineName == 'dev')
+		{
+			if (strCurrentBranch.indexOf('dev') != 0)
+			{
+				var strMessage = StringFormat(
+					'WARNING! The application "{0}" is linked to branch "{1}" on this DEV instance!'
+					+'\n\n'
+					+'Please link the application to a "dev" branch!',
+					grApp.name,
+					strCurrentBranch);
+
+				strMessage = HtmlEncode(strMessage);
+				gs.addErrorMessage(strMessage);
+			}
+
+		}
+			
+	}
+
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-04-14 12:11:20</sys_created_on>
+        <sys_id>fa95159793f86250959b7fda2bba10c3</sys_id>
+        <sys_mod_count>15</sys_mod_count>
+        <sys_name>ExecuteBusinessRuleShowWrongBranchWarning</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_fa95159793f86250959b7fda2bba10c3</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-04-14 16:28:33</sys_updated_on>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>fa95159793f86250959b7fda2bba10c3</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-04-14 12:11:52</sys_created_on>
+        <sys_id>2ab5959793f86250959b7fda2bba1028</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-04-14 12:11:52</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
