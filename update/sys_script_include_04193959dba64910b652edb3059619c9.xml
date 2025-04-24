@@ -68,7 +68,13 @@
 			whatruns_object['table'] = GetStringValue(grRecord.table);
 			whatruns_object['name'] = GetStringValue(grRecord.short_description);	
 		}			
-
+		if (strClassName == 'sysevent_email_action') // Notification
+		{
+			whatruns_object['order'] = 1000;
+			whatruns_object['class_display_name'] = 'Notification';
+			whatruns_object['table'] = GetStringValue(grRecord.collection);
+			whatruns_object['name'] = GetStringValue(grRecord.name);	
+		}	
 		return whatruns_object;
 	}
 	
@@ -154,6 +160,7 @@
 				}
 				grBR.addQuery('action_insert','=','true');
 				grBR.addQuery('when','=','after');
+				grBR.addQuery('order','<','1000');
 				grBR.orderBy('order');
 				grBR.query();
 				while (grBR.next())
@@ -161,6 +168,41 @@
 					var whatruns_object = MakeWhatRunsObjectFromRecord(grBR, 'after');
 					aWhatRuns.push(whatruns_object); 
 				}	
+
+				var grEEA = new GlideRecord('sysevent_email_action');
+				grEEA.addActiveQuery();
+				var condition = grEEA.addQuery('collection','=',strTable); // also consider parent tables!
+				for (var nParentTable = 0; nParentTable < aParentTables.length; nParentTable++)
+				{
+					condition.addOrCondition('collection','=',aParentTables[nParentTable]);
+				}
+				grEEA.addQuery('generation_type','=','engine');
+				grEEA.addQuery('action_insert','=','true');
+				grEEA.query();
+				while (grEEA.next())
+				{
+					var whatruns_object = MakeWhatRunsObjectFromRecord(grEEA, 'after');
+					aWhatRuns.push(whatruns_object); 
+				}	
+
+				var grBR = new GlideRecord('sys_script');
+				grBR.addActiveQuery();
+				var condition = grBR.addQuery('collection','=',strTable); // also consider parent tables!
+				for (var nParentTable = 0; nParentTable < aParentTables.length; nParentTable++)
+				{
+					condition.addOrCondition('collection','=',aParentTables[nParentTable]);
+				}
+				grBR.addQuery('action_insert','=','true');
+				grBR.addQuery('when','=','after');
+				grBR.addQuery('order','>=','1000');
+				grBR.orderBy('order');
+				grBR.query();
+				while (grBR.next())
+				{
+					var whatruns_object = MakeWhatRunsObjectFromRecord(grBR, 'after');
+					aWhatRuns.push(whatruns_object); 
+				}					
+
 			
 				var grFlowTrigger = new GlideRecord('sys_flow_record_trigger');
 				grFlowTrigger.addQuery('table','=',strTable);
@@ -279,6 +321,7 @@
 				}
 				grBR.addQuery('action_update','=','true');
 				grBR.addQuery('when','=','after');
+				grBR.addQuery('order','<','1000');
 				grBR.orderBy('order');
 				grBR.query();
 				while (grBR.next())
@@ -286,6 +329,41 @@
 					var whatruns_object = MakeWhatRunsObjectFromRecord(grBR, 'after');
 					aWhatRuns.push(whatruns_object); 
 				}
+
+				var grEEA = new GlideRecord('sysevent_email_action');
+				grEEA.addActiveQuery();
+				var condition = grEEA.addQuery('collection','=',strTable); // also consider parent tables!
+				for (var nParentTable = 0; nParentTable < aParentTables.length; nParentTable++)
+				{
+					condition.addOrCondition('collection','=',aParentTables[nParentTable]);
+				}
+				grEEA.addQuery('generation_type','=','engine');
+				grEEA.addQuery('action_insert','=','true');
+				grEEA.query();
+				while (grEEA.next())
+				{
+					var whatruns_object = MakeWhatRunsObjectFromRecord(grEEA, 'after');
+					aWhatRuns.push(whatruns_object); 
+				}	
+
+				var grBR = new GlideRecord('sys_script');
+				grBR.addActiveQuery();
+				var condition = grBR.addQuery('collection','=',strTable); // also consider parent tables!
+				for (var nParentTable = 0; nParentTable < aParentTables.length; nParentTable++)
+				{
+					condition.addOrCondition('collection','=',aParentTables[nParentTable]);
+				}
+				grBR.addQuery('action_insert','=','true');
+				grBR.addQuery('when','=','after');
+				grBR.addQuery('order','>=','1000');
+				grBR.orderBy('order');
+				grBR.query();
+				while (grBR.next())
+				{
+					var whatruns_object = MakeWhatRunsObjectFromRecord(grBR, 'after');
+					aWhatRuns.push(whatruns_object); 
+				}								
+
 				
 				var grFlowTrigger = new GlideRecord('sys_flow_record_trigger');
 				grFlowTrigger.addQuery('table','=',strTable);
@@ -579,13 +657,24 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-03-29 08:27:19</sys_created_on>
         <sys_id>04193959dba64910b652edb3059619c9</sys_id>
-        <sys_mod_count>57</sys_mod_count>
+        <sys_mod_count>60</sys_mod_count>
         <sys_name>WhatRuns</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_04193959dba64910b652edb3059619c9</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-02-28 10:27:33</sys_updated_on>
+        <sys_updated_on>2025-04-24 16:21:04</sys_updated_on>
     </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>04193959dba64910b652edb3059619c9</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-04-24 16:16:13</sys_created_on>
+        <sys_id>db8ded62930daa10959b7fda2bba10b3</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-04-24 16:16:13</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>
