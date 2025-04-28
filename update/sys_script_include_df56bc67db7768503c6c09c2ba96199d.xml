@@ -9,13 +9,14 @@
         <mobile_callable>false</mobile_callable>
         <name>GetRecord</name>
         <sandbox_callable>false</sandbox_callable>
-        <script><![CDATA[function GetRecord(strTable,vRecord,bNoCrossScope)
+        <script><![CDATA[function GetRecord(strTable,vRecord,bNoCrossScope,strColumnPrefix)
 {
 	if (IsValidTable(strTable) == false)
 	{
 		return false;
 	}
-	if (IsValidColumn(strTable,'sys_id') == false)
+	strColumnPrefix = GetStringValue(strColumnPrefix);
+	if (IsValidColumn(strTable,strColumnPrefix+'sys_id') == false)
 	{
 		return false;
 	}
@@ -41,14 +42,16 @@
 	if (bNoCrossScope == true)
 	{
 		var grRecord = new GlideRecord(strTable);
-		if (grRecord.get(strSysId) == true)
+		grRecord.addQuery(strColumnPrefix+'sys_id','=',strSysId);
+		grRecord.query();
+		if (grRecord.next())
 		{
 			return grRecord;
 		}
 		return false;
 	}
 	var grRecord = new GlideRecord(strTable);
-	grRecord.addQuery('sys_id','=',strSysId);
+	grRecord.addQuery(strColumnPrefix+'sys_id','=',strSysId);
 	GlideRecordQuery(grRecord,true);
 	if (grRecord.next())
 	{
@@ -60,13 +63,24 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-05-04 14:12:29</sys_created_on>
         <sys_id>df56bc67db7768503c6c09c2ba96199d</sys_id>
-        <sys_mod_count>25</sys_mod_count>
+        <sys_mod_count>26</sys_mod_count>
         <sys_name>GetRecord</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_df56bc67db7768503c6c09c2ba96199d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-08-28 12:58:59</sys_updated_on>
+        <sys_updated_on>2025-04-28 11:32:12</sys_updated_on>
     </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>df56bc67db7768503c6c09c2ba96199d</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-04-28 11:32:11</sys_created_on>
+        <sys_id>a5e2d9b793812610959b7fda2bba10a1</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-04-28 11:32:11</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>

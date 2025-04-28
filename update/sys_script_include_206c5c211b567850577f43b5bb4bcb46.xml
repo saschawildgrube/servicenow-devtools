@@ -165,7 +165,7 @@ TestAPI.prototype =
 		this.Log('Field prefix: '+RenderValue(strColumnPrefix));
 		this.Log('Record SysID: '+RenderValue(strRecordSysId));
 		this.Log('Expected: '+RenderValue(bExpected));
-		this.Log('Record: '+RenderRecordSummary(GetRecord(strTable,strRecordSysId)));
+		this.Log('Record: '+RenderRecordSummary(GetRecord(strTable,strRecordSysId,false,strColumnPrefix)));
 
 		
 		var bRecordAccessible = false;
@@ -176,7 +176,6 @@ TestAPI.prototype =
 		
 		// 2. Query
 		this.Log('Query record from table '+strTable+': '+strRecordSysId);
-		//var grRecord = new GlideRecordSecure(strTable);
 		var grRecord = new GlideRecord(strTable);
 		grRecord.addQuery(strColumnPrefix+'sys_id','=',strRecordSysId);
 		grRecord.query();
@@ -628,13 +627,24 @@ TestAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-08-30 13:48:05</sys_created_on>
         <sys_id>206c5c211b567850577f43b5bb4bcb46</sys_id>
-        <sys_mod_count>87</sys_mod_count>
+        <sys_mod_count>88</sys_mod_count>
         <sys_name>TestAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_206c5c211b567850577f43b5bb4bcb46</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-10-15 09:48:01</sys_updated_on>
+        <sys_updated_on>2025-04-28 11:35:24</sys_updated_on>
     </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>206c5c211b567850577f43b5bb4bcb46</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-04-28 11:35:23</sys_created_on>
+        <sys_id>2ca31df793812610959b7fda2bba1027</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-04-28 11:35:23</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>
