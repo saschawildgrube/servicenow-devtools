@@ -848,8 +848,6 @@ DocumentationAPI.prototype =
 			strHtml += '<li>Create a&#160;<a href="https://github.com/settings/tokens" target="_blank">personal access token</a>&#160;for your GitHub account.</li>';
 			strHtml += '<li>Add&#160;<a href="/discovery_credentials_list.do" target="_blank">credentials</a>&#160;to access GitHub - use "Basic Auth".</li>';
 		}
-		strHtml += '<li>Fork the repository&#160;<a href="'+strRepoURL+'" target="_blank">'+strRepoURL+'</a>.</li>';
-		strHtml += '<li>Go to&#160;<a href="/$studio.do" target="_blank">Studio</a>&#160;and import the '+strAppName+' application from source control.</li>';
 		if (bAdditionalSteps == true)
 		{
 			if (strInstallURL != '')
@@ -861,6 +859,11 @@ DocumentationAPI.prototype =
 			{
 				strHtml += '<li>Perform all installation steps documented for the '+strAppName+' application.</li>';
 			}
+		}
+		else
+		{
+			strHtml += '<li>Fork the repository&#160;<a href="'+strRepoURL+'" target="_blank">'+strRepoURL+'</a>.</li>';
+			strHtml += '<li>Go to&#160;<a href="/$studio.do" target="_blank">Studio</a>&#160;and import the '+strAppName+' application from source control.</li>';
 		}
 		return strHtml;
 	},
@@ -950,13 +953,24 @@ DocumentationAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-01-20 15:26:20</sys_created_on>
         <sys_id>98912146db31e490ba15a353059619b6</sys_id>
-        <sys_mod_count>262</sys_mod_count>
+        <sys_mod_count>264</sys_mod_count>
         <sys_name>DocumentationAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_98912146db31e490ba15a353059619b6</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-08-28 12:58:53</sys_updated_on>
+        <sys_updated_on>2025-04-29 12:19:53</sys_updated_on>
     </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>98912146db31e490ba15a353059619b6</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-04-29 12:17:47</sys_created_on>
+        <sys_id>57e6ae0893196610959b7fda2bba1050</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-04-29 12:17:47</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>
