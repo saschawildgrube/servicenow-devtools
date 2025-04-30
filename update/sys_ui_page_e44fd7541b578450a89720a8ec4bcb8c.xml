@@ -629,6 +629,7 @@ function YourLengthyProcess(strRecordSysId)
 		<li>Added function SourceControlCoolDown() and the system property "x_snc_devtools.sourcecontrol.cooldown.seconds" to wait for a configurable amount of seconds after a source control operation.</li>
 		<li>AppVersionBaseline() and SharedAppVersionBaseline() now explicitly request the version to be baselined to the backend - this should prevent duplicate executions of the baseline process caused by duplicate requests being sent by rouge network components between the client and the server.</li> 
 		<li>Added function GetTestStepScript().</li>
+		<li>Added function SetTestStepScript().</li>
 		<li>AppInstall() now deactivates the "Copy Test Suite" UI action on table sys_atf_test_suite to avoid unintended (and pointless) copies of ATF Test Suites.</li>
 		<li>AppInstall() fixes the table ordering for database view "incident_sla" for table "task_sla" to avoid unexpected behavior in Yokohama.</li>
 		<li>Improved test for GetRecordsFromUpdateXml() to avoid false negatives.</li>
@@ -2639,14 +2640,14 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>2025</sys_mod_count>
+        <sys_mod_count>2026</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-04-30 07:58:39</sys_updated_on>
+        <sys_updated_on>2025-04-30 09:27:47</sys_updated_on>
     </sys_ui_page>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>e44fd7541b578450a89720a8ec4bcb8c</id>
