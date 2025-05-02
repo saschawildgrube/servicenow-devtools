@@ -293,7 +293,8 @@
 			'x_snc_devtools.DevToolsClientAPI',
 			{
 				command: 'app_version_baseline',
-				app_sys_id: strAppSysId
+				app_sys_id: strAppSysId,
+				version: strVersion
 			},
 			{
 				close:
@@ -315,14 +316,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-09-09 12:15:07</sys_created_on>
         <sys_id>de757715c32c92105a37f90705013116</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_name>x_snc_devtools.SharedAppVersionBaseline</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_script_de757715c32c92105a37f90705013116</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-01-27 10:53:52</sys_updated_on>
+        <sys_updated_on>2025-04-30 07:18:29</sys_updated_on>
         <ui_type>0</ui_type>
         <use_scoped_format>false</use_scoped_format>
         <x_snc_devtools_global>true</x_snc_devtools_global>

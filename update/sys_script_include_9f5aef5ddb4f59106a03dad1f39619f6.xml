@@ -14,23 +14,29 @@
 	var progresstracker = new ProgressTrackerAPI();
 	progresstracker.Start();
 
+	function Error(strMessage)
+	{
+		LogError('InstanceScanSuiteOnApp: '+strMessage);
+		progresstracker.SetResult(null,false,strMessage);
+	}
+
 	if (InstanceScanIsRunning() == true)
 	{
-		progresstracker.SetResult(null,false,'Instance Scan is already running!');
+		Error('Instance Scan is already running!');
 		return false;
 	}
 
 	strSuiteSysId = GetStringValue(strSuiteSysId);
 	if (IsValidSysId(strSuiteSysId) == false)
 	{
-		progresstracker.SetResult(null,false,'No scan suite has been specified!');
+		Error('No scan suite has been specified!');
 		return false;
 	}
 	
 	var grApp = GetAppRecord(vApp);
 	if (IsValidRecord(grApp) == false)
 	{
-		progresstracker.SetResult(null,false,'The specified application could not be loaded!');
+		Error('The specified application could not be loaded!');
 		return false;
 	}
 		
@@ -44,7 +50,7 @@
 	
 	if (IsValidSysId(strUserSysId) == false)
 	{
-		progresstracker.SetResult(null,false,'The temporary technical user could not be created!');
+		Error('The temporary technical user could not be created!');
 		return false;
 	}
 
@@ -60,7 +66,7 @@
 	}
 	catch (e)
 	{
-		progresstracker.SetResult(null,false,'Failed to perform the REST API call!');
+		Error('Failed to perform the REST API call!');
 		return false;
 	}
 
@@ -73,7 +79,7 @@
 	var strProgressSysId = GetValue(result,'result','links','progress','id');
 	if (IsValidSysId(strProgressSysId) == false)
 	{
-		progresstracker.SetResult(null,false,'Could not receive progress id');
+		Error('Could not receive progress id');
 		return false;
 	}
 	
@@ -134,7 +140,7 @@
 	grScanResult.query();
 	if (grScanResult.next() == false)
 	{
-		progresstracker.SetResult(scanresults,false,'Could not load scan results!');
+		Error('Could not load scan results!');
 		return false;
 	}
 
@@ -156,13 +162,24 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-11-08 09:18:56</sys_created_on>
         <sys_id>9f5aef5ddb4f59106a03dad1f39619f6</sys_id>
-        <sys_mod_count>98</sys_mod_count>
+        <sys_mod_count>99</sys_mod_count>
         <sys_name>InstanceScanSuiteOnApp</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_9f5aef5ddb4f59106a03dad1f39619f6</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-09-10 11:27:22</sys_updated_on>
+        <sys_updated_on>2025-04-30 07:27:33</sys_updated_on>
     </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>9f5aef5ddb4f59106a03dad1f39619f6</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-04-30 07:27:33</sys_created_on>
+        <sys_id>ad1e2e909311e610959b7fda2bba10d2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-04-30 07:27:33</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>

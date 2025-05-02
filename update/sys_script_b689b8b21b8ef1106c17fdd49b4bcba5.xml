@@ -19,7 +19,7 @@
         <is_rest>false</is_rest>
         <message/>
         <name>x_snc_devtools_dependency - duplicates</name>
-        <order>1000</order>
+        <order>42200</order>
         <priority>100</priority>
         <rest_method/>
         <rest_method_text/>
@@ -48,7 +48,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>b689b8b21b8ef1106c17fdd49b4bcba5</sys_id>
-        <sys_mod_count>19</sys_mod_count>
+        <sys_mod_count>20</sys_mod_count>
         <sys_name>x_snc_devtools_dependency - duplicates</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -56,7 +56,7 @@
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_b689b8b21b8ef1106c17fdd49b4bcba5</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-12-31 13:20:41</sys_updated_on>
+        <sys_updated_on>2025-04-30 16:08:43</sys_updated_on>
         <template/>
         <when>before</when>
         <x_snc_datasilos_created>false</x_snc_datasilos_created>

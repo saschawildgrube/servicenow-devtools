@@ -21,7 +21,7 @@
         <is_rest>false</is_rest>
         <message/>
         <name>sys_script_include - auto documentation</name>
-        <order>100</order>
+        <order>42100</order>
         <priority>100</priority>
         <rest_method/>
         <rest_method_text/>
@@ -50,7 +50,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>b8dcee5bdbd7c250f0f1d03cd396190d</sys_id>
-        <sys_mod_count>11</sys_mod_count>
+        <sys_mod_count>12</sys_mod_count>
         <sys_name>sys_script_include - auto documentation</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -58,7 +58,7 @@
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_b8dcee5bdbd7c250f0f1d03cd396190d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-08-30 09:24:21</sys_updated_on>
+        <sys_updated_on>2025-04-30 16:08:01</sys_updated_on>
         <template/>
         <when>async_always</when>
         <x_snc_datasilos_created>false</x_snc_datasilos_created>

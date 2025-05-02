@@ -21,7 +21,7 @@
         <is_rest>false</is_rest>
         <message/>
         <name>sys_ui_action - set table to global</name>
-        <order>100</order>
+        <order>42100</order>
         <priority>100</priority>
         <rest_method/>
         <rest_method_text/>
@@ -40,7 +40,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>3c1861821bd278505331b8449b4bcb03</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>sys_ui_action - set table to global</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -48,7 +48,7 @@
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_3c1861821bd278505331b8449b4bcb03</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-02-19 18:03:57</sys_updated_on>
+        <sys_updated_on>2025-04-30 16:08:07</sys_updated_on>
         <template>table=global^EQ</template>
         <when>before</when>
         <x_snc_datasilos_created>false</x_snc_datasilos_created>

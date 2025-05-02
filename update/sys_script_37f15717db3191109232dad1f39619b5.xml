@@ -19,7 +19,7 @@
         <is_rest>false</is_rest>
         <message><![CDATA[<p>hello set scope</p>]]></message>
         <name>sys_metadata - set scope to record scope</name>
-        <order>100</order>
+        <order>42</order>
         <priority>100</priority>
         <rest_method/>
         <rest_method_text/>
@@ -63,7 +63,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>37f15717db3191109232dad1f39619b5</sys_id>
-        <sys_mod_count>29</sys_mod_count>
+        <sys_mod_count>31</sys_mod_count>
         <sys_name>sys_metadata - set scope to record scope</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -71,10 +71,21 @@
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_37f15717db3191109232dad1f39619b5</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-03-11 15:52:06</sys_updated_on>
+        <sys_updated_on>2025-04-30 16:07:41</sys_updated_on>
         <template/>
         <when>before_display</when>
         <x_snc_datasilos_created>false</x_snc_datasilos_created>
     </sys_script>
     <sys_translated_text action="delete_multiple" query="documentkey=37f15717db3191109232dad1f39619b5"/>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>37f15717db3191109232dad1f39619b5</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-04-30 14:24:16</sys_created_on>
+        <sys_id>717d046c9319e610959b7fda2bba102a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-04-30 14:24:16</sys_updated_on>
+        <table>sys_script</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>

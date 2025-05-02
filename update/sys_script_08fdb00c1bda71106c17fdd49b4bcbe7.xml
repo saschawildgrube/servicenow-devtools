@@ -19,7 +19,7 @@
         <is_rest>false</is_rest>
         <message><![CDATA[<p>Global has been set</p>]]></message>
         <name>sys_ui_script - save global (async)</name>
-        <order>1000</order>
+        <order>42900</order>
         <priority>10000</priority>
         <rest_method/>
         <rest_method_text/>
@@ -41,7 +41,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>08fdb00c1bda71106c17fdd49b4bcbe7</sys_id>
-        <sys_mod_count>25</sys_mod_count>
+        <sys_mod_count>26</sys_mod_count>
         <sys_name>sys_ui_script - save global (async)</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -49,10 +49,21 @@
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_08fdb00c1bda71106c17fdd49b4bcbe7</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-08-27 15:07:44</sys_updated_on>
+        <sys_updated_on>2025-04-30 16:16:58</sys_updated_on>
         <template/>
         <when>async_always</when>
         <x_snc_datasilos_created>false</x_snc_datasilos_created>
     </sys_script>
     <sys_translated_text action="delete_multiple" query="documentkey=08fdb00c1bda71106c17fdd49b4bcbe7"/>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>08fdb00c1bda71106c17fdd49b4bcbe7</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-04-30 16:16:57</sys_created_on>
+        <sys_id>2447a4a4931de610959b7fda2bba1072</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-04-30 16:16:57</sys_updated_on>
+        <table>sys_script</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>

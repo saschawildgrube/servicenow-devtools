@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.GetTestStepScript</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns the script contained in the given run server side script test step or the script of the first run server side test step script.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>GetTestStepScript</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function GetTestStepScript(vTestStep)
+{
+	var grTestStep = GetRecord('sys_atf_step',vTestStep);
+	if (IsValidRecord(grTestStep) == false)
+	{
+		var grTest = GetRecord('sys_atf_test',vTestStep);
+		if (IsValidRecord(grTest) == false)
+		{
+			return false;
+		}	
+		grTestStep = new GlideRecord('sys_atf_step');
+		grTestStep.orderBy('order');
+		grTestStep.addQuery('test','=',grTest.sys_id);
+		grTestStep.addQuery('step_config','=',
+			AppGetProperty('atf.step_config.runserversidescript'));
+		grTestStep.setLimit(1);
+		grTestStep.query();
+		if (grTestStep.next() == false)
+		{
+			return false;
+		}
+	}
+	
+	var grVariable = new GlideRecord('sys_variable_value');
+	grVariable.addQuery('document_key','=',grTestStep.sys_id);
+	grVariable.addQuery('variable','=',
+		AppGetProperty('atf.step_config.runserversidescript.variable.script'));
+	grVariable.query();
+	if (grVariable.next() == false)
+	{
+		return false;
+	}
+	var strTestCode = GetStringValue(grVariable.value);
+	return strTestCode;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-04-30 07:39:09</sys_created_on>
+        <sys_id>9b007ad49311e610959b7fda2bba1098</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>GetTestStepScript</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_9b007ad49311e610959b7fda2bba1098</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-02 07:07:21</sys_updated_on>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>9b007ad49311e610959b7fda2bba1098</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-04-30 07:39:09</sys_created_on>
+        <sys_id>afb0fed49311e610959b7fda2bba1051</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-04-30 07:39:09</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

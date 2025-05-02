@@ -19,7 +19,7 @@
         <is_rest>false</is_rest>
         <message/>
         <name>sysrule_view - set table</name>
-        <order>100</order>
+        <order>42901</order>
         <priority>100</priority>
         <rest_method/>
         <rest_method_text/>
@@ -38,7 +38,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>5681f0691bcab1506c17fdd49b4bcb56</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_name>sysrule_view - set table</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -46,10 +46,21 @@
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_5681f0691bcab1506c17fdd49b4bcb56</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-08-16 09:53:18</sys_updated_on>
+        <sys_updated_on>2025-04-30 15:59:07</sys_updated_on>
         <template/>
         <when>async_always</when>
         <x_snc_datasilos_created>false</x_snc_datasilos_created>
     </sys_script>
     <sys_translated_text action="delete_multiple" query="documentkey=5681f0691bcab1506c17fdd49b4bcb56"/>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>5681f0691bcab1506c17fdd49b4bcb56</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-04-30 15:59:06</sys_created_on>
+        <sys_id>0f2364e493d9e610959b7fda2bba1074</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-04-30 15:59:06</sys_updated_on>
+        <table>sys_script</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>

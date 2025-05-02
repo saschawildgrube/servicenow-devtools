@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.SourceControlCoolDown</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Waits for a configurable amount of seconds to workaround a bug in the platform that may lead a follow-up source control activity to fail.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>SourceControlCoolDown</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function SourceControlCoolDown()
+{
+	var nSeconds = GetIntegerValue(AppGetProperty('sourcecontrol.cooldown.seconds'));
+	if (nSeconds > 0)
+	{
+		Sleep(nSeconds);
+		return true;
+	}
+	return true;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-04-23 16:06:29</sys_created_on>
+        <sys_id>d151acda934d2a10959b7fda2bba1094</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>SourceControlCoolDown</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_d151acda934d2a10959b7fda2bba1094</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-02 07:07:22</sys_updated_on>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>d151acda934d2a10959b7fda2bba1094</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-04-23 16:06:28</sys_created_on>
+        <sys_id>beb1641e934d2a10959b7fda2bba1091</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-04-23 16:06:28</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
