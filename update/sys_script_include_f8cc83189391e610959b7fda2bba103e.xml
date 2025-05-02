@@ -33,8 +33,20 @@
 			strParams = StringMatchRegEx(
 				strScript,/\(([^)]+)\)/); 
 
-			var aParams = GetArrayValue(strParams);
-			strParamsCommaSeparated = GetStringValue(aParams);
+			var aParams = [];
+			Log('params: "'+strParams+'"');
+			if (strParams.length > 0)
+			{
+				aParams = GetArrayValue(strParams);
+			}
+			if (aParams.length == 0)
+			{
+				strParamsCommaSeparated = '';
+			}
+			else
+			{
+				strParamsCommaSeparated = GetStringValue(aParams) + ',';
+			}
 
 			var strTestCode = '';
 
@@ -44,7 +56,7 @@
 			strTestCode += "\t\n";
 			strTestCode += "\ttest.SetResult(true);\n";
 			strTestCode += "\t\n";
-			strTestCode += "\tfunction TestCase_"+strName+"("+strParamsCommaSeparated+",vExpected)\n";
+			strTestCode += "\tfunction TestCase_"+strName+"("+strParamsCommaSeparated+"vExpected)\n";
 			strTestCode += "\t{\n";
 			strTestCode += "\t\tfunction TestCase_"+strName+"_CheckResult(vInput,vExpected,vResult)\n";
 			strTestCode += "\t\t{\n";
@@ -64,7 +76,6 @@
 					strTestCode += ",";
 				}
 				strTestCode += "\n";
-				
 			}
 			strTestCode += "\t\t\t},\n";
 			strTestCode += "\t\t\tvExpected,\n";
@@ -74,13 +85,17 @@
 			strTestCode += "\tTestCase_"+strName+"(";
 			for (var nParam = 0; nParam < aParams.length; nParam++)
 			{
-				strTestCode += "null";
-				if (nParam < aParams.length - 1)
-				{
-					strTestCode += ",";
-				}
+				strTestCode += "null,";
 			}
-			strTestCode += ",false);\n";
+			if (aParams.length > 0)
+			{
+				strTestCode += "false);\n";
+			}
+			else
+			{
+				strTestCode += "true);\n";
+			}
+			
 
 			strTestCode += "\t\n";
 			strTestCode += "\treturn test.GetResult();\n";
@@ -159,14 +174,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-04-30 09:42:37</sys_created_on>
         <sys_id>f8cc83189391e610959b7fda2bba103e</sys_id>
-        <sys_mod_count>21</sys_mod_count>
+        <sys_mod_count>25</sys_mod_count>
         <sys_name>MakeTestScriptForRecord</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_f8cc83189391e610959b7fda2bba103e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-05-02 07:07:22</sys_updated_on>
+        <sys_updated_on>2025-05-02 14:53:33</sys_updated_on>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>f8cc83189391e610959b7fda2bba103e</id>
