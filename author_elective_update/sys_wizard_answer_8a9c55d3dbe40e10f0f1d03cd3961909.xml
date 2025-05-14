@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_wizard_answer">
+    <sys_wizard_answer action="DELETE">
+        <active>true</active>
+        <answer>UI Script</answer>
+        <button_label/>
+        <dependent_value/>
+        <element/>
+        <name>UI Script</name>
+        <next_question/>
+        <order>100</order>
+        <payload_name/>
+        <question display_value="Application File" name="Application File">9ef6b0438320021000d5ccc0deaad364</question>
+        <roles/>
+        <script/>
+        <sys_class_name>sys_wizard_answer</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-02-29 10:03:52</sys_created_on>
+        <sys_id>8a9c55d3dbe40e10f0f1d03cd3961909</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>UI Script</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_wizard_answer_8a9c55d3dbe40e10f0f1d03cd3961909</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-02-29 10:03:52</sys_updated_on>
+        <table/>
+        <target_url>sys_ui_script.do</target_url>
+        <type>1</type>
+    </sys_wizard_answer>
+<sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>220092723b73421816e44a8aa4e45ab1</instance_id>
+        <instance_name>wildxanadu</instance_name>
+        <name>sys_wizard_answer_8a9c55d3dbe40e10f0f1d03cd3961909</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_wizard_answer">
+    <sys_wizard_answer action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <answer>UI Script</answer>
+        <button_label/>
+        <dependent_value/>
+        <element/>
+        <name>UI Script</name>
+        <next_question/>
+        <order>100</order>
+        <payload_name/>
+        <question display_value="Application File" name="Application File">9ef6b0438320021000d5ccc0deaad364</question>
+        <roles/>
+        <script/>
+        <sys_class_name>sys_wizard_answer</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-02-29 10:03:52</sys_created_on>
+        <sys_id>8a9c55d3dbe40e10f0f1d03cd3961909</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>UI Script</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_wizard_answer_8a9c55d3dbe40e10f0f1d03cd3961909</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-02-29 10:03:52</sys_updated_on>
+        <table/>
+        <target_url>sys_ui_script.do</target_url>
+        <type>1</type>
+    </sys_wizard_answer>
+</record_update>]]></payload>
+        <payload_hash>-1421059211</payload_hash>
+        <record_name>UI Script</record_name>
+        <reverted_from/>
+        <source>745b1f9f9364a610ae97b4aa6aba1020</source>
+        <source_table>sys_upgrade_history</source_table>
+        <state>previous</state>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2025-04-02 11:42:12</sys_created_on>
+        <sys_id>0fdbdb5393a4a610ae97b4aa6aba10ff</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>195f64f15770000001</sys_recorded_at>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2025-04-02 11:42:12</sys_updated_on>
+        <type>Answer</type>
+        <update_guid>c7dbdb5370a4a610a38b893ed37f47ff</update_guid>
+        <update_guid_history>c7dbdb5370a4a610a38b893ed37f47ff:0,2b7fb5ef25186e5008f3736e0f3bdf95:0,ae96f5ebd9d46e503a0208da97f38340:0,0bae9047ca94ea50882f1a7f024d8d37:0,f615c4cf69d0ea507b7c0891cdc6866c:0,dd56671cefd8ee1059b13c0ce640c81d:0,e1441b140ed86e10426b449b7f66db4c:0,d9fc9db821c4a61097454c01e201c984:0,6ff4d9bccc44a61095c71b6484318c81:0,b0b1ce6c96cc26109ce1f361922dc238:0,e1864d9b623fd290dffc64e832eab830:0,a4d73a1cea3f52500b056db5f0c73983:0,7e8b66941cfb5250bf9b0eeb61ae5764:0,a14e702a20139e10ec203cdb882dcbb0:0,1a1abc2aa9df5e10727c166a8ea6c950:0,36a0c848ba9f521065d2a50d879a21b8:0,144a6b3bac0f5210f537cab9ba144070:0,267a6cfe9a7e1250e8ea8fbd353e59b6:0,15c670626ff6de10c52434c527bcab96:0,53dadbc0803216103df9c39ccd428c69:0,35969fc0bafed2109f0aa67a27471a80:0,710b8580046e1a10cc1eaa0fa76930c4:0,5e0449839c5ed210021e64bada7542f8:0,133e9d6311c65610a4c28737c88fa6d8:0,850919e3e9865610795ecea5f041b80f:0,517d7bd2b47d1a10804adcc554fbef87:0,5d6e2bd6b9f91a10ce210831793eef9b:0,df21217436755210e23d3f073ae52485:0,a42227288ab91210a47f48ec0f9207b4:0,093c3d36e9695a1081fdd56ea67101cf:0,c4393d3ec7295a1056a9f21c33642c04:0,417c113284a55a10af8e7b025cce2d8b:0,965f7666e6691a1094b6d927efdfa64d:0,af032117fcd95e10dfc6df61135fdcfe:0,5376a49718955e109cb13e03e93c5c5c:0,45014e3220c59e50481eedc8dde381c4:0,57941fde92e85a90028e84efbfd40213:0,76a791f599e0d690f31446aa23265056:0,48419d75caa0d690ea977627d017c00f:0,ee349c560c1c1a50a1a166d0a135b753:0,93c4b3ca57581a507961dec1a9206d08:0,64e12be39100125063cc1b8432ad79ae:0,bcecdf27ddccde1083cc955720e489ef:0,ea246cf1ecccd61020321d686f321a4f:0,626e028369b34210d5f6ec30d08c7e18:-367294472</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-14 08:26:52</sys_created_on>
+        <sys_db_object display_value="" name="sys_wizard_answer">sys_wizard_answer</sys_db_object>
+        <sys_id>0c70f83b0f2c4acf839a1fdcea3c3871</sys_id>
+        <sys_metadata>8a9c55d3dbe40e10f0f1d03cd3961909</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>UI Script</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sys_wizard_answer_8a9c55d3dbe40e10f0f1d03cd3961909</sys_update_name>
+        <sys_update_version display_value="sys_wizard_answer_8a9c55d3dbe40e10f0f1d03cd3961909">0fdbdb5393a4a610ae97b4aa6aba10ff</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-14 08:26:52</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

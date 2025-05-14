@@ -76,11 +76,11 @@
 		}
     });
     
-    dialog.on("renderStatus", function()
+    dialog.on("renderStatus", function(tracker)
 	{
 		if (IsFunction(callbackOnStatusUpdate) == true)
 		{
-			callbackOnStatusUpdate(dialog);
+			callbackOnStatusUpdate(dialog,tracker);
 		}
     });	
 	
@@ -106,16 +106,16 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-11-27 17:20:32</sys_created_on>
         <sys_id>202e4363db575d106a03dad1f39619db</sys_id>
-        <sys_mod_count>14</sys_mod_count>
+        <sys_mod_count>16</sys_mod_count>
         <sys_name>x_snc_devtools.DoModalProgress</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_script_202e4363db575d106a03dad1f39619db</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-11-29 20:17:10</sys_updated_on>
+        <sys_updated_on>2025-05-13 16:07:54</sys_updated_on>
         <ui_type>0</ui_type>
         <use_scoped_format>false</use_scoped_format>
-        <x_snc_devtools_global>false</x_snc_devtools_global>
+        <x_snc_devtools_global>true</x_snc_devtools_global>
     </sys_ui_script>
 </record_update>

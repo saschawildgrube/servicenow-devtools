@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_wizard_answer">
+    <sys_wizard_answer action="DELETE">
+        <active>true</active>
+        <answer>Technical Debt</answer>
+        <button_label/>
+        <dependent_value/>
+        <element/>
+        <name>Technical Debt</name>
+        <next_question/>
+        <order>100</order>
+        <payload_name/>
+        <question display_value="Application File" name="Application File">9ef6b0438320021000d5ccc0deaad364</question>
+        <roles/>
+        <script/>
+        <sys_class_name>sys_wizard_answer</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-02-29 10:04:03</sys_created_on>
+        <sys_id>2cac55d3dbe40e10f0f1d03cd39619a6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Technical Debt</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_wizard_answer_2cac55d3dbe40e10f0f1d03cd39619a6</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-02-29 10:04:03</sys_updated_on>
+        <table/>
+        <target_url>x_snc_devtools_technical_debt.do</target_url>
+        <type>1</type>
+    </sys_wizard_answer>
+<sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>220092723b73421816e44a8aa4e45ab1</instance_id>
+        <instance_name>wildxanadu</instance_name>
+        <name>sys_wizard_answer_2cac55d3dbe40e10f0f1d03cd39619a6</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_wizard_answer">
+    <sys_wizard_answer action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <answer>Technical Debt</answer>
+        <button_label/>
+        <dependent_value/>
+        <element/>
+        <name>Technical Debt</name>
+        <next_question/>
+        <order>100</order>
+        <payload_name/>
+        <question display_value="Application File" name="Application File">9ef6b0438320021000d5ccc0deaad364</question>
+        <roles/>
+        <script/>
+        <sys_class_name>sys_wizard_answer</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-02-29 10:04:03</sys_created_on>
+        <sys_id>2cac55d3dbe40e10f0f1d03cd39619a6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Technical Debt</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_wizard_answer_2cac55d3dbe40e10f0f1d03cd39619a6</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-02-29 10:04:03</sys_updated_on>
+        <table/>
+        <target_url>x_snc_devtools_technical_debt.do</target_url>
+        <type>1</type>
+    </sys_wizard_answer>
+</record_update>]]></payload>
+        <payload_hash>1738559404</payload_hash>
+        <record_name>Technical Debt</record_name>
+        <reverted_from/>
+        <source>745b1f9f9364a610ae97b4aa6aba1020</source>
+        <source_table>sys_upgrade_history</source_table>
+        <state>previous</state>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2025-04-02 11:42:12</sys_created_on>
+        <sys_id>b6dbdb5393a4a610ae97b4aa6aba10f2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>195f64f14ea0000001</sys_recorded_at>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2025-04-02 11:42:12</sys_updated_on>
+        <type>Answer</type>
+        <update_guid>72dbdb5347a4a610ad40460d027fa2f2</update_guid>
+        <update_guid_history>72dbdb5347a4a610ad40460d027fa2f2:0,237fb5ef24186e501eec12a3333c1686:0,ee96f5eb23d46e50208e7076940dc424:0,03ae90474c94ea50f98ba9c88f8c9428:0,fe15c4cf18d0ea504257d07655a3415c:0,9156271cfad8ee102ba2716cfcb532e9:0,1d441b14ead86e10a8a3c274e3fd4b31:0,9dfc9db88fc4a6104d0ae47bf0887a4f:0,67f4d9bc9d44a61036ebd8c12b1bf372:0,fcb1ce6c56cc2610c22707045e982a1b:0,ed864d9b4c3fd2906000feac886c5522:0,acd73a1c5f3f5250bd5079e9f20bd673:0,f68b669436fb525073e1002e6318753c:0,654e702a6e139e10307b200e4ba4fc7b:0,5a1abc2a1bdf5e10f3fc6000470d6e34:0,3aa0c848f69f5210261d3687425a10a8:0,104a6b3b6b0f52103102094af35efe2f:0,2e7a6cfeec7e1250c9fe556a58b15ba6:0,19c670622af6de10049786984c63fa86:0,93dadbc0be3216108b1aa51ce102754d:0,3d969fc029fed21057c44c51e4769870:0,b10b8580036e1a10208d4bed1ca5bea8:0,56044983185ed2105a6ce347dea7e0e9:0,173e9d63b3c6561008a0308222d9aec8:0,c509d5e35d865610076ccc0e2ed76af3:0,857d7bd2617d1a10f020d17dc7106339:0,c56e2bd6d4f91a10927e98b7dd8ddf73:0,0f212174a77552104787c5ab05c7b269:0,1022272847b91210f0bf7ce47c50a08c:0,3c3c3d36bc695a10c6cc0711e6eb35bf:0,ff29f93e21295a103ccc4e60d112a1f4:0,fc7c113277a55a104eb627711c8bdc30:0,9e5f766676691a101f7da1d62326153d:0,17032117ded95e109e16c573b0e469d6:0,4b76a497e4955e10d17ca287243a164c:0,78014e32f6c59e5097bfbf7e2d987bb4:0,5f941fde49e85a907504ed79125cd303:0,6aa791f57ee0d69053b8349631487b46:0,84415d7585a0d69032dd2151ecadb4f3:0,62349c56281c1a50cfc30f1f051b261f:0,17c473cade581a5087f45160c5f53ce2:0,a0e12be3a2001250c0055f087a953a96:0,a0ecdf2741ccde102a6356ba800532e4:0,56246cf121ccd6107623ddc1f1653c43:0,6e6e02834cb34210034aa16f9d262a00:-1565318391</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-14 08:26:52</sys_created_on>
+        <sys_db_object display_value="" name="sys_wizard_answer">sys_wizard_answer</sys_db_object>
+        <sys_id>2494eef77f2b4b648818541b3a8d2a64</sys_id>
+        <sys_metadata>2cac55d3dbe40e10f0f1d03cd39619a6</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Technical Debt</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sys_wizard_answer_2cac55d3dbe40e10f0f1d03cd39619a6</sys_update_name>
+        <sys_update_version display_value="sys_wizard_answer_2cac55d3dbe40e10f0f1d03cd39619a6">b6dbdb5393a4a610ae97b4aa6aba10f2</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-14 08:26:52</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

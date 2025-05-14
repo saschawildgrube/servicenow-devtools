@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-04-30 09:46:04</sys_created_on>
         <sys_id>3ecd4b589391e610959b7fda2bba1091</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>16</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_3ecd4b589391e610959b7fda2bba1091</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-04-30 12:23:09</sys_updated_on>
+        <sys_updated_on>2025-05-06 11:05:00</sys_updated_on>
         <table/>
         <test display_value="DevTools - MakeTestScriptForRecord">b2cd4b589391e610959b7fda2bba1048</test>
         <timeout/>
@@ -35,9 +35,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-04-30 09:46:04</sys_created_on>
         <sys_id>f6cd4b589391e610959b7fda2bba1093</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>17</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-04-30 12:23:09</sys_updated_on>
+        <sys_updated_on>2025-05-06 11:05:00</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -72,9 +72,22 @@
 &#13;
 	TestCase_MakeTestScriptForRecord(null,false);&#13;
 &#13;
+	// MakeTestScriptForRecord&#13;
 	var grScriptInclude = GetRecord('sys_script_include','f8cc83189391e610959b7fda2bba103e');&#13;
-	TestCase_MakeTestScriptForRecord(grScriptInclude,'TestAPI');&#13;
-	TestCase_MakeTestScriptForRecord(grScriptInclude,'TestCase_MakeTestScriptForRecord(grRecord,vExpected)');&#13;
+	TestCase_MakeTestScriptForRecord(grScriptInclude,'var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);');&#13;
+	TestCase_MakeTestScriptForRecord(grScriptInclude,'function TestCase_MakeTestScriptForRecord(grRecord,vExpected)');&#13;
+	TestCase_MakeTestScriptForRecord(grScriptInclude,'TestCase_MakeTestScriptForRecord(null,false);');&#13;
+&#13;
+	// IsActive&#13;
+	var grScriptInclude = GetRecord('sys_script_include','6b23b255db8c5610f0f1d03cd3961914');&#13;
+	TestCase_MakeTestScriptForRecord(grScriptInclude,'var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);');&#13;
+	TestCase_MakeTestScriptForRecord(grScriptInclude,'function TestCase_IsActive(vExpected)');&#13;
+	TestCase_MakeTestScriptForRecord(grScriptInclude,'TestCase_IsActive(true);');&#13;
+&#13;
+	// DocumentationAPI&#13;
+	var grScriptInclude = GetRecord('sys_script_include','98912146db31e490ba15a353059619b6');&#13;
+	TestCase_MakeTestScriptForRecord(grScriptInclude,'var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);');&#13;
+	TestCase_MakeTestScriptForRecord(grScriptInclude,'vResult = documentationapi.RenderInstallationInstructionsImportFromSourceControl();');&#13;
 &#13;
 	var testdata = new TestDataAPI('DevTools');&#13;
 	var strTestUser = testdata.CreateUser('Test1');&#13;

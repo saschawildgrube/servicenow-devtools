@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_wizard_answer">
+    <sys_wizard_answer action="DELETE">
+        <active>true</active>
+        <answer>CMDB CI Appl ServiceNow</answer>
+        <button_label/>
+        <dependent_value/>
+        <element/>
+        <name>CMDB CI Appl ServiceNow</name>
+        <next_question/>
+        <order>100</order>
+        <payload_name/>
+        <question display_value="Base Configuration Item" name="Base Configuration Item">35e66c8f8320021000d5ccc0deaad3d3</question>
+        <roles/>
+        <script/>
+        <sys_class_name>sys_wizard_answer</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-06-06 09:18:22</sys_created_on>
+        <sys_id>7afdf532db26c650f0f1d03cd3961960</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>CMDB CI Appl ServiceNow</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_wizard_answer_7afdf532db26c650f0f1d03cd3961960</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-06-06 09:18:22</sys_updated_on>
+        <table/>
+        <target_url>x_snc_devtools_cmdb_ci_appl_servicenow.do</target_url>
+        <type>1</type>
+    </sys_wizard_answer>
+<sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>220092723b73421816e44a8aa4e45ab1</instance_id>
+        <instance_name>wildxanadu</instance_name>
+        <name>sys_wizard_answer_7afdf532db26c650f0f1d03cd3961960</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_wizard_answer">
+    <sys_wizard_answer action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <answer>CMDB CI Appl ServiceNow</answer>
+        <button_label/>
+        <dependent_value/>
+        <element/>
+        <name>CMDB CI Appl ServiceNow</name>
+        <next_question/>
+        <order>100</order>
+        <payload_name/>
+        <question display_value="Base Configuration Item" name="Base Configuration Item">35e66c8f8320021000d5ccc0deaad3d3</question>
+        <roles/>
+        <script/>
+        <sys_class_name>sys_wizard_answer</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-06-06 09:18:22</sys_created_on>
+        <sys_id>7afdf532db26c650f0f1d03cd3961960</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>CMDB CI Appl ServiceNow</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_wizard_answer_7afdf532db26c650f0f1d03cd3961960</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-06-06 09:18:22</sys_updated_on>
+        <table/>
+        <target_url>x_snc_devtools_cmdb_ci_appl_servicenow.do</target_url>
+        <type>1</type>
+    </sys_wizard_answer>
+</record_update>]]></payload>
+        <payload_hash>-2012418402</payload_hash>
+        <record_name>CMDB CI Appl ServiceNow</record_name>
+        <reverted_from/>
+        <source>745b1f9f9364a610ae97b4aa6aba1020</source>
+        <source_table>sys_upgrade_history</source_table>
+        <state>previous</state>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2025-04-02 11:42:12</sys_created_on>
+        <sys_id>07dbdb5393a4a610ae97b4aa6aba10fb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>195f64f15460000001</sys_recorded_at>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2025-04-02 11:42:12</sys_updated_on>
+        <type>Answer</type>
+        <update_guid>cfdbdb5393a4a610e7f2a33beb34d0fa</update_guid>
+        <update_guid_history>cfdbdb5393a4a610e7f2a33beb34d0fa:0,277fb5efb1186e50952b914edc34d990:0,e296f5ebc0d46e50313b12700d987f2f:0,07ae90476694ea5021c1b8c5a5358032:0,f215c4cf0dd0ea5053dd0284aa3fda67:0,1556671c60d8ee10cf2bb599df65860c:0,e5441b14fdd86e104a8d828cfe906347:0,91fc9db831c4a610675ea3423718ab5a:0,6bf4d9bc4b44a610017457784624c17c:0,f4b1ce6c1ccc2610950f1c9da0869926:0,e9864d9b8d3fd290d22b2dc628bdb42b:0,a0d73a1ca63f525032739b1cc627957e:0,7a8b669475fb5250e3d85ef57598f75f:0,214e702a0f139e10b11dad69611d8492:0,161abc2a10df5e10ae3f9fb4d008ea4b:0,3ea0c8480e9f52102caa1bfeadded8b2:0,904a6b3b7f0f52100cf2401e95643d52:0,227a6cfebb7e1250e9b6aa7d2d82e8b1:0,11c67062daf6de1091b5c5b41ebc7f91:0,97dadbc0da321610e8eb2b892d0bc357:0,31969fc070fed210e325269fbccea67b:0,7d0b8580196e1a106ca2e55a31db50be:0,5a044983dd5ed210c4579e7700a49bf3:0,1b3e9d63e8c65610300f443436e17dd2:0,c909d5e372865610a8ae70c87cab17fd:0,4d7d7bd24a7d1a1031b3ba575f80aa81:0,596e2bd656f91a10eec33f7c34ad1296:0,cb2121741e7552101bce940d4f4b7e80:0,a022272876b91210c564592cbad390af:0,053c3d365f695a10169f610db97cf1ca:0,c039f93e24295a101a73172e8c7522ff:0,cd7c113256a55a10c2522119100b676c:0,925f766685691a1057d1a5306cec3948:0,2b03211720d95e10d2ef200a72aaf0e0:0,4f76a49736955e106ca12ad06dbf4156:0,41014e320cc59e50b98f1e77e62797bf:0,53941fde8fe85a90de39f06b7215670e:0,72a791f5dce0d6906f9bbad134025f51:0,44419d7506a0d690c14c6f085470fb0a:0,6a349c562e1c1a50365f0f98c3a5ce35:0,13c473ca79581a5033514a6a3fc2acea:0,68e12be307001250fbd44ab7a62f30a9:0,b0ecdf27b1ccde1047c63697ad7bdeeb:0,da246cf173ccd61075694361b872fd4a:0,ea6e0283a8b3421049bd5ef94e572f13:1928079761</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-14 08:26:52</sys_created_on>
+        <sys_db_object display_value="" name="sys_wizard_answer">sys_wizard_answer</sys_db_object>
+        <sys_id>00187372bfec4100807478dca332f181</sys_id>
+        <sys_metadata>7afdf532db26c650f0f1d03cd3961960</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>CMDB CI Appl ServiceNow</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent display_value="Base Configuration Item">2cf7cfdfd12302104f34ba60d8b7c12c</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sys_wizard_answer_7afdf532db26c650f0f1d03cd3961960</sys_update_name>
+        <sys_update_version display_value="sys_wizard_answer_7afdf532db26c650f0f1d03cd3961960">07dbdb5393a4a610ae97b4aa6aba10fb</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-14 08:26:52</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

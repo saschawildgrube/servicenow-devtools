@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="x_snc_devtools_technical_debt">
+    <x_snc_devtools_technical_debt action="DELETE">
+        <description>The test "DevTools - sys_metadata - Prevent useless checks" randomly fails when executed in the DevTools test suite via the GUI.&#13;
+However when executed separately, the test always passes.</description>
+        <id/>
+        <short_description>Test "DevTools - sys_metadata - Prevent useless checks" is flaky</short_description>
+        <switch>false</switch>
+        <sys_class_name>x_snc_devtools_technical_debt</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-02-06 13:41:12</sys_created_on>
+        <sys_id>99713bbb1b44c2100e0b2f836b4bcbfa</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Test "DevTools - sys_metadata - Prevent useless checks" is flaky</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>x_snc_devtools_technical_debt_99713bbb1b44c2100e0b2f836b4bcbfa</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-07-29 11:48:27</sys_updated_on>
+    </x_snc_devtools_technical_debt>
+<sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>220092723b73421816e44a8aa4e45ab1</instance_id>
+        <instance_name>wildxanadu</instance_name>
+        <name>x_snc_devtools_technical_debt_99713bbb1b44c2100e0b2f836b4bcbfa</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="x_snc_devtools_technical_debt">
+    <x_snc_devtools_technical_debt action="INSERT_OR_UPDATE">
+        <description>The test "DevTools - sys_metadata - Prevent useless checks" randomly fails when executed in the DevTools test suite via the GUI.&#13;
+However when executed separately, the test always passes.</description>
+        <id/>
+        <short_description>Test "DevTools - sys_metadata - Prevent useless checks" is flaky</short_description>
+        <switch>false</switch>
+        <sys_class_name>x_snc_devtools_technical_debt</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-02-06 13:41:12</sys_created_on>
+        <sys_id>99713bbb1b44c2100e0b2f836b4bcbfa</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Test "DevTools - sys_metadata - Prevent useless checks" is flaky</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>x_snc_devtools_technical_debt_99713bbb1b44c2100e0b2f836b4bcbfa</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-07-29 11:48:27</sys_updated_on>
+    </x_snc_devtools_technical_debt>
+</record_update>]]></payload>
+        <payload_hash>436604971</payload_hash>
+        <record_name>Test "DevTools - sys_metadata - Prevent useless checks" is flaky</record_name>
+        <reverted_from/>
+        <source>745b1f9f9364a610ae97b4aa6aba1020</source>
+        <source_table>sys_upgrade_history</source_table>
+        <state>previous</state>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2025-04-02 11:42:13</sys_created_on>
+        <sys_id>0bdb1f5393a4a610ae97b4aa6aba1046</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>195f64f176a0000001</sys_recorded_at>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2025-04-02 11:42:13</sys_updated_on>
+        <type>Technical Debt</type>
+        <update_guid>c3db1f5388a4a61036021da5ae56f146</update_guid>
+        <update_guid_history>c3db1f5388a4a61036021da5ae56f146:0,f37fb5ef43186e50aeea62e192b331d8:0,7296f5eb13d46e505ac3763bca2728a9:0,43ae90479994ea50156ae04e66db8993:0,4715c4cf64d0ea50f90a1e06b44dbfaf:0,ad56671ce7d8ee1002a0ebf0537ebb85:0,61441b1499d86e10a5401c165b9734ec:0,21fcddb81cc4a6102201816cebec6712:0,b3f4d9bc1644a61061b2cc190b5f26d1:0,78b1ce6c8ccc2610ae9bbd5c78a6807a:0,39864d9b793fd290590067d3e85aa4b5:0,b8d73a1c113f52501fc937c74f9caeb9:0,cf8b669421fb5250be7b5e01d4b8b1f1:0,214eb02a18139e1065199d2cbc5a2516:0,1a1abc2a73df5e107a62702e6afffcc2:0,47a0c848769f5210b1b794df65d940f8:0,684a6b3b7a0f5210a6cffbfb0e8098d5:0,6a7a6cfebf7e12500234513829c083f6:0,adc67062f3f6de104979a2ed54c1b2c8:0,57dadbc08e321610d657effa5bd6f4db:0,f1969fc0cffed210162b5593356862cd:0,4a0bc5807e6e1a10488d30238baedc74:0,6e048983555ed21060d05037265cb937:0,633edd6309c65610a5504846d99bf618:0,c50919e3d1865610e85a9e1da0490e4f:0,0e7dbbd2b17d1a102b5766389110cd43:0,5e6e6bd678f91a10159460d139338f4b:0,a321217430755210d244e067d55e8dd1:0,cd2267289eb9121003dfc49caed08a61:0,b53c7d367a695a1092c53937fc53ba4a:0,f0393d3ec5295a10c3252cb6ebfd0175:0,be7c51324ca55a108d5c6ddfa64bb152:0,c75f766660691a1057156c10f1159fc9:0,7813611745d95e107226d8dc7d0192ad:0,2c86a49742955e10b967f63059aa74d8:0,a9018e32e6c59e504a3b9ad5265f8328:0,bf941fde5ae85a90fc983020524993c1:0,8ba791f514e0d690cf9ef54ef90977c7:0,14419d7529a0d6902f66f3848cb9e764:0,cf349c56721c1a50e83aa5881a48fec1:0,a3c4b3cac1581a50e63646aeef20e051:0,45e12be34b0012509bf36e399d2bbbf0:0,8dec13677dccde105413970a9274fe31:0,3e246cf186ccd61071af98a85bd219b9:0,3e6e0283e1b34210694ca9544bf34968:436604971</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Test &quot;DevTools - sys_metadata - Prevent useless checks&quot; is flaky">d5d0cf3093a56e10ae97b4aa6aba109b</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-14 08:22:07</sys_created_on>
+        <sys_db_object display_value="" name="x_snc_devtools_technical_debt">x_snc_devtools_technical_debt</sys_db_object>
+        <sys_id>848d377c57034a40a2b8cd61297b0100</sys_id>
+        <sys_metadata>99713bbb1b44c2100e0b2f836b4bcbfa</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Test "DevTools - sys_metadata - Prevent useless checks" is flaky</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>x_snc_devtools_technical_debt_99713bbb1b44c2100e0b2f836b4bcbfa</sys_update_name>
+        <sys_update_version display_value="x_snc_devtools_technical_debt_99713bbb1b44c2100e0b2f836b4bcbfa">0bdb1f5393a4a610ae97b4aa6aba1046</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-14 08:22:07</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

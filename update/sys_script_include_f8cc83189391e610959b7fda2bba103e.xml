@@ -24,17 +24,32 @@
 	if (strTable == 'sys_script_include')
 	{
 		var strScript = GetStringValue(grRecord.script);
-		strScript = ScriptRemoveComments(strScript);
+		strScriptNoComments = ScriptRemoveComments(strScript);
 		var strName = GetStringValue(grRecord.name);
 
 		// if single function script include
-		if (StringCheckRegEx(strScript,'^\\s*function\\s+'+strName+'\\s*\\(') == true)
+		if (StringCheckRegEx(strScriptNoComments,'^\\s*function\\s+'+strName+'\\s*\\(') == true)
 		{
-			strParams = StringMatchRegEx(
-				strScript,/\(([^)]+)\)/); 
+			strParams = StringMatchRegEx(strScriptNoComments,/\(([^)]*)\)/); 
 
-			var aParams = GetArrayValue(strParams);
-			strParamsCommaSeparated = GetStringValue(aParams);
+			var aParams = [];
+			if (strParams.length > 0)
+			{
+				aParams = GetArrayValue(strParams);
+				for (var nParam = 0; nParam < aParams.length; nParam++)
+				{
+					var strParam = aParams[nParam];
+					aParams[nParam] = strParam.trim();
+				}
+			}
+			if (aParams.length == 0)
+			{
+				strParamsCommaSeparated = '';
+			}
+			else
+			{
+				strParamsCommaSeparated = GetStringValue(aParams) + ',';
+			}
 
 			var strTestCode = '';
 
@@ -44,7 +59,7 @@
 			strTestCode += "\t\n";
 			strTestCode += "\ttest.SetResult(true);\n";
 			strTestCode += "\t\n";
-			strTestCode += "\tfunction TestCase_"+strName+"("+strParamsCommaSeparated+",vExpected)\n";
+			strTestCode += "\tfunction TestCase_"+strName+"("+strParamsCommaSeparated+"vExpected)\n";
 			strTestCode += "\t{\n";
 			strTestCode += "\t\tfunction TestCase_"+strName+"_CheckResult(vInput,vExpected,vResult)\n";
 			strTestCode += "\t\t{\n";
@@ -64,7 +79,6 @@
 					strTestCode += ",";
 				}
 				strTestCode += "\n";
-				
 			}
 			strTestCode += "\t\t\t},\n";
 			strTestCode += "\t\t\tvExpected,\n";
@@ -74,13 +88,17 @@
 			strTestCode += "\tTestCase_"+strName+"(";
 			for (var nParam = 0; nParam < aParams.length; nParam++)
 			{
-				strTestCode += "null";
-				if (nParam < aParams.length - 1)
-				{
-					strTestCode += ",";
-				}
+				strTestCode += "null,";
 			}
-			strTestCode += ",false);\n";
+			if (aParams.length > 0)
+			{
+				strTestCode += "false);\n";
+			}
+			else
+			{
+				strTestCode += "true);\n";
+			}
+			
 
 			strTestCode += "\t\n";
 			strTestCode += "\treturn test.GetResult();\n";
@@ -92,11 +110,82 @@
 		}	
 
 		
-		
+		var bClass = false;
+		if (StringCheckRegEx(strScriptNoComments,'^\\s*var\\s+'+strName+'\\s*=\\s*Class\\.create\\s*\\(\\s*\\)\\s*;','') == true)
+		{
+			bClass = true;
+		}
+		if (StringCheckRegEx(strScriptNoComments,'^\\s*class\\s+'+strName+'\\s+') == true)
+		{
+			bClass = true;
+		}
 
-		// if class script include
-		// create test code based on considering all functions in the class
+		if (bClass == true)
+		{
+			var strTestCode = '';
 
+			var strApiName = GetStringValue(grRecord.api_name);
+			var strInstanceName = GetStringValue(grRecord.name);
+			strInstanceName = strInstanceName.toLowerCase();
+			if (strInstanceName == 'test')
+			{
+				strInstanceName = 'test2';
+			}
+			var aFunctions = ScriptGetFunctionNames(strScript);
+
+			strTestCode += "(function(outputs, steps, stepResult, assertEqual)\n";
+			strTestCode += "{\n";
+			strTestCode += "\tvar test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);\n";
+			strTestCode += "\t\n";
+			strTestCode += "\ttest.SetResult(true);\n";
+			strTestCode += "\t\n";
+
+
+			strTestCode += "\t\n";
+			strTestCode += "\t// TODO: Create test data if applicable\n";
+			strTestCode += "\t\n";
+
+
+			strTestCode += "\tvar "+strInstanceName+" = new "+strApiName+"();\n";
+			strTestCode += "\t\n";
+			strTestCode += "\ttest.Log('TESTING "+strApiName+"');\n";
+
+			for (var nFunction = 0; nFunction < aFunctions.length; nFunction++)
+			{
+				var strFunctionName = aFunctions[nFunction];
+				if (strFunctionName != 'initialize')
+				{
+					strTestCode += "\t\n";
+					strTestCode += "\t\n";
+					strTestCode += "\ttest.Log('');\n";
+					strTestCode += "\ttest.Log('');\n";
+					strTestCode += "\ttest.Log('"+strApiName+"::"+strFunctionName+"()');\n";
+					strTestCode += "\tvResult = "+strInstanceName+"."+strFunctionName+"();\n";
+					strTestCode += "\t\n";
+					strTestCode += "\t// TODO: Define meaningful unexpected condition(s)\n";
+					strTestCode += "\tif (vResult == null)\n";
+					strTestCode += "\t{\n";
+					strTestCode += "\t\ttest.Log('TODO: Log some details about what went wrong');\n";
+					strTestCode += "\t\ttest.Log('"+strApiName+"::"+strFunctionName+"() FAILED');\n";
+					strTestCode += "\t\ttest.SetResult(false);\n";
+					strTestCode += "\t\t\n";
+					strTestCode += "\t\t// TODO: Should the test stop here or continue?\n";
+					strTestCode += "\t\treturn test.GetResult();\n";
+					strTestCode += "\t}\n";
+					strTestCode += "\t\n";
+					strTestCode += "\t\n";
+
+				}
+
+			}
+
+			strTestCode += "\t\n";
+			strTestCode += "\treturn test.GetResult();\n";
+			strTestCode += "\t\n";
+			strTestCode += "})(outputs, steps, stepResult, assertEqual);";
+
+			return strTestCode;			
+		}	
 	}
 
 	if (   strTable == 'scan_table_check'
@@ -159,14 +248,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-04-30 09:42:37</sys_created_on>
         <sys_id>f8cc83189391e610959b7fda2bba103e</sys_id>
-        <sys_mod_count>21</sys_mod_count>
+        <sys_mod_count>41</sys_mod_count>
         <sys_name>MakeTestScriptForRecord</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_f8cc83189391e610959b7fda2bba103e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-05-02 07:07:22</sys_updated_on>
+        <sys_updated_on>2025-05-06 12:05:19</sys_updated_on>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>f8cc83189391e610959b7fda2bba103e</id>

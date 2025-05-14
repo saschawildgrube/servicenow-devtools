@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-03-02 13:06:21</sys_created_on>
         <sys_id>4f16d8391b5b8850a89720a8ec4bcb33</sys_id>
-        <sys_mod_count>20</sys_mod_count>
+        <sys_mod_count>30</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_4f16d8391b5b8850a89720a8ec4bcb33</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-02-17 05:33:14</sys_updated_on>
+        <sys_updated_on>2025-05-02 15:29:23</sys_updated_on>
         <table/>
         <test display_value="DevTools - GetType">92f518391b5b8850a89720a8ec4bcbec</test>
         <timeout/>
@@ -49,36 +49,53 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-03-02 13:06:21</sys_created_on>
         <sys_id>bdce1cfd1b5b8850a89720a8ec4bcb04</sys_id>
-        <sys_mod_count>18</sys_mod_count>
+        <sys_mod_count>28</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-02-17 05:33:14</sys_updated_on>
-        <value>var strLog = '';&#13;
-function Log(strText)&#13;
+        <sys_updated_on>2025-05-02 15:29:23</sys_updated_on>
+        <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
-	strLog = strLog + "\n" + strText;&#13;
-}&#13;
-(function(outputs, steps, stepResult, assertEqual) {&#13;
+	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
+	&#13;
+	test.SetResult(true);&#13;
 &#13;
-	var bResult = true;&#13;
-	&#13;
-	var GetType = x_snc_devtools.GetType;&#13;
-	&#13;
-	function TestCase_GetType(value, strExpected)&#13;
+	function TestCase_GetType(value, vExpected)&#13;
 	{&#13;
-		Log('TestCase_GetType');&#13;
-		strResult = GetType(value);&#13;
-		Log('Expected: '+strExpected);&#13;
-		Log('Result  : '+strResult);&#13;
-		if (strResult != strExpected)&#13;
+		function TestCase_GetType_CheckResult(vInput,vExpected,vResult)&#13;
 		{&#13;
-			bResult = false;&#13;
-			Log('Test case FAILED');&#13;
+			return (vExpected == vResult);&#13;
 		}&#13;
-		Log('');&#13;
+&#13;
+&#13;
+		test.Log('TEST CASE: GetType()');&#13;
+	&#13;
+		test.Log('Input: '+RenderValue(value));&#13;
+		test.Log('Expected: '+RenderValue(vExpected));&#13;
+&#13;
+			var vResult = undefined;&#13;
+		&#13;
+		var stopwatch = new StopWatch();&#13;
+		stopwatch.Start();&#13;
+		vResult = GetType(value);&#13;
+		stopwatch.Stop();&#13;
+		&#13;
+		test.Log('Runtime: '+stopwatch.GetMilliSeconds()+' ms');&#13;
+		test.Log('Result: '+RenderValue(vResult));&#13;
+		&#13;
+		var bResult = TestCase_GetType_CheckResult({},vExpected,vResult); &#13;
+		&#13;
+		if (bResult == false)&#13;
+		{&#13;
+			test.SetResult(false);&#13;
+			test.Log('Test case FAILED');&#13;
+		}&#13;
+		else&#13;
+		{&#13;
+			test.Log('Test case PASSED');&#13;
+			&#13;
+		}&#13;
+		test.Log('');		&#13;
 	}&#13;
-	&#13;
-	&#13;
-	&#13;
+&#13;
 	TestCase_GetType(undefined,'undefined');&#13;
 	TestCase_GetType(null,'null');&#13;
 	TestCase_GetType(42,'number');&#13;
@@ -87,27 +104,24 @@ function Log(strText)&#13;
 	TestCase_GetType({},'Object');&#13;
 	TestCase_GetType(new String(),'String');&#13;
 	TestCase_GetType(new Date(),'Date');&#13;
-	//TestCase_GetType(new GlideDateTime(),'GlideDateTime');&#13;
 	TestCase_GetType(new GlideDateTime(),'JavaObject'); // for the time being&#13;
 	TestCase_GetType(new GlideRecord('incident'),'ScopedGlideRecord');&#13;
+	TestCase_GetType(/Some RegEx/,'RegExp');&#13;
 	&#13;
 	var grIncident = new GlideRecord('incident');&#13;
 	grIncident.initialize();&#13;
 	grIncident.short_description = 'Hello World';&#13;
 	TestCase_GetType(grIncident.short_description,'ScopedGlideElement');&#13;
-	&#13;
+&#13;
 	var grKnowledge = new GlideRecord('kb_knowledge');&#13;
 	grKnowledge.initialize();&#13;
 	grKnowledge.short_description = 'Hello World';&#13;
 	grKnowledge.wiki = '=Hello World=';&#13;
 	TestCase_GetType(grKnowledge.wiki,'ScopedGlideElement');	&#13;
 	&#13;
-	stepResult.setOutputMessage(strLog);&#13;
-	return bResult;&#13;
+	return test.GetResult();&#13;
 	&#13;
-})(outputs, steps, stepResult, assertEqual);&#13;
-&#13;
-	</value>
+})(outputs, steps, stepResult, assertEqual);</value>
         <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
     </sys_variable_value>
 </record_update>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_wizard_answer">
+    <sys_wizard_answer action="DELETE">
+        <active>true</active>
+        <answer>View Rule</answer>
+        <button_label/>
+        <dependent_value/>
+        <element/>
+        <name>View Rule</name>
+        <next_question/>
+        <order>100</order>
+        <payload_name/>
+        <question display_value="Application File" name="Application File">9ef6b0438320021000d5ccc0deaad364</question>
+        <roles/>
+        <script/>
+        <sys_class_name>sys_wizard_answer</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-02-29 10:03:57</sys_created_on>
+        <sys_id>579c55d3dbe40e10f0f1d03cd3961949</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>View Rule</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_wizard_answer_579c55d3dbe40e10f0f1d03cd3961949</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-02-29 10:03:57</sys_updated_on>
+        <table/>
+        <target_url>sysrule_view.do</target_url>
+        <type>1</type>
+    </sys_wizard_answer>
+<sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>220092723b73421816e44a8aa4e45ab1</instance_id>
+        <instance_name>wildxanadu</instance_name>
+        <name>sys_wizard_answer_579c55d3dbe40e10f0f1d03cd3961949</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_wizard_answer">
+    <sys_wizard_answer action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <answer>View Rule</answer>
+        <button_label/>
+        <dependent_value/>
+        <element/>
+        <name>View Rule</name>
+        <next_question/>
+        <order>100</order>
+        <payload_name/>
+        <question display_value="Application File" name="Application File">9ef6b0438320021000d5ccc0deaad364</question>
+        <roles/>
+        <script/>
+        <sys_class_name>sys_wizard_answer</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-02-29 10:03:57</sys_created_on>
+        <sys_id>579c55d3dbe40e10f0f1d03cd3961949</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>View Rule</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_wizard_answer_579c55d3dbe40e10f0f1d03cd3961949</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-02-29 10:03:57</sys_updated_on>
+        <table/>
+        <target_url>sysrule_view.do</target_url>
+        <type>1</type>
+    </sys_wizard_answer>
+</record_update>]]></payload>
+        <payload_hash>-67943936</payload_hash>
+        <record_name>View Rule</record_name>
+        <reverted_from/>
+        <source>745b1f9f9364a610ae97b4aa6aba1020</source>
+        <source_table>sys_upgrade_history</source_table>
+        <state>previous</state>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2025-04-02 11:42:12</sys_created_on>
+        <sys_id>83dbdb5393a4a610ae97b4aa6aba10f9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>195f64f152f0000001</sys_recorded_at>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2025-04-02 11:42:12</sys_updated_on>
+        <type>Answer</type>
+        <update_guid>4fdbdb530ea4a61058570f0a0f1279f8</update_guid>
+        <update_guid_history>4fdbdb530ea4a61058570f0a0f1279f8:0,2f7fb5effa186e50b744a11f449c578d:0,ea96f5ebe0d46e50c43c11e65d27002c:0,0fae90474894ea508676224b9ef33a2f:0,fa15c4cf87d0ea500afac8a1e1d1e264:0,1d56671c44d8ee1098e2c5730f10ed09:0,d1441b14f0d86e100ebfda8197362145:0,99fc9db8eac4a610ad83ae56b0cdf657:0,63f4d9bcca44a61095edc393030de47a:0,fcb1ce6c87cc26106c1d8bd775765223:0,69864d9b473fd2905b141a6c0161ad29:0,a8d73a1cb13f525052987d4f98d8457b:0,728b66949cfb5250f6e763d3ead6435d:0,294e702a73139e10cf28d718a9029e8f:0,1e1abc2af6df5e10e586fb0e6c993848:0,36a0c848649f521084df09881686a3b0:0,984a6b3b090f52103884396da0cb524f:0,2a7a6cfeb47e1250e3f98647d5f36aae:0,19c67062ebf6de10844aa0eea0cf6b8e:0,9fdadbc0ec3216109b7e800351cd1e54:0,39969fc06ffed210dc86fa8d260f6a78:0,750b8580876e1a10ef68959d804e3abc:0,52044983175ed2108fd8c574bf6db6f1:0,133e9d63abc65610e58d67f9f7a0fdd0:0,c109d5e384865610039754681fc8f5fb:0,457d7bd26d7d1a10bdfdfcb195b46d7f:0,516e2bd673f91a1004af20a6fbd0f294:0,c3212174bc755210759fa6d59b476b7e:0,a822272894b912100c2af2616974e5ac:0,0d3c3d36da695a103e7f3adf505c27c7:0,fb29f93eb4295a1076fe35b898bb5ffc:0,c57c11326ba55a10b822132ad6f8656a:0,9a5f7666ca691a1058b01b8bf1dc5545:0,13032117d0d95e10047bdfdc8ee76fde:0,4776a4977f955e10b02e902461cbac54:0,49014e3298c59e50f6ecb9648b9367bc:0,5b941fdec3e85a908e8b2de90b2d5f0b:0,76a791f5d0e0d6905d6bb5b3af1c754e:0,84415d753ba0d6902c2d5a7fcd07f1fb:0,62349c56461c1a50dbd0ad494678e833:0,1bc473ca19581a50372db27358fccbe7:0,ace12be366001250a7fde2c21f8f5d9a:0,acecdf27f1ccde10f16ce953d470abe8:0,56246cf132ccd6107ea4d9f0b0f6d048:0,aa6e0283d1b34210eefe8ef1674cf711:-2112161507</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-14 08:26:52</sys_created_on>
+        <sys_db_object display_value="" name="sys_wizard_answer">sys_wizard_answer</sys_db_object>
+        <sys_id>9d7c6b86fb2248bd8e57ffa3ef99bd01</sys_id>
+        <sys_metadata>579c55d3dbe40e10f0f1d03cd3961949</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>View Rule</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sys_wizard_answer_579c55d3dbe40e10f0f1d03cd3961949</sys_update_name>
+        <sys_update_version display_value="sys_wizard_answer_579c55d3dbe40e10f0f1d03cd3961949">83dbdb5393a4a610ae97b4aa6aba10f9</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-14 08:26:52</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

@@ -166,4 +166,15 @@ A known deficiency is that anonymous functions erroneously return with the funct
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2024-08-28 12:58:56</sys_updated_on>
     </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>bd70eecd4722d910a4b0d4fe536d43c4</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-05 14:19:51</sys_created_on>
+        <sys_id>bd6cf50293d52210ae97b4aa6aba101b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-05 14:19:51</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>

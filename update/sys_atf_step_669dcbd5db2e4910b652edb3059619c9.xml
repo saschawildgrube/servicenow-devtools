@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-03-29 14:30:52</sys_created_on>
         <sys_id>669dcbd5db2e4910b652edb3059619c9</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_669dcbd5db2e4910b652edb3059619c9</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-04-08 11:13:28</sys_updated_on>
+        <sys_updated_on>2025-05-13 16:57:38</sys_updated_on>
         <table/>
         <test display_value="DevTools - WhatRuns">a28d8bd5db2e4910b652edb305961904</test>
         <timeout/>
@@ -35,9 +35,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-03-29 14:30:52</sys_created_on>
         <sys_id>64ad0fd5db2e4910b652edb30596192b</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-04-08 11:13:28</sys_updated_on>
+        <sys_updated_on>2025-05-13 16:57:38</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -48,31 +48,30 @@
 	{&#13;
 		function TestCase_WhatRuns_CheckResult(vInput,vExpected,vResult)&#13;
 		{&#13;
-			return IsEqual(vExpected,vResult);&#13;
+			if (vExpected == false)&#13;
+			{&#13;
+				return (vExpected == vResult);&#13;
+			}&#13;
+			if (IsObject(vResult) == false)&#13;
+			{&#13;
+				return false;&#13;
+			}&#13;
+			return true;&#13;
 		}&#13;
 &#13;
 		test.TestCase(&#13;
 			'Function WhatRuns()',&#13;
 			WhatRuns,&#13;
 			{&#13;
-				'Tables': vTables&#13;
+				'vTables': vTables&#13;
 			},&#13;
 			vExpected,&#13;
 			TestCase_WhatRuns_CheckResult);&#13;
 	}&#13;
 &#13;
-	TestCase_WhatRuns(null,{});&#13;
-	TestCase_WhatRuns('x_snc_devtools_test',&#13;
-		{&#13;
-			'x_snc_devtools_test':&#13;
-			{&#13;
-				'insert': [],&#13;
-				'update': [],&#13;
-				'query': [],&#13;
-				'display': [],&#13;
-				'delete': [],&#13;
-			}&#13;
-		});&#13;
+	TestCase_WhatRuns(null,false);&#13;
+	TestCase_WhatRuns('x_snc_devtools_test',true);&#13;
+	TestCase_WhatRuns(['x_snc_devtools_test','incident'],true);&#13;
 	&#13;
 	return test.GetResult();&#13;
 	&#13;

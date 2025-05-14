@@ -341,7 +341,7 @@ function DevToolsGetFormatConfig(grRecord)
 <p>The "current" object is null in an after delete async business rule, hence the conditional statements.</p>
 
 	<h3>Interactive Lengthy Processes</h3>
-	<p>Implementing a user-interactive lengthy process is not trivial. Follow the steps below - and make use of some DevTools components - to create a lengthy process that is triggered by the user, propagaes progress information to the user interface and reports back the result. The following checklist goes bottom-up, it starts at the "bottom" with the function that performs the lengthy process and goes "up" to the user interface.</p>
+	<p>Implementing a user-interactive lengthy process is not trivial. Follow the steps below - and make use of some DevTools components - to create a lengthy process that is triggered by the user, displays progress information in the user interface and reports back the result. The following checklist goes bottom-up, it starts at the "bottom" with the function that performs the lengthy process and goes "up" to the user interface.</p>
 
 	<ol>
 		<li>Create a Script Include with a single function that performs the lengthy process. Example:&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=7ac969a9dbc095109232dad1f39619c7" target="_blank">x_snc_devtools.AppVersionBaseline</a></li>
@@ -349,7 +349,7 @@ function DevToolsGetFormatConfig(grRecord)
 <pre>
 var progresstracker = new x_snc_devtools.ProgressTrackerAPI();
 
-progresstracker.Start();
+progresstracker.Start('your_table');
 progresstracker.SetText('Starting lengthy process...');
 progresstracker.SetPercentageProgress(1);
 
@@ -373,7 +373,7 @@ progresstracker.SetResult(null,true,'Lengthy process complete.');
 // or failure
 progresstracker.SetResult(null,false,'Lengthy process failed!');
 </pre>
-		<li>Create a Script Include and add a "WorkerAPI" class (if it does not exist in the application yet). The Worker API class is required to run a function asynchornously in a separate process. Create a member function with exactly the same name is the Script Include function that performs the lengthy process. Example:&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=6689d2abdb535d106a03dad1f396197d" target="_blank">x_snc_devtools.DevToolsWorkerAPI</a>.</li>
+		<li>Create a Script Include and add a "WorkerAPI" class (if it does not exist in the application yet). The Worker API class is required to run a function asynchronously in a separate process. Create a member function with exactly the same name is the Script Include function that performs the lengthy process. Example:&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=6689d2abdb535d106a03dad1f396197d" target="_blank">x_snc_devtools.DevToolsWorkerAPI</a>.</li>
 		<li>Configure the WorkerAPI Script Include to be accessible from "All application scopes".</li>
 		<li>Create a Script Include and add a "ClientAPI" class (if it does not exist in the application yet). The Client API class is required to execute a server side script from the client side. Example:&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=7357b9131b8bb090edf3642aab4bcb10" target="_blank">x_snc_devtools.DevToolsClientAPI</a>.</li>
 		<li>Set the ClientAPI Script Include to be "Client callable".</li>
@@ -451,7 +451,7 @@ start: function()
 	return strWorkerId;
 },
 </pre>
-		<li>Add a UI Script containing a client-side function that performs the user interaction to prepare and start the lengthy process and shows its progress. 		Example:&#160;<a href="/nav_to.do?uri=sys_ui_script.do?sys_id=452bfe24dbb84210f0f1d03cd3961940" target="_blank">x_snc_devtools.DevToolsClientAPI</a>. Check out the following boilerplate code:
+		<li>Add a UI Script containing a client-side function that performs the user interaction to prepare and start the lengthy process and shows its progress. 		Example:&#160;<a href="/nav_to.do?uri=sys_ui_script.do?sys_id=452bfe24dbb84210f0f1d03cd3961940" target="_blank">AppVersionBaseline</a>. Check out the following boilerplate code:
 		</li>
 <pre>
 function YourLengthyProcess(strRecordSysId)
@@ -506,11 +506,12 @@ function YourLengthyProcess(strRecordSysId)
 	
 	function OnExecutionFailed(dialog)
 	{
-		StateError('Lengthy Process failed!');
+		StateError('Starting the Lengthy Process has failed!');
 	}
 	
-	function OnStatusUpdate(dialog)
+	function OnStatusUpdate(dialog,tracker)
 	{
+		console.log(tracker);
 	}
 
 	function StateAbort()
@@ -622,6 +623,28 @@ function YourLengthyProcess(strRecordSysId)
 	<g2:no_escape>$[docapi.RenderLicense()]</g2:no_escape>
 	
 	<h2>Release Notes</h2>
+
+	<h3>1.122.0 - 2025-05-14</h3>
+	<ol>
+		<li>MakeTestScriptForRecord() now also supports classes in Script Includes.</li>
+		<li>Fixed a defect in MakeTestScriptForRecord() that sometimes would create incorrect test scripts for single function Script Includes if the function does not have any parameters.</li>
+		<li>RenderValue() now renders RegExp objects properly.</li>
+		<li>Refactored and improved test for GetType().</li>
+		<li>Added missing syntax editor macro for ScriptGetFunctionNames().</li>
+		<li>ProgressTrackerAPI::Start() now accepts the source table as an optional parameter.</li>
+		<li>Table x_snc_devtools_test is now configurable.</li>
+		<li>AppSanity() now deletes sys_kmf_module_key_policy records from the application scope (to counter side-effect of PRB1573372).</li>
+		<li>AppSanity() now deletes auto-generated "query_range" ACLs (see KB2046494).</li>	
+		<li>AppSanity() now deletes auto-generated sys_wizard_answer records.</li>
+		<li>Updated the syntax editor marco for ProgressTrackerAPI.</li>
+		<li>Updated supported platform versions to Xanadu and Yokohama in the manual template ui page.</li>
+		<li>Extended ATF test "DevTools - Test data sanity" to catch left-over system properties used to indicate that a test is running (starting with "devtools.atf.running.").</li>
+		<li>Refactored TestAPI::SetContext() and IsTestRunning() to adapt to the new system property naming convention.</li>
+		<li>UI Script function DoModalProgress() no provides the dialog and the tracker object in callback function callbackOnStatusUpdate().</li>
+		<li>Improved ATF test for WhatRuns() to be resilient against application files relating to the x_snc_devtools_test table.</li>
+		<li>Removed resolved technical debt records.</li>
+	</ol>
+
 
 	<h3>1.121.0 - 2025-05-02</h3>
 	<ol>
@@ -2644,14 +2667,14 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>2031</sys_mod_count>
+        <sys_mod_count>2053</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-05-02 06:43:24</sys_updated_on>
+        <sys_updated_on>2025-05-14 08:24:46</sys_updated_on>
     </sys_ui_page>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>e44fd7541b578450a89720a8ec4bcb8c</id>

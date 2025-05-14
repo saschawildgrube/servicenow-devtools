@@ -69,6 +69,10 @@
 		}
 		return strOutput;
 	}
+	if (strType == 'RegExp')
+	{
+		return ''+vValue;
+	}	
 	if (IsObject(vValue))
 	{
 		var bScopedGlideRecord = (GetType(vValue) == 'ScopedGlideRecord');
@@ -228,13 +232,24 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 09:04:23</sys_created_on>
         <sys_id>a6e04b581bd38450a89720a8ec4bcbc8</sys_id>
-        <sys_mod_count>98</sys_mod_count>
+        <sys_mod_count>101</sys_mod_count>
         <sys_name>RenderValue</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_a6e04b581bd38450a89720a8ec4bcbc8</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-10-30 10:02:45</sys_updated_on>
+        <sys_updated_on>2025-05-02 15:32:53</sys_updated_on>
     </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>a6e04b581bd38450a89720a8ec4bcbc8</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-02 15:14:00</sys_created_on>
+        <sys_id>7d0c660193d5ea10959b7fda2bba1057</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-02 15:14:00</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>

@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-04-22 10:27:07</sys_created_on>
         <sys_id>670322ca1b1050d0a89720a8ec4bcb33</sys_id>
-        <sys_mod_count>83</sys_mod_count>
+        <sys_mod_count>86</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_670322ca1b1050d0a89720a8ec4bcb33</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-10-30 09:45:14</sys_updated_on>
+        <sys_updated_on>2025-05-02 15:34:58</sys_updated_on>
         <table/>
         <test display_value="DevTools - RenderValue">7ce22e8a1b1050d0a89720a8ec4bcbdb</test>
         <timeout/>
@@ -49,9 +49,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-04-22 10:27:07</sys_created_on>
         <sys_id>d263ae8a1b1050d0a89720a8ec4bcb96</sys_id>
-        <sys_mod_count>83</sys_mod_count>
+        <sys_mod_count>86</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-10-30 09:45:14</sys_updated_on>
+        <sys_updated_on>2025-05-02 15:34:58</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -105,6 +105,7 @@
 	TestCase_RenderValueDefault('','');&#13;
 	TestCase_RenderValueDefault('Hello World','Hello World');&#13;
 	TestCase_RenderValueDefault(42,'42');&#13;
+	TestCase_RenderValueDefault(/(Some RegExp)/,'/(Some RegExp)/');&#13;
 	TestCase_RenderValueDefault([],'[]');&#13;
 	TestCase_RenderValueDefault(['Alpha'],'\n[0]: Alpha');&#13;
 	TestCase_RenderValueDefault({},'{}');&#13;
