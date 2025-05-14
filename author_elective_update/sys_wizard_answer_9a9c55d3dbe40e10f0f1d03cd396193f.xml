@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_wizard_answer">
+    <sys_wizard_answer action="DELETE">
+        <active>true</active>
+        <answer>Service Portal</answer>
+        <button_label/>
+        <dependent_value/>
+        <element/>
+        <name>Service Portal</name>
+        <next_question/>
+        <order>100</order>
+        <payload_name/>
+        <question display_value="Application File" name="Application File">9ef6b0438320021000d5ccc0deaad364</question>
+        <roles/>
+        <script/>
+        <sys_class_name>sys_wizard_answer</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-02-29 10:03:54</sys_created_on>
+        <sys_id>9a9c55d3dbe40e10f0f1d03cd396193f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Service Portal</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_wizard_answer_9a9c55d3dbe40e10f0f1d03cd396193f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-02-29 10:03:54</sys_updated_on>
+        <table/>
+        <target_url>sp_portal.do</target_url>
+        <type>1</type>
+    </sys_wizard_answer>
+<sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>220092723b73421816e44a8aa4e45ab1</instance_id>
+        <instance_name>wildxanadu</instance_name>
+        <name>sys_wizard_answer_9a9c55d3dbe40e10f0f1d03cd396193f</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_wizard_answer">
+    <sys_wizard_answer action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <answer>Service Portal</answer>
+        <button_label/>
+        <dependent_value/>
+        <element/>
+        <name>Service Portal</name>
+        <next_question/>
+        <order>100</order>
+        <payload_name/>
+        <question display_value="Application File" name="Application File">9ef6b0438320021000d5ccc0deaad364</question>
+        <roles/>
+        <script/>
+        <sys_class_name>sys_wizard_answer</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-02-29 10:03:54</sys_created_on>
+        <sys_id>9a9c55d3dbe40e10f0f1d03cd396193f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Service Portal</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_wizard_answer_9a9c55d3dbe40e10f0f1d03cd396193f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-02-29 10:03:54</sys_updated_on>
+        <table/>
+        <target_url>sp_portal.do</target_url>
+        <type>1</type>
+    </sys_wizard_answer>
+</record_update>]]></payload>
+        <payload_hash>-541346929</payload_hash>
+        <record_name>Service Portal</record_name>
+        <reverted_from/>
+        <source>745b1f9f9364a610ae97b4aa6aba1020</source>
+        <source_table>sys_upgrade_history</source_table>
+        <state>previous</state>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2025-04-02 11:42:12</sys_created_on>
+        <sys_id>03db1f5393a4a610ae97b4aa6aba1002</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>195f64f158e0000001</sys_recorded_at>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2025-04-02 11:42:12</sys_updated_on>
+        <type>Answer</type>
+        <update_guid>cbdb1f535ba4a61079c870a4a5033c01</update_guid>
+        <update_guid_history>cbdb1f535ba4a61079c870a4a5033c01:0,a37fb5ef7c186e50c56b2d698b9fe998:0,2a96f5ebdcd46e50ea40a72444db5543:0,83ae90472694ea5012cf497fc065ea3a:0,7215c4cf26d0ea5028f422c8d69fb56f:0,5956671cfed8ee1004e9be4b63709a20:0,69441b14d2d86e102a5601f3bfea474e:0,55fc9db87cc4a610ed9be22189629a87:0,e7f4d9bc1c44a6102f5ed2869a4d6c84:0,3cb1ce6cfacc26106987552af789473a:0,e5864d9bce3fd29090b67f297b00bc32:0,20d73a1c253f5250cc2b08dc48777a86:0,b28b669498fb52507d61bfe00233cd74:0,214e702af4139e107dbdd7601ebf10b3:0,921abc2a5ddf5e10e1dbb76f5ea1ab53:0,bea0c848399f521052e99124b7d416ba:0,9c4a6b3b030f52106f142dd29ccda772:0,ae7a6cfe427e1250b6e9d255f8a96eb8:0,9dc6706294f6de101e2c4dd9b9d65298:0,dbdadbc0c33216106a757e4859def66b:0,bd969fc0e2fed2105227b0b401ea8082:0,750bc5802d6e1a1048f5ddaf57922711:0,d6044983eb5ed2104297b6fc57cbc0fb:0,9b3e9d631fc6561005ec41e4423233da:0,010919e3ae865610a89f0436d1fb9212:0,117d7bd2cc7d1a1023568a439db889af:0,d56e2bd684f91a10f0f6ad596c8ee89e:0,5b212174067552108f68a10b2b40ea88:0,2022272864b91210055bf01ad29126b7:0,813c3d366d695a10a4a57a79008bcdd2:0,40393d3e3a295a1007123fead17d5507:0,d97c113228a55a103c0d67622b2ead8d:0,225f7666a0691a104800544a2abe4450:0,3b036117fdd95e1006955ab7b8358101:0,db76a4972f955e10425488f071cf315e:0,cd014e3286c59e507abd50cc753bdfc6:0,df941fdeafe85a908f8024a80dc18c15:0,fea791f5d9e0d690fb3b1a0943968058:0,c0419d757ea0d6909fb396e08754cd12:0,6a349c568c1c1a5020d98b4099d5e656:0,1fc4b3ca5f581a50c9961bc4a474350a:0,f8e12be353001250fca21bfde39943b0:0,34ecdf27acccde10ab279b87304fecf2:0,e2246cf15dccd6105a19ea89f7bdf852:0,266e0283c5b3421020874de7ad2a811a:2060588908</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-14 08:26:52</sys_created_on>
+        <sys_db_object display_value="" name="sys_wizard_answer">sys_wizard_answer</sys_db_object>
+        <sys_id>0727125e4ed14cba826856938502ac44</sys_id>
+        <sys_metadata>9a9c55d3dbe40e10f0f1d03cd396193f</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Service Portal</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sys_wizard_answer_9a9c55d3dbe40e10f0f1d03cd396193f</sys_update_name>
+        <sys_update_version display_value="sys_wizard_answer_9a9c55d3dbe40e10f0f1d03cd396193f">03db1f5393a4a610ae97b4aa6aba1002</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-14 08:26:52</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

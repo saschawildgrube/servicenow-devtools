@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_wizard_answer">
+    <sys_wizard_answer action="DELETE">
+        <active>true</active>
+        <answer>ServiceNow App</answer>
+        <button_label/>
+        <dependent_value/>
+        <element/>
+        <name>ServiceNow App</name>
+        <next_question/>
+        <order>100</order>
+        <payload_name/>
+        <question display_value="Base Configuration Item" name="Base Configuration Item">35e66c8f8320021000d5ccc0deaad3d3</question>
+        <roles/>
+        <script/>
+        <sys_class_name>sys_wizard_answer</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-08-22 16:23:02</sys_created_on>
+        <sys_id>52910033c3c45a505a37f907050131d5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>ServiceNow App</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_wizard_answer_52910033c3c45a505a37f907050131d5</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-08-22 16:23:02</sys_updated_on>
+        <table/>
+        <target_url>x_snc_devtools_cmdb_ci_appl_servicenow.do</target_url>
+        <type>1</type>
+    </sys_wizard_answer>
+<sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>220092723b73421816e44a8aa4e45ab1</instance_id>
+        <instance_name>wildxanadu</instance_name>
+        <name>sys_wizard_answer_52910033c3c45a505a37f907050131d5</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_wizard_answer">
+    <sys_wizard_answer action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <answer>ServiceNow App</answer>
+        <button_label/>
+        <dependent_value/>
+        <element/>
+        <name>ServiceNow App</name>
+        <next_question/>
+        <order>100</order>
+        <payload_name/>
+        <question display_value="Base Configuration Item" name="Base Configuration Item">35e66c8f8320021000d5ccc0deaad3d3</question>
+        <roles/>
+        <script/>
+        <sys_class_name>sys_wizard_answer</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-08-22 16:23:02</sys_created_on>
+        <sys_id>52910033c3c45a505a37f907050131d5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>ServiceNow App</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_wizard_answer_52910033c3c45a505a37f907050131d5</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-08-22 16:23:02</sys_updated_on>
+        <table/>
+        <target_url>x_snc_devtools_cmdb_ci_appl_servicenow.do</target_url>
+        <type>1</type>
+    </sys_wizard_answer>
+</record_update>]]></payload>
+        <payload_hash>1678909462</payload_hash>
+        <record_name>ServiceNow App</record_name>
+        <reverted_from/>
+        <source>745b1f9f9364a610ae97b4aa6aba1020</source>
+        <source_table>sys_upgrade_history</source_table>
+        <state>previous</state>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2025-04-02 11:42:12</sys_created_on>
+        <sys_id>0fdbdb5393a4a610ae97b4aa6aba10f6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>195f64f15180000001</sys_recorded_at>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2025-04-02 11:42:12</sys_updated_on>
+        <type>Answer</type>
+        <update_guid>c7dbdb532ea4a610fbb1d8ae407110f6</update_guid>
+        <update_guid_history>c7dbdb532ea4a610fbb1d8ae407110f6:0,a37fb5efb5186e5072302adf1a71888b:0,6296f5eb3bd46e50bc404752cfb44b2a:0,83ae90474a94ea50fbedc757d994af2d:0,7215c4cfbcd0ea50ebba85b553bb2762:0,9156671c68d8ee106fe44b19b11ebd07:0,95441b14c6d86e104b4f643571d82936:0,11fc9db88dc4a6103099b316c6bf2055:0,e7f4d9bcc544a610d5246ff058b6fa77:0,74b1ce6cb2cc26109fffe35326301e21:0,65864d9b263fd290b08c33bc42f5cb27:0,20d73a1c313f52509b73510cd6dc2d79:0,f68b669447fb5250976e820332aac85a:0,ad4e702a8a139e102b233ce331a80d8c:0,da1abc2acbdf5e1052f4ee7ffe744f39:0,baa0c8488d9f521062ac8ec2fc00aead:0,104a6b3b8d0f52107df9879751b87f4d:0,ae7a6cfe367e12500b5bea2449ca53ab:0,99c670627bf6de1031fa3a8635c1868b:0,17dadbc0433216103f7fd0c760cb5f52:0,bd969fc0dbfed2105dce622b12081475:0,350b8580ed6e1a1068406f6c90838bad:0,d6044983855ed210766799ec4dce10ee:0,973e9d6310c656109db59feaba5cc7cd:0,4909d5e3488656100edc207f03f7faf8:0,c97d7bd24b7d1a10bb487522e6befa7c:0,d56e2bd637f91a1032166d907348bf91:0,4b212174f5755210961e8be2440b9e7b:0,a022272817b91210f10a2f9fae5bb591:0,b03c3d3615695a105a806dbf9fcb8dc5:0,7329f93e8d295a10638addbbc3ef96fa:0,4d7c113233a55a10fff9609786265d67:0,125f7666a2691a102a01450074687043:0,9703211718d95e10c12d5205950d62db:0,cb76a4976e955e100910f9f765558651:0,fc014e32e3c59e50b0641cf9513235b9:0,df941fde83e85a90c038afdb79d4e808:0,eaa791f501e0d690ec2ceaa659d0b04b:0,0c415d7501a0d690f436e309103073f8:0,6e349c564f1c1a50b51501783652c130:-415253263</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-14 08:26:52</sys_created_on>
+        <sys_db_object display_value="" name="sys_wizard_answer">sys_wizard_answer</sys_db_object>
+        <sys_id>46cae7f4953f41a0a66bff918a32be10</sys_id>
+        <sys_metadata>52910033c3c45a505a37f907050131d5</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>ServiceNow App</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent display_value="Base Configuration Item">2cf7cfdfd12302104f34ba60d8b7c12c</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sys_wizard_answer_52910033c3c45a505a37f907050131d5</sys_update_name>
+        <sys_update_version display_value="sys_wizard_answer_52910033c3c45a505a37f907050131d5">0fdbdb5393a4a610ae97b4aa6aba10f6</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-14 08:26:52</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
