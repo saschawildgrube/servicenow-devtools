@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-06-17 08:01:35</sys_created_on>
         <sys_id>2566c2a5db383058bc44d844ca9619d9</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_2566c2a5db383058bc44d844ca9619d9</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-06-17 08:36:09</sys_updated_on>
+        <sys_updated_on>2025-05-14 13:42:25</sys_updated_on>
         <table/>
         <test display_value="DevTools - GlideRecordDelete">ec3642a5db383058bc44d844ca96195d</test>
         <timeout/>
@@ -35,56 +35,63 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-06-17 08:01:35</sys_created_on>
         <sys_id>2367c2a5db383058bc44d844ca96194c</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-06-17 08:36:09</sys_updated_on>
-        <value>var strLog = '';&#13;
-function Log(strText)&#13;
+        <sys_updated_on>2025-05-14 13:42:25</sys_updated_on>
+        <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
-	strLog = strLog + "\n" + strText;&#13;
-}&#13;
-(function(outputs, steps, stepResult, assertEqual)&#13;
-{&#13;
-	var RenderValue = x_snc_devtools.RenderValue;&#13;
-&#13;
-	var bResult = true;&#13;
+	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
 	&#13;
-	function TestCase_GlideRecordDelete(vInput, bExpected)&#13;
+	test.SetResult(true);&#13;
+&#13;
+	function TestCase_GlideRecordDelete(grRecord, bGhost, vExpected)&#13;
 	{&#13;
-		Log('TestCase_GlideRecordDelete');&#13;
-		Log('Input          : '+RenderValue(vInput));&#13;
-		Log('Expected       : '+RenderValue(bExpected));&#13;
-		var vResult = GlideRecordDelete(vInput);&#13;
-		Log('Result         : '+RenderValue(vResult));&#13;
-		if (bExpected != vResult)&#13;
+		function TestCase_GlideRecordDelete_CheckResult(vInput,vExpected,vResult)&#13;
 		{&#13;
-			Log('Test case FAILED');&#13;
+			return (vExpected == vResult);&#13;
 		}&#13;
-				&#13;
-		Log('');&#13;
+&#13;
+		test.TestCase(&#13;
+			'Function GlideRecordDelete()',&#13;
+			GlideRecordDelete,&#13;
+			{&#13;
+				'grRecord': grRecord,&#13;
+				'bGhost': bGhost&#13;
+			},&#13;
+			vExpected,&#13;
+			TestCase_GlideRecordDelete_CheckResult);&#13;
 	}&#13;
 &#13;
-	&#13;
-	TestCase_GlideRecordDelete(null,false);	&#13;
+&#13;
+	TestCase_GlideRecordDelete(null,null,false);	&#13;
 	&#13;
 	var grTest = new GlideRecord('x_snc_devtools_test');&#13;
-	TestCase_GlideRecordDelete(grTest,false);&#13;
+	TestCase_GlideRecordDelete(grTest,false,false);&#13;
 &#13;
 	&#13;
 	var grTest = new GlideRecord('x_snc_devtools_test');&#13;
 	grTest.initialize();&#13;
 	grTest.name = '_ATF_DEVTOOLS_TEST1';&#13;
-	grTest.value = 'Hello World';&#13;
+	grTest.value = 'GlideRecordDelete';&#13;
 	var strSysId = grTest.insert();&#13;
-	&#13;
 	&#13;
 	var grTest = new GlideRecord('x_snc_devtools_test');&#13;
 	grTest.get(strSysId);&#13;
-	TestCase_GlideRecordDelete(grTest,true);&#13;
+	TestCase_GlideRecordDelete(grTest,false,true);&#13;
 &#13;
+&#13;
+&#13;
+	var grTest = new GlideRecord('x_snc_devtools_test');&#13;
+	grTest.initialize();&#13;
+	grTest.name = '_ATF_DEVTOOLS_TEST2';&#13;
+	grTest.value = 'GlideRecordDelete';&#13;
+	var strSysId = grTest.insert();&#13;
 		&#13;
-	stepResult.setOutputMessage(strLog);&#13;
-	return bResult;&#13;
+	var grTest = new GlideRecord('x_snc_devtools_test');&#13;
+	grTest.get(strSysId);&#13;
+	TestCase_GlideRecordDelete(grTest,true,true);&#13;
+	&#13;
+	return test.GetResult();&#13;
 	&#13;
 })(outputs, steps, stepResult, assertEqual);</value>
         <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>

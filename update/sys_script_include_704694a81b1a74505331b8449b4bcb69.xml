@@ -48,50 +48,6 @@ Methods:&#13;
 * InsertFieldToFormSection()&#13;
 * DefineFormSection()&#13;
 * DefineList()&#13;
-* RecordTransporterPackageUnpack()
-|
-Methods:
-* initialize()
-* IsAborting()
-* Log()
-* Error()
-* FatalError()
-* Finish()
-* GenericAction()
-* RecordInsertOrUpdate()
-* RecordSetValue()
-* RecordDelete()
-* DictionarySetValue()
-* DictionaryOverrideSetValue()
-* DocumentationSetValue()
-* CheckTableCrossScopeAccessibility()
-* SetProperty()
-* SetHomePage()
-* SetTableAttribute()
-* SetTableColumnAttribute()
-* SetTableDefaultOrder()
-* ChoiceInsertOrUpdate()
-* DiscoverySourceInsertOrUpdate()
-* DeleteView()
-* DeleteUISection()
-* InstallGlobalSystemProperty()
-* InstallSystemPropertyCategoryMapping()
-* ActivateBusinessRule()
-* ActivateClientScript()
-* ActivateUiAction()
-* ActivateUiPolicy()
-* ActivateServicePortal()
-* ActivateModule()
-* ActivateAppMenu()
-* ActivateViewRule()
-* ActivateACL()
-* ActivateNotification()
-* ShowFieldClass()
-* ActivateRecord()
-* InsertFieldToFormSection()
-* DefineFormSection()
-* DefineList()
-* UxStyleSetColor()
 * RecordTransporterPackageUnpack()</description>
         <mobile_callable>false</mobile_callable>
         <name>InstallerAPI</name>
@@ -516,7 +472,43 @@ InstallerAPI.prototype =
 			});		
 		
 	},
-	
+
+	SetTableValue: function(strTable,strField,vValue)
+	{
+		if (this.IsAborting() == true)
+		{
+			return false;
+		}
+		
+		strTable = GetStringValue(strTable);
+		strField = GetStringValue(strField);
+				
+		var grTable = GetTableRecord(strTable);
+		if (IsValidRecord(grTable) == false)
+		{
+			this.Error('Table "'+strTable+'" could not be found!');			
+		}
+
+		if (IsValidColumn('sys_db_object',strField) == false)
+		{
+			this.Error('Table sys_db_object does not contain field "'+strField+'"!');	
+		}
+
+		GlideRecordSetValue(grTable,strField,vValue);
+		var bResult = IsValidSysId(GlideRecordUpdate(grTable,true));
+
+		if (bResult == true)
+		{
+			this.Log('Table field "'+strField+'" of table "'+strTable+'" is set to "'+vValue+'".');
+		}
+		else
+		{
+			this.Error('Table field "'+strField+'" of table "'+strTable+'" is NOT set to "'+vValue+'"!');
+		}
+		return bResult;
+	},
+
+
 	SetTableAttribute: function(strTable,strAttributeName,strAttributeValue)
 	{
 		if (this.IsAborting() == true)
@@ -1242,14 +1234,14 @@ InstallerAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-08-27 10:49:10</sys_created_on>
         <sys_id>704694a81b1a74505331b8449b4bcb69</sys_id>
-        <sys_mod_count>167</sys_mod_count>
+        <sys_mod_count>174</sys_mod_count>
         <sys_name>InstallerAPI</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_704694a81b1a74505331b8449b4bcb69</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-04-14 08:22:46</sys_updated_on>
+        <sys_updated_on>2025-05-15 09:48:54</sys_updated_on>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>704694a81b1a74505331b8449b4bcb69</id>

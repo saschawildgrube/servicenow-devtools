@@ -7,20 +7,20 @@
         <inputs/>
         <mugshots_cache_json/>
         <notes/>
-        <order>2</order>
+        <order>1</order>
         <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
         <sys_class_name>sys_atf_step</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-04-19 12:41:12</sys_created_on>
         <sys_id>a301d322dba3a8d0ba15a353059619a5</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_a301d322dba3a8d0ba15a353059619a5</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-04-19 12:44:18</sys_updated_on>
+        <sys_updated_on>2025-05-14 14:13:40</sys_updated_on>
         <table/>
         <test display_value="DevTools - RecordDelete ">fdb05feedb63a8d0ba15a353059619d5</test>
         <timeout/>
@@ -35,44 +35,46 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-04-19 12:41:12</sys_created_on>
         <sys_id>0ca19322dba3a8d0ba15a353059619a6</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-04-19 12:44:18</sys_updated_on>
-        <value>var strLog = '';&#13;
-function Log(strText)&#13;
+        <sys_updated_on>2025-05-14 14:13:41</sys_updated_on>
+        <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
-	strLog = strLog + "\n" + strText;&#13;
-}&#13;
-(function(outputs, steps, stepResult, assertEqual)&#13;
-{&#13;
-	var RenderValue = x_snc_devtools.RenderValue;&#13;
-&#13;
-	var bResult = true;&#13;
+	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
 	&#13;
-	function TestCase_RecordDelete(vInputTable, vInputSysId, vExpected)&#13;
+	test.SetResult(true);&#13;
+&#13;
+	function TestCase_RecordDelete(strTable, strSysId, bGhost, vExpected)&#13;
 	{&#13;
-		Log('TestCase_RecordDelete');&#13;
-		Log('vInputTable: '+RenderValue(vInputTable));&#13;
-		Log('vInputSysId: '+RenderValue(vInputSysId));&#13;
-		Log('Expected   : '+RenderValue(vExpected));&#13;
-		var vResult = RecordDelete(vInputTable,vInputSysId);&#13;
-		Log('Result  : '+RenderValue(vResult));&#13;
-		if (vResult != vExpected)&#13;
+		function TestCase_RecordDelete_CheckResult(vInput,vExpected,vResult)&#13;
 		{&#13;
-			bResult = false;&#13;
-			Log('Test case FAILED');&#13;
+			return (vExpected == vResult);&#13;
 		}&#13;
-		Log('');&#13;
-	}&#13;
-	&#13;
-	TestCase_RecordDelete('','',false);&#13;
-	TestCase_RecordDelete('x_snc_devtools_test','',false);&#13;
 &#13;
-	TestCase_RecordDelete('x_snc_devtools_test',GetRecordFromTestStep('3ce05322dba3a8d0ba15a35305961976'),true);&#13;
-	TestCase_RecordDelete('x_snc_devtools_test',GetRecordFromTestStep('3ce05322dba3a8d0ba15a35305961976'),false);&#13;
-		&#13;
-	stepResult.setOutputMessage(strLog);&#13;
-	return bResult;&#13;
+		test.TestCase(&#13;
+			'Function RecordDelete()',&#13;
+			RecordDelete,&#13;
+			{&#13;
+				'strTable': strTable,&#13;
+				'strSysId': strSysId,&#13;
+				'bGhost': bGhost&#13;
+			},&#13;
+			vExpected,&#13;
+			TestCase_RecordDelete_CheckResult);&#13;
+	}&#13;
+&#13;
+	TestCase_RecordDelete('','',false,false);&#13;
+	TestCase_RecordDelete('x_snc_devtools_test','',false,false);&#13;
+&#13;
+	var grTest = new GlideRecord('x_snc_devtools_test');&#13;
+	grTest.initialize();&#13;
+	grTest.name = '_ATF_DEVTOOLS_TEST';&#13;
+	grTest.insert();&#13;
+&#13;
+	TestCase_RecordDelete('x_snc_devtools_test',grTest.sys_id,false,true);&#13;
+	TestCase_RecordDelete('x_snc_devtools_test',grTest.sys_id,false,false);&#13;
+	&#13;
+	return test.GetResult();&#13;
 	&#13;
 })(outputs, steps, stepResult, assertEqual);</value>
         <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>

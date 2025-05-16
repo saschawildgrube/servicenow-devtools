@@ -9,25 +9,47 @@
         <mobile_callable>false</mobile_callable>
         <name>GlideRecordDelete</name>
         <sandbox_callable>false</sandbox_callable>
-        <script><![CDATA[function GlideRecordDelete(gr)
+        <script><![CDATA[function GlideRecordDelete(grRecord,bGhost)
 {
-	if (IsValidRecord(gr) == false)
+	if (IsValidRecord(grRecord) == false)
 	{
 		return false;
 	}
-	return RunScriptInGlobalScope('result = param1.deleteRecord();',gr);
+	bGhost = GetBoolValue(bGhost);
+
+	var bResult = RunScriptInGlobalScope(
+		'if (param2 == true)\n'
+		+'{\n'
+		+'   param1.setWorkflow(false);\n'
+		+'   param1.autoSysFields(false);\n'
+		+'}\n'
+		+'result = param1.deleteRecord();\n'
+		,grRecord,bGhost);
+
+	return bResult;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-06-17 07:51:43</sys_created_on>
         <sys_id>872506eddbf43058bc44d844ca9619f4</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>GlideRecordDelete</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_872506eddbf43058bc44d844ca9619f4</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-08-28 12:58:50</sys_updated_on>
+        <sys_updated_on>2025-05-14 13:39:25</sys_updated_on>
     </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>872506eddbf43058bc44d844ca9619f4</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-14 13:38:05</sys_created_on>
+        <sys_id>fd29cc8193a96e10ae97b4aa6aba10cc</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-14 13:38:05</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>

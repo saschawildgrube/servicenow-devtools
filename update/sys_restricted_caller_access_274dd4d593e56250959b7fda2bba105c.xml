@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_restricted_caller_access">
+    <sys_restricted_caller_access action="INSERT_OR_UPDATE">
+        <description/>
+        <operation>execute</operation>
+        <rca_type>real_rca</rca_type>
+        <source>5183d8f31b21f1106c17fdd49b4bcb7d</source>
+        <source_scope display_value="Dev Platform">c0f2d8b31b21f1106c17fdd49b4bcbdb</source_scope>
+        <source_table>sys_script_include</source_table>
+        <source_type>2</source_type>
+        <status>2</status>
+        <sys_class_name>sys_restricted_caller_access</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-15 09:44:37</sys_created_on>
+        <sys_id>274dd4d593e56250959b7fda2bba105c</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>c0f2d8b31b21f1106c17fdd49b4bcbdb</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_restricted_caller_access_274dd4d593e56250959b7fda2bba105c</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-15 09:57:39</sys_updated_on>
+        <target>704694a81b1a74505331b8449b4bcb69</target>
+        <target_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</target_scope>
+        <target_table>sys_script_include</target_table>
+        <target_type>2</target_type>
+    </sys_restricted_caller_access>
+</record_update>

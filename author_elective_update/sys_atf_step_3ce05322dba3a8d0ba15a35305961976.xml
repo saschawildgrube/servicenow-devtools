@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="DELETE">
+        <active>true</active>
+        <copied_from/>
+        <description>Insert a record into 'x_snc_devtools_test' with the following values:
+Name = _ATF_DEVTOOLS_ITEM_1
+Confirm the record was successfully inserted</description>
+        <display_name>Record Insert</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>1</order>
+        <step_config display_value="Record Insert">14872288df60220062fe6c7a4df26319</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-04-19 12:38:33</sys_created_on>
+        <sys_id>3ce05322dba3a8d0ba15a35305961976</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Record Insert</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_step_3ce05322dba3a8d0ba15a35305961976</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-04-19 12:38:33</sys_updated_on>
+        <table>x_snc_devtools_test</table>
+        <test display_value="DevTools - RecordDelete ">fdb05feedb63a8d0ba15a353059619d5</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="DELETE" query="document_key=3ce05322dba3a8d0ba15a35305961976"/>
+    <sys_variable_value action="DELETE">
+        <document>sys_atf_step</document>
+        <document_key>3ce05322dba3a8d0ba15a35305961976</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-04-19 12:38:33</sys_created_on>
+        <sys_id>1101d322dba3a8d0ba15a35305961981</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-04-19 12:38:33</sys_updated_on>
+        <value>x_snc_devtools_test</value>
+        <variable display_value="Table">90144b535320220002c6435723dc3488</variable>
+    </sys_variable_value>
+    <sys_variable_value action="DELETE">
+        <document>sys_atf_step</document>
+        <document_key>3ce05322dba3a8d0ba15a35305961976</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-04-19 12:38:33</sys_created_on>
+        <sys_id>5d01d322dba3a8d0ba15a35305961980</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-04-19 12:38:33</sys_updated_on>
+        <value>1</value>
+        <variable display_value="Enforce security">e6e3c7535320220002c6435723dc3496</variable>
+    </sys_variable_value>
+    <sys_variable_value action="DELETE">
+        <document>sys_atf_step</document>
+        <document_key>3ce05322dba3a8d0ba15a35305961976</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-04-19 12:38:33</sys_created_on>
+        <sys_id>d101d322dba3a8d0ba15a35305961980</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-04-19 12:38:33</sys_updated_on>
+        <value>record_successfully_inserted</value>
+        <variable display_value="Assert type">9024a37f671003007ba405225685efe5</variable>
+    </sys_variable_value>
+    <sys_variable_value action="DELETE">
+        <document>sys_atf_step</document>
+        <document_key>3ce05322dba3a8d0ba15a35305961976</document_key>
+        <order>400</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-04-19 12:38:33</sys_created_on>
+        <sys_id>d101d322dba3a8d0ba15a35305961981</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-04-19 12:38:33</sys_updated_on>
+        <value>name=_ATF_DEVTOOLS_ITEM_1^EQ</value>
+        <variable display_value="Field values">dd54cf535320220002c6435723dc34fd</variable>
+    </sys_variable_value>
+    <sys_element_mapping action="DELETE" query="table=var__m_atf_input_variable_14872288df60220062fe6c7a4df26319^id=3ce05322dba3a8d0ba15a35305961976"/>
+<sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>220092723b73421816e44a8aa4e45ab1</instance_id>
+        <instance_name>wildxanadu</instance_name>
+        <name>sys_atf_step_3ce05322dba3a8d0ba15a35305961976</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <copied_from/>
+        <description>Insert a record into 'x_snc_devtools_test' with the following values:
+Name = _ATF_DEVTOOLS_ITEM_1
+Confirm the record was successfully inserted</description>
+        <display_name>Record Insert</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>1</order>
+        <step_config display_value="Record Insert">14872288df60220062fe6c7a4df26319</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-04-19 12:38:33</sys_created_on>
+        <sys_id>3ce05322dba3a8d0ba15a35305961976</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Record Insert</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_step_3ce05322dba3a8d0ba15a35305961976</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-04-19 12:38:33</sys_updated_on>
+        <table>x_snc_devtools_test</table>
+        <test display_value="DevTools - RecordDelete ">fdb05feedb63a8d0ba15a353059619d5</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=3ce05322dba3a8d0ba15a35305961976"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>3ce05322dba3a8d0ba15a35305961976</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-04-19 12:38:33</sys_created_on>
+        <sys_id>1101d322dba3a8d0ba15a35305961981</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-04-19 12:38:33</sys_updated_on>
+        <value>x_snc_devtools_test</value>
+        <variable display_value="Table">90144b535320220002c6435723dc3488</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>3ce05322dba3a8d0ba15a35305961976</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-04-19 12:38:33</sys_created_on>
+        <sys_id>5d01d322dba3a8d0ba15a35305961980</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-04-19 12:38:33</sys_updated_on>
+        <value>1</value>
+        <variable display_value="Enforce security">e6e3c7535320220002c6435723dc3496</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>3ce05322dba3a8d0ba15a35305961976</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-04-19 12:38:33</sys_created_on>
+        <sys_id>d101d322dba3a8d0ba15a35305961980</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-04-19 12:38:33</sys_updated_on>
+        <value>record_successfully_inserted</value>
+        <variable display_value="Assert type">9024a37f671003007ba405225685efe5</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>3ce05322dba3a8d0ba15a35305961976</document_key>
+        <order>400</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-04-19 12:38:33</sys_created_on>
+        <sys_id>d101d322dba3a8d0ba15a35305961981</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-04-19 12:38:33</sys_updated_on>
+        <value>name=_ATF_DEVTOOLS_ITEM_1^EQ</value>
+        <variable display_value="Field values">dd54cf535320220002c6435723dc34fd</variable>
+    </sys_variable_value>
+    <sys_element_mapping action="delete_multiple" query="table=var__m_atf_input_variable_14872288df60220062fe6c7a4df26319^id=3ce05322dba3a8d0ba15a35305961976"/>
+</record_update>]]></payload>
+        <payload_hash>1053157562</payload_hash>
+        <record_name>Record Insert</record_name>
+        <reverted_from/>
+        <source>745b1f9f9364a610ae97b4aa6aba1020</source>
+        <source_table>sys_upgrade_history</source_table>
+        <state>previous</state>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2025-04-02 11:40:27</sys_created_on>
+        <sys_id>9d7b57df9364a610ae97b4aa6aba1084</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>195f64d79280000001</sys_recorded_at>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2025-04-02 11:40:27</sys_updated_on>
+        <type>Test Step</type>
+        <update_guid>597b57df3264a61030c50f165989b784</update_guid>
+        <update_guid_history>597b57df3264a61030c50f165989b784:0,042f752f34186e50b06fb075034e8f6a:0,22363d2b81d46e5049d882a87bfeec50:0,ca5ed083d594ea5078adcf45227ff883:0,f9b4480f2cd0ea5054ff9274783ad28f:0,eff52358aed8ee10baec7275432ae294:0,89f35b5006d86e10586bd9d4fe17abe9:0,029cd9b478c4a6103fa2115401280bf6:0,8d4495f83944a610a0a0bae2e45bedf2:0,a46186e815cc261055a031efc61c9593:0,6a36051b033fd2907c48c603ef21741e:0,b5877a581d3f525079adcd0e2137b6a7:0,a23b6ad0e9fb525064796aec4a599d9c:0,21fd7066bb139e108312ae31b5cca5dd:0,1ac9fc6636df5e10d03a0a26436e4dd3:0,f5508c84089f5210da9c3196ee32b5d6:0,d8f9eb77830f5210a131060ace2a46c3:0,492a607eb07e1250fdc4fbb02584bec1:0,127630ae4fb6de100a935b8c95d03baf:0,e18a1f00d6321610261b2b569856e395:0,ed469f00b5fed210c67e3fb52b272b98:0,09ba49ccb82e1a1045417d4cbb515d34:0,a6a3c5cf541ed210cc12e65cdd3f44c6:0,4bed19efb5865610397e902757931c1d:0,21b851630886561027869cf9cb03257d:0,457b3b9e6b3d1a10e33c49375a560c02:0,2c7ce792def91a10f6e12cda412bcea1:0,c19f59305d755210b710f10c7870ea76:0,b5b0e3e0d8b912108cfe8f22de2b7412:0,796a3dfe96295a10c1011d42ce56d345:0,eb373db67f295a10bbaa6badc597c529:0,406ad1fa0d655a1024680afa36436ddd:0,2cedb6eeea291a10ca2b6353e3c4f0ca:0,001121dfd2995e105e17af12e28d5e7e:0,82d3605369955e108c7752a5fcc2e05d:0,29af753ecc859e50895b03e69c742bc6:0,85a3171efce85a90f258fdd15ce59f05:0,eda615f1eae0d690c5a46e426a98e029:0,4d5091b166a0d69036eee359a87258ee:0,303390925b1c1a50d53fad80c73e648a:0,4ce33bc690581a50ff036fe2bc3605b0:0,6de0afef06ccde10c6b1d4a73b0bc6f2:0,72eb57637eccde10ac1095ae3840377d:0,d743243157ccd61057ab068fd22276fc:0,0dad0e8fed7342108c9f597e9d20d116:1053157562</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-14 14:11:49</sys_created_on>
+        <sys_db_object display_value="" name="sys_atf_step">sys_atf_step</sys_db_object>
+        <sys_id>09f13f9c5fe64d0085b09f413180a100</sys_id>
+        <sys_metadata>3ce05322dba3a8d0ba15a35305961976</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Record Insert</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sys_atf_step_3ce05322dba3a8d0ba15a35305961976</sys_update_name>
+        <sys_update_version display_value="sys_atf_step_3ce05322dba3a8d0ba15a35305961976">9d7b57df9364a610ae97b4aa6aba1084</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-14 14:11:49</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

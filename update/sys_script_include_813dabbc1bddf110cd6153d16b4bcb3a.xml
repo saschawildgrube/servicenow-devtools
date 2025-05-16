@@ -41,6 +41,7 @@
 		'"dependent_value" is not defined.',
 		'Cannot read property "device_type" from null',
 		'"sn_atf_tg" is not defined.',
+		'sys_security_acl.local_or_existing = sys_security_acl.security_attribute.is_localized ?',
 		
 		'60b1d53fef12110', // 60b1d53fef1211002841f7f775c0fb54
 		'293eb723d723210', // 293eb723d7232100b6bddb0c82520320
@@ -89,7 +90,8 @@
 		'1f583640c320110', // 1f583640c3201100c8b837659bba8f14   
 		'5a0573707300011', // 5a057370730001104a905ee515f6a755     
 		'8d27c0fa53b5011', // 8d27c0fa53b50110f263ddeeff7b1287 
-		'94f48f061502011', // 94f48f0615020110fa9b58a2aaf5c033       
+		'94f48f061502011', // 94f48f0615020110fa9b58a2aaf5c033      
+		'26a0441f73e0021', // 26a0441f73e00210210ea11cff148b2c     
 		
 		// Flow Designer
 		'"actionOrder" is not defined.',
@@ -107,14 +109,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-09-13 12:47:41</sys_created_on>
         <sys_id>813dabbc1bddf110cd6153d16b4bcb3a</sys_id>
-        <sys_mod_count>87</sys_mod_count>
+        <sys_mod_count>89</sys_mod_count>
         <sys_name>GetEvaluatorErrorExceptionPatterns</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_813dabbc1bddf110cd6153d16b4bcb3a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-04-29 10:48:28</sys_updated_on>
+        <sys_updated_on>2025-05-16 10:23:46</sys_updated_on>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>813dabbc1bddf110cd6153d16b4bcb3a</id>
