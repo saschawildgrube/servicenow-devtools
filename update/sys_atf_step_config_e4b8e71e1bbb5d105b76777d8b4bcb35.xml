@@ -35,9 +35,7 @@ generateDescription();]]></description_generator>
 	var GetArrayValue = x_snc_devtools.GetArrayValue;
 	var GetCallStack = x_snc_devtools.GetCallStack;
 
-
-	var aCallStack = GetCallStack();
-	var strAppSysId = GetValue(aCallStack,0,'sys_scope');
+	var strAppSysId = GetStringValue(inputs.u_application);
 
 	var grApp = GetAppRecord(strAppSysId);
 	if (IsValidRecord(grApp) == false)
@@ -111,18 +109,30 @@ gr.insert();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-12-18 18:33:05</sys_created_on>
         <sys_id>e4b8e71e1bbb5d105b76777d8b4bcb35</sys_id>
-        <sys_mod_count>28</sys_mod_count>
+        <sys_mod_count>35</sys_mod_count>
         <sys_name>DevTools - Check app dependencies</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_config_e4b8e71e1bbb5d105b76777d8b4bcb35</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-11-30 09:18:41</sys_updated_on>
+        <sys_updated_on>2025-05-21 07:37:32</sys_updated_on>
         <template_reminder>TBD</template_reminder>
         <type display_value="Test Step" name="sys_atf_step">844d8f97d1e302104f34ba60d8b7c1dc</type>
         <wizard_redirect/>
     </sys_atf_step_config>
     <sys_translated_text action="delete_multiple" query="documentkey=e4b8e71e1bbb5d105b76777d8b4bcb35"/>
     <sys_variable_value action="delete_multiple" query="document_key=e4b8e71e1bbb5d105b76777d8b4bcb35"/>
+    <sys_element_mapping action="delete_multiple" query="table=var__m_atf_input_variable_e4b8e71e1bbb5d105b76777d8b4bcb35^id=e4b8e71e1bbb5d105b76777d8b4bcb35"/>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>e4b8e71e1bbb5d105b76777d8b4bcb35</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-17 14:47:40</sys_created_on>
+        <sys_id>92d5f3b993a96250ae97b4aa6aba1021</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-17 14:47:40</sys_updated_on>
+        <table>sys_atf_step_config</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>

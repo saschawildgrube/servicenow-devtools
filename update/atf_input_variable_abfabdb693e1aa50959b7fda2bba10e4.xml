@@ -13,7 +13,7 @@
         <choice/>
         <choice_field/>
         <choice_table/>
-        <column_label/>
+        <column_label>Application</column_label>
         <comments/>
         <create_roles/>
         <default_value/>
@@ -38,16 +38,16 @@
         <label>Application</label>
         <mandatory>true</mandatory>
         <max_length>32</max_length>
-        <model display_value="DevTools - Check app dependency (Deprecated)">c3f56886db3da490ba15a353059619ff</model>
-        <model_id>c3f56886db3da490ba15a353059619ff</model_id>
+        <model display_value="DevTools - Check app dependencies">e4b8e71e1bbb5d105b76777d8b4bcb35</model>
+        <model_id>e4b8e71e1bbb5d105b76777d8b4bcb35</model_id>
         <model_table/>
-        <name>var__m_atf_input_variable_c3f56886db3da490ba15a353059619ff</name>
+        <name>var__m_atf_input_variable_e4b8e71e1bbb5d105b76777d8b4bcb35</name>
         <next_element/>
         <order>100</order>
         <primary>false</primary>
         <read_only>false</read_only>
         <read_roles/>
-        <reference display_value="" name="sys_scope">sys_scope</reference>
+        <reference display_value="" name="sys_app">sys_app</reference>
         <reference_cascade_rule/>
         <reference_floats>false</reference_floats>
         <reference_key/>
@@ -58,15 +58,15 @@
         <staged>false</staged>
         <sys_class_name>atf_input_variable</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2021-01-20 11:18:20</sys_created_on>
-        <sys_id>7cf8ac8adb3da490ba15a353059619f5</sys_id>
+        <sys_created_on>2025-05-20 08:26:04</sys_created_on>
+        <sys_id>abfabdb693e1aa50959b7fda2bba10e4</sys_id>
         <sys_name>Application</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
-        <sys_update_name>atf_input_variable_7cf8ac8adb3da490ba15a353059619f5</sys_update_name>
+        <sys_update_name>atf_input_variable_abfabdb693e1aa50959b7fda2bba10e4</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-18 19:10:52</sys_updated_on>
+        <sys_updated_on>2025-05-20 08:27:45</sys_updated_on>
         <table_reference>false</table_reference>
         <text_index>false</text_index>
         <unique>false</unique>
@@ -74,7 +74,7 @@
         <use_dynamic_default>false</use_dynamic_default>
         <use_reference_qualifier>simple</use_reference_qualifier>
         <virtual>false</virtual>
-        <virtual_type/>
+        <virtual_type>script</virtual_type>
         <widget/>
         <write_roles/>
         <xml_view>false</xml_view>

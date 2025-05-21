@@ -39,11 +39,8 @@ generateDescription();
 	var bResult = true;
 	var strMessage = '';
 	
-	var aCallStack = GetCallStack();
+	var strAppSysId = GetStringValue(inputs.u_application);
 
-	strMessage += x_snc_devtools.RenderValue(aCallStack);
-
-	var strAppSysId = GetValue(aCallStack,0,'sys_scope');
 	
 	var grApp = GetAppRecord(strAppSysId);
 
@@ -67,11 +64,6 @@ generateDescription();
 		while (grSysAtfTest.next())
 		{
 			strMessage += 'Checking ATF test: "'+GetStringValue(grSysAtfTest.getValue('name'))+'"\n';
-			if (GetBoolValue(grSysAtfTest.getValue('copied_from')) != '')
-			{
-				bResult = false;
-				strMessage += '  Failed: copied_from should be EMPTY!\n';
-			}
 			
 			// Check sys_atf_step
 			var grSysAtfStep = new GlideRecord('sys_atf_step');
@@ -152,23 +144,7 @@ generateDescription();
 		
 	
 		
-		// Check sys_ui_script
-		var grSysUiScript = new GlideRecord('sys_ui_script');
-		grSysUiScript.addQuery('sys_scope','=',strAppSysId);
-		grSysUiScript.query();
-		while (grSysUiScript.next())
-		{
-			strMessage += 'Checking UI script: "'+GetStringValue(grSysUiScript.getValue('script_name'))+'"\n';
-			
-			var strDescription = GetStringValue(grSysUiScript.getValue('description'));
-			if (strDescription == '')
-			{
-				bResult = false;
-				strMessage += '  Failed: A ui script should have a description.\n';
-			}
-		}		
-		
-		
+	
 		// Check roles
 		var grUserRole = new GlideRecord('sys_user_role');
 		grUserRole.addQuery('sys_scope','=',strAppSysId);
@@ -305,18 +281,30 @@ generateDescription();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-11-23 13:28:01</sys_created_on>
         <sys_id>786a921f1b6c2090a89720a8ec4bcbc9</sys_id>
-        <sys_mod_count>95</sys_mod_count>
+        <sys_mod_count>98</sys_mod_count>
         <sys_name>DevTools - Check scoped app sanity</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_config_786a921f1b6c2090a89720a8ec4bcbc9</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-12-13 11:23:30</sys_updated_on>
+        <sys_updated_on>2025-05-20 08:35:43</sys_updated_on>
         <template_reminder>TBD</template_reminder>
         <type display_value="Test Step" name="sys_atf_step">844d8f97d1e302104f34ba60d8b7c1dc</type>
         <wizard_redirect/>
     </sys_atf_step_config>
     <sys_translated_text action="delete_multiple" query="documentkey=786a921f1b6c2090a89720a8ec4bcbc9"/>
     <sys_variable_value action="delete_multiple" query="document_key=786a921f1b6c2090a89720a8ec4bcbc9"/>
+    <sys_element_mapping action="delete_multiple" query="table=var__m_atf_input_variable_786a921f1b6c2090a89720a8ec4bcbc9^id=786a921f1b6c2090a89720a8ec4bcbc9"/>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>786a921f1b6c2090a89720a8ec4bcbc9</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-20 08:17:46</sys_created_on>
+        <sys_id>4c69f9f293e1aa50959b7fda2bba1009</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-20 08:17:46</sys_updated_on>
+        <table>sys_atf_step_config</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>

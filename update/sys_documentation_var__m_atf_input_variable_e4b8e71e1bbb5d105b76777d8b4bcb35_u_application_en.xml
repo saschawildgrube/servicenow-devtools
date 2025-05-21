@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update>
-    <sys_documentation element="u_application" label="" language="en" table="var__m_atf_input_variable_e4b8e71e1bbb5d105b76777d8b4bcb35">
+    <sys_documentation element="u_application" label="Application" language="en" table="var__m_atf_input_variable_e4b8e71e1bbb5d105b76777d8b4bcb35">
         <sys_documentation action="INSERT_OR_UPDATE">
             <element>u_application</element>
             <help/>
             <hint/>
-            <label/>
+            <label>Application</label>
             <language>en</language>
             <name>var__m_atf_input_variable_e4b8e71e1bbb5d105b76777d8b4bcb35</name>
-            <plural/>
+            <plural>Application</plural>
             <sys_class_name>sys_documentation</sys_class_name>
             <sys_created_by>admin</sys_created_by>
             <sys_created_on>2022-12-18 20:09:26</sys_created_on>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_name>var__m_atf_input_variable_e4b8e71e1bbb5d105b76777d8b4bcb35</sys_name>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_name>Application</sys_name>
             <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
             <sys_policy/>
             <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
             <sys_update_name>sys_documentation_var__m_atf_input_variable_e4b8e71e1bbb5d105b76777d8b4bcb35_u_application_en</sys_update_name>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2022-12-18 20:09:26</sys_updated_on>
+            <sys_updated_on>2025-05-20 08:26:04</sys_updated_on>
             <url/>
             <url_target/>
         </sys_documentation>

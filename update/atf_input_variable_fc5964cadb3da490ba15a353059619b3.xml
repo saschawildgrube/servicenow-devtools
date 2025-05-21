@@ -38,7 +38,7 @@
         <label>Versions</label>
         <mandatory>true</mandatory>
         <max_length>100</max_length>
-        <model display_value="DevTools - Check app dependency">c3f56886db3da490ba15a353059619ff</model>
+        <model display_value="DevTools - Check app dependency (Deprecated)">c3f56886db3da490ba15a353059619ff</model>
         <model_id>c3f56886db3da490ba15a353059619ff</model_id>
         <model_table/>
         <name>var__m_atf_input_variable_c3f56886db3da490ba15a353059619ff</name>
