@@ -75,6 +75,7 @@ Methods:
 * SetTableColumnAttribute()
 * SetTableDefaultOrder()
 * ChoiceInsertOrUpdate()
+* ActivateChoice()
 * DiscoverySourceInsertOrUpdate()
 * DeleteView()
 * DeleteUISection()
@@ -689,6 +690,62 @@ InstallerAPI.prototype =
 			});
 	},
 
+
+	ActivateChoice: function(strReason,strTable,strElement,strValue,bActive)
+	{
+		if (IsValidTable(strTable) == false)
+		{
+			this.Error(
+				'ActivateChoice: Table "'+strTable+'" is invalid!');
+			return false;
+		}
+
+		if (IsValidColumn(strTable,strElement) == false)
+		{
+			this.Error(
+				'ActivateChoice: Element '+strTable+'.'+strElement+' is invalid!');
+			return false;
+
+		}
+
+		var bInactive = !GetBoolValue(bActive);
+
+		var grChoice = new GlideRecord('sys_choice');
+		grChoice.addQuery('name',strTable);
+		grChoice.addQuery('element',strElement);
+		grChoice.addQuery('value',strValue);
+		grChoice.query();
+		if (grChoice.getRowCount() == 0)
+		{
+			this.Log(
+				'ActivateChoice: Did not find any choices for '+strTable+'.'+strElement+'."'+strValue+'" to set inactive to '+RenderValue(bInactive));
+			return true;
+		}
+
+		this.Log(
+			'ActivateChoice: Attempting to set for all language versions of '+strTable+'.'+strElement+'."'+strValue+'" inactive to '+RenderValue(bInactive));
+
+
+		while (grChoice.next())
+		{
+			grChoice.inactive = bInactive;
+			var bSuccess = GlideRecordUpdate(grChoice);
+			if (bSuccess == false)
+			{
+				this.Error(
+					'ActivateChoice: Failed to set '+strTable+'.'+strElement+'."'+strValue+'".'+grChoice.language+' inactive to '+RenderValue(bInactive));
+				return false;
+			}
+
+			this.Log(
+				'ActivateChoice: Set '+strTable+'.'+strElement+'."'+strValue+'".'+grChoice.language+' inactive to '+RenderValue(bInactive));
+		}
+
+		return true;
+	},
+
+
+
 	DiscoverySourceInsertOrUpdate: function(strLabel,strValue)
 	{
 		return this.ChoiceInsertOrUpdate(
@@ -1282,14 +1339,14 @@ InstallerAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-08-27 10:49:10</sys_created_on>
         <sys_id>704694a81b1a74505331b8449b4bcb69</sys_id>
-        <sys_mod_count>181</sys_mod_count>
+        <sys_mod_count>194</sys_mod_count>
         <sys_name>InstallerAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_704694a81b1a74505331b8449b4bcb69</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-06-12 09:21:55</sys_updated_on>
+        <sys_updated_on>2025-06-12 14:41:59</sys_updated_on>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>704694a81b1a74505331b8449b4bcb69</id>
