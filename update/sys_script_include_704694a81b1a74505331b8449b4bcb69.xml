@@ -6,52 +6,7 @@
         <caller_access>1</caller_access>
         <client_callable>false</client_callable>
         <description>The InstallerAPI class supports scripted installation steps as part of the installation of a scoped app. &#13;
-Many functions accept the parameter strReason which is only used for logging and should explain why a certain change is made.&#13;
-|&#13;
-Methods:&#13;
-* initialize()&#13;
-* IsAborting()&#13;
-* Log()&#13;
-* Error()&#13;
-* FatalError()&#13;
-* Finish()&#13;
-* GenericAction()&#13;
-* RecordInsertOrUpdate()&#13;
-* RecordSetValue()&#13;
-* RecordDelete()&#13;
-* DictionarySetValue()&#13;
-* DictionaryOverrideSetValue()&#13;
-* DocumentationSetValue()&#13;
-* CheckTableCrossScopeAccessibility()&#13;
-* SetProperty()&#13;
-* SetHomePage()&#13;
-* SetTableValue()&#13;
-* SetTableAttribute()&#13;
-* SetTableColumnAttribute()&#13;
-* SetTableDefaultOrder()&#13;
-* ChoiceInsertOrUpdate()&#13;
-* DiscoverySourceInsertOrUpdate()&#13;
-* DeleteView()&#13;
-* DeleteUISection()&#13;
-* InstallGlobalSystemProperty()&#13;
-* InstallSystemPropertyCategoryMapping()&#13;
-* ActivateBusinessRule()&#13;
-* ActivateClientScript()&#13;
-* ActivateUiAction()&#13;
-* ActivateUiPolicy()&#13;
-* ActivateServicePortal()&#13;
-* ActivateModule()&#13;
-* ActivateAppMenu()&#13;
-* ActivateViewRule()&#13;
-* ActivateACL()&#13;
-* ActivateNotification()&#13;
-* ShowFieldClass()&#13;
-* ActivateRecord()&#13;
-* InsertFieldToFormSection()&#13;
-* DefineFormSection()&#13;
-* DefineList()&#13;
-* UxStyleSetColor()&#13;
-* RecordTransporterPackageUnpack()
+Many functions accept the parameter strReason which is only used for logging and should explain why a certain change is made.
 |
 Methods:
 * initialize()
@@ -104,7 +59,7 @@ Methods:
         <script><![CDATA[var InstallerAPI = Class.create();
 InstallerAPI.prototype =
 {
-    initialize: function(strContext)
+    initialize: function(strContext) 
 	{
 		this.m_bError = false; 
 		this.m_bAborting = false;
@@ -1339,14 +1294,14 @@ InstallerAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-08-27 10:49:10</sys_created_on>
         <sys_id>704694a81b1a74505331b8449b4bcb69</sys_id>
-        <sys_mod_count>194</sys_mod_count>
+        <sys_mod_count>196</sys_mod_count>
         <sys_name>InstallerAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_704694a81b1a74505331b8449b4bcb69</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-06-12 14:41:59</sys_updated_on>
+        <sys_updated_on>2025-06-13 15:40:30</sys_updated_on>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>704694a81b1a74505331b8449b4bcb69</id>
