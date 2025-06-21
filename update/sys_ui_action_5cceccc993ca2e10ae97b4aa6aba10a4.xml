@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_action">
+    <sys_ui_action action="INSERT_OR_UPDATE">
+        <action_name>devtools_whatruns_table</action_name>
+        <active>true</active>
+        <client>true</client>
+        <client_script_v2><![CDATA[function onClick(g_form) {
+
+}]]></client_script_v2>
+        <comments>Opens the whatruns page to display an analysis on what runs on the table referenced by this record for the different CRUD operations. </comments>
+        <condition>IsActive() &amp;&amp; (AppGetProperty('ui.whatruns_button') == true) &amp;&amp; (IsValidColumn(current.sys_class_name,'collection') || IsValidColumn(current.sys_class_name,'table'))</condition>
+        <form_action>true</form_action>
+        <form_button>true</form_button>
+        <form_button_v2>false</form_button_v2>
+        <form_context_menu>false</form_context_menu>
+        <form_link>false</form_link>
+        <form_menu_button_v2>false</form_menu_button_v2>
+        <form_style>unstyled</form_style>
+        <format_for_configurable_workspace>false</format_for_configurable_workspace>
+        <hint/>
+        <isolate_script>true</isolate_script>
+        <list_action>true</list_action>
+        <list_banner_button>true</list_banner_button>
+        <list_button>false</list_button>
+        <list_choice>false</list_choice>
+        <list_context_menu>false</list_context_menu>
+        <list_link>false</list_link>
+        <list_save_with_form_button>false</list_save_with_form_button>
+        <list_style>unstyled</list_style>
+        <messages/>
+        <name>What Runs on Table</name>
+        <onclick>onClickWhatRunsOnTable()</onclick>
+        <order>99999</order>
+        <script><![CDATA[function onClickWhatRunsOnTable()
+{
+	var strTable = g_form.getValue('collection');
+	if (strTable == '')
+	{
+		strTable = g_form.getValue('table');
+	}
+	if (strTable != '')
+	{
+		var strUrl = '/nav_to.do?uri=%2Fx_snc_devtools_whatruns.do%3Ftables%3D'+strTable;
+		RedirectToUrl(strUrl, true);
+	}
+	else
+	{
+		DoModalMessage('WhatRuns','No specific table is specified - or the record refers to be "global". WhatRuns can only work on a specific table.',function(){});
+	}
+	
+}]]></script>
+        <show_insert>true</show_insert>
+        <show_multiple_update>false</show_multiple_update>
+        <show_query>false</show_query>
+        <show_update>true</show_update>
+        <sys_class_name>sys_ui_action</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-06-08 10:33:57</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>5cceccc993ca2e10ae97b4aa6aba10a4</sys_id>
+        <sys_mod_count>11</sys_mod_count>
+        <sys_name>What Runs on Table</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_ui_action_5cceccc993ca2e10ae97b4aa6aba10a4</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-06-08 10:59:12</sys_updated_on>
+        <table>global</table>
+        <ui11_compatible>true</ui11_compatible>
+        <ui16_compatible>true</ui16_compatible>
+    </sys_ui_action>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>5cceccc993ca2e10ae97b4aa6aba10a4</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-06-08 10:34:12</sys_created_on>
+        <sys_id>88de400d93ca2e10ae97b4aa6aba107c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-06-08 10:34:12</sys_updated_on>
+        <table>sys_ui_action</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

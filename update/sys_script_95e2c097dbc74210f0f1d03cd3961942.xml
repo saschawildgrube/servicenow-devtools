@@ -20,7 +20,7 @@
         <is_rest>false</is_rest>
         <message/>
         <name>sys_metadata - show credential pollution</name>
-        <order>42002</order>
+        <order>42012</order>
         <priority>100</priority>
         <rest_method/>
         <rest_method_text/>
@@ -39,7 +39,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>95e2c097dbc74210f0f1d03cd3961942</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_name>sys_metadata - show credential pollution</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -47,7 +47,7 @@
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_95e2c097dbc74210f0f1d03cd3961942</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-04-30 14:26:07</sys_updated_on>
+        <sys_updated_on>2025-06-21 14:30:16</sys_updated_on>
         <template/>
         <when>before_display</when>
         <x_snc_datasilos_created>false</x_snc_datasilos_created>

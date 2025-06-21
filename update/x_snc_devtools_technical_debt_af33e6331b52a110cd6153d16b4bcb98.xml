@@ -2,6 +2,7 @@
     <x_snc_devtools_technical_debt action="INSERT_OR_UPDATE">
         <description>A number of functions use uppercase "URL" in their name, other use camel cased "Url" which is more consistent with the overall function naming scheme. Such functions must be renamed and proxy functions should be introduced for backward compatibility until DevTools version 2.0.</description>
         <id/>
+        <related_backlog_item_url/>
         <short_description>Function name inconsistency: URL vs. Url</short_description>
         <switch>false</switch>
         <sys_class_name>x_snc_devtools_technical_debt</sys_class_name>

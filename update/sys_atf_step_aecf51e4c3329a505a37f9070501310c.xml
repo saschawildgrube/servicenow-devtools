@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-12-27 13:46:58</sys_created_on>
         <sys_id>aecf51e4c3329a505a37f9070501310c</sys_id>
-        <sys_mod_count>11</sys_mod_count>
+        <sys_mod_count>12</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_aecf51e4c3329a505a37f9070501310c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-04-26 18:33:52</sys_updated_on>
+        <sys_updated_on>2025-06-08 10:12:57</sys_updated_on>
         <table/>
         <test display_value="DevTools - GetRecordsFromUpdateXml">9ecf51e4c3329a505a37f90705013101</test>
         <timeout/>
@@ -49,16 +49,16 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-12-27 13:46:58</sys_created_on>
         <sys_id>62cf51e4c3329a505a37f9070501310f</sys_id>
-        <sys_mod_count>11</sys_mod_count>
+        <sys_mod_count>12</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-04-26 18:33:52</sys_updated_on>
+        <sys_updated_on>2025-06-08 10:12:57</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
 	&#13;
 	test.SetResult(true);&#13;
 &#13;
-	function TestCase_GetRecordsFromUpdateXml(vUpdateXml, vExpected)&#13;
+	function TestCase_GetRecordsFromUpdateXml(vUpdateXml, bIncludeDeleted, vExpected)&#13;
 	{&#13;
 		function TestCase_GetRecordsFromUpdateXml_CheckResult(vInput,vExpected,vResult)&#13;
 		{&#13;
@@ -77,13 +77,14 @@
 			'Function GetRecordsFromUpdateXml()',&#13;
 			GetRecordsFromUpdateXml,&#13;
 			{&#13;
-				'vUpdateXml': vUpdateXml&#13;
+				'vUpdateXml': vUpdateXml,&#13;
+				'bIncludeDeleted': bIncludeDeleted&#13;
 			},&#13;
 			vExpected,&#13;
 			TestCase_GetRecordsFromUpdateXml_CheckResult);&#13;
 	}&#13;
 &#13;
-	TestCase_GetRecordsFromUpdateXml(null,false);&#13;
+	TestCase_GetRecordsFromUpdateXml(null,false,false);&#13;
 &#13;
 	var aExcludedUpdateSetSysIds = [];&#13;
 	var grUpdateSet = new GlideRecord('sys_update_set');&#13;
@@ -115,7 +116,7 @@
 	if (grUpdateXml.next())&#13;
 	{&#13;
 		test.Log("'action','!=','DELETE'");&#13;
-		TestCase_GetRecordsFromUpdateXml(grUpdateXml,-1);&#13;
+		TestCase_GetRecordsFromUpdateXml(grUpdateXml,true,-1);&#13;
 	}&#13;
 &#13;
 	var grUpdateXml = new GlideRecord('sys_update_xml');&#13;
@@ -128,7 +129,7 @@
 	if (grUpdateXml.next())&#13;
 	{&#13;
 		test.Log("name','STARTSWITH','sys_documentation_'");&#13;
-		TestCase_GetRecordsFromUpdateXml(grUpdateXml,-1);&#13;
+		TestCase_GetRecordsFromUpdateXml(grUpdateXml,true,-1);&#13;
 	}&#13;
 &#13;
 	var grUpdateXml = new GlideRecord('sys_update_xml');&#13;
@@ -141,7 +142,7 @@
 	if (grUpdateXml.next())&#13;
 	{&#13;
 		test.Log("name','STARTSWITH','sys_documentation_'");&#13;
-		TestCase_GetRecordsFromUpdateXml(grUpdateXml,-1);&#13;
+		TestCase_GetRecordsFromUpdateXml(grUpdateXml,true,-1);&#13;
 	}&#13;
 &#13;
 	var grUpdateXml = new GlideRecord('sys_update_xml');&#13;
@@ -154,7 +155,7 @@
 	if (grUpdateXml.next())&#13;
 	{&#13;
 		test.Log("name','STARTSWITH','sys_choice_'");&#13;
-		TestCase_GetRecordsFromUpdateXml(grUpdateXml,-1);&#13;
+		TestCase_GetRecordsFromUpdateXml(grUpdateXml,true,-1);&#13;
 	}	&#13;
 &#13;
 	var grUpdateXml = new GlideRecord('sys_update_xml');&#13;
@@ -167,7 +168,7 @@
 	if (grUpdateXml.next())&#13;
 	{&#13;
 		test.Log("name','STARTSWITH','sys_script_'");&#13;
-		TestCase_GetRecordsFromUpdateXml(grUpdateXml,-1);&#13;
+		TestCase_GetRecordsFromUpdateXml(grUpdateXml,true,-1);&#13;
 	}	&#13;
 	&#13;
 	return test.GetResult();&#13;

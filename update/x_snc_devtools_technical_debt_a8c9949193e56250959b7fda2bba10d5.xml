@@ -2,6 +2,7 @@
     <x_snc_devtools_technical_debt action="INSERT_OR_UPDATE">
         <description>Some methods use the form verb-object other use object-verb. This should be consistent.</description>
         <id/>
+        <related_backlog_item_url/>
         <short_description>InstallerAPI Method name inconsistency</short_description>
         <switch>false</switch>
         <sys_class_name>x_snc_devtools_technical_debt</sys_class_name>

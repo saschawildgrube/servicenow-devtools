@@ -624,6 +624,26 @@ function YourLengthyProcess(strRecordSysId)
 	
 	<h2>Release Notes</h2>
 
+	<h3>1.125.0 - 2025-06-21</h3>
+	<ol>
+		<li>The "Save" button now requires the "public" role instead of "admin" thus making it the de-facto standard way to save a record.</li>
+		<li>Added UI Action "What Runs on Table" to show the What Runs page not for the table of the current record but for the table that is referenced by the current record.</li>
+		<li>WhatRuns now also shows "global" UI Actions.</li>
+		<li>WhatRuns now also shows the action name of UI Actions.</li>
+		<li>WhatRuns now shows what runs during "Delete" more visibly on the right-most column instead under the "Display" section.</li>
+		<li>For each Technical Debt record the url to a related backlog item can now be stored.</li>
+		<li>GetAppUncommittedFiles() now also provides uncommitted deleted Application Files.</li> 
+		<li>GetRecordsFromUpdateXml() now also provides deleted Application Files if the new bIncludeDeleted parameter is set to true.</li>
+		<li>GetTableFromSysId() now also ignores the pa_favorites table.</li>
+		<li>Added function InstallerAPI::ActivateChoice().</li>
+		<li>In InstallerAPI member functions the parameter strTopic has been renamed to strReason to improve clarity.</li>
+		<li>Business rule "sys_metadata - prevent useless checks" now also use IsActive().</li>
+		<li>Added sys_user_group_type to the link directory.</li>
+		<li>Added more patterns to GetEvaluatorErrorExceptionPatterns().</li>
+		<li>DocumentationAPI::RenderInstallationInstructionsImportFromSourceControl() now also mentions the use of a "classic" token with "repo" access.</li> 
+	</ol>
+
+
 	<h3>1.124.0 - 2025-05-21</h3>
 	<ol>
 		<li>ATF Test Step Config "DevTools - Check scoped app sanity" and "DevTools - Check app dependencies" now require the application as a parameter. The reason is that GetStackTrace() does not deliver the correct call stack when invoked within an ATF test step config due to a platform defect.</li>
@@ -2686,14 +2706,14 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>2065</sys_mod_count>
+        <sys_mod_count>2082</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-05-21 08:43:47</sys_updated_on>
+        <sys_updated_on>2025-06-21 15:18:34</sys_updated_on>
     </sys_ui_page>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>e44fd7541b578450a89720a8ec4bcb8c</id>

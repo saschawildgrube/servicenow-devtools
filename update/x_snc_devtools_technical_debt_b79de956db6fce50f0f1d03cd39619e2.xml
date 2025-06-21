@@ -2,6 +2,7 @@
     <x_snc_devtools_technical_debt action="INSERT_OR_UPDATE">
         <description>Older test scripts are still not using TestAPI.</description>
         <id/>
+        <related_backlog_item_url/>
         <short_description>Test Scripts not using TestAPI</short_description>
         <switch>false</switch>
         <sys_class_name>x_snc_devtools_technical_debt</sys_class_name>

@@ -2,6 +2,7 @@
     <x_snc_devtools_technical_debt action="INSERT_OR_UPDATE">
         <description>The ATF Test Step Config "DevTools - Check app dependency" is now considered deprecated and should be removed in the next major verson.</description>
         <id/>
+        <related_backlog_item_url/>
         <short_description>ATF Test Step Config "DevTools - Check app dependency" is deprecated</short_description>
         <switch>false</switch>
         <sys_class_name>x_snc_devtools_technical_debt</sys_class_name>

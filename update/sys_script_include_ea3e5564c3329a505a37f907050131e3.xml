@@ -9,13 +9,15 @@
         <mobile_callable>false</mobile_callable>
         <name>GetRecordsFromUpdateXml</name>
         <sandbox_callable>false</sandbox_callable>
-        <script><![CDATA[function GetRecordsFromUpdateXml(vUpdateXml)
+        <script><![CDATA[function GetRecordsFromUpdateXml(vUpdateXml,bIncludeDeleted)
 {
 	var grUpdateXml = GetRecord('sys_update_xml',vUpdateXml);
 	if (IsValidRecord(grUpdateXml) == false)
 	{
 		return false;
 	}
+
+	bIncludeDeleted = GetBoolValue(bIncludeDeleted);
 
 	var aRecords = [];
 
@@ -69,19 +71,47 @@
 			aRecords.push(record);
 		}	
 	}			
+
+	if (bIncludeDeleted == true)
+	{
+		var grDeleted = new GlideRecord('sys_metadata_delete');
+		grDeleted.addQuery('sys_metadata',strSysId);
+		grDeleted.query();
+		if (grDeleted.next())
+		{
+			var grRecord = GetRecord('sys_metadata_delete',grDeleted.sys_id);
+			if (IsValidRecord(grRecord) == true)
+			{
+				var record = Clone(grRecord);
+				aRecords.push(record);
+			}	
+		}
+	}
+
 	return aRecords;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-12-27 13:43:47</sys_created_on>
         <sys_id>ea3e5564c3329a505a37f907050131e3</sys_id>
-        <sys_mod_count>13</sys_mod_count>
+        <sys_mod_count>15</sys_mod_count>
         <sys_name>GetRecordsFromUpdateXml</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_ea3e5564c3329a505a37f907050131e3</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-01-03 09:33:22</sys_updated_on>
+        <sys_updated_on>2025-06-08 10:04:14</sys_updated_on>
     </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>ea3e5564c3329a505a37f907050131e3</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-06-08 10:02:46</sys_created_on>
+        <sys_id>2797c04193ca2e10ae97b4aa6aba10ba</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-06-08 10:02:46</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>

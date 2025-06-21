@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update>
-    <sys_documentation element="x_snc_devtools_showstopper" label="Show Stopper" language="en" table="sys_app">
+    <sys_documentation element="related_backlog_item_url" label="Related backlog item" language="en" table="x_snc_devtools_technical_debt">
         <sys_documentation action="INSERT_OR_UPDATE">
-            <element>x_snc_devtools_showstopper</element>
+            <element>related_backlog_item_url</element>
             <help/>
             <hint/>
-            <label>Show Stopper</label>
+            <label>Related backlog item</label>
             <language>en</language>
-            <name>sys_app</name>
-            <plural>Show Stoppers</plural>
+            <name>x_snc_devtools_technical_debt</name>
+            <plural>Related backlog items</plural>
             <sys_class_name>sys_documentation</sys_class_name>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2025-01-27 09:40:28</sys_created_on>
-            <sys_mod_count>1</sys_mod_count>
-            <sys_name>Show Stopper</sys_name>
+            <sys_created_on>2025-06-21 12:53:20</sys_created_on>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Related backlog item</sys_name>
             <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
             <sys_policy/>
             <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
-            <sys_update_name>sys_documentation_sys_app_x_snc_devtools_showstopper_en</sys_update_name>
+            <sys_update_name>sys_documentation_x_snc_devtools_technical_debt_related_backlog_item_url_en</sys_update_name>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2025-06-19 20:12:28</sys_updated_on>
+            <sys_updated_on>2025-06-21 12:53:20</sys_updated_on>
             <url/>
             <url_target/>
         </sys_documentation>

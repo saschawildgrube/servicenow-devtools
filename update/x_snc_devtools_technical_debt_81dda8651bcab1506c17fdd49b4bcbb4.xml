@@ -3,6 +3,7 @@
         <description>The UI action "Save" and the deactivated business rule "sysrule_view - show hint to set table" are remainders of an old way to help admins creating cross scope sysrule_view records.&#13;
 Once the new feature is confirmed, the code should be removed.</description>
         <id/>
+        <related_backlog_item_url/>
         <short_description>Old code to help admins creating cross-scope sysrule_view records</short_description>
         <switch>false</switch>
         <sys_class_name>x_snc_devtools_technical_debt</sys_class_name>
