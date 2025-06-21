@@ -28,7 +28,7 @@
     </sys_security_acl>
     <sys_update_version action="INSERT_OR_UPDATE">
         <action>DELETE</action>
-        <application display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <application display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</application>
         <file_path/>
         <instance_id>220092723b73421816e44a8aa4e45ab1</instance_id>
         <instance_name>wildxanadu</instance_name>
@@ -61,10 +61,10 @@
         <sys_metadata>bc91c2a5f334621048dff3d762157770</sys_metadata>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>x_snc_devtools_cmdb_ci_appl_servicenow.attested_date</sys_name>
-        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_parent display_value="">243d8e0f1b7342104e7955306b4bcb22</sys_parent>
         <sys_policy/>
-        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
         <sys_update_name>sys_security_acl_bc91c2a5f334621048dff3d762157770</sys_update_name>
         <sys_update_version display_value="sys_security_acl_bc91c2a5f334621048dff3d762157770">42d647a493edea10ae97b4aa6aba10b9</sys_update_version>
