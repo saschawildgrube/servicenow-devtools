@@ -2,6 +2,7 @@
     <x_snc_devtools_technical_debt action="INSERT_OR_UPDATE">
         <description>The function RenderDateTimeUser() does not work properly. This requires investigation and a solid testing strategy as the output depends on dynamic user settings.</description>
         <id/>
+        <related_backlog_item_url/>
         <short_description>RenderDateTimeUser does not seem work. Needs investigation.</short_description>
         <switch>false</switch>
         <sys_class_name>x_snc_devtools_technical_debt</sys_class_name>

@@ -2,6 +2,7 @@
     <x_snc_devtools_technical_debt action="INSERT_OR_UPDATE">
         <description>The field "switch" is no longer compliant with CodeSanity rules - as the term may eventually clash with JavaScript reserved terms when used in a script. A strategy must be identified to rename the field - considering that it may be used by other applications.</description>
         <id/>
+        <related_backlog_item_url/>
         <short_description>x_snc_devtools_technical_debt.switch</short_description>
         <switch>false</switch>
         <sys_class_name>x_snc_devtools_technical_debt</sys_class_name>

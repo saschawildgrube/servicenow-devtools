@@ -3,6 +3,7 @@
         <description>GetInstance(New)Record(Uri|Path)() functions (Script Include and UI Scripts) are deprecated and should be replaced by functions following this naming schema: Get(New)Record*().&#13;
 Functions starting with "GetInstance" must include the instance url. </description>
         <id/>
+        <related_backlog_item_url/>
         <short_description>GetInstance(New)Record(Uri|Path)() functions are deprecated</short_description>
         <switch>false</switch>
         <sys_class_name>x_snc_devtools_technical_debt</sys_class_name>
