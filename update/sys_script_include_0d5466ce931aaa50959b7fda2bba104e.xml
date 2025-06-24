@@ -2,41 +2,42 @@
     <sys_script_include action="INSERT_OR_UPDATE">
         <access>public</access>
         <active>true</active>
-        <api_name>x_snc_devtools.TimeAddDays</api_name>
+        <api_name>x_snc_devtools.TimeAddHours</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Adds (or substracts) a given number of days to (or from) a given time value (in milliseconds).</description>
+        <description>Adds (or substracts) a given number of hours to (or from) a given time value (in milliseconds).</description>
         <mobile_callable>false</mobile_callable>
-        <name>TimeAddDays</name>
+        <name>TimeAddHours</name>
         <sandbox_callable>false</sandbox_callable>
-        <script><![CDATA[function TimeAddDays(nTime, nDays)
+        <script><![CDATA[function TimeAddHours(nTime, nHours)
 {
 	nTime = GetIntegerValue(nTime);
-	nDays = GetIntegerValue(nDays);
-	nTime += nDays * 1000 * 60 * 60 * 24;
+	nHours = GetIntegerValue(nHours);
+	nTime += nHours * 1000 * 60 * 60;
 	return nTime;
-}]]></script>
+}
+]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2021-12-12 18:29:58</sys_created_on>
-        <sys_id>aec14d07db148910bcced03cd396195d</sys_id>
-        <sys_mod_count>1</sys_mod_count>
-        <sys_name>TimeAddDays</sys_name>
+        <sys_created_on>2025-06-24 10:17:04</sys_created_on>
+        <sys_id>0d5466ce931aaa50959b7fda2bba104e</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>TimeAddHours</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
-        <sys_update_name>sys_script_include_aec14d07db148910bcced03cd396195d</sys_update_name>
+        <sys_update_name>sys_script_include_0d5466ce931aaa50959b7fda2bba104e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-08-28 12:58:55</sys_updated_on>
+        <sys_updated_on>2025-06-24 10:20:50</sys_updated_on>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
-        <id>aec14d07db148910bcced03cd396195d</id>
+        <id>0d5466ce931aaa50959b7fda2bba104e</id>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2025-06-24 10:17:03</sys_created_on>
-        <sys_id>0154228e931aaa50959b7fda2bba101e</sys_id>
+        <sys_created_on>2025-06-24 10:17:30</sys_created_on>
+        <sys_id>d76466ce931aaa50959b7fda2bba10c8</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-06-24 10:17:03</sys_updated_on>
+        <sys_updated_on>2025-06-24 10:17:30</sys_updated_on>
         <table>sys_script_include</table>
         <use_es_latest>false</use_es_latest>
     </sys_es_latest_script>
