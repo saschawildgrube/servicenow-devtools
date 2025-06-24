@@ -16,7 +16,7 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2024-06-05 11:05:37</sys_updated_on>
         <target_name>discovery_credentials</target_name>
-        <target_scope display_value="DataSanity WORK IN PROGRESS">e0746823dbad0510bcced03cd396198d</target_scope>
+        <target_scope display_value="DataSanity">e0746823dbad0510bcced03cd396198d</target_scope>
         <target_type>sys_db_object</target_type>
     </sys_scope_privilege>
 </record_update>

@@ -4,7 +4,7 @@
         <operation>execute</operation>
         <rca_type>real_rca</rca_type>
         <source>402b2287dbefc114bcced03cd396194c</source>
-        <source_scope display_value="Crisis WORK IN PROGRESS">d659aacfdbafc114bcced03cd396198b</source_scope>
+        <source_scope display_value="">d659aacfdbafc114bcced03cd396198b</source_scope>
         <source_table>sys_script_include</source_table>
         <source_type>2</source_type>
         <status>2</status>

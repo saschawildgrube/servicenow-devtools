@@ -4,7 +4,7 @@
         <operation>execute</operation>
         <rca_type>real_rca</rca_type>
         <source>f61e0cb5db07c190bcced03cd3961993</source>
-        <source_scope display_value="Wildgrube LAB WORK IN PROGRESS">3a1561201b22c410a89720a8ec4bcb0f</source_scope>
+        <source_scope display_value="">3a1561201b22c410a89720a8ec4bcb0f</source_scope>
         <source_table>sys_script_include</source_table>
         <source_type>2</source_type>
         <status>2</status>

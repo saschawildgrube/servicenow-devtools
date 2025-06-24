@@ -20,7 +20,7 @@
         <is_rest>false</is_rest>
         <message/>
         <name>sys_metadata - show credential pollution</name>
-        <order>42012</order>
+        <order>100</order>
         <priority>100</priority>
         <rest_method/>
         <rest_method_text/>
@@ -39,7 +39,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>95e2c097dbc74210f0f1d03cd3961942</sys_id>
-        <sys_mod_count>9</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_name>sys_metadata - show credential pollution</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -47,21 +47,9 @@
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_95e2c097dbc74210f0f1d03cd3961942</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-06-21 14:30:16</sys_updated_on>
+        <sys_updated_on>2024-08-16 07:21:31</sys_updated_on>
         <template/>
         <when>before_display</when>
-        <x_snc_datasilos_created>false</x_snc_datasilos_created>
     </sys_script>
     <sys_translated_text action="delete_multiple" query="documentkey=95e2c097dbc74210f0f1d03cd3961942"/>
-    <sys_es_latest_script action="INSERT_OR_UPDATE">
-        <id>95e2c097dbc74210f0f1d03cd3961942</id>
-        <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2025-04-14 12:08:32</sys_created_on>
-        <sys_id>e9f4955793f86250959b7fda2bba10ca</sys_id>
-        <sys_mod_count>0</sys_mod_count>
-        <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-04-14 12:08:32</sys_updated_on>
-        <table>sys_script</table>
-        <use_es_latest>false</use_es_latest>
-    </sys_es_latest_script>
 </record_update>

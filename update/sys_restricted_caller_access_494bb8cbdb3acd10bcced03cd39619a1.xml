@@ -4,7 +4,7 @@
         <operation>execute</operation>
         <rca_type/>
         <source>2bbc6c43dbf6cd10bcced03cd39619f3</source>
-        <source_scope display_value="GeoData WORK IN PROGRESS">f9cb2003dbf6cd10bcced03cd396199e</source_scope>
+        <source_scope display_value="">f9cb2003dbf6cd10bcced03cd396199e</source_scope>
         <source_table>sys_script_include</source_table>
         <source_type>2</source_type>
         <status>3</status>

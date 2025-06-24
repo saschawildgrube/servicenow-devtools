@@ -9,21 +9,21 @@ With a failure timeout of 5 Seconds</description>
         <display_name>Record Query</display_name>
         <inputs/>
         <mugshots_cache_json/>
-        <notes>The system property glide.caller_class.enabled must not be set to false. Otherwise a callstack dump does not contain references to records that contain the scripts contained in the call stack - which is required to run various  DevTools functions.</notes>
+        <notes>THe system property glide.caller_class.enabled must not be set to false. Otherwise a callstack dump does not contain references to records that contain the scripts contained in the call stack - which is required to run various  DevTools functions.</notes>
         <order>2</order>
         <step_config display_value="Record Query">2d82e3c7531400109e02ddeeff7b12a7</step_config>
         <sys_class_name>sys_atf_step</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-09-22 12:06:22</sys_created_on>
         <sys_id>002a3dbb1bd13150cd6153d16b4bcbb2</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>Record Query</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_002a3dbb1bd13150cd6153d16b4bcbb2</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-04-15 10:50:03</sys_updated_on>
+        <sys_updated_on>2023-09-22 12:11:50</sys_updated_on>
         <table>sys_properties</table>
         <test display_value="DevTools - Installation">889f2f29db28e850ba15a35305961990</test>
         <timeout>1970-01-01 00:00:05</timeout>

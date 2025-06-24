@@ -29,15 +29,4 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2024-08-28 12:58:55</sys_updated_on>
     </sys_script_include>
-    <sys_es_latest_script action="INSERT_OR_UPDATE">
-        <id>aec14d07db148910bcced03cd396195d</id>
-        <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2025-06-24 10:17:03</sys_created_on>
-        <sys_id>0154228e931aaa50959b7fda2bba101e</sys_id>
-        <sys_mod_count>0</sys_mod_count>
-        <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-06-24 10:17:03</sys_updated_on>
-        <table>sys_script_include</table>
-        <use_es_latest>false</use_es_latest>
-    </sys_es_latest_script>
 </record_update>

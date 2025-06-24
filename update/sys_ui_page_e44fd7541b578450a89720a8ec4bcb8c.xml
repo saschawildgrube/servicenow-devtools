@@ -21,7 +21,7 @@
 		docapi.RenderDescription();  
 	]</g2:no_escape>	
 
-	<p>Special thanks go to&#160;<a href="mailto:k.janssen@posteo.de">Kevin Janssen</a>&#160;for his contribution to the AzureDevOpsAPI class and &#160;<a href="https://github.com/denysbulakh/transliterate-ukrainian/blob/main/translit.js">Denys Bulakh</a>&#160;who provided the groundwork for the Ukrainian transliteration mechanism in function Transliterate().</p>
+	<p>Special thanks go to&#160;<a href="mailto:k.janssen@posteo.de">Kevin Janssen</a>&#160;for his contribution to the AzureDevOpsAPI class and &#160;<a href="https://github.com/denysbulakh/transliterate-ukrainian/blob/main/translit.js">Denys Bulakh</a>&#160;who provided the groundwork for Ukrainian transliteration mechanism in function Transliterate().</p>
 
 	<h2>Disclaimer</h2>
 	<g2:no_escape>$[docapi.RenderDisclaimer()]</g2:no_escape>	
@@ -32,7 +32,7 @@
 	<ul>
 		<g2:no_escape>$[
 			docapi.RenderSystemRequirements(
-				'Xanadu,Yokohama',
+				'Washington,Xanadu',
 				true,
 				AppGetDependencies());
 		]</g2:no_escape>	
@@ -81,7 +81,7 @@ gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData
 	
 	<h3>Sending a Prompt to a Large Language Model (LLM)</h3>
 
-	<p>The function&#160;<a href="/sys_script_include.do?sys_id=8cece71583e91e5000d5ccc0deaad30e" target="_blank">Prompt()</a>&#160;can be used to send a prompt directly to a large language model, but it requires some setup:</p>
+	<p>The function&#160;<a href="/sys_script_include.do?sys_id=8cece71583e91e5000d5ccc0deaad30e" target="_blank">Prompt()</a>&#160;can be used to send a prompt direct to a large language model, but it requires some setup:</p>
 	<ol>
 		<li>Navigate to&#160;<a href="/now/app-manager/home/" target="_blank">Plugins</a></li>
 		<li>Click button "Sync with Store"</li>
@@ -209,7 +209,7 @@ Set a default config for the generic prompt capability: /nav_to.do?uri=sys_one_e
 	
 	<p>Developers may create their own Application Files which also can contain script fields. In some cases such script fields are not used - but also scanned by Instance Scan linter checks. The DevTools extension point allows to inject additional rules that can help to avoid useless checks on such records. To define and inject such rules follow these steps</p>
 	<ol>
-		<li>Implement the&#160;<a href="/nav_to.do?uri=sys_extension_point.do?sys_id=e3a183be1bae7010edf3642aab4bcbdc" target="_blank">DevTools Extension Point</a>.</li>
+		<li>Implement the&#160;<a href="/nav_to.do?uri=sys_extension_point.do?sys_id=e3a183be1bae7010edf3642aab4bcbdc" target="_blank">DevTools extension point</a>.</li>
 		<li>Implement the function GetEncodedQueryToPreventUselessChecks using the following template:
 <pre>
 function GetEncodedQueryToPreventUselessChecks(rules)
@@ -339,238 +339,8 @@ function DevToolsGetFormatConfig(grRecord)
 </pre>
 <p>"your_table" is the technical name of the table in which records should be sorted (or ranked). "order" is the name of the integer field that defines the ordering sequence.</p>
 <p>The "current" object is null in an after delete async business rule, hence the conditional statements.</p>
-
-	<h3>Interactive Lengthy Processes</h3>
-	<p>Implementing a user-interactive lengthy process is not trivial. Follow the steps below - and make use of some DevTools components - to create a lengthy process that is triggered by the user, displays progress information in the user interface and reports back the result. The following checklist goes bottom-up, it starts at the "bottom" with the function that performs the lengthy process and goes "up" to the user interface.</p>
-
-	<ol>
-		<li>Create a Script Include with a single function that performs the lengthy process. Example:&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=7ac969a9dbc095109232dad1f39619c7" target="_blank">x_snc_devtools.AppVersionBaseline</a></li>
-		<li>Add progress tracking to the function that performs the lengthy process using the&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=1baddd5b1b9bd9105b76777d8b4bcb2a" target="_blank">x_snc_devtools.ProgressTrackerAPI</a>&#160;class. The following boilerplate code illustrates how to use the ProgressTrackerAPI class:</li>
-<pre>
-var progresstracker = new x_snc_devtools.ProgressTrackerAPI();
-
-progresstracker.Start('your_table');
-progresstracker.SetText('Starting lengthy process...');
-progresstracker.SetPercentageProgress(1);
-
-// Do something lengthy...
-
-progresstracker.SetText('Continuing lengthy process...');
-progresstracker.SetPercentageProgress(50);
-
-// Do more lengthy things...
-
-progresstracker.SetText('Finishing lengthy process...');
-progresstracker.SetPercentageProgress(90);
-
-// Do one more thing...
-
-progresstracker.SetPercentageProgress(100);
-
-// Report success
-progresstracker.SetResult(null,true,'Lengthy process complete.');
-
-// or failure
-progresstracker.SetResult(null,false,'Lengthy process failed!');
-</pre>
-		<li>Create a Script Include and add a "WorkerAPI" class (if it does not exist in the application yet). The Worker API class is required to run a function asynchronously in a separate process. Create a member function with exactly the same name is the Script Include function that performs the lengthy process. Example:&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=6689d2abdb535d106a03dad1f396197d" target="_blank">x_snc_devtools.DevToolsWorkerAPI</a>.</li>
-		<li>Configure the WorkerAPI Script Include to be accessible from "All application scopes".</li>
-		<li>Create a Script Include and add a "ClientAPI" class (if it does not exist in the application yet). The Client API class is required to execute a server side script from the client side. Example:&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=7357b9131b8bb090edf3642aab4bcb10" target="_blank">x_snc_devtools.DevToolsClientAPI</a>.</li>
-		<li>Set the ClientAPI Script Include to be "Client callable".</li>
-		<li>Add the function "start" to the ClientAPI class. The "start" function is used to invoke lengthy processes. The function has to receive parameters (using this.getParameter()), dertermine which lengthy process is requested (using the "sysparm_ajax_processor_command" parameter), initiate the lengthy process as an asynchonous process (using the Worker API class) and return the Sys Id of the worker record back to the client. Example:&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=7357b9131b8bb090edf3642aab4bcb10" target="_blank">x_snc_devtools.DevToolsClientAPI</a>. Check out the following boilerplate code:</li>
-<pre>
-start: function()
-{
-	if (gs.hasRole('x_your_scope.your_role') == false)
-	{
-		return '';
-	}
-
-	var strWorkerId = '';
-	var strTrackerSourceTable = '';
-	var strTrackerType = '';
-
-	var strCommand = x_snc_devtools.GetStringValue(
-		this.getParameter("sysparm_ajax_processor_command"));
-	if (strCommand == 'your_lengthy_process')
-	{
-		var strRecordSysId = x_snc_devtools.GetStringValue(this.getParameter("sysparm_ajax_processor_record_sys_id"));
-		if (strRecordSysId == '')
-		{
-			x_snc_devtools.LogError('YourClientAPI.start(): YourLengthyProcess: no record_sys_id specified.');
-			return '';
-		}
-		var grRecord = x_snc_devtools.GetRecord('your_table',strRecordSysId);
-		if (x_snc_devtools.IsValidRecord(grRecord) == false)
-		{
-			x_snc_devtools.LogError('YourClientAPI.start(): YourLengthyProcess: Record not found.');
-			return '';
-		}
-
-		strTrackerSourceTable = 'your_table';
-		strTrackerType = 'your_lengthy_process';
-
-		var strProgressName = "Processing record "+grRecord.number;
-
-		var params = {};
-		params['strRecordSysId'] = strRecordSysId;
-
-		strWorkerId = x_snc_devtools.StartWorker(
-			strProgressName,
-			'x_your_scope.YourWorkerAPI',
-			'YourLengthyProcess',
-			params);
-	}
-	else
-	{
-		x_snc_devtools.LogError('YourClientAPI.start(): Unknown command!');
-	}
-
 	
-	if (strWorkerId == '')
-	{
-		return '';
-	}
-
-	var nCountDown = 1000;
-	while (nCountDown > 0)
-	{
-		var grTracker = new GlideRecord('sys_execution_tracker');
-		grTracker.orderByDesc('sys_created_on');
-		grTracker.addQuery('source_table','=',strTrackerSourceTable);
-		grTracker.addQuery('type','=',strTrackerType);
-		grTracker.addQuery('state', 'IN', '0,1');
-		grTracker.query();
-		if (grTracker.next())
-		{
-			return x_snc_devtools.GetStringValue(grTracker.sys_id);
-		}
-		nCountDown--;
-	}
-
-	return strWorkerId;
-},
-</pre>
-		<li>Add a UI Script containing a client-side function that performs the user interaction to prepare and start the lengthy process and shows its progress. 		Example:&#160;<a href="/nav_to.do?uri=sys_ui_script.do?sys_id=452bfe24dbb84210f0f1d03cd3961940" target="_blank">AppVersionBaseline</a>. Check out the following boilerplate code:
-		</li>
-<pre>
-function YourLengthyProcess(strRecordSysId)
-{
-	var strRecordSysId = GetStringValue(strRecordSysId);
-	var strTitle = 'Your Lengthy Process';
-	
-	var bUserConfirmation = false;
-
-	StateStart();
-
-	function StateUserConfirmation()
-	{
-		DoModalConfirm(
-			strTitle,
-			strMessage
-			+'\n\n'
-			+'Ready to start the lengthy process?',
-			StateUserConfirmationUserResponse);
-	}
-
-	function StateUserConfirmationUserResponse(bResult)
-	{
-		if (bResult == false)
-		{
-			StateEnd();
-			return;
-		}
-		bUserConfirmation = true;
-		StateStart();		
-	}
-
-			
-
-	function OnExecutionComplete(dialog,tracker)
-	{
-		var buttonViewResults = GetElementById('sysparm_button_view_results');
-		if (buttonViewResults)
-		{
-			buttonViewResults.style.display = "none";
-		}
-
-		var buttonClose = GetElementById('sysparm_button_close');
-		if (buttonClose)
-		{
-			buttonClose.on('click', function()
-				{
-					StateEnd();
-				});
-		}
-	}
-	
-	function OnExecutionFailed(dialog)
-	{
-		StateError('Starting the Lengthy Process has failed!');
-	}
-	
-	function OnStatusUpdate(dialog,tracker)
-	{
-		console.log(tracker);
-	}
-
-	function StateAbort()
-	{
-		DoModalMessage(
-			strTitle,
-			'Aborting...',
-			StateEnd);
-		return;	
-	}
-
-	function StateError(strErrorMessage)
-	{
-		DoModalMessage(
-			strTitle,
-			'ERROR: '+strErrorMessage,
-			StateEnd);		
-		return;	
-	}	
-
-	function StateEnd()
-	{
-		RedirectToRecord('your_table',strRecordSysId,'');
-	}
-
-	function StateStart()
-	{
-		if (bUserConfirmation == false)
-		{
-			StateUserConfirmation();
-			return;
-		}
-
-		DoModalProgress(
-			strTitle,
-			'Lengthy Process',
-			'x_your_scope.YourClientAPI',
-			{
-				command: 'your_lengthy_process',
-				record_sys_id: strRecordSysId
-			},
-			{
-				close:
-				{
-					title: 'Close'
-				}
-			},
-			{
-				callbackOnExecutionComplete: OnExecutionComplete,
-				callbackOnExecutionFailed: OnExecutionFailed,
-				callbackOnStatusUpdate: OnStatusUpdate,
-			});
-	}
-}
-</pre>
-<li>Add a client-side script that triggers the client-side function. E.g. a client-side UI Action that adds a button on a form. Example:&#160;<a href="/nav_to.do?uri=sys_ui_action.do?sys_id=869da5addbc095109232dad1f3961993" target="_blank">UI Action: "Baseline Version"</a>.
-		</li>
-	</ol>
-	<p>Once all components are in place, the procedure can be tested. Note that if a server-side script that is triggered through a client AJAX request runs into an evaluator error such errors ARE NOT LOGGED. This is annoying and makes debugging more difficult. If your process shows unexpected behavior, use debug logging to narrow down the code that fails.</p> 
+	<h2>Further Guidance</h2>
 
 	<h3>How to unblock Instance Scan?</h3>
 	<p>On rare occasions an Instance Scan run does not finish properly and remains in an undefined state. This prevents further Instance Scan checks to run. Follow these instructions to unblock Instance Scan and to enable further scan operations:</p>
@@ -623,165 +393,6 @@ function YourLengthyProcess(strRecordSysId)
 	<g2:no_escape>$[docapi.RenderLicense()]</g2:no_escape>
 	
 	<h2>Release Notes</h2>
-
-	<h3>1.126.0 - 2025-06-24</h3>
-	<ol>
-		<li>Added function TimeAddHours().</li>
-		<li>Updated the syntax editor macro for GetInstanceListUrl().</li>
-		<li>The "Save" button now (really) requires the "public" role instead of "admin" thus making it the de-facto standard way to save a record.</li>
-	</ol>
-
-
-	<h3>1.125.1 - 2025-06-21</h3>
-	<ol>
-		<li>Fixed a regression in Business Rule "DevTools - sys_metadata - Prevent useless checks".</li>
-	</ol>
-
-
-	<h3>1.125.0 - 2025-06-21</h3>
-	<ol>
-		<li>The "Save" button now requires the "public" role instead of "admin" thus making it the de-facto standard way to save a record.</li>
-		<li>Added UI Action "What Runs on Table" to show the What Runs page not for the table of the current record but for the table that is referenced by the current record.</li>
-		<li>WhatRuns now also shows "global" UI Actions.</li>
-		<li>WhatRuns now also shows the action name of UI Actions.</li>
-		<li>WhatRuns now shows what runs during "Delete" more visibly on the right-most column instead under the "Display" section.</li>
-		<li>For each Technical Debt record the url to a related backlog item can now be stored.</li>
-		<li>GetAppUncommittedFiles() now also provides uncommitted deleted Application Files.</li> 
-		<li>GetRecordsFromUpdateXml() now also provides deleted Application Files if the new bIncludeDeleted parameter is set to true.</li>
-		<li>GetTableFromSysId() now also ignores the pa_favorites table.</li>
-		<li>Added function InstallerAPI::ActivateChoice().</li>
-		<li>In InstallerAPI member functions the parameter strTopic has been renamed to strReason to improve clarity.</li>
-		<li>Business rule "sys_metadata - prevent useless checks" now also use IsActive().</li>
-		<li>Added sys_user_group_type to the link directory.</li>
-		<li>Added more patterns to GetEvaluatorErrorExceptionPatterns().</li>
-		<li>DocumentationAPI::RenderInstallationInstructionsImportFromSourceControl() now also mentions the use of a "classic" token with "repo" access.</li> 
-	</ol>
-
-
-	<h3>1.124.0 - 2025-05-21</h3>
-	<ol>
-		<li>ATF Test Step Config "DevTools - Check scoped app sanity" and "DevTools - Check app dependencies" now require the application as a parameter. The reason is that GetStackTrace() does not deliver the correct call stack when invoked within an ATF test step config due to a platform defect.</li>
-		<li>ATF Test Step Config "DevTools - Check scoped app sanity" no longer checks for the copied_from field in ATF tests as it is already covered in AppSanity().</li> 
-		<li>ATF Test Step Config "DevTools - Check scoped app sanity" no longer checks for UI Script descriptions as this is covered by the Instance Scan check "CodeSanity - UI Script description" contained in CodeSanity since version 2.3.0.</li>
-		<li>ATF Test Step Config "DevTools - Check app dependency" is now considered deprecated.</li>
-	</ol>
-
-
-	<h3>1.123.0 - 2025-05-16</h3>
-	<ol>
-		<li>GlideRecordDelete() and RecordDelete() now support the bGhost parameter to suppress workflows when deleting a record.</li>
-		<li>Added InstallerAPI::SetTableValue().</li>
-		<li>AppSanity() now deletes rouge auto-generated sys_dictionary records for non-existing tables.</li>
-		<li>AppSanity() now deletes sys_db_view_table_field records for non-existing database view tables.</li>
-		<li>Added more patterns to GetEvaluatorErrorExceptionPatterns().</li>
-	</ol>
-
-
-	<h3>1.122.0 - 2025-05-14</h3>
-	<ol>
-		<li>MakeTestScriptForRecord() now also supports classes in Script Includes.</li>
-		<li>Fixed a defect in MakeTestScriptForRecord() that sometimes would create incorrect test scripts for single function Script Includes if the function does not have any parameters.</li>
-		<li>RenderValue() now renders RegExp objects properly.</li>
-		<li>Refactored and improved test for GetType().</li>
-		<li>Added missing syntax editor macro for ScriptGetFunctionNames().</li>
-		<li>ProgressTrackerAPI::Start() now accepts the source table as an optional parameter.</li>
-		<li>Table x_snc_devtools_test is now configurable.</li>
-		<li>AppSanity() now deletes sys_kmf_module_key_policy records from the application scope (to counter side-effect of PRB1573372).</li>
-		<li>AppSanity() now deletes auto-generated "query_range" ACLs (see KB2046494).</li>	
-		<li>AppSanity() now deletes auto-generated sys_wizard_answer records.</li>
-		<li>Updated the syntax editor marco for ProgressTrackerAPI.</li>
-		<li>Updated supported platform versions to Xanadu and Yokohama in the manual template ui page.</li>
-		<li>Extended ATF test "DevTools - Test data sanity" to catch left-over system properties used to indicate that a test is running (starting with "devtools.atf.running.").</li>
-		<li>Refactored TestAPI::SetContext() and IsTestRunning() to adapt to the new system property naming convention.</li>
-		<li>UI Script function DoModalProgress() no provides the dialog and the tracker object in callback function callbackOnStatusUpdate().</li>
-		<li>Improved ATF test for WhatRuns() to be resilient against application files relating to the x_snc_devtools_test table.</li>
-		<li>Removed resolved technical debt records.</li>
-	</ol>
-
-
-	<h3>1.121.0 - 2025-05-02</h3>
-	<ol>
-		<li>Notifications (sysevent_email_action) are now also displayed on "What Runs".</li>
-		<li>Added function SourceControlCoolDown() and the system property "x_snc_devtools.sourcecontrol.cooldown.seconds" to wait for a configurable amount of seconds after a source control operation.</li>
-		<li>AppVersionBaseline() and SharedAppVersionBaseline() now explicitly request the version to be baselined to the backend - this should prevent duplicate executions of the baseline process caused by duplicate requests being sent by rouge network components between the client and the server.</li> 
-		<li>Added function GetParentTables().</li>
-		<li>Added function GetTestStepScript().</li>
-		<li>Added function SetTestStepScript().</li>
-		<li>Added function MakeTestScriptForRecord() with support for single function Script Includes.</li>
-		<li>Function CreateTestForRecord() now uses MakeTestScriptForRecord() to populate the script of a new ATF test (step).</li>
-		<li>AppInstall() now deactivates the "Copy Test Suite" UI action on table sys_atf_test_suite to avoid unintended (and pointless) copies of ATF Test Suites.</li>
-		<li>AppInstall() fixes the table ordering for database view "incident_sla" for table "task_sla" to avoid unexpected behavior in Yokohama.</li>
-		<li>Improved test for GetRecordsFromUpdateXml() to avoid false negatives.</li>
-		<li>InstanceReset() now also deactivates application menus "Process Mining" and "Platform Analytics".</li>
-		<li>GetRecord() now supports the strColumnPrefix parameter to enable GetRecord() to be used with database views.</li> 
-		<li>IsValidColumn() now also supports database view columns.</li>
-		<li>RenderRecordSummary() now also supports database view records.</li>
-		<li>TestAPI::TestCase_IsRecordAccessibleByUser() now fails the test if the record cannot be loaded at all - no matter what the expected result is.</li>
-		<li>Added more patterns to GetEvaluatorErrorExceptionPatterns().</li>
-		<li>Added error logging to InstanceScanSuiteOnApp().</li>
-		<li>Updated Business Rule execution order.</li>
-	</ol>
-
-
-	<h3>1.120.0 - 2025-04-17</h3>
-	<ol>
-		<li>Added function RecordDuplicate().</li>
-		<li>If a DevTools extension point implements the function GetInstancePipelineName() and the function returns the pipeline name "dev" a new capability checks if the current branch name starts with "dev" - if not a warning is displayed. The feature can be turned off using the new system property "x_snc_devtools.ui.show_wrong_branch_warning.active".</li>  
-		<li>InstallerAPI::DefineList() can now define list views if users personalized the list.</li>
-		<li>Fixed a defect in GetScopeSysIdFromPropertyName(). The function could be confused by adding a system property with an empty name (which, of course, should not even exist). In that case the function returned the scope Sys Id of that unnamed system property.</li>
-		<li>Fixed a defect in DevToolsClientAPI::start() that caused incorrect error messages when baselining an application.</li>
-		<li>Added test step in the "DevTools - Installation" ATF test to verify that the system property "glide.record.legacy_cross_scope_access_policy_in_script" was not accidentally created outside the global scope.</li> 
-		<li>Added more patterns to GetEvaluatorErrorExceptionPatterns().</li>
-		<li>DocumentationAPI::RenderInstallationInstructionsImportFromSourceControl() now either shows the link to further installation instructions OR the steps to fork the repo and import the app via source control - but not both - which in some cases was redundant.</li>  
-	</ol>
-
-
-	<h3>1.119.0 - 2025-04-11</h3>
-	<ol>
-		<li>Washington is no longer actively supported.</li>
-		<li>UI Actions "Up", "Save" and "List" now require the admin role. Since Xanadu the explicit roles plugin is no longer shipped and the snc_internal role is no longer available OOTB.</li>
-		<li>Added function IsAppInstalled().</li>
-		<li>GetPackageDependencyTree() now marks dependencies with missing Sys Ids as "undefined".</li>
-		<li>GetDependencyListFromTree() now handles dependencies without Sys Ids properly.</li>
-		<li>Added more patterns to GetEvaluatorErrorExceptionPatterns().</li>
-		<li>Updated all UI Action action names to contain the prefix "devtools_" and to follow a consistent naming convention.</li> 
-		<li>Improved ATF test for GetRecordsFromUpdateXml() to avoid false-negatives.</li>
-	</ol>
-
-
-	<h3>1.118.0 - 2025-03-21</h3>
-	<ol>
-		<li>DevTools is fully tested in Yokohama.</li>
-		<li>Function RunTestSuite() has been adapted to backward incompatible API behavior change in Yokohama.</li>
-		<li>Added function WaitForTracker().</li>
-		<li>ATF test for InstanceScanCheckOnRecord() is no longer dependent on OOTB checks (which are no longer shipped in Yokohama).</li>
-		<li>Added more patterns to GetEvaluatorErrorExceptionPatterns().</li>
-		<li>GetParentRecord() and the "Up" UI Action now support the x_snc_devtools_technical_debt table.</li>
-	</ol>
-
-
-	<h3>1.117.0 - 2025-03-19</h3>
-	<ol>
-		<li>The DevTools extension point now supports the IsTechnicalUser() member function, which can be used to override the default behavior of the IsTechnicalUser() Script Include function which determines if a user is a technical user. Extended AppBuilder() to create the DevToolsIsTechnicalUser() function.</li>
-		<li>Added function CreateTinyUrl().</li>
-		<li>Refactored HtmlRenderPageEvaluatorLog() to use CreateTinyUrl().</li>
-		<li>Added UI Script StringFormat().</li>
-		<li>ExecuteBusinessRuleShowRecentEvaluatorErrors() now shows a condensed error message if the recently logged evaluator errors are not logged during a transaction of the current user. This prevents spamming developers too much with evaluator errors unrelated to their work.</li>  
-		<li>On the evaluator error log list a message is displayed to inform the maintainer of DevTools on evaluator errors caused by OOTB records.</li>
-		<li>IsPrimaryRequestUrl() no longer considers urls longer than 500 characters as non-primary.</li>
-		<li>Added more patterns to GetEvaluatorErrorExceptionPatterns().</li>
-	</ol>
-
-
-	<h3>1.116.0 - 2025-03-11</h3>
-	<ol>
-		<li>GetArrayValue() now supports the delimiter parameter.</li>
-		<li>Added guidance on how to build "Interactive Lengthy Processes" to the manual.</li>
-		<li>Improved html layout in HtmlRenderProcessMap() by ending the floating area.</li> 
-		<li>Added syntax editor macro for StartWorker().</li>
-		<li>The business rule "sys_metadata - set scope to record scope" no longer enforces the scope on Service Portal Editor pages - to avoid unintended side-effects.</li>
-	</ol>
-
 
 	<h3>1.115.0 - 2025-02-28</h3>
 	<ol>
@@ -1864,7 +1475,7 @@ while (grDept.next())
 		<li>Added function InstanceScanSuiteOnApp() to the DevToolsClientAPI class.</li>
 		<li>Added function GetCurrentScope().</li>
 		<li>Added class ProgressTrackerAPI (which does not yet work properly).</li>
-		<li>Added class DevToolsWorkerAPI to contain proxy lengthy process functions that can be executed through a progress worker.</li> 
+		<li>Added class DevToolsWorkerAPI to contain proxy lengthy operations functions that can be executed through a progress worker.</li> 
 		<li>Added UI script function GetParameter().</li>
 		<li>Added UI script function RedirectToUrl().</li>
 		<li>Added UI script function RedirectToRecord().</li>
@@ -2720,24 +2331,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>2087</sys_mod_count>
+        <sys_mod_count>1935</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-06-24 10:30:21</sys_updated_on>
+        <sys_updated_on>2025-02-28 11:20:23</sys_updated_on>
     </sys_ui_page>
-    <sys_es_latest_script action="INSERT_OR_UPDATE">
-        <id>e44fd7541b578450a89720a8ec4bcb8c</id>
-        <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2025-04-07 07:40:19</sys_created_on>
-        <sys_id>a47490859374a610959b7fda2bba1073</sys_id>
-        <sys_mod_count>0</sys_mod_count>
-        <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-04-07 07:40:19</sys_updated_on>
-        <table>sys_ui_page</table>
-        <use_es_latest>false</use_es_latest>
-    </sys_es_latest_script>
 </record_update>
