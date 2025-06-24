@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_action_role">
+    <sys_ui_action_role action="DELETE">
+        <sys_class_name>sys_ui_action_role</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-04-09 16:53:36</sys_created_on>
+        <sys_id>cff56cb193f0aa10959b7fda2bba10c3</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Save.admin</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_ui_action display_value="Save">e155ed64db4441104647dad1f39619dd</sys_ui_action>
+        <sys_update_name>sys_ui_action_role_cff56cb193f0aa10959b7fda2bba10c3</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-04-09 16:53:36</sys_updated_on>
+        <sys_user_role display_value="admin" name="admin">2831a114c611228501d4ea6c309d626d</sys_user_role>
+    </sys_ui_action_role>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>220092723b73421816e44a8aa4e45ab1</instance_id>
+        <instance_name>wildxanadu</instance_name>
+        <name>sys_ui_action_role_cff56cb193f0aa10959b7fda2bba10c3</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_action_role"><sys_ui_action_role action="INSERT_OR_UPDATE"><sys_class_name>sys_ui_action_role</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2025-04-09 16:53:36</sys_created_on><sys_id>cff56cb193f0aa10959b7fda2bba10c3</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Save.admin</sys_name><sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package><sys_policy/><sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope><sys_ui_action display_value="Save">e155ed64db4441104647dad1f39619dd</sys_ui_action><sys_update_name>sys_ui_action_role_cff56cb193f0aa10959b7fda2bba10c3</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2025-04-09 16:53:36</sys_updated_on><sys_user_role display_value="admin" name="admin">2831a114c611228501d4ea6c309d626d</sys_user_role></sys_ui_action_role></record_update>]]></payload>
+        <payload_hash>-1688207746</payload_hash>
+        <record_name>Save.admin</record_name>
+        <reverted_from/>
+        <source>4a7cd3949398ee10ae97b4aa6aba1016</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-04-09 16:53:36</sys_created_on>
+        <sys_id>3c4664f193f0aa10959b7fda2bba1077</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1961b78b1f70000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-04-09 16:53:36</sys_updated_on>
+        <type>UI Action Role</type>
+        <update_guid>fc4664f15af0aa107e65a7c6d4fada76</update_guid>
+        <update_guid_history>fc4664f15af0aa107e65a7c6d4fada76:-1688207746</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-06-24 08:33:21</sys_created_on>
+        <sys_db_object display_value="" name="sys_ui_action_role">sys_ui_action_role</sys_db_object>
+        <sys_id>471978a6b2a146498ffe29ec093f7971</sys_id>
+        <sys_metadata>cff56cb193f0aa10959b7fda2bba10c3</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Save.admin</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sys_ui_action_role_cff56cb193f0aa10959b7fda2bba10c3</sys_update_name>
+        <sys_update_version display_value="sys_ui_action_role_cff56cb193f0aa10959b7fda2bba10c3">3c4664f193f0aa10959b7fda2bba1077</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-06-24 08:33:21</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
