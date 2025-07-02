@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.MakeCodeInstallerDefineFormSection</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Creates a script to define the given Form Section in its current for within an AppInstall() script using the InstallerAPI.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>MakeCodeInstallerDefineFormSection</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function MakeCodeInstallerDefineFormSection(vFormSection)
+{
+	var grFormSection = GetRecord('sys_ui_section',vFormSection);
+	if (IsValidRecord(grFormSection) == false)
+	{
+		return false;
+	}
+
+	var strScript = "";
+
+	strScript += "\tinstaller.DefineFormSection('"+grFormSection.sys_id+"',\n";
+	strScript += "\t\t[\n";
+
+	var grElements = new GlideRecord('sys_ui_element');
+	grElements.addQuery('sys_ui_section','=',grFormSection.sys_id);
+	grElements.orderBy('position');
+	grElements.query();
+	var nCount = 0;
+	while (grElements.next())
+	{
+		strComma = '';
+		if (nCount < grElements.getRowCount() - 1)
+		{
+			strComma = ',';
+		}
+		strScript += "\t\t\t'"+grElements.element+"'"+strComma+"\n";
+		nCount++;
+	}
+	strScript += "\t\t]);\n";
+
+	return strScript;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-02 07:51:28</sys_created_on>
+        <sys_id>43ae07e09362a610ae97b4aa6aba1000</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>MakeCodeInstallerDefineFormSection</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_43ae07e09362a610ae97b4aa6aba1000</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-02 11:58:33</sys_updated_on>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>43ae07e09362a610ae97b4aa6aba1000</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-02 07:51:28</sys_created_on>
+        <sys_id>cabfc3249362a610ae97b4aa6aba1035</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-02 07:51:28</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
