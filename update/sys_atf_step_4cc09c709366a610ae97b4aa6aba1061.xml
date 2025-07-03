@@ -11,65 +11,66 @@
         <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
         <sys_class_name>sys_atf_step</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2022-05-31 09:42:14</sys_created_on>
-        <sys_id>69172e29db374d14b652edb30596198e</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_created_on>2025-07-02 12:35:35</sys_created_on>
+        <sys_id>4cc09c709366a610ae97b4aa6aba1061</sys_id>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
-        <sys_update_name>sys_atf_step_69172e29db374d14b652edb30596198e</sys_update_name>
+        <sys_update_name>sys_atf_step_4cc09c709366a610ae97b4aa6aba1061</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-07-01 09:12:14</sys_updated_on>
+        <sys_updated_on>2025-07-02 12:46:37</sys_updated_on>
         <table/>
-        <test display_value="DevTools - InstallerAPI">a907aa29db374d14b652edb3059619af</test>
+        <test display_value="DevTools - MakeCodeInstallerDefineFormSection">77b09c709366a610ae97b4aa6aba1054</test>
         <timeout/>
         <warning_message/>
     </sys_atf_step>
-    <sys_variable_value action="delete_multiple" query="document_key=69172e29db374d14b652edb30596198e"/>
+    <sys_variable_value action="delete_multiple" query="document_key=4cc09c709366a610ae97b4aa6aba1061"/>
     <sys_variable_value action="INSERT_OR_UPDATE">
         <document>sys_atf_step</document>
-        <document_key>69172e29db374d14b652edb30596198e</document_key>
+        <document_key>4cc09c709366a610ae97b4aa6aba1061</document_key>
         <order>200</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2022-05-31 09:42:14</sys_created_on>
-        <sys_id>3eb7eaa9db374d14b652edb3059619dd</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_created_on>2025-07-02 12:35:35</sys_created_on>
+        <sys_id>4cc09c709366a610ae97b4aa6aba1065</sys_id>
+        <sys_mod_count>3</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-07-01 09:12:14</sys_updated_on>
+        <sys_updated_on>2025-07-02 12:46:37</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
 	&#13;
 	test.SetResult(true);&#13;
 	&#13;
-	var testdata = new TestDataAPI('_ATF_DEVTOOLS_');&#13;
-	var strItemSysId = testdata.CreateTestItem('ALPHA','Hello World');&#13;
-	&#13;
-	var installer = new InstallerAPI('_ATF_DEVTOOLS_');&#13;
-&#13;
-	installer.RecordSetValue('Set a new value for item ALPHA','x_snc_devtools_test',strItemSysId,'value','Hello Universe');&#13;
-&#13;
-	test.TestCase_RecordGetValue('x_snc_devtools_test',strItemSysId,'value','Hello Universe');&#13;
-&#13;
-&#13;
-	// Defining the main form section of x_snc_devtools_test&#13;
-	installer.DefineFormSection('f678c3711b8de5505b76777d8b4bcb53',&#13;
-		[&#13;
-			'.begin_split',&#13;
-			'name',&#13;
-			'value',&#13;
-			'.split',&#13;
-			'processed',&#13;
-			'order',&#13;
-			'.end_split'&#13;
-		]);&#13;
-&#13;
-&#13;
-&#13;
-	installer.Finish();&#13;
-	&#13;
+	function TestCase_MakeCodeInstallerDefineFormSection(vFormSection,vExpected)&#13;
+	{&#13;
+		function TestCase_MakeCodeInstallerDefineFormSection_CheckResult(vInput,vExpected,vResult)&#13;
+		{&#13;
+			if (vExpected == false)&#13;
+			{&#13;
+				return (vExpected == vResult);&#13;
+			}&#13;
+			if (vResult.indexOf('installer.DefineFormSection(') != -1)&#13;
+			{&#13;
+				return true;&#13;
+			}&#13;
+			return false;&#13;
+		}&#13;
+		&#13;
+		test.TestCase(&#13;
+			'Function MakeCodeInstallerDefineFormSection()',&#13;
+			MakeCodeInstallerDefineFormSection,&#13;
+			{&#13;
+				'vFormSection': vFormSection&#13;
+			},&#13;
+			vExpected,&#13;
+			TestCase_MakeCodeInstallerDefineFormSection_CheckResult);&#13;
+	}&#13;
+		&#13;
+	TestCase_MakeCodeInstallerDefineFormSection(null,false);&#13;
+	TestCase_MakeCodeInstallerDefineFormSection('bf1d96e3c0a801640190725e63f8ac80',true);&#13;
 	&#13;
 	return test.GetResult();&#13;
 	&#13;
@@ -78,15 +79,15 @@
     </sys_variable_value>
     <sys_variable_value action="INSERT_OR_UPDATE">
         <document>sys_atf_step</document>
-        <document_key>69172e29db374d14b652edb30596198e</document_key>
+        <document_key>4cc09c709366a610ae97b4aa6aba1061</document_key>
         <order>100</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2022-05-31 09:42:14</sys_created_on>
-        <sys_id>b6b76e29db374d14b652edb3059619ca</sys_id>
+        <sys_created_on>2025-07-02 12:35:35</sys_created_on>
+        <sys_id>c0c09c709366a610ae97b4aa6aba1065</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-05-31 09:42:14</sys_updated_on>
+        <sys_updated_on>2025-07-02 12:35:35</sys_updated_on>
         <value>3.1</value>
         <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
     </sys_variable_value>

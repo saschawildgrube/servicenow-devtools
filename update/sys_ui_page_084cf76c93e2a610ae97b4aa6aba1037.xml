@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script/>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_snc_devtools_make_code.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+
+	<h1>DevTools - Make Code</h1>
+	<g2:no_escape>$[HtmlRenderPageMakeCode()]</g2:no_escape>	
+
+</j:jelly>]]></html>
+        <name>make_code</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-02 11:09:02</sys_created_on>
+        <sys_id>084cf76c93e2a610ae97b4aa6aba1037</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>make_code</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_ui_page_084cf76c93e2a610ae97b4aa6aba1037</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-02 11:09:02</sys_updated_on>
+    </sys_ui_page>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>084cf76c93e2a610ae97b4aa6aba1037</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-02 11:09:02</sys_created_on>
+        <sys_id>4cfc73ac93e2a610ae97b4aa6aba108d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-02 11:09:02</sys_updated_on>
+        <table>sys_ui_page</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
