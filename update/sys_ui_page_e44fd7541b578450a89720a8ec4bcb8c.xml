@@ -172,7 +172,7 @@ Set a default config for the generic prompt capability: /nav_to.do?uri=sys_one_e
 	
 	<h3>Technical Debt Management</h3>
 	<p>A Technical Debt is any code or structure that a development team considers as to-be changed at a later point in time because it implies some form of burden to the development and deployment work to be done today.</p>
-	<p>Technical debts need to be managed - and that starts with documenting it. DevTools contains a table to store Technical Debt records which are part of an application and hence are deployed to target-systems. This allows for reporting, work planning and automated documentation.</p>
+	<p>Technical debt needs to be managed - and that starts with documenting it. DevTools contains a table to store Technical Debt records which are part of an application and hence are deployed to target-systems. This allows for reporting, work planning and automated documentation.</p>
 	<p>Unfinished, defective or deprecated features that are part of an application at the time of a version baseline also represent a form of Technical Debt - as all of these require future work. Such features should eventually be hidden from users or prevented to impact the behavior of an application.</p>
 	<p>In cases where the technical debt is associated with a feature that needs to be turned on or off, a technical debt may have an ID and a boolean "switch" that can be used to control logic around these features. Developers can use the following pattern to control how code related to a feature that is currently considered as (or associated with) a Technical Debt should behave:</p>
 	<pre>if (x_snc_devtools.GetTechnicalDebtSwitchState('x_your_scope','id_of_the_technical_debt') == true)
@@ -615,8 +615,8 @@ function YourLengthyProcess(strRecordSysId)
 	<h3>Dependencies</h3>
 	<g2:no_escape>$[docapi.RenderDependencies()]</g2:no_escape>		
 
-	<h3>Technical Debts</h3>
-	<g2:no_escape>$[docapi.RenderTechnicalDebts()]</g2:no_escape>			
+	<h3>Technical Debt</h3>
+	<g2:no_escape>$[docapi.RenderTechnicalDebt()]</g2:no_escape>			
 	
 	<h2>License</h2>
 	<g2:no_escape>$[docapi.RenderCopyright(2020,'Sascha Wildgrube')]</g2:no_escape>
@@ -631,6 +631,7 @@ function YourLengthyProcess(strRecordSysId)
 		<li>Added UI Action "Make Code to define this Form Section".</li>
 		<li>Added UI Page "Make Code".</li>
 		<li>Added more patterns to GetEvaluatorErrorExceptionPatterns().</li>
+		<li>Added function DocumentationAPI::RenderTechnicalDebt() (as a replacement for the to be deprecated function DocumentationAPI::RenderTechnicalDebts()).</li>
 	</ol>
 
 
@@ -2730,14 +2731,14 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>2090</sys_mod_count>
+        <sys_mod_count>2091</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-07-02 13:11:57</sys_updated_on>
+        <sys_updated_on>2025-07-03 07:53:22</sys_updated_on>
     </sys_ui_page>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>e44fd7541b578450a89720a8ec4bcb8c</id>
