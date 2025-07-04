@@ -563,6 +563,10 @@
 	{
 		return GetRecord('sys_app',grRecord.sys_scope);
 	}
+	if (strTable == 'sys_scope_privilege')
+	{
+		return GetRecord('sys_app',grRecord.sys_scope);
+	}	
 
 	var strParentTable = GetParentTable(strTable);
 	if (strParentTable != '')
@@ -576,13 +580,24 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-08 12:44:48</sys_created_on>
         <sys_id>9934e6141b6abc505331b8449b4bcbdd</sys_id>
-        <sys_mod_count>143</sys_mod_count>
+        <sys_mod_count>144</sys_mod_count>
         <sys_name>GetParentRecord</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_9934e6141b6abc505331b8449b4bcbdd</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-03-21 12:59:09</sys_updated_on>
+        <sys_updated_on>2025-07-04 09:33:07</sys_updated_on>
     </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>9934e6141b6abc505331b8449b4bcbdd</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-04 09:33:06</sys_created_on>
+        <sys_id>5a2a759d932a6a10ae97b4aa6aba101f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-04 09:33:06</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>
