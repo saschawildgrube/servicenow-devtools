@@ -944,7 +944,7 @@ DocumentationAPI.prototype =
 				strHtml += '<li>Set the&#160;<a href="/nav_to.do?uri=sys_properties.do?sys_id=99ca5ab55b1022001f80efe5f0f91a05" target="_blank">sn_atf.runner.enabled system property</a>&#160;to "true" to activate the ATF test execution - if not set already.</li>';
 			}
 
-			strHtml += '<li>On non-production instances: Run the&#160;<a href="/nav_to.do?uri=sys_atf_test_suite.do?sys_id='+strTestSuiteSysId+'&sysparm_view=devtools&sysparm_view_forced=true" target="_blank">'+grTestSuite.name+'</a> test suite.</li>';
+			strHtml += '<li>On non-production instances: Run the&#160;<a href="/nav_to.do?uri=sys_atf_test_suite.do?sys_id='+strTestSuiteSysId+'&sysparm_view=devtools&sysparm_view_forced=true" target="_blank">'+grTestSuite.name+'</a> Test Suite.</li>';
 		}
 		return strHtml;
 	},
@@ -960,14 +960,14 @@ DocumentationAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-01-20 15:26:20</sys_created_on>
         <sys_id>98912146db31e490ba15a353059619b6</sys_id>
-        <sys_mod_count>268</sys_mod_count>
+        <sys_mod_count>269</sys_mod_count>
         <sys_name>DocumentationAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_98912146db31e490ba15a353059619b6</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-07-03 07:52:24</sys_updated_on>
+        <sys_updated_on>2025-07-07 19:01:25</sys_updated_on>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>98912146db31e490ba15a353059619b6</id>
