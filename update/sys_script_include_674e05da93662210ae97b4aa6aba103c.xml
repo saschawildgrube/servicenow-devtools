@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.MakeCodeInstallerDefineRelatedList</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Creates a script to define the given Related List in its current for within an AppInstall() script using the InstallerAPI.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>MakeCodeInstallerDefineRelatedList</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function MakeCodeInstallerDefineRelatedList(vRelatedList)
+{
+	var grRelatedList = GetRecord('sys_ui_related_list',vRelatedList);
+	if (IsValidRecord(grRelatedList) == false)
+	{
+		return false;
+	}
+
+	var strScript = "";
+
+	strScript += "\tinstaller.DefineRelatedList('"+grRelatedList.sys_id+"',\n";
+	strScript += "\t\t[\n";
+
+	var grRelatedListEntry = new GlideRecord('sys_ui_related_list_entry');
+	grRelatedListEntry.addQuery('list_id','=',grRelatedList.sys_id);
+	grRelatedListEntry.orderBy('position');
+	grRelatedListEntry.query();
+	var nCount = 0;
+	while (grRelatedListEntry.next())
+	{
+		strComma = '';
+		if (nCount < grRelatedListEntry.getRowCount() - 1)
+		{
+			strComma = ',';
+		}
+		strScript += "\t\t\t{\n";
+
+		strScript += "\t\t\t\trelated_list: '"+grRelatedListEntry.related_list+"',\n";
+		strScript += "\t\t\t\torder_by: '"+grRelatedListEntry.order_by+"',\n";
+		strScript += "\t\t\t\tfilter: '"+grRelatedListEntry.filter+"'\n";
+		strScript += "\t\t\t}" + strComma + '\n';
+
+
+		nCount++;
+	}
+	strScript += "\t\t]);\n";
+
+	return strScript;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-07 08:55:24</sys_created_on>
+        <sys_id>674e05da93662210ae97b4aa6aba103c</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>MakeCodeInstallerDefineRelatedList</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_674e05da93662210ae97b4aa6aba103c</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-07 09:03:46</sys_updated_on>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>674e05da93662210ae97b4aa6aba103c</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-07 08:55:31</sys_created_on>
+        <sys_id>515e85da93662210ae97b4aa6aba1025</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-07 08:55:31</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
