@@ -1020,6 +1020,7 @@ InstallerAPI.prototype =
 	
 	InsertFieldToFormSection: function(strUiSectionSysId, strField, nPosition)
 	{
+		Deprecated();
 		if (this.IsAborting() == true)
 		{
 			return false;
@@ -1134,7 +1135,7 @@ InstallerAPI.prototype =
 			if (IsValidSysId(strUiElementSysId) == false)
 			{
 				this.Log(
-					StringFormat('Failed to re-define Form (UI) Section "{0}" for table {1} in view "{2}".',
+					StringFormat('Failed to re-define Form (UI) Section "{0}" for table "{1}" in view "{2}".',
 						grUiSection.caption,
 						grUiSection.name,
 						grUiSection.view.title));
@@ -1144,7 +1145,7 @@ InstallerAPI.prototype =
 		}
 
 		this.Log(
-			StringFormat('Re-defined Form (UI) Section "{0}" for table {1} in view "{2}".',
+			StringFormat('Re-defined Form (UI) Section "{0}" for table "{1}" in view "{2}".',
 				grUiSection.caption,
 				grUiSection.name,
 				grUiSection.view.title));
@@ -1221,7 +1222,7 @@ InstallerAPI.prototype =
 			if (IsValidSysId(strUiListElementSysId) == false)
 			{
 				this.Log(
-					StringFormat('Failed to re-define List (UI) for table {0} in view "{1}".',
+					StringFormat('Failed to re-define List (UI) for table "{0}" in view "{1}".',
 						grUiList.name,
 						grUiList.view.title));
 				return false;
@@ -1230,7 +1231,7 @@ InstallerAPI.prototype =
 		}
 
 		this.Log(
-			StringFormat('Re-defined List (UI) for table {0} in view "{1}".\nTHIS REQUIRES CACHE CLEARING TO TAKE EFFECT!',
+			StringFormat('Re-defined List (UI) for table "{0}" in view "{1}".\nTHIS REQUIRES CACHE CLEARING TO TAKE EFFECT!',
 				grUiList.name,
 				grUiList.view.title));
 
@@ -1305,7 +1306,7 @@ InstallerAPI.prototype =
 			if (IsValidSysId(strUiRelatedListEntrySysId) == false)
 			{
 				this.Log(
-					StringFormat('Failed to re-define Related List "{0}" for table {1} in view "{2}".',
+					StringFormat('Failed to re-define Related List "{0}" for table "{1}" in view "{2}".',
 						strRelatedList,
 						strTable,
 						grUiRelatedList.view.title));
@@ -1315,8 +1316,7 @@ InstallerAPI.prototype =
 		}
 
 		this.Log(
-			StringFormat('Re-defined Related List "{0}" for table {1} in view "{2}".',
-				strRelatedList,
+			StringFormat('Re-defined Related List for table "{0}" in view "{1}".',
 				strTable,
 				grUiRelatedList.view.title));
 
@@ -1399,14 +1399,14 @@ InstallerAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-08-27 10:49:10</sys_created_on>
         <sys_id>704694a81b1a74505331b8449b4bcb69</sys_id>
-        <sys_mod_count>201</sys_mod_count>
+        <sys_mod_count>202</sys_mod_count>
         <sys_name>InstallerAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_704694a81b1a74505331b8449b4bcb69</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-07-07 09:29:52</sys_updated_on>
+        <sys_updated_on>2025-07-07 13:50:53</sys_updated_on>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>704694a81b1a74505331b8449b4bcb69</id>
