@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-07-07 09:00:21</sys_created_on>
         <sys_id>0c7f0d1e93662210ae97b4aa6aba104c</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_0c7f0d1e93662210ae97b4aa6aba104c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-07-07 09:02:38</sys_updated_on>
+        <sys_updated_on>2025-07-08 09:19:49</sys_updated_on>
         <table/>
         <test display_value="DevTools - MakeCodeInstallerDefineRelatedList">487f891e93662210ae97b4aa6aba10e3</test>
         <timeout/>
@@ -35,9 +35,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-07-07 09:00:21</sys_created_on>
         <sys_id>0c7f0d1e93662210ae97b4aa6aba104f</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-07-07 09:02:39</sys_updated_on>
+        <sys_updated_on>2025-07-08 09:19:49</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -52,7 +52,8 @@
 			{&#13;
 				return (vExpected == vResult);&#13;
 			}&#13;
-			if (vResult.indexOf('installer.DefineRelatedList(') != -1)&#13;
+			var strResult = GetStringValue(vResult);&#13;
+			if (strResult.indexOf('installer.DefineRelatedList(') != -1)&#13;
 			{&#13;
 				return true;&#13;
 			}&#13;
@@ -70,7 +71,8 @@
 	}&#13;
 		&#13;
 	TestCase_MakeCodeInstallerDefineRelatedList(null,false);&#13;
-	TestCase_MakeCodeInstallerDefineRelatedList('2d27059293662210ae97b4aa6aba10cf',true);&#13;
+	TestCase_MakeCodeInstallerDefineRelatedList(&#13;
+		GetRelatedListRecord(GetViewRecord('Default view'),'incident'),true);&#13;
 &#13;
 	&#13;
 	return test.GetResult();&#13;
