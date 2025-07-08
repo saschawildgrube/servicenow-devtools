@@ -31,6 +31,7 @@ Methods:
 * SetTableDefaultOrder()
 * ChoiceInsertOrUpdate()
 * ActivateChoice()
+* ChoiceSetDependentValue()
 * DiscoverySourceInsertOrUpdate()
 * DeleteView()
 * DeleteUISection()
@@ -51,8 +52,10 @@ Methods:
 * InsertFieldToFormSection()
 * DefineFormSection()
 * DefineList()
+* DefineRelatedList()
 * UxStyleSetColor()
-* RecordTransporterPackageUnpack()</description>
+* RecordTransporterPackageUnpack()
+* AuditQueryRangeACLs()</description>
         <mobile_callable>false</mobile_callable>
         <name>InstallerAPI</name>
         <sandbox_callable>false</sandbox_callable>
@@ -699,6 +702,58 @@ InstallerAPI.prototype =
 		return true;
 	},
 
+	ChoiceSetDependentValue: function(strReason,strTable,strElement,strValue,strDependentValue)
+	{
+		strDependentValue = GetStringValue(strDependentValue);
+		if (IsValidTable(strTable) == false)
+		{
+			this.Error(
+				'ChoiceSetDependentValue: Table "'+strTable+'" is invalid!');
+			return false;
+		}
+
+		if (IsValidColumn(strTable,strElement) == false)
+		{
+			this.Error(
+				'ChoiceSetDependentValue: Element '+strTable+'.'+strElement+' is invalid!');
+			return false;
+
+		}
+
+		var grChoice = new GlideRecord('sys_choice');
+		grChoice.addQuery('name',strTable);
+		grChoice.addQuery('element',strElement);
+		grChoice.addQuery('value',strValue);
+		grChoice.query();
+		if (grChoice.getRowCount() == 0)
+		{
+			this.Log(
+				'ChoiceSetDependentValue: Did not find any choices for '+strTable+'.'+strElement+'."'+strValue+'" to set Dependent value to "'+strDependentValue+'"');
+			return true;
+		}
+
+		this.Log(
+			'ChoiceSetDependentValue: Attempting to set the Dependent value for all language versions of '+strTable+'.'+strElement+'."'+strValue+'" to "'+strDependentValue+'".');
+
+
+		while (grChoice.next())
+		{
+			grChoice.dependent_value = strDependentValue;
+			var bSuccess = GlideRecordUpdate(grChoice);
+			if (bSuccess == false)
+			{
+				this.Error(
+					'ChoiceSetDependentValue: Failed to set '+strTable+'.'+strElement+'."'+strValue+'".'+grChoice.language+' Dependent value to "'+strDependentValue+'"!');
+				return false;
+			}
+
+			this.Log(
+				'ChoiceSetDependentValue: Set '+strTable+'.'+strElement+'."'+strValue+'".'+grChoice.language+' Dependent value to "'+strDependentValue+'".');
+		}
+
+		return true;
+	},
+
 
 
 	DiscoverySourceInsertOrUpdate: function(strLabel,strValue)
@@ -1018,6 +1073,7 @@ InstallerAPI.prototype =
 	
 	InsertFieldToFormSection: function(strUiSectionSysId, strField, nPosition)
 	{
+		Deprecated();
 		if (this.IsAborting() == true)
 		{
 			return false;
@@ -1120,6 +1176,11 @@ InstallerAPI.prototype =
 				strType = strElement;
 			}
 
+			if (IsValidSysId(strElement))
+			{
+				strType = 'annotation';
+			}
+
 
 			var grUiElement = new GlideRecord('sys_ui_element');
 			grUiElement.initialize();
@@ -1132,7 +1193,7 @@ InstallerAPI.prototype =
 			if (IsValidSysId(strUiElementSysId) == false)
 			{
 				this.Log(
-					StringFormat('Failed to re-define Form (UI) Section "{0}" for table {1} in view "{2}".',
+					StringFormat('Failed to re-define Form (UI) Section "{0}" for table "{1}" in view "{2}".',
 						grUiSection.caption,
 						grUiSection.name,
 						grUiSection.view.title));
@@ -1142,7 +1203,7 @@ InstallerAPI.prototype =
 		}
 
 		this.Log(
-			StringFormat('Re-defined Form (UI) Section "{0}" for table {1} in view "{2}".',
+			StringFormat('Re-defined Form (UI) Section "{0}" for table "{1}" in view "{2}".',
 				grUiSection.caption,
 				grUiSection.name,
 				grUiSection.view.title));
@@ -1219,7 +1280,7 @@ InstallerAPI.prototype =
 			if (IsValidSysId(strUiListElementSysId) == false)
 			{
 				this.Log(
-					StringFormat('Failed to re-define List (UI) for table {0} in view "{1}".',
+					StringFormat('Failed to re-define List (UI) for table "{0}" in view "{1}".',
 						grUiList.name,
 						grUiList.view.title));
 				return false;
@@ -1228,7 +1289,7 @@ InstallerAPI.prototype =
 		}
 
 		this.Log(
-			StringFormat('Re-defined List (UI) for table {0} in view "{1}".\nTHIS REQUIRES CACHE CLEARING TO TAKE EFFECT!',
+			StringFormat('Re-defined List (UI) for table "{0}" in view "{1}".\nTHIS REQUIRES CACHE CLEARING TO TAKE EFFECT!',
 				grUiList.name,
 				grUiList.view.title));
 
@@ -1236,6 +1297,90 @@ InstallerAPI.prototype =
 		
 	},
 
+
+	DefineRelatedList: function(vUiRelatedList, aRelatedLists)
+	{
+		if (this.IsAborting() == true)
+		{
+			return false;
+		}
+		aRelatedLists = GetArrayValue(aRelatedLists);
+		
+		var grUiRelatedList = GetRecord('sys_ui_related_list',vUiRelatedList);
+		if (IsValidRecord(grUiRelatedList) == false)
+		{
+			this.Log('Specified Related List does not exist. Cannot re-define it.');
+			return false;
+		}
+		
+		var strTable = GetStringValue(grUiRelatedList.getDisplayValue('name'));
+		
+		// Delete all existing related list entries
+		var grUiRelatedListEntry = new GlideRecord('sys_ui_related_list_entry');
+		grUiRelatedListEntry.addQuery('list_id','=',grUiRelatedList.sys_id);
+		grUiRelatedListEntry.query();
+		GlideRecordDeleteMultiple(grUiRelatedListEntry);
+
+		// Set the new related lists
+		for (var nRelatedList = 0; nRelatedList < aRelatedLists.length; nRelatedList++)
+		{
+			var vRelatedList = aRelatedLists[nRelatedList];
+			
+			var strRelatedTable = '';
+			var strReferenceField = ''; 
+			var strRelatedList = ''; 
+			var strOrderBy = ''; 
+			var strFilter = ''; 
+			
+			if (IsObject(vRelatedList))
+			{
+				strRelatedTable = GetValue(vRelatedList,'table');
+				strField = GetValue(vRelatedList,'field');
+				strRelatedList = GetValue(vRelatedList,'related_list');
+
+				if (strRelatedList == '' && strRelatedTable != '' && strField != '')
+				{
+					strRelatedList = strRelatedTable + '.' + strField;
+				}
+
+				strOrderBy = GetValue(vRelatedList,'order_by');
+				strFilter = GetValue(vRelatedList,'filter');
+			}
+			else
+			{
+				strRelatedList = GetStringValue(vRelatedList);
+			}
+
+
+
+			var grUiRelatedListEntry = new GlideRecord('sys_ui_related_list_entry');
+			grUiRelatedListEntry.initialize();
+			grUiRelatedListEntry.list_id = grUiRelatedList.sys_id;
+			grUiRelatedListEntry.position = nRelatedList;
+			grUiRelatedListEntry.related_list = strRelatedList;
+			grUiRelatedListEntry.order_by = strOrderBy;
+			grUiRelatedListEntry.filter = strFilter;
+			var strUiRelatedListEntrySysId = GlideRecordInsert(grUiRelatedListEntry);
+			if (IsValidSysId(strUiRelatedListEntrySysId) == false)
+			{
+				this.Log(
+					StringFormat('Failed to re-define Related List "{0}" for table "{1}" in view "{2}".',
+						strRelatedList,
+						strTable,
+						grUiRelatedList.view.title));
+				return false;
+			}
+	
+		}
+
+		this.Log(
+			StringFormat('Re-defined Related List for table "{0}" in view "{1}".',
+				strTable,
+				grUiRelatedList.view.title));
+
+		return true;
+		
+	},
 
 
 	UxStyleSetColor: function(strSysId,strColorName,vColorValue)
@@ -1285,6 +1430,24 @@ InstallerAPI.prototype =
 		
 		return true;
 	},
+
+	AuditQueryRangeACLs: function()
+	{
+		var grScriptInclude = new GlideRecord('sys_script_include');
+		grScriptInclude.addQuery('name','=','QueryRangeACLAuditor');
+		grScriptInclude.query();
+		if (grScriptInclude.next() == false)
+		{
+			this.Error('Fix for KB2046494 is not available on this instance. Cannot run QueryRangeACLAuditor::auditQueryRangeACLs().');
+			return false;
+		}
+
+		return this.GenericAction(
+			x_snc_devtools.RunScriptInGlobalScope(
+				'result = new global.QueryRangeACLAuditor().auditQueryRangeACLs();'),
+			'Fix described in KB2046494 has been applied successfully.',
+			'Applying fix in KB2046494 failed.');
+	},
 	
 		
 	
@@ -1294,14 +1457,14 @@ InstallerAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-08-27 10:49:10</sys_created_on>
         <sys_id>704694a81b1a74505331b8449b4bcb69</sys_id>
-        <sys_mod_count>196</sys_mod_count>
+        <sys_mod_count>205</sys_mod_count>
         <sys_name>InstallerAPI</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_704694a81b1a74505331b8449b4bcb69</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-06-13 15:40:30</sys_updated_on>
+        <sys_updated_on>2025-07-07 16:01:16</sys_updated_on>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>704694a81b1a74505331b8449b4bcb69</id>

@@ -2,115 +2,129 @@
     <sys_ui_related sys_domain="global" table="sys_app" version="2" view="devtools">
         <sys_ui_related_list_entry action="INSERT_OR_UPDATE">
             <filter/>
-            <list_id display_value="Custom Application - DevTools" name="sys_app" related_list="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">751490ae1b25c210063ddc61ab4bcbc6</list_id>
+            <list_id display_value="Custom Application - DevTools" name="sys_app" related_list="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">3652515293a62210ae97b4aa6aba1042</list_id>
             <order_by/>
             <position>0</position>
             <related_list>x_snc_devtools_dependency.sys_scope</related_list>
             <sys_class_name>sys_ui_related_list_entry</sys_class_name>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-04-16 13:54:27</sys_created_on>
-            <sys_id>7d1490ae1b25c210063ddc61ab4bcbc7</sys_id>
+            <sys_created_on>2025-07-07 09:13:06</sys_created_on>
+            <sys_id>7a52515293a62210ae97b4aa6aba1043</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-04-16 13:54:27</sys_updated_on>
+            <sys_updated_on>2025-07-07 09:13:06</sys_updated_on>
         </sys_ui_related_list_entry>
         <sys_ui_related_list_entry action="INSERT_OR_UPDATE">
             <filter/>
-            <list_id display_value="Custom Application - DevTools" name="sys_app" related_list="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">751490ae1b25c210063ddc61ab4bcbc6</list_id>
+            <list_id display_value="Custom Application - DevTools" name="sys_app" related_list="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">3652515293a62210ae97b4aa6aba1042</list_id>
             <order_by/>
             <position>1</position>
             <related_list>x_snc_devtools_technical_debt.sys_scope</related_list>
             <sys_class_name>sys_ui_related_list_entry</sys_class_name>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-04-16 13:54:27</sys_created_on>
-            <sys_id>b51490ae1b25c210063ddc61ab4bcbc8</sys_id>
+            <sys_created_on>2025-07-07 09:13:06</sys_created_on>
+            <sys_id>f252515293a62210ae97b4aa6aba1044</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-04-16 13:54:27</sys_updated_on>
+            <sys_updated_on>2025-07-07 09:13:06</sys_updated_on>
         </sys_ui_related_list_entry>
         <sys_ui_related_list_entry action="INSERT_OR_UPDATE">
             <filter/>
-            <list_id display_value="Custom Application - DevTools" name="sys_app" related_list="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">751490ae1b25c210063ddc61ab4bcbc6</list_id>
+            <list_id display_value="Custom Application - DevTools" name="sys_app" related_list="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">3652515293a62210ae97b4aa6aba1042</list_id>
             <order_by/>
             <position>2</position>
             <related_list>sys_metadata.sys_scope</related_list>
             <sys_class_name>sys_ui_related_list_entry</sys_class_name>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-04-16 13:54:27</sys_created_on>
-            <sys_id>b91490ae1b25c210063ddc61ab4bcbc8</sys_id>
+            <sys_created_on>2025-07-07 09:13:06</sys_created_on>
+            <sys_id>7a52515293a62210ae97b4aa6aba1044</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-04-16 13:54:27</sys_updated_on>
+            <sys_updated_on>2025-07-07 09:13:06</sys_updated_on>
         </sys_ui_related_list_entry>
         <sys_ui_related_list_entry action="INSERT_OR_UPDATE">
             <filter/>
-            <list_id display_value="Custom Application - DevTools" name="sys_app" related_list="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">751490ae1b25c210063ddc61ab4bcbc6</list_id>
+            <list_id display_value="Custom Application - DevTools" name="sys_app" related_list="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">3652515293a62210ae97b4aa6aba1042</list_id>
             <order_by/>
             <position>3</position>
             <related_list>sys_scope_privilege.sys_scope</related_list>
             <sys_class_name>sys_ui_related_list_entry</sys_class_name>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-04-16 13:54:27</sys_created_on>
-            <sys_id>bd1490ae1b25c210063ddc61ab4bcbc8</sys_id>
+            <sys_created_on>2025-07-07 09:13:06</sys_created_on>
+            <sys_id>fe52515293a62210ae97b4aa6aba1044</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-04-16 13:54:27</sys_updated_on>
+            <sys_updated_on>2025-07-07 09:13:06</sys_updated_on>
         </sys_ui_related_list_entry>
         <sys_ui_related_list_entry action="INSERT_OR_UPDATE">
             <filter/>
-            <list_id display_value="Custom Application - DevTools" name="sys_app" related_list="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">751490ae1b25c210063ddc61ab4bcbc6</list_id>
+            <list_id display_value="Custom Application - DevTools" name="sys_app" related_list="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">3652515293a62210ae97b4aa6aba1042</list_id>
             <order_by/>
             <position>4</position>
             <related_list>sys_restricted_caller_access.target_scope</related_list>
             <sys_class_name>sys_ui_related_list_entry</sys_class_name>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-04-16 13:54:27</sys_created_on>
-            <sys_id>b11490ae1b25c210063ddc61ab4bcbc9</sys_id>
+            <sys_created_on>2025-07-07 09:13:06</sys_created_on>
+            <sys_id>7652515293a62210ae97b4aa6aba1045</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-04-16 13:54:27</sys_updated_on>
+            <sys_updated_on>2025-07-07 09:13:06</sys_updated_on>
         </sys_ui_related_list_entry>
         <sys_ui_related_list_entry action="INSERT_OR_UPDATE">
             <filter/>
-            <list_id display_value="Custom Application - DevTools" name="sys_app" related_list="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">751490ae1b25c210063ddc61ab4bcbc6</list_id>
+            <list_id display_value="Custom Application - DevTools" name="sys_app" related_list="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">3652515293a62210ae97b4aa6aba1042</list_id>
             <order_by/>
             <position>5</position>
             <related_list>sys_update_set.application</related_list>
             <sys_class_name>sys_ui_related_list_entry</sys_class_name>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-04-16 13:54:27</sys_created_on>
-            <sys_id>b51490ae1b25c210063ddc61ab4bcbc9</sys_id>
+            <sys_created_on>2025-07-07 09:13:06</sys_created_on>
+            <sys_id>fa52515293a62210ae97b4aa6aba1045</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-04-16 13:54:27</sys_updated_on>
+            <sys_updated_on>2025-07-07 09:13:06</sys_updated_on>
         </sys_ui_related_list_entry>
         <sys_ui_related_list_entry action="INSERT_OR_UPDATE">
             <filter/>
-            <list_id display_value="Custom Application - DevTools" name="sys_app" related_list="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">751490ae1b25c210063ddc61ab4bcbc6</list_id>
+            <list_id display_value="Custom Application - DevTools" name="sys_app" related_list="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">3652515293a62210ae97b4aa6aba1042</list_id>
             <order_by/>
             <position>6</position>
             <related_list>REL:dafa1a06c7320010fbe745ece8c2606d</related_list>
             <sys_class_name>sys_ui_related_list_entry</sys_class_name>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-04-16 13:54:27</sys_created_on>
-            <sys_id>b91490ae1b25c210063ddc61ab4bcbc9</sys_id>
+            <sys_created_on>2025-07-07 09:13:06</sys_created_on>
+            <sys_id>7252515293a62210ae97b4aa6aba1046</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-04-16 13:54:27</sys_updated_on>
+            <sys_updated_on>2025-07-07 09:13:06</sys_updated_on>
         </sys_ui_related_list_entry>
         <sys_ui_related_list_entry action="INSERT_OR_UPDATE">
             <filter/>
-            <list_id display_value="Custom Application - DevTools" name="sys_app" related_list="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">751490ae1b25c210063ddc61ab4bcbc6</list_id>
+            <list_id display_value="Custom Application - DevTools" name="sys_app" related_list="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">3652515293a62210ae97b4aa6aba1042</list_id>
             <order_by/>
             <position>7</position>
             <related_list>REL:67bdac52374010008687ddb1967334ee</related_list>
             <sys_class_name>sys_ui_related_list_entry</sys_class_name>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-04-16 13:54:27</sys_created_on>
-            <sys_id>bd1490ae1b25c210063ddc61ab4bcbc9</sys_id>
+            <sys_created_on>2025-07-07 09:13:06</sys_created_on>
+            <sys_id>f652515293a62210ae97b4aa6aba1046</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-04-16 13:54:27</sys_updated_on>
+            <sys_updated_on>2025-07-07 09:13:06</sys_updated_on>
+        </sys_ui_related_list_entry>
+        <sys_ui_related_list_entry action="INSERT_OR_UPDATE">
+            <filter/>
+            <list_id display_value="Custom Application - DevTools" name="sys_app" related_list="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">3652515293a62210ae97b4aa6aba1042</list_id>
+            <order_by/>
+            <position>8</position>
+            <related_list>x_snc_devtools_dependency.dependency</related_list>
+            <sys_class_name>sys_ui_related_list_entry</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-07-07 09:13:06</sys_created_on>
+            <sys_id>7e52515293a62210ae97b4aa6aba1046</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-07-07 09:13:06</sys_updated_on>
         </sys_ui_related_list_entry>
         <sys_ui_related_list action="INSERT_OR_UPDATE">
             <calculated_name>Custom Application - DevTools</calculated_name>
@@ -121,10 +135,10 @@
             <related_list/>
             <sys_class_name>sys_ui_related_list</sys_class_name>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-04-16 13:54:26</sys_created_on>
+            <sys_created_on>2025-07-07 09:13:06</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
-            <sys_id>751490ae1b25c210063ddc61ab4bcbc6</sys_id>
+            <sys_id>3652515293a62210ae97b4aa6aba1042</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_name>Custom Application - DevTools</sys_name>
             <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -132,7 +146,7 @@
             <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
             <sys_update_name>sys_ui_related_sys_app_devtools</sys_update_name>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-04-16 13:54:26</sys_updated_on>
+            <sys_updated_on>2025-07-07 09:13:06</sys_updated_on>
             <sys_user/>
             <view display_value="DevTools" name="devtools">75e08353dbbf0450ba15a35305961913</view>
             <view_name/>

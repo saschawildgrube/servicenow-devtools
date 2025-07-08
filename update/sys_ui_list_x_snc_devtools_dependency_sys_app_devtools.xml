@@ -2,63 +2,63 @@
     <sys_ui_list parent="sys_app" relationship="" sys_domain="global" table="x_snc_devtools_dependency" version="2" view="devtools">
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
-            <element>name</element>
-            <list_id display_value="x_snc_devtools_dependency" element="NULL" name="x_snc_devtools_dependency" parent="sys_app" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">c6fe8dfb1b10f910cd6153d16b4bcb78</list_id>
+            <element>sys_scope</element>
+            <list_id display_value="x_snc_devtools_dependency" element="NULL" name="x_snc_devtools_dependency" parent="sys_app" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">5d82555293a62210ae97b4aa6aba1021</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>0</position>
             <sum>false</sum>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2023-08-03 15:54:28</sys_created_on>
-            <sys_id>c6fe8dfb1b10f910cd6153d16b4bcb79</sys_id>
+            <sys_created_on>2025-07-07 09:13:49</sys_created_on>
+            <sys_id>d982555293a62210ae97b4aa6aba1023</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2023-08-03 15:54:28</sys_updated_on>
+            <sys_updated_on>2025-07-07 09:13:49</sys_updated_on>
         </sys_ui_list_element>
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>versions</element>
-            <list_id display_value="x_snc_devtools_dependency" element="NULL" name="x_snc_devtools_dependency" parent="sys_app" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">c6fe8dfb1b10f910cd6153d16b4bcb78</list_id>
+            <list_id display_value="x_snc_devtools_dependency" element="NULL" name="x_snc_devtools_dependency" parent="sys_app" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">5d82555293a62210ae97b4aa6aba1021</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>1</position>
             <sum>false</sum>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2023-08-03 15:54:28</sys_created_on>
-            <sys_id>4efe8dfb1b10f910cd6153d16b4bcb79</sys_id>
+            <sys_created_on>2025-07-07 09:13:49</sys_created_on>
+            <sys_id>5182555293a62210ae97b4aa6aba1024</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2023-08-03 15:54:28</sys_updated_on>
+            <sys_updated_on>2025-07-07 09:13:49</sys_updated_on>
         </sys_ui_list_element>
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>package_class</element>
-            <list_id display_value="x_snc_devtools_dependency" element="NULL" name="x_snc_devtools_dependency" parent="sys_app" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">c6fe8dfb1b10f910cd6153d16b4bcb78</list_id>
+            <list_id display_value="x_snc_devtools_dependency" element="NULL" name="x_snc_devtools_dependency" parent="sys_app" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">5d82555293a62210ae97b4aa6aba1021</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>2</position>
             <sum>false</sum>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2023-08-03 15:54:28</sys_created_on>
-            <sys_id>cefe8dfb1b10f910cd6153d16b4bcb79</sys_id>
+            <sys_created_on>2025-07-07 09:13:49</sys_created_on>
+            <sys_id>d182555293a62210ae97b4aa6aba1024</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2023-08-03 15:54:28</sys_updated_on>
+            <sys_updated_on>2025-07-07 09:13:49</sys_updated_on>
         </sys_ui_list_element>
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>reason</element>
-            <list_id display_value="x_snc_devtools_dependency" element="NULL" name="x_snc_devtools_dependency" parent="sys_app" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">c6fe8dfb1b10f910cd6153d16b4bcb78</list_id>
+            <list_id display_value="x_snc_devtools_dependency" element="NULL" name="x_snc_devtools_dependency" parent="sys_app" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">5d82555293a62210ae97b4aa6aba1021</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>3</position>
             <sum>false</sum>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2023-08-03 15:54:28</sys_created_on>
-            <sys_id>42fe8dfb1b10f910cd6153d16b4bcb7a</sys_id>
+            <sys_created_on>2025-07-07 09:13:49</sys_created_on>
+            <sys_id>5582555293a62210ae97b4aa6aba1024</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2023-08-03 15:54:28</sys_updated_on>
+            <sys_updated_on>2025-07-07 09:13:49</sys_updated_on>
         </sys_ui_list_element>
         <sys_ui_list action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
@@ -72,10 +72,10 @@
             <sum>false</sum>
             <sys_class_name>sys_ui_list</sys_class_name>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2023-08-03 15:54:28</sys_created_on>
+            <sys_created_on>2025-07-07 09:13:49</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
-            <sys_id>c6fe8dfb1b10f910cd6153d16b4bcb78</sys_id>
+            <sys_id>5d82555293a62210ae97b4aa6aba1021</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_name>x_snc_devtools_dependency</sys_name>
             <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -83,7 +83,7 @@
             <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
             <sys_update_name>sys_ui_list_x_snc_devtools_dependency_sys_app_devtools</sys_update_name>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2023-08-03 15:54:28</sys_updated_on>
+            <sys_updated_on>2025-07-07 09:13:49</sys_updated_on>
             <sys_user/>
             <view display_value="DevTools" name="devtools">75e08353dbbf0450ba15a35305961913</view>
             <view_name/>
