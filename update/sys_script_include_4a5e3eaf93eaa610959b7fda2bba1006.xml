@@ -5,7 +5,7 @@
         <api_name>x_snc_devtools.GetAppClaimedOotbRecords</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Returns a list of records that have been claimed by the given (global) application.</description>
+        <description>Returns an array of objects representing records that have been claimed by the given (global) application.</description>
         <mobile_callable>false</mobile_callable>
         <name>GetAppClaimedOotbRecords</name>
         <sandbox_callable>false</sandbox_callable>
@@ -41,14 +41,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-07-11 14:18:33</sys_created_on>
         <sys_id>4a5e3eaf93eaa610959b7fda2bba1006</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_name>GetAppClaimedOotbRecords</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_4a5e3eaf93eaa610959b7fda2bba1006</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-07-11 14:57:28</sys_updated_on>
+        <sys_updated_on>2025-07-11 15:18:47</sys_updated_on>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>4a5e3eaf93eaa610959b7fda2bba1006</id>
