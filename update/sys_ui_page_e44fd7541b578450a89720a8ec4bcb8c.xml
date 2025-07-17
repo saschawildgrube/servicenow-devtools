@@ -624,6 +624,25 @@ function YourLengthyProcess(strRecordSysId)
 	
 	<h2>Release Notes</h2>
 
+	<h3>1.129.0 - 2025-07-17</h3>
+	<ol>
+		<li>Added function IsOotbRecord().</li>
+		<li>Added function GetAppClaimedOotbRecords().</li>
+		<li>Added function AppUnclaimOotbRecords().</li>
+		<li>Added function InstallerAPI::ActivateFlow().</li>
+		<li>Added function GetSectionRecord().</li>
+		<li>Added function GetFormRecord().</li>
+		<li>Added function InstallerAPI::DefineForm().</li>
+		<li>Added syntax editor macro for MakeCodeInstallerDefineFormSection().</li>
+		<li>Added function MakeCodeInstallerDefineForm().</li>
+		<li>Added UI Action "Make Code to define this Form".</li>
+		<li>HtmlRenderPageMakeCode() now also supports MakeCodeInstallerDefineForm().</li>
+		<li>MakeCodeInstallerDefineFormSection() now also considers existing formatters properly.</li>
+		<li>Added syntax editor macro for the DocumentationAPI class, DatabaseIndexDrop(), GetTableFromSysId(), PrepareLogError() and Deprecated().</li>
+		<li>Removed syntax editor macro for Log().</li>
+	</ol>
+
+
 	<h3>1.128.1 - 2025-07-08</h3>
 	<ol>
 		<li>False negative test result for MakeCodeInstallerDefineRelatedList(). This has been fixed.</li>
@@ -2762,14 +2781,14 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>2114</sys_mod_count>
+        <sys_mod_count>2132</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-07-08 09:48:56</sys_updated_on>
+        <sys_updated_on>2025-07-17 14:02:49</sys_updated_on>
     </sys_ui_page>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>e44fd7541b578450a89720a8ec4bcb8c</id>

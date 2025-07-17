@@ -67,12 +67,12 @@
 	if (IsValidEmail(strDevToolsMaintainerEmail) == true)
 	{
 		strMessageMaintainerEmail = StringFormat(
-			'via mail: <a href="mailto:{0}">{0}</a>',
+			' via mail: <a href="mailto:{0}">{0}</a>',
 			strDevToolsMaintainerEmail);
 	}
 
 	var strMessage = StringFormat(
-		'In case you see evaluator errors that seem to be caused by OOTB components please inform the Devtools maintainer{0}.',
+		'In case you see evaluator errors that seem to be caused by OOTB components please inform the DevTools maintainer{0}.',
 		strMessageMaintainerEmail);
 
 	gs.addInfoMessage(strMessage);
@@ -82,13 +82,24 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-03-18 11:00:31</sys_created_on>
         <sys_id>f972ca623354ee10037396382e5c7b81</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_name>ExecuteBusinessRuleShowOotbEvaluatorErrorsHint</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_f972ca623354ee10037396382e5c7b81</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-03-18 14:08:56</sys_updated_on>
+        <sys_updated_on>2025-07-09 14:06:07</sys_updated_on>
     </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>f972ca623354ee10037396382e5c7b81</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-09 14:06:06</sys_created_on>
+        <sys_id>5698a84f936ae210959b7fda2bba106b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-09 14:06:06</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>

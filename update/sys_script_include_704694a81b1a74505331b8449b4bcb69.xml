@@ -47,9 +47,11 @@ Methods:
 * ActivateViewRule()
 * ActivateACL()
 * ActivateNotification()
+* ActivateFlow()
 * ShowFieldClass()
 * ActivateRecord()
 * InsertFieldToFormSection()
+* DefineForm()
 * DefineFormSection()
 * DefineList()
 * DefineRelatedList()
@@ -100,9 +102,9 @@ InstallerAPI.prototype =
 		return this.m_bAborting;
 	},
 	
-	Log: function(strText)
+	Log: function(vPayload)
 	{
-		this.m_strLog += strText + '\n';
+		this.m_strLog += RenderValue(vPayload) + '\n';
 	},
 	
 	Error: function(strText)
@@ -996,6 +998,11 @@ InstallerAPI.prototype =
 	{
 		return this.ActivateRecord(strSysId,bActive,'sysevent_email_action','Notification','active','name');
 	},		
+
+	ActivateFlow: function(strSysId,bActive)
+	{
+		return this.ActivateRecord(strSysId,bActive,'sys_hub_flow','Flow','active','name');
+	},		
 	
 	ShowFieldClass: function(strName,bVisible)
 	{
@@ -1126,6 +1133,73 @@ InstallerAPI.prototype =
 
 		
 	},
+
+	DefineForm: function(vForm, aSections)
+	{
+		if (this.IsAborting() == true)
+		{
+			return false;
+		}
+		aSections = GetArrayValue(aSections);
+		
+		var grForm = GetRecord('sys_ui_form',vForm);
+		if (IsValidRecord(grForm) == false)
+		{
+			this.Log('Specified Form does not exist. Cannot re-define it.');
+			return false;
+		}
+		
+		var strTable = GetStringValue(grForm.getDisplayValue('name'));
+		
+		// Delete all existing section entries
+		var grSectionEntries = new GlideRecord('sys_ui_form_section');
+		grSectionEntries.addQuery('sys_ui_form','=',grForm.sys_id);
+		grSectionEntries.query();
+		GlideRecordDeleteMultiple(grSectionEntries);
+
+		// Set the new sections
+		for (var nSection = 0; nSection < aSections.length; nSection++)
+		{
+			var vSection = aSections[nSection];
+			var grSection = GetSectionRecord(vSection,strTable,grForm.view);
+			
+			if (IsValidRecord(grSection) == false)
+			{
+				StringFormat('Failed to find section "{0}" for table "{1}" in view "{2}".',
+						vSection,
+						strTable,
+						grForm.view.title);			
+			}
+			else
+			{
+				var grFormSectionEntry = new GlideRecord('sys_ui_form_section');
+				grFormSectionEntry.initialize();
+				grFormSectionEntry.sys_ui_form = grForm.sys_id;
+				grFormSectionEntry.sys_ui_section = grSection.sys_id;
+				grFormSectionEntry.position = nSection;
+
+				var strFormSectionSysId = GlideRecordInsert(grFormSectionEntry);
+				if (IsValidSysId(strFormSectionSysId) == false)
+				{
+					this.Log(
+						StringFormat('Failed to add form section "{0}" for table "{1}" in view "{2}".',
+							vSection,
+							strTable,
+							grForm.view.title));
+					return false;
+				}
+			}
+		}
+
+		this.Log(
+			StringFormat('Re-defined Form for table "{0}" in view "{1}".',
+				strTable,
+				grForm.view.title));
+
+		return true;
+		
+	},
+
 
 	DefineFormSection: function(vUiSection, aFields)
 	{
@@ -1457,14 +1531,14 @@ InstallerAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-08-27 10:49:10</sys_created_on>
         <sys_id>704694a81b1a74505331b8449b4bcb69</sys_id>
-        <sys_mod_count>205</sys_mod_count>
+        <sys_mod_count>211</sys_mod_count>
         <sys_name>InstallerAPI</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_704694a81b1a74505331b8449b4bcb69</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-07-07 16:01:16</sys_updated_on>
+        <sys_updated_on>2025-07-16 12:25:40</sys_updated_on>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>704694a81b1a74505331b8449b4bcb69</id>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="syntax_editor_macro">
+    <syntax_editor_macro action="INSERT_OR_UPDATE">
+        <comments>This editor macro creates the code necessary to access the function contained in the IsOotbRecord script include.</comments>
+        <name>IsOotbRecord</name>
+        <sys_class_name>syntax_editor_macro</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-10 12:33:44</sys_created_on>
+        <sys_id>870d5153936e2610959b7fda2bba1043</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>IsOotbRecord</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>syntax_editor_macro_870d5153936e2610959b7fda2bba1043</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-10 12:33:52</sys_updated_on>
+        <text>var IsOotbRecord = x_snc_devtools.IsOotbRecord;&#13;
+IsOotbRecord(current);</text>
+    </syntax_editor_macro>
+</record_update>

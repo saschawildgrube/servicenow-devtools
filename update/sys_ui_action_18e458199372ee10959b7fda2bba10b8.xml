@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_action">
     <sys_ui_action action="INSERT_OR_UPDATE">
-        <action_name>make_code_installer_related_lists</action_name>
+        <action_name>make_code_installer_form</action_name>
         <active>true</active>
         <client>true</client>
         <client_script_v2><![CDATA[function onClick(g_form) {
 
 }]]></client_script_v2>
-        <comments>Creates the code to be used in an AppInstall() Script Include to (re) define these Related List.</comments>
-        <condition>IsActive() &amp;&amp; (AppGetProperty('ui.makecode_button') == true)</condition>
+        <comments>Creates the code to be used in an AppInstall() Script Include to (re) define this Form Section.</comments>
+        <condition>IsActive() &amp;&amp; (AppGetProperty('ui.makecode_button') == true) &amp;&amp; (current.getRecordClassName() == 'sys_ui_form')</condition>
         <form_action>true</form_action>
         <form_button>false</form_button>
         <form_button_v2>false</form_button_v2>
@@ -27,12 +27,12 @@
         <list_save_with_form_button>false</list_save_with_form_button>
         <list_style/>
         <messages/>
-        <name>Make Code to define this Related List</name>
-        <onclick>onClickMakeCodeInstallerDefineRelatedList()</onclick>
+        <name>Make Code to define this Form</name>
+        <onclick>onClickMakeCodeInstallerDefineForm()</onclick>
         <order>100</order>
-        <script><![CDATA[function onClickMakeCodeInstallerDefineRelatedList()
+        <script><![CDATA[function onClickMakeCodeInstallerDefineForm()
 {
-	var strUri = 'x_snc_devtools_make_code.do?context=installer&table=sys_ui_related_list&record='		
+	var strUri = 'x_snc_devtools_make_code.do?context=installer&table=sys_ui_form&record='		
 		+ GetCurrentRecordSysId();
 	var strEncodedUri = encodeURIComponent(strUri);
 	var strUrl = '/nav_to.do?uri=' + strEncodedUri;
@@ -45,31 +45,31 @@
         <show_update>true</show_update>
         <sys_class_name>sys_ui_action</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2025-07-07 08:49:31</sys_created_on>
+        <sys_created_on>2025-07-16 12:26:17</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
-        <sys_id>5dfc0d1a93662210ae97b4aa6aba1063</sys_id>
-        <sys_mod_count>4</sys_mod_count>
-        <sys_name>Make Code to define this Related List</sys_name>
+        <sys_id>18e458199372ee10959b7fda2bba10b8</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Make Code to define this Form</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
-        <sys_update_name>sys_ui_action_5dfc0d1a93662210ae97b4aa6aba1063</sys_update_name>
+        <sys_update_name>sys_ui_action_18e458199372ee10959b7fda2bba10b8</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-07-10 12:29:31</sys_updated_on>
-        <table>sys_ui_related_list</table>
+        <sys_updated_on>2025-07-17 12:49:11</sys_updated_on>
+        <table>global</table>
         <ui11_compatible>true</ui11_compatible>
         <ui16_compatible>false</ui16_compatible>
     </sys_ui_action>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
-        <id>5dfc0d1a93662210ae97b4aa6aba1063</id>
+        <id>18e458199372ee10959b7fda2bba10b8</id>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2025-07-07 08:50:17</sys_created_on>
-        <sys_id>e82dcd1a93662210ae97b4aa6aba1087</sys_id>
+        <sys_created_on>2025-07-16 12:27:01</sys_created_on>
+        <sys_id>4f05dc199372ee10959b7fda2bba1028</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-07-07 08:50:17</sys_updated_on>
+        <sys_updated_on>2025-07-16 12:27:01</sys_updated_on>
         <table>sys_ui_action</table>
         <use_es_latest>false</use_es_latest>
     </sys_es_latest_script>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="syntax_editor_macro">
+    <syntax_editor_macro action="DELETE">
+        <comments>This template creates the code necessary to access the Log() function contained in the Log script include.</comments>
+        <name>Log</name>
+        <sys_class_name>syntax_editor_macro</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-05-05 11:59:58</sys_created_on>
+        <sys_id>ad55f1de1b2c1c10a89720a8ec4bcb88</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Log</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>syntax_editor_macro_ad55f1de1b2c1c10a89720a8ec4bcb88</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-05-05 11:59:58</sys_updated_on>
+        <text>var Log = x_snc_devtools.Log;&#13;
+Log('Hello World');</text>
+    </syntax_editor_macro>
+<sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>220092723b73421816e44a8aa4e45ab1</instance_id>
+        <instance_name>wildxanadu</instance_name>
+        <name>syntax_editor_macro_ad55f1de1b2c1c10a89720a8ec4bcb88</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="syntax_editor_macro">
+    <syntax_editor_macro action="INSERT_OR_UPDATE">
+        <comments>This template creates the code necessary to access the Log() function contained in the Log script include.</comments>
+        <name>Log</name>
+        <sys_class_name>syntax_editor_macro</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-05-05 11:59:58</sys_created_on>
+        <sys_id>ad55f1de1b2c1c10a89720a8ec4bcb88</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Log</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>syntax_editor_macro_ad55f1de1b2c1c10a89720a8ec4bcb88</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-05-05 11:59:58</sys_updated_on>
+        <text>var Log = x_snc_devtools.Log;&#13;
+Log('Hello World');</text>
+    </syntax_editor_macro>
+</record_update>]]></payload>
+        <payload_hash>806075087</payload_hash>
+        <record_name>Log</record_name>
+        <reverted_from/>
+        <source>745b1f9f9364a610ae97b4aa6aba1020</source>
+        <source_table>sys_upgrade_history</source_table>
+        <state>previous</state>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2025-04-02 11:40:20</sys_created_on>
+        <sys_id>6f6b93df9364a610ae97b4aa6aba10e6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>195f64d5faf0000001</sys_recorded_at>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2025-04-02 11:40:20</sys_updated_on>
+        <type>Editor Macro</type>
+        <update_guid>2b6b93df4464a610ebc5e0afef4e59e6</update_guid>
+        <update_guid_history>2b6b93df4464a610ebc5e0afef4e59e6:0,d21fb12f3e186e50e68e00ff5ecde25b:0,cd36392b56d46e50766a30235af31fbd:0,dc5edc43bf94ea50d89f35bbd13b5de6:0,d8b4840f3bd0ea507685ca11ef47cc8d:0,82f56f1814d8ee105aed8e461a909f6b:0,ebe397503bd86e1047fb9ea3acb54eea:0,ac9c95b4d2c4a610ff51c2100908872b:0,2b34d1f89f44a610db5bbbbe799c5be7:0,0351c2e8e1cc2610d9b22658f3bf139b:0,dd36411bf53fd290a53958bf1fa6d875:0,50877658ad3f52507a3c20a5966803bb:0,893ba6d0a2fb5250c1aacc2e6933c6ba:0,ccfdbc26b5139e10b7a768df74579385:0,81c93c666bdf5e10c08ca4599a9fe4c0:0,1c50c8843f9f52109f2d879d42ef8f1b:0,b6e92b77a40f52103b01caa8cbb50f77:0,6b1aac3e617e125029570f95d80c5edd:0,3c767c6e96b6de107904e1b5aa34b679:0,4c8a5b00e23216107f3c476223fa60a0:0,bf36db000afed21082c7b956bd7da7a9:0,e7aa85cc452e1a10738dc4402ecd4367:0,c9a305cf0c1ed210b80c9ba44cdc9092:0,21ed15ef6b865610b2741ebb67f3b7e3:0,d4b89d2307865610f63ab06eda43ae9f:0,c84b339e463d1a10c60b19370fd98e4f:0,a15ca39209f91a1051e6e155440c52c6:0,887fd13092755210993b8dfbc2312ce9:0,4e902fa0f7b9121047055aae7b747b60:0,504af1fed7295a10f075212251dd28ec:0,ba17f5b682295a101c5495d2e7abf500:0,d33a5dba23655a102664234f98727eef:0,d1cd7eae16291a10e17b4fed4c103fc5:0,cce0699f2c995e105b84e4b1ac475dbc:0,7aa3e813d6955e101d1353710ea6ca89:0,d09f713e1d859e5074b2a800d6c12b38:0,e493dfdab7e85a906687606de58c2800:0,159611f1cbe0d690e2198883eca22756:0,dc409d7184a0d690eef37171a8af369f:0,80239c52ae1c1a50c57b8f67f81e9380:0,3bc337c61a581a5017da66efb888d173:0,14d0abef4eccde10a957d0b7c52d15fa:0,3adb9363b6ccde10bb537841330d080d:0,a3336031a7ccd610cc16e6094f0c2806:0,ad9d0a8fb473421015e808847aedf996:806075087</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Log">ee71bd6993f62250959b7fda2bba107a</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-17 13:49:19</sys_created_on>
+        <sys_db_object display_value="" name="syntax_editor_macro">syntax_editor_macro</sys_db_object>
+        <sys_id>14c66153d1b4482482661b51de3715c4</sys_id>
+        <sys_metadata>ad55f1de1b2c1c10a89720a8ec4bcb88</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Log</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>syntax_editor_macro_ad55f1de1b2c1c10a89720a8ec4bcb88</sys_update_name>
+        <sys_update_version display_value="syntax_editor_macro_ad55f1de1b2c1c10a89720a8ec4bcb88">6f6b93df9364a610ae97b4aa6aba10e6</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-17 13:49:19</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.IsOotbRecord</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns true if the given record is an OOTB record (which may have been claimed into an an application), false if not.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>IsOotbRecord</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function IsOotbRecord(grRecord)
+{
+	if (IsValidRecord(grRecord) == false)
+	{
+		return false;
+	}
+
+	// We do not detect records that are not derived from sys_metadata
+	if (IsDerivedFromTable(grRecord,'sys_metadata') == false)
+	{
+		return false;
+	}
+
+
+/* Used the following script to generate a list of users that created records on a fresh z-booted instance:
+
+var ArrayPushUnique = x_snc_devtools.ArrayPushUnique;
+var GetStringValue = x_snc_devtools.GetStringValue;
+var grMeta = new GlideRecord('sys_metadata');
+grMeta.query();
+var aUsers = [];
+while (grMeta.next())
+{
+	aUsers = ArrayPushUnique(aUsers,GetStringValue(grMeta.sys_created_by));
+}
+
+
+aUsers = aUsers.sort();
+
+var strOutput = '';
+for (var nUser = 0; nUser < aUsers.length; nUser++)
+{
+	strOutput += "'"+aUsers[nUser]+"',\n";
+}
+gs.info(strOutput);
+
+*/
+
+	var aUsers = [
+		'ATF.User',
+		'AUser',
+		'Change.Manager',
+		'DanielTaylor',
+		'Frankie.Thompson',
+		'GUEST',
+		'I65679',
+		'Jonatan.Jardi',
+		'Joshua Wheeler',
+		'Mike',
+		'Nathan Firth',
+		'SERVICENOW2017',
+		'SYSTEM',
+		'aaaron.wexler',
+		'aaron.wexler',
+		'aat.rutten@snc',
+		'abel.tuter',
+		'abraham.lincoln',
+		'adam.moguel',
+		'adela.cervantsz',
+		'adi.mitrani',
+		'aditya.narayan@snc',
+		'adityanarayan.mohara@snc',
+		'admin.maint',
+		'admin2',
+		'adminc',
+		'adriana.fiori@snc',
+		'aileen.mottern',
+		'akhil.parashara@snc',
+		'aleck.lin',
+		'aleck.lin.maint',
+		'alejandro.moreno',
+		'alex.broggi',
+		'amit.dhuleshia',
+		'amit.dhuleshia@snc',
+		'anand.mehta@snc',
+		'andrew.fry',
+		'andrew.kincaid',
+		'andrew.martin',
+		'angelo.calub@snc',
+		'anindya.paramanik',
+		'aniruddha.mukherjee@snc',
+		'anjum.asawari@snc',
+		'annmarie.costello',
+		'anthony.arobone',
+		'anuj.jain@snc',
+		'anurag.vesangi',
+		'aparna.ganti@snc',
+		'apr_admin',
+		'aqib.mushtaq',
+		'ardis.maison',
+		'arturo.ma',
+		'ashley.robinson@snc',
+		'assessment.admin',
+		'bartholome.morantte',
+		'bary.solomon',
+		'ben.anglin',
+		'ben.greer',
+		'ben.yukich',
+		'benjamin.phan',
+		'benjamin.williams',
+		'bernard.laboy',
+		'beth.anglin',
+		'bharath.rajan',
+		'bhupal.lambodhar',
+		'bhus.karayilthekkoot@snc',
+		'binyamin.greenberg',
+		'blambodh',
+		'bobby.edmonds',
+		'bogdan.tomov',
+		'bow',
+		'bradley.owen',
+		'brandon.chiem',
+		'brent.bahry',
+		'brian.tsang@snc',
+		'broc.oppler',
+		'bryan.boyle',
+		'chandan.kasear@snc',
+		'chandan.kasera@snc',
+		'chandrasekhar.thotak',
+		'chang.wang',
+		'change.risk.dev',
+		'cheng.liu',
+		'chinmayee.nagaraju@snc',
+		'chris.henson',
+		'chris.nguyen',
+		'chris.orr',
+		'christen.mitchell',
+		'christen.mitchell@snc',
+		'christopher.thompson',
+		'chuck.farley',
+		'chuck.warner@snc',
+		'cmitch',
+		'cmitchell',
+		'cong.thieu',
+		'controls',
+		'corayichen.xing@snc',
+		'cresta.kirkwood',
+		'daniel.kong',
+		'daniel.kong@snc',
+		'dariusz.maint',
+		'dariusz.szybowski',
+		'daryljohn.rodrigues',
+		'datacenterautomation@snc.maint',
+		'dave.dixon',
+		'dave.edquilang',
+		'david.airmet',
+		'david.airmet@snc',
+		'david.loo',
+		'david.murch',
+		'devendher.macha@snc',
+		'divya.banda@snc',
+		'dloo',
+		'don goodliffe',
+		'don.goodliffe',
+		'dovi.harel',
+		'duaa.zaheer@snc',
+		'elliot.monifi',
+		'elliott.sencan',
+		'employee',
+		'eric.hough',
+		'eric.schroeder',
+		'eric.schroeder@snc',
+		'eric.szonyi@snc',
+		'eswar.ramisetti@snc',
+		'eswar.ramisetti@snc.com',
+		'eugene.lockett',
+		'evan.qu',
+		'faiz.ahmed',
+		'farhana.chowdhury',
+		'farhath.farhath',
+		'felix.bait',
+		'frankie.thompson',
+		'frankie.thompson@snc',
+		'fred.luddy',
+		'fredex',
+		'french.guy',
+		'gabriela.villalobos',
+		'gary.stentiford',
+		'geethat.palaniselvam',
+		'gene.shtilkind@snc',
+		'giora.tamir',
+		'gleseri',
+		'glide.admin',
+		'glide.andrew',
+		'glide.bow',
+		'glide.james',
+		'glide.maint',
+		'glide.nigel',
+		'gopala.venkatachalam',
+		'greg.grisco',
+		'greg.mcgough@snc',
+		'guest',
+		'guillermo.frohich',
+		'guillermo.tsang',
+		'gyedwab',
+		'hardik.modi',
+		'harish.kunta@snc',
+		'haritha.ambati@snc',
+		'harry.nelosn',
+		'harry.nelson',
+		'harry.nelson@snc',
+		'hasan.al-jamaly@snc',
+		'haseeb.ahmed@snc',
+		'heather.dinh',
+		'idan.mirochnick',
+		'itil',
+		'iyac.delaratorres',
+		'jacob.andersen@snc',
+		'jake.burman@snc',
+		'james',
+		'james.capaldo',
+		'james.capaldo@snc',
+		'james.grinter',
+		'james.watson',
+		'jared.laethem',
+		'jay.berlin',
+		'jenkins',
+		'jeremiah.hall',
+		'jeromey.klein',
+		'jerrod.bennett',
+		'jerrod.maint',
+		'jesse.schulman',
+		'jim.freeman',
+		'jimmy.yuan',
+		'jing.yang',
+		'jkn1',
+		'joaquin.lunavillagran',
+		'joe.preston',
+		'joel',
+		'joel.fischer',
+		'johanneke.stam',
+		'john.maher',
+		'john.roberts',
+		'johnoliver.mendoza',
+		'josh.gerbasi',
+		'jrissone',
+		'jude.solis@snc',
+		'juell.solaegui',
+		'juell.solaegui@snc',
+		'jun.zhou',
+		'k.rattihallikanthara@snc',
+		'kaan.arikan@snc',
+		'kadidia.paadmin',
+		'kareem.mohammedabdul@snc',
+		'karthik.kotian',
+		'kenny.g',
+		'kenny.gabel',
+		'kevin.li@snc',
+		'kishore.reddy',
+		'kranthi',
+		'kratika.patni@snc',
+		'krishna.nagaraja',
+		'kulshreshth.dhiman@snc',
+		'kylin.follenweider@snc',
+		'lauren.choi@snc',
+		'lawrence.tse@snc',
+		'lee.yin@snc',
+		'lin.yuan@snc',
+		'lior.urman',
+		'lisa.henderson',
+		'liz.szeles@snc',
+		'lucas.hsu',
+		'ludo.vivier',
+		'magaly.drant',
+		'maint',
+		'manish.kothari@snc',
+		'manjeet.singh@snc',
+		'marajn.marzban',
+		'marjan.marzban',
+		'mark.johnson',
+		'mark.odonnell',
+		'martin.perry',
+		'marty.wexler',
+		'matt.bohy',
+		'matt.george',
+		'meeravali.pothuganti@snc',
+		'mei.walsh',
+		'melissa.moghaddam',
+		'mguy',
+		'michael.fong',
+		'michael.hoefer',
+		'michael.hoefer@snc',
+		'michael.riha',
+		'mihail.merdjanov@snc',
+		'mike.currie',
+		'milind.gokhale@snc',
+		'mitali.sahoo',
+		'mitchell.maint',
+		'moiz.alibhayani',
+		'mukul.anand@snc',
+		'myla.jordan',
+		'mylajordan',
+		'nagini.chilukuri',
+		'naitik.doshi',
+		'natalie.haywood',
+		'nathan.holm',
+		'nathan.holm@snc',
+		'naveen.aechan',
+		'neha.dube@snc',
+		'nick.leclair',
+		'nigel.bell',
+		'nikhil.bendre',
+		'nikhil.bendre@snc',
+		'nisan.barzion',
+		'nisha.ilame',
+		'nitinlaxmanbha.gupta',
+		'now.accf',
+		'now.cpg',
+		'now.discovery.content',
+		'now.discovery_infra',
+		'now.midServer',
+		'now.mid_server',
+		'now.midserver',
+		'now.patterns',
+		'ola',
+		'ola.shaked',
+		'ola.shaked@snc',
+		'onlyhr',
+		'oren.ezer',
+		'oron.subayi',
+		'oron.subayi@snc',
+		'pat',
+		'pat.casey',
+		'paul.wang',
+		'peksan.kong@snc',
+		'piyush.dwivedi',
+		'pouyan.parsanejad',
+		'prabhakaran.st@snc',
+		'praneeth.konduri@snc',
+		'prashanti.nilayam@snc',
+		'pravinpratap.pushkar',
+		'pravinpratap.pushlar',
+		'priyanka.mohapatra@snc',
+		'rachel.gray@snc',
+		'rachel.wu@snc',
+		'radha.raman@snc',
+		'rahul.borkar@snc',
+		'rahul.kumar@snc',
+		'rahulkumar.singh@snc',
+		'ramon.amaral',
+		'ranbir.roshan',
+		'reema.shah',
+		'rick.crawford',
+		'ritika.goyal@snc',
+		'rob.woodbyrne@snc',
+		'robert.chance',
+		'robert.dunlap',
+		'robert.ninness',
+		'roopa.gowda',
+		'ross.weir',
+		'rotem.steuer@snc',
+		'roy.laurie',
+		'roy.wallerstein',
+		'russ.sarbora',
+		'russell.chadwick@snc',
+		'rwoodbyrne',
+		'ryan.hale',
+		'sachin.banavi@snc',
+		'saibhaskar.pennada@snc',
+		'saikeerthana.goli@snc',
+		'saikrishna.ramineni@snc',
+		'saketh.nandagiri',
+		'samantha.santo@snc',
+		'sameep.kodia',
+		'sangshu.huang',
+		'satya.noolu',
+		'satyakarthik.adabala@snc',
+		'scott.wendt',
+		'sean.bowrin',
+		'sean.bowrin@snc',
+		'security.admin',
+		'service.now',
+		'shankar.meenkeri',
+		'share_admin',
+		'shay.herzog@snc',
+		'shilpa.tisgaonkar',
+		'shivam.rai1@snc',
+		'shouvik.goswami@snc',
+		'shravan.pai',
+		'shubha.sharma',
+		'simon.morris',
+		'sky.lin',
+		'slava.idler',
+		'slava.idler@snc',
+		'sms2',
+		'sn.dev',
+		'sn_ua.downloader',
+		'snc-services',
+		'sncprovision',
+		'souvik.ghosh@snc',
+		'sreejaredd.vennapusa@snc',
+		'srikanth.nelapudi',
+		'srikanth.nelapudi@snc',
+		'srinivas.bammidi@snc',
+		'srinivas.kothuri@snc',
+		'steve.bandow',
+		'steve.francis',
+		'steve.francis@snc',
+		'sugandh.rakha@snc',
+		'sumit.rathi',
+		'sunil.kumar@snc',
+		'surbhi.agarwal@snc',
+		'swapnesh.patel',
+		'system',
+		'system_bootstrap',
+		'tal.benari',
+		'tal.kapon',
+		'tal_admin',
+		'tectonic',
+		'test.newhire',
+		'test.t',
+		'test.user',
+		'thanh.phan',
+		'tim.broberg',
+		'tim.broberg@snc',
+		'toan.bui@snc',
+		'tom.dilatush',
+		'tom.dilatush@snc',
+		'trifon.getsov',
+		'tyler.jones',
+		'tyler.woodard',
+		'vahan.hartooni@snc',
+		'vamsee.komatineni',
+		'vanisree.posanipalle@snc',
+		'vardhini.shankaranarayanan@snc',
+		'varsha.rao',
+		'varsha.srinivas',
+		'venkatanadhareddy.karasani',
+		'venkataro.chodisetti@snc',
+		'venugopalr.chilakala@snc',
+		'vijayan.sampath',
+		'vijayan.sampath@snc',
+		'vincent.lim@snc',
+		'vipin.tiwari@snc',
+		'vishal.rao',
+		'vitaly.margolin',
+		'vrijendrakumar.singh',
+		'will.swift',
+		'xiangling.tham',
+		'xuejia.lu',
+		'yair.leibkowiz',
+		'ying.li'		
+	];
+
+	if (ArrayValueExists(aUsers,grRecord.sys_created_by.getValue()) == true)
+	{
+		return true;
+	} 
+
+	if (grRecord.sys_created_on.getValue() == '')
+	{
+		return true;
+	}
+
+	if (grRecord.sys_scope.getValue() != grRecord.sys_package.getValue())
+	{
+		return true;
+	}
+
+
+/*
+			'',
+			//'@@snc_write_audit@@', // Do not consider auto-generated "query_range" ACLs (see KB2046494)
+*/
+
+
+
+
+	return false;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-10 12:33:33</sys_created_on>
+        <sys_id>659c5913936e2610959b7fda2bba1060</sys_id>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_name>IsOotbRecord</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_659c5913936e2610959b7fda2bba1060</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-17 14:05:46</sys_updated_on>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>659c5913936e2610959b7fda2bba1060</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-10 12:33:32</sys_created_on>
+        <sys_id>4c0ddd13936e2610959b7fda2bba10ef</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-10 12:33:32</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

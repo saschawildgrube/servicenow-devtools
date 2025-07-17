@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.MakeCodeInstallerDefineForm</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Creates a script to define the given Form in its current form within an AppInstall() script using the InstallerAPI.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>MakeCodeInstallerDefineForm</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function MakeCodeInstallerDefineForm(vForm)
+{
+	var grForm = GetRecord('sys_ui_form',vForm);
+	if (IsValidRecord(grForm) == false)
+	{
+		return false;
+	}
+
+	var strScript = "";
+
+	strScript += "\tinstaller.DefineForm(\n";
+	strScript += "\t\tx_snc_devtools.GetFormRecord(\n";
+	strScript += "\t\t\t'"+grForm.name+"',\n";
+	strScript += "\t\t\t'"+grForm.view.title+"'),\n";
+	strScript += "\t\t[\n";
+
+	var grFormSectionEntries = new GlideRecord('sys_ui_form_section');
+	grFormSectionEntries.addQuery('sys_ui_form','=',grForm.sys_id);
+	grFormSectionEntries.orderBy('position');
+	grFormSectionEntries.query();
+	var nCount = 0;
+	while (grFormSectionEntries.next())
+	{
+		strComma = '';
+		if (nCount < grFormSectionEntries.getRowCount() - 1)
+		{
+			strComma = ',';
+		}
+		strScript += "\t\t\t'"+grFormSectionEntries.sys_ui_section.caption+"'"+strComma+"\n";
+		nCount++;
+	}
+	strScript += "\t\t]);\n";
+
+	return strScript;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-16 12:36:00</sys_created_on>
+        <sys_id>2217101d9372ee10959b7fda2bba1008</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>MakeCodeInstallerDefineForm</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_2217101d9372ee10959b7fda2bba1008</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-16 14:15:42</sys_updated_on>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>2217101d9372ee10959b7fda2bba1008</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-16 12:36:20</sys_created_on>
+        <sys_id>6f27101d9372ee10959b7fda2bba1097</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-16 12:36:20</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

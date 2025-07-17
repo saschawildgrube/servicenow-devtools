@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.GetFormRecord</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns a form based on the given Sys ID, record or table and view.  Or false if no form record could be found.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>GetFormRecord</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function GetFormRecord(vFormOrTable,vView)
+{
+	var grForm = GetRecord('sys_ui_form',vFormOrTable);
+	if (IsValidRecord(grForm) == true)
+	{
+		return grForm;
+	}
+	var strTable = GetStringValue(vFormOrTable);
+
+	var grView = GetViewRecord(vView);
+	if (IsValidRecord(grView) == false)
+	{
+		return false;
+	}
+
+	var grForm = new GlideRecord('sys_ui_form');
+	grForm.addQuery('name','=',strTable);
+	grForm.addQuery('view','=',grView.sys_id);
+	grForm.addQuery('sys_user','=','');
+	grForm.query();
+	if (grForm.getRowCount() != 1)
+	{
+		return false;
+	}
+	if (grForm.next() == false)
+	{
+		return false;
+	}
+	return grForm;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-16 12:17:19</sys_created_on>
+        <sys_id>41d258559372ee10959b7fda2bba108f</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>GetFormRecord</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_41d258559372ee10959b7fda2bba108f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-16 12:20:02</sys_updated_on>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>41d258559372ee10959b7fda2bba108f</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-16 12:20:01</sys_created_on>
+        <sys_id>607354959372ee10959b7fda2bba10cf</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-16 12:20:01</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
