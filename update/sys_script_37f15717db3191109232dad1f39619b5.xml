@@ -13,7 +13,7 @@
         <client_callable>false</client_callable>
         <collection>sys_metadata</collection>
         <condition>IsActive()</condition>
-        <description>If the system property "x_snc_devtools.ui.force_scope" is set to true, the current scope is set to the scope of the record when loading a form. This is to avoid the annoying message about being in the wrong scope.</description>
+        <description>If the system property "x_snc_devtools.ui.force_scope" is set to true and the user does not have the user preference "devtools.ui.force_scope" set to "false", the current scope is set to the scope of the record when loading a form. This is to avoid the annoying message about being in the wrong scope.</description>
         <execute_function>false</execute_function>
         <filter_condition/>
         <is_rest>false</is_rest>
@@ -38,7 +38,7 @@
 	if (strForceScope !== null)
 	{
 		bForceScope = GetBoolValue(strForceScope);
-		gs.addInfoMessage('User preference for ui.force_scope detected: '+RenderValue(bForceScope));
+		//gs.addInfoMessage('User preference for ui.force_scope detected: '+RenderValue(bForceScope));
 		if (bForceScope == false)
 		{
 			return;
@@ -74,7 +74,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>37f15717db3191109232dad1f39619b5</sys_id>
-        <sys_mod_count>36</sys_mod_count>
+        <sys_mod_count>38</sys_mod_count>
         <sys_name>sys_metadata - set scope to record scope</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -82,7 +82,7 @@
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_37f15717db3191109232dad1f39619b5</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-07-21 13:49:49</sys_updated_on>
+        <sys_updated_on>2025-07-21 13:58:15</sys_updated_on>
         <template/>
         <when>before_display</when>
         <x_snc_datasilos_created>false</x_snc_datasilos_created>
