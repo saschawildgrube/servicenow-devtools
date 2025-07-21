@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.MakeCodeInstallerDefineUiPolicyAction</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <mobile_callable>false</mobile_callable>
+        <name>MakeCodeInstallerDefineUiPolicyAction</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function MakeCodeInstallerDefineUiPolicyAction(vUiPolicyOrAction)
+{
+	var grUiPolicy = null;
+	var grUiPolicyAction = GetRecord('sys_ui_policy_action',vUiPolicyOrAction);
+	if (IsValidRecord(grUiPolicyAction) == false)
+	{
+		grUiPolicy = GetRecord('sys_ui_policy',vUiPolicyOrAction);
+		if (IsValidRecord(grUiPolicy) == false)
+		{
+			return false;
+		}
+	}
+	else
+	{
+		grUiPolicy = GetRecord('sys_ui_policy',grUiPolicyAction.ui_policy);
+		if (IsValidRecord(grUiPolicy) == false)
+		{
+			return false;
+		}
+	}
+
+	var strField = '';
+	var strMandatory = 'ignored';
+	var strVisible = 'ignored';
+	var strDisabled = 'ignored';
+	var strCleared = 'false';
+
+	if (IsValidRecord(grUiPolicyAction) == true)
+	{
+		strField = GetStringValue(grUiPolicyAction.field);
+		strMandatory = GetStringValue(grUiPolicyAction.mandatory);
+		strVisible = GetStringValue(grUiPolicyAction.visible);
+		strDisabled = GetStringValue(grUiPolicyAction.disabled);
+		strCleared = GetStringValue(grUiPolicyAction.cleared);
+
+	}
+	var strScript = "";
+
+	strScript += "\tinstaller.DefineUiPolicyAction(\n";
+	strScript += "\t\tx_snc_devtools.GetRecord(\n";
+	strScript += "\t\t\t'sys_ui_policy',\n";
+	strScript += "\t\t\t'"+grUiPolicy.sys_id+"'),\n";
+	strScript += "\t\t'"+strField+"', // technical field name\n";
+	strScript += "\t\t'"+strMandatory+"', // mandatory: 'ignore', 'true' or 'false'\n";
+	strScript += "\t\t'"+strVisible+"', // visible: 'ignore', 'true' or 'false'\n";
+	strScript += "\t\t'"+strDisabled+"', // disabled: 'ignore', 'true' or 'false'\n";
+	strScript += "\t\t'"+strCleared+"'  // cleared: 'true' or 'false'\n";
+
+
+	strScript += "\t\t);\n";
+
+	return strScript;	
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-21 17:27:37</sys_created_on>
+        <sys_id>4bb9c33e937a6210959b7fda2bba1008</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>MakeCodeInstallerDefineUiPolicyAction</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_4bb9c33e937a6210959b7fda2bba1008</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-21 18:28:21</sys_updated_on>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>4bb9c33e937a6210959b7fda2bba1008</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-21 17:27:37</sys_created_on>
+        <sys_id>cbc9c33e937a6210959b7fda2bba1013</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-21 17:27:37</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
