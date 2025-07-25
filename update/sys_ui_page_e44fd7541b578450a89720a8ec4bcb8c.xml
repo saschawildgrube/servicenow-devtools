@@ -639,6 +639,7 @@ function YourLengthyProcess(strRecordSysId)
 		<li>Added Business Rule "sys_ui_policy_action - d - sync table" to ensure that the UI Policy Action always inherits the table defined in the UI Policy.</li>
 		<li>DevToolsClientAPI is now protected by an ACL demanding a logged-in user.</li>
 		<li>GetParentRecord() and the "Up" button now support ACLs for client callable Script Includes.</li>
+		<li>Added UI Action "Make Code to define this List".</li>
 		<li>Fixed false negative error log message in DevToolsClientAPI::start().</li>
 		<li>Added syntax editor macro for PrepareLogWarning().</li>
 		<li>AppSanity() deleted UI List view definitions for existing Database Views - this has been fixed.</li>
@@ -2803,14 +2804,14 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>2149</sys_mod_count>
+        <sys_mod_count>2150</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-07-25 10:43:09</sys_updated_on>
+        <sys_updated_on>2025-07-25 11:59:58</sys_updated_on>
     </sys_ui_page>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>e44fd7541b578450a89720a8ec4bcb8c</id>
