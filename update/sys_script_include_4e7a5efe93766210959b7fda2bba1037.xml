@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.SetUserPreference</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Sets the specified user preference value for the given user.&#13;
+'Controls if the scope should be forced to the currently loaded record.'</description>
+        <mobile_callable>false</mobile_callable>
+        <name>SetUserPreference</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function SetUserPreference(vUser,strName,strValue,strDescription) 
+{
+	var grUser = GetUserRecord(vUser);
+	if (IsValidRecord(grUser) == false)
+	{
+		return false;
+	}
+
+	strName = GetStringValue(strName);
+	if (strName == '')
+	{
+		return false;
+	}
+
+	strValue = GetStringValue(strValue);
+	strDescription = GetStringValue(strDescription);
+
+	return RecordInsertOrUpdate(
+		'sys_user_preference',
+		{
+			user: grUser.sys_id,
+			name: strName,
+			system: false
+		},
+		{
+			description: strDescription
+		},
+		{
+			value: strValue
+		});
+}
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-21 14:00:51</sys_created_on>
+        <sys_id>4e7a5efe93766210959b7fda2bba1037</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>SetUserPreference</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_4e7a5efe93766210959b7fda2bba1037</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-28 11:26:48</sys_updated_on>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>4e7a5efe93766210959b7fda2bba1037</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-21 14:03:39</sys_created_on>
+        <sys_id>cb1b9a3293b66210959b7fda2bba1010</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-21 14:03:39</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

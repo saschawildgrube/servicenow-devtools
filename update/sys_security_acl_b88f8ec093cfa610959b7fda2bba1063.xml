@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl">
+    <sys_security_acl action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <admin_overrides>true</admin_overrides>
+        <advanced>false</advanced>
+        <applies_to/>
+        <condition/>
+        <decision_type>allow</decision_type>
+        <description/>
+        <local_or_existing>Local</local_or_existing>
+        <name>DevToolsClientAPI</name>
+        <operation display_value="execute">execute</operation>
+        <script/>
+        <security_attribute display_value="x_snc_devtools__ACL_b88f8ec093cfa610959b7fda2bba1063">7cdfc20493cfa610959b7fda2bba1048</security_attribute>
+        <sys_class_name>sys_security_acl</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-25 10:26:46</sys_created_on>
+        <sys_id>b88f8ec093cfa610959b7fda2bba1063</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>DevToolsClientAPI</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_security_acl_b88f8ec093cfa610959b7fda2bba1063</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-25 10:26:46</sys_updated_on>
+        <type display_value="client_callable_script_include">client_callable_script_include</type>
+    </sys_security_acl>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>b88f8ec093cfa610959b7fda2bba1063</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-25 10:26:17</sys_created_on>
+        <sys_id>1ebfcec093cfa610959b7fda2bba108e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-25 10:26:17</sys_updated_on>
+        <table>sys_security_acl</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

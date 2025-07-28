@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl_role">
+    <sys_security_acl_role action="DELETE">
+        <sys_class_name>sys_security_acl_role</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-25 10:26:25</sys_created_on>
+        <sys_id>5ccf020493cfa610959b7fda2bba109e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>.public</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_security_acl display_value="">b88f8ec093cfa610959b7fda2bba1063</sys_security_acl>
+        <sys_update_name>sys_security_acl_role_5ccf020493cfa610959b7fda2bba109e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-25 10:26:25</sys_updated_on>
+        <sys_user_role display_value="public" name="public">b0593b350a0a0aa7001d689e4542dc28</sys_user_role>
+    </sys_security_acl_role>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>220092723b73421816e44a8aa4e45ab1</instance_id>
+        <instance_name>wildxanadu</instance_name>
+        <name>sys_security_acl_role_5ccf020493cfa610959b7fda2bba109e</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl_role"><sys_security_acl_role action="INSERT_OR_UPDATE"><sys_class_name>sys_security_acl_role</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2025-07-25 10:26:25</sys_created_on><sys_id>5ccf020493cfa610959b7fda2bba109e</sys_id><sys_mod_count>0</sys_mod_count><sys_name>.public</sys_name><sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package><sys_policy/><sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope><sys_security_acl display_value="">b88f8ec093cfa610959b7fda2bba1063</sys_security_acl><sys_update_name>sys_security_acl_role_5ccf020493cfa610959b7fda2bba109e</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2025-07-25 10:26:25</sys_updated_on><sys_user_role display_value="public" name="public">b0593b350a0a0aa7001d689e4542dc28</sys_user_role></sys_security_acl_role></record_update>]]></payload>
+        <payload_hash>1484572955</payload_hash>
+        <record_name>.public</record_name>
+        <reverted_from/>
+        <source>bbc283b2937a6210959b7fda2bba108c</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-25 10:26:26</sys_created_on>
+        <sys_id>58cf020493cfa610959b7fda2bba10a4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>198411eade20000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-25 10:26:26</sys_updated_on>
+        <type>Access Roles</type>
+        <update_guid>1ccf0204bdcfa6106300dc48007e74a3</update_guid>
+        <update_guid_history>1ccf0204bdcfa6106300dc48007e74a3:1484572955</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value=".public">8fdf060493cfa610959b7fda2bba103b</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-25 10:26:54</sys_created_on>
+        <sys_db_object display_value="" name="sys_security_acl_role">sys_security_acl_role</sys_db_object>
+        <sys_id>5c31f76be9a648aea1d69c24e684ae24</sys_id>
+        <sys_metadata>5ccf020493cfa610959b7fda2bba109e</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>.public</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent display_value="DevToolsClientAPI">b88f8ec093cfa610959b7fda2bba1063</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sys_security_acl_role_5ccf020493cfa610959b7fda2bba109e</sys_update_name>
+        <sys_update_version display_value="sys_security_acl_role_5ccf020493cfa610959b7fda2bba109e">58cf020493cfa610959b7fda2bba10a4</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-25 10:26:54</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

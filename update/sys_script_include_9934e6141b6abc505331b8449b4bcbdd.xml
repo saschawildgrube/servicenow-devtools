@@ -568,6 +568,23 @@
 		return GetRecord('sys_app',grRecord.sys_scope);
 	}	
 
+	if (strTable == 'sys_security_acl')
+	{
+		if (grRecord.type == 'client_callable_script_include' && grRecord.operation == 'execute')
+		{
+			var grScriptInclude = new GlideRecord('sys_script_include');
+			grScriptInclude.addQuery('sys_scope','=',grRecord.sys_scope);
+			grScriptInclude.addQuery('name','=',grRecord.name);
+			grScriptInclude.query();
+			if (grScriptInclude.getRowCount() != 1)
+			{
+				return false;
+			}
+			grScriptInclude.next();
+			return grScriptInclude;
+		}
+	}
+
 	var strParentTable = GetParentTable(strTable);
 	if (strParentTable != '')
 	{
@@ -580,14 +597,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-08 12:44:48</sys_created_on>
         <sys_id>9934e6141b6abc505331b8449b4bcbdd</sys_id>
-        <sys_mod_count>144</sys_mod_count>
+        <sys_mod_count>146</sys_mod_count>
         <sys_name>GetParentRecord</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_9934e6141b6abc505331b8449b4bcbdd</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-07-04 09:33:07</sys_updated_on>
+        <sys_updated_on>2025-07-25 10:37:50</sys_updated_on>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>9934e6141b6abc505331b8449b4bcbdd</id>

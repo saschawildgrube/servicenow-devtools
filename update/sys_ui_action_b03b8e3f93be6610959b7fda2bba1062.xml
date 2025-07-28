@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_action">
+    <sys_ui_action action="INSERT_OR_UPDATE">
+        <action_name>devtools_user_generate_credentials</action_name>
+        <active>true</active>
+        <client>false</client>
+        <client_script_v2><![CDATA[function onClick(g_form) {
+
+}]]></client_script_v2>
+        <comments>Generate a new password, sets the user name if necessary and send the new credentials via mail to the current user.</comments>
+        <condition>IsActive() &amp;&amp; (IsTechnicalUser(current) == false) &amp;&amp; IsValidEmail(current.email) &amp;&amp; (AppGetProperty('ui.generatecredentials_button') == true) &amp;&amp; (GetProperty('glide.email.smtp.active') == false)</condition>
+        <form_action>true</form_action>
+        <form_button>true</form_button>
+        <form_button_v2>false</form_button_v2>
+        <form_context_menu>false</form_context_menu>
+        <form_link>false</form_link>
+        <form_menu_button_v2>false</form_menu_button_v2>
+        <form_style>destructive</form_style>
+        <format_for_configurable_workspace>false</format_for_configurable_workspace>
+        <hint/>
+        <isolate_script>false</isolate_script>
+        <list_action>false</list_action>
+        <list_banner_button>false</list_banner_button>
+        <list_button>false</list_button>
+        <list_choice>false</list_choice>
+        <list_context_menu>false</list_context_menu>
+        <list_link>false</list_link>
+        <list_save_with_form_button>false</list_save_with_form_button>
+        <list_style/>
+        <messages/>
+        <name>Generate Credentials</name>
+        <onclick/>
+        <order>101</order>
+        <script><![CDATA[current.update();
+
+var strMessage = GenerateCredentialsForUser(current);
+if (strMessage != false)
+{
+	gs.addInfoMessage(
+		HtmlEncode(
+			'Credentials have been created/updated. You can share this message with the user:\n\n'+strMessage));
+}
+else
+{
+	gs.addErrorMessage('An error occured. Credentials have NOT been created/updated.');
+}
+
+RedirectToRecord(current,GetParam('sysparm_view'));]]></script>
+        <show_insert>false</show_insert>
+        <show_multiple_update>false</show_multiple_update>
+        <show_query>false</show_query>
+        <show_update>true</show_update>
+        <sys_class_name>sys_ui_action</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-24 15:28:03</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>b03b8e3f93be6610959b7fda2bba1062</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>Generate Credentials</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_ui_action_b03b8e3f93be6610959b7fda2bba1062</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-28 08:21:14</sys_updated_on>
+        <table>sys_user</table>
+        <ui11_compatible>true</ui11_compatible>
+        <ui16_compatible>false</ui16_compatible>
+    </sys_ui_action>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>b03b8e3f93be6610959b7fda2bba1062</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-24 15:30:50</sys_created_on>
+        <sys_id>e9dbca7f93be6610959b7fda2bba1038</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-24 15:30:50</sys_updated_on>
+        <table>sys_ui_action</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

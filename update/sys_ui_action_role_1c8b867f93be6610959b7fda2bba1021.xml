@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_action_role">
+    <sys_ui_action_role action="INSERT_OR_UPDATE">
+        <sys_class_name>sys_ui_action_role</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-24 15:30:50</sys_created_on>
+        <sys_id>1c8b867f93be6610959b7fda2bba1021</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Generate Credentials.user_admin</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_ui_action display_value="Generate Credentials">b03b8e3f93be6610959b7fda2bba1062</sys_ui_action>
+        <sys_update_name>sys_ui_action_role_1c8b867f93be6610959b7fda2bba1021</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-24 15:30:50</sys_updated_on>
+        <sys_user_role display_value="user_admin" name="user_admin">049d55090a0a0a660162aa57a266b241</sys_user_role>
+    </sys_ui_action_role>
+</record_update>

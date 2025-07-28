@@ -186,8 +186,8 @@ Set a default config for the generic prompt capability: /nav_to.do?uri=sys_one_e
 	<h3>Evaluator Errors</h3>
 	<p>DevTools helps to surface evaluator errors (which are logged as warnings OOTB). The system property&#160;<a href="/nav_to.do?uri=sys_properties.do?sys_id=439f16571b417510cd6153d16b4bcb80" target="_blank">x_snc_devtools.ui.show_evaluator_errors.minutes</a>&#160;controls whether and for how long evaluator errors should be displayed to admin users.</p>
 	
-	<h3>Force to Record Scope</h3>
-	<p>DevTools enforces to switch to the scope of the current record on a form. This prevents any situation in which a form was loaded in the correct scope, changes are being made, and lost because the user changed the scope in a different tab. The OOTB behavior is downright annoying. DevTools comes to the rescue. The system property&#160;<a href="/nav_to.do?uri=sys_properties.do?sys_id=7b9d7bb2db3e11106a03dad1f3961901" target="_blank">x_snc_devtools.ui.force_scope</a>&#160;controls whether the scope should be changed when loading and saving a form. This may lead to some users being confused by the new (and unexpected) behavior - however, developers quickly become used to it and prefer the behavior over the OOTB behavior.</p>	
+	<h3>Enforce Record Scope</h3>
+	<p>DevTools enforces to switch to the scope of the current record on a form. This prevents any situation in which a form was loaded in the correct scope, changes are being made, and lost because the user changed the scope in a different tab. The OOTB behavior is downright annoying. DevTools comes to the rescue. The system property&#160;<a href="/nav_to.do?uri=sys_properties.do?sys_id=7b9d7bb2db3e11106a03dad1f3961901" target="_blank">x_snc_devtools.ui.force_scope</a>&#160;controls whether the scope should be changed when loading and saving a form. This may lead to some users being confused by the new (and unexpected) behavior - however, developers quickly become used to it and prefer the behavior over the OOTB behavior. Those developers who still do not like the new behavior can deactivate it by using the UI Action "Do NOT enforce record scope" on their User page.</p>	
 	<h3>Instance Pipeline Names</h3>
 	<p>An instance has a technical name (sometimes matching the domain name, but not always). This technical name can be used to define logic that depends on the instance on which code is executed. However, this is not a good practice. In complex environments, where applications may be shared across multiple production instances, any logic that directly depends on a specific instance may cause problems. The DevTools extension point allows to implement the function DevToolsGetInstancePipelineName() which allows to map technical names to so-called pipeline names (e.g., "dev", "test" or "prod"). The function GetInstancePipelineName() can then be used to get the current instance pipeline name to build instance specific logic.</p>	
 	
@@ -253,12 +253,19 @@ function GetEncodedQueryToPreventUselessChecks(rules)
 	<p>Data is managed on each instance and should not be "deployed". Code is part of applications and should be deployed as such.</p>
 	<p>However there are cases where the boundaries are blurry. If data records (i.e. records that are not in a table derived from sys_metadata) must be part of an application the Record Transporter comes to the rescue.</p>
 	<p>The Record Transporter allows to store any record that is not a sys_metadata derivative into a table that is. The table in which these records are stored is x_snc_devtools_transporter_record (which is derived from sys_metadata) and hence its records are captured as part of an application (in source control). Such records are associated to a Record Transporter Package (in table x_snc_devtools_transporter_package).</p>
-	<p>To "pack" records into a Package, create a Package in the GUI - but make sure to select the scope of the application that should contain the package - then use the function RecordTransporterRecordPack() to store individual records into the package.</p>
-	<p>To properly "store" to be deleted records use the function RecordTransporterPackageReset() before adding records to a package. The function will mark all existing records in the package to be deleted on the target instance. Once added again, these records will be stored to the package to be inserted or updated. This allows to keep track on deleted records of earlier versions of the package.</p>
+	<p>To "pack" records into a Package, create a Package in the GUI - but make sure to select the scope of the application that should contain the Package - then use the function RecordTransporterRecordPack() to store individual records into the Package.</p>
+	<p>To properly "store" to be deleted records use the function RecordTransporterPackageReset() before adding records to a Package. The function will mark all existing records in the Package to be deleted on the target instance. Once added again, these records will be stored to the Package to be inserted or updated. This allows to keep track on deleted records of earlier versions of the Package.</p>
 	<p>During installation use the method InstallerAPI::RecordTransporterPackageUnpack() to unpack the contained records on the target instance.</p>
-	<p>Code to store records could look like this:
+	<p>Follow these steps to create a Package, pack records into the Package and unpack the Package:</p>
+	<ol>
+	<li>Navigate to the list of&#160;<a href="/nav_to.do?uri=x_snc_devtools_transporter_package_list.do" target="_blank">Transporter Packages</a>.</li> 
+	<li>Switch the scope to the application that should contain the new Package.</li>
+	<li>Click on "New" to create a new Package.</li>
+	<li>Define a name and the ID Suffix for the Package.</li>
+	<li>Create a Script Include in the application that contains a function that packs the records into the Package.</li>
+	<li>Use the following boilderplate code to pack records. Replace "x_your_scope.demo" with the id as shown in the Package form. 
 		<pre>
-// To set all existing records as to-be-deleted
+// To set all existing records in the Package to-be-deleted
 x_snc_devtools.RecordTransporterPackageReset('x_your_scope.demo');
 			
 // Identify records based on whatever logic
@@ -267,13 +274,13 @@ grRecords.addQuery('name','STARTSWITH','Test ');
 grRecords.query();
 while (grRecords.next())
 {
-	// Pack the identified record into the package
+	// Pack the identified record into the Package
 	x_snc_devtools.RecordTransporterRecordPack('x_your_scope.demo',grRecords);
 }
 		</pre>
-	</p>
-	
-	<p>To unpack records, implement the AppInstall() function in your app like this:
+	</li>
+	<li>Decide on when the records should be (re-)packed into the Package. Whenever a record is changed? When an application is baselined? On-demand only?</li>
+	<li>If it does not exist yet, create the single function Script Include "AppInstall" in the same application. Add or modify the following boilerplate code:
 		<pre>	
 function AppInstall()
 {
@@ -284,7 +291,8 @@ function AppInstall()
 	return installer.Finish();
 }
 		</pre>
-	</p>
+	</li>
+	</ol>
 
 	<h3>CMDB CI Class "ServiceNow App"</h3>
 	<p>DevTools introduces a new CMDB CI class called "ServiceNow App" which represents a ServiceNow app (scoped or global) that is installed on an instance or provided in a Source Control System for installation.</p>
@@ -623,6 +631,35 @@ function YourLengthyProcess(strRecordSysId)
 	<g2:no_escape>$[docapi.RenderLicense()]</g2:no_escape>
 	
 	<h2>Release Notes</h2>
+
+	<h3>1.130.0 - 2025-07-28</h3>
+	<ol>
+		<li>Added function GetUserPreference().</li>
+		<li>Added function SetUserPreference().</li>
+		<li>Business Rule "sys_metadata - set scope to record scope" now checks if the current user has a preference set to enforce to the record scope or not ("devtools.ui.force_scope").</li>
+		<li>Added UI Actions "Do NOT enforce record scope" and "Enforce record scope" to allow a user to configure whether the record scope should be enforced when loading an Application File record.</li>
+		<li>Added function GetAllTableNames().</li>
+		<li>Added function InstallerAPI::DefineUiPolicyAction().</li>
+		<li>Added function MakeCodeInstallerDefineUiPolicyAction().</li>
+		<li>Added function GenerateCredentialsForUser().</li>
+		<li>Added function GetListRecord().</li>
+		<li>Added function MakeCodeInstallerDefineList().</li>
+		<li>Added function MakeCodeInstallerUnpackPackage().</li>
+		<li>Added UI Action "Generate Credentials" (if smtp is inactive).</li>
+		<li>Added UI Action "Make Code to define this List".</li>
+		<li>Added UI Action "Make Code to unpack this Package".</li>
+		<li>Added system property "x_snc_devtools.ui.generatecredentials_button".</li>
+		<li>Added Business Rule "sys_ui_policy_action - d - sync table" to ensure that the UI Policy Action always inherits the table defined in the UI Policy.</li>		
+		<li>GetParentRecord() and the "Up" button now support ACLs for client callable Script Includes.</li>
+		<li>HtmlRenderPageMakeCode() now also supports MakeCodeInstallerDefineList() and MakeCodeInstallerUnpackPackage().</li>
+		<li>DevToolsClientAPI is now protected by an ACL demanding a logged-in user.</li>
+		<li>Fixed false negative error log message in DevToolsClientAPI::start().</li>
+		<li>Added syntax editor macro for PrepareLogWarning().</li>
+		<li>AppSanity() deleted UI List view definitions for existing Database Views - this has been fixed.</li>
+		<li>AppSanity() no longer deletes sys_wizard_answer records.</li>
+		<li>Improved manual by adding step-by-step instructions on how to set up a Record Transporter Package.</li>
+	</ol>
+
 
 	<h3>1.129.0 - 2025-07-17</h3>
 	<ol>
@@ -2781,14 +2818,14 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>2132</sys_mod_count>
+        <sys_mod_count>2161</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-07-17 14:02:49</sys_updated_on>
+        <sys_updated_on>2025-07-28 11:25:22</sys_updated_on>
     </sys_ui_page>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>e44fd7541b578450a89720a8ec4bcb8c</id>

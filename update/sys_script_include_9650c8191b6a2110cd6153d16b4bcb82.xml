@@ -12,18 +12,18 @@ This requires the "glide.email.smtp.active" system property to be "true".</descr
         <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GenerateAndSendCredentialsToUser(vUser)
 {
+	// Check system property
+	if (GetProperty('glide.email.smtp.active') == false)
+	{
+		return false;
+	}
+
 	var grUser = GetUserRecord(vUser);
 	if (IsValidRecord(grUser) == false)
 	{
 		return false;
 	}
 
-	// Check system property
-	if (GetProperty('glide.email.smtp.active') == false)
-	{
-		return false;
-	}
-	
 	// Check email
 	var strEmail = GetStringValue(grUser.email);
 	if (IsValidEmail(strEmail) == false)
@@ -31,54 +31,14 @@ This requires the "glide.email.smtp.active" system property to be "true".</descr
 		return false;
 	}	
 	
-	// Generate user name if required
-	var strUserName = GetStringValue(grUser.user_name);
-	if (strUserName == '')
-	{
-		strUserName = MakeUserName([grUser.first_name,grUser.last_name]);	
-	}
-	if (strUserName == '')
+	var strMessage = GenerateCredentialsForUser(grUser);
+
+	if (strMessage == false)
 	{
 		return false;
 	}
 
-	// Check for duplicate user names
-	var grUser2 = new GlideRecord('sys_user');
-	grUser2.addQuery('user_name','=',strUserName);
-	grUser2.addQuery('sys_id','!=',grUser.sys_id);
-	grUser2.query();
-	if (grUser2.next())
-	{
-		return false;
-	}
-	grUser.user_name = strUserName;
-
-	// Generate password
-	var strPassword = GetRandomNumericToken(12);
-	
-	// Set password and active state
-	grUser.user_password.setDisplayValue(strPassword);
-    grUser.password_needs_reset = true;
-	grUser.active = true;
-	grUser.locked_out = false;
-	
-	// Update user
-	var strSysId = grUser.update();
-	if (strSysId == null)
-	{
-		return false;
-	}
-	
 	var strInstanceUrl = GetInstanceUrl();
-		
-	var strMessage = 'Hello ';
-		strMessage += grUser.first_name + ' ';
-		strMessage += grUser.last_name + ',\n\n';
-		strMessage += 'your user account to access '+strInstanceUrl+' is read for use:\n\n'
-		strMessage += 'User: ' + strUserName + '\n';
-		strMessage += 'Password: ' + strPassword + '\n';
-		strMessage += '\nYou will be required to change the password during login.';
-
 
 	var bSuccess = SendMail(
 		{
@@ -99,13 +59,24 @@ This requires the "glide.email.smtp.active" system property to be "true".</descr
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-04-30 15:57:51</sys_created_on>
         <sys_id>9650c8191b6a2110cd6153d16b4bcb82</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_mod_count>11</sys_mod_count>
         <sys_name>GenerateAndSendCredentialsToUser</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_9650c8191b6a2110cd6153d16b4bcb82</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-09-17 20:06:37</sys_updated_on>
+        <sys_updated_on>2025-07-24 15:23:14</sys_updated_on>
     </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>9650c8191b6a2110cd6153d16b4bcb82</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-24 15:07:41</sys_created_on>
+        <sys_id>de868eb793be6610959b7fda2bba10ec</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-24 15:07:41</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>

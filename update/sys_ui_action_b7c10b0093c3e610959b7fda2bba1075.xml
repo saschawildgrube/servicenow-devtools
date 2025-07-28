@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_action">
+    <sys_ui_action action="INSERT_OR_UPDATE">
+        <action_name>make_code_installer_unpack_package</action_name>
+        <active>true</active>
+        <client>true</client>
+        <client_script_v2><![CDATA[function onClick(g_form) {
+
+}]]></client_script_v2>
+        <comments>Creates the code to be used in an AppInstall() Script Include to unpack this Record Transporter Package.</comments>
+        <condition>IsActive() &amp;&amp; (AppGetProperty('ui.makecode_button') == true)</condition>
+        <form_action>true</form_action>
+        <form_button>false</form_button>
+        <form_button_v2>false</form_button_v2>
+        <form_context_menu>false</form_context_menu>
+        <form_link>true</form_link>
+        <form_menu_button_v2>false</form_menu_button_v2>
+        <form_style/>
+        <format_for_configurable_workspace>false</format_for_configurable_workspace>
+        <hint/>
+        <isolate_script>true</isolate_script>
+        <list_action>false</list_action>
+        <list_banner_button>false</list_banner_button>
+        <list_button>false</list_button>
+        <list_choice>false</list_choice>
+        <list_context_menu>false</list_context_menu>
+        <list_link>false</list_link>
+        <list_save_with_form_button>false</list_save_with_form_button>
+        <list_style/>
+        <messages/>
+        <name>Make Code to unpack this Package</name>
+        <onclick>onClickMakeCodeInstallerUnpackPackage()</onclick>
+        <order>100</order>
+        <script><![CDATA[function onClickMakeCodeInstallerUnpackPackage()
+{
+	var strUri = 'x_snc_devtools_make_code.do?context=installer&table=x_snc_devtools_transporter_package&record='		
+		+ GetCurrentRecordSysId();
+	var strEncodedUri = encodeURIComponent(strUri);
+	var strUrl = '/nav_to.do?uri=' + strEncodedUri;
+	RedirectToUrl(strUrl, true);
+	
+}]]></script>
+        <show_insert>false</show_insert>
+        <show_multiple_update>false</show_multiple_update>
+        <show_query>false</show_query>
+        <show_update>true</show_update>
+        <sys_class_name>sys_ui_action</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-25 14:05:07</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>b7c10b0093c3e610959b7fda2bba1075</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Make Code to unpack this Package</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_ui_action_b7c10b0093c3e610959b7fda2bba1075</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-25 14:06:59</sys_updated_on>
+        <table>x_snc_devtools_transporter_package</table>
+        <ui11_compatible>true</ui11_compatible>
+        <ui16_compatible>false</ui16_compatible>
+    </sys_ui_action>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>b7c10b0093c3e610959b7fda2bba1075</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-25 14:06:58</sys_created_on>
+        <sys_id>7a32434093c3e610959b7fda2bba1069</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-25 14:06:58</sys_updated_on>
+        <table>sys_ui_action</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

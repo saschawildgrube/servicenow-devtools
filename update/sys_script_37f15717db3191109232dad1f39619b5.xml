@@ -13,7 +13,7 @@
         <client_callable>false</client_callable>
         <collection>sys_metadata</collection>
         <condition>IsActive()</condition>
-        <description>If the system property "x_snc_devtools.ui.force_scope" is set to true, the current scope is set to the scope of the record when loading a form. This is to avoid the annoying message about being in the wrong scope.</description>
+        <description>If the system property "x_snc_devtools.ui.force_scope" is set to true and the user does not have the user preference "devtools.ui.force_scope" set to "false", the current scope is set to the scope of the record when loading a form. This is to avoid the annoying message about being in the wrong scope.</description>
         <execute_function>false</execute_function>
         <filter_condition/>
         <is_rest>false</is_rest>
@@ -32,6 +32,16 @@
 	if (AppGetProperty('ui.force_scope') != true)
 	{
 		return;
+	}
+
+	var strForceScope = GetUserPreference(gs.getUserID(),'devtools.ui.force_scope');
+	if (strForceScope !== null)
+	{
+		bForceScope = GetBoolValue(strForceScope);
+		if (bForceScope == false)
+		{
+			return;
+		}
 	}
 
 	var strCurrentUrl = GetCurrentUrl();
@@ -55,6 +65,10 @@
 		}
 	}
 	SetCurrentScope(strScopeSysId);
+	if (strForceScope === null)
+	{
+		gs.addInfoMessage('DevTools has enforced the current scope to the loaded record scope. This is to avoid loosing data when working on multiple records in multiple browser tabs. If you do not like this behavior, go to your profile page and click on the related link "Do NOT enforce record scope".');
+	}
 
 })(current, previous);]]></script>
         <sys_class_name>sys_script</sys_class_name>
@@ -63,7 +77,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>37f15717db3191109232dad1f39619b5</sys_id>
-        <sys_mod_count>32</sys_mod_count>
+        <sys_mod_count>40</sys_mod_count>
         <sys_name>sys_metadata - set scope to record scope</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -71,7 +85,7 @@
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_37f15717db3191109232dad1f39619b5</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-06-14 09:51:07</sys_updated_on>
+        <sys_updated_on>2025-07-21 15:21:48</sys_updated_on>
         <template/>
         <when>before_display</when>
         <x_snc_datasilos_created>false</x_snc_datasilos_created>
