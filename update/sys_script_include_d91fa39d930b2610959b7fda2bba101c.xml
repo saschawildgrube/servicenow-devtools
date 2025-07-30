@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.AppBuilderPlatform</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>AppBuilder adds various application files to a scoped app. The function should be mostly idempotent.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>AppBuilderPlatform</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function AppBuilderPlatform(vApp)
+{
+	var strAppScope = '';	
+	
+	function Log(strText)
+	{
+		var strContext = '';
+		if (strAppScope != '')
+		{
+			strContext = strAppScope;
+			strContext += ': ';
+		}
+		x_snc_devtools.Log('DevTools AppBuilderPlatform: '+strContext+strText);
+	}
+	
+	var grApp = AppBuilder(vApp);
+	if (IsValidRecord(grApp) == false)
+	{
+		Log('AppBuilder failed. Aborting.');
+		return false;
+	}
+
+
+	var strAppSysId = GetStringValue(grApp.sys_id);
+	strAppScope = GetStringValue(grApp.scope);	
+
+
+	var strAppName = GetAppName(strAppSysId);
+	
+	Log('Turning app "'+strAppName+'" into a platform app...');
+	
+	
+	// TODO: add platform specific code
+	
+	Log('Modifying script include "AppInstall"...');
+	RecordQueryOrInsert('sys_script_include',
+		{
+			sys_scope: strAppSysId,
+			name: 'AppInstall'
+		},
+		{
+			description: 'This script installs '+strAppName+'.',
+			access: 'public',
+			caller_access: '1',
+			script:
+				"function AppInstall()\n"
+				+"{\n"
+				+"\tvar installer = new x_snc_devtools.InstallerAPI(x_snc_devtools.GetAppName('"+strAppScope+"'));\n"
+				+"\t\n"
+				+"\t// TODO: Add your installation code here...\n"
+				+"\t\n"
+				+"\treturn installer.Finish();\n"
+				+"}\n"
+		},
+		false);			
+
+	
+	
+	
+	// TODO remove this from AppBuilder	
+	
+	// Adding script include "DevToolsGetApplicationStatus"
+	var grSSI = new GlideRecord('sys_script_include');
+	grSSI.addQuery('sys_scope','=',strAppSysId);
+	grSSI.addQuery('name','=','DevToolsGetApplicationStatus');
+	grSSI.query();
+	if (grSSI.getRowCount() != 0)
+	{
+		Log('Script include "DevToolsGetApplicationStatus" already exists...');
+	}
+	else
+	{
+		Log('Adding script include "DevToolsGetApplicationStatus"...');
+		var grSSI = new GlideRecord('sys_script_include');
+		grSSI.initialize();
+		grSSI.name = 'DevToolsGetApplicationStatus';
+		grSSI.description = 'The function DevToolsGetApplicationStatus is called by the DevTools extension point instance class and returns the application status object with additional status information to be displayed on the "DevTools Application Overview" page.';
+		grSSI.sys_scope = strAppSysId;
+		grSSI.access = 'public';
+		grSSI.caller_access = '1';
+		grSSI.script =
+			"function DevToolsGetApplicationStatus(status)\n"
+			+"{\n"
+			+"\t// TODO: Adapt this code to add more columns to the DevTools application overview page (or just return status)...\n"
+			+"\n"
+			+"\tvar GetValue = x_snc_devtools.GetValue;\n"		
+			+"\tvar SetValue = x_snc_devtools.SetValue;\n"		
+			+"\tvar GetKeys = x_snc_devtools.GetKeys;\n"
+			+"\tvar GetAppRecord = x_snc_devtools.GetAppRecord;\n"
+			+"\t\n"
+			+"\t// Define a new column 'demo'\n"
+			+"\tSetValue('"+strAppName+"',status,'columns','demo','header');\n"
+			+"\t\n"
+			+"\tvar aApps = GetKeys(GetValue(status,'applications'));\n"
+			+"\tfor (var nApp = 0; nApp < aApps.length; nApp++)\n"
+			+"\t{\n"
+			+"\t\tvar grApp = GetAppRecord(aApps[nApp]);\n"
+			+"\t\t// TODO: Add some meaningful status information or useful links for each app:\n"
+			+"\t\tSetValue('TODO: Add some relevant info about app '+grApp.name,status,'applications',aApps[nApp],'demo');\n"
+			+"\t}\n"
+			+"\t\n"
+			+"\treturn status;\n"
+			+"}";
+		strSSI = GlideRecordInsert(grSSI);
+		Log('Script include "DevToolsGetApplicationStatus": '+RenderValue(strSSI));	
+	}
+
+
+	// TODO Remove this from AppBuilder 
+	
+	// Adding script include "DevToolsRenderDebugDump"
+	var grSSI = new GlideRecord('sys_script_include');
+	grSSI.addQuery('sys_scope','=',strAppSysId);
+	grSSI.addQuery('name','=','DevToolsRenderDebugDump');
+	grSSI.query();
+	if (grSSI.getRowCount() != 0)
+	{
+		Log('Script include "DevToolsRenderDebugDump" already exists...');
+	}
+	else
+	{
+		Log('Adding script include "DevToolsRenderDebugDump"...');
+		var grSSI = new GlideRecord('sys_script_include');
+		grSSI.initialize();
+		grSSI.name = 'DevToolsRenderDebugDump';
+		grSSI.description = 'The function DevToolsRenderDebugDump is called by the DevTools extension point instance class and returns additional debug information provided by the application.';
+		grSSI.sys_scope = strAppSysId;
+		grSSI.access = 'public';
+		grSSI.caller_access = '1';
+		grSSI.script =
+			"function DevToolsRenderDebugDump()\n"
+			+"{\n"
+			+"\t// TODO: Create additional debug information specific to this app...\n"
+			+"\t\n"
+			+"\treturn '';\n"
+			+"}";
+		strSSI = GlideRecordInsert(grSSI);
+		Log('Script include "DevToolsRenderDebugDump": '+RenderValue(strSSI));	
+	}
+
+	
+	// TODO: remove this from AppBuilder
+
+	// Adding script include "DevToolsGetInstancePipelineName"
+	var grSSI = new GlideRecord('sys_script_include');
+	grSSI.addQuery('sys_scope','=',strAppSysId);
+	grSSI.addQuery('name','=','DevToolsGetInstancePipelineName');
+	grSSI.query();
+	if (grSSI.getRowCount() != 0)
+	{
+		Log('Script include "DevToolsGetInstancePipelineName" already exists...');
+	}
+	else
+	{
+		Log('Adding script include "DevToolsGetInstancePipelineName"...');
+		var grSSI = new GlideRecord('sys_script_include');
+		grSSI.initialize();
+		grSSI.name = 'DevToolsGetInstancePipelineName';
+		grSSI.description = 'The function DevToolsGetInstancePipelineName is called by the DevTools extension point instance class and returns the pipeline name of an instance based on the given actual name.';
+		grSSI.sys_scope = strAppSysId;
+		grSSI.access = 'public';
+		grSSI.caller_access = '1';
+		grSSI.script =
+			"function DevToolsGetInstancePipelineName(strInstanceName)\n"
+			+"{\n"
+			+"\t// TODO: Create the specific mapping of instance names to pipeline instance names...\n"
+			+"\t\n"
+			+"\tswitch (strInstanceName)\n"
+			+"\t{\n"
+			+"\t\tcase 'acme':\n"
+			+"\t\t\treturn 'prod';\n"
+			+"\t\tcase 'acmetest':\n"
+			+"\t\t\treturn 'test';\n"
+			+"\t\tcase 'acmedev':\n"
+			+"\t\t\treturn 'dev';\n"
+			+"\t\tdefault:\n"
+			+"\t}\n"
+			+"\t\n"
+			+"\treturn '';\n"
+			+"}";
+		strSSI = GlideRecordInsert(grSSI);
+		Log('Script include "DevToolsGetInstancePipelineName": '+RenderValue(strSSI));	
+	}	
+	
+
+	// Remove this from AppBuilder
+
+	// Adding script include "DevToolsPrompt"
+	var grSSI = new GlideRecord('sys_script_include');
+	grSSI.addQuery('sys_scope','=',strAppSysId);
+	grSSI.addQuery('name','=','DevToolsPrompt');
+	grSSI.query();
+	if (grSSI.getRowCount() != 0)
+	{
+		Log('Script include "DevToolsPrompt" already exists...');
+	}
+	else
+	{
+		Log('Adding script include "DevToolsPrompt"...');
+		var grSSI = new GlideRecord('sys_script_include');
+		grSSI.initialize();
+		grSSI.name = 'DevToolsPrompt';
+		grSSI.description = "The function DevToolsPrompt is called by the DevTools extension point instance class and overrides the default behavior of the Prompt() function that uses the Generic AI Controller plugin's generic prompt capability.";
+		grSSI.sys_scope = strAppSysId;
+		grSSI.access = 'public';
+		grSSI.caller_access = '1';
+		grSSI.script =
+			"function DevToolsPrompt(vPrompt)\n"
+			+"{\n"
+			+"\t// TODO: Implement integration with a LLM API...\n"
+			+"\t\n"
+			+"\treturn false;\n"
+			+"}";
+		strSSI = GlideRecordInsert(grSSI);
+		Log('Script include "DevToolsPrompt": '+RenderValue(strSSI));	
+	}	
+
+
+	// Remove this from AppBuilder
+
+	// Adding script include "DevToolsIsTechnicalUser"
+	var grSSI = new GlideRecord('sys_script_include');
+	grSSI.addQuery('sys_scope','=',strAppSysId);
+	grSSI.addQuery('name','=','DevToolsIsTechnicalUser');
+	grSSI.query();
+	if (grSSI.getRowCount() != 0)
+	{
+		Log('Script include "DevToolsIsTechnicalUser" already exists...');
+	}
+	else
+	{
+		Log('Adding script include "DevToolsIsTechnicalUser"...');
+		var grSSI = new GlideRecord('sys_script_include');
+		grSSI.initialize();
+		grSSI.name = 'DevToolsIsTechnicalUser';
+		grSSI.description = "The DevToolsIsTechnicalUser function is called by the DevTools extension point instance class and should return true if the given grUser GlideRecord object represents a valid technical user.";
+		grSSI.sys_scope = strAppSysId;
+		grSSI.access = 'public';
+		grSSI.caller_access = '1';
+		grSSI.script = 
+			"function DevToolsIsTechnicalUser(grUser)\n"
+			+"{\n"
+			+"\t// TODO: Modify or remove this code - return true if the given grUser is a valid technical user...\n"
+			+"\n"
+			+"\treturn false;\n"
+			+"}";
+		strSSI = GlideRecordInsert(grSSI);
+		Log('Script include "DevToolsIsTechnicalUser": '+RenderValue(strSSI));	
+	}		
+
+
+	// TODO: make adjustments here
+
+	Log('Adding UI Page "Manual"...');
+	var strHtml = RecordGetValue('sys_ui_page','790addc91b584d90edf3642aab4bcbb6','html');  // template_manual ui page
+	var strScopeOrSysId = strAppScope;
+	if (strScopeOrSysId == 'global')
+	{
+		strScopeOrSysId = strAppSysId;
+	}
+	strHtml = strHtml.replace('%APP_SCOPE_OR_SYS_ID%',strScopeOrSysId);
+	RecordQueryOrInsert('sys_ui_page',
+		{
+			sys_scope: strAppSysId,
+			name: 'manual'
+		},
+		{
+			html: strHtml
+		},
+		false);		
+	
+	
+
+	// TODO: Add more menu items!	
+	
+	var strAppMenuSysId = '';
+	
+	if (strParentAppScope == '') // The default: a standalone application
+	{
+		Log('Adding application menu...');
+		strAppMenuSysId = RecordQueryOrInsert('sys_app_application',
+			{
+				sys_scope: strAppSysId,
+				device_type: 'browser',
+				title: strAppName
+			},
+			{
+				active: true,
+				category: 'e0355b31ef303000a61d5a3615c0fb78', // "Custom Applications"
+				hint: grApp.short_description,
+				description: grApp.short_description
+			},
+			false);
+		
+		
+	}
+	else // A plugin! The parent app should have it's own application menu, and the app is embedding itself into it
+	{
+		Log('Searching for application menu of the parent app...');
+		var grAppMenu = new GlideRecord('sys_app_application');
+		grAppMenu.addQuery('sys_scope','=',strParentAppSysId);
+		grAppMenu.addQuery('device_type','=','browser');
+		grAppMenu.addQuery('title','=',strParentAppName);
+		grAppMenu.query();
+		if (grAppMenu.next() == true)
+		{
+			strAppMenuSysId = GetStringValue(grAppMenu.sys_id);
+		}
+	}
+	
+	if (IsValidSysId(strAppMenuSysId) == false)
+	{
+		Log('No application menu is available. No application menu modules will be added!');
+	}
+	else
+	{
+		
+
+
+	
+/*	
+	// Adding module "Options"
+	var grSAM = new GlideRecord('sys_app_module');
+	grSAM.addQuery('sys_scope','=',strAppSysId);
+	grSAM.addQuery('title','CONTAINS','Options');
+	grSAM.query();
+	if (grSAM.next() == false)
+	{
+		Log('Adding module "Options"');
+		var grSAM = new GlideRecord('sys_app_module');
+		grSAM.initialize();
+		grSAM.title = 'Options';
+		grSAM.sys_scope = strAppSysId;
+		grSAM.link_type = 'DIRECT';
+		//grSAM.query = "system_properties_ui.do?sysparm_title=DevTools%20Options&sysparm_category=devtools";
+		GlideRecordInsert(grSAM);
+	}	
+*/		
+
+
+		if (strParentAppScope == '') // Only if we are NOT a plugin that embedds itself into another menu 
+		{
+			if (strAppMenuSeparator != '') // Only add the separator if explicitly requested!
+			{	
+				Log('Adding module "'+strAppMenuSeparator+'"...');
+				RecordQueryOrInsert('sys_app_module',
+					{
+						sys_scope: strAppSysId,
+						application: strAppMenuSysId,
+						title: strAppMenuSeparator
+					},
+					{
+						order: nAppMenuOrderStart + 100,
+						link_type: 'SEPARATOR'
+					},
+					false);
+			}	
+		}
+		else // The app is a plugin
+		{
+			if (strAppMenuSeparator == '')
+			{
+				strAppMenuSeparator = strAppName;
+			}
+			Log('Adding module "'+strAppMenuSeparator+'"...');
+			RecordQueryOrInsert('sys_app_module',
+				{
+					sys_scope: strAppSysId,
+					application: strAppMenuSysId,
+					title: strAppMenuSeparator 
+				},
+				{
+					order: nAppMenuOrderStart + 105,
+					link_type: 'SEPARATOR'
+				},
+				false);
+		}
+		
+		Log('Adding module "Manual"...');
+		RecordQueryOrInsert('sys_app_module',
+			{
+				sys_scope: strAppSysId,
+				application: strAppMenuSysId,
+				title: 'Manual'
+			},
+								{
+				order: nAppMenuOrderStart + 200,
+				link_type: 'DIRECT',
+				query: '/'+strAppScope+'_manual.do'
+			},
+			false);
+		
+		
+		if (IsValidSysId(strTestSuiteSysId))
+		{
+			Log('Adding module "Test Suite"...');
+			RecordQueryOrInsert('sys_app_module',
+				{
+					sys_scope: strAppSysId,
+					application: strAppMenuSysId,
+					title: 'Test Suite'
+				},
+				{
+					order: nAppMenuOrderStart + 300,
+					link_type: 'DETAIL',
+					name: 'sys_atf_test_suite',
+					view_name: 'DevTools',
+					query: 'sysparm_view_forced=true',
+					filter: 'sys_id='+strTestSuiteSysId
+				},
+				false);
+		}
+
+		if (strParentAppScope == '') // Only if we are NOT a plugin that embedds itself into another menu 
+		{
+			Log('Adding module "Log"...');
+			RecordQueryOrInsert('sys_app_module',
+				{
+					sys_scope: strAppSysId,
+					application: strAppMenuSysId,	
+					title: 'Log'
+				},
+				{
+					order: nAppMenuOrderStart + 400,
+					link_type: 'LIST',
+					name: 'syslog_app_scope',
+					query: '&sysparm_view_forced=true&sysparm_order=sequence&sysparm_order_direction=desc',
+					filter: 'sys_created_onONLast 30 minutes@javascript:gs.beginningOfLast30Minutes()@javascript:gs.endOfLast30Minutes()'
+							+'^sys_scope='+strAppSysId,
+					view_name: 'DevTools' 
+				},
+				false);
+		}
+
+	}
+		
+	
+	
+	Log('Done.');
+	return grApp;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-29 14:35:19</sys_created_on>
+        <sys_id>d91fa39d930b2610959b7fda2bba101c</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>AppBuilderPlatform</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_d91fa39d930b2610959b7fda2bba101c</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-29 15:10:33</sys_updated_on>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>d91fa39d930b2610959b7fda2bba101c</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-29 15:10:33</sys_created_on>
+        <sys_id>d527bf55934b2610959b7fda2bba10c8</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-29 15:10:33</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

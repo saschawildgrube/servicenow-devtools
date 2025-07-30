@@ -972,4 +972,15 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2025-03-18 07:33:33</sys_updated_on>
     </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>753cb10c1b6afc50577f43b5bb4bcb58</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-29 14:35:19</sys_created_on>
+        <sys_id>891f239d930b2610959b7fda2bba107d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-29 14:35:19</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>
