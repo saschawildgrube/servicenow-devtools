@@ -2,14 +2,14 @@
     <sys_script_include action="INSERT_OR_UPDATE">
         <access>public</access>
         <active>true</active>
-        <api_name>x_snc_devtools.HtmlRenderError</api_name>
+        <api_name>x_snc_devtools.HtmlRenderTextEmphasized</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Renders an error message in Html.</description>
+        <description>Renders an emphasized text span.</description>
         <mobile_callable>false</mobile_callable>
-        <name>HtmlRenderError</name>
+        <name>HtmlRenderTextEmphasized</name>
         <sandbox_callable>false</sandbox_callable>
-        <script><![CDATA[function HtmlRenderError(strText)
+        <script><![CDATA[function HtmlRenderTextEmphasized(strText)
 {
 	strText = GetStringValue(strText);
 	if (strText == '')
@@ -17,34 +17,32 @@
 		return '';
 	}
 	var strHtml = '';
-	strHtml += '<div class="outputmsg outputmsg_error notification notification-danger">';
-		strHtml += '<div class="outputmsg_text">';
+	strHtml += '<span style="font-weight: bold; color: red">';
 			strHtml += strText;
-		strHtml += '</div>';
-	strHtml += '</div>';
+	strHtml += '</span>';
 	return strHtml;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2022-09-16 18:18:29</sys_created_on>
-        <sys_id>7599a824dbce5510dcbdd03cd39619ad</sys_id>
-        <sys_mod_count>5</sys_mod_count>
-        <sys_name>HtmlRenderError</sys_name>
+        <sys_created_on>2025-08-01 15:36:34</sys_created_on>
+        <sys_id>67d99bda930b6a10959b7fda2bba1093</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>HtmlRenderTextEmphasized</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
-        <sys_update_name>sys_script_include_7599a824dbce5510dcbdd03cd39619ad</sys_update_name>
+        <sys_update_name>sys_script_include_67d99bda930b6a10959b7fda2bba1093</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-08-28 12:58:49</sys_updated_on>
+        <sys_updated_on>2025-08-01 15:40:17</sys_updated_on>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
-        <id>7599a824dbce5510dcbdd03cd39619ad</id>
+        <id>67d99bda930b6a10959b7fda2bba1093</id>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2025-08-01 15:36:33</sys_created_on>
-        <sys_id>23d95bda930b6a10959b7fda2bba10b2</sys_id>
+        <sys_created_on>2025-08-01 15:37:22</sys_created_on>
+        <sys_id>130adfda930b6a10959b7fda2bba1068</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-08-01 15:36:33</sys_updated_on>
+        <sys_updated_on>2025-08-01 15:37:22</sys_updated_on>
         <table>sys_script_include</table>
         <use_es_latest>false</use_es_latest>
     </sys_es_latest_script>
