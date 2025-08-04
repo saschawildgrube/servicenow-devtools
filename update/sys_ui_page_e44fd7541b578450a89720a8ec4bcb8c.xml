@@ -647,6 +647,7 @@ function YourLengthyProcess(strRecordSysId)
 		<li>ATF Test for RenderValue() no longer uses kb_knowledge records as test data as it may produce false-negatives depending on instance configuration.</li> 
 		<li>Improved output of RenderRecordSummary() when rendering sys_metadata records.</li>
 		<li>IsValidSysId() now considers additional anomalies: like the sys_ui_form record for change_request in view "Service Operation Workspace".</li> 
+		<li>Added more patterns to GetEvaluatorErrorExceptionPatterns().</li>
 	</ol>
 
 
@@ -2842,14 +2843,14 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>2178</sys_mod_count>
+        <sys_mod_count>2179</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-08-04 14:11:13</sys_updated_on>
+        <sys_updated_on>2025-08-04 14:22:08</sys_updated_on>
     </sys_ui_page>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>e44fd7541b578450a89720a8ec4bcb8c</id>
