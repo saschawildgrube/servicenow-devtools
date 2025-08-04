@@ -24,25 +24,36 @@
 		x_snc_devtools.Log('DevTools AppBuilderPlatform: '+strContext+strText);
 	}
 	
-	var grApp = AppBuilder(vApp);
-	if (IsValidRecord(grApp) == false)
+	var grApp = GetAppRecord(vApp);
+	if (grApp == false)
 	{
-		Log('AppBuilder failed. Aborting.');
+		Log('Error: Could not load app: '+vApp);
 		return false;
 	}
 
 
 	var strAppSysId = GetStringValue(grApp.sys_id);
-	strAppScope = GetStringValue(grApp.scope);	
+	strAppScope = GetStringValue(grApp.scope);
+	var strAppName = GetCleanAppName(grApp.name);
 
+	if (strAppScope == 'x_snc_devtools')
+	{
+		Log('Error: Do not use AppBuilderPlatform() on DevTools itself!');
+		return false;
+	}
 
-	var strAppName = GetAppName(strAppSysId);
-	
-	Log('Turning app "'+strAppName+'" into a platform app...');
-	
-	
-	// TODO: add platform specific code
-	
+	if (grApp.scope == 'global')
+	{
+		Log('Error: AppBuilderPlatform does not support global apps!');
+		return false;
+	}
+
+	if (strAppName.indexOf('Platform') == -1)
+	{
+		Log('Error: The application name should include "Platform"!');
+		return false;
+	}
+
 	Log('Modifying script include "AppInstall"...');
 	RecordQueryOrInsert('sys_script_include',
 		{
@@ -65,10 +76,29 @@
 		},
 		false);			
 
+
+
+
+	var grApp = AppBuilder(vApp);
+	if (IsValidRecord(grApp) == false)
+	{
+		Log('AppBuilder failed. Aborting.');
+		return false;
+	}
+
+
+	var strAppSysId = GetStringValue(grApp.sys_id);
+	strAppScope = GetStringValue(grApp.scope);	
+
+
+	var strAppName = GetAppName(strAppSysId);
+	
+	Log('Turning app "'+strAppName+'" into a platform app...');
 	
 	
+	// TODO: add platform specific code
 	
-	// TODO remove this from AppBuilder	
+
 	
 	// Adding script include "DevToolsGetApplicationStatus"
 	var grSSI = new GlideRecord('sys_script_include');
@@ -150,8 +180,6 @@
 	}
 
 	
-	// TODO: remove this from AppBuilder
-
 	// Adding script include "DevToolsGetInstancePipelineName"
 	var grSSI = new GlideRecord('sys_script_include');
 	grSSI.addQuery('sys_scope','=',strAppSysId);
@@ -194,8 +222,6 @@
 	}	
 	
 
-	// Remove this from AppBuilder
-
 	// Adding script include "DevToolsPrompt"
 	var grSSI = new GlideRecord('sys_script_include');
 	grSSI.addQuery('sys_scope','=',strAppSysId);
@@ -226,8 +252,6 @@
 		Log('Script include "DevToolsPrompt": '+RenderValue(strSSI));	
 	}	
 
-
-	// Remove this from AppBuilder
 
 	// Adding script include "DevToolsIsTechnicalUser"
 	var grSSI = new GlideRecord('sys_script_include');
@@ -270,10 +294,7 @@
 	{
 		var strHtml = GetStringValue(grUiPage.html);
 		var strScopeOrSysId = strAppScope;
-		if (strScopeOrSysId == 'global')
-		{
-			strScopeOrSysId = strAppSysId;
-		}
+
 		strHtml = strHtml.replace('%APP_SCOPE_OR_SYS_ID%',strScopeOrSysId);
 		RecordQueryOrInsert('sys_ui_page',
 			{
@@ -446,14 +467,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-07-29 14:35:19</sys_created_on>
         <sys_id>d91fa39d930b2610959b7fda2bba101c</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>AppBuilderPlatform</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_d91fa39d930b2610959b7fda2bba101c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-08-04 09:10:42</sys_updated_on>
+        <sys_updated_on>2025-08-04 10:21:16</sys_updated_on>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>d91fa39d930b2610959b7fda2bba101c</id>
