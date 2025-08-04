@@ -263,22 +263,30 @@
 	// TODO: make adjustments here
 
 	Log('Adding UI Page "Manual"...');
-	var strHtml = RecordGetValue('sys_ui_page','790addc91b584d90edf3642aab4bcbb6','html');  // template_manual ui page
-	var strScopeOrSysId = strAppScope;
-	if (strScopeOrSysId == 'global')
+	var grUiPage = new GlideRecord('sys_ui_page');
+	grUiPage.addQuery('endpoint','=','x_snc_devtools_template_manual.do');
+	grUiPage.query();
+	if (grUiPage.next())
 	{
-		strScopeOrSysId = strAppSysId;
+		var strHtml = GetStringValue(grUiPage.html);
+		var strScopeOrSysId = strAppScope;
+		if (strScopeOrSysId == 'global')
+		{
+			strScopeOrSysId = strAppSysId;
+		}
+		strHtml = strHtml.replace('%APP_SCOPE_OR_SYS_ID%',strScopeOrSysId);
+		RecordQueryOrInsert('sys_ui_page',
+			{
+				sys_scope: strAppSysId,
+				name: 'manual'
+			},
+			{
+				html: strHtml
+			},
+			false);			
 	}
-	strHtml = strHtml.replace('%APP_SCOPE_OR_SYS_ID%',strScopeOrSysId);
-	RecordQueryOrInsert('sys_ui_page',
-		{
-			sys_scope: strAppSysId,
-			name: 'manual'
-		},
-		{
-			html: strHtml
-		},
-		false);		
+
+
 	
 	
 
@@ -286,38 +294,22 @@
 	
 	var strAppMenuSysId = '';
 	
-	if (strParentAppScope == '') // The default: a standalone application
-	{
-		Log('Adding application menu...');
-		strAppMenuSysId = RecordQueryOrInsert('sys_app_application',
-			{
-				sys_scope: strAppSysId,
-				device_type: 'browser',
-				title: strAppName
-			},
-			{
-				active: true,
-				category: 'e0355b31ef303000a61d5a3615c0fb78', // "Custom Applications"
-				hint: grApp.short_description,
-				description: grApp.short_description
-			},
-			false);
-		
-		
-	}
-	else // A plugin! The parent app should have it's own application menu, and the app is embedding itself into it
-	{
-		Log('Searching for application menu of the parent app...');
-		var grAppMenu = new GlideRecord('sys_app_application');
-		grAppMenu.addQuery('sys_scope','=',strParentAppSysId);
-		grAppMenu.addQuery('device_type','=','browser');
-		grAppMenu.addQuery('title','=',strParentAppName);
-		grAppMenu.query();
-		if (grAppMenu.next() == true)
+	Log('Adding application menu...');
+	strAppMenuSysId = RecordQueryOrInsert('sys_app_application',
 		{
-			strAppMenuSysId = GetStringValue(grAppMenu.sys_id);
-		}
-	}
+			sys_scope: strAppSysId,
+			device_type: 'browser',
+			title: strAppName
+		},
+		{
+			active: true,
+			category: 'e0355b31ef303000a61d5a3615c0fb78', // "Custom Applications"
+			hint: grApp.short_description,
+			description: grApp.short_description
+		},
+		false);
+		
+		
 	
 	if (IsValidSysId(strAppMenuSysId) == false)
 	{
@@ -454,14 +446,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-07-29 14:35:19</sys_created_on>
         <sys_id>d91fa39d930b2610959b7fda2bba101c</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name>AppBuilderPlatform</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_d91fa39d930b2610959b7fda2bba101c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-07-29 15:10:33</sys_updated_on>
+        <sys_updated_on>2025-08-04 09:10:42</sys_updated_on>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>d91fa39d930b2610959b7fda2bba101c</id>
