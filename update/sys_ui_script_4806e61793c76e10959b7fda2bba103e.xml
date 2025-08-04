@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_script">
+    <sys_ui_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Adds a table of contents into the element with the given ID.</description>
+        <global>true</global>
+        <ignore_in_now_experience>false</ignore_in_now_experience>
+        <name>x_snc_devtools.MakeTableOfContents</name>
+        <script><![CDATA[function MakeTableOfContents(strTocElementId, nFirstLevel, bIgnorePrevious)
+{
+    if (typeof nFirstLevel !== 'number' || nFirstLevel < 1) {
+        nFirstLevel = 1;
+    }
+
+    const tocContainer = document.getElementById(strTocElementId);
+    if (!tocContainer) {
+        console.warn('TOC container not found:', strTocElementId);
+        return;
+    }
+
+    // Get all H1–H6 elements
+    let allHeadings = Array.from(document.body.querySelectorAll('h1, h2, h3, h4, h5, h6'));
+
+    // Optional: Ignore headings before the TOC container
+    if (bIgnorePrevious) {
+        allHeadings = allHeadings.filter(h => tocContainer.compareDocumentPosition(h) & Node.DOCUMENT_POSITION_FOLLOWING);
+    }
+
+    // Filter by min level
+    let headings = allHeadings.filter(h => {
+        const level = parseInt(h.tagName.substring(1));
+        return level >= nFirstLevel;
+    });
+
+    if (headings.length === 0) return;
+
+    // Remove subheadings under any heading with toc-ignore-children="true"
+    const filteredHeadings = [];
+    let ignoreLevel = null;
+
+    for (const h of headings) {
+        const level = parseInt(h.tagName.substring(1));
+
+        if (ignoreLevel !== null && level > ignoreLevel) {
+            continue; // Skip this because it's a child of an ignored heading
+        }
+
+        // Not skipping, so include this one
+        filteredHeadings.push(h);
+
+        // Check if this one has the ignore flag
+        if (h.getAttribute('toc-ignore-children') === 'true') {
+            ignoreLevel = level;
+        } else {
+            ignoreLevel = null;
+        }
+    }
+
+    // Assign unique IDs if needed
+    const usedIds = new Set();
+    filteredHeadings.forEach(heading => {
+        if (!heading.id || usedIds.has(heading.id)) {
+            let baseId = heading.textContent.trim().toLowerCase().replace(/[^\w]+/g, '-');
+            let id = baseId;
+            let counter = 1;
+            while (!id || usedIds.has(id)) {
+                id = `${baseId}-${counter++}`;
+            }
+            heading.id = id;
+        }
+        usedIds.add(heading.id);
+    });
+
+    // Build nested TOC
+    const tocRoot = document.createElement('ul');
+    const stack = [{ level: nFirstLevel - 1, ul: tocRoot }];
+
+    filteredHeadings.forEach(heading => {
+        const level = parseInt(heading.tagName.substring(1));
+
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        //a.href = `#${heading.id}`;
+		a.href = '#'+heading.id;
+        a.textContent = heading.textContent;
+        li.appendChild(a);
+
+        while (stack.length && stack[stack.length - 1].level >= level) {
+            stack.pop();
+        }
+
+        const parentUl = stack[stack.length - 1].ul;
+        parentUl.appendChild(li);
+
+        const newUl = document.createElement('ul');
+        li.appendChild(newUl);
+
+        stack.push({ level: level, ul: newUl });
+    });
+
+    tocContainer.innerHTML = '';
+    tocContainer.appendChild(tocRoot);
+}
+]]></script>
+        <script_name>MakeTableOfContents</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-08-04 14:25:33</sys_created_on>
+        <sys_id>4806e61793c76e10959b7fda2bba103e</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>x_snc_devtools.MakeTableOfContents</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_ui_script_4806e61793c76e10959b7fda2bba103e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-08-04 14:41:59</sys_updated_on>
+        <ui_type>0</ui_type>
+        <use_scoped_format>false</use_scoped_format>
+        <x_snc_devtools_global>true</x_snc_devtools_global>
+    </sys_ui_script>
+</record_update>
