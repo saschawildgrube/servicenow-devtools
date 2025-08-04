@@ -4,18 +4,16 @@
         <client_script/>
         <description/>
         <direct>false</direct>
-        <endpoint>x_snc_devtools_template_manual.do</endpoint>
+        <endpoint>x_snc_devtools_template_manual_platform.do</endpoint>
         <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
 <j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
 <div style="padding-left: 20px;">
 <span style="visibility: hidden;">_CUT_HERE_</span>
 	<g2:no_escape>$[
-		var docapi = new x_snc_devtools.DocumentationAPI('%APP_SCOPE_OR_SYS_ID%');
+		var docapi = new x_snc_devtools.DocumentationAPI('%APP_SCOPE%');
 		docapi.RenderHeader();
 	]</g2:no_escape>
 	
-	<p>Welcome to TODO: Enter the name of the app here! - created and maintained by&#160;<a href="mailto:john.doe@example.com">TODO: Enter the name of the maintainer here</a>.</p>
-
 	<h2>Overview</h2> 
 	<g2:no_escape>$[
 		docapi.RenderDescription();
@@ -23,12 +21,6 @@
 
 	<h2>Table of Contents</h2>
 	<g2:no_escape>$[x_snc_devtools.HtmlRenderTableOfContents()]</g2:no_escape>		
-	
-	<h2>Features</h2> 
-	<p>TODO: Document the features of the app here...</p>
-
-	<h2>Disclaimer</h2>
-	<g2:no_escape>$[docapi.RenderDisclaimer()]</g2:no_escape>	
 	
 	<h2>System Requirements</h2>
 	<ul>
@@ -60,50 +52,17 @@
 		<li>TODO: Add further steps required for installation...</li>
 	</ol>
 	
-	<h2>Reference</h2>
-
-	<h3>Configuration Options</h3>
+	<h2>Configuration Options</h2>
 	<g2:no_escape>$[docapi.RenderProperties()]</g2:no_escape>
 	
-	<h3>Roles</h3>
+	<h2>Personas</h2>
 	<g2:no_escape>$[docapi.RenderRoles()]</g2:no_escape>		
 
-	<h3>Connection and Credential Aliases</h3>
-	<g2:no_escape>$[docapi.RenderConnectionAndCredentialAliases()]</g2:no_escape>
-	
-	<h3>Tables</h3>
-	<g2:no_escape>$[docapi.RenderTables()]</g2:no_escape>	
-
-	<h3>UI Actions</h3>
-	<g2:no_escape>$[docapi.RenderUIActions()]</g2:no_escape>		
-	
-	<h3>Script Includes</h3>
-	<g2:no_escape>$[docapi.RenderScriptIncludes()]</g2:no_escape>
-	
-	<h3>UI Scripts</h3>
-	<g2:no_escape>$[docapi.RenderUIScripts()]</g2:no_escape>	
-	
-	<h3>REST APIs</h3>
-	<g2:no_escape>$[docapi.RenderRestApis()]</g2:no_escape>		
-	
-	<h3>Test step configurations</h3>
-	<g2:no_escape>$[docapi.RenderTestStepConfigurations()]</g2:no_escape>
-	
-	<h3>Extension Points</h3>
-	<g2:no_escape>$[docapi.RenderExtensionPoints()]</g2:no_escape>		
-
-	<h3>Business Rules</h3>
-	<g2:no_escape>$[docapi.RenderBusinessRules()]</g2:no_escape>	
-
-	<h3>Dependencies</h3>
+	<h2>Dependencies</h2>
 	<g2:no_escape>$[docapi.RenderDependencies()]</g2:no_escape>		
 
-	<h3>Technical Debt</h3>
+	<h2>Technical Debt</h2>
 	<g2:no_escape>$[docapi.RenderTechnicalDebt()]</g2:no_escape>			
-	
-	<h2>License</h2>
-	<g2:no_escape>$[docapi.RenderCopyright(2024,'TODO: Add name of copyright holder')]</g2:no_escape>
-	<g2:no_escape>$[docapi.RenderLicense()]</g2:no_escape>
 	
 	<h2 toc-ignore-children="true">Release Notes</h2>
 
@@ -113,29 +72,29 @@
 <span style="visibility: hidden;">_CUT_HERE_</span>
 </div>
 </j:jelly>]]></html>
-        <name>template_manual</name>
+        <name>template_manual_platform</name>
         <processing_script/>
         <sys_class_name>sys_ui_page</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2021-12-06 15:07:51</sys_created_on>
-        <sys_id>790addc91b584d90edf3642aab4bcbb6</sys_id>
-        <sys_mod_count>27</sys_mod_count>
-        <sys_name>template_manual</sys_name>
+        <sys_created_on>2025-08-04 15:19:54</sys_created_on>
+        <sys_id>20d23257930b6e10959b7fda2bba108d</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>template_manual_platform</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
-        <sys_update_name>sys_ui_page_790addc91b584d90edf3642aab4bcbb6</sys_update_name>
+        <sys_update_name>sys_ui_page_20d23257930b6e10959b7fda2bba108d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-08-04 15:25:51</sys_updated_on>
+        <sys_updated_on>2025-08-04 15:26:39</sys_updated_on>
     </sys_ui_page>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
-        <id>790addc91b584d90edf3642aab4bcbb6</id>
+        <id>20d23257930b6e10959b7fda2bba108d</id>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2025-05-09 14:15:15</sys_created_on>
-        <sys_id>51b162d79351a610ae97b4aa6aba10e3</sys_id>
+        <sys_created_on>2025-08-04 15:21:25</sys_created_on>
+        <sys_id>c723f257930b6e10959b7fda2bba1093</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-05-09 14:15:15</sys_updated_on>
+        <sys_updated_on>2025-08-04 15:21:25</sys_updated_on>
         <table>sys_ui_page</table>
         <use_es_latest>false</use_es_latest>
     </sys_es_latest_script>
