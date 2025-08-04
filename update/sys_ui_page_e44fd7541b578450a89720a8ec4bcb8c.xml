@@ -583,6 +583,8 @@ function YourLengthyProcess(strRecordSysId)
 	</ol>
 	<p>Once all components are in place, the procedure can be tested. Note that if a server-side script that is triggered through a client AJAX request runs into an evaluator error such errors ARE NOT LOGGED. This is annoying and makes debugging more difficult. If your process shows unexpected behavior, use debug logging to narrow down the code that fails.</p> 
 
+	<h2>How to Guides</h2>
+
 	<h3>How to unblock Instance Scan?</h3>
 	<p>On rare occasions an Instance Scan run does not finish properly and remains in an undefined state. This prevents further Instance Scan checks to run. Follow these instructions to unblock Instance Scan and to enable further scan operations:</p>
 	<ol>
@@ -653,6 +655,7 @@ function YourLengthyProcess(strRecordSysId)
 		<li>Added more patterns to GetEvaluatorErrorExceptionPatterns().</li>
 		<li>Added UI Script MakeTableOfContents().</li>
 		<li>Added table of contents to the manual page.</li>
+		<li>Added new chapter in manual "How to Guides".</li>
 	</ol>
 
 
@@ -2848,14 +2851,14 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>2183</sys_mod_count>
+        <sys_mod_count>2185</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-08-04 14:44:38</sys_updated_on>
+        <sys_updated_on>2025-08-04 14:48:45</sys_updated_on>
     </sys_ui_page>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>e44fd7541b578450a89720a8ec4bcb8c</id>
