@@ -47,5 +47,6 @@
         <sys_update_name>sys_script_include_202de37adbdcfc103c6c09c2ba9619da</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2024-08-28 12:58:41</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>

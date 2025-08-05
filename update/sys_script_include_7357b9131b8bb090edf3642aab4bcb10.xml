@@ -432,6 +432,7 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
         <sys_update_name>sys_script_include_7357b9131b8bb090edf3642aab4bcb10</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2025-07-22 15:32:31</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>7357b9131b8bb090edf3642aab4bcb10</id>

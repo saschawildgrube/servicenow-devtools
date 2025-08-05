@@ -47,6 +47,7 @@ The function returns an array of objects representing the previously claimed OOT
         <sys_update_name>sys_script_include_55ac0763936ea610959b7fda2bba10f4</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2025-07-17 14:05:46</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>55ac0763936ea610959b7fda2bba10f4</id>

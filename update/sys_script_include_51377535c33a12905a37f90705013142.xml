@@ -82,5 +82,6 @@ The function has been fully implemented using the ArtificalDeveloper using ChatG
         <sys_update_name>sys_script_include_51377535c33a12905a37f90705013142</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2025-01-03 09:33:22</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>

@@ -62,8 +62,10 @@
 	
 	// Unhide the field class "UI Action List" (glide_action_list) so that it can be used by developers
 	installer.ShowFieldClass('glide_action_list',true);
+	
 	// Unhide the field class "Email" (email) so that it can be used by developers
 	installer.ShowFieldClass('email',true);
+	
 	// Unhide the field class "Related Tags" (related_tags) so that it can be used by developers
 	installer.ShowFieldClass('related_tags',true);
 	
@@ -134,6 +136,11 @@
 	// Generative AI Controller
 	// Deactivate the ACL that prevents non-maint users from seeing all fields of a One Extend Capability (bug)
 	installer.ActivateACL('12eff632438302106c3603295bb8f242',false);
+
+	// Make tables configurable
+	installer.SetTableValue('sys_script_include','configuration_access',true);
+	installer.SetTableValue('sys_ui_script','configuration_access',true);
+	installer.SetTableValue('sys_script','configuration_access',true);
 	
 	return installer.Finish();
 }]]></script>
@@ -141,14 +148,15 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-07-03 21:35:10</sys_created_on>
         <sys_id>339e63591b719050a89720a8ec4bcb3f</sys_id>
-        <sys_mod_count>110</sys_mod_count>
+        <sys_mod_count>112</sys_mod_count>
         <sys_name>AppInstall</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_339e63591b719050a89720a8ec4bcb3f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-07-07 14:12:07</sys_updated_on>
+        <sys_updated_on>2025-08-05 11:12:49</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>339e63591b719050a89720a8ec4bcb3f</id>

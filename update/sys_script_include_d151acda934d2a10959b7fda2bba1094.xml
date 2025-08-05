@@ -31,6 +31,7 @@
         <sys_update_name>sys_script_include_d151acda934d2a10959b7fda2bba1094</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2025-07-04 15:42:08</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>d151acda934d2a10959b7fda2bba1094</id>

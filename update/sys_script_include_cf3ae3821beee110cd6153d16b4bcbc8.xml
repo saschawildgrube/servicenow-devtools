@@ -25,6 +25,7 @@
         <sys_update_name>sys_script_include_cf3ae3821beee110cd6153d16b4bcbc8</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2024-08-28 12:58:58</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>cf3ae3821beee110cd6153d16b4bcbc8</id>

@@ -108,6 +108,7 @@ For safety reasons the current date (as an iso formatted string) must be passed 
         <sys_update_name>sys_script_include_6a9964a1db8b4190bcced03cd3961945</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2025-04-28 08:04:13</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>6a9964a1db8b4190bcced03cd3961945</id>

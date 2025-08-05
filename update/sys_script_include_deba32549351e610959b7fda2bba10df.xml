@@ -60,6 +60,7 @@
         <sys_update_name>sys_script_include_deba32549351e610959b7fda2bba10df</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2025-05-02 07:07:22</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>deba32549351e610959b7fda2bba10df</id>

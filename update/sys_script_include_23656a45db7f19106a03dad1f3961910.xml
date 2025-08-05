@@ -200,5 +200,6 @@
         <sys_update_name>sys_script_include_23656a45db7f19106a03dad1f3961910</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2024-11-12 12:15:23</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>
