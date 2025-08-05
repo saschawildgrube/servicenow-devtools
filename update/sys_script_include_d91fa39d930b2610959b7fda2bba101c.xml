@@ -303,28 +303,32 @@
 	}		
 
 
-	// TODO: make adjustments here
-
-	Log('Adding UI Page "Manual"...');
-	var grUiPage = new GlideRecord('sys_ui_page');
-	grUiPage.addQuery('endpoint','=','x_snc_devtools_template_manual.do');
-	grUiPage.query();
-	if (grUiPage.next())
+	Log('Adding Nightly QA Scheduled Job...');
+	
+	var strTechnicalUserSysId = '';
+	var grTechnicalUser = GetDefaultTechnicalUser();
+	if (IsValidRecord(grTechnicalUser) == true)
 	{
-		var strHtml = GetStringValue(grUiPage.html);
-		var strScopeOrSysId = strAppScope;
-
-		strHtml = strHtml.replace('%APP_SCOPE_OR_SYS_ID%',strScopeOrSysId);
-		RecordQueryOrInsert('sys_ui_page',
-			{
-				sys_scope: strAppSysId,
-				name: 'manual'
-			},
-			{
-				html: strHtml
-			},
-			false);			
+		strTechnicalUserSysId = GetStringValue(grTechnicalUser.sys_id);
 	}
+	
+	
+	var strNightlyQASysId = RecordQueryOrInsert('sysauto_script',
+		{
+			sys_scope: strAppSysId,
+			name: 'Nightly QA'
+		},
+		{
+			active: true,
+			conditional: false,
+			run_as: strTechnicalUserSysId,
+			run_type: 'daily',
+			run_dayofmonth: '1',
+			run_dayofweek: '1',
+			run_time: '1969-12-31 23:00:00',
+			script: 'x_snc_devtools.NightlyQA('+strAppScope+');'
+		},
+		false);
 
 
 	var strAppMenuSysId = '';
@@ -367,8 +371,20 @@
 			},
 			false);
 
+		Log('Adding module "Nightly QA"...');
+		RecordQueryOrInsert('sys_app_module',
+			{
+				sys_scope: strAppSysId,
+				application: strAppMenuSysId,
+				title: 'Nightly QA'
+			},
+			{
+				order: 270,
+				//link_type: 'DIRECT',
+				//query: '/x_snc_devtools_dependencies.do?package=' + strAppScope
+			},
+			false);			
 
-		// TODO: add nightly QA
 	}
 		
 	
@@ -380,14 +396,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-07-29 14:35:19</sys_created_on>
         <sys_id>d91fa39d930b2610959b7fda2bba101c</sys_id>
-        <sys_mod_count>14</sys_mod_count>
+        <sys_mod_count>18</sys_mod_count>
         <sys_name>AppBuilderPlatform</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_d91fa39d930b2610959b7fda2bba101c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-08-05 11:06:25</sys_updated_on>
+        <sys_updated_on>2025-08-05 15:44:28</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
