@@ -13,8 +13,8 @@
 { 
 	return {
 		'global': 'sys_scope',
-		 
-		 // The sys_ui_view record for the "Default view" uses the string as a Sys ID
+
+		// The sys_ui_view record for the "Default view" uses the string as a Sys ID
 		'Default view': 'sys_ui_view', 
 		
 		// OOTB sys_app_application "System Import Sets" uses "import_sets" as its Sys ID
@@ -32,12 +32,20 @@
 		'9f48a22bc611227b006c74076af1e20': 'sys_number',
 		'change_task': 'sys_number',
 		'doc': 'sys_number',
+		'kb_knowledge': 'sys_number',
+		'ola': 'sys_number',
+		'req2': 'sys_number',
+
 
 		// Security Types
 		'client_callable_flow_object': 'sys_security_type',
 		'client_callable_script_include': 'sys_security_type',
+		'pd_action': 'sys_security_type',
+		'processor': 'sys_security_type',
+		'record': 'sys_security_type',
 
 		// Security Operations
+		'read': 'sys_security_operation',		
 		'create': 'sys_security_operation',
 		'delete': 'sys_security_operation',
 		'execute': 'sys_security_operation',
@@ -47,6 +55,8 @@
 		'failed': 'sys_mailbox',
 		'inbox': 'sys_mailbox',
 		'junk': 'sys_mailbox',
+		'outbox': 'sys_mailbox',
+		'received': 'sys_mailbox',
 
 
 
@@ -54,15 +64,6 @@
 	/*
 	
 
-
-x_snc_devtools (Log): sys_number: kb_knowledge: "KB"
-x_snc_devtools (Log): sys_number: ola: "OLA"
-x_snc_devtools (Log): sys_mailbox: outbox: "Outbox"
-x_snc_devtools (Log): sys_security_type: pd_action: "pd_action"
-x_snc_devtools (Log): sys_security_type: processor: "processor"
-x_snc_devtools (Log): sys_security_operation: read: "read"
-x_snc_devtools (Log): sys_mailbox: received: "Received"
-x_snc_devtools (Log): sys_security_type: record: "record"
 x_snc_devtools (Log): sys_number: req2: "REQ"
 x_snc_devtools (Log): sys_security_type: REST_Endpoint: "REST_Endpoint"
 x_snc_devtools (Log): sys_number: sc_req_item: "RITM"
@@ -86,14 +87,14 @@ x_snc_devtools (Log): sys_security_operation: write: "write"
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-08-05 08:08:40</sys_created_on>
         <sys_id>1969deab93cfae10959b7fda2bba1010</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>18</sys_mod_count>
         <sys_name>GetSysIdAnomalies</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_1969deab93cfae10959b7fda2bba1010</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-08-05 12:00:16</sys_updated_on>
+        <sys_updated_on>2025-08-05 13:10:22</sys_updated_on>
         <x_snc_devtools_sys_ui_script display_value="x_snc_devtools.GetSysIdAnomalies">15fc4fa793c3ee10959b7fda2bba1090</x_snc_devtools_sys_ui_script>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
