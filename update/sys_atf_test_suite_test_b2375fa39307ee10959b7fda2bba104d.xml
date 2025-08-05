@@ -14,7 +14,7 @@
         <sys_update_name>sys_atf_test_suite_test_b2375fa39307ee10959b7fda2bba104d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2025-08-05 12:37:26</sys_updated_on>
-        <test display_value="DevTools - AppBuilderSyncScriptIncluideToUiScript">3e375fa39307ee10959b7fda2bba1049</test>
+        <test display_value="DevTools - AppBuilderSyncScriptIncludeToUiScript">3e375fa39307ee10959b7fda2bba1049</test>
         <test_suite display_value="DevTools">4a8550391b5b8850a89720a8ec4bcbd9</test_suite>
     </sys_atf_test_suite_test>
 </record_update>
