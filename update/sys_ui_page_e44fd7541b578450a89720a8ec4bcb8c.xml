@@ -99,8 +99,29 @@ gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData
 }</pre></li>
 		<li>Replace "x_your_scope" with the scope name of your scoped application.</li>
 		<li>Adjust or remove the other parameters.</li>
-		<li>Run "AppBuilder()" as a background script.</li>
+		<li>Run "AppBuilder()" as a background script in the scope of the application.</li>
 		<li>Check out the Application Files that have been created and adjust them as you see fit.</li>
+	</ol>   
+
+	<h3>Building a "Platform" Application</h3>
+	<p>The "Platform" app is special. There should only be one. The "Platform" app represents the instance as a whole and describes dependencies to all other apps that should be deployed on downstream instances. DevTools provides tools to create boilerplate code and configuration for that special "Platform" application. Follow these steps to get started:</p>
+	<ol>
+		<li>Create a new scoped application.</li>
+		<li>The name of the app must include "Platform".</li>
+		<li>Create a Script Include and call it "AppBuilder".</li>
+		<li>Use the Syntax Editor Macro "AppBuilderPlatform" to create boilerplate code in the Script Include.</li>
+		<li>Your Script Include script should look like this:<pre>
+		function AppBuilder()
+{
+	x_snc_devtools.AppBuilderPlatform('x_your_scope'); 	
+}</pre></li>
+		<li>Replace "x_your_scope" with the scope name of your (scoped) "Platform" application.</li>
+		<li>Adjust or remove the other parameters.</li>
+		<li>Run "AppBuilder()" as a background script in the scope of the application.</li>
+		<li>Check out the Application Files that have been created and adjust them as you see fit.</li>
+		<li>Add dependencies to other applications.</li>
+		<li>Adjust the mapping between techncial (subdomain) instance names to pipeline names in DevToolsGetInstancePipelineName().</li> 
+		<li>Manage all instance-specific configuration in AppInstall().</li> 
 	</ol>   
 
 	<h3>Sending a Prompt to a Large Language Model (LLM)</h3>
@@ -692,6 +713,7 @@ function YourLengthyProcess(strRecordSysId)
 		<li>Added DevTools View and View Rule for Script Include forms.</li>
 		<li>UI Action "Create Macro" is now only available for Script Includes within the DevTools application.</li>
 		<li>Added new chapter "Building Applications" to the manual.</li>
+		<li>Added new chapter "Building a "Platform" Application" to the manual.</li>
 		<li>Added technical debt to consider IsValidFunction() for future deprecation as it is a duplicate of IsFunction().</li> 
 		<li>TestAPI::GetResult() will now report tests as failed if deprecated code was executed during the test. To ignore deprecated code (to test it) use the new function TestAPI::GetResultIgnoreDeprecated().</li>
 		<li>Function Deprecated() now logs all deprecated code in the transaction cache.</li> 
@@ -2891,14 +2913,14 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>2206</sys_mod_count>
+        <sys_mod_count>2210</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-08-06 15:55:35</sys_updated_on>
+        <sys_updated_on>2025-08-06 16:35:02</sys_updated_on>
     </sys_ui_page>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>e44fd7541b578450a89720a8ec4bcb8c</id>
