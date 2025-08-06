@@ -71,7 +71,12 @@
 				+"\t\n"
 				+"\t// TODO: Add your installation code here...\n"
 				+"\t\n"
-				+"\tinstaller.SetProperty('glide.ui.session_timeout','1440');\n"
+				+"\tif (x_snc_devtools.GetInstancePipelineName() == 'dev')\n"
+				+"\t{\n"
+				+"\t\tinstaller.SetProperty('glide.ui.session_timeout','1440');\n"
+				+"\t}\n"								
+				+"\t\n"												
+				+"\t\n"
 				+"\t\n"
 				+"\treturn installer.Finish();\n"
 				+"}\n"
@@ -225,11 +230,15 @@
 			+"\t\n"
 			+"\tswitch (strInstanceName)\n"
 			+"\t{\n"
-			+"\t\tcase 'acme':\n"
+			+"\t\tcase 'acme': // your PRODUCTION instance\n"
 			+"\t\t\treturn 'prod';\n"
-			+"\t\tcase 'acmetest':\n"
+			+"\t\tcase 'acmepreprod': // your PRE-PRODUCTION instance\n"
+			+"\t\t\treturn 'preprod';\n"			
+			+"\t\tcase 'acmeqa': // your QA instance\n"
+			+"\t\t\treturn 'qa';\n"			
+			+"\t\tcase 'acmetest': // your TEST instance\n"
 			+"\t\t\treturn 'test';\n"
-			+"\t\tcase '"+GetInstanceName()+"':\n"
+			+"\t\tcase '"+GetInstanceName()+"': // your DEV instance\n"
 			+"\t\t\treturn 'dev';\n"
 			+"\t\tdefault:\n"
 			+"\t}\n"
@@ -400,14 +409,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-07-29 14:35:19</sys_created_on>
         <sys_id>d91fa39d930b2610959b7fda2bba101c</sys_id>
-        <sys_mod_count>23</sys_mod_count>
+        <sys_mod_count>25</sys_mod_count>
         <sys_name>AppBuilderPlatform</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_d91fa39d930b2610959b7fda2bba101c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-08-05 16:12:37</sys_updated_on>
+        <sys_updated_on>2025-08-06 07:53:29</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
