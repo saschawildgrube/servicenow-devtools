@@ -22,7 +22,8 @@
     var allHeadings = Array.prototype.slice.call(document.body.querySelectorAll('h1, h2, h3, h4, h5, h6'));
 
     // Optional: Ignore headings before the TOC container
-    if (bIgnorePrevious) {
+    if (bIgnorePrevious)
+	{
         allHeadings = allHeadings.filter(function(h)
 		{
             return tocContainer.compareDocumentPosition(h) & Node.DOCUMENT_POSITION_FOLLOWING;
@@ -47,7 +48,8 @@
         var h = headings[i];
         var level = parseInt(h.tagName.substring(1));
 
-        if (ignoreLevel !== null && level > ignoreLevel) {
+        if (ignoreLevel !== null && level > ignoreLevel)
+		{
             continue;
         }
 
@@ -63,16 +65,21 @@
 
     // Assign unique IDs if needed
     var usedIds = new Set();
-    filteredHeadings.forEach(function(heading) {
-        if (!heading.id || usedIds.has(heading.id)) {
-            var baseId = heading.textContent.trim().toLowerCase().replace(/[^\w]+/g, '-');
-            var id = baseId;
+    filteredHeadings.forEach(function(heading)
+	{
+        if (!heading.id || usedIds.has(heading.id))
+		{
+            var strBaseId = heading.textContent;
+			strBaseId = strBaseId.trim();
+			strBaseId = strBaseId.toLowerCase();
+			strBaseId = strBaseId.replace(/[^\w]+/g, '-');
+            var strId = strBaseId;
             var counter = 1;
-            while (!id || usedIds.has(id))
+            while (!strId || usedIds.has(strId))
 			{
-                id = baseId + '-' + (counter++);
+                strId = strBaseId + '-' + (counter++);
             }
-            heading.id = id;
+            heading.id = strId;
         }
         usedIds.add(heading.id);
     });
@@ -81,7 +88,8 @@
     var tocRoot = document.createElement('ul');
     var stack = [{ level: nFirstLevel - 1, ul: tocRoot }];
 
-    filteredHeadings.forEach(function(heading) {
+    filteredHeadings.forEach(function(heading)
+	{
         var level = parseInt(heading.tagName.substring(1));
 
         var li = document.createElement('li');
@@ -113,14 +121,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-08-04 14:25:33</sys_created_on>
         <sys_id>4806e61793c76e10959b7fda2bba103e</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_name>x_snc_devtools.MakeTableOfContents</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_script_4806e61793c76e10959b7fda2bba103e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-08-05 16:45:00</sys_updated_on>
+        <sys_updated_on>2025-08-06 15:52:52</sys_updated_on>
         <ui_type>0</ui_type>
         <use_scoped_format>false</use_scoped_format>
         <x_snc_devtools_global>true</x_snc_devtools_global>
