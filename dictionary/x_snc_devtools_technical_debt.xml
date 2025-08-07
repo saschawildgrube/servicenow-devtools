@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element attributes="update_synch=true" db_object_id="3fdff8231b5e2110cd6153d16b4bcb63" extends="sys_metadata" label="Technical Debt" max_length="40" name="x_snc_devtools_technical_debt" type="collection">
+        <element choice="1" label="Type" max_length="40" name="type" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Obsolete Code" value="code_obsolete"/>
+                <element inactive_on_update="false" label="Known Defect" value="code_defect"/>
+                <element inactive_on_update="false" label="Naming Inconsistency" value="naming_inconsistency"/>
+                <element inactive_on_update="false" label="Unfinished Work" value="work_unfinished"/>
+                <element inactive_on_update="false" label="Missing Documentation" value="documentation_missing"/>
+                <element inactive_on_update="false" label="Outdated Coding Pattern" value="code_pattern_outdated"/>
+                <element inactive_on_update="false" label="Data Model Deficiency" value="datamodel_deficiency"/>
+                <element inactive_on_update="false" label="Deprecation" value="deprecation"/>
+                <element inactive_on_update="false" label="Outdated Documentation" value="documentation_outdated"/>
+            </choice>
+        </element>
         <element label="ID" max_length="20" name="id" type="string"/>
         <element label="Switch" max_length="40" name="switch" type="boolean"/>
         <element label="Related backlog item" max_length="1024" name="related_backlog_item_url" type="url"/>

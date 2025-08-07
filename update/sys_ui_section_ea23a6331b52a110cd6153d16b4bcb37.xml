@@ -4,13 +4,13 @@
             <element>.begin_split</element>
             <position>0</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-07-29 11:43:32</sys_created_on>
-            <sys_id>0a7b937fdbe78690f0f1d03cd3961918</sys_id>
+            <sys_created_on>2025-08-07 16:22:39</sys_created_on>
+            <sys_id>91fd9e1493dba250959b7fda2bba1027</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_devtools_technical_debt" sys_domain="global" view="Default view">ea23a6331b52a110cd6153d16b4bcb37</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-07-29 11:43:32</sys_updated_on>
+            <sys_updated_on>2025-08-07 16:22:39</sys_updated_on>
             <sys_user/>
             <type>.begin_split</type>
         </sys_ui_element>
@@ -18,27 +18,27 @@
             <element>short_description</element>
             <position>1</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-07-29 11:43:32</sys_created_on>
-            <sys_id>ce7b937fdbe78690f0f1d03cd3961918</sys_id>
+            <sys_created_on>2025-08-07 16:22:39</sys_created_on>
+            <sys_id>19fd9e1493dba250959b7fda2bba1027</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_devtools_technical_debt" sys_domain="global" view="Default view">ea23a6331b52a110cd6153d16b4bcb37</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-07-29 11:43:32</sys_updated_on>
+            <sys_updated_on>2025-08-07 16:22:39</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>id</element>
+            <element>type</element>
             <position>2</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-07-29 11:43:32</sys_created_on>
-            <sys_id>427b937fdbe78690f0f1d03cd3961919</sys_id>
+            <sys_created_on>2025-08-07 16:22:39</sys_created_on>
+            <sys_id>9dfd9e1493dba250959b7fda2bba1027</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_devtools_technical_debt" sys_domain="global" view="Default view">ea23a6331b52a110cd6153d16b4bcb37</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-07-29 11:43:32</sys_updated_on>
+            <sys_updated_on>2025-08-07 16:22:39</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -46,13 +46,13 @@
             <element>.split</element>
             <position>3</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-07-29 11:43:32</sys_created_on>
-            <sys_id>c27b937fdbe78690f0f1d03cd3961919</sys_id>
+            <sys_created_on>2025-08-07 16:22:39</sys_created_on>
+            <sys_id>15fd9e1493dba250959b7fda2bba1028</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_devtools_technical_debt" sys_domain="global" view="Default view">ea23a6331b52a110cd6153d16b4bcb37</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-07-29 11:43:32</sys_updated_on>
+            <sys_updated_on>2025-08-07 16:22:39</sys_updated_on>
             <sys_user/>
             <type>.split</type>
         </sys_ui_element>
@@ -60,69 +60,83 @@
             <element>sys_scope</element>
             <position>4</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-07-29 11:43:32</sys_created_on>
-            <sys_id>467b937fdbe78690f0f1d03cd3961919</sys_id>
+            <sys_created_on>2025-08-07 16:22:39</sys_created_on>
+            <sys_id>99fd9e1493dba250959b7fda2bba1028</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_devtools_technical_debt" sys_domain="global" view="Default view">ea23a6331b52a110cd6153d16b4bcb37</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-07-29 11:43:32</sys_updated_on>
+            <sys_updated_on>2025-08-07 16:22:39</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>id</element>
+            <position>5</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-08-07 16:22:39</sys_created_on>
+            <sys_id>11fd9e1493dba250959b7fda2bba1029</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_snc_devtools_technical_debt" sys_domain="global" view="Default view">ea23a6331b52a110cd6153d16b4bcb37</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-08-07 16:22:39</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>switch</element>
-            <position>5</position>
+            <position>6</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-07-29 11:43:32</sys_created_on>
-            <sys_id>c67b937fdbe78690f0f1d03cd3961919</sys_id>
+            <sys_created_on>2025-08-07 16:22:39</sys_created_on>
+            <sys_id>95fd9e1493dba250959b7fda2bba1029</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_devtools_technical_debt" sys_domain="global" view="Default view">ea23a6331b52a110cd6153d16b4bcb37</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-07-29 11:43:32</sys_updated_on>
+            <sys_updated_on>2025-08-07 16:22:39</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>.end_split</element>
-            <position>6</position>
+            <position>7</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-07-29 11:43:32</sys_created_on>
-            <sys_id>4a7b937fdbe78690f0f1d03cd3961919</sys_id>
+            <sys_created_on>2025-08-07 16:22:39</sys_created_on>
+            <sys_id>1dfd9e1493dba250959b7fda2bba1029</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_devtools_technical_debt" sys_domain="global" view="Default view">ea23a6331b52a110cd6153d16b4bcb37</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-07-29 11:43:32</sys_updated_on>
+            <sys_updated_on>2025-08-07 16:22:39</sys_updated_on>
             <sys_user/>
             <type>.end_split</type>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>description</element>
-            <position>7</position>
+            <position>8</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2024-07-29 11:43:32</sys_created_on>
-            <sys_id>ca7b937fdbe78690f0f1d03cd3961919</sys_id>
+            <sys_created_on>2025-08-07 16:22:39</sys_created_on>
+            <sys_id>91fd9e1493dba250959b7fda2bba102a</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_devtools_technical_debt" sys_domain="global" view="Default view">ea23a6331b52a110cd6153d16b4bcb37</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2024-07-29 11:43:32</sys_updated_on>
+            <sys_updated_on>2025-08-07 16:22:39</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>related_backlog_item_url</element>
-            <position>8</position>
+            <position>9</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2025-06-21 12:53:20</sys_created_on>
-            <sys_id>ac5b6f8193de2250ae97b4aa6aba1067</sys_id>
+            <sys_created_on>2025-08-07 16:22:39</sys_created_on>
+            <sys_id>19fd9e1493dba250959b7fda2bba102a</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_devtools_technical_debt" sys_domain="global" view="Default view">ea23a6331b52a110cd6153d16b4bcb37</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2025-06-21 12:53:20</sys_updated_on>
+            <sys_updated_on>2025-08-07 16:22:39</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
