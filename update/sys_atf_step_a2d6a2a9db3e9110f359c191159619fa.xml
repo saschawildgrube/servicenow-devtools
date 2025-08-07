@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-10-27 12:46:55</sys_created_on>
         <sys_id>a2d6a2a9db3e9110f359c191159619fa</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_a2d6a2a9db3e9110f359c191159619fa</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-10-27 12:50:32</sys_updated_on>
+        <sys_updated_on>2025-08-06 16:48:01</sys_updated_on>
         <table/>
         <test display_value="DevTools - GetInstanceListURL (deprecated)">a2c662a9db3e9110f359c19115961922</test>
         <timeout/>
@@ -35,9 +35,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-10-27 12:46:55</sys_created_on>
         <sys_id>38e6a2a9db3e9110f359c1911596194d</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-10-27 12:50:33</sys_updated_on>
+        <sys_updated_on>2025-08-06 16:48:02</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -88,7 +88,7 @@
 &#13;
 	&#13;
 	&#13;
-	return test.GetResult();&#13;
+	return test.GetResultIgnoreDeprecated();&#13;
 	&#13;
 })(outputs, steps, stepResult, assertEqual);</value>
         <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>

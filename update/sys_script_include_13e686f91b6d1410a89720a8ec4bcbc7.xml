@@ -13,7 +13,10 @@ Considers special Sys IDs for fx_currency and the "Default view" in sys_ui_view.
         <script><![CDATA[function IsValidSysId(strSysId)
 {
 	strSysId = GetStringValue(strSysId);
-	if (strSysId == 'global')
+
+	var anomalies = GetSysIdAnomalies();
+	var strTable = GetStringValue(GetValue(anomalies,strSysId));
+	if (strTable != '')
 	{
 		return true;
 	}
@@ -31,16 +34,6 @@ Considers special Sys IDs for fx_currency and the "Default view" in sys_ui_view.
 			return false;
 		}
 	}
-	// The sys_ui_view record for the "Default view" uses the string as a Sys ID
-	if (strSysId == 'Default view')
-	{
-		return true;
-	}
-	// OOTB sys_app_application "System Import Sets" uses "import_sets" as its Sys ID
-	if (strSysId == 'import_sets') 
-	{
-		return true;
-	}	
 	if (strSysId.length != 32)
 	{
 		return false;
@@ -55,13 +48,25 @@ Considers special Sys IDs for fx_currency and the "Default view" in sys_ui_view.
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-06-22 17:03:51</sys_created_on>
         <sys_id>13e686f91b6d1410a89720a8ec4bcbc7</sys_id>
-        <sys_mod_count>13</sys_mod_count>
+        <sys_mod_count>17</sys_mod_count>
         <sys_name>IsValidSysId</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_13e686f91b6d1410a89720a8ec4bcbc7</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-11-26 09:36:30</sys_updated_on>
+        <sys_updated_on>2025-08-05 08:29:56</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>13e686f91b6d1410a89720a8ec4bcbc7</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-08-04 13:52:40</sys_created_on>
+        <sys_id>cfdeda9b93876e10959b7fda2bba103b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-08-04 13:52:40</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>

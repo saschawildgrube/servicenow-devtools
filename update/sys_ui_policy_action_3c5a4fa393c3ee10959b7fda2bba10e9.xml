@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_policy_action">
+    <sys_ui_policy_action action="INSERT_OR_UPDATE">
+        <cleared>false</cleared>
+        <disabled>ignore</disabled>
+        <field>x_snc_devtools_sys_ui_script</field>
+        <field_message/>
+        <field_message_type>none</field_message_type>
+        <mandatory>ignore</mandatory>
+        <sys_class_name>sys_ui_policy_action</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-08-05 11:41:04</sys_created_on>
+        <sys_id>3c5a4fa393c3ee10959b7fda2bba10e9</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>x_snc_devtools_sys_ui_script</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_ui_policy_action_3c5a4fa393c3ee10959b7fda2bba10e9</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-08-05 11:49:16</sys_updated_on>
+        <table>sys_script_include</table>
+        <ui_policy display_value="sys_script_include - Sync to UI Script">e7d8c36393c3ee10959b7fda2bba10b0</ui_policy>
+        <value/>
+        <value_action>ignore</value_action>
+        <visible>true</visible>
+    </sys_ui_policy_action>
+    <sys_translated_text action="delete_multiple" query="documentkey=3c5a4fa393c3ee10959b7fda2bba10e9"/>
+</record_update>

@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-07-16 11:10:38</sys_created_on>
         <sys_id>c49308159332ee10959b7fda2bba100a</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_c49308159332ee10959b7fda2bba100a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-07-16 11:14:18</sys_updated_on>
+        <sys_updated_on>2025-08-06 16:02:34</sys_updated_on>
         <table/>
         <test display_value="DevTools - GetSectionRecord">0893c4159332ee10959b7fda2bba10fd</test>
         <timeout/>
@@ -35,9 +35,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-07-16 11:10:38</sys_created_on>
         <sys_id>009308159332ee10959b7fda2bba100e</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-07-16 11:14:18</sys_updated_on>
+        <sys_updated_on>2025-08-06 16:02:34</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -73,7 +73,7 @@
 	TestCase_GetSectionRecord('bf1d96e3c0a801640190725e63f8ac80',null,null,true); &#13;
 	TestCase_GetSectionRecord('','incident','Default view',true); &#13;
 	&#13;
-	return test.GetResult();&#13;
+	return test.GetResultIgnoreDeprecated();&#13;
 	&#13;
 })(outputs, steps, stepResult, assertEqual);</value>
         <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>

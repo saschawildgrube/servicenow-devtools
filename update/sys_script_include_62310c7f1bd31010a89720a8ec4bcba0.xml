@@ -12,7 +12,8 @@ Methods:
 * SetContext()
 * GetContext()
 * SetItem()
-* GetItem()</description>
+* GetItem()
+* GetAllItems()</description>
         <mobile_callable>false</mobile_callable>
         <name>TransactionCacheAPI</name>
         <sandbox_callable>false</sandbox_callable>
@@ -54,6 +55,11 @@ TransactionCacheAPI.prototype =
 		var vValue = GetValue(g_transactionCache,this.GetContext(),strKey);
 		return vValue;
 	},
+
+	GetAllItems: function()
+	{
+		return GetValue(g_transactionCache,this.GetContext());
+	},
 	
 	type: 'TransactionCacheAPI'
 	
@@ -63,13 +69,25 @@ TransactionCacheAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-09-23 12:16:15</sys_created_on>
         <sys_id>62310c7f1bd31010a89720a8ec4bcba0</sys_id>
-        <sys_mod_count>11</sys_mod_count>
+        <sys_mod_count>14</sys_mod_count>
         <sys_name>TransactionCacheAPI</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_62310c7f1bd31010a89720a8ec4bcba0</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-08-28 12:58:47</sys_updated_on>
+        <sys_updated_on>2025-08-06 11:50:27</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>62310c7f1bd31010a89720a8ec4bcba0</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-08-06 11:05:19</sys_created_on>
+        <sys_id>8bbb8c44931f2250959b7fda2bba1065</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-08-06 11:05:19</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>

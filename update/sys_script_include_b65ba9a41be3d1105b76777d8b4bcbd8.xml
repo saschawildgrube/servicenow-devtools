@@ -33,8 +33,8 @@
 	}
 	
 	// 2. Attempt: Did TestAPI set the transaction cache value?
-	var transactionCache = new x_snc_devtools.TransactionCacheAPI('ATF');
-	var bTestRunning = transactionCache.GetItem(strContext,'running');
+	var transactionCache = new x_snc_devtools.TransactionCacheAPI('DEVTOOLS');
+	var bTestRunning = transactionCache.GetItem('atf_running');
 	if (bTestRunning == true)
 	{
 		return true;
@@ -53,14 +53,15 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-11-30 12:41:13</sys_created_on>
         <sys_id>b65ba9a41be3d1105b76777d8b4bcbd8</sys_id>
-        <sys_mod_count>11</sys_mod_count>
+        <sys_mod_count>13</sys_mod_count>
         <sys_name>IsTestRunning</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_b65ba9a41be3d1105b76777d8b4bcbd8</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-05-13 14:39:58</sys_updated_on>
+        <sys_updated_on>2025-08-06 15:39:51</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>b65ba9a41be3d1105b76777d8b4bcbd8</id>

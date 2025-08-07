@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="syntax_editor_macro">
+    <syntax_editor_macro action="INSERT_OR_UPDATE">
+        <comments>This editor macro creates the code necessary to access the function contained in the HtmlRenderTextEmphasized script include.</comments>
+        <name>HtmlRenderTextEmphasized</name>
+        <sys_class_name>syntax_editor_macro</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-08-01 15:46:54</sys_created_on>
+        <sys_id>4f3c93de930b6a10959b7fda2bba108e</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>HtmlRenderTextEmphasized</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>syntax_editor_macro_4f3c93de930b6a10959b7fda2bba108e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-08-01 15:48:05</sys_updated_on>
+        <text>var HtmlRenderTextEmphasized = x_snc_devtools.HtmlRenderTextEmphasized;&#13;
+HtmlRenderTextEmphasized('This text is emphasized!');</text>
+    </syntax_editor_macro>
+</record_update>

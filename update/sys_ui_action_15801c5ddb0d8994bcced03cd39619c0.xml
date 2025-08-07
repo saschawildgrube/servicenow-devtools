@@ -7,7 +7,7 @@
 
 }]]></client_script_v2>
         <comments>Create a syntax editor macro to access the function or class defined in the script include.</comments>
-        <condition>IsActive() &amp;&amp; current.getRecordClassName() == 'sys_script_include' &amp;&amp; IsMacroAvailableForScriptInclude(current) == false</condition>
+        <condition>IsActive() &amp;&amp; current.getRecordClassName() == 'sys_script_include' &amp;&amp; IsMacroAvailableForScriptInclude(current) == false &amp;&amp; current.sys_scope.scope == 'x_snc_devtools'</condition>
         <form_action>true</form_action>
         <form_button>false</form_button>
         <form_button_v2>false</form_button_v2>
@@ -98,7 +98,7 @@ else
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>15801c5ddb0d8994bcced03cd39619c0</sys_id>
-        <sys_mod_count>16</sys_mod_count>
+        <sys_mod_count>17</sys_mod_count>
         <sys_name>Create Macro</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -106,7 +106,7 @@ else
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_action_15801c5ddb0d8994bcced03cd39619c0</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-04-09 16:20:30</sys_updated_on>
+        <sys_updated_on>2025-08-05 13:54:24</sys_updated_on>
         <table>global</table>
         <ui11_compatible>true</ui11_compatible>
         <ui16_compatible>false</ui16_compatible>

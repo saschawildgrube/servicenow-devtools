@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="DELETE">
+        <active>true</active>
+        <copied_from/>
+        <description>Run Server Side Validation Script</description>
+        <display_name>Run Server Side Script</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>1</order>
+        <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-08-05 12:36:34</sys_created_on>
+        <sys_id>46075ba39307ee10959b7fda2bba10cf</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Run Server Side Script</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_step_46075ba39307ee10959b7fda2bba10cf</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-08-05 12:36:34</sys_updated_on>
+        <table/>
+        <test display_value="DevTools - AppBuilderSyncScriptIncluideToUiScript">82075ba39307ee10959b7fda2bba1052</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="DELETE" query="document_key=46075ba39307ee10959b7fda2bba10cf"/>
+    <sys_variable_value action="DELETE">
+        <document>sys_atf_step</document>
+        <document_key>46075ba39307ee10959b7fda2bba10cf</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-08-05 12:36:34</sys_created_on>
+        <sys_id>02075ba39307ee10959b7fda2bba10d2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-08-05 12:36:34</sys_updated_on>
+        <value>3.1</value>
+        <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
+    </sys_variable_value>
+    <sys_variable_value action="DELETE">
+        <document>sys_atf_step</document>
+        <document_key>46075ba39307ee10959b7fda2bba10cf</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-08-05 12:36:34</sys_created_on>
+        <sys_id>8a075ba39307ee10959b7fda2bba10d2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-08-05 12:36:34</sys_updated_on>
+        <value>// You can use this step to execute a variety of server-side javascript tests including
+// jasmine tests and custom assertions
+//
+//
+// Pass or fail a step: Override the step outcome to pass or fail. This is ignored 
+//                      by jasmine tests
+//
+//  - Return true from the main function body to pass the step
+//  - Return false from the main function body to fail the step
+//
+//
+// outputs:       Pre-defined Step config Output variables to set on this step during 
+//                execution that are available to later steps
+//
+// steps(SYS_ID): A function to retrieve Output variable data from a step that executed
+//                earlier in the test. The desired step's sys_id is required
+//
+// params:        The current test run data set's parameter data including both 
+//                exclusive and shared parameters
+//
+//  Example:
+//
+//      // Test step 1 - add data
+//      var gr = new GlideRecord('sc_task');
+//      // If parameterized testing is enabled, parameters are stored in the params object
+//      gr.setValue('short_description', params.u_my_short_description)
+//      gr.setValue('caller', params.u_my_user.manager)
+//      // this sample step's Step config has Output variables named table and record_id
+//      outputs.table = 'sc_task';
+//      outputs.record_id = gr.insert();
+//
+//      // Test step 2 - access added data and validate
+//      // check that the record exists (or that business logic changed it)
+//      var gr = new GlideRecord("sc_task");
+//      gr.get(steps(PREVIOUS_STEP_SYS_ID).record_id);
+//      assertEqual({name: "task gr exists", shouldbe: true, value: gr.isValidRecord()});
+//
+//
+// stepResult.setOutputMessage: Log a message to step results after step executes.
+//                              Can only be called once or will overwrite previous 
+//                              message
+//
+//  Example:
+//
+//      var gr = new GlideRecord('sc_task');
+//      gr.setValue('short_description', 'verify task can be inserted');
+//      var grSysId = gr.insert();
+//      var justCreatedGR = new GlideRecord('sc_task');
+//      if (justCreatedGR.get(grSysId)) {
+//            stepResult.setOutputMessage("Successfully inserted task record");
+//            return true; // pass the step
+//      } else { 
+//            stepResult.setOutputMessage("Failed to insert task record");
+//            return false; // fail the step
+//      }
+//
+//
+// Note: describe is only supported in Global scope.
+// Use 'describe' to create a suite of test scripts and 'it' to define test expectations
+//
+//  Example jasmine test:
+//
+//      describe('my suite of script tests', function() {
+//            it('should meet expectations', function() {
+//                  expect(true).not.toBe(false);
+//            });
+//      });
+//      // make sure to uncomment jasmine.getEnv().execute(); outside the function body
+//
+//
+// assertEqual: A function used to compare that assertion.shouldbe == assertion.value;
+//              in case of failure it throws an Error and logs that the assertion by
+//              name has failed
+//
+//  Example:
+//
+//      var testAssertion = {
+//            name: "my test assertion",
+//            shouldbe: "expected value"
+//            value: "actual value",
+//      };
+//      assertEqual(testAssertion); // throws Error, logs message to test step output
+//
+(function(outputs, steps, params, stepResult, assertEqual) {
+    // add test script here
+
+})(outputs, steps, params, stepResult, assertEqual);
+// uncomment the next line to execute this script as a jasmine test
+//jasmine.getEnv().execute();
+</value>
+        <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
+    </sys_variable_value>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>220092723b73421816e44a8aa4e45ab1</instance_id>
+        <instance_name>wildxanadu</instance_name>
+        <name>sys_atf_step_46075ba39307ee10959b7fda2bba10cf</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step"><sys_atf_step action="INSERT_OR_UPDATE"><active>true</active><copied_from/><description>Run Server Side Validation Script</description><display_name>Run Server Side Script</display_name><inputs/><mugshots_cache_json/><notes/><order>1</order><step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config><sys_class_name>sys_atf_step</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2025-08-05 12:36:34</sys_created_on><sys_id>46075ba39307ee10959b7fda2bba10cf</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Run Server Side Script</sys_name><sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package><sys_policy/><sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope><sys_update_name>sys_atf_step_46075ba39307ee10959b7fda2bba10cf</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2025-08-05 12:36:34</sys_updated_on><table/><test display_value="DevTools - AppBuilderSyncScriptIncluideToUiScript">82075ba39307ee10959b7fda2bba1052</test><timeout/><warning_message/></sys_atf_step><sys_variable_value action="delete_multiple" query="document_key=46075ba39307ee10959b7fda2bba10cf"/><sys_variable_value action="INSERT_OR_UPDATE"><document>sys_atf_step</document><document_key>46075ba39307ee10959b7fda2bba10cf</document_key><order>100</order><sys_class_name>sys_variable_value</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2025-08-05 12:36:34</sys_created_on><sys_id>02075ba39307ee10959b7fda2bba10d2</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2025-08-05 12:36:34</sys_updated_on><value>3.1</value><variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable></sys_variable_value><sys_variable_value action="INSERT_OR_UPDATE"><document>sys_atf_step</document><document_key>46075ba39307ee10959b7fda2bba10cf</document_key><order>200</order><sys_class_name>sys_variable_value</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2025-08-05 12:36:34</sys_created_on><sys_id>8a075ba39307ee10959b7fda2bba10d2</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2025-08-05 12:36:34</sys_updated_on><value>// You can use this step to execute a variety of server-side javascript tests including
+// jasmine tests and custom assertions
+//
+//
+// Pass or fail a step: Override the step outcome to pass or fail. This is ignored 
+//                      by jasmine tests
+//
+//  - Return true from the main function body to pass the step
+//  - Return false from the main function body to fail the step
+//
+//
+// outputs:       Pre-defined Step config Output variables to set on this step during 
+//                execution that are available to later steps
+//
+// steps(SYS_ID): A function to retrieve Output variable data from a step that executed
+//                earlier in the test. The desired step's sys_id is required
+//
+// params:        The current test run data set's parameter data including both 
+//                exclusive and shared parameters
+//
+//  Example:
+//
+//      // Test step 1 - add data
+//      var gr = new GlideRecord('sc_task');
+//      // If parameterized testing is enabled, parameters are stored in the params object
+//      gr.setValue('short_description', params.u_my_short_description)
+//      gr.setValue('caller', params.u_my_user.manager)
+//      // this sample step's Step config has Output variables named table and record_id
+//      outputs.table = 'sc_task';
+//      outputs.record_id = gr.insert();
+//
+//      // Test step 2 - access added data and validate
+//      // check that the record exists (or that business logic changed it)
+//      var gr = new GlideRecord("sc_task");
+//      gr.get(steps(PREVIOUS_STEP_SYS_ID).record_id);
+//      assertEqual({name: "task gr exists", shouldbe: true, value: gr.isValidRecord()});
+//
+//
+// stepResult.setOutputMessage: Log a message to step results after step executes.
+//                              Can only be called once or will overwrite previous 
+//                              message
+//
+//  Example:
+//
+//      var gr = new GlideRecord('sc_task');
+//      gr.setValue('short_description', 'verify task can be inserted');
+//      var grSysId = gr.insert();
+//      var justCreatedGR = new GlideRecord('sc_task');
+//      if (justCreatedGR.get(grSysId)) {
+//            stepResult.setOutputMessage("Successfully inserted task record");
+//            return true; // pass the step
+//      } else { 
+//            stepResult.setOutputMessage("Failed to insert task record");
+//            return false; // fail the step
+//      }
+//
+//
+// Note: describe is only supported in Global scope.
+// Use 'describe' to create a suite of test scripts and 'it' to define test expectations
+//
+//  Example jasmine test:
+//
+//      describe('my suite of script tests', function() {
+//            it('should meet expectations', function() {
+//                  expect(true).not.toBe(false);
+//            });
+//      });
+//      // make sure to uncomment jasmine.getEnv().execute(); outside the function body
+//
+//
+// assertEqual: A function used to compare that assertion.shouldbe == assertion.value;
+//              in case of failure it throws an Error and logs that the assertion by
+//              name has failed
+//
+//  Example:
+//
+//      var testAssertion = {
+//            name: "my test assertion",
+//            shouldbe: "expected value"
+//            value: "actual value",
+//      };
+//      assertEqual(testAssertion); // throws Error, logs message to test step output
+//
+(function(outputs, steps, params, stepResult, assertEqual) {
+    // add test script here
+
+})(outputs, steps, params, stepResult, assertEqual);
+// uncomment the next line to execute this script as a jasmine test
+//jasmine.getEnv().execute();
+</value><variable display_value="Test script">989d9e235324220002c6435723dc3484</variable></sys_variable_value></record_update>]]></payload>
+        <payload_hash>-943094464</payload_hash>
+        <record_name>Run Server Side Script</record_name>
+        <reverted_from/>
+        <source>bbc283b2937a6210959b7fda2bba108c</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-08-05 12:36:35</sys_created_on>
+        <sys_id>82075ba39307ee10959b7fda2bba10d5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1987a3bc8550000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-08-05 12:36:35</sys_updated_on>
+        <type>Test Step</type>
+        <update_guid>46075ba34707ee103a96719cb4a3c6d4</update_guid>
+        <update_guid_history>46075ba34707ee103a96719cb4a3c6d4:-943094464</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-08-05 13:28:53</sys_created_on>
+        <sys_db_object display_value="" name="sys_atf_step">sys_atf_step</sys_db_object>
+        <sys_id>1d88396f8825458b8851552deefaf941</sys_id>
+        <sys_metadata>46075ba39307ee10959b7fda2bba10cf</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Run Server Side Script</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sys_atf_step_46075ba39307ee10959b7fda2bba10cf</sys_update_name>
+        <sys_update_version display_value="sys_atf_step_46075ba39307ee10959b7fda2bba10cf">82075ba39307ee10959b7fda2bba10d5</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-08-05 13:28:53</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

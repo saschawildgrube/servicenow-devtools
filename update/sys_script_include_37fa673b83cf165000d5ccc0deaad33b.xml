@@ -27,7 +27,7 @@
 	aHeaderRow.push({ header: true, content: 'Scope'} );
 	aHeaderRow.push({ header: true, content: 'Maintainer'} );
 	aHeaderRow.push({ header: true, content: 'Links'} );
-	aHeaderRow.push({ header: true, content: 'Repository<br/>Branch'} );
+	aHeaderRow.push({ header: true, content: 'Branch<br/>(Uncommitted)'} );
 	aHeaderRow.push({ header: true, content: 'Test Suite<br/>Last Run'} );
 	aHeaderRow.push({ header: true, content: 'Test Suite<br/>Failed Tests'} );
 	
@@ -166,6 +166,15 @@
 		if (strRepoUrl != '')
 		{
 			strCurrentBranch = HtmlRenderLink(strRepoUrl,strCurrentBranch,true);
+			strCurrentBranch += '<br/>';
+			var aUncommittedFiles = GetAppUncommittedFiles(app.sys_id);
+			var nUncommittedFiles = aUncommittedFiles.length;
+			if (nUncommittedFiles > 0)
+			{
+				strCurrentBranch += '('+nUncommittedFiles+')';
+				//strCurrentBranch += nUncommittedFiles + ' file(s) uncommitted';
+			}
+			
 		}		
 		aRow.push(strCurrentBranch);	
 
@@ -208,7 +217,16 @@
 					strContent += nMinutes + ' minutes';
 				}
 				*/				
-				strTestSuiteFailed = GetStringValue(grTestSuiteResult.failure_count);
+				var nFailed = GetIntegerValue(grTestSuiteResult.failure_count);
+				if (nFailed == 0)
+				{
+					strTestSuiteFailed = '0';
+				}
+				else
+				{
+					strTestSuiteFailed = HtmlRenderTextEmphasized(nFailed);
+
+				}
 			}
 
 		}
@@ -237,13 +255,25 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-01-19 12:31:40</sys_created_on>
         <sys_id>37fa673b83cf165000d5ccc0deaad33b</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>11</sys_mod_count>
         <sys_name>HtmlRenderApplications</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_37fa673b83cf165000d5ccc0deaad33b</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-03-19 12:11:32</sys_updated_on>
+        <sys_updated_on>2025-08-01 15:38:27</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>37fa673b83cf165000d5ccc0deaad33b</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-31 14:23:00</sys_created_on>
+        <sys_id>907f714a938be610959b7fda2bba1073</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-31 14:23:00</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>

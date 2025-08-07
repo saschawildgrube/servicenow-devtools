@@ -1461,6 +1461,7 @@ TestDataAPI.prototype =
         <sys_update_name>sys_script_include_1796abb01b78d410a89720a8ec4bcb1e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2025-04-30 13:58:03</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>1796abb01b78d410a89720a8ec4bcb1e</id>

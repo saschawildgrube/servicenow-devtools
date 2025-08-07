@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-08 14:10:02</sys_created_on>
         <sys_id>ea07918edb073c504647dad1f396190d</sys_id>
-        <sys_mod_count>13</sys_mod_count>
+        <sys_mod_count>14</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_ea07918edb073c504647dad1f396190d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-11-27 13:30:42</sys_updated_on>
+        <sys_updated_on>2025-08-05 08:20:14</sys_updated_on>
         <table/>
         <test display_value="DevTools - GetTableFromSysId">eef6dd4edb073c504647dad1f39619d5</test>
         <timeout/>
@@ -49,9 +49,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-08 14:10:02</sys_created_on>
         <sys_id>de67518edb073c504647dad1f39619cb</sys_id>
-        <sys_mod_count>13</sys_mod_count>
+        <sys_mod_count>14</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-11-27 13:30:42</sys_updated_on>
+        <sys_updated_on>2025-08-05 08:20:14</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -78,13 +78,16 @@
 	TestCase_GetTableFromSysId('',false);&#13;
 	&#13;
 	// Special case: 'global'&#13;
-	TestCase_GetTableFromSysId('global','sys_dictionary');&#13;
+	TestCase_GetTableFromSysId('global','sys_scope');&#13;
 	&#13;
 	// Contained in sys_metadata&#13;
 	TestCase_GetTableFromSysId('fc26194edb073c504647dad1f3961930','sys_script_include'); &#13;
 &#13;
 	// Contained in sys_package&#13;
 	TestCase_GetTableFromSysId('d689f6901bd38450a89720a8ec4bcbfd','sys_app'); &#13;
+&#13;
+	// Anomaly Sys Ids &#13;
+	TestCase_GetTableFromSysId('a23fe35d77c12021dc2c885d9f56481','sys_ui_form'); &#13;
 &#13;
 	&#13;
 	// Tables derived from task&#13;

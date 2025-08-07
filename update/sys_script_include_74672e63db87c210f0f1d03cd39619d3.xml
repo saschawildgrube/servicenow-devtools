@@ -55,5 +55,6 @@ Returns the Sys ID of the created or updated CMDB CI representing the applicatio
         <sys_update_name>sys_script_include_74672e63db87c210f0f1d03cd39619d3</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2025-02-21 10:58:19</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>

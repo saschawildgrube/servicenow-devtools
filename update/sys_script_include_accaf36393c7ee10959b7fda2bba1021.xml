@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.GetDefaultTechnicalUser</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns the GlideRecord object repreenting the default technical user if it is possible to identify one.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>GetDefaultTechnicalUser</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function GetDefaultTechnicalUser()
+{
+	var grUser = GetUserRecord('technical.default');
+	if (IsValidRecord(grUser))
+	{
+		return grUser;
+	}
+
+	var grUser = GetUserRecord('admin');
+	if (IsValidRecord(grUser))
+	{
+		return grUser;
+	}
+	
+	return false; 
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-08-05 15:12:44</sys_created_on>
+        <sys_id>accaf36393c7ee10959b7fda2bba1021</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>GetDefaultTechnicalUser</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_accaf36393c7ee10959b7fda2bba1021</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-08-07 06:58:51</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>accaf36393c7ee10959b7fda2bba1021</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-08-05 15:12:44</sys_created_on>
+        <sys_id>65caf36393c7ee10959b7fda2bba1054</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-08-05 15:12:44</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

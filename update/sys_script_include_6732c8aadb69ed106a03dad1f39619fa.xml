@@ -308,5 +308,6 @@ GitLabAPI.prototype = {
         <sys_update_name>sys_script_include_6732c8aadb69ed106a03dad1f39619fa</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2024-10-24 14:48:55</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>

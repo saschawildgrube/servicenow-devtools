@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-12-02 23:00:09</sys_created_on>
         <sys_id>027c02511b63d5105b76777d8b4bcbd1</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_027c02511b63d5105b76777d8b4bcbd1</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-02 23:01:52</sys_updated_on>
+        <sys_updated_on>2025-08-06 15:12:16</sys_updated_on>
         <table/>
         <test display_value="DevTools - IsTestAvailableForRecord">f06c0e111b63d5105b76777d8b4bcbdc</test>
         <timeout/>
@@ -49,9 +49,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-12-02 23:00:09</sys_created_on>
         <sys_id>fa7c42511b63d5105b76777d8b4bcbe5</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-12-02 23:01:52</sys_updated_on>
+        <sys_updated_on>2025-08-06 15:12:16</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -76,7 +76,7 @@
 	TestCase_IsTestAvailableForRecord(grRecord,true);&#13;
 &#13;
 	var grRecord = GetRecord('sys_script_include','753cb10c1b6afc50577f43b5bb4bcb58'); // AppBuilder&#13;
-	TestCase_IsTestAvailableForRecord(grRecord,false);&#13;
+	TestCase_IsTestAvailableForRecord(grRecord,true);&#13;
 	&#13;
 	return test.GetResult();&#13;
 	&#13;

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.AppBuilderSyncScriptIncludeToUiScript</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Synchronizes the name, description and script of the given Script Include to the given UI Script.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>AppBuilderSyncScriptIncludeToUiScript</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function AppBuilderSyncScriptIncludeToUiScript(vScriptInclude,vUiScript)
+{
+	var grScriptInclude = GetRecord('sys_script_include',vScriptInclude);
+	if (IsValidRecord(grScriptInclude) == false)
+	{
+		return false;
+	}
+	var grUiScript = GetRecord('sys_ui_script',vUiScript);
+	if (IsValidRecord(grUiScript) == false)
+	{
+		return false;
+	}
+	if (grUiScript.global == true)
+	{
+		//grUiScript.global = false;
+		grUiScript.x_snc_devtools_global = true;
+	}
+
+	grUiScript.script_name = grScriptInclude.name;
+	grUiScript.description = grScriptInclude.description;
+	grUiScript.script = grScriptInclude.script;
+	var strUiScriptSysId = GlideRecordUpdate(grUiScript,false);
+	return IsValidSysId(strUiScriptSysId);
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-08-05 12:35:18</sys_created_on>
+        <sys_id>44969f639307ee10959b7fda2bba106a</sys_id>
+        <sys_mod_count>11</sys_mod_count>
+        <sys_name>AppBuilderSyncScriptIncludeToUiScript</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_44969f639307ee10959b7fda2bba106a</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-08-07 06:58:51</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>44969f639307ee10959b7fda2bba106a</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-08-05 12:35:18</sys_created_on>
+        <sys_id>9fb6df639307ee10959b7fda2bba106a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-08-05 12:35:18</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

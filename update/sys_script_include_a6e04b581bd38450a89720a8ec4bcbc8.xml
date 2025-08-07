@@ -240,6 +240,7 @@
         <sys_update_name>sys_script_include_a6e04b581bd38450a89720a8ec4bcbc8</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2025-05-02 15:32:53</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>a6e04b581bd38450a89720a8ec4bcbc8</id>

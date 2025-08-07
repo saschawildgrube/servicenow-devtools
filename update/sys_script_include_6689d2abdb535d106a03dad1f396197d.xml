@@ -61,5 +61,6 @@ DevToolsWorkerAPI.prototype = {
         <sys_update_name>sys_script_include_6689d2abdb535d106a03dad1f396197d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2024-12-14 18:58:03</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>

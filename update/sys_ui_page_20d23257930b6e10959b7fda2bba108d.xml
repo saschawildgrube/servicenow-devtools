@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script/>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_snc_devtools_template_manual_platform.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+<div style="padding-left: 20px;">
+<span style="visibility: hidden;">_CUT_HERE_</span>
+	<g2:no_escape>$[
+		var docapi = new x_snc_devtools.DocumentationAPI('%APP_SCOPE%');
+		docapi.RenderHeader();
+	]</g2:no_escape>
+	
+	<h2>Overview</h2> 
+	<g2:no_escape>$[
+		docapi.RenderDescription();
+	]</g2:no_escape>
+
+	<h2>Table of Contents</h2>
+	<g2:no_escape>$[x_snc_devtools.HtmlRenderTableOfContents()]</g2:no_escape>		
+	
+	<h2>System Requirements</h2>
+	<ul>
+		<g2:no_escape>$[
+			docapi.RenderSystemRequirements(
+				'Xanadu,Yokohama',
+				true,
+				AppGetDependencies());
+		]</g2:no_escape>	
+	</ul>
+	
+	<h2>Installation</h2>
+	<ol>
+		<g2:no_escape>$[
+			docapi.RenderInstallationInstructionsImportFromSourceControl(
+				'DevTools',
+				'https://github.com/saschawildgrube/servicenow-devtools',
+				true,
+				'https://www.wildgrube.com/servicenow-devtools/');
+		]</g2:no_escape>
+		<g2:no_escape>$[
+			docapi.RenderInstallationInstructionsImportFromSourceControl(
+				'TODO: Add app name and repo url here',
+				'https://github.com/githubusername/reponame');
+		]</g2:no_escape>		
+		<g2:no_escape>$[
+			docapi.RenderInstallationInstructionsAppInstall();
+		]</g2:no_escape>		
+		<li>TODO: Add further steps required for installation...</li>
+	</ol>
+	
+	<h2>Configuration Options</h2>
+	<g2:no_escape>$[docapi.RenderProperties()]</g2:no_escape>
+	
+	<h2>Personas</h2>
+	<g2:no_escape>$[docapi.RenderPersonas()]</g2:no_escape>		
+
+	<h2>Dependencies</h2>
+	<g2:no_escape>$[docapi.RenderDependencies()]</g2:no_escape>		
+
+	<h2>Technical Debt</h2>
+	<g2:no_escape>$[docapi.RenderTechnicalDebt()]</g2:no_escape>			
+	
+	<h2 toc-ignore-children="true">Release Notes</h2>
+
+	<h3>1.0.0 - TODO</h3>
+	<p>First baselined version</p>
+
+<span style="visibility: hidden;">_CUT_HERE_</span>
+</div>
+</j:jelly>]]></html>
+        <name>template_manual_platform</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-08-04 15:19:54</sys_created_on>
+        <sys_id>20d23257930b6e10959b7fda2bba108d</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>template_manual_platform</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_ui_page_20d23257930b6e10959b7fda2bba108d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-08-04 15:41:32</sys_updated_on>
+    </sys_ui_page>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>20d23257930b6e10959b7fda2bba108d</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-08-04 15:21:25</sys_created_on>
+        <sys_id>c723f257930b6e10959b7fda2bba1093</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-08-04 15:21:25</sys_updated_on>
+        <table>sys_ui_page</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

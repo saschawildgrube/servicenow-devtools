@@ -63,5 +63,6 @@ The default sender name is defined in the system property "glide.email.username"
         <sys_update_name>sys_script_include_d75763f81b666510cd6153d16b4bcb33</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2024-08-28 12:58:59</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>

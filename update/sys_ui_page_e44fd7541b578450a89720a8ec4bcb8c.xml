@@ -21,7 +21,10 @@
 		docapi.RenderDescription();  
 	]</g2:no_escape>	
 
-	<p>Special thanks go to&#160;<a href="mailto:k.janssen@posteo.de">Kevin Janssen</a>&#160;for his contribution to the AzureDevOpsAPI class and &#160;<a href="https://github.com/denysbulakh/transliterate-ukrainian/blob/main/translit.js">Denys Bulakh</a>&#160;who provided the groundwork for the Ukrainian transliteration mechanism in function Transliterate().</p>
+	<p>Special thanks go to&#160;<a href="mailto:k.janssen@posteo.de">Kevin Janssen</a>&#160;for his contribution to the AzureDevOpsAPI class and&#160;<a href="https://github.com/denysbulakh/transliterate-ukrainian/blob/main/translit.js">Denys Bulakh</a>&#160;who provided the groundwork for the Ukrainian transliteration mechanism in function Transliterate().</p>
+
+	<h2>Table of Contents</h2>
+	<g2:no_escape>$[HtmlRenderTableOfContents()]</g2:no_escape>	
 
 	<h2>Disclaimer</h2>
 	<g2:no_escape>$[docapi.RenderDisclaimer()]</g2:no_escape>	
@@ -79,6 +82,48 @@ gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData
 	<p>DevTools contains a number of very helpful UI Actions. One of the most powerful features is the "Save" button with active scope switching capabilities. Never ever loose changes because of switching between scopes and browser tabs at the same time.</p>
 	<p>Please refer to the reference section for details.</p>
 	
+	<h3>Building Applications</h3>
+	<p>DevTools provides tools to create boilerplate code and configuration for applications. Follow these steps to get started:</p>
+	<ol>
+		<li>Create a new scoped application.</li>
+		<li>Create a Script Include and call it "AppBuilder".</li>
+		<li>Use the Syntax Editor Macro "AppBuilder" to create boilerplate code in the Script Include.</li>
+		<li>Your Script Include script should look like this:<pre>
+		function AppBuilder()
+{
+	x_snc_devtools.AppBuilder('x_your_scope',
+		'x_parent_app_scope', // Optional: Only if this app "extends" another app's menu
+		'Menu Separator', // Optional: Only if this app should inject a menu separator into another app
+		20000 // Optional: The order of the submenu
+	); 	
+}</pre></li>
+		<li>Replace "x_your_scope" with the scope name of your scoped application.</li>
+		<li>Adjust or remove the other parameters.</li>
+		<li>Run "AppBuilder()" as a background script in the scope of the application.</li>
+		<li>Check out the Application Files that have been created and adjust them as you see fit.</li>
+	</ol>   
+
+	<h3>Building a "Platform" Application</h3>
+	<p>The "Platform" app is special. There should only be one. The "Platform" app represents the instance as a whole and describes dependencies to all other apps that should be deployed on downstream instances. DevTools provides tools to create boilerplate code and configuration for that special "Platform" application. Follow these steps to get started:</p>
+	<ol>
+		<li>Create a new scoped application.</li>
+		<li>The name of the app must include "Platform".</li>
+		<li>Create a Script Include and call it "AppBuilder".</li>
+		<li>Use the Syntax Editor Macro "AppBuilderPlatform" to create boilerplate code in the Script Include.</li>
+		<li>Your Script Include script should look like this:<pre>
+		function AppBuilder()
+{
+	x_snc_devtools.AppBuilderPlatform('x_your_scope'); 	
+}</pre></li>
+		<li>Replace "x_your_scope" with the scope name of your (scoped) "Platform" application.</li>
+		<li>Adjust or remove the other parameters.</li>
+		<li>Run "AppBuilder()" as a background script in the scope of the application.</li>
+		<li>Check out the Application Files that have been created and adjust them as you see fit.</li>
+		<li>Add dependencies to other applications.</li>
+		<li>Adjust the mapping between techncial (subdomain) instance names to pipeline names in DevToolsGetInstancePipelineName().</li> 
+		<li>Manage all instance-specific configuration in AppInstall().</li> 
+	</ol>   
+
 	<h3>Sending a Prompt to a Large Language Model (LLM)</h3>
 
 	<p>The function&#160;<a href="/sys_script_include.do?sys_id=8cece71583e91e5000d5ccc0deaad30e" target="_blank">Prompt()</a>&#160;can be used to send a prompt directly to a large language model, but it requires some setup:</p>
@@ -580,6 +625,8 @@ function YourLengthyProcess(strRecordSysId)
 	</ol>
 	<p>Once all components are in place, the procedure can be tested. Note that if a server-side script that is triggered through a client AJAX request runs into an evaluator error such errors ARE NOT LOGGED. This is annoying and makes debugging more difficult. If your process shows unexpected behavior, use debug logging to narrow down the code that fails.</p> 
 
+	<h2>How to Guides</h2>
+
 	<h3>How to unblock Instance Scan?</h3>
 	<p>On rare occasions an Instance Scan run does not finish properly and remains in an undefined state. This prevents further Instance Scan checks to run. Follow these instructions to unblock Instance Scan and to enable further scan operations:</p>
 	<ol>
@@ -630,7 +677,49 @@ function YourLengthyProcess(strRecordSysId)
 	<g2:no_escape>$[docapi.RenderCopyright(2020,'Sascha Wildgrube')]</g2:no_escape>
 	<g2:no_escape>$[docapi.RenderLicense()]</g2:no_escape>
 	
-	<h2>Release Notes</h2>
+	<h2 toc-ignore-children="true">Release Notes</h2>
+
+	<h3>1.131.0 - 2025-08-07</h3>
+	<ol>
+		<li>Function GetSectionRecord() is deprecated.</li>
+		<li>Added function InstallerAPI::ActivateTest().</li>
+		<li>Added function HtmlRenderTextEmphasized().</li>
+		<li>Added UI Action "Hide message about enforcing scope".</li>
+		<li>Added function AppBuilderPlatform().</li>
+		<li>Added UI page template_manual_platform which serves a s a "Platform" app specific manual boilerplate.</li> 
+		<li>Added function NightlyQA().</li>
+		<li>Added function GetDefaultTechnicalUser().</li>
+		<li>AppBuilder() now creates less extension point implementation functions - as those are typically only implemented in a "Platform" app.</li>
+		<li>Added ATF test for AppBuilder().</li>
+		<li>Added method DocumentationAPI::RenderPersonas().</li>
+		<li>GetTableFromSysId() is no longer searching in cmdb_ire_partial_payloads_index (which may cause false positives).</li>
+		<li>GetTableFromSysId() now also searches kb_knowledge and kb_knowledge_base with priority.</li>
+		<li>HtmlRenderApplications() now shows the number of uncommitted files.</li>
+		<li>HtmlRenderApplications() now renders the number of failed tests highlighted if not zero.</li>
+		<li>GetListRecord() did not works properly if multiple list views are defined for a table (with and without a "parent"). This has been fixed.</li> 
+		<li>ATF Test Step Config "DevTools - Check scoped app sanity" no longer checks role descriptions as this is covered in CodeSanity since version 2.8.0 release on 2023-03-07.</li>
+		<li>ATF Test for RenderValue() no longer uses kb_knowledge records as test data as it may produce false-negatives depending on instance configuration.</li> 
+		<li>Improved output of RenderRecordSummary() when rendering sys_metadata records.</li>
+		<li>Added function GetSysIdAnomalies().</li>
+		<li>Added UI Script function GetSysIdAnomalies().</li>
+		<li>IsValidSysId() now considers additional anomalies: like the sys_ui_form record for change_request in view "Service Operation Workspace" which are all provided by the GetSysIdAnomalies() function.</li> 
+		<li>GetTableFromSysId() incorrectly returned "sys_dictionary" for the Sys ID "global". This has been fixed. It now returns "sys_scope".</li> 
+		<li>Added more patterns to GetEvaluatorErrorExceptionPatterns().</li>
+		<li>Added UI Script MakeTableOfContents().</li>
+		<li>Added table of contents to the manual page.</li>
+		<li>Added new chapter in manual "How to Guides".</li>
+		<li>Added business rule "sys_script_include - sync to ui script" to synchronize a Script Include to a corresponding UI Script as an experimental feature (only available in DevTools for the time being).</li>
+		<li>Added function AppBuilderSyncScriptIncluideToUiScript().</li>
+		<li>Added "DevTools" View and View Rule for Script Include forms.</li>
+		<li>UI Action "Create Macro" is now only available for Script Includes within the DevTools application.</li>
+		<li>Added new chapter "Building Applications" to the manual.</li>
+		<li>Added new chapter "Building a "Platform" Application" to the manual.</li>
+		<li>Added technical debt to consider IsValidFunction() for future deprecation as it is a duplicate of IsFunction().</li> 
+		<li>TestAPI::GetResult() will now report tests as failed if deprecated code was executed during the test. To ignore deprecated code (to test it) use the new function TestAPI::GetResultIgnoreDeprecated().</li>
+		<li>Function Deprecated() now logs all deprecated code in the transaction cache.</li> 
+		<li>Fixed TestAPI::SetContext() and IsTestRunning() as the detection of running tests did not work properly under rare circumstances.</li>
+	</ol>
+
 
 	<h3>1.130.1 - 2025-07-28</h3>
 	<ol>
@@ -2824,14 +2913,14 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>2162</sys_mod_count>
+        <sys_mod_count>2212</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-07-28 13:06:25</sys_updated_on>
+        <sys_updated_on>2025-08-07 06:56:58</sys_updated_on>
     </sys_ui_page>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>e44fd7541b578450a89720a8ec4bcb8c</id>

@@ -82,5 +82,6 @@ The Sys ID and new order parameters are optional. If null, an existing order wil
         <sys_update_name>sys_script_include_245aef281b71f5106c17fdd49b4bcbc7</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2024-08-28 12:58:42</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>

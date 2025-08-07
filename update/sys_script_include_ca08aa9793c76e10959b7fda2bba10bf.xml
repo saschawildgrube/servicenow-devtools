@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.HtmlRenderTableOfContents</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Adds the HTML and script footprint to render a table of contents into an existing page.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>HtmlRenderTableOfContents</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function HtmlRenderTableOfContents()
+{
+	var strHtml = '';
+
+	strHtml += '<div id="toc"></div>';
+	
+	strHtml += HtmlRenderScript(
+		"document.addEventListener('DOMContentLoaded', function () { MakeTableOfContents('toc',2,true); });");
+	
+	return strHtml;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-08-04 14:33:31</sys_created_on>
+        <sys_id>ca08aa9793c76e10959b7fda2bba10bf</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>HtmlRenderTableOfContents</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_ca08aa9793c76e10959b7fda2bba10bf</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-08-07 06:58:51</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>ca08aa9793c76e10959b7fda2bba10bf</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-08-04 14:33:31</sys_created_on>
+        <sys_id>d5382e9793c76e10959b7fda2bba1008</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-08-04 14:33:31</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

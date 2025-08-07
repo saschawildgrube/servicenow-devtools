@@ -13,14 +13,6 @@ Methods:&#13;
 * Start()&#13;
 * SetPercentageProgress()&#13;
 * SetText()&#13;
-* SetResult()
-|
-Methods:
-* initialize()
-* IsInitialized()
-* Start()
-* SetPercentageProgress()
-* SetText()
 * SetResult()</description>
         <mobile_callable>false</mobile_callable>
         <name>ProgressTrackerAPI</name>
@@ -119,14 +111,15 @@ ProgressTrackerAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-11-26 14:32:09</sys_created_on>
         <sys_id>1baddd5b1b9bd9105b76777d8b4bcb2a</sys_id>
-        <sys_mod_count>63</sys_mod_count>
+        <sys_mod_count>64</sys_mod_count>
         <sys_name>ProgressTrackerAPI</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_1baddd5b1b9bd9105b76777d8b4bcb2a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-05-13 16:47:08</sys_updated_on>
+        <sys_updated_on>2025-08-04 07:55:48</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>1baddd5b1b9bd9105b76777d8b4bcb2a</id>

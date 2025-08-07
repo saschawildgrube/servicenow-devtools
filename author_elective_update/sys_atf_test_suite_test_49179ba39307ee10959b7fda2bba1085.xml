@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_test_suite_test">
+    <sys_atf_test_suite_test action="DELETE">
+        <abort_on_failure>false</abort_on_failure>
+        <order>0</order>
+        <sys_class_name>sys_atf_test_suite_test</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-08-05 12:36:47</sys_created_on>
+        <sys_id>49179ba39307ee10959b7fda2bba1085</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>c1179ba39307ee10959b7fda2bba1082</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_test_suite_test_49179ba39307ee10959b7fda2bba1085</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-08-05 12:36:47</sys_updated_on>
+        <test display_value="DevTools - New Test">c1179ba39307ee10959b7fda2bba1082</test>
+        <test_suite display_value="DevTools">4a8550391b5b8850a89720a8ec4bcbd9</test_suite>
+    </sys_atf_test_suite_test>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>220092723b73421816e44a8aa4e45ab1</instance_id>
+        <instance_name>wildxanadu</instance_name>
+        <name>sys_atf_test_suite_test_49179ba39307ee10959b7fda2bba1085</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_test_suite_test"><sys_atf_test_suite_test action="INSERT_OR_UPDATE"><abort_on_failure>false</abort_on_failure><order>0</order><sys_class_name>sys_atf_test_suite_test</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2025-08-05 12:36:47</sys_created_on><sys_id>49179ba39307ee10959b7fda2bba1085</sys_id><sys_mod_count>0</sys_mod_count><sys_name>c1179ba39307ee10959b7fda2bba1082</sys_name><sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package><sys_policy/><sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope><sys_update_name>sys_atf_test_suite_test_49179ba39307ee10959b7fda2bba1085</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2025-08-05 12:36:47</sys_updated_on><test display_value="DevTools - New Test">c1179ba39307ee10959b7fda2bba1082</test><test_suite display_value="DevTools">4a8550391b5b8850a89720a8ec4bcbd9</test_suite></sys_atf_test_suite_test></record_update>]]></payload>
+        <payload_hash>1142030034</payload_hash>
+        <record_name>c1179ba39307ee10959b7fda2bba1082</record_name>
+        <reverted_from/>
+        <source>bbc283b2937a6210959b7fda2bba108c</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-08-05 12:36:47</sys_created_on>
+        <sys_id>c9179ba39307ee10959b7fda2bba1087</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1987a3bf9030000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-08-05 12:36:47</sys_updated_on>
+        <type>Test Suite Test</type>
+        <update_guid>8d179ba3a907ee10cfcf95037693b886</update_guid>
+        <update_guid_history>8d179ba3a907ee10cfcf95037693b886:1142030034</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-08-05 13:29:56</sys_created_on>
+        <sys_db_object display_value="" name="sys_atf_test_suite_test">sys_atf_test_suite_test</sys_db_object>
+        <sys_id>08c30bd34453415d821d2909cfde9b29</sys_id>
+        <sys_metadata>49179ba39307ee10959b7fda2bba1085</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>c1179ba39307ee10959b7fda2bba1082</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sys_atf_test_suite_test_49179ba39307ee10959b7fda2bba1085</sys_update_name>
+        <sys_update_version display_value="sys_atf_test_suite_test_49179ba39307ee10959b7fda2bba1085">c9179ba39307ee10959b7fda2bba1087</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-08-05 13:29:56</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

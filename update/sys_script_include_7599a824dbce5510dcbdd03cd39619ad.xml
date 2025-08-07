@@ -36,5 +36,17 @@
         <sys_update_name>sys_script_include_7599a824dbce5510dcbdd03cd39619ad</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2024-08-28 12:58:49</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>7599a824dbce5510dcbdd03cd39619ad</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-08-01 15:36:33</sys_created_on>
+        <sys_id>23d95bda930b6a10959b7fda2bba10b2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-08-01 15:36:33</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>

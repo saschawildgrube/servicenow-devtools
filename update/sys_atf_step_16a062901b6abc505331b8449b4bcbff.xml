@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-08 12:34:07</sys_created_on>
         <sys_id>16a062901b6abc505331b8449b4bcbff</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_16a062901b6abc505331b8449b4bcbff</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-10-20 13:21:45</sys_updated_on>
+        <sys_updated_on>2025-08-06 16:49:50</sys_updated_on>
         <table/>
         <test display_value="DevTools - GetInstanceRecordURL">569022901b6abc505331b8449b4bcba3</test>
         <timeout/>
@@ -35,9 +35,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-08 12:34:07</sys_created_on>
         <sys_id>a0c16e901b6abc505331b8449b4bcb52</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-10-20 13:21:45</sys_updated_on>
+        <sys_updated_on>2025-08-06 16:49:50</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -63,12 +63,12 @@
 	TestCase_GetInstanceRecordURL('incident','','',&#13;
 		false);&#13;
 	TestCase_GetInstanceRecordURL('incident','9c573169c611228700193229fff72400','',&#13;
-		GetInstanceURL()+'nav_to.do?uri=%2Fincident.do%3Fsys_id%3D9c573169c611228700193229fff72400');&#13;
+		GetInstanceUrl()+'nav_to.do?uri=%2Fincident.do%3Fsys_id%3D9c573169c611228700193229fff72400');&#13;
 	TestCase_GetInstanceRecordURL('incident','9c573169c611228700193229fff72400','DevTools',&#13;
-		GetInstanceURL()+'nav_to.do?uri=%2Fincident.do%3Fsys_id%3D9c573169c611228700193229fff72400%26sysparm_view%3DDevTools');&#13;
+		GetInstanceUrl()+'nav_to.do?uri=%2Fincident.do%3Fsys_id%3D9c573169c611228700193229fff72400%26sysparm_view%3DDevTools');&#13;
 &#13;
 	&#13;
-	return test.GetResult();&#13;
+	return test.GetResultIgnoreDeprecated();&#13;
 	&#13;
 })(outputs, steps, stepResult, assertEqual);</value>
         <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>

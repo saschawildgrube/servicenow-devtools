@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.GetSysIdAnomalies</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns an object containing all known Sys ID anomalies.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>GetSysIdAnomalies</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function GetSysIdAnomalies()
+{ 
+	return {
+		'global': 'sys_scope',
+
+		// The sys_ui_view record for the "Default view" uses the string as a Sys ID
+		'Default view': 'sys_ui_view', 
+		
+		// OOTB sys_app_application "System Import Sets" uses "import_sets" as its Sys ID
+		'import_sets': 'sys_app_application', 
+		
+		// OOTB sys_ui_form on change_request in view "Service Operations Workspace" has a Sys Id that is only 31 characters long
+		'a23fe35d77c12021dc2c885d9f56481': 'sys_ui_form',
+
+		// Legacy sys_number records
+		'2': 'sys_number',
+		'3': 'sys_number',
+		'4': 'sys_number',
+		'5': 'sys_number',
+		'6': 'sys_number',
+		'9f48a22bc611227b006c74076af1e20': 'sys_number',
+		'change_task': 'sys_number',
+		'doc': 'sys_number',
+		'kb_knowledge': 'sys_number',
+		'ola': 'sys_number',
+		'req2': 'sys_number',
+		'sc_req_item': 'sys_number',
+		'sc_task': 'sys_number',
+		'sla': 'sys_number',
+		'sys_import_set': 'sys_number',
+
+
+		// Security Types
+		'client_callable_flow_object': 'sys_security_type',
+		'client_callable_script_include': 'sys_security_type',
+		'pd_action': 'sys_security_type',
+		'processor': 'sys_security_type',
+		'record': 'sys_security_type',
+		'REST_Endpoint': 'sys_security_type',
+		'ui_page': 'sys_security_type',
+
+		// Security Operations
+		'read': 'sys_security_operation',		
+		'create': 'sys_security_operation',
+		'write': 'sys_security_operation',
+		'delete': 'sys_security_operation',
+		'execute': 'sys_security_operation',
+		'GraphQL': 'sys_security_type',
+
+		// Mailbox
+		'failed': 'sys_mailbox',
+		'inbox': 'sys_mailbox',
+		'junk': 'sys_mailbox',
+		'outbox': 'sys_mailbox',
+		'received': 'sys_mailbox',
+		'sent': 'sys_mailbox',
+		'skipped': 'sys_mailbox',
+
+		// UI Action
+		'sysverb_post_update': 'sys_ui_action',
+		'sysverb_query': 'sys_ui_action',
+
+	};
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-08-05 08:08:40</sys_created_on>
+        <sys_id>1969deab93cfae10959b7fda2bba1010</sys_id>
+        <sys_mod_count>24</sys_mod_count>
+        <sys_name>GetSysIdAnomalies</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_1969deab93cfae10959b7fda2bba1010</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-08-07 06:58:51</sys_updated_on>
+        <x_snc_devtools_sys_ui_script display_value="x_snc_devtools.GetSysIdAnomalies">15fc4fa793c3ee10959b7fda2bba1090</x_snc_devtools_sys_ui_script>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>1969deab93cfae10959b7fda2bba1010</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-08-05 08:08:40</sys_created_on>
+        <sys_id>29b916eb93cfae10959b7fda2bba104c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-08-05 08:08:40</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

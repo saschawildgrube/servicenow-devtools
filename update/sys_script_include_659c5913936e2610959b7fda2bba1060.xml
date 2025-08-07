@@ -491,6 +491,7 @@ gs.info(strOutput);
         <sys_update_name>sys_script_include_659c5913936e2610959b7fda2bba1060</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2025-07-17 14:05:46</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>659c5913936e2610959b7fda2bba1060</id>

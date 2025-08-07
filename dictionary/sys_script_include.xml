@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="all_tables.text_index_translations=true,update_synch=true" audit="true" db_object_id="57558313d12302104f34ba60d8b7c1f7" extends="sys_metadata" label="Script Include" max_length="40" name="sys_script_include" read_roles="script_include_admin" text_index="true" type="collection">
+        <element label="Sync to UI Script" max_length="32" name="x_snc_devtools_sys_ui_script" reference="sys_ui_script" type="reference"/>
+        <index name="index">
+            <element name="x_snc_devtools_sys_ui_script"/>
+        </index>
+    </element>
+</database>

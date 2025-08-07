@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_test">
+    <sys_atf_test action="DELETE">
+        <active>true</active>
+        <copied_from/>
+        <description/>
+        <enable_parameterized_testing>false</enable_parameterized_testing>
+        <fail_on_server_error>false</fail_on_server_error>
+        <name>DevTools - AppBuilderSyncScriptIncluideToUiScript</name>
+        <parameters/>
+        <remember/>
+        <sn_atf_tg_generated>false</sn_atf_tg_generated>
+        <sys_class_name>sys_atf_test</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-08-05 12:36:47</sys_created_on>
+        <sys_id>c1179ba39307ee10959b7fda2bba1082</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>DevTools - AppBuilderSyncScriptIncluideToUiScript</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_test_c1179ba39307ee10959b7fda2bba1082</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-08-05 12:36:47</sys_updated_on>
+    </sys_atf_test>
+    <sys_variable_value action="DELETE" query="document_key=c1179ba39307ee10959b7fda2bba1082"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>220092723b73421816e44a8aa4e45ab1</instance_id>
+        <instance_name>wildxanadu</instance_name>
+        <name>sys_atf_test_c1179ba39307ee10959b7fda2bba1082</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_test"><sys_atf_test action="INSERT_OR_UPDATE"><active>true</active><copied_from/><description/><enable_parameterized_testing>false</enable_parameterized_testing><fail_on_server_error>false</fail_on_server_error><name>DevTools - AppBuilderSyncScriptIncluideToUiScript</name><parameters/><remember/><sn_atf_tg_generated>false</sn_atf_tg_generated><sys_class_name>sys_atf_test</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2025-08-05 12:36:47</sys_created_on><sys_id>c1179ba39307ee10959b7fda2bba1082</sys_id><sys_mod_count>1</sys_mod_count><sys_name>DevTools - AppBuilderSyncScriptIncluideToUiScript</sys_name><sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package><sys_policy/><sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope><sys_update_name>sys_atf_test_c1179ba39307ee10959b7fda2bba1082</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2025-08-05 12:36:47</sys_updated_on></sys_atf_test><sys_variable_value action="delete_multiple" query="document_key=c1179ba39307ee10959b7fda2bba1082"/></record_update>]]></payload>
+        <payload_hash>1046991266</payload_hash>
+        <record_name>DevTools - AppBuilderSyncScriptIncluideToUiScript</record_name>
+        <reverted_from/>
+        <source>bbc283b2937a6210959b7fda2bba108c</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-08-05 12:36:47</sys_created_on>
+        <sys_id>c5179ba39307ee10959b7fda2bba108b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1987a3bf92c0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-08-05 12:36:47</sys_updated_on>
+        <type>Test</type>
+        <update_guid>c9179ba35607ee10b39759294700698a</update_guid>
+        <update_guid_history>c9179ba35607ee10b39759294700698a:1046991266,45179ba32807ee100ec13ae9e7762b84:-1858972158</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-08-05 13:29:56</sys_created_on>
+        <sys_db_object display_value="" name="sys_atf_test">sys_atf_test</sys_db_object>
+        <sys_id>538eec16cc5641688ea226192a89a490</sys_id>
+        <sys_metadata>c1179ba39307ee10959b7fda2bba1082</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>DevTools - AppBuilderSyncScriptIncluideToUiScript</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sys_atf_test_c1179ba39307ee10959b7fda2bba1082</sys_update_name>
+        <sys_update_version display_value="sys_atf_test_c1179ba39307ee10959b7fda2bba1082">c5179ba39307ee10959b7fda2bba108b</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-08-05 13:29:56</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

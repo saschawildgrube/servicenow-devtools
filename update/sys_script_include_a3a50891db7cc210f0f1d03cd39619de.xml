@@ -62,6 +62,7 @@ If bAsync is true, the function will return the progress id of the triggered bac
         <sys_update_name>sys_script_include_a3a50891db7cc210f0f1d03cd39619de</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2025-07-22 15:31:15</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>a3a50891db7cc210f0f1d03cd39619de</id>

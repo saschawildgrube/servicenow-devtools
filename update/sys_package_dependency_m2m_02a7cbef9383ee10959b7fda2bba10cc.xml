@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_package_dependency_m2m">
+    <sys_package_dependency_m2m action="INSERT_OR_UPDATE">
+        <dependency display_value="System (apps/system1)" source="apps/system1">9e554313d12302104f34ba60d8b7c1b2</dependency>
+        <min_version/>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-08-05 11:29:23</sys_created_on>
+        <sys_id>02a7cbef9383ee10959b7fda2bba10cc</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-08-05 11:29:23</sys_updated_on>
+    </sys_package_dependency_m2m>
+</record_update>

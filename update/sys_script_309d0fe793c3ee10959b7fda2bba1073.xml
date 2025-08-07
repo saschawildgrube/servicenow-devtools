@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>true</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>sys_script_include</collection>
+        <condition/>
+        <description>Synchronizes the script and description to the specified UI Script.</description>
+        <execute_function>false</execute_function>
+        <filter_condition table="sys_script_include">sys_scope=d689f6901bd38450a89720a8ec4bcbfd^EQ<item display_table="sys_scope" display_value="DevTools" endquery="false" field="sys_scope" goto="false" newquery="false" operator="=" or="false" value="d689f6901bd38450a89720a8ec4bcbfd"/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </filter_condition>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>sys_script_include - sync to ui script</name>
+        <order>42800</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
+
+	if (IsValidSysId(current.x_snc_devtools_sys_ui_script) == true)
+	{
+		var bSuccess = AppBuilderSyncScriptIncludeToUiScript(
+			current,
+			current.x_snc_devtools_sys_ui_script);
+
+		if (bSuccess == true)
+		{
+			gs.addInfoMessage('Script Include has been synchronized to UI Script.');
+		}
+		else
+		{
+			gs.addErrorMessage('Failed to synchronize Script Include to UI Script.');
+		}
+
+	}
+
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-08-05 11:58:39</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>309d0fe793c3ee10959b7fda2bba1073</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>sys_script_include - sync to ui script</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_309d0fe793c3ee10959b7fda2bba1073</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-08-05 13:35:19</sys_updated_on>
+        <template/>
+        <when>before</when>
+        <x_snc_datasilos_created>false</x_snc_datasilos_created>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=309d0fe793c3ee10959b7fda2bba1073"/>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>309d0fe793c3ee10959b7fda2bba1073</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-08-05 11:58:39</sys_created_on>
+        <sys_id>6e5e0b2b93c3ee10959b7fda2bba10b5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-08-05 11:58:39</sys_updated_on>
+        <table>sys_script</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

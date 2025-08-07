@@ -146,5 +146,6 @@ Currently only Ukrainian is supported.</description>
         <sys_update_name>sys_script_include_a1359f2d83439a1000d5ccc0deaad39f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2025-01-19 13:18:22</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>
