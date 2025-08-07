@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-05-17 17:09:47</sys_created_on>
         <sys_id>645b94b3db0cfc50bc44d844ca961901</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_645b94b3db0cfc50bc44d844ca961901</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-08-07 13:39:33</sys_updated_on>
+        <sys_updated_on>2025-08-07 16:16:00</sys_updated_on>
         <table/>
         <test display_value="DevTools - IsValidDatabaseView">191b1c33db0cfc50bc44d844ca9619b6</test>
         <timeout/>
@@ -49,36 +49,32 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-05-17 17:09:47</sys_created_on>
         <sys_id>9b9b18b3db0cfc50bc44d844ca96192b</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-08-07 13:39:33</sys_updated_on>
-        <value>var strLog = '';&#13;
-function Log(strText)&#13;
+        <sys_updated_on>2025-08-07 16:16:00</sys_updated_on>
+        <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
-	strLog = strLog + "\n" + strText;&#13;
-}&#13;
-(function(outputs, steps, stepResult, assertEqual)&#13;
-{&#13;
-	var RenderValue = x_snc_devtools.RenderValue;&#13;
-&#13;
-	var bResult = true;&#13;
+	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
 	&#13;
+	test.SetResult(true);&#13;
 &#13;
-	function TestCase_IsValidDatabaseView(vInput, vExpected)&#13;
+	function TestCase_IsValidDatabaseView(strView, vExpected)&#13;
 	{&#13;
-		Log('TestCase_IsValidDatabaseView');&#13;
-		Log('Input: '+RenderValue(vInput));&#13;
-		Log('Expected: '+RenderValue(vExpected));&#13;
-		var vResult = IsValidDatabaseView(vInput);&#13;
-		Log('Result  : '+RenderValue(vResult));&#13;
-		if (vResult != vExpected)&#13;
+		function TestCase_IsValidDatabaseView_CheckResult(vInput,vExpected,vResult)&#13;
 		{&#13;
-			bResult = false;&#13;
-			Log('Test case FAILED');&#13;
+			return (vExpected == vResult);&#13;
 		}&#13;
-		Log('');&#13;
+&#13;
+		test.TestCase(&#13;
+			'Function IsValidDatabaseView()',&#13;
+			IsValidDatabaseView,&#13;
+			{&#13;
+				'strView': strView&#13;
+			},&#13;
+			vExpected,&#13;
+			TestCase_IsValidDatabaseView_CheckResult);&#13;
 	}&#13;
-	&#13;
+&#13;
 	TestCase_IsValidDatabaseView('incident_metric',true);&#13;
 	TestCase_IsValidDatabaseView('incident_sla',true);&#13;
 	&#13;
@@ -88,9 +84,7 @@ function Log(strText)&#13;
 	TestCase_IsValidDatabaseView('thisviewdoesnotexist',false);&#13;
 	TestCase_IsValidDatabaseView('thisviewdoesnotexist',false); // Test transaction caching&#13;
 	&#13;
-		&#13;
-	stepResult.setOutputMessage(strLog);&#13;
-	return bResult;&#13;
+	return test.GetResult();&#13;
 	&#13;
 })(outputs, steps, stepResult, assertEqual);</value>
         <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
