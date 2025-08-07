@@ -11,28 +11,49 @@
         <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function IsValidDatabaseView(strView)
 {
+	var cache = new TransactionCacheAPI('DEVTOOLS');
+	var bDatabaseView = cache.GetItem('IsValidDatabaseView_'+strView);
+	if (bDatabaseView !== null)
+	{
+		return bDatabaseView;
+	}		
+
+	bDatabaseView = false;
+
 	var grSDV = new GlideRecord('sys_db_view');
 	grSDV.addQuery('name','=',GetStringValue(strView));
 	grSDV.query();
 	if (grSDV.next() == true)
 	{
-		return true;
+		bDatabaseView = true;
 	}
-	return false;
+	cache.SetItem('IsValidDatabaseView_'+strView,bDatabaseView);
+	return bDatabaseView;
 }
 ]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-05-17 17:06:01</sys_created_on>
         <sys_id>50cad8fbdbc8fc50bc44d844ca96198c</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>IsValidDatabaseView</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_50cad8fbdbc8fc50bc44d844ca96198c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-08-28 12:58:45</sys_updated_on>
+        <sys_updated_on>2025-08-07 13:38:33</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>50cad8fbdbc8fc50bc44d844ca96198c</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-08-07 13:37:22</sys_created_on>
+        <sys_id>0c28399c931ba250959b7fda2bba1044</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-08-07 13:37:22</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>
