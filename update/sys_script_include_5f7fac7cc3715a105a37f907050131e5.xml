@@ -9,13 +9,14 @@
         <mobile_callable>false</mobile_callable>
         <name>RunDefaultTestSuite</name>
         <sandbox_callable>false</sandbox_callable>
-        <script><![CDATA[function RunDefaultTestSuite(vApp)
+        <script><![CDATA[function RunDefaultTestSuite(vApp,bDetailed)
 {
 	var grApp = GetAppRecord(vApp);
 	if (IsValidRecord(grApp) == false)
 	{
 		return false;
 	}
+	bDetailed = GetBoolValue(bDetailed);
 
 	var strDefaultTestSuiteName = GetCleanAppName(grApp.name);
 
@@ -28,20 +29,54 @@
 		return false;
 	}
 
-	return RunTestSuite(grTestSuite);
+	var grResult = RunTestSuite(grTestSuite);
+	if (grResult == false)
+	{
+		return false;
+	}
+	var result = {};
+	if (bDetailed == true)
+	{
+		result = Clone(grResult);
+	}
+	else
+	{
+		result.success = GetStringValue(grResult.success);
+		result.start_time = GetStringValue(grResult.start_time);
+		result.end_time = GetStringValue(grResult.end_time);
+		result.error_count = GetIntegerValue(grResult.error_count);
+		result.failure_count = GetIntegerValue(grResult.failure_count);
+		result.success_count = GetIntegerValue(grResult.success_count);
+		result.skip_count = GetIntegerValue(grResult.skip_count);
+		result.test_suite = GetStringValue(grResult.end_time);
+	}
+	result.app_name = GetStringValue(grApp.name);
+	result.suite_name = strDefaultTestSuiteName;
+	return result;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-11-08 11:51:39</sys_created_on>
         <sys_id>5f7fac7cc3715a105a37f907050131e5</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>RunDefaultTestSuite</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_5f7fac7cc3715a105a37f907050131e5</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-11-08 11:55:44</sys_updated_on>
+        <sys_updated_on>2025-08-08 14:04:04</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>5f7fac7cc3715a105a37f907050131e5</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-08-08 14:04:04</sys_created_on>
+        <sys_id>01d70fe893972650959b7fda2bba1039</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-08-08 14:04:04</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>
