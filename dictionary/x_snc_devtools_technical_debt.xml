@@ -4,12 +4,13 @@
             <choice>
                 <element inactive_on_update="false" label="Obsolete Code" value="code_obsolete"/>
                 <element inactive_on_update="false" label="Known Defect" value="code_defect"/>
-                <element inactive_on_update="false" label="Naming Inconsistency" value="naming_inconsistency"/>
-                <element inactive_on_update="false" label="Unfinished Work" value="work_unfinished"/>
+                <element inactive_on_update="false" label="Code Naming Inconsistency" value="code_naming_inconsistency"/>
+                <element inactive_on_update="false" label="Unfinished Work" value="code_incomplete"/>
+                <element inactive_on_update="false" label="Outdated Code" value="code_outdated"/>
                 <element inactive_on_update="false" label="Missing Documentation" value="documentation_missing"/>
                 <element inactive_on_update="false" label="Outdated Coding Pattern" value="code_pattern_outdated"/>
                 <element inactive_on_update="false" label="Data Model Deficiency" value="datamodel_deficiency"/>
-                <element inactive_on_update="false" label="Deprecation" value="deprecation"/>
+                <element inactive_on_update="false" label="Deprecation" value="code_deprecated"/>
                 <element inactive_on_update="false" label="Outdated Documentation" value="documentation_outdated"/>
             </choice>
         </element>
