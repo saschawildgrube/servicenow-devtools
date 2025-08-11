@@ -7,8 +7,11 @@
                 <element inactive_on_update="false" label="Code Naming Inconsistency" value="code_naming_inconsistency"/>
                 <element inactive_on_update="false" label="Unfinished Work" value="code_incomplete"/>
                 <element inactive_on_update="false" label="Outdated Code" value="code_outdated"/>
-                <element inactive_on_update="false" label="Missing Documentation" value="documentation_missing"/>
+                <element inactive_on_update="false" label="Missing Documentation" value="documentation_coverage"/>
                 <element inactive_on_update="false" label="Outdated Coding Pattern" value="code_pattern_outdated"/>
+                <element inactive_on_update="false" label="Outdated Tests" value="test_outdated"/>
+                <element inactive_on_update="false" label="Missing Tests" value="test_coverage"/>
+                <element inactive_on_update="false" label="Flaky Tests" value="test_flakiness"/>
                 <element inactive_on_update="false" label="Data Model Deficiency" value="datamodel_deficiency"/>
                 <element inactive_on_update="false" label="Deprecation" value="code_deprecated"/>
                 <element inactive_on_update="false" label="Outdated Documentation" value="documentation_outdated"/>
