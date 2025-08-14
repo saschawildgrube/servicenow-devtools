@@ -73,36 +73,29 @@
 
 		var strLinks = '';
 
-		var strStudioLink = GetInstanceUrl() + '$studio.do?sysparm_transaction_scope=' + app.sys_id;
-		if (strLinks != '')
-		{
-			strLinks += '&#160;|&#160;';
-		}
-		strLinks += HtmlRenderLink(strStudioLink,'Studio',true);	
+		var strServiceNowStudioLink = GetInstanceUrl()
+			+ '/now/servicenow-studio/builder%3Ftable%3Dsys_app%26sysId%3D' + app.sys_id;
+		strLinks += HtmlRenderLink(strServiceNowStudioLink,'ServiceNow Studio',true);	
+
+		var strClassicStudioLink = GetInstanceUrl()
+			+ '$studio.do?sysparm_transaction_scope=' + app.sys_id;
+		strLinks += '&#160;|&#160;';
+		strLinks += HtmlRenderLink(strClassicStudioLink,'Classic Studio',true);	
 
 		var strLogUrl = GetInstanceListUrl('syslog_app_scope','devtools','sys_scope='+app.sys_id);
-		if (strLinks != '')
-		{
-			strLinks += '&#160;|&#160;';
-		}
+		strLinks += '<br/>';
 		strLinks += HtmlRenderLink(strLogUrl,'Log',true);	
 
 		var strDependencyUrl = 
 			GetInstanceUrl() + 'nav_to.do?uri=%2Fx_snc_devtools_dependencies.do%3Fpackage%3D'+app.sys_id;
-		if (strLinks != '')
-		{
-			strLinks += '&#160;|&#160;';
-		}
+		strLinks += '&#160;|&#160;';
 		strLinks += HtmlRenderLink(strDependencyUrl,'Dependencies',true);		
 
 		var strDefaultTestSuiteSysId = GetAppDefaultTestSuite(app.sys_id);
 		if (IsValidSysId(strDefaultTestSuiteSysId) == true)
 		{
 			var strTestSuiteUrl = GetStringValue(GetInstanceRecordUrl('sys_atf_test_suite',strDefaultTestSuiteSysId,'devtools'));
-			if (strLinks != '')
-			{
-				strLinks += '&#160;|&#160;';
-			}
+			strLinks += '&#160;|&#160;';
 			strLinks += HtmlRenderLink(strTestSuiteUrl,'Test Suite',true);
 		}			
 		
@@ -115,10 +108,7 @@
 				strEndpoint = GetStringValue(grPage.name)+'.do';
 			}
 			var strManualLink = GetInstanceUrl() + 'nav_to.do?uri=%2F' + strEndpoint;
-			if (strLinks != '')
-			{
-				strLinks += '&#160;|&#160;';
-			}
+			strLinks += '&#160;|&#160;';
 			strLinks += HtmlRenderLink(strManualLink,'Manual',true);
 		}
 
@@ -126,10 +116,7 @@
 		var strDocUrl = GetStringValue(app.x_snc_devtools_documentation_url);
 		if (strDocUrl != '')
 		{
-			if (strLinks != '')
-			{
-				strLinks += '&#160;|&#160;';
-			}
+			strLinks += '&#160;|&#160;';
 			strLinks += HtmlRenderLink(strDocUrl,'Docs',true);
 		}
 /*
@@ -255,14 +242,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-01-19 12:31:40</sys_created_on>
         <sys_id>37fa673b83cf165000d5ccc0deaad33b</sys_id>
-        <sys_mod_count>11</sys_mod_count>
+        <sys_mod_count>16</sys_mod_count>
         <sys_name>HtmlRenderApplications</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_37fa673b83cf165000d5ccc0deaad33b</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-08-01 15:38:27</sys_updated_on>
+        <sys_updated_on>2025-08-14 16:06:02</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
