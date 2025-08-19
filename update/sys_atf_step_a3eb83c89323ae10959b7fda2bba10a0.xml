@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-08-19 11:20:44</sys_created_on>
         <sys_id>a3eb83c89323ae10959b7fda2bba10a0</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_a3eb83c89323ae10959b7fda2bba10a0</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-08-19 11:25:22</sys_updated_on>
+        <sys_updated_on>2025-08-19 15:43:42</sys_updated_on>
         <table/>
         <test display_value="DevTools - IsCodeRecord">67ebcf889323ae10959b7fda2bba10f3</test>
         <timeout/>
@@ -35,9 +35,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-08-19 11:20:44</sys_created_on>
         <sys_id>27eb83c89323ae10959b7fda2bba10a3</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-08-19 11:25:22</sys_updated_on>
+        <sys_updated_on>2025-08-19 15:43:42</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -77,6 +77,30 @@
 	TestCase_IsCodeRecord(grApp.sys_id,true);&#13;
 	TestCase_IsCodeRecord(grApp,true);&#13;
 &#13;
+&#13;
+	var grPackage = new GlideRecord('x_snc_devtools_transporter_package');	&#13;
+	grPackage.initialize();&#13;
+	grPackage.name = 'Test DevTools - IsCodeRecord';&#13;
+	grPackage.id_suffix = 'test_devtool_iscoderecord';&#13;
+	grApp = GetAppRecord('x_snc_devtools');&#13;
+	grPackage.sys_scope = grApp.sys_id;&#13;
+	var strPackageSysId = grPackage.insert();&#13;
+	test.Log(grPackage);&#13;
+&#13;
+	var grTest = new GlideRecord('x_snc_devtools_test');&#13;
+	grTest.initialize();&#13;
+	grTest.name = 'Test DevTools';&#13;
+	grTest.value = 'Hello World';&#13;
+	var strTestSysId = grTest.insert();&#13;
+	test.Log(grTest);&#13;
+&#13;
+	TestCase_IsCodeRecord(grTest.sys_id,false);&#13;
+	TestCase_IsCodeRecord(grTest,false);&#13;
+&#13;
+	RecordTransporterRecordPack(grPackage,grTest);&#13;
+&#13;
+	TestCase_IsCodeRecord(grTest.sys_id,true);&#13;
+	TestCase_IsCodeRecord(grTest,true);	&#13;
 &#13;
 &#13;
 	return test.GetResult();&#13;
