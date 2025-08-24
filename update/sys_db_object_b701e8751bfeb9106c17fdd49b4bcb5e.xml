@@ -9,6 +9,7 @@
         <create_access>false</create_access>
         <create_access_controls>true</create_access_controls>
         <delete_access>false</delete_access>
+        <filter_extension/>
         <is_extendable>false</is_extendable>
         <label>Transporter Package</label>
         <live_feed_enabled>false</live_feed_enabled>
@@ -17,7 +18,7 @@
         <provider_class/>
         <read_access>true</read_access>
         <scriptable_table>false</scriptable_table>
-        <super_class display_value="Application File" name="sys_metadata">51550313d12302104f34ba60d8b7c198</super_class>
+        <super_class display_value="Application File" name="sys_metadata">3b833330e11312105590bd68cbbecb98</super_class>
         <sys_class_name>sys_db_object</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-11-29 14:04:23</sys_created_on>

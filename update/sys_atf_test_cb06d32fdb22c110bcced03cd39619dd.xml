@@ -21,6 +21,7 @@
         <sys_update_name>sys_atf_test_cb06d32fdb22c110bcced03cd39619dd</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2022-04-05 14:54:10</sys_updated_on>
+        <test_origin/>
     </sys_atf_test>
     <sys_variable_value action="delete_multiple" query="document_key=cb06d32fdb22c110bcced03cd39619dd"/>
 </record_update>

@@ -21,6 +21,7 @@
         <sys_update_name>sys_atf_test_14d99af1974a6510a6a07767f053af76</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2023-04-07 19:52:28</sys_updated_on>
+        <test_origin/>
     </sys_atf_test>
     <sys_variable_value action="delete_multiple" query="document_key=14d99af1974a6510a6a07767f053af76"/>
 </record_update>

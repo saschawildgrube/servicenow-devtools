@@ -9,6 +9,7 @@
         <create_access>false</create_access>
         <create_access_controls>true</create_access_controls>
         <delete_access>false</delete_access>
+        <filter_extension/>
         <is_extendable>false</is_extendable>
         <label>ServiceNow App</label>
         <live_feed_enabled>false</live_feed_enabled>
@@ -17,7 +18,7 @@
         <provider_class/>
         <read_access>true</read_access>
         <scriptable_table>false</scriptable_table>
-        <super_class display_value="Application" name="cmdb_ci_appl">1df74313d16302104f34ba60d8b7c159</super_class>
+        <super_class display_value="Application" name="cmdb_ci_appl">5095f770e15312105590bd68cbbecbbf</super_class>
         <sys_class_name>sys_db_object</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-06-06 09:18:18</sys_created_on>

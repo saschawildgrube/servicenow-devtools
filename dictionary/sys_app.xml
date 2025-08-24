@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
-    <element attributes="metadata_link_exempt=true,synch_attachments=true,update_synch=true" audit="true" db_object_id="85b643d7d12302104f34ba60d8b7c19e" extends="sys_scope" label="Custom Application" max_length="40" name="sys_app" text_index="true" type="collection">
-        <element label="Maintainer" max_length="80" name="x_snc_devtools_maintainer" type="string"/>
-        <element label="Show Stopper" max_length="40" name="x_snc_devtools_showstopper" type="boolean"/>
-        <element label="Details" max_length="2000" name="x_snc_devtools_showstopper_details" type="string"/>
-        <element label="Repository" max_length="1024" name="x_snc_devtools_repo_url" type="url"/>
+    <element attributes="metadata_link_exempt=true,synch_attachments=true,update_synch=true" audit="true" db_object_id="907437f4e11312105590bd68cbbecb09" extends="sys_scope" label="Custom Application" max_length="40" name="sys_app" text_index="true" type="collection">
         <element label="Maintainer Email" max_length="100" name="x_snc_devtools_maintainer_email" type="email"/>
+        <element label="Show Stopper" max_length="40" name="x_snc_devtools_showstopper" type="boolean"/>
         <element label="Documentation" max_length="1024" name="x_snc_devtools_documentation_url" type="url"/>
+        <element label="Maintainer" max_length="80" name="x_snc_devtools_maintainer" type="string"/>
+        <element label="Repository" max_length="1024" name="x_snc_devtools_repo_url" type="url"/>
+        <element label="Details" max_length="2000" name="x_snc_devtools_showstopper_details" type="string"/>
     </element>
 </database>

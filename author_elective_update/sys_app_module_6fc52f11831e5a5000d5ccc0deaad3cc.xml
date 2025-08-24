@@ -66,7 +66,7 @@
         <update_guid_history>fc29522258d3a610f1c6b5e53eec5309:1000549541,507b17dfce64a610fc33e1c9a9b1c71e:0,071ff12ff8186e50370ce5b4fe1a4da6:0,3936b92bc7d46e50c838984b6e618708:0,895e50831894ea500bde970f6d27e82d:0,78b4c40f29d0ea509be454f5841448e0:0,6ef5af18f1d8ee109ba6a762e6a998b1:0,dcf31b50c8d86e10b6282e66a4311824:0,099c19b403c4a61092693449305bd7cf:0,544455f87644a610fb53e09daf8dd015:0,7b5106e8aecc26107d569ded876c9bd5:0,bd36811b403fd290d32a6022f8cae077:0,f887f658893f5250aa16d7ae9cf36479:0,e53b2ad002fb52505d10e18721d19a15:0,7cfd30664b139e10b12fee01ebd36a12:0,2dc9bc6643df5e108289ebd72e3c3327:0,30500c84019f521084ad3c15bb5f66ce:0,23e96b770d0f5210ced463801e0a12b8:0,5c2aec3e2b7e1250130183f76b8c72fa:0,5176bc6ee0b6de1059e022e55ef54cc8:0,3c8a9b00ec32161026cb070df2f9bed4:0,68465f0085fed21026c5e36fa9927402:0,98bac5cce72e1a10d57c376f5f907aa5:0,35a345cf881ed210a5fa4d7351968bf3:1313515940</update_guid_history>
     </sys_update_version>
     <sys_metadata_delete action="INSERT_OR_UPDATE">
-        <sys_audit_delete display_value="Access Analyzer">e2791e2293d3a610959b7fda2bba10fa</sys_audit_delete>
+        <sys_audit_delete display_value="">e2791e2293d3a610959b7fda2bba10fa</sys_audit_delete>
         <sys_class_name>sys_metadata_delete</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-08-14 15:49:25</sys_created_on>

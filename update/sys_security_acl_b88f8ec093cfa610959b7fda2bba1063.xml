@@ -5,6 +5,7 @@
         <advanced>false</advanced>
         <applies_to/>
         <condition/>
+        <controlled_by_refs/>
         <decision_type>allow</decision_type>
         <description/>
         <local_or_existing>Local</local_or_existing>

@@ -21,6 +21,7 @@
         <sys_update_name>sys_atf_test_75c102da1b6c1c10a89720a8ec4bcb8f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2020-05-05 12:54:28</sys_updated_on>
+        <test_origin/>
     </sys_atf_test>
     <sys_variable_value action="delete_multiple" query="document_key=75c102da1b6c1c10a89720a8ec4bcb8f"/>
 </record_update>

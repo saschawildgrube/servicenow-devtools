@@ -9,6 +9,7 @@
         <create_access>false</create_access>
         <create_access_controls>true</create_access_controls>
         <delete_access>false</delete_access>
+        <filter_extension/>
         <is_extendable>false</is_extendable>
         <label>Shared Application</label>
         <live_feed_enabled>false</live_feed_enabled>

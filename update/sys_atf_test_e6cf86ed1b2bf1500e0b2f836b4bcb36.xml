@@ -21,6 +21,7 @@
         <sys_update_name>sys_atf_test_e6cf86ed1b2bf1500e0b2f836b4bcb36</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2024-01-05 10:15:36</sys_updated_on>
+        <test_origin/>
     </sys_atf_test>
     <sys_variable_value action="delete_multiple" query="document_key=e6cf86ed1b2bf1500e0b2f836b4bcb36"/>
 </record_update>

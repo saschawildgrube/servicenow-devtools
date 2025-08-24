@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
     <sys_atf_step action="INSERT_OR_UPDATE">
         <active>false</active>
+        <callable_outputs/>
         <copied_from/>
         <description>Impersonate the user: {{Step 5: Record Query (Deprecated).First record}}</description>
         <display_name>Impersonate</display_name>

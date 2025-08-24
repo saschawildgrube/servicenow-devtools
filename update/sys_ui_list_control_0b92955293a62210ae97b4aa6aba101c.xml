@@ -28,6 +28,7 @@
         <omit_if_empty>false</omit_if_empty>
         <omit_links>false</omit_links>
         <omit_new_button>false</omit_new_button>
+        <omit_related_list_count>false</omit_related_list_count>
         <related_list>x_snc_devtools_dependency.dependency</related_list>
         <sys_class_name>sys_ui_list_control</sys_class_name>
         <sys_created_by>admin</sys_created_by>
