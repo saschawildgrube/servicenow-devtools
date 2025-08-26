@@ -27,8 +27,60 @@
 		return false;
 	}
 
-	var strClassName = GetValue(payload,'record_update','table');
+	var record_update = GetValue(payload,'record_update');
+	if (IsObject(record_update) == false)
+	{
+		return false;
+	}
+
+	var strClassName = GetValue(record_update,'table');
+	if (strClassName == '')
+	{
+		return [];
+	}
+
 	var strSysId = GetValue(payload,'record_update',strClassName,'sys_id');
+
+	if (IsValidSysId(strSysId) == false)
+	{
+		var aClassNames = GetKeys(record_update);
+		for (var nClassName = 0; nClassName < aClassNames.length; nClassName++)
+		{
+			var strClassName = aClassNames[nClassName];
+			var aRecordPayloads = GetArrayValue(
+				GetValue(payload,'record_update',strClassName));
+
+			var aSysIds = [];
+
+			for (var nPayload = 0; nPayload < aRecordPayloads.length; nPayload++)
+			{
+				var record_payload = GetValue(payload,'record_update',strClassName,nPayload)
+				var strSysId = GetValue(record_payload,'sys_id');
+				if (IsValidSysId(strSysId))
+				{
+					aSysIds = ArrayPushUnique(aSysIds,strSysId);
+				}
+
+			}
+
+			for (var nSysId = 0; nSysId < aSysIds.length; nSysId++)
+			{
+				var strSysId = aSysIds[nSysId];
+				var grRecord = GetRecord(strClassName,strSysId);
+				if (IsValidRecord(grRecord) == true)
+				{
+					var record = Clone(grRecord);
+					if (GetStringValue(record.sys_class_name) == '')
+					{
+						record.sys_class_name = strClassName;
+					}
+					aRecords.push(record);
+				}	
+			}
+		}
+		return aRecords; 
+	}
+
 	var grRecord = GetRecord(strClassName,strSysId);
 	if (IsValidRecord(grRecord) == true)
 	{
@@ -94,14 +146,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-12-27 13:43:47</sys_created_on>
         <sys_id>ea3e5564c3329a505a37f907050131e3</sys_id>
-        <sys_mod_count>15</sys_mod_count>
+        <sys_mod_count>28</sys_mod_count>
         <sys_name>GetRecordsFromUpdateXml</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_ea3e5564c3329a505a37f907050131e3</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-06-08 10:04:14</sys_updated_on>
+        <sys_updated_on>2025-08-26 08:23:18</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
