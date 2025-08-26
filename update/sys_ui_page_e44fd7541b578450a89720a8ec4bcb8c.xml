@@ -689,6 +689,7 @@ function YourLengthyProcess(strRecordSysId)
 		<li>The baselining procedure now also considers "Release Notes" properly if the "h2" tag contains the "toc-ignore-children" attribute.</li>
 		<li>Introduced Technical Debt types.</li>
 		<li>DocumentationAPI::RenderTechnicalDebt() renders technical debt items grouped by type.</li>
+		<li>DocumentationAPI::RenderInstanceScanChecks() renders only active Checks.</li>
 		<li>InstallerAPI::RecordInsertOrUpdate() now prevents the use of a Sys ID in the query.</li>
 		<li>AppBuilderPlatform() now creates the "Nightly QA" Scheduled Job so that the checks and tests only run on "dev" and "test" instances.</li>
 		<li>AppBuilderPlatform() now adds the execution of the ACL Query Auditor script to the AppInstall() biolerplate code (see KB2046494).</li>
@@ -2947,14 +2948,14 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>2246</sys_mod_count>
+        <sys_mod_count>2247</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-08-26 15:23:27</sys_updated_on>
+        <sys_updated_on>2025-08-26 15:45:40</sys_updated_on>
     </sys_ui_page>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>e44fd7541b578450a89720a8ec4bcb8c</id>
