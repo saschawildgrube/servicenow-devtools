@@ -12,7 +12,10 @@
         <script><![CDATA[function GetEvaluatorErrorExceptionPatterns()
 {
 	var aPatterns = [
-		'ShowRecentEvaluatorErrors', // this is to avoid the warning during DevTools installation ;)
+		// this is to avoid the warning during DevTools installation ;)
+		'ShowRecentEvaluatorErrors',
+
+		// Pre-Yokohama
 		'"referrerpolicy" is not defined',
 		'browser.isMSIE11',
 		'devstudio_config.xml',
@@ -111,7 +114,22 @@
 		'"currentStep" is not defined.',
 		'"errMsg" is not defined.',
 		'"props" is not defined.',
-		'Cannot read property "currentAlias" from undefined'
+		'Cannot read property "currentAlias" from undefined',
+
+		// Yokohama
+		"var result = dep.getED().isReadOnly() ? 'true' : 'false';",
+		"var tcs = del.getAttribute('tableChoicesScript');",
+		'06a6c0b2eb20010', // 06a6c0b2eb2001006a668c505206fe63
+
+		// Zurich
+		'"inputvis" is not defined.',
+		'9566b90ceb03110', // 9566b90ceb0311003623666cd206fe8c
+		'4659d132d723210', // 4659d132d7232100b6bddb0c8252039e
+		'64e5e4737322130', // 64e5e473732213002cb26fbc1bf6a7ef
+		'28fc80a77727111', // 28fc80a7772711104cdac0c23e5a9903
+		'209fc2f1c301120', // 209fc2f1c3011200f7d1ca3adfba8f4b
+		'8f5128567740121', // 8f51285677401210e45dd86bba5a99a1
+
 	];
 	return aPatterns;
 }]]></script>
@@ -119,14 +137,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-09-13 12:47:41</sys_created_on>
         <sys_id>813dabbc1bddf110cd6153d16b4bcb3a</sys_id>
-        <sys_mod_count>100</sys_mod_count>
+        <sys_mod_count>110</sys_mod_count>
         <sys_name>GetEvaluatorErrorExceptionPatterns</sys_name>
-        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
-        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_813dabbc1bddf110cd6153d16b4bcb3a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-08-04 15:56:34</sys_updated_on>
+        <sys_updated_on>2025-09-14 19:33:26</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

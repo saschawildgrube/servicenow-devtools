@@ -85,7 +85,7 @@ The encoded query shall prevent Instance Scan to load those records where the ch
 		for (var nEP = 0; nEP < eps.length; nEP++)
 		{
 			var ep = eps[nEP];
-			if (IsValidFunction(ep.GetEncodedQueryToPreventUselessChecks))
+			if (IsFunction(ep.GetEncodedQueryToPreventUselessChecks))
 			{
 				rules = ep.GetEncodedQueryToPreventUselessChecks(rules);
 			}
@@ -115,14 +115,25 @@ The encoded query shall prevent Instance Scan to load those records where the ch
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-07-30 12:30:38</sys_created_on>
         <sys_id>bb6fec58db730a90f0f1d03cd396196b</sys_id>
-        <sys_mod_count>18</sys_mod_count>
+        <sys_mod_count>19</sys_mod_count>
         <sys_name>InstanceScanGetEncodedQueryToPreventUselessChecks</sys_name>
-        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
-        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_bb6fec58db730a90f0f1d03cd396196b</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-08-28 12:58:56</sys_updated_on>
+        <sys_updated_on>2025-08-07 11:23:37</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>bb6fec58db730a90f0f1d03cd396196b</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-08-07 11:23:37</sys_created_on>
+        <sys_id>7c899d149397a250959b7fda2bba10e8</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-08-07 11:23:37</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>

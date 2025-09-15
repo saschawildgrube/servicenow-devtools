@@ -24,7 +24,7 @@
 	<p>Special thanks go to&#160;<a href="mailto:k.janssen@posteo.de">Kevin Janssen</a>&#160;for his contribution to the AzureDevOpsAPI class and&#160;<a href="https://github.com/denysbulakh/transliterate-ukrainian/blob/main/translit.js">Denys Bulakh</a>&#160;who provided the groundwork for the Ukrainian transliteration mechanism in function Transliterate().</p>
 
 	<h2>Table of Contents</h2>
-	<g2:no_escape>$[HtmlRenderTableOfContents()]</g2:no_escape>	
+	<g2:no_escape>$[x_snc_devtools.HtmlRenderTableOfContents()]</g2:no_escape>	
 
 	<h2>Disclaimer</h2>
 	<g2:no_escape>$[docapi.RenderDisclaimer()]</g2:no_escape>	
@@ -35,7 +35,7 @@
 	<ul>
 		<g2:no_escape>$[
 			docapi.RenderSystemRequirements(
-				'Xanadu,Yokohama',
+				'Yokohama,Zurich',
 				true,
 				AppGetDependencies());
 		]</g2:no_escape>	
@@ -71,7 +71,7 @@ gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData
 			</ol>
 		</li>
 	</ol>
-	
+
 	<h2>Features</h2>
 
 	<h3>Script Includes and UI Scripts</h3>
@@ -667,10 +667,10 @@ function YourLengthyProcess(strRecordSysId)
 	<h3>Business Rules</h3>
 	<g2:no_escape>$[docapi.RenderBusinessRules()]</g2:no_escape>	
 
-	<h3>Dependencies</h3>
+	<h2>Dependencies</h2>
 	<g2:no_escape>$[docapi.RenderDependencies()]</g2:no_escape>		
 
-	<h3>Technical Debt</h3>
+	<h2>Technical Debt</h2>
 	<g2:no_escape>$[docapi.RenderTechnicalDebt()]</g2:no_escape>			
 	
 	<h2>License</h2>
@@ -678,6 +678,57 @@ function YourLengthyProcess(strRecordSysId)
 	<g2:no_escape>$[docapi.RenderLicense()]</g2:no_escape>
 	
 	<h2 toc-ignore-children="true">Release Notes</h2>
+
+	<h3>1.133.0 - TODO</h3>
+	<ol>
+		<li>TODO: Document changes here...</li>
+	</ol>
+
+
+	<h3>1.132.0 - 2025-09-15</h3>
+	<ol>
+		<li>Xanadu is no longer actively supported.</li>
+		<li>DevTools is fully tested with Zurich.</li>
+		<li>IsValidFunction() is deprecated as it is a duplicate of IsFunction().</li>
+		<li>GetInstanceRecordPath() is deprecated and replaced by GetRecordPath().</li>
+		<li>Added functions IsCodeRecord() and IsDataRecord().</li>
+		<li>Added function GetSysIdsFromString().</li>
+		<li>Added function GetStudioPath().</li>
+		<li>Added UI Script GetRecordPath().</li>
+		<li>Added UI Script GetRecordUri().</li>
+		<li>Added UI Script Deprecated() to mark deprecated code execution on the client-side.</li>
+		<li>The baselining procedure now also considers "Release Notes" properly if the "h2" tag contains the "toc-ignore-children" attribute.</li>
+		<li>Introduced Technical Debt types.</li>
+		<li>GetRecordPath() now also supports the params parameter to add more parameters to the url path.</li>
+		<li>DocumentationAPI::RenderTechnicalDebt() renders technical debt items grouped by type.</li>
+		<li>DocumentationAPI::RenderInstanceScanChecks() renders only active Checks.</li>
+		<li>InstallerAPI::RecordInsertOrUpdate() now prevents the use of a Sys ID in the query.</li>
+		<li>AppBuilderPlatform() now creates the "Nightly QA" Scheduled Job so that the checks and tests only run on "dev" and "test" instances.</li>
+		<li>AppBuilderPlatform() now adds the execution of the ACL Query Auditor script to the AppInstall() biolerplate code (see KB2046494).</li>
+		<li>IsValidDatabaseView() is now using transaction cache which makes it way faster if executed repeatedly during a single transaction.</li>
+		<li>InstanceScanSuiteOnApp() now also includes the application name in the result object.</li>
+		<li>Added error logging to InstanceScanSuiteOnRecord() and InstanceScanCheckOnRecord().</li>
+		<li>RunDefaultTestSuite() and RunDefaultTestSuitesWithDependencies() now accept the bDetailed parameter to control the verbosity of the result object.</li>
+		<li>IsOotbRecord() incorrectly identified auto-generated Field Labels (sys_documentation) records as OOTB for in-scope Dictionary Entries if the "system" user is set in sys_created_by. This has been fixed.</li>
+		<li>GitLabAPI::SetCredential() is now performing proper error handling.</li>
+		<li>NightlyQA() now produces more readable and more condensed log output.</li>
+		<li>Added more patterns to GetEvaluatorErrorExceptionPatterns().</li>
+		<li>GetRecordsFromUpdateXml() and subsequently GetAppUncommittedFiles() can now handle compound Update XMLs where multiple Application Files are packed into a single XML payload (e.g. Flow Actions).</li>
+		<li>GetRecordsFromUpdateXml() is now accessible from all scopes.</li>
+		<li>ATF tests for GetRolesFromUser() and GetRoleNamesFromUser() now ignore the snc_required_script_writer_permission role (which is introduced in Zurich).</li>
+		<li>Added new section in link directory "IDEs".</li>
+		<li>Added "ServiceNow Studio" to "IDE" menu.</li>
+		<li>HtmlRenderApplications() and the Application Overview page now also shows the link to the new ServiceNow Studio.</li>
+		<li>HtmlRenderApplications() and the Application Overview page now displays date and time according to the user's time zone setting.</li>
+		<li>GetParentRecord() and the "Up" button now support Data Policy Rules.</li>
+		<li>Added a DevTools form view for "Field Labels" (sys_documentation).</li>
+		<li>Added more exception handling in HttpRequest().</li>
+		<li>Added link to replication.do in the DevTools menu.</li>
+		<li>AppInstall() now sets System Property "glide.scan.queue.enabled" to false due to a bug in Zurich that would cause scans to fail when invoked via REST API.</li>
+		<li>The Test "DevTools - Test data sanity" now also checks for temporaray Instance Scan Suites called "DevTools.TEMP".</li>
+		<li>"Dependencies" and "Technical Debt" are now chapters on the highest level (instead of subchapters of "Reference") in template_manual.</li> 
+		<li>Added syntax editor macro for HtmlRenderPageApplications().</li>
+	</ol>
 
 	<h3>1.131.0 - 2025-08-07</h3>
 	<ol>
@@ -696,7 +747,7 @@ function YourLengthyProcess(strRecordSysId)
 		<li>GetTableFromSysId() now also searches kb_knowledge and kb_knowledge_base with priority.</li>
 		<li>HtmlRenderApplications() now shows the number of uncommitted files.</li>
 		<li>HtmlRenderApplications() now renders the number of failed tests highlighted if not zero.</li>
-		<li>GetListRecord() did not works properly if multiple list views are defined for a table (with and without a "parent"). This has been fixed.</li> 
+		<li>GetListRecord() did not work properly if multiple list views are defined for a table (with and without a "parent"). This has been fixed.</li> 
 		<li>ATF Test Step Config "DevTools - Check scoped app sanity" no longer checks role descriptions as this is covered in CodeSanity since version 2.8.0 release on 2023-03-07.</li>
 		<li>ATF Test for RenderValue() no longer uses kb_knowledge records as test data as it may produce false-negatives depending on instance configuration.</li> 
 		<li>Improved output of RenderRecordSummary() when rendering sys_metadata records.</li>
@@ -2913,14 +2964,14 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>2212</sys_mod_count>
+        <sys_mod_count>2259</sys_mod_count>
         <sys_name>manual</sys_name>
-        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
-        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-08-07 06:56:58</sys_updated_on>
+        <sys_updated_on>2025-09-15 10:01:55</sys_updated_on>
     </sys_ui_page>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>e44fd7541b578450a89720a8ec4bcb8c</id>

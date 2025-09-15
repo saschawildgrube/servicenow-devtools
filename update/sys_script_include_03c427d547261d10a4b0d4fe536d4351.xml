@@ -13,6 +13,7 @@
 {
 	if (InstanceScanIsRunning() == true)
 	{
+		LogWarning('InstanceScanSuiteOnRecord: Another Instance Scan is already running!');
 		return false;
 	}
 
@@ -20,31 +21,41 @@
 	strRecordTable = GetStringValue(strRecordTable);
 	strRecordSysId = GetStringValue(strRecordSysId);
 	
-	if (IsValidSysId(strSuiteSysId) == false || strSuiteSysId == '')
+	if (IsValidSysId(strSuiteSysId) == false)
 	{
+		LogError('InstanceScanSuiteOnRecord: Instance Scan Suite is not specified!');
 		return false;
 	}
 	if (IsValidTable(strRecordTable) == false)
 	{
+		LogError('InstanceScanSuiteOnRecord: "+strRecordTable+" is not a valid table!');
 		return false;
 	}
 	if (IsValidSysId(strRecordSysId) == false)
 	{
+		LogError('InstanceScanSuiteOnRecord: Record to be scanned is not specified!');
 		return false;
 	}
 	
 	var grRecord = GetRecord(strRecordTable,strRecordSysId);
 	if (IsValidRecord(grRecord) == false)
 	{
+		LogError('InstanceScanSuiteOnRecord: Record could not be found!');
 		return false;
 	}	
 	
-	var grSuite = new GlideRecord('scan_suite');
+	var grSuite = GetRecord('scan_check_suite',strSuiteSysId);
+	if (IsValidRecord(grSuite) == false)
+	{
+		LogError('InstanceScanSuiteOnRecord: Suite could not be found!');
+		return false;
+	}	
 	
 	var su = new sn_instance_scan.ScanUtil()
 	var strComboSysId = su.getOrCreateComboFromSuiteAndTargets(strSuiteSysId, strRecordTable, [strRecordSysId]);
 	if (IsValidSysId(strComboSysId) == false)
 	{
+		LogError('InstanceScanSuiteOnRecord: su.getOrCreateComboFromSuiteAndTargets() did not provide a valid combo Sys ID.');
 		return false;
 	}
 	
@@ -71,9 +82,10 @@
 	strUpdateSetSysId = GlideRecordInsert(grUS);
 	if (IsValidSysId(strUpdateSetSysId) == false)
 	{
+		LogError('InstanceScanSuiteOnRecord: Inserting the Update Set failed.');
 		return false;
 	}
-	
+
 	var grUX = new GlideRecord('sys_update_xml');
 	grUX.initialize();
 	grUX.action = 'INSERT_OR_UPDATE';
@@ -86,6 +98,7 @@
 	
 	if (IsValidSysId(strUpdateXmlSysId) == false)
 	{
+		LogError('InstanceScanSuiteOnRecord: Inserting the Update Xml failed.');
 		CleanUp();
 		return false;
 	}	
@@ -100,10 +113,13 @@
 	}
 	catch (e)
 	{
+		LogError('InstanceScanSuiteOnRecord: si.triggerScanFromCombo() threw an exception:\n' + e);
+		return false;
 	}
 	
 	if (IsValidSysId(strProgressSysId) == false)
 	{
+		LogError('si.triggerScanFromCombo() did not provide a valid progress Sys ID.');
 		CleanUp();
 		return false;
 	}
@@ -125,12 +141,13 @@
 			bProgress = false;
 		}
 	}
-	
+
 	var grScanResult = new GlideRecord('scan_result');
 	grScanResult.addQuery('progress_id','=',strProgressSysId);
 	grScanResult.query();
 	if (grScanResult.next() == false)
 	{
+		LogError('Could not determine a Scan Result record.');
 		CleanUp();
 		return false;
 	}
@@ -145,14 +162,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-10-14 12:23:14</sys_created_on>
         <sys_id>03c427d547261d10a4b0d4fe536d4351</sys_id>
-        <sys_mod_count>16</sys_mod_count>
+        <sys_mod_count>22</sys_mod_count>
         <sys_name>InstanceScanSuiteOnRecord</sys_name>
-        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
-        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_03c427d547261d10a4b0d4fe536d4351</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-08-28 12:58:39</sys_updated_on>
+        <sys_updated_on>2025-09-14 19:18:29</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>

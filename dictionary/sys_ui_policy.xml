@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
-    <element attributes="all_tables.text_index_translations=true,update_synch=true" audit="true" db_object_id="fe954b53d12302104f34ba60d8b7c125" extends="sys_metadata" label="UI Policy" max_length="40" name="sys_ui_policy" read_roles="ui_policy_admin" text_index="true" type="collection">
+    <element attributes="all_tables.text_index_translations=true,update_synch=true" audit="true" db_object_id="6ac37b70e11312105590bd68cbbecbb5" extends="sys_metadata" label="UI Policy" max_length="40" name="sys_ui_policy" read_roles="ui_policy_admin" text_index="true" type="collection">
         <element label="Table Override" max_length="80" name="x_snc_devtools_table" type="string"/>
     </element>
 </database>

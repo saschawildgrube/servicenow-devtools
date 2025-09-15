@@ -13,6 +13,7 @@
 {
 	if (InstanceScanIsRunning() == true)
 	{
+		LogWarning('InstanceScanCheckOnRecord: Another Instance Scan is already running!');
 		return false;
 	}
 	
@@ -23,20 +24,24 @@
 	
 	if (IsValidSysId(strCheckSysId) == false)
 	{
+		LogError('InstanceScanCheckOnRecord: Instance Scan Check is not specified!');
 		return false;
 	}
 	if (IsValidTable(strTable) == false)
 	{
+		LogError('InstanceScanCheckOnRecord: "'+strTable+'" is not a valid table!');
 		return false;
 	}
 	if (IsValidSysId(strRecordSysId) == false)
 	{
+		LogError('InstanceScanCheckOnRecord: Record is not specified!');
 		return false;
 	}
 
 	var grRecord = GetRecord(strTable,strRecordSysId);
 	if (IsValidRecord(grRecord) == false)
 	{
+		LogError('InstanceScanCheckOnRecord: Record could not be found!');
 		return false;
 	}
 	
@@ -67,6 +72,7 @@
 	strUpdateSetSysId = GlideRecordInsert(grUS);
 	if (IsValidSysId(strUpdateSetSysId) == false)
 	{
+		LogError('InstanceScanCheckOnRecord: Update Set could not be inserted!');
 		return false;
 	}
 	
@@ -82,6 +88,7 @@
 	
 	if (IsValidSysId(strUpdateXmlSysId) == false)
 	{
+		LogError('InstanceScanCheckOnRecord: Update Xml could not be inserted!');
 		CleanUp();
 		return false;
 	}
@@ -94,6 +101,8 @@
 
 	if (IsValidSysId(strSuiteSysId) == false)
 	{
+		LogError('InstanceScanCheckOnRecord: Temporary Instance Scan Suite could not be inserted!');
+
 		CleanUp();
 		return false;
 	}
@@ -108,6 +117,7 @@
 	
 	if (IsValidSysId(strSuiteCheckSysId) == false)
 	{
+		LogError('InstanceScanCheckOnRecord: Instance Scan Suite Check could not be inserted!');		
 		CleanUp();
 		return false;
 	}
@@ -116,6 +126,7 @@
 	var strComboSysId = su.getOrCreateComboFromSuiteAndTargets(strSuiteSysId, strTable, [strRecordSysId]);
 	if (IsValidSysId(strComboSysId) == false)
 	{
+		LogError('InstanceScanCheckOnRecord: sn_instance_scan.ScanUtil().getOrCreateComboFromSuiteAndTargets() did not provide a valid combo Sys ID.');		
 		CleanUp();
 		return false;
 	}
@@ -130,10 +141,12 @@
 	}
 	catch (e)
 	{
+		LogError('InstanceScanCheckOnRecord: sn_instance_scan.ScanInstance().triggerScanFromCombo() threw an exception:\n'+e);	
 	}
 	
 	if (IsValidSysId(strProgressSysId) == false)
 	{
+		LogError('InstanceScanCheckOnRecord: sn_instance_scan.ScanInstance().triggerScanFromCombo() did not provide a valid Progress Sys ID.');	
 		CleanUp();
 		return false;
 	}
@@ -161,6 +174,7 @@
 	grScanResult.query();
 	if (grScanResult.next() == false)
 	{
+		LogError('InstanceScanCheckOnRecord: Could not determine a Scan Result record.');	
 		CleanUp();
 		return false;
 	}
@@ -175,14 +189,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-12-01 17:29:05</sys_created_on>
         <sys_id>d4077b701b6755105b76777d8b4bcb65</sys_id>
-        <sys_mod_count>24</sys_mod_count>
+        <sys_mod_count>27</sys_mod_count>
         <sys_name>InstanceScanCheckOnRecord</sys_name>
-        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
-        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_d4077b701b6755105b76777d8b4bcb65</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-09-10 10:59:20</sys_updated_on>
+        <sys_updated_on>2025-09-14 18:03:37</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>

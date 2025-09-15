@@ -110,14 +110,14 @@ generateDescription();
         <sys_id>c3f56886db3da490ba15a353059619ff</sys_id>
         <sys_mod_count>25</sys_mod_count>
         <sys_name>DevTools - Check app dependency (Deprecated)</sys_name>
-        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
-        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_config_c3f56886db3da490ba15a353059619ff</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2025-05-20 08:13:47</sys_updated_on>
         <template_reminder>TBD</template_reminder>
-        <type display_value="Test Step" name="sys_atf_step">844d8f97d1e302104f34ba60d8b7c1dc</type>
+        <type display_value="Test Step" name="sys_atf_step">c599bb38e1d312105590bd68cbbecbee</type>
         <wizard_redirect/>
     </sys_atf_step_config>
     <sys_translated_text action="delete_multiple" query="documentkey=c3f56886db3da490ba15a353059619ff"/>

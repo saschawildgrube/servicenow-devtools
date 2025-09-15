@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
     <sys_atf_step action="INSERT_OR_UPDATE">
         <active>true</active>
+        <callable_outputs/>
         <copied_from/>
         <description>Validate there is at least one record in 'sys_user_group' matching query:
 Name = _ATF_DEVTOOLS_TEAM_1
@@ -17,9 +18,9 @@ With a failure timeout of 5 Seconds</description>
         <sys_id>d173bbbc1b78d410a89720a8ec4bcb0e</sys_id>
         <sys_mod_count>42</sys_mod_count>
         <sys_name>Record Query (Deprecated)</sys_name>
-        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
-        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_d173bbbc1b78d410a89720a8ec4bcb0e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2021-06-24 16:10:50</sys_updated_on>
