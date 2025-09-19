@@ -13,14 +13,42 @@
 {
 	var strFlow = GetParam('flow');
 
+	var strHtml = '<h1>Flow Structure</h1>';
+
 	var flow = GetFlowStructureTree(strFlow);
 	if (flow == false)
 	{
-		return HtmlRenderError('Could not load the given Flow (or SubFlow).');
+		strHtml += HtmlRenderError('Could not load the given Flow (or SubFlow).');
+		return strHtml;
 	}
 
-	var strHtml = '<h1>' + flow.name + '</h1>';
-	strHtml += HtmlRenderTree([flow]);
+	function RenderNode(node,nLevel)
+	{
+		var strFlowType = '';
+		if (node.type == 'flow')
+		{
+			strFlowType += ' (Flow)';
+		}
+		if (node.type == 'subflow')
+		{
+			strFlowType += ' (SubFlow)';
+		}		
+
+		var strContent = '<b>' + node.name + strFlowType + '</b><br/>';
+		var strBuilderUrl = GetRecordPath('sys_hub_flow',node.sys_id);
+		strContent += HtmlRenderLink(strBuilderUrl,'Workflow Studio',true);
+
+		if (nLevel != 0)
+		{
+			strContent += ' | ';
+			var strTreeUrl = '/x_snc_devtools_flow.do?flow=' + node.sys_id;
+			strContent += HtmlRenderLink(strTreeUrl,'Show Tree',true);
+		}
+
+		return HtmlRenderRoundedBox(strContent);
+	}
+
+	strHtml += HtmlRenderTree([flow],0,false,RenderNode);
 
 	return strHtml;
 }]]></script>
@@ -28,14 +56,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-09-18 15:01:18</sys_created_on>
         <sys_id>eeed5e3d3bc0fe1062bf612c95e45afa</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_mod_count>13</sys_mod_count>
         <sys_name>HtmlRenderPageFlow</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_eeed5e3d3bc0fe1062bf612c95e45afa</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-09-18 20:59:13</sys_updated_on>
+        <sys_updated_on>2025-09-19 11:55:49</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
