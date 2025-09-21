@@ -94,15 +94,18 @@
 				var version = new GlideRecord("sys_update_version");
 				version.addQuery("name", xgr.name);
 				version.addQuery("state", "current");
-				version.query();
+				GlideRecordQuery(version);
 				if(version.next()) {
 					var history = xgr.update_guid_history;
-					history = SNC.UpdateGuidUtil.joinHistory(history, version.update_guid_history);
+					history = RunScriptInGlobalScope(
+						"result = SNC.UpdateGuidUtil.joinHistory(param1, param2);",
+						history,
+						version.update_guid_history);
 					lxgr.update_guid_history = history;
 				}
 			}
 
-			lxgr.insert();
+			GlideRecordInsert(lxgr);
 		}
 	}
 
@@ -123,27 +126,20 @@
 		grRemoteUpdateSet.update_source.url,
 		_copyUpdateXML);
 
-
-
-	gs.info(result);
-
-
-
-
 	return true;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-09-21 12:44:20</sys_created_on>
         <sys_id>ed5bdd323b04765062bf612c95e45a01</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_name>UpdateSetPreviewAndCommit</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_ed5bdd323b04765062bf612c95e45a01</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-09-21 15:13:01</sys_updated_on>
+        <sys_updated_on>2025-09-21 15:29:21</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
