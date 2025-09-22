@@ -9,7 +9,7 @@
         <mobile_callable>false</mobile_callable>
         <name>GetFlowStructureTree</name>
         <sandbox_callable>false</sandbox_callable>
-        <script><![CDATA[function GetFlowStructureTree(vFlow)
+        <script><![CDATA[function GetFlowStructureTree(vFlow,nMaxLevel,nLevel)
 {
 	var grFlow = GetRecord('sys_hub_flow',vFlow);
 	if (IsValidRecord(grFlow) == false)
@@ -23,6 +23,10 @@
 	{
 		strFlowType += ' (Flow)';
 	}
+	nMaxLevel = GetIntegerValue(nMaxLevel);
+	nLevel = GetIntegerValue(nLevel);
+
+	Log(nMaxLevel + ' - '+ nLevel);
 
 	var strContent = '<b>' + flow.name + strFlowType + '</b><br/>';
 	var strUrl = GetRecordPath('sys_hub_flow',flow.sys_id);
@@ -32,19 +36,34 @@
 	flow.content = strContent;
 	flow._nodes = [];
 
-	var grFlowInstance = new GlideRecord('sys_hub_sub_flow_instance_v2');
-	grFlowInstance.addQuery('flow','=',grFlow.sys_id);
-	grFlowInstance.orderBy('order');
-	grFlowInstance.query();
-	while (grFlowInstance.next())
+	var bSubFlows = true;
+	if (nMaxLevel > 0)
 	{
-		var grFlowSnapshot = GetRecord('sys_hub_flow_snapshot',grFlowInstance.subflow);
-		if (IsValidRecord(grFlowSnapshot) == true)
+		if (nLevel >= nMaxLevel)
 		{
-			var subflow = GetFlowStructureTree(grFlowSnapshot.parent_flow);
-			if (subflow != false)
+			bSubFlows = false;
+		}
+	}
+
+	if (bSubFlows == true)
+	{
+		var grFlowInstance = new GlideRecord('sys_hub_sub_flow_instance_v2');
+		grFlowInstance.addQuery('flow','=',grFlow.sys_id);
+		grFlowInstance.orderBy('order');
+		grFlowInstance.query();
+		while (grFlowInstance.next())
+		{
+			var grFlowSnapshot = GetRecord('sys_hub_flow_snapshot',grFlowInstance.subflow);
+			if (IsValidRecord(grFlowSnapshot) == true)
 			{
-				flow._nodes.push(subflow);
+				var subflow = GetFlowStructureTree(
+					grFlowSnapshot.parent_flow,
+					nMaxLevel,
+					nLevel+1);
+				if (subflow != false)
+				{
+					flow._nodes.push(subflow);
+				}
 			}
 		}
 	}
@@ -55,14 +74,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-09-18 15:33:16</sys_created_on>
         <sys_id>6ef4a6f53b04fe1062bf612c95e45a5c</sys_id>
-        <sys_mod_count>11</sys_mod_count>
+        <sys_mod_count>19</sys_mod_count>
         <sys_name>GetFlowStructureTree</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_6ef4a6f53b04fe1062bf612c95e45a5c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-09-20 21:42:58</sys_updated_on>
+        <sys_updated_on>2025-09-22 15:46:25</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
