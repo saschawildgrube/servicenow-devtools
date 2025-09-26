@@ -7,21 +7,21 @@
         <display_name>Run Server Side Script</display_name>
         <inputs/>
         <mugshots_cache_json/>
-        <notes/>
+        <notes>The positive and negative test with the table scan check on sys_dictionary does not work. Unclear why.</notes>
         <order>1</order>
         <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
         <sys_class_name>sys_atf_step</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-01-24 19:51:14</sys_created_on>
         <sys_id>1b7ddada1be06d105b76777d8b4bcbbb</sys_id>
-        <sys_mod_count>13</sys_mod_count>
+        <sys_mod_count>22</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_1b7ddada1be06d105b76777d8b4bcbbb</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-06-20 16:16:40</sys_updated_on>
+        <sys_updated_on>2025-09-26 15:17:12</sys_updated_on>
         <table/>
         <test display_value="DevTools - sys_metadata - Prevent useless checks">926d52da1be06d105b76777d8b4bcbc5</test>
         <timeout/>
@@ -36,9 +36,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-01-24 19:51:14</sys_created_on>
         <sys_id>808d1ada1be06d105b76777d8b4bcb2e</sys_id>
-        <sys_mod_count>13</sys_mod_count>
+        <sys_mod_count>22</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-06-20 16:16:40</sys_updated_on>
+        <sys_updated_on>2025-09-26 15:17:12</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -55,8 +55,35 @@
 		'(function (engine) { engine.finding.incrementWithNode(engine.rootNode); })(engine);';&#13;
 	var strLinterCheckSysId = GlideRecordInsert(grLinterCheck);&#13;
 	test.Log(RenderValue(grLinterCheck));&#13;
-	test.Log('\n')&#13;
-	&#13;
+	test.Log('\n');&#13;
+&#13;
+	test.Log('Creating a table check that ALWAYS produces a finding:');&#13;
+	var grTableCheck = new GlideRecord('scan_table_check');&#13;
+	grTableCheck.initialize();&#13;
+	grTableCheck.name = 'A Table Check that always triggers a finding';&#13;
+	grTableCheck.table = 'sys_dictionary';&#13;
+	grTableCheck.advanced = true;&#13;
+	grTableCheck.script =&#13;
+		'(function (engine) { engine.finding.increment(); })(engine);';&#13;
+	var strTableCheckSysId = GlideRecordInsert(grTableCheck);&#13;
+	test.Log(RenderValue(grTableCheck));&#13;
+	test.Log('\n');&#13;
+&#13;
+/*&#13;
+	test.Log('Validating the table check:');&#13;
+	var grDict = GetDictionaryRecord('cmdb_ci','name');&#13;
+	test.Log(grDict);&#13;
+	result = InstanceScanCheckOnRecord(strTableCheckSysId, 'sys_dictionary', grDict.sys_id);&#13;
+	test.Log('InstanceScanCheckOnRecord returned: '+RenderValue(result));&#13;
+	var aFindings = GetArrayValue(GetValue(result,'findings'));&#13;
+	if (aFindings.length != 1)&#13;
+	{&#13;
+		test.Log('FAILED: Exactly one finding expected!');&#13;
+		test.SetResult(false);&#13;
+	}&#13;
+	test.Log('\n');		&#13;
+*/&#13;
+&#13;
 	test.Log('Creating a Flow Variable has no relevant script fields - so the business rule should prevent the check from running!');&#13;
 	var grFlowVariable = new GlideRecord('sys_hub_flow_variable');&#13;
 	grFlowVariable.initialize();&#13;
@@ -98,7 +125,20 @@
 		test.SetResult(false);&#13;
 	}&#13;
 	test.Log('\n');	&#13;
-	&#13;
+&#13;
+	var grDict = GetDictionaryRecord('cmdb_ci_computer','name');&#13;
+	test.Log(grDict);&#13;
+	result = InstanceScanCheckOnRecord(strTableCheckSysId, 'sys_dictionary', grDict.sys_id);&#13;
+	test.Log('InstanceScanCheckOnRecord returned: '+RenderValue(result));&#13;
+	var aFindings = GetArrayValue(GetValue(result,'findings'));&#13;
+	if (aFindings.length != 0)&#13;
+	{&#13;
+		test.Log('FAILED: Zero findings expected!');&#13;
+		test.SetResult(false);&#13;
+	}&#13;
+	test.Log('\n');			&#13;
+&#13;
+&#13;
 	test.Log('\nNow, the business rule is set inactive, so the check is expected to execute and produce a finding.\n');&#13;
 	RecordSetValue('sys_script','b7fad21a1be06d105b76777d8b4bcbbe','active','false');&#13;
 &#13;
@@ -123,7 +163,19 @@
 		test.SetResult(false);&#13;
 	}&#13;
 	test.Log('\n');		&#13;
-	&#13;
+/*&#13;
+	var grDict = GetDictionaryRecord('cmdb_ci_computer','name');&#13;
+	test.Log(grDict);&#13;
+	result = InstanceScanCheckOnRecord(strTableCheckSysId, 'sys_dictionary', grDict.sys_id);&#13;
+	test.Log('InstanceScanCheckOnRecord returned: '+RenderValue(result));&#13;
+	var aFindings = GetArrayValue(GetValue(result,'findings'));&#13;
+	if (aFindings.length != 1)&#13;
+	{&#13;
+		test.Log('FAILED: Exactly one finding expected!');&#13;
+		test.SetResult(false);&#13;
+	}&#13;
+	test.Log('\n');			&#13;
+*/	&#13;
 	return test.GetResult();&#13;
 	&#13;
 })(outputs, steps, stepResult, assertEqual);</value>

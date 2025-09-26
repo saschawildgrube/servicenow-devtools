@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-07-30 18:33:54</sys_created_on>
         <sys_id>5cf28e18dbb70a90f0f1d03cd396191b</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_5cf28e18dbb70a90f0f1d03cd396191b</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-07-30 18:59:12</sys_updated_on>
+        <sys_updated_on>2025-09-26 14:03:33</sys_updated_on>
         <table/>
         <test display_value="DevTools - InstanceScanGetEncodedQueryToPreventUselessChecks">47d2ca18dbb70a90f0f1d03cd39619cb</test>
         <timeout/>
@@ -36,9 +36,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-07-30 18:33:54</sys_created_on>
         <sys_id>83f28e18dbb70a90f0f1d03cd396196b</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-07-30 18:59:13</sys_updated_on>
+        <sys_updated_on>2025-09-26 14:03:33</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -72,6 +72,8 @@
 		'sys_hub_flow_variable','script','virtual=true');&#13;
 	TestCase_InstanceScanGetEncodedQueryToPreventUselessChecks(&#13;
 		'sys_data_source','script','type=CUSTOM^ORformat=Custom (Parse by Script)');&#13;
+	TestCase_InstanceScanGetEncodedQueryToPreventUselessChecks(&#13;
+		'sys_dictionary','all','sys_update_name!=');		&#13;
 	&#13;
 	return test.GetResult();&#13;
 	&#13;
