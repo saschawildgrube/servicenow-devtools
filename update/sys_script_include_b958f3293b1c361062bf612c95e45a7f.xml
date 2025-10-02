@@ -35,6 +35,7 @@ If the Update Set is already contained in a Transporter Package the function ret
 
 	var grTransporterPackage = new GlideRecord('x_snc_devtools_transporter_package');
 	grTransporterPackage.initialize();
+	grTransporterPackage.sys_scope = grApp.sys_id;
 	grTransporterPackage.name = 'Update Set: ' + grUpdateSet.name;
 	grTransporterPackage.auto_unpack = true;
 	grTransporterPackage.auto_commit = true;
@@ -54,6 +55,9 @@ If the Update Set is already contained in a Transporter Package the function ret
 		return false;
 	}
 
+	grUpdateSet.x_snc_devtools_transporter_package = strTransporterPackageSysId;
+	GlideRecordUpdate(grUpdateSet,true);
+
 	var grTechnicalDebt = new GlideRecord('x_snc_devtools_technical_debt');
 	grTechnicalDebt.initialize();
 	grTechnicalDebt.short_description = 'Update Set "'+grUpdateSet.name+'" contained in Transporter Package';
@@ -62,21 +66,21 @@ If the Update Set is already contained in a Transporter Package the function ret
 	grTechnicalDebt.description = 'The Update Set "'+grUpdateSet.name+'" has been added to the Record Transporter Package "'+grTransporterPackage.name+'". This is the least favorable method to deploy Application Files and should only be used as an exception. Application Files should rather be part of Applications directly, or in case of OOTB Application Files, deactivated or modified through installation scripts. This should be reviewed an ideally refactored.';
 	grTechnicalDebt.insert();
 
-	return true;
+	return strTransporterPackageSysId;
 
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-09-30 13:16:30</sys_created_on>
         <sys_id>b958f3293b1c361062bf612c95e45a7f</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>RecordTransporterPackUpdateSetIntoApp</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_b958f3293b1c361062bf612c95e45a7f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-09-30 13:48:26</sys_updated_on>
+        <sys_updated_on>2025-10-02 15:36:51</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
