@@ -45,13 +45,30 @@
 
 	if (bSubFlows == true)
 	{
+
+		var aSubFlowInstances = [];
+
 		var grFlowInstance = new GlideRecord('sys_hub_sub_flow_instance_v2');
 		grFlowInstance.addQuery('flow','=',grFlow.sys_id);
 		grFlowInstance.orderBy('order');
 		grFlowInstance.query();
 		while (grFlowInstance.next())
 		{
-			var grFlowSnapshot = GetRecord('sys_hub_flow_snapshot',grFlowInstance.subflow);
+			var subflowinstance = Clone(grFlowInstance);
+			subflowinstance.order = GetIntegerValue(subflowinstance.order);
+			aSubFlowInstances.push(Clone(grFlowInstance));
+		}
+		
+		function CompareOrder(a,b)
+		{
+			return b.order - a.order;
+		}
+		aSubFlowInstances = aSubFlowInstances.sort(CompareOrder);
+
+		for (var nSubFlowInstance = 0; nSubFlowInstance < aSubFlowInstances.length; nSubFlowInstance++)
+		{
+			var subflowinstance = aSubFlowInstances[nSubFlowInstance];
+			var grFlowSnapshot = GetRecord('sys_hub_flow_snapshot',subflowinstance.subflow);
 			if (IsValidRecord(grFlowSnapshot) == true)
 			{
 				var subflow = GetFlowStructureTree(
@@ -72,14 +89,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-09-18 15:33:16</sys_created_on>
         <sys_id>6ef4a6f53b04fe1062bf612c95e45a5c</sys_id>
-        <sys_mod_count>20</sys_mod_count>
+        <sys_mod_count>22</sys_mod_count>
         <sys_name>GetFlowStructureTree</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_6ef4a6f53b04fe1062bf612c95e45a5c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-10-06 10:22:50</sys_updated_on>
+        <sys_updated_on>2025-10-06 12:16:20</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
