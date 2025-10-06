@@ -7,7 +7,8 @@
         <client_callable>false</client_callable>
         <description>Packs the given Update Set into the given Application.&#13;
 If the Update Set is not yet part of any Transporter Package, a new Transporter Package is created.&#13;
-If the Update Set is already contained in a Transporter Package the function returns false.</description>
+If the Update Set is already contained in a Transporter Package the function returns false.&#13;
+If all works according to plan, the function returns the Sys ID of the created Record Transporter Package.</description>
         <mobile_callable>false</mobile_callable>
         <name>RecordTransporterPackUpdateSetIntoApp</name>
         <sandbox_callable>false</sandbox_callable>
@@ -73,14 +74,14 @@ If the Update Set is already contained in a Transporter Package the function ret
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-09-30 13:16:30</sys_created_on>
         <sys_id>b958f3293b1c361062bf612c95e45a7f</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_name>RecordTransporterPackUpdateSetIntoApp</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_b958f3293b1c361062bf612c95e45a7f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-10-02 15:36:51</sys_updated_on>
+        <sys_updated_on>2025-10-06 09:17:25</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
