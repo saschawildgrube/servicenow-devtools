@@ -94,18 +94,15 @@
 		return false;
 	}
 		
-	strSuiteSysId = RecordQueryOrInsert(
-		'scan_check_suite',
-		{ name: 'DevTools.TEMP' },
-		{ sys_scope: 'global' },
-		true);
-
-	if (IsValidSysId(strSuiteSysId) == false)
+	var grSuite = InstanceScanGetTempSuite();
+	if (IsValidRecord(grSuite) == false)
 	{
 		LogError('InstanceScanCheckOnRecord: Temporary Instance Scan Suite could not be inserted!');
 		CleanUp();
 		return false;
 	}
+	strSuiteSysId = GetStringValue(grSuite.sys_id);
+
 	
 	var values = {
 		suite: strSuiteSysId,
@@ -188,14 +185,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-12-01 17:29:05</sys_created_on>
         <sys_id>d4077b701b6755105b76777d8b4bcb65</sys_id>
-        <sys_mod_count>28</sys_mod_count>
+        <sys_mod_count>29</sys_mod_count>
         <sys_name>InstanceScanCheckOnRecord</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_d4077b701b6755105b76777d8b4bcb65</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-09-26 15:12:10</sys_updated_on>
+        <sys_updated_on>2025-10-09 13:41:30</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>
