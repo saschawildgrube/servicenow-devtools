@@ -23,6 +23,7 @@ If the parameter bPreviewAndCommitUpdateSets is set to true and the individual p
 	var grPackages = new GlideRecord('x_snc_devtools_transporter_package');
 	grPackages.addQuery('sys_scope','=',grApp.sys_id);
 	grPackages.addQuery('auto_unpack','=','true');
+	grPackages.orderBy('order');
 	grPackages.query();
 	while (grPackages.next())
 	{
@@ -43,14 +44,14 @@ If the parameter bPreviewAndCommitUpdateSets is set to true and the individual p
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-09-29 15:31:27</sys_created_on>
         <sys_id>06fd4b1d3b50f21062bf612c95e45a6c</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>RecordTransporterAutomaticUnpack</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_06fd4b1d3b50f21062bf612c95e45a6c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-09-30 11:24:52</sys_updated_on>
+        <sys_updated_on>2025-10-10 12:03:03</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
