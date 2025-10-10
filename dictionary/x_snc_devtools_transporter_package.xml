@@ -3,6 +3,7 @@
         <element label="Description" max_length="2000" name="description" type="string"/>
         <element display="true" label="Name" mandatory="true" max_length="40" name="name" type="string"/>
         <element label="Automatically Preview and Commit contained Update Sets " max_length="40" name="auto_commit" type="boolean"/>
+        <element label="Order" max_length="40" name="order" type="integer"/>
         <element label="Automatic Unpack during Installation" max_length="40" name="auto_unpack" type="boolean"/>
         <element label="ID Suffix" max_length="20" name="id_suffix" type="string"/>
         <element label="ID" max_length="80" name="id" read_only="true" type="string"/>
