@@ -13,13 +13,13 @@
         <client_callable>false</client_callable>
         <collection>x_snc_devtools_transporter_package</collection>
         <condition/>
-        <description>Verifies and sets the ID for the Transporter Package.</description>
+        <description>Sets the order for the Transporter Package if not set already.</description>
         <execute_function>false</execute_function>
         <filter_condition/>
         <is_rest>false</is_rest>
         <message><![CDATA[<p>Test</p>]]></message>
-        <name>x_snc_devtools_t*_p* - Set ID</name>
-        <order>42100</order>
+        <name>x_snc_devtools_t*_p* - Set Order</name>
+        <order>42200</order>
         <priority>100</priority>
         <rest_method/>
         <rest_method_text/>
@@ -29,37 +29,37 @@
         <role_conditions/>
         <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
 
-	var strIDSuffix = GetStringValue(current.id_suffix);
-	
-	if (RecordTransporterIsValidPackageIDSuffix(strIDSuffix) == false)
+	Debug('x_snc_devtools_t*_p* - Set Order');
+	if (current.auto_unpack == true)
 	{
-		gs.addErrorMessage('Invalid ID Suffix. Only use lowercase characters, underscores, dashes and numbers are allowed!');
-		current.id = '';
-
-		return;
+		Debug(current);
+		if (current.order == 0)
+		{
+			Debug('setting current.order');
+			current.order = 999999;
+		}
 	}
-	
-	current.id = current.sys_scope.scope + '.' + strIDSuffix;
+
 
 })(current, previous);]]></script>
         <sys_class_name>sys_script</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2023-12-01 14:18:43</sys_created_on>
+        <sys_created_on>2025-10-10 13:19:36</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
-        <sys_id>22f6f6de1b3e7d106c17fdd49b4bcb4a</sys_id>
-        <sys_mod_count>33</sys_mod_count>
-        <sys_name>x_snc_devtools_t*_p* - Set ID</sys_name>
+        <sys_id>33c95f343ba07a5062bf612c95e45a95</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>x_snc_devtools_t*_p* - Set Order</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
-        <sys_update_name>sys_script_22f6f6de1b3e7d106c17fdd49b4bcb4a</sys_update_name>
+        <sys_update_name>sys_script_33c95f343ba07a5062bf612c95e45a95</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-10-10 13:25:02</sys_updated_on>
+        <sys_updated_on>2025-10-10 13:36:07</sys_updated_on>
         <template/>
         <when>before</when>
         <x_snc_datasilos_created>false</x_snc_datasilos_created>
     </sys_script>
-    <sys_translated_text action="delete_multiple" query="documentkey=22f6f6de1b3e7d106c17fdd49b4bcb4a"/>
+    <sys_translated_text action="delete_multiple" query="documentkey=33c95f343ba07a5062bf612c95e45a95"/>
 </record_update>
