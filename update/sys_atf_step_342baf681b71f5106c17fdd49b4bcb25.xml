@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-10-07 14:30:47</sys_created_on>
         <sys_id>342baf681b71f5106c17fdd49b4bcb25</sys_id>
-        <sys_mod_count>22</sys_mod_count>
+        <sys_mod_count>23</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_342baf681b71f5106c17fdd49b4bcb25</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-10-07 16:17:55</sys_updated_on>
+        <sys_updated_on>2025-10-10 12:06:37</sys_updated_on>
         <table/>
         <test display_value="DevTools - RecordManageOrder">f41bab681b71f5106c17fdd49b4bcb5e</test>
         <timeout/>
@@ -36,16 +36,16 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-10-07 14:30:47</sys_created_on>
         <sys_id>462baf681b71f5106c17fdd49b4bcb82</sys_id>
-        <sys_mod_count>22</sys_mod_count>
+        <sys_mod_count>23</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-10-07 16:17:55</sys_updated_on>
+        <sys_updated_on>2025-10-10 12:06:37</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
 	&#13;
 	test.SetResult(true);&#13;
 &#13;
-	function TestCase_RecordManageOrder(strTable,strColumn,strSysId,nNewOrder,vExpected)&#13;
+	function TestCase_RecordManageOrder(strTable,strColumn,strSysId,nNewOrder,vQuery,vExpected)&#13;
 	{&#13;
 		function TestCase_RecordManageOrder_CheckResult(vInput,vExpected,vResult)&#13;
 		{&#13;
@@ -111,15 +111,16 @@
 				'Table': strTable,&#13;
 				'Column': strColumn,&#13;
 				'Sys Id': strSysId,&#13;
-				'New Order': nNewOrder&#13;
+				'New Order': nNewOrder,&#13;
+				'vQuery': vQuery&#13;
 			},&#13;
 			vExpected,&#13;
 			TestCase_RecordManageOrder_CheckResult);&#13;
 	}&#13;
 &#13;
-	TestCase_RecordManageOrder('bogus','nonsense','123',-3,false);&#13;
-	TestCase_RecordManageOrder('incident','nonsense','123',-3,false);&#13;
-	TestCase_RecordManageOrder('incident','order','123',-3,false);&#13;
+	TestCase_RecordManageOrder('bogus','nonsense','123',-3,null,false);&#13;
+	TestCase_RecordManageOrder('incident','nonsense','123',-3,null,false);&#13;
+	TestCase_RecordManageOrder('incident','order','123',-3,null,false);&#13;
 &#13;
 &#13;
 	test.Log('Inserting Alpha without order value.');&#13;
@@ -137,11 +138,11 @@
 	}	&#13;
 	&#13;
 	test.Log('Alpha to 1');&#13;
-	TestCase_RecordManageOrder('x_snc_devtools_test','order',strSysIdAlpha,1,true);&#13;
+	TestCase_RecordManageOrder('x_snc_devtools_test','order',strSysIdAlpha,1,null,true);&#13;
 	test.Log('Alpha to -1');&#13;
-	TestCase_RecordManageOrder('x_snc_devtools_test','order',strSysIdAlpha,-1,true);&#13;
+	TestCase_RecordManageOrder('x_snc_devtools_test','order',strSysIdAlpha,-1,null,true);&#13;
 	test.Log('Alpha to 999999');&#13;
-	TestCase_RecordManageOrder('x_snc_devtools_test','order',strSysIdAlpha,999999,true);&#13;
+	TestCase_RecordManageOrder('x_snc_devtools_test','order',strSysIdAlpha,999999,null,true);&#13;
 &#13;
 	test.Log('Inserting Beta without order value');&#13;
 	var grTest = new GlideRecord('x_snc_devtools_test');&#13;
@@ -158,11 +159,11 @@
 	}		&#13;
 &#13;
 	test.Log('Beta to 10');&#13;
-	TestCase_RecordManageOrder('x_snc_devtools_test','order',strSysIdBeta,10,true);&#13;
+	TestCase_RecordManageOrder('x_snc_devtools_test','order',strSysIdBeta,10,null,true);&#13;
 	test.Log('Beta to 1');&#13;
-	TestCase_RecordManageOrder('x_snc_devtools_test','order',strSysIdBeta,1,true);&#13;
+	TestCase_RecordManageOrder('x_snc_devtools_test','order',strSysIdBeta,1,null,true);&#13;
 	test.Log('Alpha to 1');&#13;
-	TestCase_RecordManageOrder('x_snc_devtools_test','order',strSysIdAlpha,1,true);&#13;
+	TestCase_RecordManageOrder('x_snc_devtools_test','order',strSysIdAlpha,1,null,true);&#13;
 	&#13;
 	test.Log('Inserting Gamma with order value 1');&#13;
 	var grTest = new GlideRecord('x_snc_devtools_test');&#13;
@@ -180,18 +181,18 @@
 	}		&#13;
 &#13;
 	test.Log('Alpha to 1');&#13;
-	TestCase_RecordManageOrder('x_snc_devtools_test','order',strSysIdAlpha,1,true);&#13;
+	TestCase_RecordManageOrder('x_snc_devtools_test','order',strSysIdAlpha,1,null,true);&#13;
 	test.Log('Gamma to 2');&#13;
-	TestCase_RecordManageOrder('x_snc_devtools_test','order',strSysIdGamma,2,true);&#13;
+	TestCase_RecordManageOrder('x_snc_devtools_test','order',strSysIdGamma,2,null,true);&#13;
 	test.Log('Gamma to 3');&#13;
-	TestCase_RecordManageOrder('x_snc_devtools_test','order',strSysIdGamma,3,true);&#13;
+	TestCase_RecordManageOrder('x_snc_devtools_test','order',strSysIdGamma,3,null,true);&#13;
 	test.Log('Alpha to 1000');&#13;
-	TestCase_RecordManageOrder('x_snc_devtools_test','order',strSysIdAlpha,1000,true);&#13;
+	TestCase_RecordManageOrder('x_snc_devtools_test','order',strSysIdAlpha,1000,null,true);&#13;
 	test.Log('Alpha to 3');&#13;
-	TestCase_RecordManageOrder('x_snc_devtools_test','order',strSysIdAlpha,3,true);&#13;
+	TestCase_RecordManageOrder('x_snc_devtools_test','order',strSysIdAlpha,3,null,true);&#13;
 	&#13;
 	test.Log('Maintain the sequence');&#13;
-	TestCase_RecordManageOrder('x_snc_devtools_test','order',null,null,true);&#13;
+	TestCase_RecordManageOrder('x_snc_devtools_test','order',null,null,null,true);&#13;
 	RecordSetValue('x_snc_devtools_test',strSysIdAlpha,'order',10);&#13;
 	RecordSetValue('x_snc_devtools_test',strSysIdBeta,'order',20);&#13;
 	RecordSetValue('x_snc_devtools_test',strSysIdGamma,'order',30);&#13;
@@ -204,7 +205,7 @@
 		test.Log(grRecords.order+': '+grRecords.name);&#13;
 	}	&#13;
 &#13;
-	TestCase_RecordManageOrder('x_snc_devtools_test','order',null,null,true);&#13;
+	TestCase_RecordManageOrder('x_snc_devtools_test','order',null,null,null,true);&#13;
 &#13;
 &#13;
 	return test.GetResult();&#13;

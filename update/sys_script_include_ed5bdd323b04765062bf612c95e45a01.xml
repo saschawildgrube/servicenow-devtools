@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.UpdateSetPreviewAndCommit</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Previews and commits the given Remote Update Set in one go. Returns true if successful, false if not.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>UpdateSetPreviewAndCommit</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function UpdateSetPreviewAndCommit(vRemoteUpdateSet)
+{
+	var grRemoteUpdateSet = GetRecord('sys_remote_update_set',vRemoteUpdateSet);
+	if (IsValidRecord(grRemoteUpdateSet) == false)
+	{
+		return false;
+	}
+
+	if (grRemoteUpdateSet.state != 'loaded')
+	{
+		LogWarning(
+			'UpdateSetPreviewAndCommit: Remote Update Set "'+grRemoteUpdateSet.name+'" is not in state "loaded".');
+		return false;
+	}
+
+
+	var grUpdateXml = new GlideRecord('sys_update_xml');
+	grUpdateXml.addQuery('remote_update_set', grRemoteUpdateSet.sys_id);
+	grUpdateXml.query();
+	var nUpdateXmls = grUpdateXml.getRowCount();
+
+	Log('UpdateSetPreviewAndCommit: Working on Remote Update Set "'+grRemoteUpdateSet.name+'" with '+nUpdateXmls+' Update Xmls.');
+
+	var grChildRemoteUpdateSets = new GlideRecord('sys_remote_update_set');
+	grChildRemoteUpdateSets.addQuery('parent','=',grRemoteUpdateSet.sys_id);
+	grChildRemoteUpdateSets.query();
+	while (grChildRemoteUpdateSets.next())
+	{
+		if (grChildRemoteUpdateSets.state != 'loaded')
+		{
+			LogWarning(
+				'UpdateSetPreviewAndCommit: Remote Update Set "'+grChildRemoteUpdateSets.name+'" is not in state "loaded".');
+				return false;
+		}
+	}
+	
+	var grChildRemoteUpdateSets = new GlideRecord('sys_remote_update_set');
+	grChildRemoteUpdateSets.addQuery('parent','=',grRemoteUpdateSet.sys_id);
+	grChildRemoteUpdateSets.query();
+	while (grChildRemoteUpdateSets.next())
+	{
+		if (UpdateSetPreviewAndCommit(grChildRemoteUpdateSets) == false)
+		{
+			LogWarning(
+				'UpdateSetPreviewAndCommit: Failed to preview and commit child Remote Update Set "'+grChildRemoteUpdateSets.name+'".');
+		}
+	}
+
+
+
+	grRemoteUpdateSet.state = 'previewing';
+	GlideRecordUpdate(grRemoteUpdateSet);
+
+	var grUpx = new GlideRecord('sys_update_preview_xml');
+	grUpx.addQuery('remote_update.remote_update_set', grRemoteUpdateSet.sys_id);
+	GlideRecordDeleteMultiple(grUpx);
+
+	RunScriptInGlobalScope(
+		"var previewermanager = new SNC.PreviewerManager();"
+		+"previewermanager.doPreview(param1);",
+		grRemoteUpdateSet.sys_id);
+
+	var grUpx = new GlideRecord('sys_update_preview_xml');
+	grUpx.addQuery('remote_update.remote_update_set', grRemoteUpdateSet.sys_id);
+	grUpx.query();
+	if (grUpx.getRowCount() != nUpdateXmls)
+	{
+		LogWarning(
+				'UpdateSetPreviewAndCommit: Failed to preview Remote Update Set "'+grRemoteUpdateSet.name+'".\n'
+				+'Found '+grUpx.getRowCount()+' preview records for '+nUpdateXmls+' Update Xml records.');
+		grRemoteUpdateSet.state = 'loaded';
+		GlideRecordUpdate(grRemoteUpdateSet);		
+		return false;
+	}
+	var nPreviewProblems = 0;
+	while (grUpx.next())
+	{
+		if (grUpx.proposed_action != 'commit')
+		{
+			nPreviewProblems++;
+			LogWarning(
+				'UpdateSetPreviewAndCommit: Detected a preview problem in Remote Update Set "'+grRemoteUpdateSet.name+'":\n'+RenderValue(grUpx));
+		}
+	}
+	if (nPreviewProblems > 0)
+	{
+		LogWarning(
+				'UpdateSetPreviewAndCommit: '+nPreviewProblems+' detected in Remote Update Set "'+grRemoteUpdateSet.name+'". Aborting!');
+		grRemoteUpdateSet.state = 'loaded';
+		GlideRecordUpdate(grRemoteUpdateSet);		
+		return false;		
+	}
+
+
+	grRemoteUpdateSet.state = 'previewed';
+	GlideRecordUpdate(grRemoteUpdateSet);
+
+
+	function _copyUpdateXML(lsysid, rsysid)
+	{
+		var xgr = new GlideRecord("sys_update_xml");
+		xgr.addQuery("remote_update_set", rsysid);
+		if (RunScriptInGlobalScope("result = updateSetPreviewInstalled()"))
+		{
+			var pgr = new GlideRecord("sys_update_preview_xml");
+			pgr.addQuery("remote_update.remote_update_set",rsysid);
+			pgr.query();
+			while (pgr.next()) {
+				if (pgr.proposed_action != "skip")
+					continue;
+				var temp = new GlideRecord("sys_update_xml");
+				temp.query("sys_id", pgr.remote_update);
+				if (temp.next())
+					xgr.addQuery("name","!=", temp.name +"");
+			}
+		}
+		xgr.query();
+		while(xgr.next())
+		{
+			var lxgr = new GlideRecord("sys_update_xml");
+			lxgr.initialize();
+			lxgr.name = xgr.name;
+			lxgr.payload = xgr.payload;
+			lxgr.action = xgr.action;
+			lxgr.type = xgr.type;
+			lxgr.target_name = xgr.target_name;
+			lxgr.view = xgr.view;
+			lxgr.update_domain = xgr.update_domain;
+			lxgr.table = xgr.table;
+			lxgr.category = xgr.category;
+			lxgr.application = xgr.application;
+			lxgr.update_set = lsysid;
+			if (lxgr.isValidField('replace_on_upgrade'))
+				lxgr.replace_on_upgrade = xgr.replace_on_upgrade;
+			if (lxgr.isValidField('sys_recorded_at'))
+				lxgr.sys_recorded_at = xgr.sys_recorded_at;
+			if (lxgr.isValidField('payload_hash'))
+				lxgr.payload_hash = xgr.payload_hash;
+			if (lxgr.isValidField('update_guid'))
+				lxgr.update_guid = xgr.update_guid;
+			if (lxgr.isValidField('update_guid_history')) {
+				lxgr.update_guid_history = xgr.update_guid_history;
+
+				//Join the update_guid_history for the 'current' version and
+				//the sys_update_xml that we are committing
+				var version = new GlideRecord("sys_update_version");
+				version.addQuery("name", xgr.name);
+				version.addQuery("state", "current");
+				GlideRecordQuery(version);
+				if(version.next()) {
+					var history = xgr.update_guid_history;
+					history = RunScriptInGlobalScope(
+						"result = SNC.UpdateGuidUtil.joinHistory(param1, param2);",
+						history,
+						version.update_guid_history);
+					lxgr.update_guid_history = history;
+				}
+			}
+
+			GlideRecordInsert(lxgr);
+		}
+	}
+
+	var grUpdateSet = new GlideRecord('sys_update_set');
+
+	var result = RunScriptInGlobalScope(
+		"var worker = new GlideUpdateSetWorker();"
+		+"var strUpdateSetSysId = worker.remoteUpdateSetCommit("
+		+"	param1,"
+		+"	param2,"
+		+"	param3);"
+		+"param4(param1.sys_id, param2.sys_id);"
+		+"worker.setUpdateSetSysId(strUpdateSetSysId);"
+		+"worker.setBackground(false);"
+		+"var result = worker.start();",
+		grUpdateSet,
+		grRemoteUpdateSet,
+		grRemoteUpdateSet.update_source.url,
+		_copyUpdateXML);
+
+	return true;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-09-21 12:44:20</sys_created_on>
+        <sys_id>ed5bdd323b04765062bf612c95e45a01</sys_id>
+        <sys_mod_count>26</sys_mod_count>
+        <sys_name>UpdateSetPreviewAndCommit</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_ed5bdd323b04765062bf612c95e45a01</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-10 13:32:13</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>ed5bdd323b04765062bf612c95e45a01</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-09-21 12:44:19</sys_created_on>
+        <sys_id>698b55723b04765062bf612c95e45aca</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-09-21 12:44:19</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

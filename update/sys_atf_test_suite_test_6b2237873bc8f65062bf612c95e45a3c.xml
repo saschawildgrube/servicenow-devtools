@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_test_suite_test">
+    <sys_atf_test_suite_test action="INSERT_OR_UPDATE">
+        <abort_on_failure>false</abort_on_failure>
+        <order>100</order>
+        <sys_class_name>sys_atf_test_suite_test</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-09-22 18:21:01</sys_created_on>
+        <sys_id>6b2237873bc8f65062bf612c95e45a3c</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>272237873bc8f65062bf612c95e45a38</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_test_suite_test_6b2237873bc8f65062bf612c95e45a3c</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-09-22 18:22:24</sys_updated_on>
+        <test display_value="DevTools - MakeDefaultTestScript">272237873bc8f65062bf612c95e45a38</test>
+        <test_suite display_value="DevTools">4a8550391b5b8850a89720a8ec4bcbd9</test_suite>
+    </sys_atf_test_suite_test>
+</record_update>

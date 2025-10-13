@@ -192,7 +192,7 @@ GitHubAPI.prototype = {
 		{
 			var aMoreBranches = this.Request(
 				'repos/'+strOwner+'/'+strRepo+'/branches?per_page='+nPerPage+'&page='+nPage);
-			if (aMoreBranches != false)
+			if (IsArray(aMoreBranches) == true)
 			{
 				aBranches = ArrayAppend(aBranches,aMoreBranches);
 				if (aMoreBranches.length < nPerPage)
@@ -341,14 +341,14 @@ GitHubAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-03-09 21:01:35</sys_created_on>
         <sys_id>52efc568db2da5106a03dad1f39619b0</sys_id>
-        <sys_mod_count>105</sys_mod_count>
+        <sys_mod_count>106</sys_mod_count>
         <sys_name>GitHubAPI</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_52efc568db2da5106a03dad1f39619b0</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-11-27 15:02:42</sys_updated_on>
+        <sys_updated_on>2025-10-08 13:31:03</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>

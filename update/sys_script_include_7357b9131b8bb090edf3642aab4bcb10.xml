@@ -26,6 +26,7 @@ Methods:
 * AppVersionBaselineCheckReleaseNotes()
 * GetAppRecordsWithCredentialPollution()
 * GetAppUncommittedFiles()
+* GetAppUncommittedFilesCount()
 * GetAppBranches()
 * AddScriptTestStep()
 * start()</description>
@@ -273,6 +274,17 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 		return strJson;		
 	},	
 
+	GetAppUncommittedFilesCount: function()
+	{
+		if (gs.hasRole('admin') == false)
+		{
+			return false;
+		}			
+		var strAppSysId = GetStringValue(this.getParameter('sysparm_app_sys_id'));
+		var nUncommittedFilesCount = GetAppUncommittedFilesCount(strAppSysId);
+		return MakeJson(nUncommittedFilesCount);
+	},		
+
 	GetAppBranches: function()
 	{
 		if (gs.hasRole('admin') == false)
@@ -424,14 +436,14 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-12 13:47:51</sys_created_on>
         <sys_id>7357b9131b8bb090edf3642aab4bcb10</sys_id>
-        <sys_mod_count>127</sys_mod_count>
+        <sys_mod_count>129</sys_mod_count>
         <sys_name>DevToolsClientAPI</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_7357b9131b8bb090edf3642aab4bcb10</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-07-22 15:32:31</sys_updated_on>
+        <sys_updated_on>2025-09-21 16:57:28</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.HtmlRenderPageLogs</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Renders the page that loads a number of logs for a given time frame.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>HtmlRenderPageLogs</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function HtmlRenderPageLogs()
+{
+	var strStart = GetStringValue(GetParam('start'));
+	var strEnd = GetStringValue(GetParam('end'));
+	var nMinutes = GetIntegerValue(GetParam('minutes'));
+
+	var timeEndDefault = GetTimeNow();
+	var timeStartDefault = timeEndDefault - (300 * 1000);
+
+	// Default values
+	var strStartDate = RenderDate(timeStartDefault);
+	var strStartTime = RenderTime(timeStartDefault);
+
+	var strEndDate = RenderDate(timeEndDefault);
+	var strEndTime = RenderTime(timeEndDefault);
+
+
+	if (strStart != '')
+	{
+		strStartDate = strStart.substr(0,10);
+		strStartTime = strStart.substr(11,8);
+	}
+	if (strEnd != '')
+	{
+		strEndDate = strEnd.substr(0,10);
+		strEndTime = strEnd.substr(11,8);
+	}
+/*
+	var strEndDate = '2025-09-21';
+	var strEndTime = '00:10:00';
+*/
+	var strHtml = '';
+
+	strHtml += '<h1>';
+	strHtml += 'Logs - ';
+	strHtml += GetInstanceName();
+	strHtml += ' - ';
+	strHtml += strStartDate + ' ' + strStartTime + ' to ' + strEndDate + ' ' + strEndTime;
+	strHtml += '</h1>';
+
+
+	var aLogs = [
+		{
+			table: 'syslog',
+			query: "sys_created_onBETWEENjavascript:gs.dateGenerate('{0}','{1}')@javascript:gs.dateGenerate('{2}','{3}')",
+			orderby: 'sys_created_on'
+		},
+		{
+			table: 'syslog_transaction',
+			query: "sys_created_onBETWEENjavascript:gs.dateGenerate('{0}','{1}')@javascript:gs.dateGenerate('{2}','{3}')",
+			orderby: 'sys_created_on'
+		},
+		{
+			table: 'sysevent',
+			query: "sys_created_onBETWEENjavascript:gs.dateGenerate('{0}','{1}')@javascript:gs.dateGenerate('{2}','{3}')",
+			orderby: 'sys_created_on'
+		},
+		{
+			table: 'sys_outbound_http_log',
+			query: "sys_created_onBETWEENjavascript:gs.dateGenerate('{0}','{1}')@javascript:gs.dateGenerate('{2}','{3}')",
+			orderby: 'sys_created_on'
+		},
+		{
+			table: 'ecc_queue',
+			query: "sys_created_onBETWEENjavascript:gs.dateGenerate('{0}','{1}')@javascript:gs.dateGenerate('{2}','{3}')",
+			orderby: 'sys_created_on'
+		},			
+		{
+			table: 'sys_flow_context',
+			query: "sys_created_onBETWEENjavascript:gs.dateGenerate('{0}','{1}')@javascript:gs.dateGenerate('{2}','{3}')",
+			orderby: 'sys_created_on'
+		},
+		{
+			table: 'sys_flow_log',
+			query: "sys_created_onBETWEENjavascript:gs.dateGenerate('{0}','{1}')@javascript:gs.dateGenerate('{2}','{3}')",
+			orderby: 'sys_created_on'
+		}		
+	];
+
+
+for (var nLog = 0; nLog < aLogs.length; nLog++)
+	{
+		var log = aLogs[nLog];
+		var strTable = GetValue(log,'table');
+		if (IsValidTable(strTable) == true)
+		{
+			strHtml += HtmlRenderLink('#'+strTable,strTable,false) + '&nbsp;&nbsp;';
+		}
+	}
+
+
+	for (var nLog = 0; nLog < aLogs.length; nLog++)
+	{
+		var log = aLogs[nLog];
+		var strTable = GetValue(log,'table');
+		if (IsValidTable(strTable) == true)
+		{
+			strHtml += '<span id="'+strTable+'"/>';
+			var strQuery = GetValue(log,'query');
+			if (strQuery != '')
+			{
+				strQuery = StringFormat(
+					strQuery,
+					strStartDate,strStartTime,
+					strEndDate,strEndTime);
+				var strOrderBy = GetValue(log,'orderby');
+				if (strOrderBy != '')
+				{
+					strQuery += '^ORDERBY' + strOrderBy;
+				}
+				var strUrl = GetInstanceListURI(strTable,'devtools',strQuery);
+				strHtml += '<iframe width="100%" height="50%" src="'+strUrl+'"></iframe>';
+			}
+		}
+	}
+
+/*
+
+	var strQuery = "sys_created_onBETWEENjavascript:gs.dateGenerate('"+strStartDate+"','"+strStartTime+"')@javascript:gs.dateGenerate('"+strEndDate+"','"+strEndTime+"')";
+	strQuery += '^ORDERBYDESCsys_created_on';
+	
+	var strUrl = GetInstanceListURI('syslog_transaction','devtools',strQuery);
+
+	strHtml += '<iframe width="100%" height="50%" src="'+strUrl+'"></iframe>';
+*/
+
+	return strHtml;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-09-24 10:18:22</sys_created_on>
+        <sys_id>45e6dc373bccba5062bf612c95e45a7e</sys_id>
+        <sys_mod_count>29</sys_mod_count>
+        <sys_name>HtmlRenderPageLogs</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_45e6dc373bccba5062bf612c95e45a7e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-01 15:04:33</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+</record_update>

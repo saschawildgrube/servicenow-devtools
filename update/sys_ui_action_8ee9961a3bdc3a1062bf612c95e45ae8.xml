@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_action">
+    <sys_ui_action action="INSERT_OR_UPDATE">
+        <action_name>devtools_updateset_pack</action_name>
+        <active>true</active>
+        <client>false</client>
+        <client_script_v2><![CDATA[function onClick(g_form) {
+
+}]]></client_script_v2>
+        <comments>Packs the completed Update Set into a new Record Transporter Package.</comments>
+        <condition>IsActive() &amp;&amp; (AppGetProperty('ui.updateset_pack_button') == true) &amp;&amp; (current.state == 'complete') &amp;&amp; (IsValidSysId(current.x_snc_devtools_transporter_package_application)) &amp;&amp; (IsValidSysId(current.x_snc_devtools_transporter_package) == false)</condition>
+        <form_action>true</form_action>
+        <form_button>false</form_button>
+        <form_button_v2>false</form_button_v2>
+        <form_context_menu>false</form_context_menu>
+        <form_link>true</form_link>
+        <form_menu_button_v2>false</form_menu_button_v2>
+        <form_style/>
+        <format_for_configurable_workspace>false</format_for_configurable_workspace>
+        <hint/>
+        <isolate_script>false</isolate_script>
+        <list_action>false</list_action>
+        <list_banner_button>false</list_banner_button>
+        <list_button>false</list_button>
+        <list_choice>false</list_choice>
+        <list_context_menu>false</list_context_menu>
+        <list_link>false</list_link>
+        <list_save_with_form_button>false</list_save_with_form_button>
+        <list_style/>
+        <messages/>
+        <name>Pack Update Set into Record Transporter</name>
+        <onclick/>
+        <order>99999</order>
+        <script><![CDATA[var grApp = GetAppRecord(current.x_snc_devtools_transporter_package_application);
+if (IsValidRecord(grApp) == false)
+{
+	gs.addErrorMessage('Could not find specified application! Failed to pack this Update Set!');
+}
+else
+{
+	var strTransporterPackageSysId = RecordTransporterPackUpdateSetIntoApp(
+		grApp,
+		current);
+	if (IsValidSysId(strTransporterPackageSysId) == true)
+	{
+		gs.addInfoMessage(
+			StringFormat(
+				'The Update Set "{0}" has been packed into a new Record Transporter Package in Application "{1}".',
+				current.name,
+				grApp.name)
+			);
+	}
+	else
+	{
+		gs.addErrorMessage(
+			StringFormat(
+				'Failed to pack Update Set "{0}" into Application "{1}".',
+				current.name,
+				grApp.name)
+			);
+	}
+}
+RedirectToRecord(current);]]></script>
+        <show_insert>true</show_insert>
+        <show_multiple_update>false</show_multiple_update>
+        <show_query>false</show_query>
+        <show_update>true</show_update>
+        <sys_class_name>sys_ui_action</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-10-02 14:16:23</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>8ee9961a3bdc3a1062bf612c95e45ae8</sys_id>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_name>Pack Update Set into Record Transporter</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_ui_action_8ee9961a3bdc3a1062bf612c95e45ae8</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-02 15:38:03</sys_updated_on>
+        <table>sys_update_set</table>
+        <ui11_compatible>true</ui11_compatible>
+        <ui16_compatible>false</ui16_compatible>
+    </sys_ui_action>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>8ee9961a3bdc3a1062bf612c95e45ae8</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-10-02 14:16:22</sys_created_on>
+        <sys_id>191a1a1a3bdc3a1062bf612c95e45aec</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-02 14:16:22</sys_updated_on>
+        <table>sys_ui_action</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

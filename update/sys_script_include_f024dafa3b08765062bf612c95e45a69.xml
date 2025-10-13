@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.GetAppUncommittedFilesCount</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns the number of records (and deleted records) that are currently not committed to the current source control branch of the given application. If the application is not linked to source control, the function returns false.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>GetAppUncommittedFilesCount</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function GetAppUncommittedFilesCount(vApp)
+{
+	var grApp = GetAppRecord(vApp);
+	if (grApp == false)
+	{
+		return false;
+	}
+	if (GetAppCurrentBranch(grApp) == '')
+	{
+		return false;
+	}
+	var aUncommittedFiles = [];
+
+	var grUpdateXml = new GlideRecord('sys_update_xml');
+	grUpdateXml.addQuery('application','=',grApp.sys_id);
+	grUpdateXml.addQuery('remote_update_set','=','');
+	grUpdateXml.query();
+	return grUpdateXml.getRowCount();
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-09-21 16:51:39</sys_created_on>
+        <sys_id>f024dafa3b08765062bf612c95e45a69</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>GetAppUncommittedFilesCount</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_f024dafa3b08765062bf612c95e45a69</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-09-21 16:52:53</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+</record_update>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.RecordTransporterPackUpdateSetIntoApp</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Packs the given Update Set into the given Application.&#13;
+If the Update Set is not yet part of any Transporter Package, a new Transporter Package is created.&#13;
+If the Update Set is already contained in a Transporter Package the function returns false.&#13;
+If all works according to plan, the function returns the Sys ID of the created Record Transporter Package.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>RecordTransporterPackUpdateSetIntoApp</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function RecordTransporterPackUpdateSetIntoApp(vApp,vUpdateSet)
+{
+	var grApp = GetAppRecord(vApp);
+	if (IsValidRecord(grApp) == false)
+	{
+		return false;
+	}
+	var grUpdateSet = GetRecord('sys_update_set',vUpdateSet);
+	if (IsValidRecord(grUpdateSet) == false)
+	{
+		return false;
+	}
+
+	var grTransporterRecord = new GlideRecord('x_snc_devtools_transporter_record');
+	grTransporterRecord.addQuery('sys_scope','=',grApp.sys_id);
+	grTransporterRecord.addQuery('payload_sys_id','=',grUpdateSet.sys_id);
+	grTransporterRecord.query();
+	if (grTransporterRecord.getRowCount() > 0)
+	{
+		LogWarning('A Transporter Record has been found that already contains the given Update Set.');
+		return false;
+	}
+
+	var grTransporterPackage = new GlideRecord('x_snc_devtools_transporter_package');
+	grTransporterPackage.initialize();
+	grTransporterPackage.sys_scope = grApp.sys_id;
+	grTransporterPackage.name = 'Update Set: ' + grUpdateSet.name;
+	grTransporterPackage.auto_unpack = true;
+	grTransporterPackage.auto_commit = true;
+	grTransporterPackage.id_suffix = 'updateset_' +  grUpdateSet.sys_id;
+	grTransporterPackage.description = 'Auto-generated Transporter Package to ship Update Set "'+grUpdateSet.name+'".';
+	var strTransporterPackageSysId = grTransporterPackage.insert();
+	if (IsValidSysId(strTransporterPackageSysId) == false)
+	{
+		return false;
+	}
+
+	var bResult = RecordTransporterPackagePackUpdateSet(strTransporterPackageSysId,grUpdateSet);
+
+	if (bResult == false)
+	{
+		RecordDelete('x_snc_devtools_transporter_package',strTransporterPackageSysId);
+		return false;
+	}
+
+	grUpdateSet.x_snc_devtools_transporter_package = strTransporterPackageSysId;
+	GlideRecordUpdate(grUpdateSet,true);
+
+	var grTechnicalDebt = new GlideRecord('x_snc_devtools_technical_debt');
+	grTechnicalDebt.initialize();
+	grTechnicalDebt.short_description = 'Update Set "'+grUpdateSet.name+'" contained in Transporter Package';
+	grTechnicalDebt.type = 'transporterpackage_updateset';
+	grTechnicalDebt.sys_scope = grApp.sys_id;
+	grTechnicalDebt.description = 'The Update Set "'+grUpdateSet.name+'" has been added to the Record Transporter Package "'+grTransporterPackage.name+'". This is the least favorable method to deploy Application Files and should only be used as an exception. Application Files should rather be part of Applications directly, or in case of OOTB Application Files, deactivated or modified through installation scripts. This should be reviewed and refactored.';
+	grTechnicalDebt.insert();
+
+	return strTransporterPackageSysId;
+
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-09-30 13:16:30</sys_created_on>
+        <sys_id>b958f3293b1c361062bf612c95e45a7f</sys_id>
+        <sys_mod_count>14</sys_mod_count>
+        <sys_name>RecordTransporterPackUpdateSetIntoApp</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_b958f3293b1c361062bf612c95e45a7f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-10 14:20:32</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>b958f3293b1c361062bf612c95e45a7f</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-09-30 13:16:29</sys_created_on>
+        <sys_id>2039b7693b1c361062bf612c95e45af7</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-09-30 13:16:29</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

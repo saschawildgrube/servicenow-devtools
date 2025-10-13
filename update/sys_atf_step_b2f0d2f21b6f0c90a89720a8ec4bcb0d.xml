@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-03-18 10:18:51</sys_created_on>
         <sys_id>b2f0d2f21b6f0c90a89720a8ec4bcb0d</sys_id>
-        <sys_mod_count>13</sys_mod_count>
+        <sys_mod_count>14</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_b2f0d2f21b6f0c90a89720a8ec4bcb0d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-03-06 08:43:30</sys_updated_on>
+        <sys_updated_on>2025-09-22 17:31:50</sys_updated_on>
         <table/>
         <test display_value="DevTools - ParseJson">dcc05eb21b6f0c90a89720a8ec4bcb64</test>
         <timeout/>
@@ -50,9 +50,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-03-18 10:18:51</sys_created_on>
         <sys_id>c4e116361b6f0c90a89720a8ec4bcb28</sys_id>
-        <sys_mod_count>13</sys_mod_count>
+        <sys_mod_count>14</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-03-06 08:43:31</sys_updated_on>
+        <sys_updated_on>2025-09-22 17:31:50</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -96,6 +96,10 @@
 	}&#13;
 &#13;
 	TestCase_ParseJson(false,false);&#13;
+	TestCase_ParseJson('',false);&#13;
+	TestCase_ParseJson(' ',false);&#13;
+	TestCase_ParseJson('Hello World',false);&#13;
+&#13;
 	TestCase_ParseJson('{}',{});&#13;
 	TestCase_ParseJson('[]',[]);&#13;
 	TestCase_ParseJson('{ "ParseJson": "world" }', { ParseJson: 'world' } );&#13;

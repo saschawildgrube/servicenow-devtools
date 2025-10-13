@@ -6,7 +6,7 @@
         <client_script_v2><![CDATA[function onClick(g_form) {
 
 }]]></client_script_v2>
-        <comments>Generate a new password, sets the user name if necessary and send the new credentials via mail to the current user.</comments>
+        <comments>Generate a new password, sets the user name if necessary, and displays a message containing the initial password that can then be sent to the currently displayed user.</comments>
         <condition>IsActive() &amp;&amp; (IsTechnicalUser(current) == false) &amp;&amp; IsValidEmail(current.email) &amp;&amp; (AppGetProperty('ui.generatecredentials_button') == true) &amp;&amp; (GetProperty('glide.email.smtp.active') == false)</condition>
         <form_action>true</form_action>
         <form_button>true</form_button>
@@ -55,7 +55,7 @@ RedirectToRecord(current,GetParam('sysparm_view'));]]></script>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>b03b8e3f93be6610959b7fda2bba1062</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_name>Generate Credentials</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -63,7 +63,7 @@ RedirectToRecord(current,GetParam('sysparm_view'));]]></script>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_action_b03b8e3f93be6610959b7fda2bba1062</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-07-28 08:21:14</sys_updated_on>
+        <sys_updated_on>2025-09-18 11:34:33</sys_updated_on>
         <table>sys_user</table>
         <ui11_compatible>true</ui11_compatible>
         <ui16_compatible>false</ui16_compatible>

@@ -19,7 +19,7 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2024-07-25 14:53:13</sys_updated_on>
         <table>x_snc_devtools_dependency</table>
-        <ui_policy display_value="Dependency - Non custom apps">ac30af26dba34290f0f1d03cd3961915</ui_policy>
+        <ui_policy display_value="x_snc_devtools_dependency - package_class">ac30af26dba34290f0f1d03cd3961915</ui_policy>
         <value/>
         <value_action/>
         <visible>false</visible>

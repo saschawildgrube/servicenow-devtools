@@ -63,11 +63,21 @@
 				<li>If the test "DevTools - RunScriptInGlobalScope" fails: Retry after a few minutes. Some cross-scope privileges will be set up during the first test run and might take a few minutes to be effective. The function RunScriptInGlobalScope() is used in many other functions, so do look into any other failed tests as long as this test fails.</li>
 				<li>Tests "DevTools - TestDataAPI": These scripts create various records (e.g. incidents, problems, etc.). If there are customizations in place that make additional fields mandatory, you may have to set up business rules to set these values - but only if the short description (or the corresponding field) starts with "_ATF_".</li>
 				<li>If the "DevTools - Test data sanity" test fails you can use the following script to clear existing test data:</li>
-				<pre>var testdata = new x_snc_devtools.TestDataAPI('_ATF_DEVTOOLS_');
+<pre>var testdata = new x_snc_devtools.TestDataAPI('_ATF_DEVTOOLS_');
 gs.info('Before DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData()));
 testdata.DeleteAllData(testdata.GetAllData());
 gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData()));
-				</pre>
+
+var grSuites = new GlideRecord('scan_check_suite');
+grSuites.addQuery('name','=','DevTools.TEMP');
+grSuites.addQuery('sys_scope','=','global');
+grSuites.query();
+while (grSuites.next())
+{
+	gs.info('Deleting: ' + grSuites.name + ' - ' + grSuites.sys_id);
+	x_snc_devtools.GlideRecordDelete(grSuites);
+}
+</pre>
 			</ol>
 		</li>
 	</ol>
@@ -338,6 +348,14 @@ function AppInstall()
 		</pre>
 	</li>
 	</ol>
+
+	<h3>Update Sets in Record Transporter Packages</h3>
+	<p>It may sound absurd, but it is true: Sometimes Update Sets may just be the only practical, straight forward way to capture a change. If a team has decided to ship everything as applications, this would be a problem. The DevTools Record Transporter comes to the rescue.</p>
+	<p>An Update Set can be packed into a Record Transporter Package. An admin user can select the "Transporter Package Application" for an Update Set on the Update Set form. If the Update Set is in state "Complete", an admin user can select the link "Pack Update Set into Record Transporter" on the Updaet Set form. The Update Set (and all of its siblings) are then packed into a new Transporter Package in the selected application.</p>
+	<p>The Transporter Package is automatically configured to be unpacked automatically when running the application's installation scripts (see function InstallApp()). Further the Update Set(s) contained in the Transporter Package will be automatically committed.</p>
+	<p>Since the order of Update Sets should be maintained, the Transporter Packages are assigned an increasing order number which is used when unpacking and committing.</p>
+	<p>Please note that this method should be considered as a fall-back method if there is really no feasible way to capture and transport changes. Once used, Technical Debt records are created for each packed Update Set that should remind the developer to find a better solution in the future.</p>
+	<p>This capability is built to make it easier for teams to transform their Update Set-based process into a more robust applications-based deployment process.</p> 
 
 	<h3>CMDB CI Class "ServiceNow App"</h3>
 	<p>DevTools introduces a new CMDB CI class called "ServiceNow App" which represents a ServiceNow app (scoped or global) that is installed on an instance or provided in a Source Control System for installation.</p>
@@ -640,6 +658,24 @@ function YourLengthyProcess(strRecordSysId)
 		<li>Check if there is an Execution Tracker record with name "Instance Scan" and completion time "empty". Delete this Execution Tracker record.</li>			
 	</ol>
 
+	<h3>How to replace a deprecated function?</h3>
+	<p>Sometimes function names change or the original function is deprecated. Use this code pattern to search and replace a function (e.g. in Script Include scripts):</p>
+	<pre>
+	var grSI = new GlideRecord('sys_script_include');
+grSI.addQuery('sys_scope.scope','STARTSWITH','x_');
+grSI.addQuery('name','!=','IsValidFunction');
+grSI.addQuery('script','CONTAINS','IsValidFunction');
+grSI.query();
+while (grSI.next())
+{
+	gs.info(grSI.api_name);
+	var strScript = grSI.script.getValue();
+	grSI.script = strScript.replaceAll(
+		'IsValidFunction','IsFunction');
+	x_snc_devtools.GlideRecordUpdate(grSI);
+} </pre>
+	<p>Please note that you may have to add more filters to ignore legitimate findings.</p> 
+
 	<h2>Reference</h2>
 
 	<h3>Configuration Options</h3>
@@ -678,6 +714,50 @@ function YourLengthyProcess(strRecordSysId)
 	<g2:no_escape>$[docapi.RenderLicense()]</g2:no_escape>
 	
 	<h2 toc-ignore-children="true">Release Notes</h2>
+
+	<h3>1.133.0 - 2025-10-13</h3>
+	<ol>
+		<li>Added UI Page "x_snc_devtools_flow" that renders the SubFlows that are called by a Flow or SubFlow.</li>
+		<li>Added functions GetFlowStructureTree() and HtmlRenderPageFlow().</li>
+		<li>Added function GetAppUncommittedFilesCount().</li>
+		<li>Added function DevToolsClientAPI::GetAppUncommittedFilesCount().</li>
+		<li>Added Technical Debt category "Update Set in Record Transporter Package".</li>
+		<li>Added function RecordTransporterPackagePackUpdateSet().</li>
+		<li>Function RecordTransporterRecordUnpack() can now handle sys_update_set and sys_update_xml records so that these are treated as a Remote Update Set that can be committed on the target system.</li>
+		<li>Added function UpdateSetPreviewAndCommit().</li>
+		<li>Function RecordTransporterPackageUnpack() now allows to preview and commit Update Sets contained in the Package.</li>
+		<li>Added function RecordTransporterAutomaticUnpack().</li>
+		<li>Added options to Record Transporter Packages to perform "Automatic Unpack during Installation" of an application  and to "Automatically Preview and Commit contained Update Sets".</li>
+		<li>InstallApp() now automatically unpacks Record Transporter Packages and automatically previews and commits contained Update Sets (if configured accordingly).</li>
+		<li>Added function RecordTransporterPackUpdateSetIntoApp().</li>
+		<li>Added function MakeDefaultTestScript().</li>
+		<li>Added function InstallerAPI::ActivateCatalogItem().</li>
+		<li>Added function InstanceScanGetTempSuite().</li>
+		<li>DocumentationAPI::RenderRestApis() now also renders the parameters of a REST API endpoint.</li>		
+		<li>DocumentationAPI::RenderRestApis() now only shows active REST APIs.</li>
+		<li>RecordManageOrder() now also supports an additional encocoded query string to narrow down the subset of records that should be re-ordered.</li>
+		<li>Fixed DocumentationAPI::RenderRestApis() to only show the REST Resources related to a Web Service Definition.</li>
+		<li>Improved error and exception handling in HttpRequest().</li> 
+		<li>Added function TestAPI::TestCase_RestApiOperation().</li>
+		<li>The TestAPI class and the IsTestRunning() function no longer use temporary System Properties to indicate a currently running test - instead IsTestRunning() looks for sys_atf_test_result records in status "running".</li>
+		<li>GetParentRecord() and the "Up" button now support Transporter Packages, CMDB Identifiers and CMDB Related Entries, Remote Update Sets, Update XMLs associated with a Remote Update Set, and Update Set Preview records.</li>		
+		<li>MakeTestNameForRecord() now considers the case where the application name is used as a prefix in a Flow (or SubFLow) name.</li>
+		<li>AddScriptTestStep() now uses MakeDefaultTestScript() and SetTestSTepScript() to initialize the test script after creating the Test Step.</li>
+		<li>MakeTestScriptForRecord() now also supports sys_ws_operation.</li>
+		<li>MakeTestScriptForRecord() now uses MakeDefaultTestScript() as a fallback if no Application File specific test script can be provided.</li>
+		<li>Improved error handling in GitHubAPI::GetBranchesFromRepo().</li>
+		<li>Improved performance of IsClonedDictionary().</li>
+		<li>InstanceScanGetEncodedQueryToPreventUselessChecks() now also considers (filters) cloned sys_dictionary records.</li>
+		<li>Added "Transporter Packages" to the related lists on the sys_app DevTools view.</li> 
+		<li>Added more test cases for StringCheckRegEx().</li>
+		<li>Added more patterns to GetEvaluatorErrorExceptionPatterns().</li>
+		<li>Added more syntax editor macros.</li>
+		<li>Added chapter "Update Sets in Record Transporter Packages" to the manual.</li>
+		<li>Added chapter "How to replace a deprecated function?" to the manual.</li>
+		<li>Extended code to be executed in case of a test fail in "DevTools - Test data sanity" in the manual.</li>
+		<li>Updated the application description.</li>
+	</ol>
+
 
 	<h3>1.132.0 - 2025-09-15</h3>
 	<ol>
@@ -2958,14 +3038,14 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>2260</sys_mod_count>
+        <sys_mod_count>2308</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-09-15 10:12:14</sys_updated_on>
+        <sys_updated_on>2025-10-13 09:50:54</sys_updated_on>
     </sys_ui_page>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>e44fd7541b578450a89720a8ec4bcb8c</id>

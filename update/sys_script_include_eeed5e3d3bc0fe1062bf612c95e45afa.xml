@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.HtmlRenderPageFlow</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Renders the structure graph of a given flow (or subflow).</description>
+        <mobile_callable>false</mobile_callable>
+        <name>HtmlRenderPageFlow</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function HtmlRenderPageFlow()
+{
+	var strFlow = GetParam('flow');
+	var strMode = GetParam('mode');
+	var nMaxLevel = GetIntegerValue(GetParam('maxlevel'));
+
+	if (strMode == '')
+	{
+		strMode = 'tree';
+	}
+
+	var strHtml = '<h1>Flow Structure</h1>';
+
+	var flow = GetFlowStructureTree(strFlow,nMaxLevel);
+	if (flow == false)
+	{
+		strHtml += HtmlRenderError('Could not load the given Flow (or SubFlow).');
+		return strHtml;
+	}
+
+	strHtml += HtmlRenderTabNavigation(
+		[
+			{
+				id: 'tree',
+				text: 'Tree',
+				url: '?flow='+strFlow+'&mode=tree&maxlevel='+nMaxLevel
+			},
+			{
+				id: 'map',
+				text: 'Map',
+				url: '?flow='+strFlow+'&mode=map&maxlevel='+nMaxLevel
+			}
+		],
+		strMode);
+
+
+	function RenderNode(node,nLevel)
+	{
+		var strFlowType = '';
+		if (node.type == 'flow')
+		{
+			strFlowType += ' (Flow)';
+		}
+		if (node.type == 'subflow')
+		{
+			strFlowType += ' (SubFlow)';
+		}		
+
+		var strContent = '<b>' + node.name + strFlowType + '</b><br/>';
+		var strBuilderUrl = GetRecordPath('sys_hub_flow',node.sys_id);
+		strContent += HtmlRenderLink(strBuilderUrl,'Workflow Studio',true);
+
+		if (nLevel != 0)
+		{
+			strContent += ' | ';
+			var strTreeUrl = '/x_snc_devtools_flow.do?flow=' + node.sys_id + '&maxlevel='+nMaxLevel;
+			strContent += HtmlRenderLink(strTreeUrl,'Show Tree',true);
+		}
+
+		return HtmlRenderRoundedBox(strContent);
+	}
+
+	if (strMode == 'map')
+	{
+		strHtml += HtmlRenderProcessMap([flow],0,RenderNode);
+	}
+	else
+	{
+		strHtml += HtmlRenderTree([flow],0,false,RenderNode);
+	}
+
+	return strHtml;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-09-18 15:01:18</sys_created_on>
+        <sys_id>eeed5e3d3bc0fe1062bf612c95e45afa</sys_id>
+        <sys_mod_count>26</sys_mod_count>
+        <sys_name>HtmlRenderPageFlow</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_eeed5e3d3bc0fe1062bf612c95e45afa</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-10 13:32:13</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>eeed5e3d3bc0fe1062bf612c95e45afa</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-09-18 15:01:17</sys_created_on>
+        <sys_id>be1ede3d3bc0fe1062bf612c95e45a18</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-09-18 15:01:17</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

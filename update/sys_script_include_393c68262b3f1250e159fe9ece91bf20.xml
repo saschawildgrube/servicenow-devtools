@@ -18,11 +18,16 @@
 	
 	nLevel = GetIntegerValue(nLevel);
 	
+	function RenderNodeDefault(node,nLevel)
+	{
+		return HtmlRenderRoundedBox(GetValue(node,'content'));
+	}
+
 	if (IsFunction(callbackRenderNode) == false)
 	{
-		callbackRenderNode = HtmlRenderRoundedBox;
+		callbackRenderNode = RenderNodeDefault;
 	}
-	
+
 	var strHtml = '';
 	
 	var strHtmlCenter = '';
@@ -35,21 +40,22 @@
 
 		if (nLevel == 0)
 		{
-			strHtmlCenter += callbackRenderNode(GetValue(aNodes[nCurrentNode],'content'));
+			strHtmlCenter += callbackRenderNode(aNodes[nCurrentNode],0);
 			strHtmlCenter += HtmlRenderProcessMap(
 				GetValue(aNodes[nCurrentNode],'_nodes'),
-				nLevel+1, callbackRenderNode);			
+				nLevel+1,
+				callbackRenderNode);			
 		}
 		if (nLevel == 1)
 		{
 			var strHtmlColumn = '';
 
-				strHtmlColumn += callbackRenderNode(
-					GetValue(aNodes[nCurrentNode],'content'));
+				strHtmlColumn += callbackRenderNode(aNodes[nCurrentNode],nLevel);
 				
 			strHtmlColumn += HtmlRenderProcessMap(
 				GetValue(aNodes[nCurrentNode],'_nodes'),
-				nLevel+1, callbackRenderNode);
+				nLevel+1,
+				callbackRenderNode);
 
 			if (nNode < (aNodes.length/2))
 			{
@@ -67,12 +73,14 @@
 		
 			strHtmlCenter += '<div style="padding-left: '+nPadding+'px;">\n';
 				strHtmlCenter += callbackRenderNode(
-					GetValue(aNodes[nCurrentNode],'content'));
+					aNodes[nCurrentNode],
+					nLevel);
 			strHtmlCenter += '</div>';			
 
 			strHtmlCenter += HtmlRenderProcessMap(
 				GetValue(aNodes[nCurrentNode],'_nodes'),
-				nLevel+1, callbackRenderNode);			
+				nLevel+1,
+				callbackRenderNode);			
 
 			
 		}
@@ -102,14 +110,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-02-21 08:12:17</sys_created_on>
         <sys_id>393c68262b3f1250e159fe9ece91bf20</sys_id>
-        <sys_mod_count>17</sys_mod_count>
+        <sys_mod_count>20</sys_mod_count>
         <sys_name>HtmlRenderProcessMap</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_393c68262b3f1250e159fe9ece91bf20</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-03-06 10:44:08</sys_updated_on>
+        <sys_updated_on>2025-09-19 13:07:29</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>

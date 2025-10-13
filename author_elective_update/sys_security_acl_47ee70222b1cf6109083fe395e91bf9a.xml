@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl">
+    <sys_security_acl action="DELETE">
+        <active>true</active>
+        <admin_overrides>true</admin_overrides>
+        <advanced>true</advanced>
+        <applies_to/>
+        <condition/>
+        <controlled_by_refs/>
+        <decision_type>allow</decision_type>
+        <description/>
+        <local_or_existing>Local</local_or_existing>
+        <name>Test1ClientAPI</name>
+        <operation display_value="execute">execute</operation>
+        <script><![CDATA[answer = gs.getSession().isLoggedIn();
+if (!answer) {
+    answer = gs.getProperty('glide.security.allow_unauth_roleless_acl', false);
+}]]></script>
+        <security_attribute/>
+        <sys_class_name>sys_security_acl</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-10-03 02:16:34</sys_created_on>
+        <sys_id>47ee70222b1cf6109083fe395e91bf9a</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Test1ClientAPI</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_security_acl_47ee70222b1cf6109083fe395e91bf9a</sys_update_name>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2025-10-10 15:55:58</sys_updated_on>
+        <type display_value="client_callable_script_include">client_callable_script_include</type>
+    </sys_security_acl>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>a8cbb5133b6b5e540fd412c5e4e45a1f</instance_id>
+        <instance_name>wildyokohama</instance_name>
+        <name>sys_security_acl_47ee70222b1cf6109083fe395e91bf9a</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_security_acl"&gt;&lt;sys_security_acl action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;admin_overrides&gt;true&lt;/admin_overrides&gt;&lt;advanced&gt;true&lt;/advanced&gt;&lt;applies_to/&gt;&lt;condition/&gt;&lt;controlled_by_refs/&gt;&lt;decision_type&gt;allow&lt;/decision_type&gt;&lt;description/&gt;&lt;local_or_existing&gt;Local&lt;/local_or_existing&gt;&lt;name&gt;Test1ClientAPI&lt;/name&gt;&lt;operation display_value="execute"&gt;execute&lt;/operation&gt;&lt;script&gt;&lt;![CDATA[answer = gs.getSession().isLoggedIn();
+if (!answer) {
+    answer = gs.getProperty('glide.security.allow_unauth_roleless_acl', false);
+}]]&gt;&lt;/script&gt;&lt;security_attribute/&gt;&lt;sys_class_name&gt;sys_security_acl&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2025-10-03 02:16:34&lt;/sys_created_on&gt;&lt;sys_id&gt;47ee70222b1cf6109083fe395e91bf9a&lt;/sys_id&gt;&lt;sys_mod_count&gt;1&lt;/sys_mod_count&gt;&lt;sys_name&gt;Test1ClientAPI&lt;/sys_name&gt;&lt;sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools"&gt;d689f6901bd38450a89720a8ec4bcbfd&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="DevTools WORK IN PROGRESS"&gt;d689f6901bd38450a89720a8ec4bcbfd&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_security_acl_47ee70222b1cf6109083fe395e91bf9a&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;system&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2025-10-10 15:55:58&lt;/sys_updated_on&gt;&lt;type display_value="client_callable_script_include"&gt;client_callable_script_include&lt;/type&gt;&lt;/sys_security_acl&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>-1726772413</payload_hash>
+        <record_name>Test1ClientAPI</record_name>
+        <reverted_from/>
+        <source>d2387bfce19312105590bd68cbbecbc3</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2025-10-10 15:55:58</sys_created_on>
+        <sys_id>969d33bc3be0321062bf612c95e45ae5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>199ced60d440000001</sys_recorded_at>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2025-10-10 15:55:58</sys_updated_on>
+        <type>Access Control</type>
+        <update_guid>da9d33bcbfe032105cacda4e2c872ce4</update_guid>
+        <update_guid_history>da9d33bcbfe032105cacda4e2c872ce4:-1726772413,97ee70221b1cf6109a9be9717c1ff7a2:-2072531425</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2025-10-13 07:08:01</sys_created_on>
+        <sys_db_object display_value="" name="sys_security_acl">sys_security_acl</sys_db_object>
+        <sys_id>72d346c63fca42c0ba462c8f6ef99ac4</sys_id>
+        <sys_metadata>47ee70222b1cf6109083fe395e91bf9a</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Test1ClientAPI</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sys_security_acl_47ee70222b1cf6109083fe395e91bf9a</sys_update_name>
+        <sys_update_version display_value="sys_security_acl_47ee70222b1cf6109083fe395e91bf9a">969d33bc3be0321062bf612c95e45ae5</sys_update_version>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2025-10-13 07:08:01</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

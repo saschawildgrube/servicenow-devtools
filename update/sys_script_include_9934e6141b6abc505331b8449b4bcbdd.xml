@@ -325,13 +325,41 @@
 	
 	if (strTable == 'sys_update_xml')
 	{
-		return GetRecord('sys_update_set',grRecord.update_set,true);
-	}	
+		if (GetStringValue(grRecord.update_set) != '')
+		{
+			return GetRecord('sys_update_set',grRecord.update_set,true);
+		}
+		if (GetStringValue(grRecord.remote_update_set) != '')
+		{
+			return GetRecord('sys_remote_update_set',grRecord.remote_update_set,true);
+		}
+		return false;
+	}
+
+	if (strTable == 'sys_update_preview_xml')
+	{
+		if (GetStringValue(grRecord.local_update.update_set) != '')
+		{
+			return GetRecord('sys_update_set',grRecord.local_update.update_set,true);
+		}
+		if (GetStringValue(grRecord.remote_update.remote_update_set) != '')
+		{
+			return GetRecord('sys_remote_update_set',grRecord.remote_update.remote_update_set,true);
+		}
+		return false;
+	}
+
+
 	if (strTable == 'sys_update_set')
 	{
 		return GetRecord('sys_update_set',grRecord.parent,true);
 	}	
 		
+	if (strTable == 'sys_remote_update_set')
+	{
+		return GetRecord('sys_remote_update_set',grRecord.parent,true);
+	}	
+
 	if (strTable == 'ts_table')
 	{
 		return GetRecord('ts_group',grRecord.group,true);
@@ -514,6 +542,11 @@
 		return GetRecord('x_snc_devtools_transporter_package',grRecord.package);
 	}
 
+	if (strTable == 'x_snc_devtools_transporter_package')
+	{
+		return GetRecord('sys_app',grRecord.sys_scope);
+	}	
+
 	if (strTable == 'syntax_editor_macro')
 	{
 		var grSI = new GlideRecord('sys_script_include');
@@ -590,6 +623,16 @@
 		}
 	}
 
+	if (strTable == 'cmdb_identifier_entry')
+	{
+		return GetRecord('cmdb_identifier',grRecord.identifier);
+	}		
+
+	if (strTable == 'cmdb_related_entry')
+	{
+		return GetRecord('cmdb_identifier',grRecord.identifier);
+	}		
+
 	var strParentTable = GetParentTable(strTable);
 	if (strParentTable != '')
 	{
@@ -602,14 +645,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-08 12:44:48</sys_created_on>
         <sys_id>9934e6141b6abc505331b8449b4bcbdd</sys_id>
-        <sys_mod_count>148</sys_mod_count>
+        <sys_mod_count>156</sys_mod_count>
         <sys_name>GetParentRecord</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_9934e6141b6abc505331b8449b4bcbdd</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-08-28 16:06:45</sys_updated_on>
+        <sys_updated_on>2025-10-10 14:03:42</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

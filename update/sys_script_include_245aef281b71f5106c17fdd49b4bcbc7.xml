@@ -6,16 +6,18 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>The function managers the order field in a given table. The given Sys ID identifies the record for which a new order value should be set and respected by all other records. The new order value is the new position of the given record. If the new order value is beyond the total number of records in the table, the record will be placed at the end.&#13;
-The Sys ID and new order parameters are optional. If null, an existing order will be maintained but the order values will be put in an exact sequence, if they are not already.</description>
+The Sys ID and new order parameters are optional. If null, an existing order will be maintained but the order values will be put in an exact sequence, if they are not already.&#13;
+The vQuery paramter may contain an encoded query to narrow down the subset of records which should be considered in managing their order.</description>
         <mobile_callable>false</mobile_callable>
         <name>RecordManageOrder</name>
         <sandbox_callable>false</sandbox_callable>
-        <script><![CDATA[function RecordManageOrder(strTable,strColumn,strSysId,nNewOrder)
+        <script><![CDATA[function RecordManageOrder(strTable,strColumn,strSysId,nNewOrder,vQuery)
 {
 	strTable = GetStringValue(strTable);
 	strColumn = GetStringValue(strColumn);
 	strSysId = GetStringValue(strSysId);
 	nNewOrder = GetIntegerValue(nNewOrder);
+	var strQuery = GetStringValue(vQuery);
 
 	if (IsValidTable(strTable) == false)
 	{
@@ -38,6 +40,10 @@ The Sys ID and new order parameters are optional. If null, an existing order wil
 
 	var grRecords = new GlideRecord(strTable);
 	grRecords.orderBy(strColumn);
+	if (strQuery != '')
+	{
+		grRecords.addEncodedQuery(strQuery);
+	}
 	grRecords.query();
 
 	if (nNewOrder < 1)
@@ -74,14 +80,14 @@ The Sys ID and new order parameters are optional. If null, an existing order wil
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-10-07 14:28:51</sys_created_on>
         <sys_id>245aef281b71f5106c17fdd49b4bcbc7</sys_id>
-        <sys_mod_count>10</sys_mod_count>
+        <sys_mod_count>13</sys_mod_count>
         <sys_name>RecordManageOrder</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_245aef281b71f5106c17fdd49b4bcbc7</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-08-28 12:58:42</sys_updated_on>
+        <sys_updated_on>2025-10-10 12:20:54</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>

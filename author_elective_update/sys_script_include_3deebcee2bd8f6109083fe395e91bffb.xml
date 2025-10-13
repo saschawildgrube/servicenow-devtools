@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="DELETE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.Test1</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <mobile_callable>false</mobile_callable>
+        <name>Test1</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[Test1.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
+{
+}
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-10-03 02:16:28</sys_created_on>
+        <sys_id>3deebcee2bd8f6109083fe395e91bffb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Test1</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_3deebcee2bd8f6109083fe395e91bffb</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-03 02:16:28</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>a8cbb5133b6b5e540fd412c5e4e45a1f</instance_id>
+        <instance_name>wildyokohama</instance_name>
+        <name>sys_script_include_3deebcee2bd8f6109083fe395e91bffb</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_script_include"&gt;&lt;sys_script_include action="INSERT_OR_UPDATE"&gt;&lt;access&gt;package_private&lt;/access&gt;&lt;active&gt;true&lt;/active&gt;&lt;api_name&gt;x_snc_devtools.Test1&lt;/api_name&gt;&lt;caller_access/&gt;&lt;client_callable&gt;false&lt;/client_callable&gt;&lt;description/&gt;&lt;mobile_callable&gt;false&lt;/mobile_callable&gt;&lt;name&gt;Test1&lt;/name&gt;&lt;sandbox_callable&gt;false&lt;/sandbox_callable&gt;&lt;script&gt;&lt;![CDATA[Test1.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
+{
+}
+]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script_include&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2025-10-03 02:16:28&lt;/sys_created_on&gt;&lt;sys_id&gt;3deebcee2bd8f6109083fe395e91bffb&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_name&gt;Test1&lt;/sys_name&gt;&lt;sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools"&gt;d689f6901bd38450a89720a8ec4bcbfd&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="DevTools WORK IN PROGRESS"&gt;d689f6901bd38450a89720a8ec4bcbfd&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_include_3deebcee2bd8f6109083fe395e91bffb&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2025-10-03 02:16:28&lt;/sys_updated_on&gt;&lt;x_snc_devtools_sys_ui_script/&gt;&lt;/sys_script_include&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>237430468</payload_hash>
+        <record_name>Test1</record_name>
+        <reverted_from/>
+        <source>818f5ba53b98361062bf612c95e45a31</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-10-03 02:16:29</sys_created_on>
+        <sys_id>bdeebcee2bd8f6109083fe395e91bffe</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>199a7db44ed0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-03 02:16:29</sys_updated_on>
+        <type>Script Include</type>
+        <update_guid>bdeebcee69d8f610a13387a22918effd</update_guid>
+        <update_guid_history>bdeebcee69d8f610a13387a22918effd:237430468</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-10-06 07:17:34</sys_created_on>
+        <sys_db_object display_value="" name="sys_script_include">sys_script_include</sys_db_object>
+        <sys_id>6a397c3878f34c1e8bcdb2e2afab7a64</sys_id>
+        <sys_metadata>3deebcee2bd8f6109083fe395e91bffb</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Test1</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sys_script_include_3deebcee2bd8f6109083fe395e91bffb</sys_update_name>
+        <sys_update_version display_value="sys_script_include_3deebcee2bd8f6109083fe395e91bffb">bdeebcee2bd8f6109083fe395e91bffe</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-06 07:17:34</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

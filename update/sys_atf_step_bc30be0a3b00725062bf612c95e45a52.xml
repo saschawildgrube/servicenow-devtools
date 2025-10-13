@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <callable_outputs/>
+        <copied_from/>
+        <description>Run Server Side Validation Script</description>
+        <display_name>Run Server Side Script</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>1</order>
+        <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-09-19 10:58:49</sys_created_on>
+        <sys_id>bc30be0a3b00725062bf612c95e45a52</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>Run Server Side Script</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_step_bc30be0a3b00725062bf612c95e45a52</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-06 10:21:36</sys_updated_on>
+        <table/>
+        <test display_value="DevTools - GetFlowStructureTree">6c307e0a3b00725062bf612c95e45a7b</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=bc30be0a3b00725062bf612c95e45a52"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>bc30be0a3b00725062bf612c95e45a52</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-09-19 10:58:49</sys_created_on>
+        <sys_id>7c30be0a3b00725062bf612c95e45a56</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-06 10:21:36</sys_updated_on>
+        <value>(function(outputs, steps, stepResult, assertEqual)&#13;
+{&#13;
+	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
+	&#13;
+	test.SetResult(true);&#13;
+	&#13;
+	function TestCase_GetFlowStructureTree(vFlow,vExpected)&#13;
+	{&#13;
+		function TestCase_GetFlowStructureTree_CheckResult(vInput,vExpected,vResult)&#13;
+		{&#13;
+			if (vExpected == false)&#13;
+			{&#13;
+				return (vExpected == vResult);&#13;
+			}&#13;
+			if (IsObject(vResult) == false)&#13;
+			{&#13;
+				return false;&#13;
+			}&#13;
+			return true;&#13;
+		}&#13;
+		&#13;
+		test.TestCase(&#13;
+			'Function GetFlowStructureTree()',&#13;
+			GetFlowStructureTree,&#13;
+			{&#13;
+				'vFlow': vFlow&#13;
+			},&#13;
+			vExpected,&#13;
+			TestCase_GetFlowStructureTree_CheckResult);&#13;
+	}&#13;
+		&#13;
+	TestCase_GetFlowStructureTree(null,false);&#13;
+&#13;
+	// "Change - Standard"&#13;
+	TestCase_GetFlowStructureTree('e89e3ade731310108ef62d2b04f6a744',true); &#13;
+&#13;
+	// "Retrieve and Auto Preview Multiple Update Sets"&#13;
+	if (GetRecord('sys_hub_flow','e1595cf24db01210f8772d5854bbb737') != false)&#13;
+	{&#13;
+		TestCase_GetFlowStructureTree('e1595cf24db01210f8772d5854bbb737',true);  &#13;
+&#13;
+	}&#13;
+&#13;
+	&#13;
+	return test.GetResult();&#13;
+	&#13;
+})(outputs, steps, stepResult, assertEqual);</value>
+        <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>bc30be0a3b00725062bf612c95e45a52</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-09-19 10:58:49</sys_created_on>
+        <sys_id>f030be0a3b00725062bf612c95e45a56</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-09-19 10:58:49</sys_updated_on>
+        <value>3.1</value>
+        <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
+    </sys_variable_value>
+</record_update>

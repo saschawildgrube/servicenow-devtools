@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.RecordTransporterAutomaticUnpack</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Unpacks all Record Transporter Packages contained in the given application which are configured for "Automatic Unpack during Installation".&#13;
+If the parameter bPreviewAndCommitUpdateSets is set to true and the individual package is configured accordingly the contained Update Sets are previewed and committed.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>RecordTransporterAutomaticUnpack</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function RecordTransporterAutomaticUnpack(vApp,bPreviewAndCommitUpdateSets)
+{
+	var grApp = GetAppRecord(vApp);
+	if (IsValidRecord(grApp) == false)
+	{
+		return false;
+	}
+
+	var bSuccess = true;
+
+	var grPackages = new GlideRecord('x_snc_devtools_transporter_package');
+	grPackages.addQuery('sys_scope','=',grApp.sys_id);
+	grPackages.addQuery('auto_unpack','=','true');
+	grPackages.orderBy('order');
+	grPackages.query();
+	while (grPackages.next())
+	{
+		var bPreviewAndCommitUpdateSet =
+			bPreviewAndCommitUpdateSets
+			&&
+			GetBoolValue(grPackages.auto_commit);
+		var bResult = RecordTransporterPackageUnpack(grPackages,bPreviewAndCommitUpdateSet);
+		if (bResult == false)
+		{
+			bSuccess = false;
+		}
+	}
+
+	return bSuccess;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-09-29 15:31:27</sys_created_on>
+        <sys_id>06fd4b1d3b50f21062bf612c95e45a6c</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>RecordTransporterAutomaticUnpack</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_06fd4b1d3b50f21062bf612c95e45a6c</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-10 13:32:12</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>06fd4b1d3b50f21062bf612c95e45a6c</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-09-29 15:31:26</sys_created_on>
+        <sys_id>fb7e875d3b50f21062bf612c95e45ae1</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-09-29 15:31:26</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="forcePrimaryKeyOrdering=true,ref_ac_columns=application,ref_ac_columns_search=true,ref_auto_completer=AJAXTableCompleter,scope_master=application" audit="true" db_object_id="aa933730e11312105590bd68cbbecb8f" label="Update Set" max_length="40" name="sys_update_set" type="collection">
+        <element label="Transporter Package Application" max_length="32" name="x_snc_devtools_transporter_package_application" reference="sys_app" type="reference"/>
+        <element display="true" label="Transporter Package" max_length="32" name="x_snc_devtools_transporter_package" read_only="true" reference="x_snc_devtools_transporter_package" type="reference"/>
+    </element>
+</database>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="x_snc_devtools_transporter_package">
+    <x_snc_devtools_transporter_package action="DELETE">
+        <auto_commit>true</auto_commit>
+        <auto_unpack>true</auto_unpack>
+        <description>Auto-generated Transporter Package to ship Update Set "Default".</description>
+        <id>x_snc_devtools.updateset_0aa2d9373b</id>
+        <id_suffix>updateset_0aa2d9373b</id_suffix>
+        <name>Update Set: Default</name>
+        <sys_class_name>x_snc_devtools_transporter_package</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-10-02 15:35:02</sys_created_on>
+        <sys_id>a91cea923b507a1062bf612c95e45a4a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Update Set: Default</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>x_snc_devtools_transporter_package_a91cea923b507a1062bf612c95e45a4a</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-02 15:35:02</sys_updated_on>
+    </x_snc_devtools_transporter_package>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>a8cbb5133b6b5e540fd412c5e4e45a1f</instance_id>
+        <instance_name>wildyokohama</instance_name>
+        <name>x_snc_devtools_transporter_package_a91cea923b507a1062bf612c95e45a4a</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="x_snc_devtools_transporter_package"><x_snc_devtools_transporter_package action="INSERT_OR_UPDATE"><auto_commit>true</auto_commit><auto_unpack>true</auto_unpack><description>Auto-generated Transporter Package to ship Update Set "Default".</description><id>x_snc_devtools.updateset_0aa2d9373b</id><id_suffix>updateset_0aa2d9373b</id_suffix><name>Update Set: Default</name><sys_class_name>x_snc_devtools_transporter_package</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2025-10-02 15:35:02</sys_created_on><sys_id>a91cea923b507a1062bf612c95e45a4a</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Update Set: Default</sys_name><sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package><sys_policy/><sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope><sys_update_name>x_snc_devtools_transporter_package_a91cea923b507a1062bf612c95e45a4a</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2025-10-02 15:35:02</sys_updated_on></x_snc_devtools_transporter_package></record_update>]]></payload>
+        <payload_hash>1812640532</payload_hash>
+        <record_name>Update Set: Default</record_name>
+        <reverted_from/>
+        <source>818f5ba53b98361062bf612c95e45a31</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-10-02 15:35:02</sys_created_on>
+        <sys_id>251c6e923b507a1062bf612c95e45a95</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>199a59001210000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-02 15:35:02</sys_updated_on>
+        <type>Transporter Package</type>
+        <update_guid>ad1cea9227507a10114f72bcbf6f6e4b</update_guid>
+        <update_guid_history>ad1cea9227507a10114f72bcbf6f6e4b:1812640532</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Update Set: Default">c25ce2d23b507a1062bf612c95e45ad2</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-10-02 15:36:10</sys_created_on>
+        <sys_db_object display_value="" name="x_snc_devtools_transporter_package">x_snc_devtools_transporter_package</sys_db_object>
+        <sys_id>68c238c44d7d4c4ea5f28ae0c71c0dc4</sys_id>
+        <sys_metadata>a91cea923b507a1062bf612c95e45a4a</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Update Set: Default</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>x_snc_devtools_transporter_package_a91cea923b507a1062bf612c95e45a4a</sys_update_name>
+        <sys_update_version display_value="x_snc_devtools_transporter_package_a91cea923b507a1062bf612c95e45a4a">251c6e923b507a1062bf612c95e45a95</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-02 15:36:10</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

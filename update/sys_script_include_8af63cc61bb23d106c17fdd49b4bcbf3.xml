@@ -5,24 +5,60 @@
         <api_name>x_snc_devtools.RecordTransporterPackageUnpack</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Unpacks a given record from a Record Transporter Package.</description>
+        <description>Unpacks the given Record Transporter Package.&#13;
+If bPreviewAndCommitUpdateSets is set to true, any contained Update Sets (which will be unpacked as Remote Update Sets) are previewed and committed.</description>
         <mobile_callable>false</mobile_callable>
         <name>RecordTransporterPackageUnpack</name>
         <sandbox_callable>false</sandbox_callable>
-        <script><![CDATA[function RecordTransporterPackageUnpack(vPackage)
+        <script><![CDATA[function RecordTransporterPackageUnpack(vPackage,bPreviewAndCommitUpdateSets)
 {
 	var grPackage = RecordTransporterGetPackageRecord(vPackage);
 	if (IsValidRecord(grPackage) == false)
 	{
 		return false;
 	}
+
+	bPreviewAndCommitUpdateSets = GetBoolValue(bPreviewAndCommitUpdateSets);
 	
+	var aUpdateSets = [];
+
 	var grTransportRecord = new GlideRecord('x_snc_devtools_transporter_record');
 	grTransportRecord.addQuery('package','=',grPackage.sys_id);
 	grTransportRecord.query();
 	while (grTransportRecord.next())
 	{
 		RecordTransporterRecordUnpack(grPackage,grTransportRecord);
+
+		// Capture contained update sets (which do NOT have a parent)
+		if (grTransportRecord.payload_table == 'sys_update_set')
+		{
+			var strPayload = GetStringValue(grTransportRecord.payload_content);
+			var payload = ParseJson(strPayload);
+			if (IsObject(payload) == true)
+			{
+				if (GetStringValue(GetValue(payload,'parent')) == '')
+				{
+					aUpdateSets.push(GetStringValue(grTransportRecord.payload_sys_id));
+				} 
+			} 
+		}
+	}
+
+	if (bPreviewAndCommitUpdateSets == true)
+	{
+		var bError = false;
+		for (var nUpdateSet = 0; nUpdateSet < aUpdateSets.length; nUpdateSet++)
+		{
+			var bResult = UpdateSetPreviewAndCommit(aUpdateSets[nUpdateSet]);
+			if (bResult == false)
+			{
+				bError = true;
+			}
+		}
+		if (bError == true)
+		{
+			return false;
+		}
 	}
 	
 	return true;
@@ -31,14 +67,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-11-30 10:17:12</sys_created_on>
         <sys_id>8af63cc61bb23d106c17fdd49b4bcbf3</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>11</sys_mod_count>
         <sys_name>RecordTransporterPackageUnpack</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_8af63cc61bb23d106c17fdd49b4bcbf3</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-08-28 12:58:51</sys_updated_on>
+        <sys_updated_on>2025-09-26 11:42:48</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>

@@ -687,6 +687,7 @@ DocumentationAPI.prototype =
 		}
 		var grWSD = new GlideRecord('sys_ws_definition');
 		grWSD.addQuery('sys_scope','=',this.m_strAppSysId);
+		grWSD.addQuery('active','=','true');
 		grWSD.orderBy('name');
 		grWSD.query();
 		
@@ -710,6 +711,7 @@ DocumentationAPI.prototype =
 				
 				var grWSO = new GlideRecord('sys_ws_operation');
 				grWSO.addQuery('sys_scope','=',this.m_strAppSysId);
+				grWSO.addQuery('web_service_definition','=',grWSD.sys_id);
 				grWSO.orderBy('name');
 				grWSO.query();
 				
@@ -722,12 +724,49 @@ DocumentationAPI.prototype =
 						strShortDescription += '<br/>';
 					}
 					
+					var strParams = '';
+					var grQPM = new GlideRecord('sys_ws_query_parameter_map');
+					grQPM.addQuery('web_service_operation','=',grWSO.sys_id);
+					grQPM.query();
+					if (grQPM.getRowCount() > 0)
+					{
+						var aParamRows = [];
+						aParamRows.push( 
+							[
+								{ header: true, content: 'Parameter'},
+								{ header: true, content: 'Description'},
+								{ header: true, content: 'Required'},
+								{ header: true, content: 'Example Value'},
+							]);
+						while (grQPM.next())
+						{
+							var grQP = GetRecord(
+								'sys_ws_query_parameter',
+								grQPM.web_service_query_parameter);
+							var aParamColumns = [];
+							aParamRows.push(
+								[
+									GetStringValue(grQP.name),
+									GetStringValue(grQP.short_description),
+									GetStringValue(grQP.required),
+									GetStringValue(grQP.example_value),
+								]);
+						}
+
+						strParams = HtmlRenderTable(
+							aParamRows,
+							'paramtable',
+							'table.paramtable, th.paramtable, td.paramtable { border: 2px solid; padding: 2px; vertical-align: top }');
+						strParams += '<br/>';
+					}
+
 					strHtml += this.RenderListItem(
 						grWSO.getValue('name'),
 						GetRecordPath('sys_ws_operation',grWSO.sys_id),
 						strShortDescription
 						+'Method: '+grWSO.getValue('http_method')+'<br/>'
-						+'URI: '+grWSO.getValue('operation_uri')+'<br/>');		
+						+'URI: '+grWSO.getValue('operation_uri')+'<br/>')
+						+strParams;		
 				}
 				strHtml += '</ul>';
 				
@@ -1016,14 +1055,14 @@ DocumentationAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-01-20 15:26:20</sys_created_on>
         <sys_id>98912146db31e490ba15a353059619b6</sys_id>
-        <sys_mod_count>283</sys_mod_count>
+        <sys_mod_count>289</sys_mod_count>
         <sys_name>DocumentationAPI</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_98912146db31e490ba15a353059619b6</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-08-27 16:45:30</sys_updated_on>
+        <sys_updated_on>2025-10-06 14:04:24</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

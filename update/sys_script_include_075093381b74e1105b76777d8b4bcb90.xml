@@ -12,6 +12,8 @@
         <script><![CDATA[function InstallApp(vApp, bStopOnError)
 {
 	var timeStart = GetTimeNow();
+	bStopOnError = GetBoolValue(bStopOnError);
+	
 	var aPackages = GetPackageDependencyList(vApp);
 	if (aPackages == false)
 	{
@@ -36,32 +38,80 @@
 	var strLog = '';
 	
 	var bResult = true;
+
 	for (var nPackage = 0; nPackage < aPackages.length; nPackage++)
 	{
 		var strSysId = GetValue(aPackages,nPackage,'sys_id');
-		var strName = GetValue(aPackages,nPackage,'name');
+		var strPackageName = GetValue(aPackages,nPackage,'name');
 		var grPackage = GetRecord('sys_package',strSysId);
 		if (IsValidRecord(grPackage) == false)
 		{
-			strLog += StringFormat('InstallApp: {0}: The package is NOT INSTALLED!\n',strName);
-			strLog += RenderValue(grPackage);
+			strLog += StringFormat(
+				'InstallApp: {0}: The package is NOT INSTALLED!\n',
+				strPackageName);
 			bResult = false;
 		}
 	}
 
-	if (bResult == true)
+	for (var nPackage = 0; nPackage < aPackages.length; nPackage++)
 	{
-		for (var nPackage = 0; nPackage < aPackages.length; nPackage++)
-		{
-			var oPackage = aPackages[nPackage];
-			var strScope = GetValue(oPackage,'scope');
-			var strName = GetValue(oPackage,'name');
-			var strClass = GetValue(oPackage,'sys_class_name');
+		var oPackage = aPackages[nPackage];
+		var strScope = GetValue(oPackage,'scope');
+		var strScopeSysId = GetValue(oPackage,'sys_id');
+		var strName = GetValue(oPackage,'name');
+		var strClass = GetValue(oPackage,'sys_class_name');
 
-			progresstracker.SetPercentageProgress(nPackage * 100 / aPackages.length);
-			progresstracker.SetText(StringFormat('InstallApp: Installing app "{0}"',strName));
-			
-			var strScopeSysId = GetValue(oPackage,'sys_id');
+		progresstracker.SetPercentageProgress(nPackage * 100 / aPackages.length);
+		progresstracker.SetText(StringFormat('InstallApp: Installing app "{0}"',strName));
+
+
+		if (bResult == true || bStopOnError == false)
+		{
+					
+			// Automatic Unpacking of Record Transporter Packages
+			var grTransporterPackage = new GlideRecord('x_snc_devtools_transporter_package');
+			grTransporterPackage.addQuery('sys_scope','=',strScopeSysId);
+			grTransporterPackage.addQuery('auto_unpack','=','true');
+			grTransporterPackage.query();
+			if (grTransporterPackage.getRowCount() > 0)
+			{
+				strLog += StringFormat(
+					'InstallApp: {0}: Automatically unpacking {1} Record Transporter Package(s)...\n',
+					strName,
+					grTransporterPackage.getRowCount());
+				var bUnpackResult = RecordTransporterAutomaticUnpack(strScopeSysId,true);
+
+
+				if (bUnpackResult == true)
+				{
+					strLog += StringFormat(
+						'InstallApp: {0}: Successfully unpacked {1} Record Transporter Package(s).\n',
+						strName,
+						grTransporterPackage.getRowCount());
+				}
+				else
+				{
+					bResult = false;
+					if (bStopOnError == true)
+					{
+						strLog += StringFormat(
+							'InstallApp: {0}: Failed to unpack contained Record Transporter Package(s). Aborting installation!\n',
+							strName);
+					}
+					else
+					{
+						strLog += StringFormat(
+							'InstallApp: {0}: Failed to unpack contained Record Transporter Package(s). Continuing installation...\n',
+							strName);
+					}
+
+				}
+			}
+		}
+
+		if (bResult == true || bStopOnError == false)
+		{
+			// Running Installation Scripts						
 			if (strScope != 'global')
 			{
 				if (strClass == 'sys_app')
@@ -73,21 +123,20 @@
 					grSI.query();
 					if (grSI.next() != false)
 					{
-						var bNewResult = RunScriptInScope(strScopeSysId,'result = AppInstall();');
+						var bNewResult = RunScriptInScope(
+							strScopeSysId,'result = AppInstall();');
 						if (bNewResult != true)
 						{
+							bResult = false;
 							if (bStopOnError == true)
 							{
-								strLog += StringFormat('InstallApp: {0}: {1}.AppInstall() returned false. Aborting installation.\n',strName,strScope);
-								LogError(StringFormat('InstallApp: {0}.AppInstall() returned false. Aborting installation!',strScope));
-								return false;
+								strLog += StringFormat('InstallApp: {0}: {1}.AppInstall() returned false. Aborting installation!\n',strName,strScope);
 							}
 							else
 							{
-								strLog += StringFormat('InstallApp: {0}: {1}.AppInstall() returned false. Continuing installation.\n',strName,strScope);
-								LogWarning(StringFormat('InstallApp: {0}.AppInstall() returned false. Continuing...',strScope));
+								strLog += StringFormat('InstallApp: {0}: {1}.AppInstall() returned false. Continuing installation!\n',strName,strScope);
 							}
-							bResult = false;
+							
 						}
 						else
 						{
@@ -138,14 +187,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-02-01 17:59:14</sys_created_on>
         <sys_id>075093381b74e1105b76777d8b4bcb90</sys_id>
-        <sys_mod_count>40</sys_mod_count>
+        <sys_mod_count>46</sys_mod_count>
         <sys_name>InstallApp</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_075093381b74e1105b76777d8b4bcb90</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-09-14 16:37:05</sys_updated_on>
+        <sys_updated_on>2025-09-30 16:47:47</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>

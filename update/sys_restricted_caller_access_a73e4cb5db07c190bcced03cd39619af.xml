@@ -7,7 +7,7 @@
         <source_scope display_value="Wildgrube LAB WORK IN PROGRESS">3a1561201b22c410a89720a8ec4bcb0f</source_scope>
         <source_table>sys_script_include</source_table>
         <source_type>2</source_type>
-        <status>2</status>
+        <status>3</status>
         <sys_class_name>sys_restricted_caller_access</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-04-24 10:23:01</sys_created_on>

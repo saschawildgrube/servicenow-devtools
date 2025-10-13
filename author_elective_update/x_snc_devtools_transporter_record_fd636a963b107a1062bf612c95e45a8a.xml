@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="x_snc_devtools_transporter_record">
+    <x_snc_devtools_transporter_record action="DELETE">
+        <action>insert_or_update</action>
+        <display>sys_update_xml: cde6dc442bc4e2509083fe395e91bf5a</display>
+        <package display_value="Update Set: Default">f9636a963b107a1062bf612c95e45a84</package>
+        <payload_content>{
+	"action": "INSERT_OR_UPDATE",
+	"application": "c8ab76825371201032b7ddeeff7b1280",
+	"category": "customer",
+	"comments": null,
+	"name": "sn_cmdb_ws_ms_class_metadata_ce9f62555bd50110693e7da52d81c7bd",
+	"payload": "&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;&lt;record_update sys_domain=\"global\" table=\"sn_cmdb_ws_ms_class_metadata\"&gt;&lt;sn_cmdb_ws_ms_class_metadata action=\"INSERT_OR_UPDATE\"&gt;&lt;ci_count_percent&gt;100&lt;/ci_count_percent&gt;&lt;sys_class_name&gt;sn_cmdb_ws_ms_class_metadata&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2022-01-26 09:01:20&lt;/sys_created_on&gt;&lt;sys_domain&gt;global&lt;/sys_domain&gt;&lt;sys_id&gt;ce9f62555bd50110693e7da52d81c7bd&lt;/sys_id&gt;&lt;sys_mod_count&gt;36&lt;/sys_mod_count&gt;&lt;sys_name/&gt;&lt;sys_package display_value=\"CMDB Workspace\" source=\"sn_cmdb_ws\"&gt;c8ab76825371201032b7ddeeff7b1280&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value=\"CMDB Workspace\"&gt;c8ab76825371201032b7ddeeff7b1280&lt;/sys_scope&gt;&lt;sys_update_name&gt;sn_cmdb_ws_ms_class_metadata_ce9f62555bd50110693e7da52d81c7bd&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2025-02-27 22:30:01&lt;/sys_updated_on&gt;&lt;table&gt;cmdb_ci_hardware&lt;/table&gt;&lt;/sn_cmdb_ws_ms_class_metadata&gt;&lt;/record_update&gt;",
+	"payload_hash": "-1966656346",
+	"remote_update_set": null,
+	"replace_on_upgrade": "0",
+	"sys_created_by": "admin",
+	"sys_created_on": "2025-02-25 22:30:00",
+	"sys_id": "cde6dc442bc4e2509083fe395e91bf5a",
+	"sys_meta": null,
+	"sys_mod_count": "5",
+	"sys_recorded_at": "1954987f3950000001",
+	"sys_tags": "",
+	"sys_updated_by": "admin",
+	"sys_updated_on": "2025-02-27 22:30:01",
+	"table": "cmdb_ci_hardware",
+	"target_name": null,
+	"type": "CMDB Workspace Multisource Class Metadat",
+	"update_domain": "global",
+	"update_guid": "f81ae6241880a6506641e6d5a1388306",
+	"update_guid_history": "f81ae6241880a6506641e6d5a1388306:-1966656346,741ae6249580a65064ecbac6bf952004:-2121401785,4f70691c700c2650b47b6e09f9167aa4:-1966656346,0f70691c220c2650dc4d092d72ffa6a2:-2121401785,c9e6dc4418c4e250e5e5c684d444965c:-1966656346,4de69c44ecc4e250222524a69a40c9d1:-2121401785,234dc32f9d7392503033bfb4d03eb1c5:-1966656346,234dc32fb873925017c320fe9b9710c3:-2121401785,f5b3cad3e63f1250180398356fc78b9b:-1966656346,f5b3cad3533f12504ad78315caf61299:-2121401785,842a78cfe9779e1053952cff8315444a:-1966656346,002a78cf4f779e10d2be7adf85be0648:-2121401785,02807f622a739e10293708f223035ee6:-1966656346,4a807f629b739e1091f3b978ece3e2e3:-2121401785,d4f6e65ea17fda10fd1c9dcc49e9cd8b:-1966656346,50f6e65e8c7fda10b2becc62264bb889:-2121401785,fa5d9902ccb7da10a31892b311bbab0b:-1966656346,365d9902b2b7da1069637730dff05809:-2121401785,09c310f961339a10efd19aaac00c1135:-1966656346,49c3dcb99a339a10b4f865f7402f9ecf:-2121401785,172a8391cdfb1a10c0e99e2c4e088e47:-1966656346,1f2a839140fb1a106aa32c15409cd744:-2121401785,1d9082891377d610ee334c46a85eeec4:-1966656346,d99082895f77d6108999c1ca1469f7c2:-2121401785,abf6f4f0c97b5610b4497c96413bdce6:-1966656346,27f6f4f0537b5610dfa9e2dcf3aaa7e4:-2121401785,9809a9a85a3f161079d92d95baf4d07b:-1966656346,8809a9a8fa3f16102c31d8358f703379:-2121401785,566f18549b3bd210ec32e5b89a4dc375:-1966656346,de6f1854c43bd2101909862b3577de72:-2121401785,3cd5dff37727921056be13c870eae016:-1966656346,e8d5dff3ba279210defc9f3c48a3d014:-2121401785,473cc66f5263521014d19addc1e139e6:-1966656346,cb3cc66f38635210a3f15352f955a2e3:-2121401785,6c918e13b0231210514c67bbce7aa6ee:-1966656346,ac918e134c231210e4580c982ed635ec:-2121401785,a4918e13742312108111f7d8b26ec8eb:-1966656346",
+	"update_set": "0aa2d9373bb7525062bf612c95e45ab8",
+	"view": null
+}</payload_content>
+        <payload_sys_id>cde6dc442bc4e2509083fe395e91bf5a</payload_sys_id>
+        <payload_table>sys_update_xml</payload_table>
+        <sys_class_name>x_snc_devtools_transporter_record</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-10-02 14:57:05</sys_created_on>
+        <sys_id>fd636a963b107a1062bf612c95e45a8a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>x_snc_devtools_transporter_record_fd636a963b107a1062bf612c95e45a8a</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-02 14:57:05</sys_updated_on>
+    </x_snc_devtools_transporter_record>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>a8cbb5133b6b5e540fd412c5e4e45a1f</instance_id>
+        <instance_name>wildyokohama</instance_name>
+        <name>x_snc_devtools_transporter_record_fd636a963b107a1062bf612c95e45a8a</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="x_snc_devtools_transporter_record"><x_snc_devtools_transporter_record action="INSERT_OR_UPDATE"><action>insert_or_update</action><display>sys_update_xml: cde6dc442bc4e2509083fe395e91bf5a</display><package display_value="Update Set: Default">f9636a963b107a1062bf612c95e45a84</package><payload_content>{
+	"action": "INSERT_OR_UPDATE",
+	"application": "c8ab76825371201032b7ddeeff7b1280",
+	"category": "customer",
+	"comments": null,
+	"name": "sn_cmdb_ws_ms_class_metadata_ce9f62555bd50110693e7da52d81c7bd",
+	"payload": "&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;&lt;record_update sys_domain=\"global\" table=\"sn_cmdb_ws_ms_class_metadata\"&gt;&lt;sn_cmdb_ws_ms_class_metadata action=\"INSERT_OR_UPDATE\"&gt;&lt;ci_count_percent&gt;100&lt;/ci_count_percent&gt;&lt;sys_class_name&gt;sn_cmdb_ws_ms_class_metadata&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2022-01-26 09:01:20&lt;/sys_created_on&gt;&lt;sys_domain&gt;global&lt;/sys_domain&gt;&lt;sys_id&gt;ce9f62555bd50110693e7da52d81c7bd&lt;/sys_id&gt;&lt;sys_mod_count&gt;36&lt;/sys_mod_count&gt;&lt;sys_name/&gt;&lt;sys_package display_value=\"CMDB Workspace\" source=\"sn_cmdb_ws\"&gt;c8ab76825371201032b7ddeeff7b1280&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value=\"CMDB Workspace\"&gt;c8ab76825371201032b7ddeeff7b1280&lt;/sys_scope&gt;&lt;sys_update_name&gt;sn_cmdb_ws_ms_class_metadata_ce9f62555bd50110693e7da52d81c7bd&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2025-02-27 22:30:01&lt;/sys_updated_on&gt;&lt;table&gt;cmdb_ci_hardware&lt;/table&gt;&lt;/sn_cmdb_ws_ms_class_metadata&gt;&lt;/record_update&gt;",
+	"payload_hash": "-1966656346",
+	"remote_update_set": null,
+	"replace_on_upgrade": "0",
+	"sys_created_by": "admin",
+	"sys_created_on": "2025-02-25 22:30:00",
+	"sys_id": "cde6dc442bc4e2509083fe395e91bf5a",
+	"sys_meta": null,
+	"sys_mod_count": "5",
+	"sys_recorded_at": "1954987f3950000001",
+	"sys_tags": "",
+	"sys_updated_by": "admin",
+	"sys_updated_on": "2025-02-27 22:30:01",
+	"table": "cmdb_ci_hardware",
+	"target_name": null,
+	"type": "CMDB Workspace Multisource Class Metadat",
+	"update_domain": "global",
+	"update_guid": "f81ae6241880a6506641e6d5a1388306",
+	"update_guid_history": "f81ae6241880a6506641e6d5a1388306:-1966656346,741ae6249580a65064ecbac6bf952004:-2121401785,4f70691c700c2650b47b6e09f9167aa4:-1966656346,0f70691c220c2650dc4d092d72ffa6a2:-2121401785,c9e6dc4418c4e250e5e5c684d444965c:-1966656346,4de69c44ecc4e250222524a69a40c9d1:-2121401785,234dc32f9d7392503033bfb4d03eb1c5:-1966656346,234dc32fb873925017c320fe9b9710c3:-2121401785,f5b3cad3e63f1250180398356fc78b9b:-1966656346,f5b3cad3533f12504ad78315caf61299:-2121401785,842a78cfe9779e1053952cff8315444a:-1966656346,002a78cf4f779e10d2be7adf85be0648:-2121401785,02807f622a739e10293708f223035ee6:-1966656346,4a807f629b739e1091f3b978ece3e2e3:-2121401785,d4f6e65ea17fda10fd1c9dcc49e9cd8b:-1966656346,50f6e65e8c7fda10b2becc62264bb889:-2121401785,fa5d9902ccb7da10a31892b311bbab0b:-1966656346,365d9902b2b7da1069637730dff05809:-2121401785,09c310f961339a10efd19aaac00c1135:-1966656346,49c3dcb99a339a10b4f865f7402f9ecf:-2121401785,172a8391cdfb1a10c0e99e2c4e088e47:-1966656346,1f2a839140fb1a106aa32c15409cd744:-2121401785,1d9082891377d610ee334c46a85eeec4:-1966656346,d99082895f77d6108999c1ca1469f7c2:-2121401785,abf6f4f0c97b5610b4497c96413bdce6:-1966656346,27f6f4f0537b5610dfa9e2dcf3aaa7e4:-2121401785,9809a9a85a3f161079d92d95baf4d07b:-1966656346,8809a9a8fa3f16102c31d8358f703379:-2121401785,566f18549b3bd210ec32e5b89a4dc375:-1966656346,de6f1854c43bd2101909862b3577de72:-2121401785,3cd5dff37727921056be13c870eae016:-1966656346,e8d5dff3ba279210defc9f3c48a3d014:-2121401785,473cc66f5263521014d19addc1e139e6:-1966656346,cb3cc66f38635210a3f15352f955a2e3:-2121401785,6c918e13b0231210514c67bbce7aa6ee:-1966656346,ac918e134c231210e4580c982ed635ec:-2121401785,a4918e13742312108111f7d8b26ec8eb:-1966656346",
+	"update_set": "0aa2d9373bb7525062bf612c95e45ab8",
+	"view": null
+}</payload_content><payload_sys_id>cde6dc442bc4e2509083fe395e91bf5a</payload_sys_id><payload_table>sys_update_xml</payload_table><sys_class_name>x_snc_devtools_transporter_record</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2025-10-02 14:57:05</sys_created_on><sys_id>fd636a963b107a1062bf612c95e45a8a</sys_id><sys_mod_count>0</sys_mod_count><sys_name/><sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package><sys_policy/><sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope><sys_update_name>x_snc_devtools_transporter_record_fd636a963b107a1062bf612c95e45a8a</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2025-10-02 14:57:05</sys_updated_on></x_snc_devtools_transporter_record></record_update>]]></payload>
+        <payload_hash>-219346484</payload_hash>
+        <record_name>sys_update_xml: cde6dc442bc4e2509083fe395e91bf5a</record_name>
+        <reverted_from/>
+        <source>818f5ba53b98361062bf612c95e45a31</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-10-02 14:57:05</sys_created_on>
+        <sys_id>7563aa963b107a1062bf612c95e45ab8</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>199a56d43450000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-02 14:57:05</sys_updated_on>
+        <type>Transporter Record</type>
+        <update_guid>f563aa961b107a1053135774daeeddb7</update_guid>
+        <update_guid_history>f563aa961b107a1053135774daeeddb7:-219346484</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="sys_update_xml: cde6dc442bc4e2509083fe395e91bf5a">e6fbaa923b507a1062bf612c95e45a6c</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-10-02 15:34:32</sys_created_on>
+        <sys_db_object display_value="" name="x_snc_devtools_transporter_record">x_snc_devtools_transporter_record</sys_db_object>
+        <sys_id>7ce9a94921ab483388d53ee477b844c9</sys_id>
+        <sys_metadata>fd636a963b107a1062bf612c95e45a8a</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>sys_update_xml: cde6dc442bc4e2509083fe395e91bf5a</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>x_snc_devtools_transporter_record_fd636a963b107a1062bf612c95e45a8a</sys_update_name>
+        <sys_update_version display_value="x_snc_devtools_transporter_record_fd636a963b107a1062bf612c95e45a8a">7563aa963b107a1062bf612c95e45ab8</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-02 15:34:32</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

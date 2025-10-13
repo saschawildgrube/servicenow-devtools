@@ -233,29 +233,82 @@
 		return strTestCode;
 
 	}
-		
-	// Default: fallback to macro "TestAPI"
-	var grMacro = new GlideRecord('syntax_editor_macro');
-	grMacro.addQuery('name','=','TestAPI');
-	grMacro.query();
-	if (grMacro.next() == false)
+
+	if (strTable == 'sys_ws_operation')
 	{
-		return false;
+		var strTestCode = '';
+
+		strTestCode += "(function(outputs, steps, stepResult, assertEqual)\n";
+		strTestCode += "{\n";
+		strTestCode += "\tvar test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);\n";
+		strTestCode += "\t\n";
+		strTestCode += "\ttest.SetResult(true);\n";
+		strTestCode += "\t\n";
+
+		var strService = 'TODO';
+		var strOperation = GetStringValue(grRecord.name);
+		var strTestDataContext = GetCleanAppName(grRecord.sys_scope.name);
+
+		var grService = GetRecord('sys_ws_definition',grRecord.web_service_definition);
+		if (IsValidRecord(grService))
+		{
+			strService = GetStringValue(grService.name);
+		}
+
+
+		strTestCode += "\ttest.TestCase_RestApiOperation(\n";
+		strTestCode += "\t\t'"+strService+"',\n";
+		strTestCode += "\t\t'"+strOperation+"',\n";
+		strTestCode += "\t\tnull,\n";
+		strTestCode += "\t\tnull,\n";
+		strTestCode += "\t\t'User Not Authenticated');\n";
+		strTestCode += "\t\n";
+		strTestCode += "\t\n";
+
+		strTestCode += "\tvar testdata = new x_snc_devtools.TestDataAPI('"+strTestDataContext+"');\n";
+		strTestCode += "\tvar strPassword = x_snc_devtools.GetRandomNumericToken(30);\n";
+		strTestCode += "\t\n";
+		strTestCode += "\tvar strUserNoRolesSysId = testdata.CreateUser('No Roles',[],false,'',strPassword);\n";
+		strTestCode += "\tvar grUserNoRoles = x_snc_devtools.GetUserRecord(strUserNoRolesSysId);\n";
+		strTestCode += "\tvar oBasicAuth = {\n";
+		strTestCode += "\t\tusername: x_snc_devtools.GetStringValue(grUserNoRoles.user_name),\n";
+		strTestCode += "\t\tpassword: strPassword\n";
+		strTestCode += "\t};\n";
+		strTestCode += "\t\n";
+
+		strTestCode += "\ttest.TestCase_RestApiOperation(\n";
+		strTestCode += "\t\t'"+strService+"',\n";
+		strTestCode += "\t\t'"+strOperation+"',\n";
+		strTestCode += "\t\toBasicAuth,\n";
+		strTestCode += "\t\tnull,\n";
+		strTestCode += "\t\t'User Not Authorized');\n";
+		strTestCode += "\t\n";
+		strTestCode += "\t\n";
+
+
+		strTestCode += "\t\n";
+		strTestCode += "\treturn test.GetResult();\n";
+		strTestCode += "\t\n";
+		strTestCode += "})(outputs, steps, stepResult, assertEqual);";
+
+		return strTestCode;
+
 	}
-	return GetStringValue(grMacro.text);
+
+	return MakeDefaultTestScript();
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-04-30 09:42:37</sys_created_on>
         <sys_id>f8cc83189391e610959b7fda2bba103e</sys_id>
-        <sys_mod_count>41</sys_mod_count>
+        <sys_mod_count>51</sys_mod_count>
         <sys_name>MakeTestScriptForRecord</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_f8cc83189391e610959b7fda2bba103e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-05-06 12:05:19</sys_updated_on>
+        <sys_updated_on>2025-10-07 11:52:47</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

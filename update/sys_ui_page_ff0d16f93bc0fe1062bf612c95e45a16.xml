@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script/>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_snc_devtools_flow.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+
+<div style="padding-left: 20px;">
+	<g2:no_escape>$[HtmlRenderPageFlow()]</g2:no_escape>	
+</div>	
+
+</j:jelly>]]></html>
+        <name>flow</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-09-18 14:57:05</sys_created_on>
+        <sys_id>ff0d16f93bc0fe1062bf612c95e45a16</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>flow</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_ui_page_ff0d16f93bc0fe1062bf612c95e45a16</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-09-18 14:59:55</sys_updated_on>
+    </sys_ui_page>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>ff0d16f93bc0fe1062bf612c95e45a16</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-09-18 14:57:04</sys_created_on>
+        <sys_id>8d2d5ef93bc0fe1062bf612c95e45a6f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-09-18 14:57:04</sys_updated_on>
+        <table>sys_ui_page</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

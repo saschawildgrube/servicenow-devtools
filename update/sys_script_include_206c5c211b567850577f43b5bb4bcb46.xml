@@ -25,6 +25,8 @@ Methods:
 * TestCase_InstanceScanCheckScriptOnly_CheckResult()
 * TestCase_HttpRequest()
 * TestCase_HttpRequest_CheckResult()
+* TestCase_RestApiOperation()
+* TestCase_RestApiOperation_CheckResult()
 * TestCase()</description>
         <mobile_callable>false</mobile_callable>
         <name>TestAPI</name>
@@ -72,8 +74,6 @@ TestAPI.prototype =
 		
 		var transactionCache = new TransactionCacheAPI('DEVTOOLS');
 		transactionCache.SetItem('atf_running',true);
-		
-		SetProperty('devtools.atf.running.'+strContext,'true',true);		
 	},
 	
 	SetResult: function(bResult)
@@ -393,6 +393,138 @@ TestAPI.prototype =
 			true);
 	},
 	
+	TestCase_RestApiOperation: function(
+		strService,
+		strOperation,
+		basicAuth,
+		urlParams,
+		vExpected,
+		callbackCheckResult)
+	{
+		var strTestCaseTitle = 'REST API: ' + strService + ' - ' + strOperation;
+		var test = this;
+
+		function TestCase_RestApiOperation_CheckResult(vInput,vExpected,vResult)
+		{
+			var vResultParsed = ParseJson(vResult);
+			test.Log('Parsed result:' + RenderValue(vResultParsed));
+			if (vExpected == 'SUCCESS')
+			{
+				if (GetValue(vResultParsed,'result','message') == 'SUCCESS')
+				{
+
+					var strProgressId = GetValue(vResultParsed,'result','progress_id');
+					if (IsValidSysId(strProgressId) == true)
+					{
+						var nIteration = 0;
+						var bContinue = true;
+						while (bContinue == true)
+						{
+							nIteration++;
+							if (nIteration == 10)
+							{
+								bContinue = false;
+							}
+							var strUrl =
+								GetInstanceUrl()
+								+ 'api/sn_cicd/progress/'
+								+ strProgressId;
+							var params = {
+								basicauth: basicAuth,
+								url: strUrl
+							};
+							var resultProgress = HttpRequest(params);
+							var resultProgressParsed = ParseJson(resultProgress);
+							if (resultProgressParsed == false)
+							{
+								test.Log('Failed to retrieve progress');					
+								bContinue = false;
+							}
+							else
+							{
+								test.Log('Progress record after '+ nIteration +' iteration(s):' + RenderValue(resultProgressParsed));
+								
+								var strStatus = GetStringValue(GetValue(
+									resultProgressParsed,'result','status'));
+								if (strStatus == '2') // Success
+								{
+									bContinue = false;
+								}
+								if (strStatus == '3') // Failed
+								{
+									bContinue = false;
+								}
+							}
+							Sleep(2);
+
+						}
+					}
+
+					return true;
+				}
+				return false;
+			}
+			if (GetValue(vResultParsed,'error','message') == vExpected)
+			{
+				return true;
+			}
+			return false;
+		}
+		
+		if (IsFunction(callbackCheckResult) == false)
+		{
+			callbackCheckResult = TestCase_RestApiOperation_CheckResult;
+		}
+
+		var grRestService = new GlideRecord('sys_ws_definition');
+		grRestService.addQuery('name','=',strService);
+		grRestService.query();
+		if (grRestService.getRowCount() != 1)
+		{
+			this.SetResult(false);
+			this.Log('TEST CASE: '+strTestCaseTitle +': Service "'+strService+'" not found or ambiguous.\nTest case FAILED\n\n');
+			return;
+		}
+		grRestService.next();
+
+		var grRestOperation = new GlideRecord('sys_ws_operation');
+		grRestOperation.addQuery('name','=',strOperation);
+		grRestOperation.addQuery('web_service_definition','=',grRestService.sys_id);
+		grRestOperation.query();
+		if (grRestOperation.getRowCount() != 1)
+		{
+			this.SetResult(false);
+			this.Log('TEST CASE: ' + strTestCaseTitle +': Operation "'+strOperation+'" not found or ambiguous.\nTest case FAILED\n\n');
+			return;
+		}
+		grRestOperation.next();
+
+		var strUrl = '';
+
+		strUrl += GetInstanceUrl();
+		strUrl += grRestOperation.operation_uri;
+
+		var strUrlParams = x_snc_devtools.MakeUrlParameters(urlParams);
+		if (strUrlParams != '')
+		{
+			strUrl += '?' + strUrlParams;
+		}	
+		
+		this.TestCase(
+			strTestCaseTitle,
+			HttpRequest,
+			{
+				'vParams':
+				{
+					url: strUrl,
+					basicauth: basicAuth
+				}
+			},
+			vExpected,
+			callbackCheckResult,
+			true);
+	},
+
 	
 	TestCase: function(
 		strTitle,
@@ -662,14 +794,14 @@ TestAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-08-30 13:48:05</sys_created_on>
         <sys_id>206c5c211b567850577f43b5bb4bcb46</sys_id>
-        <sys_mod_count>102</sys_mod_count>
+        <sys_mod_count>123</sys_mod_count>
         <sys_name>TestAPI</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_206c5c211b567850577f43b5bb4bcb46</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-08-06 15:39:08</sys_updated_on>
+        <sys_updated_on>2025-10-07 14:46:04</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

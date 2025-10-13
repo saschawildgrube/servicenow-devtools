@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <callable_outputs/>
+        <copied_from/>
+        <description>Run Server Side Validation Script</description>
+        <display_name>Run Server Side Script</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>1</order>
+        <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-09-21 12:45:11</sys_created_on>
+        <sys_id>a6bb95f23b04765062bf612c95e45ad5</sys_id>
+        <sys_mod_count>14</sys_mod_count>
+        <sys_name>Run Server Side Script</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_step_a6bb95f23b04765062bf612c95e45ad5</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-09-24 18:30:01</sys_updated_on>
+        <table/>
+        <test display_value="DevTools - UpdateSetPreviewAndCommit">d6bb55f23b04765062bf612c95e45ac3</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=a6bb95f23b04765062bf612c95e45ad5"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>a6bb95f23b04765062bf612c95e45ad5</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-09-21 12:45:11</sys_created_on>
+        <sys_id>2abb95f23b04765062bf612c95e45ad8</sys_id>
+        <sys_mod_count>15</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-09-24 18:30:02</sys_updated_on>
+        <value>(function(outputs, steps, stepResult, assertEqual)&#13;
+{&#13;
+	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
+	&#13;
+	test.SetResult(true);&#13;
+	&#13;
+	function TestCase_UpdateSetPreviewAndCommit(vUpdateSet,vExpected)&#13;
+	{&#13;
+		function TestCase_UpdateSetPreviewAndCommit_CheckResult(vInput,vExpected,vResult)&#13;
+		{&#13;
+			return (vExpected == vResult);&#13;
+		}&#13;
+		&#13;
+		test.TestCase(&#13;
+			'Function UpdateSetPreviewAndCommit()',&#13;
+			UpdateSetPreviewAndCommit,&#13;
+			{&#13;
+				'vUpdateSet': vUpdateSet&#13;
+			},&#13;
+			vExpected,&#13;
+			TestCase_UpdateSetPreviewAndCommit_CheckResult);&#13;
+	}&#13;
+		&#13;
+	TestCase_UpdateSetPreviewAndCommit(null,false);&#13;
+&#13;
+	var grRemoteUpdateSet = new GlideRecord('sys_remote_update_set');&#13;
+	grRemoteUpdateSet.initialize();&#13;
+	grRemoteUpdateSet.name = 'TEST1';&#13;
+	grRemoteUpdateSet.application_scope = 'global';&#13;
+	grRemoteUpdateSet.application_name = 'Global';&#13;
+	grRemoteUpdateSet.state = 'loaded';&#13;
+&#13;
+&#13;
+	var strRemoteUpdateSetSysId = GlideRecordInsert(grRemoteUpdateSet);&#13;
+&#13;
+	TestCase_UpdateSetPreviewAndCommit(strRemoteUpdateSetSysId,true);&#13;
+&#13;
+&#13;
+&#13;
+	var grRemoteUpdateSet = new GlideRecord('sys_remote_update_set');&#13;
+	grRemoteUpdateSet.initialize();&#13;
+	grRemoteUpdateSet.name = 'TEST2';&#13;
+	grRemoteUpdateSet.application_scope = 'global';&#13;
+	grRemoteUpdateSet.application_name = 'Global';&#13;
+	grRemoteUpdateSet.state = 'loaded';&#13;
+	var strRemoteUpdateSetSysId = GlideRecordInsert(grRemoteUpdateSet);&#13;
+&#13;
+	var grUpdateXml = new GlideRecord('sys_update_xml');&#13;
+	grUpdateXml.initialize();&#13;
+	grUpdateXml.remote_update_set = strRemoteUpdateSetSysId;&#13;
+	grUpdateXml.action = 'INSERT_OR_UPDATE';&#13;
+	grUpdateXml.application = 'global';&#13;
+	grUpdateXml.category = 'customer';&#13;
+	grUpdateXml.target_name = 'TestForUpdateSetPreviewAndCommit';&#13;
+	grUpdateXml.type = 'Script Include';&#13;
+&#13;
+	grUpdateXml.name = 'sys_script_include_06b58e3bc3483a104b4f311f05013107';&#13;
+	grUpdateXml.payload_hash = '1740518966';&#13;
+	grUpdateXml.payload = '&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_script_include"&gt;&lt;sys_script_include action="INSERT_OR_UPDATE"&gt;&lt;access&gt;public&lt;/access&gt;&lt;active&gt;true&lt;/active&gt;&lt;api_name&gt;global.TestForUpdateSetPreviewAndCommit&lt;/api_name&gt;&lt;caller_access/&gt;&lt;client_callable&gt;false&lt;/client_callable&gt;&lt;description&gt;This is a test!&lt;/description&gt;&lt;mobile_callable&gt;false&lt;/mobile_callable&gt;&lt;name&gt;TestForUpdateSetPreviewAndCommit&lt;/name&gt;&lt;sandbox_callable&gt;false&lt;/sandbox_callable&gt;&lt;script&gt;&lt;![CDATA[function TestForUpdateSetPreviewAndCommit() { return "This is a test!"; }]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script_include&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2025-09-24 18:23:36&lt;/sys_created_on&gt;&lt;sys_id&gt;06b58e3bc3483a104b4f311f05013107&lt;/sys_id&gt;&lt;sys_mod_count&gt;2&lt;/sys_mod_count&gt;&lt;sys_name&gt;TestForUpdateSetPreviewAndCommit&lt;/sys_name&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_include_06b58e3bc3483a104b4f311f05013107&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2025-09-24 18:26:27&lt;/sys_updated_on&gt;&lt;x_snc_devtools_sys_ui_script/&gt;&lt;/sys_script_include&gt;&lt;sys_es_latest_script action="INSERT_OR_UPDATE"&gt;&lt;id&gt;06b58e3bc3483a104b4f311f05013107&lt;/id&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2025-09-24 18:23:36&lt;/sys_created_on&gt;&lt;sys_id&gt;74f5027bc3483a104b4f311f050131f4&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2025-09-24 18:23:36&lt;/sys_updated_on&gt;&lt;table&gt;sys_script_include&lt;/table&gt;&lt;use_es_latest&gt;true&lt;/use_es_latest&gt;&lt;/sys_es_latest_script&gt;&lt;/record_update&gt;';&#13;
+&#13;
+&#13;
+/*&#13;
+&#13;
+&lt;sys_recorded_at&gt;199708068960000001&lt;/sys_recorded_at&gt;&#13;
+&lt;update_guid&gt;0438a18b9e00f6509ab8716e5193c456&lt;/update_guid&gt;&#13;
+&lt;update_guid_history&gt;0438a18b9e00f6509ab8716e5193c456:1657362696&lt;/update_guid_history&gt;&#13;
+&#13;
+*/&#13;
+&#13;
+	var strUpdateXmlSysId = GlideRecordInsert(grUpdateXml,true);&#13;
+&#13;
+	TestCase_UpdateSetPreviewAndCommit(strRemoteUpdateSetSysId,true);&#13;
+&#13;
+	test.Log(GetRecord('sys_script_include','06b58e3bc3483a104b4f311f05013107'));&#13;
+&#13;
+	&#13;
+	return test.GetResult();&#13;
+	&#13;
+})(outputs, steps, stepResult, assertEqual);</value>
+        <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>a6bb95f23b04765062bf612c95e45ad5</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-09-21 12:45:11</sys_created_on>
+        <sys_id>aebb95f23b04765062bf612c95e45ad7</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-09-21 12:45:11</sys_updated_on>
+        <value>3.1</value>
+        <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
+    </sys_variable_value>
+</record_update>

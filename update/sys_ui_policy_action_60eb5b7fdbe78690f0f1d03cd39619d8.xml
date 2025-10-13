@@ -19,7 +19,7 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2024-07-29 11:45:34</sys_updated_on>
         <table>x_snc_devtools_technical_debt</table>
-        <ui_policy display_value="Technical Debt - Switch">bf9b577fdbe78690f0f1d03cd396190f</ui_policy>
+        <ui_policy display_value="x_snc_devtools_technical_debt - switch">bf9b577fdbe78690f0f1d03cd396190f</ui_policy>
         <value/>
         <value_action/>
         <visible>true</visible>

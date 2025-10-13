@@ -36,20 +36,22 @@
 		return false;
 	}
 
+	SetTestStepScript(grStep,MakeDefaultTestScript());
+
 	return strStepSysId;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-07-31 15:13:47</sys_created_on>
         <sys_id>588e56e0db3f4a90f0f1d03cd3961942</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>AddScriptTestStep</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_588e56e0db3f4a90f0f1d03cd3961942</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-08-28 12:58:46</sys_updated_on>
+        <sys_updated_on>2025-09-22 18:26:30</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>

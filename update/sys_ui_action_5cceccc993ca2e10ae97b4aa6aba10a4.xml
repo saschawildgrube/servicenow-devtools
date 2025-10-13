@@ -37,6 +37,10 @@
 	{
 		strTable = g_form.getValue('table');
 	}
+	if (strTable == '')
+	{
+		strTable = g_form.getValue('x_snc_devtools_table');
+	}
 	if (strTable != '')
 	{
 		var strUrl = '/nav_to.do?uri=%2Fx_snc_devtools_whatruns.do%3Ftables%3D'+strTable;
@@ -58,7 +62,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>5cceccc993ca2e10ae97b4aa6aba10a4</sys_id>
-        <sys_mod_count>11</sys_mod_count>
+        <sys_mod_count>12</sys_mod_count>
         <sys_name>What Runs on Table</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -66,7 +70,7 @@
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_action_5cceccc993ca2e10ae97b4aa6aba10a4</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-06-08 10:59:12</sys_updated_on>
+        <sys_updated_on>2025-10-02 11:44:24</sys_updated_on>
         <table>global</table>
         <ui11_compatible>true</ui11_compatible>
         <ui16_compatible>true</ui16_compatible>

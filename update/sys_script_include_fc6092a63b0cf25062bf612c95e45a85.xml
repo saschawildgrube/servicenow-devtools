@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.RecordTransporterPackagePackUpdateSet</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Packs the specified Update Set into the given package.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>RecordTransporterPackagePackUpdateSet</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function RecordTransporterPackagePackUpdateSet(vPackage,vUpdateSet)
+{
+	var grPackage = RecordTransporterGetPackageRecord(vPackage);
+	if (IsValidRecord(grPackage) == false)
+	{
+		return false;
+	}
+
+	var grUpdateSet = GetRecord('sys_update_set',vUpdateSet);
+	if (IsValidRecord(grUpdateSet) == false)
+	{
+		return false;
+	}
+
+	if (grUpdateSet.state != 'complete')
+	{
+		LogWarning('RecordTransporterPackagePackUpdateSet: Update Set "'+grUpdateSet.name+'" is not in state "complete".');
+		return false;
+	}
+
+	var grUpdateXml = new GlideRecord('sys_update_xml');
+	grUpdateXml.addQuery('update_set','=',grUpdateSet.sys_id);
+	grUpdateXml.query();
+	while (grUpdateXml.next())
+	{
+		RecordTransporterRecordPack(grPackage,grUpdateXml);
+	}
+	RecordTransporterRecordPack(grPackage,grUpdateSet);
+
+	var grChildUpdateSets = new GlideRecord('sys_update_set');
+	grChildUpdateSets.addQuery('parent','=',grUpdateSet.sys_id);
+	grChildUpdateSets.query();
+	while (grChildUpdateSets.next())
+	{
+		RecordTransporterPackagePackUpdateSet(vPackage,grChildUpdateSets);
+	}
+
+	return true;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-09-20 21:56:47</sys_created_on>
+        <sys_id>fc6092a63b0cf25062bf612c95e45a85</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>RecordTransporterPackagePackUpdateSet</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_fc6092a63b0cf25062bf612c95e45a85</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-09-22 08:26:23</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+</record_update>
