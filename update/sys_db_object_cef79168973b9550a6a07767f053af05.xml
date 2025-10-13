@@ -10,6 +10,7 @@
         <create_access_controls>true</create_access_controls>
         <delete_access>false</delete_access>
         <filter_extension/>
+        <is_df_table>false</is_df_table>
         <is_extendable>false</is_extendable>
         <label>Dependency</label>
         <live_feed_enabled>false</live_feed_enabled>
