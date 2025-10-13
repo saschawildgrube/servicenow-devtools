@@ -19,7 +19,7 @@ Log('Hello World');</text>
     </syntax_editor_macro>
 <sys_update_version action="INSERT_OR_UPDATE">
         <action>DELETE</action>
-        <application display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <application display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</application>
         <file_path/>
         <instance_id>220092723b73421816e44a8aa4e45ab1</instance_id>
         <instance_name>wildxanadu</instance_name>
@@ -71,10 +71,10 @@ Log('Hello World');</text>
         <sys_metadata>ad55f1de1b2c1c10a89720a8ec4bcb88</sys_metadata>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Log</sys_name>
-        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_parent/>
         <sys_policy/>
-        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
         <sys_update_name>syntax_editor_macro_ad55f1de1b2c1c10a89720a8ec4bcb88</sys_update_name>
         <sys_update_version display_value="syntax_editor_macro_ad55f1de1b2c1c10a89720a8ec4bcb88">6f6b93df9364a610ae97b4aa6aba10e6</sys_update_version>
