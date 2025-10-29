@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.GetRelatedRecordsTree</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns a nested tree structure of related records as an object.&#13;
+The input record represented in the GlideRecord object is returned as a pure object.&#13;
+The member "_related_records" is an array that contains the directly related records (these are records that reference to the given record) as objects.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>GetRelatedRecordsTree</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function GetRelatedRecordsTree(grRecord)
+{
+	if (IsValidRecord(grRecord) == false)
+	{
+		return false;
+	}
+
+	// AI generated code
+	function getTable(gr)
+	{
+		var table = '';
+		try
+		{
+			if (typeof gr.getRecordClassName == 'function')
+			{
+				table = gr.getRecordClassName();
+			}
+		}
+		catch (e) {}
+		if (!table && typeof gr.getTableName == 'function')
+		{
+			try
+			{
+				table = gr.getTableName();
+			}
+			catch (e2) {}
+		}
+		return table || '';
+	}
+
+	function getSysId(gr)
+	{
+		var sysId = '';
+		try
+		{
+			if (typeof gr.getUniqueValue == 'function')
+			{
+				sysId = gr.getUniqueValue();
+			}
+		}
+		catch (e) {}
+		return sysId || '';
+	}
+
+	function createRelatedArray()
+	{
+		var arr = [];
+		try
+		{
+			arr.valueOf = function()
+			{
+				return this.length;
+			};
+		}
+		catch (e) {}
+		return arr;
+	}
+
+	var seen = {};
+
+	function buildNode(gr)
+	{
+		var node = Clone(gr);
+		node._related_records = createRelatedArray();
+
+		var table = getTable(gr);
+		var sysId = getSysId(gr);
+
+		if (!table || !sysId)
+		{
+			return node;
+		}
+
+		var key = table + ':' + sysId;
+		if (seen[key])
+		{
+			return node;
+		}
+		seen[key] = true;
+
+		try
+		{
+			var dict = new GlideRecord('sys_dictionary');
+			dict.addQuery('reference', table);
+			dict.query();
+			while (dict._next())
+			{
+				var refTable = String(dict.getValue('name') || '');
+				var element = String(dict.getValue('element') || '');
+				if (!refTable || !element)
+				{
+					continue;
+				}
+
+				var dtype = String(dict.getValue('internal_type') || '');
+				if (dtype != 'reference' && dtype != 'glide_list')
+				{
+					continue;
+				}
+
+				try
+				{
+					var grRef = new GlideRecord(refTable);
+					if (dtype == 'reference')
+					{
+						grRef.addQuery(element, sysId);
+					}
+					else
+					{
+						grRef.addEncodedQuery(element + 'CONTAINS' + sysId);
+					}
+					grRef.query();
+					while (grRef._next())
+					{
+						var childNode = buildNode(grRef);
+						node._related_records.push(childNode);
+					}
+				}
+				catch (e1) {}
+			}
+		}
+		catch (e2) {}
+
+		return node;
+	}
+
+	return buildNode(grRecord);
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-10-29 13:29:32</sys_created_on>
+        <sys_id>71c1d58b3b34f69062bf612c95e45adb</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>GetRelatedRecordsTree</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_71c1d58b3b34f69062bf612c95e45adb</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-29 13:59:11</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>71c1d58b3b34f69062bf612c95e45adb</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-10-29 13:29:31</sys_created_on>
+        <sys_id>1a4291cb3b34f69062bf612c95e45adb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-29 13:29:31</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
