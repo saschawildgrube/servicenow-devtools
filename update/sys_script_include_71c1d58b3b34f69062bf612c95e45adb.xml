@@ -25,8 +25,7 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 
 	var strTable = GetStringValue(grRecord.getRecordClassName());
 
-	// References to the record
-
+	// Dictionary references to the record
 	var grDictionary = new GlideRecord('sys_dictionary');
 	grDictionary.addQuery('reference', strTable);
 	grDictionary.addQuery('name','!=','');
@@ -37,9 +36,6 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 	while (grDictionary.next())
 	{
 		var strRelatedTable = GetStringValue(grDictionary.name);
-
-		//if (IsDerivedFromTable('sys_metadata') == false )
-
 		var strRelatedTableElement = GetStringValue(grDictionary.element);
 		var grRelatedRecords = new GlideRecord(strRelatedTable);
 		grRelatedRecords.addQuery(strRelatedTableElement, grRecord.sys_id);
@@ -51,10 +47,39 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 				continue;
 			}
 			var related_record = GetRelatedRecordsTree(grRelatedRecords,bApplicationFilesOnly);
-			record._related_records.push(related_record);			
+			record._related_records.push(related_record);		
 		}
-
 	}
+
+	// Dictionary list reference to the record
+	var grDictionary = new GlideRecord('sys_dictionary');
+	grDictionary.addQuery('reference', strTable);
+	grDictionary.addQuery('name','!=','');
+	grDictionary.addQuery('element','!=','');
+	grDictionary.addQuery('internal_type','=','glide_list');
+	grDictionary.query();
+	while (grDictionary.next())
+	{
+		var strRelatedTable = GetStringValue(grDictionary.name);
+		var strRelatedTableElement = GetStringValue(grDictionary.element);
+		var grRelatedRecords = new GlideRecord(strRelatedTable);
+		grRelatedRecords.addQuery(strRelatedTableElement,'CONTAINS',grRecord.sys_id);
+		grRelatedRecords.query();
+		while (grRelatedRecords.next())
+		{
+			if (bApplicationFilesOnly == true && IsCodeRecord(grRelatedRecords) == false)
+			{
+				continue;
+			}
+			var related_record = GetRelatedRecordsTree(grRelatedRecords,bApplicationFilesOnly);
+			record._related_records.push(related_record);		
+		}
+	}
+
+
+	// sn_aia_agent_tool_m2m  -> tool
+
+
 	return record;
 
 /*
@@ -261,14 +286,14 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-10-29 13:29:32</sys_created_on>
         <sys_id>71c1d58b3b34f69062bf612c95e45adb</sys_id>
-        <sys_mod_count>17</sys_mod_count>
+        <sys_mod_count>18</sys_mod_count>
         <sys_name>GetRelatedRecordsTree</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_71c1d58b3b34f69062bf612c95e45adb</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-10-29 18:04:14</sys_updated_on>
+        <sys_updated_on>2025-10-30 12:13:30</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
