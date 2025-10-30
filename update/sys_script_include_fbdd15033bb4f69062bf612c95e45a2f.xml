@@ -31,18 +31,33 @@
 		return false;
 	}
 
-	grRecord.sys_scope = grScope.sys_id;
-	GlideRecordUpdate(grRecord,true);
+	for (var nRelatedRecord = 0; nRelatedRecord < aRelatedRecords.length; nRelatedRecord++)
+	{
+		var related_record = aRelatedRecords[nRelatedRecord];
+		var grRelatedRecord = GetRecord(related_record.sys_class_name,related_record.sys_id);
+		if (IsValidRecord(grRelatedRecord) == false)
+		{
+			LogError('AppBuilderMoveToScope: The following record is not valid:\n'
+				+ RenderRecordSummary(grRelatedRecord));
+			return false;
+		}
+
+		if (IsOotbRecord(grRelatedRecord) == true)
+		{
+			LogError('AppBuilderMoveToScope: The following record is an OOTB record which must not be moved:\n'
+				+ RenderRecordSummary(grRelatedRecord));
+			return false;
+		}
+	}
+
 
 	for (var nRelatedRecord = 0; nRelatedRecord < aRelatedRecords.length; nRelatedRecord++)
 	{
 		var related_record = aRelatedRecords[nRelatedRecord];
 		var grRelatedRecord = GetRecord(related_record.sys_class_name,related_record.sys_id);
-		if (IsValidRecord(grRelatedRecord) == true)
-		{
-			grRelatedRecord.sys_scope = grScope.sys_id;
-			GlideRecordUpdate(grRelatedRecord,true);
-		}
+		grRelatedRecord.sys_scope = grScope.sys_id;
+		grRelatedRecord.sys_package = grScope.sys_id;
+		GlideRecordUpdate(grRelatedRecord,true);
 	}
 
 	return true;
@@ -52,14 +67,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-10-29 14:25:54</sys_created_on>
         <sys_id>fbdd15033bb4f69062bf612c95e45a2f</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name>AppBuilderMoveToScope</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_fbdd15033bb4f69062bf612c95e45a2f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-10-29 16:54:47</sys_updated_on>
+        <sys_updated_on>2025-10-30 09:55:53</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
