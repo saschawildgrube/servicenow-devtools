@@ -12,12 +12,18 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
         <mobile_callable>false</mobile_callable>
         <name>GetRelatedRecordsTree</name>
         <sandbox_callable>false</sandbox_callable>
-        <script><![CDATA[function GetRelatedRecordsTree(grRecord,bApplicationFilesOnly)
+        <script><![CDATA[function GetRelatedRecordsTree(grRecord,bApplicationFilesOnly,nLevel)
 {
+	nLevel = GetIntegerValue(nLevel);
 	if (IsValidRecord(grRecord) == false)
 	{
 		return false;
 	}
+
+	if (nLevel > 10)
+	{
+		return false;
+	}	
 
 	var aReverseRelations = [
 		'sn_aia_tool',
@@ -38,14 +44,23 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 		var grDictionary = new GlideRecord('sys_dictionary');
 		grDictionary.addQuery('reference', strTable);
 		grDictionary.addQuery('name','!=','');
+		grDictionary.addQuery('name','!=','sn_hr_core_service');
 		grDictionary.addQuery('element','!=','');
-		//grDictionary.addQuery('internal_type','IN','reference,glide_list');
 		grDictionary.addQuery('internal_type','=','reference');
-		grDictionary.query();
+		GlideRecordQuery(grDictionary,true);
 		while (grDictionary.next())
 		{
 			var strRelatedTable = GetStringValue(grDictionary.name);
 			var strRelatedTableElement = GetStringValue(grDictionary.element);
+
+			if (strTable == 'sys_hub_flow')
+			{
+				if (strRelatedTable == 'sn_aia_trigger_configuration')
+				{
+					continue;
+				}
+			}
+		
 			var grRelatedRecords = new GlideRecord(strRelatedTable);
 			grRelatedRecords.addQuery(strRelatedTableElement, grRecord.sys_id);
 			grRelatedRecords.query();
@@ -55,7 +70,7 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 				{
 					continue;
 				}
-				var related_record = GetRelatedRecordsTree(grRelatedRecords,bApplicationFilesOnly);
+				var related_record = GetRelatedRecordsTree(grRelatedRecords,bApplicationFilesOnly,nLevel+1);
 				if (related_record != false)
 				{
 					record._related_records.push(related_record);		
@@ -67,9 +82,10 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 		var grDictionary = new GlideRecord('sys_dictionary');
 		grDictionary.addQuery('reference', strTable);
 		grDictionary.addQuery('name','!=','');
+		grDictionary.addQuery('name','!=','sn_hr_core_service');
 		grDictionary.addQuery('element','!=','');
 		grDictionary.addQuery('internal_type','=','glide_list');
-		grDictionary.query();
+		GlideRecordQuery(grDictionary,true);
 		while (grDictionary.next())
 		{
 			var strRelatedTable = GetStringValue(grDictionary.name);
@@ -83,7 +99,7 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 				{
 					continue;
 				}
-				var related_record = GetRelatedRecordsTree(grRelatedRecords,bApplicationFilesOnly);
+				var related_record = GetRelatedRecordsTree(grRelatedRecords,bApplicationFilesOnly,nLevel+1);
 				if (related_record != false)
 				{
 					record._related_records.push(related_record);		
@@ -96,7 +112,7 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 	if (strTable == 'sn_aia_agent_tool_m2m')
 	{
 		var grAiaTool = GetRecord('sn_aia_tool',grRecord.getValue('tool'));
-		var related_record = GetRelatedRecordsTree(grAiaTool,bApplicationFilesOnly);
+		var related_record = GetRelatedRecordsTree(grAiaTool,bApplicationFilesOnly,nLevel+1);
 		if (related_record != false)
 		{
 			record._related_records.push(related_record);		
@@ -111,7 +127,7 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 		grAiaSkillMeta.query();
 		while (grAiaSkillMeta.next())
 		{
-			var related_record = GetRelatedRecordsTree(grAiaSkillMeta,bApplicationFilesOnly);
+			var related_record = GetRelatedRecordsTree(grAiaSkillMeta,bApplicationFilesOnly,nLevel+1);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -124,27 +140,39 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 		grAiaTriggerUseCase.query();
 		while (grAiaTriggerUseCase.next())
 		{
-			var related_record = GetRelatedRecordsTree(grAiaTriggerUseCase,bApplicationFilesOnly);
+			var related_record = GetRelatedRecordsTree(grAiaTriggerUseCase,bApplicationFilesOnly,nLevel+1);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
 			}			
 		}
 	}
-/*
+
 	if (strTable == 'sn_aia_trigger_agent_usecase_m2m')
 	{
 		var grTriggerConfig = GetRecord('sn_aia_trigger_configuration',grRecord.trigger_configuration);
 		if (IsValidRecord(grTriggerConfig) == true)
 		{
-			var related_record = GetRelatedRecordsTree(grTriggerConfig,bApplicationFilesOnly);
+			var related_record = GetRelatedRecordsTree(grTriggerConfig,bApplicationFilesOnly,nLevel+1);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
 			}			
 		}		
 	}
-	*/
+
+	if (strTable == 'sn_aia_trigger_configuration')
+	{
+		var grFlow = GetRecord('sys_hub_flow',grRecord.trigger_flow);
+		if (IsValidRecord(grFlow) == true)
+		{
+			var related_record = GetRelatedRecordsTree(grFlow,bApplicationFilesOnly,nLevel+1);
+			if (related_record != false)
+			{
+				record._related_records.push(related_record);		
+			}			
+		}		
+	}	
 
 	return record;
 }]]></script>
@@ -152,14 +180,14 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-10-29 13:29:32</sys_created_on>
         <sys_id>71c1d58b3b34f69062bf612c95e45adb</sys_id>
-        <sys_mod_count>30</sys_mod_count>
+        <sys_mod_count>32</sys_mod_count>
         <sys_name>GetRelatedRecordsTree</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_71c1d58b3b34f69062bf612c95e45adb</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-10-30 13:29:33</sys_updated_on>
+        <sys_updated_on>2025-10-30 16:46:13</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
