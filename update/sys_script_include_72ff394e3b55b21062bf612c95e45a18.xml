@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.IsForceScopeActiveForUser</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns true if the DevTools scope enforcement feature is active for the given user.&#13;
+vUser specifies the user in question, if set to null the status is returned for the user of the current session. </description>
+        <mobile_callable>false</mobile_callable>
+        <name>IsForceScopeActiveForUser</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function IsForceScopeActiveForUser(vUser)
+{
+	if (AppGetProperty('ui.force_scope') == false)
+	{
+		return false;
+	}
+
+
+	var grUser = GetUserRecord(vUser)
+	var strUserSysId = '';
+	if (IsValidRecord(grUser) == true)
+	{
+		strUserSysId = GetStringValue(grUser.sys_id);
+	}
+	else
+	{
+		strUserSysId = gs.getUserID();
+	}
+
+	var strForceScope = GetUserPreference(strUserSysId,'devtools.ui.force_scope');
+	if (strForceScope !== null)
+	{
+		bForceScope = GetBoolValue(strForceScope);
+		if (bForceScope == false)
+		{
+			return false;
+		}
+	}
+
+	return true;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-11-20 10:48:55</sys_created_on>
+        <sys_id>72ff394e3b55b21062bf612c95e45a18</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>IsForceScopeActiveForUser</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_72ff394e3b55b21062bf612c95e45a18</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-11-20 17:22:34</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>72ff394e3b55b21062bf612c95e45a18</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-11-20 10:48:54</sys_created_on>
+        <sys_id>44804e4e3b55b21062bf612c95e45aaa</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-11-20 10:48:54</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

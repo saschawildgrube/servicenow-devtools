@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.AppBuilderAclInsertOrUpdateForUiPage</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Creates or updates an ACL for the given UI Page.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>AppBuilderAclInsertOrUpdateForUiPage</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function AppBuilderAclInsertOrUpdateForUiPage(vUiPage,strDecisionType,strDescription,aRoles,strScript)
+{
+	var grUiPage = GetRecord('sys_ui_page',vUiPage);
+	if (IsValidRecord(grUiPage) == false)
+	{
+		return false;
+	}
+	var strScopePrefix = '';
+	if (grUiPage.sys_scope.scope != 'global')
+	{
+		strScopePrefix = GetStringValue(grUiPage.sys_scope.scope) + '_';
+	}
+	strName = strScopePrefix + grUiPage.name;
+	strDecisionType = GetStringValue(strDecisionType);
+	if (strDecisionType == '')
+	{
+		return false;
+	}
+	strDescription = GetStringValue(strDescription);
+	aRoles = GetArrayValue(aRoles);
+	strScript = GetStringValue(strScript);
+
+	var strAclSysId = AppBuilderAclInsertOrUpdate(
+		grUiPage.sys_scope,
+		'ui_page',
+		'read',
+		strName,
+		strDecisionType,
+		strDescription,
+		aRoles,
+		strScript);
+			
+	return strAclSysId;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-11-18 11:52:59</sys_created_on>
+        <sys_id>53fbbb593b11be1062bf612c95e45a50</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>AppBuilderAclInsertOrUpdateForUiPage</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_53fbbb593b11be1062bf612c95e45a50</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-11-20 17:22:34</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+</record_update>

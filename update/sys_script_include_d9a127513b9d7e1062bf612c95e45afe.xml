@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.AppBuilderAclInsertOrUpdate</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Creates or updates an ACL with the given criteria to an application.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>AppBuilderAclInsertOrUpdate</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function AppBuilderAclInsertOrUpdate(vScope,strType,strOperation,strName,strDecisionType,strDescription,aRoles,strScript)
+{
+	var grScope = GetAppRecord(vScope);
+	if (IsValidRecord(grScope) == false)
+	{
+		return false;
+	}
+	strType = GetStringValue(strType);
+	if (strType == '')
+	{
+		return false;
+	}
+	strOperation = GetStringValue(strOperation);
+	if (strOperation == '')
+	{
+		return false;
+	}
+	strName = GetStringValue(strName);
+	if (strName == '')
+	{
+		return false;
+	}
+	strDecisionType = GetStringValue(strDecisionType);
+	if (strDecisionType == '')
+	{
+		return false;
+	}
+	strDescription = GetStringValue(strDescription);
+	aRoles = GetArrayValue(aRoles);
+	strScript = GetStringValue(strScript);
+	var bAdvanced = false;
+	if (strScript != '')
+	{
+		bAdvanced = true;
+	}
+	var strAclSysId = RecordInsertOrUpdate(
+		'sys_security_acl',
+		{
+			sys_scope: GetStringValue(grScope.sys_id),
+			type: strType,
+			operation: strOperation,
+			name: strName,
+			description: strDescription 
+		},
+		{
+			// insert
+		},
+		{
+			// update
+			advanced: bAdvanced,
+			script: strScript
+		});
+
+	if (IsValidSysId(strAclSysId) == false)
+	{
+		return false;
+	}
+	for (var nRole = 0; nRole < aRoles.length; nRole++)
+	{
+		var vRole = aRoles[nRole];
+		var grRole = GetRoleRecord(vRole);
+		if (IsValidRecord(grRole) == true)
+		{
+			var strAclRoleSysId = RecordInsertOrUpdate(
+				'sys_security_acl_role',
+				{
+					sys_scope: GetStringValue(grScope.sys_id),
+					sys_security_acl: strAclSysId,
+					sys_user_role: GetStringValue(grRole.sys_id)
+				},
+				{
+					// insert
+				},
+				{
+					// update
+				});
+			if (IsValidSysId(strAclRoleSysId) == false)
+			{
+				LogError(
+					'AppBuilderAclInsertOrUpdate: Failed to insert or update role to ACL: '+strAclSysId);
+			}
+		}
+	}
+	
+	return strAclSysId;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-11-18 09:59:50</sys_created_on>
+        <sys_id>d9a127513b9d7e1062bf612c95e45afe</sys_id>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_name>AppBuilderAclInsertOrUpdate</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_d9a127513b9d7e1062bf612c95e45afe</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-11-20 17:22:34</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>d9a127513b9d7e1062bf612c95e45afe</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-11-18 09:59:49</sys_created_on>
+        <sys_id>e112eb513b9d7e1062bf612c95e45a38</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-11-18 09:59:49</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

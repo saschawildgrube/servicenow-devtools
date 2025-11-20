@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_attribute">
+    <sys_security_attribute action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <condition>InteractiveSession=true</condition>
+        <description>Auto Created Attribute - ACL_bb8cef3f2b0936109083fe395e91bf8f</description>
+        <is_dynamic>false</is_dynamic>
+        <is_localized>true</is_localized>
+        <is_system>false</is_system>
+        <label>ACL_bb8cef3f2b0936109083fe395e91bf8f</label>
+        <lookup_table/>
+        <lookup_table_column/>
+        <name>x_snc_devtools__ACL_bb8cef3f2b0936109083fe395e91bf8f</name>
+        <script/>
+        <sys_class_name>sys_security_attribute</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-11-13 18:56:07</sys_created_on>
+        <sys_id>30ec277f2b0936109083fe395e91bfc0</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_snc_devtools__ACL_bb8cef3f2b0936109083fe395e91bf8f</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_security_attribute_30ec277f2b0936109083fe395e91bfc0</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-11-13 18:56:07</sys_updated_on>
+        <type>compound</type>
+    </sys_security_attribute>
+</record_update>

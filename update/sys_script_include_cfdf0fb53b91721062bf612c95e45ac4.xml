@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.HtmlRenderRelatedRecords</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Renders all related records of the given record.&#13;
+grRecord specifies the record to start with.&#13;
+strMode specifies the rendering mode - either "list" or "tree".&#13;
+nMaxLevel specifies the maximum levels to seek related records. The default is 5. </description>
+        <mobile_callable>false</mobile_callable>
+        <name>HtmlRenderRelatedRecords</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function HtmlRenderRelatedRecords(grRecord,strMode,nMaxLevel)
+{
+	strMode = GetStringValue(strMode);
+	if (strMode == '')
+	{
+		strMode = 'tree';
+	}
+
+	nMaxLevel = GetIntegerValue(nMaxLevel);
+	if (nMaxLevel == 0)
+	{
+		nMaxLevel = 5;
+	}
+
+
+	var strHtml = '';
+	var bError = false;
+
+	if (IsValidRecord(grRecord) == false)
+	{
+		strHtml += HtmlRenderError('Invalid Record!');
+		return strHtml;
+	}
+
+
+	function RenderNode(node,nLevel)
+	{
+		var grNode = GetRecord(node.sys_class_name,node.sys_id);
+		var strRecordUrl = GetRecordPath(node.sys_class_name,node.sys_id);
+
+		var strContent = '';
+		if (IsValidRecord(grNode) == true)
+		{
+			strContent += '<b>' + RenderRecordSummary(grNode) + '</b><br/>'; 
+		}
+		else
+		{
+			var strName = GetStringValue(node.name);
+			var strClassName = node.sys_class_name;
+			strContent += '<b>' + strClassName + ': ' + strName + '</b><br/>';
+		}
+		strContent += HtmlRenderLink(strRecordUrl,'Open Record',true);
+		strContent += '<br/>';
+
+		var strStatus = GetStringValue(GetValue(node,'_related_records_status'));
+		if (strStatus != '')
+		{
+			strContent += HtmlRenderError(strStatus);
+		}
+
+/*		if (nLevel != 0)
+		{
+			strContent += ' | ';
+			var strTreeUrl = '/x_snc_devtools_flow.do?flow=' + node.sys_id + '&maxlevel='+nMaxLevel;
+			strContent += HtmlRenderLink(strTreeUrl,'Show Tree',true);
+		}
+		*/
+
+		return HtmlRenderRoundedBox(strContent);
+	}
+
+
+
+	if (strMode == 'tree')
+	{
+		var tree = GetRelatedRecordsTree(grRecord,nMaxLevel);
+		if (tree == false)
+		{
+			strHtml += HtmlRenderError('Could not load related record tree!');
+			return strHtml;
+		}
+		strHtml += HtmlRenderTree([tree],0,false,RenderNode,'_related_records');
+
+		if (AppGetProperty('logging.verbosity') == 'debug')
+		{
+			strHtml += HtmlRenderValue(tree);
+		}
+	}
+	else if (strMode == 'list')
+	{
+		var list = GetRelatedRecordsList(grRecord,nMaxLevel);
+		if (list == false)
+		{
+			strHtml += HtmlRenderError('Could not load related record list!');
+			return strHtml;
+		}
+		strHtml += HtmlRenderTree(list,0,false,RenderNode,'_related_records');
+
+		if (AppGetProperty('logging.verbosity') == 'debug')
+		{
+			strHtml += HtmlRenderValue(list);
+		}
+	}
+	else
+	{
+		strHtml += HtmlRenderError('Unsupported display mode!');
+		return strHtml;
+	}
+
+	return strHtml;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-11-19 21:57:09</sys_created_on>
+        <sys_id>cfdf0fb53b91721062bf612c95e45ac4</sys_id>
+        <sys_mod_count>16</sys_mod_count>
+        <sys_name>HtmlRenderRelatedRecords</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_cfdf0fb53b91721062bf612c95e45ac4</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-11-20 14:52:51</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+</record_update>

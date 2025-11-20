@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-03-10 22:23:34</sys_created_on>
         <sys_id>e1ef66781b6529105b76777d8b4bcb01</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_e1ef66781b6529105b76777d8b4bcb01</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-03-10 22:42:22</sys_updated_on>
+        <sys_updated_on>2025-11-18 16:55:04</sys_updated_on>
         <table/>
         <test display_value="DevTools - Base64Decode">f9dfe2781b6529105b76777d8b4bcb30</test>
         <timeout/>
@@ -36,9 +36,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-03-10 22:23:35</sys_created_on>
         <sys_id>96ef66781b6529105b76777d8b4bcb2c</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-03-10 22:42:22</sys_updated_on>
+        <sys_updated_on>2025-11-18 16:55:05</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -68,9 +68,7 @@
 	TestCase_Base64Decode('VGVzdA==','Test');&#13;
 	TestCase_Base64Decode('eyJrZXkiOiJ2YWx1ZSJ9',{ key: 'value' });&#13;
 	TestCase_Base64Decode('WyJBbHBoYSIsIkJldGEiXQ==',["Alpha","Beta"]);&#13;
-	&#13;
-	&#13;
-	&#13;
+&#13;
 	return test.GetResult();&#13;
 	&#13;
 })(outputs, steps, stepResult, assertEqual);</value>

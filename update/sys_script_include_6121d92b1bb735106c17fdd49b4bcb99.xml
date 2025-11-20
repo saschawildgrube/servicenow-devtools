@@ -5,11 +5,16 @@
         <api_name>x_snc_devtools.HtmlRenderTree</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Renders a tree structure based on a given object.</description>
+        <description>Renders a tree structure based on a given array.&#13;
+aNodes is an array of objects of the first level of the tree.&#13;
+nLevel specifies the current level - which can be used for rendering.&#13;
+bBottomUp specifies if the nodes should be rendered in reverse order.&#13;
+callbackRenderNode is an optional callback function used for node rendering.&#13;
+strNodes specifies the name of the object field that contains the array of sub nodes.</description>
         <mobile_callable>false</mobile_callable>
         <name>HtmlRenderTree</name>
         <sandbox_callable>false</sandbox_callable>
-        <script><![CDATA[function HtmlRenderTree(aNodes, nLevel, bBottomUp, callbackRenderNode)
+        <script><![CDATA[function HtmlRenderTree(aNodes, nLevel, bBottomUp, callbackRenderNode, strNodes)
 {
 	if (IsArray(aNodes) == false)
 	{
@@ -28,6 +33,12 @@
 	{
 		callbackRenderNode = RenderNodeDefault;
 	}
+
+	strNodes = GetStringValue(strNodes);
+	if (strNodes == '')
+	{
+		strNodes = '_nodes';
+	}
 	
 	var strHtml = '';
 	
@@ -38,10 +49,11 @@
 		if (bBottomUp == true)
 		{
 			strHtml += HtmlRenderTree(
-				GetValue(aNodes[nCurrentNode],'_nodes'),
+				GetValue(aNodes[nCurrentNode],strNodes),
 				nLevel+1,
 				true,
-				callbackRenderNode);
+				callbackRenderNode,
+				strNodes);
 		}
 		
 		var nPadding = 20 * nLevel;
@@ -53,10 +65,11 @@
 		if (bBottomUp == false)
 		{
 			strHtml += HtmlRenderTree(
-				GetValue(aNodes[nCurrentNode],'_nodes'),
+				GetValue(aNodes[nCurrentNode],strNodes),
 				nLevel+1,
 				false,
-				callbackRenderNode);
+				callbackRenderNode,
+				strNodes);
 		}
 	}
 	
@@ -66,14 +79,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-01-23 21:15:13</sys_created_on>
         <sys_id>6121d92b1bb735106c17fdd49b4bcb99</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>11</sys_mod_count>
         <sys_name>HtmlRenderTree</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_6121d92b1bb735106c17fdd49b4bcb99</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-09-19 11:49:37</sys_updated_on>
+        <sys_updated_on>2025-11-20 08:41:25</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>

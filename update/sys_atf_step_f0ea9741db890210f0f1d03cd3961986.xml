@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-03-18 16:00:51</sys_created_on>
         <sys_id>f0ea9741db890210f0f1d03cd3961986</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_f0ea9741db890210f0f1d03cd3961986</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-03-18 16:03:49</sys_updated_on>
+        <sys_updated_on>2025-11-14 09:41:20</sys_updated_on>
         <table/>
         <test display_value="DevTools - GetAppManualRecord">83ba5341db890210f0f1d03cd39619de</test>
         <timeout/>
@@ -50,9 +50,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-03-18 16:00:51</sys_created_on>
         <sys_id>aeea9741db890210f0f1d03cd39619fe</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-03-18 16:03:49</sys_updated_on>
+        <sys_updated_on>2025-11-14 09:41:21</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -82,6 +82,34 @@
 &#13;
 	TestCase_GetAppManualRecord(null,false);&#13;
 	TestCase_GetAppManualRecord('x_snc_devtools',true);&#13;
+&#13;
+	var grGlobalApp = new GlideRecord('sys_app');&#13;
+	grGlobalApp.initialize();&#13;
+	grGlobalApp.name = 'TEST Global 1';&#13;
+	grGlobalApp.scope = 'global';&#13;
+	var strGlobalAppSysId = GlideRecordInsert(grGlobalApp);&#13;
+	TestCase_GetAppManualRecord(strGlobalAppSysId,false);&#13;
+&#13;
+	var grUiPage = new GlideRecord('sys_ui_page');&#13;
+	grUiPage.initialize();&#13;
+	grUiPage.name = 'manual_test_global_1';&#13;
+	grUiPage.sys_scope = strGlobalAppSysId;&#13;
+	var strUiPageSysId = GlideRecordInsert(grUiPage);&#13;
+	TestCase_GetAppManualRecord(strGlobalAppSysId,true);&#13;
+&#13;
+	var grUiPage2 = new GlideRecord('sys_ui_page');&#13;
+	grUiPage2.initialize();&#13;
+	grUiPage2.name = 'test_global_1_manual';&#13;
+	grUiPage2.sys_scope = strGlobalAppSysId;&#13;
+	var strUiPage2SysId = GlideRecordInsert(grUiPage2);	&#13;
+	TestCase_GetAppManualRecord(strGlobalAppSysId,false);&#13;
+&#13;
+	GlideRecordDelete(GetRecord('sys_ui_page',strUiPageSysId));&#13;
+	TestCase_GetAppManualRecord(strGlobalAppSysId,true);&#13;
+&#13;
+&#13;
+	&#13;
+&#13;
 	&#13;
 		&#13;
 	return test.GetResult();&#13;

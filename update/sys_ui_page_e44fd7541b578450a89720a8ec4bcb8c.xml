@@ -351,8 +351,8 @@ function AppInstall()
 
 	<h3>Update Sets in Record Transporter Packages</h3>
 	<p>It may sound absurd, but it is true: Sometimes Update Sets may just be the only practical, straight forward way to capture a change. If a team has decided to ship everything as applications, this would be a problem. The DevTools Record Transporter comes to the rescue.</p>
-	<p>An Update Set can be packed into a Record Transporter Package. An admin user can select the "Transporter Package Application" for an Update Set on the Update Set form. If the Update Set is in state "Complete", an admin user can select the link "Pack Update Set into Record Transporter" on the Updaet Set form. The Update Set (and all of its siblings) are then packed into a new Transporter Package in the selected application.</p>
-	<p>The Transporter Package is automatically configured to be unpacked automatically when running the application's installation scripts (see function InstallApp()). Further the Update Set(s) contained in the Transporter Package will be automatically committed.</p>
+	<p>An Update Set can be packed into a Record Transporter Package. An admin user can select the "Transporter Package Application" for an Update Set on the Update Set form. If the Update Set is in state "Complete", an admin user can select the link "Pack Update Set into Record Transporter" on the Update Set form. The Update Set (and all of its siblings) are then packed into a new Transporter Package in the selected application.</p>
+	<p>The Transporter Package is configured to be unpacked automatically when running the application's installation scripts (see function InstallApp()). Further the Update Set(s) contained in the Transporter Package will be committed automatically.</p>
 	<p>Since the order of Update Sets should be maintained, the Transporter Packages are assigned an increasing order number which is used when unpacking and committing.</p>
 	<p>Please note that this method should be considered as a fall-back method if there is really no feasible way to capture and transport changes. Once used, Technical Debt records are created for each packed Update Set that should remind the developer to find a better solution in the future.</p>
 	<p>This capability is built to make it easier for teams to transform their Update Set-based process into a more robust applications-based deployment process.</p> 
@@ -693,7 +693,7 @@ while (grSI.next())
 	<h3>UI Scripts</h3>
 	<g2:no_escape>$[docapi.RenderUIScripts()]</g2:no_escape>	
 	
-	<h3>Test step configurations</h3>
+	<h3>Test Step Configurations</h3>
 	<p>DevTools contains the following customized test step configurations:</p>
 	<g2:no_escape>$[docapi.RenderTestStepConfigurations()]</g2:no_escape>
 	
@@ -714,6 +714,41 @@ while (grSI.next())
 	<g2:no_escape>$[docapi.RenderLicense()]</g2:no_escape>
 	
 	<h2 toc-ignore-children="true">Release Notes</h2>
+
+	<h3>1.134.0 - 2025-11-20</h3>
+	<ol>
+		<li>Added function GetInstanceInfo().</li>
+		<li>Added System Property "x_snc_devtools.ui.deprecation_warning" to control if the deprecation warning issued by Deprecated() should be displayed to admin users.</li> 
+		<li>Added UI Action "Add ACL" to add ACLs for UI Pages.</li>
+		<li>GetParentRecord() and the "Up" button now support ACLs protecting UI Pages.</li>
+		<li>GetParentRecord() and the "Up" button now support Security Attributes (sys_security_attribute).</li>
+		<li>GetParentRecord() and the "Up" button now support Callable Test Inputs and Outputs (atf_input_variable_callable and atf_output_variable_callable).</li>
+		<li>InstallerAPI::DefineList() now also accepts the title of a view as a string and is now consistent with the code generated through the UI Action "Make Code to define this List".</li>
+		<li>GetScopeSysIdFromPropertyName() has been improved and in case of global system properties the "pseudo" SysId "global" now is returned - no matter of the system property is placed in a global custom application or another package that shares the global scope.</li>
+		<li>Added UI Action "Related Records".</li>
+		<li>Added UI Page "x_snc_devtools_related_records" that renders the tree or list of the related records of a given record.</li>
+		<li>Added system property "x_snc_devtools.ui.related_records_button" to control if the "Related Records" button should be visible.</li>
+		<li>Added function HtmlRenderPageRelatedRecords().</li>
+		<li>Added function HtmlRenderRelatedRecords().</li>
+		<li>Added function GetRelatedRecordsTree().</li>
+		<li>Added function GetRelatedRecordsList().</li>
+		<li>HtmlRenderTree() now supports the "strNode" parameter to specify the field name that contains the array of child nodes.</li> 
+		<li>Added function AppBuilderMoveToScope().</li>
+		<li>Added function AppBuilderAclInsertOrUpdate().</li>
+		<li>Added function AppBuilderAclInsertOrUpdateForUiPage().</li>
+		<li>Added function IsAclAvailableForUiPage().</li>
+		<li>Added function Base64Decompress().</li>
+		<li>Added function IsForceScopeActiveForUser().</li>
+		<li>IsOotbRecord() has been fine-tuned to avoid false-positives for auto-generated AI agent related trigger flows.</li>
+		<li>GenerateCredentialsForUser() now uses login.do as part of the instance url.</li> 
+		<li>IsOotbRecord() now detects tables starting with "sys" as OOTB records.</li>
+		<li>GetAppManualRecord() now considers UI pages in global applications as manuals if their name starts with "manual_" OR ends with "_manual".</li>
+		<li>Added sys_atf_step_config and sys_atf_test_callable to GetLinkDirectory().</li>
+		<li>Added sys_metadata_customization to GetLinkDirectory().</li>
+		<li>Added more patterns to GetEvaluatorErrorExceptionPatterns().</li>
+		<li>Added link to "Logs" UI page in the menu.</li>
+	</ol>
+
 
 	<h3>1.133.0 - 2025-10-13</h3>
 	<ol>
@@ -3038,14 +3073,14 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>2308</sys_mod_count>
+        <sys_mod_count>2342</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-10-13 09:50:54</sys_updated_on>
+        <sys_updated_on>2025-11-20 17:20:20</sys_updated_on>
     </sys_ui_page>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>e44fd7541b578450a89720a8ec4bcb8c</id>

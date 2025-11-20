@@ -41,7 +41,26 @@
 				return false;
 			}
 		}
-	}		
+	}
+
+	if (strClassName == 'sys_db_object')
+	{
+		// Tables named "sys*" are likely OOTB
+		var grDbObject = GetRecord('sys_db_object',grRecord.sys_id);
+		var strName = GetStringValue(grDbObject.name);
+		if (strName.indexOf('sys') == 0)
+		{
+			return true;
+		}		
+/*		var strScope = GetStringValue(grDocumentation.sys_scope.scope);
+		if (strScope != 'global')
+		{
+			if (strElement.indexOf('x_') != 0)
+			{
+				return true;
+			}
+		}*/
+	}
 
 
 /* Used the following script to generate a list of users that created records on a fresh z-booted instance:
@@ -485,10 +504,16 @@ gs.info(strOutput);
 		return true;
 	}
 
-	if (grRecord.sys_scope.getValue() != grRecord.sys_package.getValue())
+	var strPackage = grRecord.sys_package.getValue();
+	if (IsValidSysId(strPackage) == true)
 	{
-		return true;
+		if (grRecord.sys_scope.getValue() != strPackage)
+		{
+			return true;
+		}
 	}
+
+
 
 	return false;
 }]]></script>
@@ -496,14 +521,14 @@ gs.info(strOutput);
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-07-10 12:33:33</sys_created_on>
         <sys_id>659c5913936e2610959b7fda2bba1060</sys_id>
-        <sys_mod_count>15</sys_mod_count>
+        <sys_mod_count>17</sys_mod_count>
         <sys_name>IsOotbRecord</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_659c5913936e2610959b7fda2bba1060</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-08-13 16:03:18</sys_updated_on>
+        <sys_updated_on>2025-11-11 16:13:26</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

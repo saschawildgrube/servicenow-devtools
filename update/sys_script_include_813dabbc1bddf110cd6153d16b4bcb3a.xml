@@ -123,6 +123,10 @@
 		'06a6c0b2eb20010', // 06a6c0b2eb2001006a668c505206fe63
 		'c5c370657710011', // c5c3706577100110990d94b92c5a997c
 		'324c8745d703310', // 324c8745d7033100b6bddb0c825203eb
+		'c883036f5331030', // c883036f533103001f2bddeeff7b12b9
+		'3048c6b65b3b030', // 3048c6b65b3b0300e3cc8e6541f91aaf
+		'23e4f33ce113121', // 23e4f33ce11312105590bd68cbbecb8a 
+		'ab1ffc33c331210', // ab1ffc33c3312100e6da174292d3ae3d
 
 		// Zurich
 		'"inputvis" is not defined.',
@@ -133,6 +137,8 @@
 		'28fc80a77727111', // 28fc80a7772711104cdac0c23e5a9903
 		'209fc2f1c301120', // 209fc2f1c3011200f7d1ca3adfba8f4b
 		'8f5128567740121', // 8f51285677401210e45dd86bba5a99a1
+		'bec48ba37f10621', // bec48ba37f1062105adc654edc866546 
+		'bec48ba37f10621', // bec48ba37f1062105adc654edc866546
 
 	];
 	return aPatterns;
@@ -141,14 +147,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-09-13 12:47:41</sys_created_on>
         <sys_id>813dabbc1bddf110cd6153d16b4bcb3a</sys_id>
-        <sys_mod_count>113</sys_mod_count>
+        <sys_mod_count>119</sys_mod_count>
         <sys_name>GetEvaluatorErrorExceptionPatterns</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_813dabbc1bddf110cd6153d16b4bcb3a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-10-09 11:13:19</sys_updated_on>
+        <sys_updated_on>2025-11-20 12:43:35</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

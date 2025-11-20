@@ -5,7 +5,8 @@
         <api_name>x_snc_devtools.GetScopeSysIdFromPropertyName</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Returns the sys_id of a system property based on its name. </description>
+        <description>Returns the scope sys_id of a system property based on its name.&#13;
+In case of global system properties the "pseudo" SysId "global" is returned - no matter of the system property is placed in a global custom application or another package that shares the global scope. </description>
         <mobile_callable>false</mobile_callable>
         <name>GetScopeSysIdFromPropertyName</name>
         <sandbox_callable>false</sandbox_callable>
@@ -15,14 +16,6 @@
 	if (strName == '')
 	{
 		return false;
-	}
-	
-	var grProp = new GlideRecord('sys_properties');
-	grProp.addQuery('name','=',strName);
-	grProp.query();
-	if (grProp.next())
-	{
-		return GetStringValue(grProp.sys_scope);
 	}
 	
 	var aParts = strName.split('.');
@@ -42,14 +35,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-06-05 09:06:28</sys_created_on>
         <sys_id>304ecc17db3bc510bcced03cd39619b0</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_name>GetScopeSysIdFromPropertyName</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_304ecc17db3bc510bcced03cd39619b0</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-05-22 08:30:00</sys_updated_on>
+        <sys_updated_on>2025-10-20 15:04:36</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

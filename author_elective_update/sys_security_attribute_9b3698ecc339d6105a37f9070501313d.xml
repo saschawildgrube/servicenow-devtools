@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_attribute">
+    <sys_security_attribute action="DELETE">
+        <active>false</active>
+        <condition>HasAdminRole=true</condition>
+        <description>Auto Created Attribute - ACL_550658ecc339d6105a37f907050131c0</description>
+        <is_dynamic>true</is_dynamic>
+        <is_localized>true</is_localized>
+        <is_system>false</is_system>
+        <label>ACL_550658ecc339d6105a37f907050131c0</label>
+        <lookup_table/>
+        <lookup_table_column/>
+        <name>x_snc_devtools__ACL_550658ecc339d6105a37f907050131c0</name>
+        <script/>
+        <sys_class_name>sys_security_attribute</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-11-07 15:22:50</sys_created_on>
+        <sys_id>9b3698ecc339d6105a37f9070501313d</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>x_snc_devtools__ACL_550658ecc339d6105a37f907050131c0</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_security_attribute_9b3698ecc339d6105a37f9070501313d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-11-18 15:16:40</sys_updated_on>
+        <type>compound</type>
+    </sys_security_attribute>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>a8cbb5133b6b5e540fd412c5e4e45a1f</instance_id>
+        <instance_name>wildyokohama</instance_name>
+        <name>sys_security_attribute_9b3698ecc339d6105a37f9070501313d</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_attribute"><sys_security_attribute action="INSERT_OR_UPDATE"><active>false</active><condition>HasAdminRole=true</condition><description>Auto Created Attribute - ACL_550658ecc339d6105a37f907050131c0</description><is_dynamic>true</is_dynamic><is_localized>true</is_localized><is_system>false</is_system><label>ACL_550658ecc339d6105a37f907050131c0</label><lookup_table/><lookup_table_column/><name>x_snc_devtools__ACL_550658ecc339d6105a37f907050131c0</name><script/><sys_class_name>sys_security_attribute</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2024-11-07 15:22:50</sys_created_on><sys_id>9b3698ecc339d6105a37f9070501313d</sys_id><sys_mod_count>1</sys_mod_count><sys_name>x_snc_devtools__ACL_550658ecc339d6105a37f907050131c0</sys_name><sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package><sys_policy/><sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope><sys_update_name>sys_security_attribute_9b3698ecc339d6105a37f9070501313d</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2025-11-18 15:16:40</sys_updated_on><type>compound</type></sys_security_attribute></record_update>]]></payload>
+        <payload_hash>-484804311</payload_hash>
+        <record_name>x_snc_devtools__ACL_550658ecc339d6105a37f907050131c0</record_name>
+        <reverted_from/>
+        <source>b288fc1b2b81b6509083fe395e91bfa9</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-11-18 15:16:41</sys_created_on>
+        <sys_id>079a24e13b55be1062bf612c95e45a60</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19a978a19a10000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-11-18 15:16:41</sys_updated_on>
+        <type>Security Attribute</type>
+        <update_guid>c79a24e1f655be103c040d834d83555f</update_guid>
+        <update_guid_history>c79a24e1f655be103c040d834d83555f:-484804311,c25949f4d4afaa10ba24c903d399eb7b:0,812f909cbadf26104b05fc819f90a42b:0,29dc5d049c9fe210bdac1937916a34a2:0,9aee0a459bc762102c1f3f44cfabf2ac:0,96af8945cc83621015b32afdd8714bfc:0,fb36b5e1cc7ea2106a75062a30114a05:0,30a5e1a10afaa2108e24a157bc37e906:0,fdd6aa663a2e6250cc8c25ce7ee49616:0,969ed66ef6aa625024df8b109870a23b:0,bca16d8dcaa22a10e913aad2abf0a639:0,a5dadd49dd622a1086d51222d4f2a1b9:0,ad1fbe0a3656ee10712b69a4d8664a71:0,b5dc960a1a92ee10ff9ca9e160128a4d:0,80dec819ca16aa10b4bb93488252cab8:0,10e807e23342e210fa17e7dbc554b09f:0,3a61db431f65665007003272c1854296:0,d12b0bc754e16650d241ec2da7503a9c:0,eda53561d42d62507430eb651fedfef9:0,aec3a16d57696250fa19035b1c965450:0,bbd303b8362d6e10f5e694358760b7f9:0,7ec876bcf3a96e102aace7699747188a:0,a320c989bc1d2a104bac0fd267ac3188:0,050a997fae05a21022ffc179fa81159e:0,b25a92d4f501ee10d603bc85b94b8018:0,fc5496101fcdae10eb96231f1741340c:0,59d71ade5bbc26101505e79993640e7e:0,88494d8d9bbc2a109c9bb83745fcf345:0,e8afb52b20986a50a285d087947d9efa:0,3f463fc3fc14a6503fef0565730b3494:0,1447e17028cca6502d0f4750dfde8bdc:-1329016701</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-11-18 15:16:57</sys_created_on>
+        <sys_db_object display_value="" name="sys_security_attribute">sys_security_attribute</sys_db_object>
+        <sys_id>674b2196a02c44c897d9ec9baae438e4</sys_id>
+        <sys_metadata>9b3698ecc339d6105a37f9070501313d</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_snc_devtools__ACL_550658ecc339d6105a37f907050131c0</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sys_security_attribute_9b3698ecc339d6105a37f9070501313d</sys_update_name>
+        <sys_update_version display_value="sys_security_attribute_9b3698ecc339d6105a37f9070501313d">079a24e13b55be1062bf612c95e45a60</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-11-18 15:16:57</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

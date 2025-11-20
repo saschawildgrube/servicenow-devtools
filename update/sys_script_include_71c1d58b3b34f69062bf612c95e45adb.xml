@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.GetRelatedRecordsTree</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns a nested tree structure of related records as an object.&#13;
+The input record represented in the GlideRecord object is returned as a pure object.&#13;
+The member "_related_records" is an array that contains the directly related records (these are records that reference to the given record) as objects.&#13;
+If the bApplicationFilesOnly parameter is true, only records derived from application files are considered as related records.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>GetRelatedRecordsTree</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function GetRelatedRecordsTree(grRecord,bApplicationFilesOnly,nMaxLevel,nLevel)
+{
+	nLevel = GetIntegerValue(nLevel);
+	if (IsValidRecord(grRecord) == false)
+	{
+		return false;
+	}
+
+	nMaxLevel = GetIntegerValue(nMaxLevel)
+	if (nLevel == 0 && nMaxLevel == 0)
+	{
+		nMaxLevel = 5;
+	}
+
+	if (nLevel > nMaxLevel)
+	{
+		return false;
+	}	
+
+	var nMaxRelations = 200;
+
+	var aReverseRelations = [
+		'sn_aia_tool',
+		'sn_aia_trigger_agent_usecase_m2m',
+		'sn_aia_trigger_configuration'
+		];
+
+	var record = Clone(grRecord);
+	record._related_records = [];
+	if (GetValue(record,'sys_class_name') == null)
+	{
+		record.sys_class_name = GetStringValue(grRecord.getRecordClassName());
+	}
+
+
+
+	var strTable = GetStringValue(grRecord.getRecordClassName());
+
+
+	if (ArrayValueExists(aReverseRelations,strTable) == false)
+	{
+		// Dictionary references to the record
+		var grDictionary = new GlideRecord('sys_dictionary');
+		var condition = grDictionary.addQuery('reference', strTable);
+		aParentTables = GetParentTables(strTable);
+		for (var nParentTable = 0; nParentTable < aParentTables.length; nParentTable++)
+		{
+			condition.addOrCondition('reference','=',aParentTables[nParentTable]);
+		}
+		grDictionary.addQuery('name','!=','');
+		grDictionary.addQuery('name','!=','sn_hr_core_service');
+		grDictionary.addQuery('name', 'NOT LIKE', 'v_%');
+		//grDictionary.addQuery('name','!=','v_index_creator');
+		grDictionary.addQuery('element','!=','');
+		grDictionary.addQuery('internal_type','=','reference');
+		GlideRecordQuery(grDictionary,true);
+
+		var nRelations = grDictionary.getRowCount();
+		if (nRelations > nMaxRelations)
+		{
+			record._related_records_status = 'The record has '+nRelations+' direct relations. Cannot build tree.';
+			return record;
+		}
+
+		while (grDictionary.next())
+		{
+			var strRelatedTable = GetStringValue(grDictionary.name);
+			var strRelatedTableElement = GetStringValue(grDictionary.element);
+
+			if (strTable == 'sys_hub_flow')
+			{
+				if (strRelatedTable == 'sn_aia_trigger_configuration')
+				{
+					continue;
+				}
+			}
+		
+			var grRelatedRecords = new GlideRecord(strRelatedTable);
+			grRelatedRecords.addQuery(strRelatedTableElement, grRecord.sys_id);
+			GlideRecordQuery(grRelatedRecords);
+			while (grRelatedRecords.next())
+			{
+				if (bApplicationFilesOnly == true && IsCodeRecord(grRelatedRecords) == false)
+				{
+					continue;
+				}
+				var grRelatedRecordActual = grRelatedRecords;
+				if (grRelatedRecords.getRecordClassName() != strRelatedTable)
+				{
+					grRelatedRecordActual = GetRecord(
+						grRelatedRecords.getRecordClassName(),
+						grRelatedRecords.sys_id);
+				}
+
+				var related_record = GetRelatedRecordsTree(
+					grRelatedRecordActual,
+					bApplicationFilesOnly,
+					nMaxLevel-1,
+					nLevel+1);
+					
+				if (related_record != false)
+				{
+					record._related_records.push(related_record);		
+				}
+			}
+		}
+
+		// Dictionary list reference to the record
+		var grDictionary = new GlideRecord('sys_dictionary');
+		grDictionary.addQuery('reference', strTable);
+		grDictionary.addQuery('name','!=','');
+		grDictionary.addQuery('name','!=','sn_hr_core_service');
+		grDictionary.addQuery('element','!=','');
+		grDictionary.addQuery('internal_type','=','glide_list');
+		GlideRecordQuery(grDictionary,true);
+		while (grDictionary.next())
+		{
+			var strRelatedTable = GetStringValue(grDictionary.name);
+			var strRelatedTableElement = GetStringValue(grDictionary.element);
+			var grRelatedRecords = new GlideRecord(strRelatedTable);
+			grRelatedRecords.addQuery(strRelatedTableElement,'CONTAINS',grRecord.sys_id);
+			GlideRecordQuery(grRelatedRecords);
+			while (grRelatedRecords.next())
+			{
+				if (bApplicationFilesOnly == true && IsCodeRecord(grRelatedRecords) == false)
+				{
+					continue;
+				}
+				var related_record = GetRelatedRecordsTree(
+					grRelatedRecords,
+					bApplicationFilesOnly,
+					nMaxLevel-1,
+					nLevel+1);
+				if (related_record != false)
+				{
+					record._related_records.push(related_record);		
+				}
+			}
+		}
+	}
+
+	if (strTable == 'sys_db_object')
+	{
+		var grDictionary = new GlideRecord('sys_dictionary');
+		grDictionary.addQuery('name','=',grRecord.name);
+		GlideRecordQuery(grDictionary);
+		while (grDictionary.next())
+		{
+			var related_record = GetRelatedRecordsTree(
+				grDictionary,
+				bApplicationFilesOnly,
+				nMaxLevel-1,
+				nLevel+1);
+			if (related_record != false)
+			{
+				record._related_records.push(related_record);		
+			}		
+		}
+	}
+
+
+	if (strTable == 'sn_aia_agent_tool_m2m')
+	{
+		var grAiaTool = GetRecord('sn_aia_tool',grRecord.getValue('tool'));
+		var related_record = GetRelatedRecordsTree(
+			grAiaTool,
+			bApplicationFilesOnly,
+			nMaxLevel-1,
+			nLevel+1);
+		if (related_record != false)
+		{
+			record._related_records.push(related_record);		
+		}
+	}
+
+	if (strTable == 'sn_aia_agent')
+	{
+		var grAiaSkillMeta = new GlideRecord('sn_aia_skill_metadata');
+		grAiaSkillMeta.addQuery('document_table','=','sn_aia_agent');
+		grAiaSkillMeta.addQuery('document_id','=',grRecord.sys_id);
+		GlideRecordQuery(grAiaSkillMeta);
+		while (grAiaSkillMeta.next())
+		{
+			var related_record = GetRelatedRecordsTree(
+				grAiaSkillMeta,
+				bApplicationFilesOnly,
+				nMaxLevel-1,
+				nLevel+1);
+			if (related_record != false)
+			{
+				record._related_records.push(related_record);		
+			}			
+		}
+
+		var grAiaTriggerUseCase = new GlideRecord('sn_aia_trigger_agent_usecase_m2m');
+		grAiaTriggerUseCase.addQuery('related_resource_table','=','sn_aia_agent');
+		grAiaTriggerUseCase.addQuery('related_resource_record','=',grRecord.sys_id);
+		GlideRecordQuery(grAiaTriggerUseCase);
+		while (grAiaTriggerUseCase.next())
+		{
+			var related_record = GetRelatedRecordsTree(
+				grAiaTriggerUseCase,
+				bApplicationFilesOnly,
+				nMaxLevel-1,
+				nLevel+1);
+			if (related_record != false)
+			{
+				record._related_records.push(related_record);		
+			}			
+		}
+
+		var grAclType = new GlideRecord('sys_security_type');
+		grAclType.addQuery('name','=','gen_ai_agent');
+		GlideRecordQuery(grAclType);
+		if (grAclType.next() == true)
+		{
+			var grACL = new GlideRecord('sys_security_acl');
+			grACL.addQuery('type','=',grAclType.sys_id);
+			grACL.addQuery('name','=','global.global.'+grRecord.name);
+			GlideRecordQuery(grACL);
+			while (grACL.next())
+			{
+				var related_record = GetRelatedRecordsTree(
+					grACL,bApplicationFilesOnly,
+					nMaxLevel-1,
+					nLevel+1);
+				if (related_record != false)
+				{
+					record._related_records.push(related_record);		
+				}			
+			}		
+		}
+
+
+	}
+
+	if (strTable == 'sn_aia_skill_metadata')
+	{
+		var grAiSkill = new GlideRecord('sys_gen_ai_skill');
+		grAiSkill.addQuery('skill_table','=','sn_aia_skill_metadata');
+		grAiSkill.addQuery('skill_document','=',grRecord.sys_id);
+		GlideRecordQuery(grAiSkill);
+		while (grAiSkill.next())
+		{
+			var related_record = GetRelatedRecordsTree(
+				grAiSkill,
+				bApplicationFilesOnly,
+				nMaxLevel-1,
+				nLevel+1);
+			if (related_record != false)
+			{
+				record._related_records.push(related_record);		
+			}			
+		}		
+	}
+
+	if (strTable == 'sn_aia_trigger_agent_usecase_m2m')
+	{
+		var grTriggerConfig = GetRecord('sn_aia_trigger_configuration',grRecord.trigger_configuration);
+		if (IsValidRecord(grTriggerConfig) == true)
+		{
+			var related_record = GetRelatedRecordsTree(
+				grTriggerConfig,
+				bApplicationFilesOnly,
+				nMaxLevel-1,
+				nLevel+1);
+			if (related_record != false)
+			{
+				record._related_records.push(related_record);		
+			}			
+		}		
+	}
+
+	if (strTable == 'sn_aia_trigger_configuration')
+	{
+		var grFlow = GetRecord('sys_hub_flow',grRecord.trigger_flow);
+		if (IsValidRecord(grFlow) == true)
+		{
+			var related_record = GetRelatedRecordsTree(
+				grFlow,
+				bApplicationFilesOnly,
+				nMaxLevel-1,
+				nLevel+1);
+			if (related_record != false)
+			{
+				record._related_records.push(related_record);		
+			}			
+		}		
+	}	
+
+	if (strTable == 'sys_hub_flow')
+	{
+		var grFlowInput = new GlideRecord('sys_hub_flow_input');
+		grFlowInput.addQuery('model_table','=','sys_hub_flow');
+		grFlowInput.addQuery('model_id','=',grRecord.sys_id);
+		GlideRecordQuery(grFlowInput);
+		while (grFlowInput.next())
+		{
+			var related_record = GetRelatedRecordsTree(
+				grFlowInput,
+				bApplicationFilesOnly,
+				nMaxLevel-1,
+				nLevel+1);
+			if (related_record != false)
+			{
+				record._related_records.push(related_record);		
+			}			
+		}	
+
+		var grDoc = new GlideRecord('sys_documentation');
+		grDoc.addQuery('name','=','var__m_sys_hub_flow_input_' +grRecord.sys_id);
+		GlideRecordQuery(grDoc);
+		while (grDoc.next())
+		{
+			var related_record = GetRelatedRecordsTree(
+				grDoc,
+				bApplicationFilesOnly,
+				nMaxLevel-1,
+				nLevel+1);
+			if (related_record != false)
+			{
+				record._related_records.push(related_record);		
+			}			
+		}			
+	}
+
+
+	if (strTable == 'sys_hub_flow_snapshot')
+	{
+		var grFlowVar = new GlideRecord('sys_hub_flow_variable');
+		grFlowVar.addQuery('model_table','=','sys_hub_flow_snapshot');
+		grFlowVar.addQuery('model_id','=',grRecord.sys_id);
+		GlideRecordQuery(grFlowVar);
+		while (grFlowVar.next())
+		{
+			var related_record = GetRelatedRecordsTree(
+				grFlowVar,
+				bApplicationFilesOnly,
+				nMaxLevel-1,
+				nLevel+1);
+			if (related_record != false)
+			{
+				record._related_records.push(related_record);		
+			}			
+		}	
+
+		var grFlowInput = new GlideRecord('sys_hub_flow_input');
+		grFlowInput.addQuery('model_table','=','sys_hub_flow_snapshot');
+		grFlowInput.addQuery('model_id','=',grRecord.sys_id);
+		GlideRecordQuery(grFlowInput);
+		while (grFlowInput.next())
+		{
+			var related_record = GetRelatedRecordsTree(
+				grFlowInput,
+				bApplicationFilesOnly,
+				nMaxLevel-1,
+				nLevel+1);
+			if (related_record != false)
+			{
+				record._related_records.push(related_record);		
+			}			
+		}		
+
+		var grDoc = new GlideRecord('sys_documentation');
+		grDoc.addQuery('name','=','var__m_sys_hub_flow_input_' +grRecord.sys_id);
+		GlideRecordQuery(grDoc);
+		while (grDoc.next())
+		{
+			var related_record = GetRelatedRecordsTree(
+				grDoc,
+				bApplicationFilesOnly,
+				nMaxLevel-1,
+				nLevel+1);
+			if (related_record != false)
+			{
+				record._related_records.push(related_record);		
+			}			
+		}			
+
+	}
+
+	return record;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-10-29 13:29:32</sys_created_on>
+        <sys_id>71c1d58b3b34f69062bf612c95e45adb</sys_id>
+        <sys_mod_count>58</sys_mod_count>
+        <sys_name>GetRelatedRecordsTree</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_71c1d58b3b34f69062bf612c95e45adb</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-11-20 17:22:34</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>71c1d58b3b34f69062bf612c95e45adb</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-10-29 13:29:31</sys_created_on>
+        <sys_id>1a4291cb3b34f69062bf612c95e45adb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-29 13:29:31</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

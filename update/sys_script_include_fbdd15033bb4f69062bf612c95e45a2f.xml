@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.AppBuilderMoveToScope</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Moves the given record and its related records to the given scope.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>AppBuilderMoveToScope</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function AppBuilderMoveToScope(grRecord, vScope, bMoveFromAllScopes, bMoveDataModel)
+{
+	if (IsValidRecord(grRecord) == false)
+	{
+		return false;
+	}
+	if (IsDerivedFromTable(grRecord.getRecordClassName(),'sys_metadata') == false)
+	{
+		LogWarning('AppBuilderMoveToScope: the given record is not derived from sys_metadata:\n'
+				+ RenderRecordSummary(grRecord));
+		return false;
+	}
+	var grScope = GetRecord('sys_scope',vScope);
+	if (IsValidRecord(grScope) == false)
+	{
+		LogWarning('AppBuilderMoveToScope: the given target scope does not exist:\n'
+				+ RenderValue(vScope));		
+		return false;
+	}
+
+	var aRelatedRecords = GetRelatedRecordsList(grRecord,true);
+	if (aRelatedRecords == false)
+	{
+		return false;
+	}
+
+	bMoveFromAllScopes = GetBoolValue(bMoveFromAllScopes);
+
+	for (var nRelatedRecord = 0; nRelatedRecord < aRelatedRecords.length; nRelatedRecord++)
+	{
+		var related_record = aRelatedRecords[nRelatedRecord];
+		var grRelatedRecord = GetRecord(related_record.sys_class_name,related_record.sys_id);
+		if (IsValidRecord(grRelatedRecord) == false)
+		{
+			LogError('AppBuilderMoveToScope: The following record is not valid:\n'
+				+ RenderRecordSummary(grRelatedRecord));
+			return false;
+		}
+		if (IsOotbRecord(grRelatedRecord) == true)
+		{
+			LogError('AppBuilderMoveToScope: The following record is an OOTB record which must not be moved:\n'
+				+ RenderRecordSummary(grRelatedRecord));
+			return false;
+		}
+	}
+
+	var aDataModelTables = [
+		'sys_db_object',
+		'sys_dictionary'
+		];
+
+
+	for (var nRelatedRecord = 0; nRelatedRecord < aRelatedRecords.length; nRelatedRecord++)
+	{
+		var related_record = aRelatedRecords[nRelatedRecord];
+		var grRelatedRecord = GetRecord(related_record.sys_class_name,related_record.sys_id);
+
+		var bSameScope = GetBoolValue(grRecord.sys_scope == grRelatedRecord.sys_scope);
+
+		if ( bSameScope == true || bMoveFromAllScopes == true)
+		{
+			if (
+					bMoveDataModel == true
+				||	ArrayValueExists(aDataModelTables,related_record.sys_class_name) == false
+				)
+			{
+				grRelatedRecord.sys_scope = grScope.sys_id;
+				grRelatedRecord.sys_package = grScope.sys_id;
+				GlideRecordUpdate(grRelatedRecord,true);
+				Log('AppBuilderMoveToScope: Moved record:\n' + RenderRecordSummary(grRelatedRecord) + '\nto scope: '+ grScope.sys_id);
+			}
+			else
+			{
+				LogWarning('AppBuilderMoveToScope: Ignored data model record:\n'
+					+ RenderRecordSummary(grRelatedRecord));
+			}
+		
+		}
+		else
+		{
+			LogWarning('AppBuilderMoveToScope: Ignored record:\n' + RenderRecordSummary(grRelatedRecord));
+		}
+	}
+
+	return true;
+}
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-10-29 14:25:54</sys_created_on>
+        <sys_id>fbdd15033bb4f69062bf612c95e45a2f</sys_id>
+        <sys_mod_count>11</sys_mod_count>
+        <sys_name>AppBuilderMoveToScope</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_fbdd15033bb4f69062bf612c95e45a2f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-11-20 17:22:34</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>fbdd15033bb4f69062bf612c95e45a2f</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-10-29 14:25:52</sys_created_on>
+        <sys_id>f32f1d433bb4f69062bf612c95e45a1b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-29 14:25:52</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

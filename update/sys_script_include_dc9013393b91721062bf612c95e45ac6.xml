@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.HtmlRenderPageRelatedRecords</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Renders the related records page.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>HtmlRenderPageRelatedRecords</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function HtmlRenderPageRelatedRecords()
+{
+	var strSysId = GetParam('record');
+	var strTable = GetParam('table');
+	var strMode = GetParam('mode');
+	
+	if (strMode == '')
+	{
+		strMode = 'tree';
+	}
+	
+	var strHtml = '';
+	
+	strHtml += '<h1>DevTools - Related Records</h1>';
+
+	var grRecord = GetRecord(strTable,strSysId);
+	if (IsValidRecord(grRecord) == false)
+	{
+		strHtml += HtmlRenderError('Could not load record!');
+		return strHtml;
+	}	
+
+	strHtml += HtmlRenderTabNavigation(
+		[
+			{
+				id: 'tree',
+				text: 'Tree',
+				url: '?table='+strTable+'&record='+strSysId+'&mode=tree'
+			},
+			{
+				id: 'list',
+				text: 'List',
+				url: '?table='+strTable+'&record='+strSysId+'&mode=list'
+			}
+		],
+		strMode);
+	
+	strHtml += '<div style="padding-top: 10px;">';
+		strHtml += HtmlRenderRelatedRecords(grRecord,strMode);
+	strHtml += '</div>';
+	
+	return strHtml;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-11-19 22:00:14</sys_created_on>
+        <sys_id>dc9013393b91721062bf612c95e45ac6</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>HtmlRenderPageRelatedRecords</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_dc9013393b91721062bf612c95e45ac6</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-11-19 23:19:30</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+</record_update>

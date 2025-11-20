@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-01-23 21:36:27</sys_created_on>
         <sys_id>bc48d5271bf735106c17fdd49b4bcb25</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_bc48d5271bf735106c17fdd49b4bcb25</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-01-23 21:40:35</sys_updated_on>
+        <sys_updated_on>2025-11-20 08:47:29</sys_updated_on>
         <table/>
         <test display_value="DevTools - HtmlRenderTree">4538d5271bf735106c17fdd49b4bcb16</test>
         <timeout/>
@@ -50,16 +50,16 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-01-23 21:36:27</sys_created_on>
         <sys_id>d64899271bf735106c17fdd49b4bcbe9</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-01-23 21:40:35</sys_updated_on>
+        <sys_updated_on>2025-11-20 08:47:29</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
 	&#13;
 	test.SetResult(true);&#13;
 &#13;
-	function TestCase_HtmlRenderTree(aNodes, nLevel, bBottomUp, callbackRenderNode, vExpected)&#13;
+	function TestCase_HtmlRenderTree(aNodes, nLevel, bBottomUp, callbackRenderNode, strNode, vExpected)&#13;
 	{&#13;
 		function TestCase_HtmlRenderTree_CheckResult(vInput,vExpected,vResult)&#13;
 		{&#13;
@@ -73,13 +73,14 @@
 				'Nodes': aNodes,&#13;
 				'Level': nLevel,&#13;
 				'Bottom Up': bBottomUp,&#13;
-				'callback render node': callbackRenderNode&#13;
+				'callback render node': callbackRenderNode,&#13;
+				'strNode': strNode&#13;
 			},&#13;
 			vExpected,&#13;
 			TestCase_HtmlRenderTree_CheckResult);&#13;
 	}&#13;
 &#13;
-	TestCase_HtmlRenderTree(null,0,false,null,'');&#13;
+	TestCase_HtmlRenderTree(null,0,false,null,null,'');&#13;
 &#13;
 	var aNodes =&#13;
 		[&#13;
@@ -111,8 +112,42 @@
 				]&#13;
 			}&#13;
 		];&#13;
-	TestCase_HtmlRenderTree(aNodes,0,false,null,'1.1.1');&#13;
-	TestCase_HtmlRenderTree(aNodes,0,true,null,'1.1.1');&#13;
+	TestCase_HtmlRenderTree(aNodes,0,false,null,null,'1.1.1');&#13;
+	TestCase_HtmlRenderTree(aNodes,0,true,null,null,'1.1.1');&#13;
+&#13;
+	TestCase_HtmlRenderTree(null,0,false,null,null,'');&#13;
+&#13;
+	var aNodes =&#13;
+		[&#13;
+			{&#13;
+				"content": "1",&#13;
+				"_children": [&#13;
+					{&#13;
+						"content": "1.1",&#13;
+						"_children": [&#13;
+							{&#13;
+								"content": "1.1.1"&#13;
+							},&#13;
+							{&#13;
+								"content": "1.1.2"&#13;
+							}&#13;
+						]&#13;
+					},&#13;
+					{&#13;
+						"content": "1.2",&#13;
+						"_children": [&#13;
+							{&#13;
+								"content": "1.2.1"&#13;
+							},&#13;
+							{&#13;
+								"content": "1.2.2"&#13;
+							}&#13;
+						]&#13;
+					}&#13;
+				]&#13;
+			}&#13;
+		];&#13;
+	TestCase_HtmlRenderTree(aNodes,0,false,null,'_children','1.1.1');&#13;
 &#13;
 	return test.GetResult();&#13;
 	&#13;
