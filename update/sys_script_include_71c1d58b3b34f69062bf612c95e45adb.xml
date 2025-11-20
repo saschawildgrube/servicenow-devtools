@@ -12,7 +12,7 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
         <mobile_callable>false</mobile_callable>
         <name>GetRelatedRecordsTree</name>
         <sandbox_callable>false</sandbox_callable>
-        <script><![CDATA[function GetRelatedRecordsTree(grRecord,bApplicationFilesOnly,nLevel)
+        <script><![CDATA[function GetRelatedRecordsTree(grRecord,bApplicationFilesOnly,nMaxLevel,nLevel)
 {
 	nLevel = GetIntegerValue(nLevel);
 	if (IsValidRecord(grRecord) == false)
@@ -20,7 +20,13 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 		return false;
 	}
 
-	if (nLevel > 10)
+	nMaxLevel = GetIntegerValue(nMaxLevel)
+	if (nLevel == 0 && nMaxLevel == 0)
+	{
+		nMaxLevel = 5;
+	}
+
+	if (nLevel > nMaxLevel)
 	{
 		return false;
 	}	
@@ -75,7 +81,7 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 		
 			var grRelatedRecords = new GlideRecord(strRelatedTable);
 			grRelatedRecords.addQuery(strRelatedTableElement, grRecord.sys_id);
-			grRelatedRecords.query();
+			GlideRecordQuery(grRelatedRecords);
 			while (grRelatedRecords.next())
 			{
 				if (bApplicationFilesOnly == true && IsCodeRecord(grRelatedRecords) == false)
@@ -93,6 +99,7 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 				var related_record = GetRelatedRecordsTree(
 					grRelatedRecordActual,
 					bApplicationFilesOnly,
+					nMaxLevel-1,
 					nLevel+1);
 					
 				if (related_record != false)
@@ -116,14 +123,18 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 			var strRelatedTableElement = GetStringValue(grDictionary.element);
 			var grRelatedRecords = new GlideRecord(strRelatedTable);
 			grRelatedRecords.addQuery(strRelatedTableElement,'CONTAINS',grRecord.sys_id);
-			grRelatedRecords.query();
+			GlideRecordQuery(grRelatedRecords);
 			while (grRelatedRecords.next())
 			{
 				if (bApplicationFilesOnly == true && IsCodeRecord(grRelatedRecords) == false)
 				{
 					continue;
 				}
-				var related_record = GetRelatedRecordsTree(grRelatedRecords,bApplicationFilesOnly,nLevel+1);
+				var related_record = GetRelatedRecordsTree(
+					grRelatedRecords,
+					bApplicationFilesOnly,
+					nMaxLevel-1,
+					nLevel+1);
 				if (related_record != false)
 				{
 					record._related_records.push(related_record);		
@@ -136,10 +147,14 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 	{
 		var grDictionary = new GlideRecord('sys_dictionary');
 		grDictionary.addQuery('name','=',grRecord.name);
-		grDictionary.query();
+		GlideRecordQuery(grDictionary);
 		while (grDictionary.next())
 		{
-			var related_record = GetRelatedRecordsTree(grDictionary,bApplicationFilesOnly,nLevel+1);
+			var related_record = GetRelatedRecordsTree(
+				grDictionary,
+				bApplicationFilesOnly,
+				nMaxLevel-1,
+				nLevel+1);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -151,7 +166,11 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 	if (strTable == 'sn_aia_agent_tool_m2m')
 	{
 		var grAiaTool = GetRecord('sn_aia_tool',grRecord.getValue('tool'));
-		var related_record = GetRelatedRecordsTree(grAiaTool,bApplicationFilesOnly,nLevel+1);
+		var related_record = GetRelatedRecordsTree(
+			grAiaTool,
+			bApplicationFilesOnly,
+			nMaxLevel-1,
+			nLevel+1);
 		if (related_record != false)
 		{
 			record._related_records.push(related_record);		
@@ -163,10 +182,14 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 		var grAiaSkillMeta = new GlideRecord('sn_aia_skill_metadata');
 		grAiaSkillMeta.addQuery('document_table','=','sn_aia_agent');
 		grAiaSkillMeta.addQuery('document_id','=',grRecord.sys_id);
-		grAiaSkillMeta.query();
+		GlideRecordQuery(grAiaSkillMeta);
 		while (grAiaSkillMeta.next())
 		{
-			var related_record = GetRelatedRecordsTree(grAiaSkillMeta,bApplicationFilesOnly,nLevel+1);
+			var related_record = GetRelatedRecordsTree(
+				grAiaSkillMeta,
+				bApplicationFilesOnly,
+				nMaxLevel-1,
+				nLevel+1);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -176,10 +199,14 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 		var grAiaTriggerUseCase = new GlideRecord('sn_aia_trigger_agent_usecase_m2m');
 		grAiaTriggerUseCase.addQuery('related_resource_table','=','sn_aia_agent');
 		grAiaTriggerUseCase.addQuery('related_resource_record','=',grRecord.sys_id);
-		grAiaTriggerUseCase.query();
+		GlideRecordQuery(grAiaTriggerUseCase);
 		while (grAiaTriggerUseCase.next())
 		{
-			var related_record = GetRelatedRecordsTree(grAiaTriggerUseCase,bApplicationFilesOnly,nLevel+1);
+			var related_record = GetRelatedRecordsTree(
+				grAiaTriggerUseCase,
+				bApplicationFilesOnly,
+				nMaxLevel-1,
+				nLevel+1);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -188,16 +215,19 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 
 		var grAclType = new GlideRecord('sys_security_type');
 		grAclType.addQuery('name','=','gen_ai_agent');
-		grAclType.query();
+		GlideRecordQuery(grAclType);
 		if (grAclType.next() == true)
 		{
 			var grACL = new GlideRecord('sys_security_acl');
 			grACL.addQuery('type','=',grAclType.sys_id);
 			grACL.addQuery('name','=','global.global.'+grRecord.name);
-			grACL.query();
+			GlideRecordQuery(grACL);
 			while (grACL.next())
 			{
-				var related_record = GetRelatedRecordsTree(grACL,bApplicationFilesOnly,nLevel+1);
+				var related_record = GetRelatedRecordsTree(
+					grACL,bApplicationFilesOnly,
+					nMaxLevel-1,
+					nLevel+1);
 				if (related_record != false)
 				{
 					record._related_records.push(related_record);		
@@ -213,10 +243,14 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 		var grAiSkill = new GlideRecord('sys_gen_ai_skill');
 		grAiSkill.addQuery('skill_table','=','sn_aia_skill_metadata');
 		grAiSkill.addQuery('skill_document','=',grRecord.sys_id);
-		grAiSkill.query();
+		GlideRecordQuery(grAiSkill);
 		while (grAiSkill.next())
 		{
-			var related_record = GetRelatedRecordsTree(grAiSkill,bApplicationFilesOnly,nLevel+1);
+			var related_record = GetRelatedRecordsTree(
+				grAiSkill,
+				bApplicationFilesOnly,
+				nMaxLevel-1,
+				nLevel+1);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -229,7 +263,11 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 		var grTriggerConfig = GetRecord('sn_aia_trigger_configuration',grRecord.trigger_configuration);
 		if (IsValidRecord(grTriggerConfig) == true)
 		{
-			var related_record = GetRelatedRecordsTree(grTriggerConfig,bApplicationFilesOnly,nLevel+1);
+			var related_record = GetRelatedRecordsTree(
+				grTriggerConfig,
+				bApplicationFilesOnly,
+				nMaxLevel-1,
+				nLevel+1);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -242,7 +280,11 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 		var grFlow = GetRecord('sys_hub_flow',grRecord.trigger_flow);
 		if (IsValidRecord(grFlow) == true)
 		{
-			var related_record = GetRelatedRecordsTree(grFlow,bApplicationFilesOnly,nLevel+1);
+			var related_record = GetRelatedRecordsTree(
+				grFlow,
+				bApplicationFilesOnly,
+				nMaxLevel-1,
+				nLevel+1);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -255,10 +297,14 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 		var grFlowInput = new GlideRecord('sys_hub_flow_input');
 		grFlowInput.addQuery('model_table','=','sys_hub_flow');
 		grFlowInput.addQuery('model_id','=',grRecord.sys_id);
-		grFlowInput.query();
+		GlideRecordQuery(grFlowInput);
 		while (grFlowInput.next())
 		{
-			var related_record = GetRelatedRecordsTree(grFlowInput,bApplicationFilesOnly,nLevel+1);
+			var related_record = GetRelatedRecordsTree(
+				grFlowInput,
+				bApplicationFilesOnly,
+				nMaxLevel-1,
+				nLevel+1);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -267,10 +313,14 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 
 		var grDoc = new GlideRecord('sys_documentation');
 		grDoc.addQuery('name','=','var__m_sys_hub_flow_input_' +grRecord.sys_id);
-		grDoc.query();
+		GlideRecordQuery(grDoc);
 		while (grDoc.next())
 		{
-			var related_record = GetRelatedRecordsTree(grDoc,bApplicationFilesOnly,nLevel+1);
+			var related_record = GetRelatedRecordsTree(
+				grDoc,
+				bApplicationFilesOnly,
+				nMaxLevel-1,
+				nLevel+1);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -284,10 +334,14 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 		var grFlowVar = new GlideRecord('sys_hub_flow_variable');
 		grFlowVar.addQuery('model_table','=','sys_hub_flow_snapshot');
 		grFlowVar.addQuery('model_id','=',grRecord.sys_id);
-		grFlowVar.query();
+		GlideRecordQuery(grFlowVar);
 		while (grFlowVar.next())
 		{
-			var related_record = GetRelatedRecordsTree(grFlowVar,bApplicationFilesOnly,nLevel+1);
+			var related_record = GetRelatedRecordsTree(
+				grFlowVar,
+				bApplicationFilesOnly,
+				nMaxLevel-1,
+				nLevel+1);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -297,10 +351,14 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 		var grFlowInput = new GlideRecord('sys_hub_flow_input');
 		grFlowInput.addQuery('model_table','=','sys_hub_flow_snapshot');
 		grFlowInput.addQuery('model_id','=',grRecord.sys_id);
-		grFlowInput.query();
+		GlideRecordQuery(grFlowInput);
 		while (grFlowInput.next())
 		{
-			var related_record = GetRelatedRecordsTree(grFlowInput,bApplicationFilesOnly,nLevel+1);
+			var related_record = GetRelatedRecordsTree(
+				grFlowInput,
+				bApplicationFilesOnly,
+				nMaxLevel-1,
+				nLevel+1);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -309,10 +367,14 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 
 		var grDoc = new GlideRecord('sys_documentation');
 		grDoc.addQuery('name','=','var__m_sys_hub_flow_input_' +grRecord.sys_id);
-		grDoc.query();
+		GlideRecordQuery(grDoc);
 		while (grDoc.next())
 		{
-			var related_record = GetRelatedRecordsTree(grDoc,bApplicationFilesOnly,nLevel+1);
+			var related_record = GetRelatedRecordsTree(
+				grDoc,
+				bApplicationFilesOnly,
+				nMaxLevel-1,
+				nLevel+1);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -327,14 +389,14 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-10-29 13:29:32</sys_created_on>
         <sys_id>71c1d58b3b34f69062bf612c95e45adb</sys_id>
-        <sys_mod_count>51</sys_mod_count>
+        <sys_mod_count>54</sys_mod_count>
         <sys_name>GetRelatedRecordsTree</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_71c1d58b3b34f69062bf612c95e45adb</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-11-18 17:26:04</sys_updated_on>
+        <sys_updated_on>2025-11-20 08:24:12</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

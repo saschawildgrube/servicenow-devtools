@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-10-29 13:31:19</sys_created_on>
         <sys_id>e8b2150f3b34f69062bf612c95e45ab1</sys_id>
-        <sys_mod_count>11</sys_mod_count>
+        <sys_mod_count>15</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_e8b2150f3b34f69062bf612c95e45ab1</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-11-17 14:52:14</sys_updated_on>
+        <sys_updated_on>2025-11-20 08:23:56</sys_updated_on>
         <table/>
         <test display_value="DevTools - GetRelatedRecordsTree">acb2d10f3b34f69062bf612c95e45a2f</test>
         <timeout/>
@@ -50,16 +50,16 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-10-29 13:31:19</sys_created_on>
         <sys_id>acb2150f3b34f69062bf612c95e45ab4</sys_id>
-        <sys_mod_count>13</sys_mod_count>
+        <sys_mod_count>17</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-11-17 14:52:14</sys_updated_on>
+        <sys_updated_on>2025-11-20 08:23:56</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
 	&#13;
 	test.SetResult(true);&#13;
 	&#13;
-	function TestCase_GetRelatedRecordsTree(grRecord,bApplicationFilesOnly,vExpected)&#13;
+	function TestCase_GetRelatedRecordsTree(grRecord,bApplicationFilesOnly,nMaxLevel,vExpected)&#13;
 	{&#13;
 		function TestCase_GetRelatedRecordsTree_CheckResult(vInput,vExpected,vResult)&#13;
 		{&#13;
@@ -76,22 +76,23 @@
 			GetRelatedRecordsTree,&#13;
 			{&#13;
 				'grRecord': grRecord,&#13;
-				'bApplicationFilesOnly': bApplicationFilesOnly&#13;
+				'bApplicationFilesOnly': bApplicationFilesOnly,&#13;
+				'nMaxLevel': nMaxLevel&#13;
 			},&#13;
 			vExpected,&#13;
 			TestCase_GetRelatedRecordsTree_CheckResult);&#13;
 	}&#13;
 		&#13;
-	TestCase_GetRelatedRecordsTree(null,true,false);&#13;
+	TestCase_GetRelatedRecordsTree(null,true,0,false);&#13;
 &#13;
 	var grScriptInclude = GetRecord('sys_script_include','71c1d58b3b34f69062bf612c95e45adb');&#13;
-	TestCase_GetRelatedRecordsTree(grScriptInclude,true,0);&#13;
+	TestCase_GetRelatedRecordsTree(grScriptInclude,true,0,0);&#13;
 &#13;
 	var grUiPolicy = GetRecord('sys_ui_policy','ac30af26dba34290f0f1d03cd3961915');&#13;
-	TestCase_GetRelatedRecordsTree(grUiPolicy,true,2);&#13;
+	TestCase_GetRelatedRecordsTree(grUiPolicy,true,0,2);&#13;
 &#13;
 	var grDbObject = GetTableRecord('x_snc_devtools_test');&#13;
-	TestCase_GetRelatedRecordsTree(grDbObject,true,11);&#13;
+	TestCase_GetRelatedRecordsTree(grDbObject,true,0,11);&#13;
 &#13;
 	var grIncident = new GlideRecord('incident');&#13;
 	grIncident.initialize();&#13;
@@ -104,8 +105,8 @@
 	grIncidentTask.incident = strIncidentSysId;&#13;
 	var strIncidentTaskSysId = GlideRecordInsert(grIncidentTask);&#13;
 &#13;
-	TestCase_GetRelatedRecordsTree(grIncident,false,1);&#13;
-	TestCase_GetRelatedRecordsTree(grIncident,true,0);&#13;
+	TestCase_GetRelatedRecordsTree(grIncident,false,0,1);&#13;
+	TestCase_GetRelatedRecordsTree(grIncident,true,0,0);&#13;
 &#13;
 	&#13;
 	return test.GetResult();&#13;
