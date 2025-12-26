@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-05-05 09:34:07</sys_created_on>
         <sys_id>23cf3873dbbbe490bc44d844ca961985</sys_id>
-        <sys_mod_count>27</sys_mod_count>
+        <sys_mod_count>33</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_23cf3873dbbbe490bc44d844ca961985</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-11-26 09:40:46</sys_updated_on>
+        <sys_updated_on>2025-11-24 15:19:49</sys_updated_on>
         <table/>
         <test display_value="DevTools - GetRecord">ec7f3473dbbbe490bc44d844ca96199c</test>
         <timeout/>
@@ -36,9 +36,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-05-05 09:34:07</sys_created_on>
         <sys_id>63308573dbbbe490bc44d844ca961921</sys_id>
-        <sys_mod_count>21</sys_mod_count>
+        <sys_mod_count>27</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-11-26 09:40:46</sys_updated_on>
+        <sys_updated_on>2025-11-24 15:19:49</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -58,9 +58,7 @@
 	test.TestCase_GetRecord('x_snc_devtools_test',strTestSysId,false,true);&#13;
 	test.TestCase_GetRecord('x_snc_devtools_test',grTest,false,true);&#13;
 	&#13;
-	// sys_export_set_run does not allow cross scope access&#13;
-	// But even if we do NOT allow cross scope record loading, GetRecord returns the record. Really strange...&#13;
-	//TestCase_GetRecord('sys_export_set_run',GetRecordFromTestStep('2e9442811bcb7450edf3642aab4bcbf7'),true,false);&#13;
+	test.TestCase_GetRecord('sys_atf_step','23cf3873dbbbe490bc44d844ca961985',true,true);&#13;
 	&#13;
 	var grExportSetRun = new GlideRecord('sys_export_set_run');&#13;
 	grExportSetRun.initialize();&#13;
@@ -74,10 +72,11 @@
 &#13;
 	// Getting the "GetRecord" Script Include via sys_metadata &#13;
 	test.TestCase_GetRecord('sys_metadata','df56bc67db7768503c6c09c2ba96199d',false,true); &#13;
-&#13;
+	&#13;
 	test.TestCase_GetRecord('sys_app_application','import_sets',false,true);&#13;
 	&#13;
 	&#13;
+	test.TestCase_GetRecordEx('sys_metadata','df56bc67db7768503c6c09c2ba96199d',false,'',true,true); &#13;
 	&#13;
 	return test.GetResult();&#13;
 	&#13;

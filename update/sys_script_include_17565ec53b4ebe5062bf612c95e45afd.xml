@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.IsPublicUiPage</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns true if the UI Page is configured to be publicly available.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>IsPublicUiPage</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function IsPublicUiPage(vUiPage)
+{
+	var grUiPage = GetRecord('sys_ui_page',vUiPage);
+	if (IsValidRecord(vUiPage) == false)
+	{
+		return false;
+	}
+
+	var strName = GetStringValue(grUiPage.name);
+	if (grUiPage.sys_scope.scope != 'global')
+	{
+		strName = grUiPage.sys_scope.scope + '_' + strName;
+	}
+
+	var grPublic = new GlideRecord('sys_public');
+	grPublic.addActiveQuery();
+	grPublic.addQuery('page','=',strName);
+	GlideRecordQuery(grPublic);
+	if (grPublic.getRowCount() > 0)
+	{
+		return true;
+	}
+
+	return false;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-12-24 16:37:35</sys_created_on>
+        <sys_id>17565ec53b4ebe5062bf612c95e45afd</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>IsPublicUiPage</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_17565ec53b4ebe5062bf612c95e45afd</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-12-24 19:23:53</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+</record_update>

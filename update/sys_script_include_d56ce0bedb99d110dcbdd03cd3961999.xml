@@ -17,6 +17,7 @@
 	}
 	var variables = {};
 	
+	// Catalog Variables
 	var aVarNames = GetKeys(grRecord.variables);
 	for (var nVarName = 0; nVarName < aVarNames.length; nVarName++)
 	{
@@ -28,20 +29,54 @@
 			display_value: variable.getDisplayValue()
 		};
 	}
+
+	// Variables using sys_variable_value
+	var grVariableValues = new GlideRecord('sys_variable_value');
+	grVariableValues.addQuery('document','=',grRecord.getRecordClassName());
+	grVariableValues.addQuery('document_key','=',grRecord.sys_id);
+	grVariableValues.query();
+	while (grVariableValues.next())
+	{
+		var grVariable = GetRecord('sys_dictionary',grVariableValues.variable);
+		if (IsValidRecord(grVariable) == true)
+		{
+			var grVariableDerived = GetRecord(grVariable.getRecordClassName(),grVariable.sys_id);
+			if (IsValidRecord(grVariableDerived) == true)
+			{
+				var strVarName = GetStringValue(grVariableDerived.element);
+				var strLabel = GetStringValue(grVariableDerived.column_label);
+				if (strLabel == '')
+				{
+					strLabel = GetStringValue(grVariableDerived.label);
+				}
+				variables[strVarName] = {
+					label: GetStringValue(strLabel),
+					value: GetStringValue(grVariableValues.value),
+					storage_record_table: 'sys_variable_value',
+					storage_record_sys_id: GetStringValue(grVariableValues.sys_id),
+					definition_record_table: grVariableDerived.getRecordClassName(),
+					definition_record_sys_id: GetStringValue(grVariableDerived.sys_id)
+					};	
+			}	
+
+		}
+	}
+	
+
 	return variables;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-08-17 11:34:23</sys_created_on>
         <sys_id>d56ce0bedb99d110dcbdd03cd3961999</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>18</sys_mod_count>
         <sys_name>GetVariablesFromRecord</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_d56ce0bedb99d110dcbdd03cd3961999</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-08-28 12:58:58</sys_updated_on>
+        <sys_updated_on>2025-11-25 17:07:38</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>

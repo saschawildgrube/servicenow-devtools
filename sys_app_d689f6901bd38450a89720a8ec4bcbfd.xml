@@ -45,7 +45,7 @@ DevTools is also the backbone for the mature development and deployment process.
         <user_role/>
         <vendor/>
         <vendor_prefix/>
-        <version>1.134.0</version>
+        <version>1.135.0</version>
         <x_snc_devtools_documentation_url>https://www.wildgrube.com/servicenow-devtools</x_snc_devtools_documentation_url>
         <x_snc_devtools_maintainer>Sascha Wildgrube</x_snc_devtools_maintainer>
         <x_snc_devtools_maintainer_email>sascha.wildgrube@servicenow.com</x_snc_devtools_maintainer_email>

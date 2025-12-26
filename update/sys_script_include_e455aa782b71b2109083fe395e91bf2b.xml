@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.GetUniqueEmailsFromString</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns an array with email addresses based on the given string.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>GetUniqueEmailsFromString</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function GetUniqueEmailsFromString(strInput)
+{
+	strInput = GetStringValue(strInput);
+	
+	var aEmails = [];
+	
+	var aRaw1 = strInput.split(';');
+	var aRaw2 = [];
+	for (var nRaw1 = 0; nRaw1 < aRaw1.length; nRaw1++)
+	{
+		var strRaw = aRaw1[nRaw1];
+		aRaw = 	strRaw.split('\n');
+		for (var nRaw = 0; nRaw < aRaw.length; nRaw++)
+		{
+			aRaw2.push(aRaw[nRaw]);
+		}
+	}
+	for (var nRaw2 = 0; nRaw2 < aRaw2.length; nRaw2++)
+	{
+		var strRaw = aRaw2[nRaw2];
+		var nLowerThan = strRaw.indexOf('<');
+		if (nLowerThan != -1)
+		{
+			strRaw = strRaw.substring(nLowerThan+1);
+		}
+		var nGraterThan = strRaw.indexOf('>');
+		if (nGraterThan != -1)
+		{
+			strRaw = strRaw.substring(0,nGraterThan);
+		}
+		strRaw = strRaw.trim();
+		strRaw = strRaw.toLowerCase();
+
+		if (IsValidEmail(strRaw))
+		{
+			aEmails = ArrayPushUnique(aEmails,strRaw);
+		}
+	}
+	aEmails = aEmails.sort();
+	return aEmails;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-12-11 12:50:11</sys_created_on>
+        <sys_id>e455aa782b71b2109083fe395e91bf2b</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>GetUniqueEmailsFromString</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_e455aa782b71b2109083fe395e91bf2b</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-12-26 10:00:43</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>e455aa782b71b2109083fe395e91bf2b</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-12-11 12:50:10</sys_created_on>
+        <sys_id>c1a562b82b71b2109083fe395e91bf8d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-12-11 12:50:10</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

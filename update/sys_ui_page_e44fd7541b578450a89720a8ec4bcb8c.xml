@@ -246,10 +246,6 @@ Set a default config for the generic prompt capability: /nav_to.do?uri=sys_one_e
 	<h3>Instance Pipeline Names</h3>
 	<p>An instance has a technical name (sometimes matching the domain name, but not always). This technical name can be used to define logic that depends on the instance on which code is executed. However, this is not a good practice. In complex environments, where applications may be shared across multiple production instances, any logic that directly depends on a specific instance may cause problems. The DevTools extension point allows to implement the function DevToolsGetInstancePipelineName() which allows to map technical names to so-called pipeline names (e.g., "dev", "test" or "prod"). The function GetInstancePipelineName() can then be used to get the current instance pipeline name to build instance specific logic.</p>	
 	
-	<h3>Service Portal Deactivation</h3>
-	<p>DevTools allows you to deactivate specific Service Portals.</p>
-	<p>A new field "Active" is added to the&#160;<a href="/nav_to.do?uri=sp_portal_list.do%3F" target="_blank">sp_portal</a>&#160;table. Once set to false, the corresponding Service Portal will just disappear and is no longer accessible.</p>
-
 	<h3>Fix the Flow Execution Domain Issue described in KB0998966</h3>
 	<p>DevTools contains the business rule&#160;<a href="/nav_to.do?uri=sys_script.do?sys_id=ad95de3247f6d510a4b0d4fe536d432b" target="_blank">sys_flow_context - Set domain</a>&#160;which implements the workaround to the issue described in&#160;<a href="https://support.servicenow.com/kb?id=kb_article_view&amp;sysparm_article=KB0998966" target="_blank">KB0998966</a>.</p> 
 	
@@ -643,6 +639,12 @@ function YourLengthyProcess(strRecordSysId)
 	</ol>
 	<p>Once all components are in place, the procedure can be tested. Note that if a server-side script that is triggered through a client AJAX request runs into an evaluator error such errors ARE NOT LOGGED. This is annoying and makes debugging more difficult. If your process shows unexpected behavior, use debug logging to narrow down the code that fails.</p> 
 
+	<h3>Service Portal Deactivation (Deprecated)</h3>
+	<p>DevTools allows you to deactivate specific Service Portals.</p>
+	<p>The field "Active" is has been added to the&#160;<a href="/nav_to.do?uri=sp_portal_list.do%3F" target="_blank">sp_portal</a>&#160;table. Once set to false, the corresponding Service Portal will just disappear and is no longer accessible.</p>
+	<p>This capability is deprecated as it is now provided OOTB by the platform through the "Inactive" field.</p>
+
+
 	<h2>How to Guides</h2>
 
 	<h3>How to unblock Instance Scan?</h3>
@@ -714,6 +716,40 @@ while (grSI.next())
 	<g2:no_escape>$[docapi.RenderLicense()]</g2:no_escape>
 	
 	<h2 toc-ignore-children="true">Release Notes</h2>
+
+	<h3>1.135.0 - 2025-12-26</h3>
+	<ol>
+		<li>GetRecord() now supports the bGhost parameter to instruct if the record should be loaded with setWorkflow(false). Default is false.</li>
+		<li>Added function TestAPI::TestCase_GetRecordEx() to support all parameters of GetRecord().</li>
+		<li>Added function HtmlRenderTestManagementTest().</li>
+		<li>Added function InstallerAPI::ActivateDataPolicy().</li>
+		<li>Added function IsPublicUiPage().</li>
+		<li>InstanceScanSuiteOnApp() now updates progress every second (instead of every second second).</li>
+		<li>GetVariablesFromRecord() now also supports variables stored in sys_variable_value.</li>
+		<li>GetParentRecord() and the "Up" button now support sys_public.</li>
+		<li>GetParentRecord() and the "Up" button now support sys_variable_value, sys_now_assist_deployment_config, sys_now_assist_deployment_channel and sys_cs_context_profile records.</li>
+		<li>GetParentRecord() and the "Up" button now support ACLs for AI Agents.</li>
+		<li>GetParentRecord() and the "Up" button now support sys_user_role_contains records.</li>
+		<li>GetParentRecord() and the "Up" button now support sys_security_acl_role records.</li>
+		<li>GetParentRecord() and the "Up" button now support sn_nowassist_skill_config_status, sn_nowassist_skill_config_var_set, sn_ns_skill_config_var_set_ui and sn_nowassist_skill_config_applicability records.</li>
+		<li>GetParentRecord() and the "Up" button now support sys_generative_ai_config records associated with sn_nowassist_skill_config records.</li>
+		<li>GetRelatedRecordsTree() had a defect considering the maximum level. This has been fixed.</li>
+		<li>GetRelatedRecordsTree() now supports ACLs related to AI Skill Configs.</li>
+		<li>GetRelatedRecordsTree() now supports sys_generative_ai_config records associated to sn_nowassist_skill_config records.</li>
+		<li>GetRelatedRecordsTree() now supports sys_aia_version records associated to sn_aia_usecase records.</li>
+		<li>GetRelatedRecordsTree() now supporrs ACLs and sys_public records for UI Pages.</li>
+		<li>HtmlRenderRelatedRecords() now supports the bApplicationFilesOnly parameter.</li>
+		<li>HtmlRenderPageRelatedRecords() sets bApplicationFilesOnly to true if the given record is derived from sys_metadata.</li> 
+		<li>Added sys_generative_ai_config to GetLinkDirectory().</li>
+		<li>AppInstall() now sets the system property "glide.sourcecontrol.changed_files_display_limit" to 5000 to show more files available for commit in classic Studio.</li>
+		<li>AppInstall() now sets the system property "glide.ui.reference.readonly.clickthrough" to true.</li>
+		<li>AppBuilder() no longer adds the DevToolsGetFormatConfig() function as the field formatting feature is still not supporting Polaris and may eventually be deprecated.</li> 
+		<li>InstanceReset() now deactivates the OOTB menu "Platform Analytics".</li>
+		<li>Added syntax editor macro for InstanceReset().</li>
+		<li>Added more patterns to GetEvaluatorErrorExceptionPatterns().</li>
+		<li>Service Portal Deactivate feature and hence the sp_portal "Active" field is deprecated and documented as a technical debt.</li>
+	</ol>
+
 
 	<h3>1.134.0 - 2025-11-20</h3>
 	<ol>
@@ -3073,14 +3109,14 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>2342</sys_mod_count>
+        <sys_mod_count>2378</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-11-20 17:20:20</sys_updated_on>
+        <sys_updated_on>2025-12-26 09:54:42</sys_updated_on>
     </sys_ui_page>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>e44fd7541b578450a89720a8ec4bcb8c</id>

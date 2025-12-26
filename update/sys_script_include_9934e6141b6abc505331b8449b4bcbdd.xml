@@ -47,7 +47,7 @@
 	// ATF test suite to parent test suite
 	if (strTable == 'sys_atf_test_suite')
 	{
-		var grParent =  GetRecord('sys_atf_test_suite',grRecord.parent);
+		var grParent = GetRecord('sys_atf_test_suite',grRecord.parent);
 		if (IsValidRecord(grParent) == true)
 		{
 			return grParent;
@@ -599,6 +599,44 @@
 		return GetRecord('ais_datasource',grRecord.datasource);
 	}
 
+	if (strTable == 'sys_now_assist_deployment_channel')
+	{
+		return GetRecord('sys_now_assist_deployment',grRecord.now_assist_deployment);
+	}
+	if (strTable == 'sys_cs_context_profile')
+	{
+		return GetRecord('sys_now_assist_deployment',grRecord.now_assist_deployment);
+	}
+	if (strTable == 'sys_now_assist_deployment_config')
+	{
+		return GetRecord('sys_now_assist_deployment',grRecord.now_assist_deployment);
+	}
+	if (strTable == 'sn_nowassist_skill_config_status')
+	{
+		return GetRecord('sn_nowassist_skill_config',grRecord.skill_config);
+	}	
+	if (strTable == 'sn_nowassist_skill_config_applicability')
+	{
+		return GetRecord('sn_nowassist_skill_config',grRecord.skill_config);
+	}
+	if (strTable == 'sn_nowassist_skill_config_var_set')
+	{
+		return GetRecord('sn_nowassist_skill_config',grRecord.skill_config);
+	}
+	if (strTable == 'sn_ns_skill_config_var_set_ui')
+	{
+		return GetRecord('sn_nowassist_skill_config_var_set',grRecord.var_set);
+	}
+
+	if (strTable == 'sys_generative_ai_config')
+	{
+		var strAdditionalConfig = GetStringValue(grRecord.additional_configurations);
+		strAdditionalConfig = StringReplace(strAdditionalConfig,'{"skill_config_id":"','');
+		strAdditionalConfig = StringReplace(strAdditionalConfig,'"}','');
+		return GetRecord('sn_nowassist_skill_config',strAdditionalConfig);
+	}
+
+
 	if (strTable == 'sys_data_policy_rule')
 	{
 		return GetRecord('sys_data_policy2',grRecord.sys_data_policy);
@@ -654,6 +692,28 @@
 				return grUiPage;
 			}
 		}
+
+		if (grRecord.type.getDisplayValue() == 'gen_ai_agent' && grRecord.operation == 'execute')
+		{
+			var strName = GetStringValue(grRecord.name);
+			//strName = StringReplace(strName,'global.global.','');
+			strName = StringReplace(strName,'global.'+grRecord.sys_scope.scope+'.','');
+			Error(strName);
+			var grAIA = new GlideRecord('sn_aia_agent');
+			grAIA.addQuery('name','=',strName);
+			grAIA.query();
+			if (grAIA.getRowCount() == 1)
+			{
+				grAIA.next();
+				return grAIA;
+			}
+		}
+
+	}
+
+	if (strTable == 'sys_security_acl_role')
+	{
+		return GetRecord('sys_security_acl',grRecord.sys_security_acl);
 	}
 
 	if (strTable == 'sys_security_attribute')
@@ -663,6 +723,22 @@
 		if (IsValidSysId(strAclSysId) == true)
 		{
 			return GetRecord('sys_security_acl',strAclSysId);
+		}
+	}
+
+	if (strTable == 'sys_public')
+	{
+		var strName = GetStringValue(grRecord.page);
+
+		var grUiPage = new GlideRecord('sys_ui_page');
+		grUiPage.addQuery('endpoint','=',strName+'.do');
+		grUiPage.query();
+		if (grUiPage.getRowCount() == 1)
+		{
+			if (grUiPage.next() == true)
+			{
+				return grUiPage;
+			}
 		}
 	}
 
@@ -676,6 +752,16 @@
 		return GetRecord('cmdb_identifier',grRecord.identifier);
 	}		
 
+	if (strTable == 'sys_variable_value')
+	{
+		return GetRecord(grRecord.document,grRecord.document_key);
+	}
+
+	if (strTable == 'sys_user_role_contains')
+	{
+		return GetRecord('sys_user_role',grRecord.role);
+	}
+
 	var strParentTable = GetParentTable(strTable);
 	if (strParentTable != '')
 	{
@@ -688,14 +774,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-08 12:44:48</sys_created_on>
         <sys_id>9934e6141b6abc505331b8449b4bcbdd</sys_id>
-        <sys_mod_count>160</sys_mod_count>
+        <sys_mod_count>183</sys_mod_count>
         <sys_name>GetParentRecord</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_9934e6141b6abc505331b8449b4bcbdd</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-11-19 10:44:30</sys_updated_on>
+        <sys_updated_on>2025-12-24 17:35:36</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

@@ -17,6 +17,8 @@ Methods:
 * TestCase_GetValue()
 * TestCase_GetRecord()
 * TestCase_GetRecord_CheckResult()
+* TestCase_GetRecordEx()
+* TestCase_GetRecordEx_CheckResult()
 * TestCase_RecordGetValue()
 * TestCase_IsRecordAccessibleByUser()
 * TestCase_InstanceScanCheck()
@@ -146,13 +148,35 @@ TestAPI.prototype =
 			'GetRecord',
 			GetRecord,
 			{
-				'Table': strTable,
-				'SysId': strRecordSysId,
-				'NoCrossScope': bNoCrossScope
+				'strTable': strTable,
+				'strRecordSysId': strRecordSysId,
+				'bNoCrossScope': bNoCrossScope
 			},
 			bExpected,
 			TestCase_GetRecord_CheckResult);
 	},
+
+	TestCase_GetRecordEx: function(strTable, strRecordSysId, bNoCrossScope, strColumnPrefix, bGhost, bExpected)
+	{
+		function TestCase_GetRecordEx_CheckResult(vInput,vExpected,vResult)
+		{
+			return (IsValidRecord(vResult) == vExpected);
+		}	
+		
+		return this.TestCase(
+			'GetRecord',
+			GetRecord,
+			{
+				'strTable': strTable,
+				'strRecordSysId': strRecordSysId,
+				'bNoCrossScope': bNoCrossScope,
+				'strColumnPrefix': strColumnPrefix,
+				'bGhost': bGhost
+
+			},
+			bExpected,
+			TestCase_GetRecordEx_CheckResult);
+	},	
 	
 	TestCase_RecordGetValue:function(strTable,strSysId,strColumn,vExpected)
 	{
@@ -794,14 +818,14 @@ TestAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-08-30 13:48:05</sys_created_on>
         <sys_id>206c5c211b567850577f43b5bb4bcb46</sys_id>
-        <sys_mod_count>123</sys_mod_count>
+        <sys_mod_count>125</sys_mod_count>
         <sys_name>TestAPI</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_206c5c211b567850577f43b5bb4bcb46</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-10-07 14:46:04</sys_updated_on>
+        <sys_updated_on>2025-11-24 15:13:07</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

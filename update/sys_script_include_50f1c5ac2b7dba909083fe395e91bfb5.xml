@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.HtmlRenderTestManagementTest</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Renders an html representation of the latest test version of the given (manual) test including all of its test steps.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>HtmlRenderTestManagementTest</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function HtmlRenderTestManagementTest(vTest)
+{
+	var strHtml = '';
+
+	if (IsValidTable('sn_test_management_test') == false)
+	{
+		return HtmlRenderError('Test Management plugin is not installed.');
+	}
+
+	var grTest = GetRecord('sn_test_management_test',vTest);
+	if (IsValidRecord(grTest) == false)
+	{
+		return HtmlRenderError('Could not load the given test.');
+	}
+
+	var strTestName = GetStringValue(grTest.number+ ': '+grTest.short_description);
+	//var strTestName = GetStringValue(grTest.short_description);
+
+	var grTestVersion = new GlideRecord('sn_test_management_test_version');
+	grTestVersion.addQuery('test','=',grTest.sys_id);
+	grTestVersion.orderByDesc('version');
+	grTestVersion.setLimit(1);
+	grTestVersion.query();
+
+	if (grTestVersion.next() == false)
+	{
+		return HtmlRenderError('Test '+strTestName+' does not have any versions.');
+	}
+
+	strHtml += '<h3>'+strTestName+'</h3>';
+
+	var grTestSteps = new GlideRecord('sn_test_management_step');
+	grTestSteps.addQuery('test_version','=',grTestVersion.sys_id);
+	grTestSteps.orderBy('order');
+	grTestSteps.query();
+
+	var aSteps = [];
+	while (grTestSteps.next())
+	{
+		aSteps.push(GetStringValue(grTestSteps.step));
+	}
+	if (aSteps.length == 0)
+	{
+		strHtml += HtmlRenderError('No steps have been defined for this test.')
+	}
+	else
+	{
+		strHtml += HtmlRenderOrderedList(aSteps);
+	}
+
+	return strHtml;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-12-10 10:59:51</sys_created_on>
+        <sys_id>50f1c5ac2b7dba909083fe395e91bfb5</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>HtmlRenderTestManagementTest</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_50f1c5ac2b7dba909083fe395e91bfb5</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-12-26 10:00:43</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>50f1c5ac2b7dba909083fe395e91bfb5</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-12-10 10:59:50</sys_created_on>
+        <sys_id>93c281ec2b7dba909083fe395e91bf08</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-12-10 10:59:50</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

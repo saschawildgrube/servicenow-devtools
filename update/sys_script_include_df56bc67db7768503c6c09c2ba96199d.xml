@@ -5,11 +5,12 @@
         <api_name>x_snc_devtools.GetRecord</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Shorthand to get a record from a table (or database view) based on a sys_id or a GlideRecord object. If the bNoCrossScope parameter is set to true, GetRecord will not attempt to load the record from the global scope if it cannot load it from within the application scope.</description>
+        <description>Shorthand to get a record from a table (or database view) based on a sys_id or a GlideRecord object. If the bNoCrossScope parameter is set to true, GetRecord will not attempt to load the record from the global scope if it cannot load it from within the application scope.&#13;
+If bGhost is set to true, it will load the record without triggering workflows (e.g. Business Rules or Flows).</description>
         <mobile_callable>false</mobile_callable>
         <name>GetRecord</name>
         <sandbox_callable>false</sandbox_callable>
-        <script><![CDATA[function GetRecord(strTable,vRecord,bNoCrossScope,strColumnPrefix)
+        <script><![CDATA[function GetRecord(strTable,vRecord,bNoCrossScope,strColumnPrefix,bGhost)
 {
 	if (IsValidTable(strTable) == false && IsValidDatabaseView(strTable) == false)
 	{
@@ -38,7 +39,9 @@
 
 	var strSysId = vRecord;
 	
+	bGhost = GetBoolValue(bGhost);
 	bNoCrossScope = GetBoolValue(bNoCrossScope);
+	
 	if (bNoCrossScope == true)
 	{
 		var grRecord = new GlideRecord(strTable);
@@ -52,7 +55,7 @@
 	}
 	var grRecord = new GlideRecord(strTable);
 	grRecord.addQuery(strColumnPrefix+'sys_id','=',strSysId);
-	GlideRecordQuery(grRecord,true);
+	GlideRecordQuery(grRecord,bGhost);
 	if (grRecord.next())
 	{
 		return grRecord;
@@ -63,14 +66,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-05-04 14:12:29</sys_created_on>
         <sys_id>df56bc67db7768503c6c09c2ba96199d</sys_id>
-        <sys_mod_count>28</sys_mod_count>
+        <sys_mod_count>31</sys_mod_count>
         <sys_name>GetRecord</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_df56bc67db7768503c6c09c2ba96199d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-04-28 14:17:20</sys_updated_on>
+        <sys_updated_on>2025-11-24 15:05:11</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

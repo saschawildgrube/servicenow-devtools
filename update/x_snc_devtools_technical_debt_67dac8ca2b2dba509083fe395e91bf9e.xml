@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="x_snc_devtools_technical_debt">
     <x_snc_devtools_technical_debt action="INSERT_OR_UPDATE">
-        <description>Some methods use the form verb-object - others use object-verb. This should be consistent.</description>
+        <description>The field "x_snc_devtools_active" ("Active") for Service Portals is obsolete since the OOTB field "inactive" has been introduced.</description>
         <id/>
         <related_backlog_item_url/>
-        <short_description>InstallerAPI Method name inconsistency</short_description>
+        <short_description>Service Portal "Active" field </short_description>
         <switch>false</switch>
         <sys_class_name>x_snc_devtools_technical_debt</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2025-05-15 09:29:40</sys_created_on>
-        <sys_id>a8c9949193e56250959b7fda2bba10d5</sys_id>
-        <sys_mod_count>3</sys_mod_count>
-        <sys_name>InstallerAPI Method name inconsistency</sys_name>
+        <sys_created_on>2025-12-02 12:32:29</sys_created_on>
+        <sys_id>67dac8ca2b2dba509083fe395e91bf9e</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Service Portal "Active" field </sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
-        <sys_update_name>x_snc_devtools_technical_debt_a8c9949193e56250959b7fda2bba10d5</sys_update_name>
+        <sys_update_name>x_snc_devtools_technical_debt_67dac8ca2b2dba509083fe395e91bf9e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-12-25 20:57:51</sys_updated_on>
-        <type>code_naming_inconsistency</type>
+        <sys_updated_on>2025-12-02 12:34:00</sys_updated_on>
+        <type>code_deprecated</type>
     </x_snc_devtools_technical_debt>
 </record_update>

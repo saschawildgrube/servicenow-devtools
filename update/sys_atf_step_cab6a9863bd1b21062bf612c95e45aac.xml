@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-11-20 08:56:15</sys_created_on>
         <sys_id>cab6a9863bd1b21062bf612c95e45aac</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_cab6a9863bd1b21062bf612c95e45aac</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-11-20 08:59:31</sys_updated_on>
+        <sys_updated_on>2025-12-12 14:22:19</sys_updated_on>
         <table/>
         <test display_value="DevTools - HtmlRenderRelatedRecords">c2b629863bd1b21062bf612c95e45af8</test>
         <timeout/>
@@ -50,16 +50,16 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-11-20 08:56:16</sys_created_on>
         <sys_id>c6b6a9863bd1b21062bf612c95e45ab0</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-11-20 08:59:32</sys_updated_on>
+        <sys_updated_on>2025-12-12 14:22:20</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
 	&#13;
 	test.SetResult(true);&#13;
 	&#13;
-	function TestCase_HtmlRenderRelatedRecords(grRecord,strMode,nMaxLevel,vExpected)&#13;
+	function TestCase_HtmlRenderRelatedRecords(grRecord,strMode,bApplicationFilesOnly,nMaxLevel,vExpected)&#13;
 	{&#13;
 		function TestCase_HtmlRenderRelatedRecords_CheckResult(vInput,vExpected,vResult)&#13;
 		{&#13;
@@ -76,19 +76,23 @@
 			{&#13;
 				'grRecord': grRecord,&#13;
 				'strMode': strMode,&#13;
+				'bApplicationFilesOnly': bApplicationFilesOnly,&#13;
 				'nMaxLevel': nMaxLevel&#13;
 			},&#13;
 			vExpected,&#13;
 			TestCase_HtmlRenderRelatedRecords_CheckResult);&#13;
 	}&#13;
 		&#13;
-	TestCase_HtmlRenderRelatedRecords(null,null,null,false);&#13;
+	TestCase_HtmlRenderRelatedRecords(null,null,null,null,false);&#13;
 &#13;
 	var grUiPolicy = GetRecord('sys_ui_policy','ac30af26dba34290f0f1d03cd3961915');&#13;
 &#13;
 	TestCase_HtmlRenderRelatedRecords(&#13;
 		grUiPolicy,&#13;
-		'tree',5,true);&#13;
+		'tree',&#13;
+		true,&#13;
+		5,&#13;
+		true);&#13;
 	&#13;
 	return test.GetResult();&#13;
 	&#13;

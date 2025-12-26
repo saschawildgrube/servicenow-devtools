@@ -90,24 +90,27 @@ For safety reasons the current date (as an iso formatted string) must be passed 
 	// Does not work due to the read-only access policy of the record. Defect filed: DEF0620647
 	installer.ActivateAppMenu('1571cf37d7213300fa6c0c12ce61038f',false);
 
-
 	// On-Call Schedule - Gaps and Conflicts
 	installer.ActivateNotification('5d7cfc2273602300cbb654eb7df6a7ce',false);
 	
+	// Platform Analytics
+	installer.ActivateAppMenu('c9c745434dd83110f877856d195aa96c',false);
+
+
 	return installer.Finish();
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-04-23 17:48:08</sys_created_on>
         <sys_id>6a9964a1db8b4190bcced03cd3961945</sys_id>
-        <sys_mod_count>28</sys_mod_count>
+        <sys_mod_count>29</sys_mod_count>
         <sys_name>InstanceReset</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_6a9964a1db8b4190bcced03cd3961945</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-04-28 08:04:13</sys_updated_on>
+        <sys_updated_on>2025-12-21 20:04:45</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

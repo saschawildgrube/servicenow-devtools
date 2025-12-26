@@ -13,9 +13,15 @@
 {	
 	var installer = new InstallerAPI(GetAppName('x_snc_devtools'));
 
-	installer.SetProperty('sn_g_app_creator.allow_global','true');
-	
 	installer.SetProperty('glide.record.legacy_cross_scope_access_policy_in_script','true');
+
+	installer.SetProperty('sn_g_app_creator.allow_global','true');
+
+	installer.SetProperty('glide.sourcecontrol.changed_files_display_limit','5000');
+
+	installer.SetProperty('glide.ui.reference.readonly.clickthrough','true');
+
+
 
 	// ZURICH: If glide.scan.queue.enabled is set to true, some scan operations fail completely
 	installer.SetProperty('glide.scan.queue.enabled','false');
@@ -158,14 +164,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-07-03 21:35:10</sys_created_on>
         <sys_id>339e63591b719050a89720a8ec4bcb3f</sys_id>
-        <sys_mod_count>114</sys_mod_count>
+        <sys_mod_count>119</sys_mod_count>
         <sys_name>AppInstall</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_339e63591b719050a89720a8ec4bcb3f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-09-30 09:33:00</sys_updated_on>
+        <sys_updated_on>2025-12-05 12:57:02</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
