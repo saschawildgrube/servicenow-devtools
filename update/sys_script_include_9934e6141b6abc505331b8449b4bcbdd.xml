@@ -657,6 +657,22 @@
 
 	if (strTable == 'sys_security_acl')
 	{
+		if (grRecord.type == 'record')
+		{
+			var strName = GetStringValue(grRecord.name);
+			var aName = strName.split('.');
+			strName = GetValue(aName,0);
+			var grDbObject = new GlideRecord('sys_db_object');
+			grDbObject.addQuery('name','=',strName);
+			grDbObject.query();
+			if (grDbObject.getRowCount() != 1)
+			{
+				return false;
+			}
+			grDbObject.next();
+			return grDbObject;
+		}
+
 		if (grRecord.type == 'client_callable_script_include' && grRecord.operation == 'execute')
 		{
 			var grScriptInclude = new GlideRecord('sys_script_include');
@@ -774,14 +790,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-08 12:44:48</sys_created_on>
         <sys_id>9934e6141b6abc505331b8449b4bcbdd</sys_id>
-        <sys_mod_count>183</sys_mod_count>
+        <sys_mod_count>184</sys_mod_count>
         <sys_name>GetParentRecord</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_9934e6141b6abc505331b8449b4bcbdd</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-12-24 17:35:36</sys_updated_on>
+        <sys_updated_on>2026-01-05 13:04:19</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
