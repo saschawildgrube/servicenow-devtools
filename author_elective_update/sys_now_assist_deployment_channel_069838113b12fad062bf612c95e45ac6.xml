@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_now_assist_deployment_channel">
+    <sys_now_assist_deployment_channel action="DELETE">
+        <active>true</active>
+        <advanced_script/>
+        <config_type/>
+        <document_id>c86a62e2c7022010099a308dc7c26022</document_id>
+        <document_table>sys_ux_app</document_table>
+        <experience>self_service_dialog</experience>
+        <full_page_search/>
+        <now_assist_deployment display_value="Now Assist Panel - Platform (default)">7bd9820f14475650f87711349c1171be</now_assist_deployment>
+        <search_application/>
+        <sys_class_name>sys_now_assist_deployment_channel</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-01-06 14:42:05</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_id>069838113b12fad062bf612c95e45ac6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>c86a62e2c7022010099a308dc7c26022</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_now_assist_deployment_channel_069838113b12fad062bf612c95e45ac6</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-01-06 14:42:05</sys_updated_on>
+    </sys_now_assist_deployment_channel>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>a8cbb5133b6b5e540fd412c5e4e45a1f</instance_id>
+        <instance_name>wildyokohama</instance_name>
+        <name>sys_now_assist_deployment_channel_069838113b12fad062bf612c95e45ac6</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_now_assist_deployment_channel"><sys_now_assist_deployment_channel action="INSERT_OR_UPDATE"><active>true</active><advanced_script/><config_type/><document_id>c86a62e2c7022010099a308dc7c26022</document_id><document_table>sys_ux_app</document_table><experience>self_service_dialog</experience><full_page_search/><now_assist_deployment display_value="Now Assist Panel - Platform (default)">7bd9820f14475650f87711349c1171be</now_assist_deployment><search_application/><sys_class_name>sys_now_assist_deployment_channel</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2026-01-06 14:42:05</sys_created_on><sys_domain>global</sys_domain><sys_id>069838113b12fad062bf612c95e45ac6</sys_id><sys_mod_count>0</sys_mod_count><sys_name>c86a62e2c7022010099a308dc7c26022</sys_name><sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package><sys_policy/><sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope><sys_update_name>sys_now_assist_deployment_channel_069838113b12fad062bf612c95e45ac6</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-01-06 14:42:05</sys_updated_on></sys_now_assist_deployment_channel></record_update>]]></payload>
+        <payload_hash>961637709</payload_hash>
+        <record_name>c86a62e2c7022010099a308dc7c26022</record_name>
+        <reverted_from/>
+        <source>cd8d97383b1a3ad062bf612c95e45a29</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-01-06 14:42:06</sys_created_on>
+        <sys_id>1a9838113b12fad062bf612c95e45ae0</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19b93c20aa20000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-01-06 14:42:06</sys_updated_on>
+        <type>Now Assist Deployment Channel</type>
+        <update_guid>8a9838110412fad0a3ba4b901f7e73df</update_guid>
+        <update_guid_history>8a9838110412fad0a3ba4b901f7e73df:961637709</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-01-09 08:10:13</sys_created_on>
+        <sys_db_object display_value="" name="sys_now_assist_deployment_channel">sys_now_assist_deployment_channel</sys_db_object>
+        <sys_id>39459e340662483aa444d2dbffb7a384</sys_id>
+        <sys_metadata>069838113b12fad062bf612c95e45ac6</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>c86a62e2c7022010099a308dc7c26022</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sys_now_assist_deployment_channel_069838113b12fad062bf612c95e45ac6</sys_update_name>
+        <sys_update_version display_value="sys_now_assist_deployment_channel_069838113b12fad062bf612c95e45ac6">1a9838113b12fad062bf612c95e45ae0</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-01-09 08:10:13</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
