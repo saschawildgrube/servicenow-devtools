@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.StartAgenticConversation</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Starts an agentic conversation based on an Agentic Workflow (aka Use Case) or an AI Agent.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>StartAgenticConversation</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function StartAgenticConversation(vAgenticWorkflowOrAgent, strPrompt, grRecord, vUser, bCanInteractWithUser)
+{
+	var grAgent = null;
+	var grUseCase = null;
+	grAgent = GetAgentRecord(vAgenticWorkflowOrAgent);
+	if (IsValidRecord(grAgent) == false)
+	{
+		grUseCase = GetAgenticWorkflowRecord(vAgenticWorkflowOrAgent);
+		if (IsValidRecord(grUseCase) == false)
+		{
+			return false;
+		}
+	}
+
+	strPrompt = GetStringValue(strPrompt);
+
+	var strUserSysId = '';
+	var grUser = GetUserRecord(vUser);
+	if (IsValidRecord(grUser) == true)
+	{
+		strUserSysId = GetStringValue(grUser.sys_id);
+	}
+	else
+	{
+		strUserSysId = gs.getUserID();
+	}
+
+	var bInteractWithUser = true;
+	
+
+	var request = {};
+
+	if (IsValidRecord(grAgent) == true)
+	{
+		request.agentId = GetStringValue(grAgent.sys_id);	
+	}
+	if (IsValidRecord(grUseCase) == true)
+	{
+		request.usercaseId = GetStringValue(grUseCase.sys_id);	
+	}
+
+	if (strPrompt != '')
+	{
+		request.objective = strPrompt;
+	}
+
+	if (IsValidRecord(grRecord) == true)
+	{
+		request.targetRecordId = GetStringValue(grRecord.sys_id);
+		request.targetTable = grRecord.getRecordClassName();
+	}	
+
+	request.conversationUser = strUserSysId;
+	request.canInteractWithUser = GetBoolValue(bCanInteractWithUser);
+	
+
+	var runtime = new sn_aia.AiAgentRuntimeUtil();
+	var response = runtime.startAiAgentConversation(request);
+
+	function Error(request,response)
+	{
+		LogError(
+			'StartAgenticConversation:\n'
+			+'Request: \n'+RenderValue(request)+'\n'
+			+'Response: \n'+RenderValue(response));
+	}
+
+	if (IsObject(response) == false)
+	{
+		Error(request,response);
+		return false;
+	}
+
+	if (GetValue(response,'status') != 'success')
+	{
+		Error(request,response);
+		return false;
+	}
+
+	var strConversationSysId = GetValue(response,'data','conversationId');
+	if (IsValidSysId(strConversationSysId) != true)
+	{
+		Error(request,response);
+		return false;
+	}
+	
+	return strConversationSysId;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-01-09 14:38:35</sys_created_on>
+        <sys_id>8414181a3b92b21462bf612c95e45a82</sys_id>
+        <sys_mod_count>11</sys_mod_count>
+        <sys_name>StartAgenticConversation</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_8414181a3b92b21462bf612c95e45a82</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-01-09 15:13:24</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>8414181a3b92b21462bf612c95e45a82</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-01-09 14:38:35</sys_created_on>
+        <sys_id>bf84105a3b92b21462bf612c95e45aa6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-01-09 14:38:35</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
