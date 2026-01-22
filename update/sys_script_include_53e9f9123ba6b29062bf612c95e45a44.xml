@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.ParseTime</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Parses a string representing a time and returns a time value.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>ParseTime</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function ParseTime(strTime)
+{
+	strTime = GetStringValue(strTime);
+
+	strTime = strTime.trim();
+
+	// Longest possible time string: "11:55:00am" 
+	if (strTime.length > 10)
+	{
+		return false;
+	}
+
+	if (strTime == '')
+	{
+		return false;
+	}
+	
+	var strRegExp = /^[0-9\s:amp]+$/;
+	if (strTime.match(strRegExp) === null)
+    {
+		return false;
+	}
+	
+	var dateResult = new Date(0);
+
+
+	var strHour = '';
+	var strMinute = '';
+	var strSecond = '';
+
+
+	//if ()
+
+	var aTime = strTime.split(':');
+
+	if (aTime.length == 0)
+	{
+		return false;
+	}
+
+	strHour = GetValue(aTime,0);
+	strMinute = GetValue(aTime,1);
+	strSecond = GetValue(aTime,2);
+
+	var nHour = GetIntegerValue(strHour);
+	if (nHour > 23)
+	{
+		return false;
+	}
+		
+	var nMinute = GetIntegerValue(strMinute);
+	if (nMinute > 59)
+	{
+		return false;
+	}
+
+	var nSecond = GetIntegerValue(strSecond);
+	if (nSecond > 59)
+	{
+		return false;
+	}
+
+
+	// Linux Epoc
+	dateResult.setUTCFullYear(1970);
+	dateResult.setUTCMonth(0); 	
+	dateResult.setUTCDate(1);
+
+	dateResult.setUTCHours(nHour);
+	dateResult.setUTCMinutes(nMinute);
+	dateResult.setUTCSeconds(nSecond);
+	dateResult.setUTCMilliseconds(0);
+	
+	return dateResult.getTime();
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-01-22 08:17:08</sys_created_on>
+        <sys_id>53e9f9123ba6b29062bf612c95e45a44</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>ParseTime</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_53e9f9123ba6b29062bf612c95e45a44</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-01-22 08:39:00</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+</record_update>
