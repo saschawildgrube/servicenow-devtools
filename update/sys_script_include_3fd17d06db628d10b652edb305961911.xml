@@ -11,21 +11,73 @@
         <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function RenderTime(vDateTime)
 {
+	if (GetType(vDateTime) == 'ScopedGlideElement' || GetType(vDateTime) == 'GlideElement')
+	{
+		vDateTime = GetStringValue(vDateTime);
+	}
+
+	// Handle time-only strings like "08:46", "8:46", "08:46:05", and more flexible forms like "9", "9:", "9:1"
+	if (typeof vDateTime === 'string')
+	{
+		var s = vDateTime;
+		if (s && s.replace)
+			s = s.replace(/^\s+|\s+$/g, '');
+		if (s)
+		{
+			var pad2 = function(n)
+			{
+				return (n < 10 ? '0' : '') + n;
+			};
+
+			// Pure hour like "9" or "23"
+			if (/^\d{1,2}$/.test(s))
+			{
+				var hhOnly = parseInt(s, 10);
+				if (hhOnly >= 0 && hhOnly < 24)
+					return pad2(hhOnly) + ':00:00';
+			}
+
+			// Forms containing ":" like "H:", "H:M", "HH:MM", "HH:MM:SS"
+			if (s.indexOf(':') !== -1)
+			{
+				var parts = s.split(':', 3);
+				var hhStr = parts[0] !== undefined ? parts[0] : '';
+				var mmStr = parts[1] !== undefined ? parts[1] : '';
+				var ssStr = parts[2] !== undefined ? parts[2] : '';
+
+				// Allow empty minutes/seconds which default to 0, and 1-2 digit values
+				if (/^\d{1,2}$/.test(hhStr)
+					&& (mmStr === '' || /^\d{1,2}$/.test(mmStr))
+					&& (ssStr === '' || /^\d{1,2}$/.test(ssStr)))
+				{
+					var hh = parseInt(hhStr, 10);
+					var mm = (mmStr === '' ? 0 : parseInt(mmStr, 10));
+					var ss = (ssStr === '' ? 0 : parseInt(ssStr, 10));
+
+					if (hh >= 0 && hh < 24 && mm >= 0 && mm < 60 && ss >= 0 && ss < 60)
+						return pad2(hh) + ':' + pad2(mm) + ':' + pad2(ss);
+				}
+			}
+		}
+	}
+
 	var strDatetime = RenderDateTime(vDateTime);
-	return strDatetime.substr(11);
-}	]]></script>
+	if (typeof strDatetime === 'string' && strDatetime.length >= 19)
+		return strDatetime.substr(11, 8);
+	return '';
+}]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-03-31 15:45:23</sys_created_on>
         <sys_id>3fd17d06db628d10b652edb305961911</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_name>RenderTime</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_3fd17d06db628d10b652edb305961911</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-08-28 12:58:44</sys_updated_on>
+        <sys_updated_on>2026-01-16 16:03:55</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>
