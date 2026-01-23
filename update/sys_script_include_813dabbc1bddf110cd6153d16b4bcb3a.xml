@@ -121,6 +121,7 @@
 		// Yokohama
 		"var result = dep.getED().isReadOnly() ? 'true' : 'false';",
 		"var tcs = del.getAttribute('tableChoicesScript');",
+		'new SNC.AnonymizationApi()',
 		'06a6c0b2eb20010', // 06a6c0b2eb2001006a668c505206fe63
 		'c5c370657710011', // c5c3706577100110990d94b92c5a997c
 		'324c8745d703310', // 324c8745d7033100b6bddb0c825203eb
@@ -130,6 +131,9 @@
 		'ab1ffc33c331210', // ab1ffc33c3312100e6da174292d3ae3d
 		'62952a3953c2261', // 62952a3953c2261066ff68f230e5e625 
 		'4d0fd3387300230', // 4d0fd338730023009ecc234ffff6a7d3 
+		'654e325f5301021', // 654e325f53010210d344ddeeff7b1242
+		'0a2eda18ebf1311', // 0a2eda18ebf131102b57e530695228cf
+		'5ab6e593ffe9221', // 5ab6e593ffe92210fbe7ffffffffff6b     
 
 		// Zurich
 		'"inputvis" is not defined.',
@@ -141,7 +145,7 @@
 		'209fc2f1c301120', // 209fc2f1c3011200f7d1ca3adfba8f4b
 		'8f5128567740121', // 8f51285677401210e45dd86bba5a99a1
 		'bec48ba37f10621', // bec48ba37f1062105adc654edc866546 
-		'bec48ba37f10621', // bec48ba37f1062105adc654edc866546
+		'ded607e693a1121', // ded607e693a11210f2cafff9648918c0
 
 	];
 	return aPatterns;
@@ -150,14 +154,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-09-13 12:47:41</sys_created_on>
         <sys_id>813dabbc1bddf110cd6153d16b4bcb3a</sys_id>
-        <sys_mod_count>122</sys_mod_count>
+        <sys_mod_count>127</sys_mod_count>
         <sys_name>GetEvaluatorErrorExceptionPatterns</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_813dabbc1bddf110cd6153d16b4bcb3a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-12-09 09:20:25</sys_updated_on>
+        <sys_updated_on>2026-01-13 14:31:49</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

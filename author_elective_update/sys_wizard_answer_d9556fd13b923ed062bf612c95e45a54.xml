@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_wizard_answer">
+    <sys_wizard_answer action="DELETE">
+        <active>true</active>
+        <answer/>
+        <button_label/>
+        <dependent_value/>
+        <element/>
+        <name/>
+        <next_question/>
+        <order>100</order>
+        <payload_name/>
+        <question/>
+        <roles/>
+        <script/>
+        <sys_class_name>sys_wizard_answer</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-01-07 03:16:47</sys_created_on>
+        <sys_id>d9556fd13b923ed062bf612c95e45a54</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_wizard_answer_d9556fd13b923ed062bf612c95e45a54</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-01-07 03:16:47</sys_updated_on>
+        <table/>
+        <target_url/>
+        <type>1</type>
+    </sys_wizard_answer>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>a8cbb5133b6b5e540fd412c5e4e45a1f</instance_id>
+        <instance_name>wildyokohama</instance_name>
+        <name>sys_wizard_answer_d9556fd13b923ed062bf612c95e45a54</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_wizard_answer"><sys_wizard_answer action="INSERT_OR_UPDATE"><active>true</active><answer/><button_label/><dependent_value/><element/><name/><next_question/><order>100</order><payload_name/><question/><roles/><script/><sys_class_name>sys_wizard_answer</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2026-01-07 03:16:47</sys_created_on><sys_id>d9556fd13b923ed062bf612c95e45a54</sys_id><sys_mod_count>0</sys_mod_count><sys_name/><sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package><sys_policy/><sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope><sys_update_name>sys_wizard_answer_d9556fd13b923ed062bf612c95e45a54</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-01-07 03:16:47</sys_updated_on><table/><target_url/><type>1</type></sys_wizard_answer></record_update>]]></payload>
+        <payload_hash>-2009820244</payload_hash>
+        <record_name/>
+        <reverted_from/>
+        <source>804f85d93b92fad062bf612c95e45a24</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-01-07 03:16:47</sys_created_on>
+        <sys_id>11556fd13b923ed062bf612c95e45a8a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19b9674faef0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-01-07 03:16:47</sys_updated_on>
+        <type>Answer</type>
+        <update_guid>dd556fd177923ed0e209e910778cd788</update_guid>
+        <update_guid_history>dd556fd177923ed0e209e910778cd788:-2009820244</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-01-08 14:42:35</sys_created_on>
+        <sys_db_object display_value="" name="sys_wizard_answer">sys_wizard_answer</sys_db_object>
+        <sys_id>024c15deb2504a4599719a234a6ba281</sys_id>
+        <sys_metadata>d9556fd13b923ed062bf612c95e45a54</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sys_wizard_answer_d9556fd13b923ed062bf612c95e45a54</sys_update_name>
+        <sys_update_version display_value="sys_wizard_answer_d9556fd13b923ed062bf612c95e45a54">11556fd13b923ed062bf612c95e45a8a</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-01-08 14:42:35</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

@@ -183,7 +183,46 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 				record._related_records.push(related_record);		
 			}		
 		}
+
+		var grACL = new GlideRecord('sys_security_acl');
+		grACL.addQuery('type','=','record');
+		var condition = grACL.addQuery('name','=',grRecord.name);
+		condition.addOrCondition('name','STARTSWITH',grRecord.name+'.');
+		GlideRecordQuery(grACL);
+		while (grACL.next())
+		{
+			var related_record = GetRelatedRecordsTree(
+				grACL,
+				bApplicationFilesOnly,
+				nMaxLevel,
+				nLevel+1);
+			if (related_record != false)
+			{
+				record._related_records.push(related_record);		
+			}					
+		}
 	}
+
+	if (strTable == 'sys_dictionary')
+	{
+		var grDocumentation = new GlideRecord('sys_documentation');
+		grDocumentation.addQuery('name','=',grRecord.name);
+		grDocumentation.addQuery('element','=',grRecord.element);
+		GlideRecordQuery(grDocumentation);
+		while (grDocumentation.next())
+		{
+			var related_record = GetRelatedRecordsTree(
+				grDocumentation,
+				bApplicationFilesOnly,
+				nMaxLevel,
+				nLevel+1);
+			if (related_record != false)
+			{
+				record._related_records.push(related_record);		
+			}		
+		}
+	}
+
 
 	if (strTable == 'sys_ui_page')
 	{
@@ -214,7 +253,7 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 		grACL.addQuery('type','=','ui_page');
 		grACL.addQuery('operation','=','read');
 		grACL.addQuery('name','=',strName);
-		grACL.query();
+		GlideRecordQuery(grACL);
 		if (grACL.next())
 		{
 			var related_record = GetRelatedRecordsTree(
@@ -541,14 +580,14 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-10-29 13:29:32</sys_created_on>
         <sys_id>71c1d58b3b34f69062bf612c95e45adb</sys_id>
-        <sys_mod_count>64</sys_mod_count>
+        <sys_mod_count>66</sys_mod_count>
         <sys_name>GetRelatedRecordsTree</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_71c1d58b3b34f69062bf612c95e45adb</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-12-24 19:28:27</sys_updated_on>
+        <sys_updated_on>2026-01-05 13:33:10</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

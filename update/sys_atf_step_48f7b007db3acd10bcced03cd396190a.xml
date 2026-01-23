@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-04-16 00:25:43</sys_created_on>
         <sys_id>48f7b007db3acd10bcced03cd396190a</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_48f7b007db3acd10bcced03cd396190a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-04-16 00:28:37</sys_updated_on>
+        <sys_updated_on>2026-01-14 14:06:01</sys_updated_on>
         <table/>
         <test display_value="DevTools - GetCountryRecord">7bd73007db3acd10bcced03cd396196c</test>
         <timeout/>
@@ -36,9 +36,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-04-16 00:25:44</sys_created_on>
         <sys_id>44d8b007db3acd10bcced03cd3961919</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-04-16 00:28:37</sys_updated_on>
+        <sys_updated_on>2026-01-14 14:06:01</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -73,8 +73,16 @@
 	TestCase_GetCountryRecord('Holiday Land',false);&#13;
 &#13;
 	TestCase_GetCountryRecord('DEU',true);&#13;
+	TestCase_GetCountryRecord('DE',true);&#13;
 	TestCase_GetCountryRecord('Germany',true);&#13;
 	TestCase_GetCountryRecord('cd38b7111b121100763d91eebc0713f1',true); // Germany&#13;
+&#13;
+	var grCountry = new GlideRecord('core_country');&#13;
+	grCountry.initialize();&#13;
+	grCountry.name = 'TEST Land';&#13;
+	GlideRecordInsert(grCountry);&#13;
+	TestCase_GetCountryRecord(grCountry,true);&#13;
+&#13;
 	&#13;
 	return test.GetResult();&#13;
 	&#13;

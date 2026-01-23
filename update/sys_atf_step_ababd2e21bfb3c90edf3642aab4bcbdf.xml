@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-11-16 15:15:19</sys_created_on>
         <sys_id>ababd2e21bfb3c90edf3642aab4bcbdf</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_ababd2e21bfb3c90edf3642aab4bcbdf</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-11-18 16:34:46</sys_updated_on>
+        <sys_updated_on>2026-01-13 15:26:48</sys_updated_on>
         <table/>
         <test display_value="DevTools - ParseCsv">a79bd2e21bfb3c90edf3642aab4bcb8a</test>
         <timeout/>
@@ -36,9 +36,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-11-16 15:15:19</sys_created_on>
         <sys_id>725c1ae21bfb3c90edf3642aab4bcbfb</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-11-18 16:34:46</sys_updated_on>
+        <sys_updated_on>2026-01-13 15:26:49</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -49,6 +49,11 @@
 	&#13;
 	function TestCase_ParseCsv(strCsv, vExpected)&#13;
 	{&#13;
+		function TestCase_ParseCsv_CheckResult(vInput,vExpected,vResult)&#13;
+		{&#13;
+			return IsEqual(vExpected,vResult);&#13;
+		}&#13;
+&#13;
 		test.TestCase(&#13;
 			'ParseCsv()',&#13;
 			ParseCsv,&#13;
@@ -59,14 +64,11 @@
 			TestCase_ParseCsv_CheckResult);&#13;
 	}&#13;
 &#13;
-	function TestCase_ParseCsv_CheckResult(vInput,vExpected,vResult)&#13;
-	{&#13;
-		return IsEqual(vExpected,vResult);&#13;
-	}&#13;
 &#13;
 	&#13;
-	TestCase_ParseCsv(null,[]);&#13;
-	TestCase_ParseCsv('',[]);&#13;
+	TestCase_ParseCsv(null,false);&#13;
+	TestCase_ParseCsv('',false);&#13;
+&#13;
 	TestCase_ParseCsv('HEADER1,HEADER2\nvalue1,value2',&#13;
 		[&#13;
 			{&#13;
@@ -75,10 +77,56 @@
 			}&#13;
 		&#13;
 		]);&#13;
+&#13;
 	TestCase_ParseCsv('HEADER1,HEADER2\nvalue1,value2,value3',&#13;
-		[]);&#13;
+		[&#13;
+			{&#13;
+				HEADER1: 'value1',&#13;
+				HEADER2: 'value2'&#13;
+			}&#13;
+		]);&#13;
+&#13;
+	TestCase_ParseCsv('HEADER1,HEADER2\r\nvalue1,value2',&#13;
+		[&#13;
+			{&#13;
+				HEADER1: 'value1',&#13;
+				HEADER2: 'value2'&#13;
+			}&#13;
+		]);&#13;
 &#13;
 &#13;
+	TestCase_ParseCsv('HEADER1;HEADER2\nvalue1;value2',&#13;
+		[&#13;
+			{&#13;
+				HEADER1: 'value1',&#13;
+				HEADER2: 'value2'&#13;
+			}&#13;
+		]);&#13;
+&#13;
+	TestCase_ParseCsv('HEADER1;HEADER2\r\nvalue1;value2',&#13;
+		[&#13;
+			{&#13;
+				HEADER1: 'value1',&#13;
+				HEADER2: 'value2'&#13;
+			}&#13;
+		]);&#13;
+&#13;
+		TestCase_ParseCsv('"HEADER1";"HEADER2"\r\n"value1";"value2"',&#13;
+		[&#13;
+			{&#13;
+				HEADER1: 'value1',&#13;
+				HEADER2: 'value2'&#13;
+			}&#13;
+		]);	&#13;
+&#13;
+&#13;
+		TestCase_ParseCsv('HEADER1;HEADER2\r\n"Value with ""Quotation""";value2',&#13;
+		[&#13;
+			{&#13;
+				HEADER1: 'Value with "Quotation"',&#13;
+				HEADER2: 'value2'&#13;
+			}&#13;
+		]);	&#13;
 	&#13;
 	return test.GetResult();&#13;
 	&#13;

@@ -17,17 +17,46 @@
 	
 	strCsv = GetStringValue(strCsv);
 
+	strCsv = StringReplace(strCsv,'\r\n','\n');
+	strCsv = strCsv.trim();
+	if (strCsv == '')
+	{
+		return false;
+	}
+
 	var aObjects = [];
 	
 	var aRows = strCsv.split(strNewLine);
 	
 	if (aRows.length == 0)
 	{
-		return aObjects;
+		return false;
 	}
 	
+	var strHeaderRow = GetStringValue(GetValue(aRows,0));
+	strHeaderRow = strHeaderRow.trim();
+
 	var parser = new sn_impex.CSVParser();
-	
+
+	var aDelimiters = [',',';'];
+	var nBestCount = 0;
+	for (var nDelimiter = 0; nDelimiter < aDelimiters.length; nDelimiter++)
+	{
+		var strDelimiterCandidate = aDelimiters[nDelimiter];
+		try
+		{
+			var aHeaders = parser.parseLineToArray(GetValue(aRows,0), strDelimiterCandidate, strQuote);
+			if (aHeaders.length > nBestCount)
+			{
+				nBestCount = aHeaders.length;
+				strDelimiter = strDelimiterCandidate;
+			}
+		}
+		catch(e)
+		{
+		}
+	} 
+		
 	var aHeaders = [];
 	try
 	{
@@ -35,12 +64,12 @@
 	}
 	catch(e)
 	{
-		return aObjects;
+		return false;
 	}
 
 	if (aHeaders.length == 0)
 	{
-		return aObjects;
+		return false;
 	}
 	
 	for (var nRow = 1; nRow < aRows.length; nRow++)
@@ -50,8 +79,19 @@
 
 		try
 		{
-			object = parser.parseLineToObject(strRow, aHeaders, strDelimiter, strQuote);
-			aObjects.push(object);
+			var aValues = parser.parseLineToArray(strRow, strDelimiter, strQuote);
+			if (aValues.length > 0)
+			{
+				for (var nValue = 0; nValue < aValues.length; nValue++)
+				{
+					var strHeader = GetStringValue(GetValue(aHeaders,nValue));
+					if (strHeader != '')
+					{
+						object[strHeader] = aValues[nValue];
+					}
+				}
+				aObjects.push(object);
+			}
 		}
 		catch(e)
 		{
@@ -65,14 +105,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-11-12 13:27:17</sys_created_on>
         <sys_id>fe8bdd1d1b3f3090edf3642aab4bcbf7</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>18</sys_mod_count>
         <sys_name>ParseCsv</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_fe8bdd1d1b3f3090edf3642aab4bcbf7</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-08-28 12:59:02</sys_updated_on>
+        <sys_updated_on>2026-01-13 15:39:05</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>

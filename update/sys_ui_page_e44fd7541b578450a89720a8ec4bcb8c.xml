@@ -69,7 +69,7 @@ testdata.DeleteAllData(testdata.GetAllData());
 gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData()));
 
 var grSuites = new GlideRecord('scan_check_suite');
-grSuites.addQuery('name','=','DevTools.TEMP');
+grSuites.addQuery('name','STARTSWITH','DevTools.TEMP');
 grSuites.addQuery('sys_scope','=','global');
 grSuites.query();
 while (grSuites.next())
@@ -716,6 +716,32 @@ while (grSI.next())
 	<g2:no_escape>$[docapi.RenderLicense()]</g2:no_escape>
 	
 	<h2 toc-ignore-children="true">Release Notes</h2>
+
+	<h3>1.136.0 - 2026-01-23</h3>
+	<ol>
+		<li>Added function GetAgentRecord().</li>
+		<li>Added function GetAgenticWorkflowRecord().</li>
+		<li>Added function StartAgenticConversation().</li>
+		<li>Added function ParseTime().</li>
+		<li>ParseCsv() can now handle semi-colon separated CSV files and is now resilient if the number of values in a row does not match the number of headers.</li>
+		<li>GetTableFromSysId() now ignores "Remote Tables" and tables starting with "tmp_",  "pa_migration_ignored_scores" and "sa_ci_type_icon".</li>
+		<li>RenderTime() can now also handle input strings representing time.</li>
+		<li>GetCountryRecord() now also supports ISO2 codes.</li>
+		<li>GetCountryRecord() now also supports a GlideRecord object as a parameter.</li>
+		<li>GetParentRecord() and the "Up" button now support ACLs for Tables and Columns.</li>
+		<li>GetRelatedRecordsTree() now also supports ACLs for Tables.</li>
+		<li>GetRelatedRecordsTree() now also supports sys_dictionary and sys_documentation records (related to sys_db_object records).</li>
+		<li>The "Logs" UI Page now also shows sys_cs_conversation.</li>
+		<li>RenderRecordSummary() now renders sys_dictionary and sys_documentation records properly.</li>
+		<li>HtmlRenderApplications() now uses GetAppUncommittedFilesCount() to determine the amount of uncommitted files (which should be way faster).</li>
+		<li>Test for GetVariablesFromRecord() is now more robust to avoid false negatives.</li>
+		<li>ATF test "DevTools - Test data sanity" now also checks for repo config records left behind by previous test runs.</li>
+		<li>ATF tests that use repo urls now use "https://github.com/test/test.git" as a fake repo url.</li>
+		<li>Improved code snipped in this manual to fix issues with remainders of test data.</li>
+		<li>All DevTools tables now allow configuration.</li>
+		<li>Added more patterns to GetEvaluatorErrorExceptionPatterns().</li>
+	</ol>
+
 
 	<h3>1.135.0 - 2025-12-26</h3>
 	<ol>
@@ -3109,14 +3135,14 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>2378</sys_mod_count>
+        <sys_mod_count>2407</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-12-26 09:54:42</sys_updated_on>
+        <sys_updated_on>2026-01-23 09:16:43</sys_updated_on>
     </sys_ui_page>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>e44fd7541b578450a89720a8ec4bcb8c</id>

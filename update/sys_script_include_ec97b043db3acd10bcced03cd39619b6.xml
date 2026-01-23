@@ -5,33 +5,21 @@
         <api_name>x_snc_devtools.GetCountryRecord</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Get a country record based on sys_id, name or ISO3 code.</description>
+        <description>Get a country record based on sys_id, name, ISO3 code, or ISO2 code.</description>
         <mobile_callable>false</mobile_callable>
         <name>GetCountryRecord</name>
         <sandbox_callable>false</sandbox_callable>
-        <script><![CDATA[function GetCountryRecord(strValue)
+        <script><![CDATA[function GetCountryRecord(vCountry)
 {
-	strValue = GetStringValue(strValue);
+	var grCountry = GetRecord('core_country',vCountry);
 	
-	if (strValue == '')
+	if (IsValidRecord(grCountry) == true)
 	{
-		return false;
-	}
-
-
-	var grCountry = new GlideRecord('core_country');
-	
-	if (IsValidSysId(strValue))
-	{
-		if (grCountry.get(strValue))
-		{
-			return grCountry;
-		}
-		return false;
+		return grCountry;
 	}
 	
 	var grCountry = new GlideRecord('core_country');
-	grCountry.addQuery('name','=',strValue);
+	grCountry.addQuery('name','=',vCountry);
 	grCountry.query();
 	if (grCountry.next())
 	{
@@ -39,12 +27,20 @@
 	}
 
 	var grCountry = new GlideRecord('core_country');
-	grCountry.addQuery('iso3166_3','=',strValue);
+	grCountry.addQuery('iso3166_3','=',vCountry);
 	grCountry.query();
 	if (grCountry.next())
 	{
 		return grCountry;
 	}	
+
+	var grCountry = new GlideRecord('core_country');
+	grCountry.addQuery('iso3166_2','=',vCountry);
+	grCountry.query();
+	if (grCountry.next())
+	{
+		return grCountry;
+	}		
 
 	return false;
 }]]></script>
@@ -52,14 +48,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-04-16 00:20:17</sys_created_on>
         <sys_id>ec97b043db3acd10bcced03cd39619b6</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>GetCountryRecord</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_ec97b043db3acd10bcced03cd39619b6</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-08-28 12:59:01</sys_updated_on>
+        <sys_updated_on>2026-01-14 14:07:27</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>
