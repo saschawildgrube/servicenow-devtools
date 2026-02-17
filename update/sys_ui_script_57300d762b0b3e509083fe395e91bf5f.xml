@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_script">
+    <sys_ui_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Shows the Now Assist Panel (if it is not yet visible) if the current user is entitled to use it.&#13;
+This code is fully AI generated (ChatGPT 5.2 Thinking)</description>
+        <global>true</global>
+        <ignore_in_now_experience>false</ignore_in_now_experience>
+        <name>x_snc_devtools.ShowNowAssistPanel</name>
+        <script><![CDATA[function ShowNowAssistPanel()
+{
+/**
+ * UI16 Client-side UI Action (runs in gsft_main iframe)
+ * Ensures the Now Assist panel is OPEN after execution (idempotent, no toggle-close).
+ *
+ * How it works:
+ *  - Injects a small "top-runner" into window.top (only once)
+ *  - Executes it in the top document (where the header icon exists)
+ *  - The top-runner:
+ *      - Detects "open" via aria-expanded/aria-pressed/active class OR visible panel heuristics
+ *      - Clicks the icon ONLY when it can confidently infer "closed"
+ *      - If state is unknown, it does NOT click (to avoid accidentally closing an open panel)
+ */
+(function ensureNowAssistOpenFromIframe() {
+  function injectAndRunTop(fnText, callText) {
+    var topDoc = window.top.document;
+
+    if (!window.top.__nowAssistEnsureOpenInjected) {
+      var s = topDoc.createElement("script");
+      s.type = "text/javascript";
+      s.text = "window.__nowAssistEnsureOpenInjected=true;\n" + fnText;
+      topDoc.head.appendChild(s);
+    }
+
+    var s2 = topDoc.createElement("script");
+    s2.type = "text/javascript";
+    s2.text = callText;
+    topDoc.head.appendChild(s2);
+  }
+
+  var TOP_RUNNER = String.raw`
+(function(){
+  function isVisible(el){
+    if(!el) return false;
+    try{
+      var r=el.getBoundingClientRect();
+      var s=getComputedStyle(el);
+      return r.width>0 && r.height>0 && s.display!=="none" && s.visibility!=="hidden" && s.opacity!=="0";
+    }catch(e){ return false; }
+  }
+
+  function norm(s){ return (s||"").toLowerCase().replace(/\\s+/g," ").trim(); }
+
+  function buttonLike(el){
+    if(!el || el.nodeType!==1) return false;
+    var tag=(el.tagName||"").toLowerCase();
+    var role=(el.getAttribute && el.getAttribute("role")) || "";
+    return tag==="button" || role==="button" || (tag==="a" && role==="button") ||
+      ((tag==="div"||tag==="span") && el.getAttribute && el.getAttribute("tabindex")!==null);
+  }
+
+  function looksLikeNowAssistControl(el){
+    if(!buttonLike(el)) return false;
+
+    var label=norm(el.getAttribute && el.getAttribute("aria-label"));
+    var title=norm(el.getAttribute && el.getAttribute("title"));
+    var testid=norm(((el.getAttribute && el.getAttribute("data-testid"))||"") + " " +
+                    ((el.getAttribute && el.getAttribute("data-test-id"))||""));
+    var text=norm(el.textContent);
+    var hay=(label+" "+title+" "+testid+" "+text).trim();
+
+    var hasNowAssist = hay.indexOf("now assist")!==-1 || hay.indexOf("nowassist")!==-1;
+    var hasAssist = hay.indexOf("assist")!==-1;
+    var hasNow = hay.indexOf("now")!==-1;
+    var hasGenAi = hay.indexOf("genai")!==-1 || hay.indexOf("gen ai")!==-1 || hay.indexOf(" ai")!==-1;
+
+    return hasNowAssist || testid.indexOf("assist")!==-1 || (hasAssist && (hasNow || hasGenAi));
+  }
+
+  // Walk DOM + OPEN Shadow DOM only
+  function deepFind(root, maxNodes){
+    var q=[root], c=[], scanned=0;
+    while(q.length && scanned<maxNodes){
+      var n=q.shift(); scanned++;
+      if(!n) continue;
+
+      if(n.children && n.children.length){
+        for(var i=0;i<n.children.length;i++) q.push(n.children[i]);
+      }
+      if(n.shadowRoot) q.push(n.shadowRoot);
+
+      if(n.nodeType===1 && looksLikeNowAssistControl(n)) c.push(n);
+    }
+    return c;
+  }
+
+  function pickBest(cands){
+    if(!cands || !cands.length) return null;
+    var visible=cands.filter(isVisible);
+    var pool=visible.length?visible:cands;
+
+    for(var i=0;i<pool.length;i++){
+      var el=pool[i];
+      var hay = norm((el.getAttribute && el.getAttribute("aria-label"))||"") + " " +
+                norm((el.getAttribute && el.getAttribute("title"))||"") + " " +
+                norm(el.textContent||"");
+      if(hay.indexOf("now assist")!==-1 || hay.indexOf("nowassist")!==-1) return el;
+    }
+    return pool[0];
+  }
+
+  function openStateFromBtn(btn){
+    if(!btn) return {known:false, open:false};
+
+    var exp=btn.getAttribute && btn.getAttribute("aria-expanded");
+    if(exp==="true") return {known:true, open:true};
+    if(exp==="false") return {known:true, open:false};
+
+    var prs=btn.getAttribute && btn.getAttribute("aria-pressed");
+    if(prs==="true") return {known:true, open:true};
+    if(prs==="false") return {known:true, open:false};
+
+    var cls=norm((btn.className && typeof btn.className==="string") ? btn.className : "");
+    if(cls.indexOf("active")!==-1 || cls.indexOf("selected")!==-1 || cls.indexOf("is-active")!==-1){
+      return {known:true, open:true};
+    }
+
+    return {known:false, open:false};
+  }
+
+  function panelVisibleHeuristic(doc){
+    var sels=[
+      '[role="dialog"][aria-label*="Assist" i]',
+      '[role="complementary"][aria-label*="Assist" i]',
+      '[data-testid*="assist" i]',
+      '[data-test-id*="assist" i]'
+    ];
+    for(var i=0;i<sels.length;i++){
+      var els=[];
+      try{ els=doc.querySelectorAll(sels[i]); }catch(e){ continue; }
+      for(var j=0;j<els.length;j++){
+        if(isVisible(els[j])) return true;
+      }
+    }
+    return false;
+  }
+
+  function ensureOpenOnce(){
+    var doc=window.document;
+    if(!doc || !doc.body) return;
+
+    // If a visible panel is already present, do nothing (idempotent)
+    if(panelVisibleHeuristic(doc)) return;
+
+    var candidates = deepFind(doc.body, 20000);
+    var btn = pickBest(candidates);
+    if(!btn) return;
+
+    // If we can infer open from button state, do nothing
+    var st = openStateFromBtn(btn);
+    if(st.known && st.open) return;
+
+    // Click ONLY if we can confidently infer "closed"
+    if(st.known && !st.open) {
+      btn.click();
+      return;
+    }
+
+    // Unknown state: avoid toggling closed; do nothing
+  }
+
+  // Expose & run
+  window.nowAssistEnsureOpen = function(){
+    // a couple quick retries (header/panel can render after form)
+    var tries=0, max=10;
+    var t=setInterval(function(){
+      tries++;
+      ensureOpenOnce();
+      // stop early if the panel becomes visible
+      if(panelVisibleHeuristic(window.document) || tries>=max) clearInterval(t);
+    }, 200);
+  };
+})();`;
+
+  // Run from iframe: inject into TOP and execute in TOP
+  try {
+    injectAndRunTop(TOP_RUNNER, "window.nowAssistEnsureOpen && window.nowAssistEnsureOpen();");
+  } catch (e) {
+    // Intentionally no console logging (per requirement)
+  }
+})();
+
+
+
+}]]></script>
+        <script_name>ShowNowAssistPanel</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-02-17 13:54:21</sys_created_on>
+        <sys_id>57300d762b0b3e509083fe395e91bf5f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_snc_devtools.ShowNowAssistPanel</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_ui_script_57300d762b0b3e509083fe395e91bf5f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-02-17 13:54:21</sys_updated_on>
+        <ui_type>0</ui_type>
+        <use_scoped_format>false</use_scoped_format>
+        <x_snc_devtools_global>true</x_snc_devtools_global>
+    </sys_ui_script>
+</record_update>
