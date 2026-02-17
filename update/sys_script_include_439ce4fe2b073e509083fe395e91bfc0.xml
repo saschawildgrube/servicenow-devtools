@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.IsNowAssistAIAgentsInstalled</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns true of the AI Agent and Agentic Workflow capability is available on the instance., false if not.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>IsNowAssistAIAgentsInstalled</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function IsNowAssistAIAgentsInstalled()
+{
+	var grScope = new GlideRecord('sys_scope');
+	grScope.addQuery('scope', 'sn_aia');
+	grScope.query();
+	if (grScope.hasNext() == false)
+	{
+		return false;
+	}
+	if (IsValidTable('sn_aia_agent') == false)
+	{
+		return false;
+	}
+	return true;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-02-17 12:28:31</sys_created_on>
+        <sys_id>439ce4fe2b073e509083fe395e91bfc0</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>IsNowAssistAIAgentsInstalled</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_439ce4fe2b073e509083fe395e91bfc0</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-02-17 12:36:01</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>439ce4fe2b073e509083fe395e91bfc0</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-02-17 12:28:30</sys_created_on>
+        <sys_id>6accecfe2b073e509083fe395e91bf72</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-02-17 12:28:30</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
