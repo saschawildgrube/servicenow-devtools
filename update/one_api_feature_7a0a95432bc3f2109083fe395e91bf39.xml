@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="one_api_feature">
+    <one_api_feature action="INSERT_OR_UPDATE">
+        <input_processor display_value="OneExtendGenericCapabilityRequestProcessor">a7eb538353111110c271ddeeff7b12a8</input_processor>
+        <name>40eb7f483b4fd210344cc337f4e45a1f</name>
+        <output_processor display_value="OneExtendCapabilityResponseProcessor">3a90ff027f50121032d293f10d866518</output_processor>
+        <short_description>Auto Generated </short_description>
+        <sys_class_name>one_api_feature</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-02-18 10:24:41</sys_created_on>
+        <sys_id>7a0a95432bc3f2109083fe395e91bf39</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>40eb7f483b4fd210344cc337f4e45a1f</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>one_api_feature_7a0a95432bc3f2109083fe395e91bf39</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-02-18 10:24:41</sys_updated_on>
+    </one_api_feature>
+</record_update>

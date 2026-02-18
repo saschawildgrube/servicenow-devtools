@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="one_api_service_plan">
+    <one_api_service_plan action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <input_processor/>
+        <name>___$y$t3m_bu1163r___-40eb7f483b4fd210344cc337f4e45a1f, 3b677419436502106f6a66677ab8f264-default</name>
+        <output_processor display_value="OneExtendOutputProcessor">250bd34353111110c271ddeeff7b12da</output_processor>
+        <sys_class_name>one_api_service_plan</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-02-18 10:24:41</sys_created_on>
+        <sys_id>720a95432bc3f2109083fe395e91bf87</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>___$y$t3m_bu1163r___-40eb7f483b4fd210344cc337f4e45a1f, 3b677419436502106f6a66677ab8f264-default</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>one_api_service_plan_720a95432bc3f2109083fe395e91bf87</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-02-18 10:24:41</sys_updated_on>
+        <timeout_ms>20000</timeout_ms>
+    </one_api_service_plan>
+</record_update>
