@@ -48,11 +48,19 @@ This code is fully AI generated (ChatGPT 5.2 Thinking)</description>
     }catch(e){ return false; }
   }
 
-  function norm(s){ return (s||"").toLowerCase().replace(/\\s+/g," ").trim(); }
+	function norm(s)
+	{
+		let str = (s||"");
+		str = str.toLowerCase();
+		str = str.replace(/\\s+/g," ");
+		str = str.trim();
+		return str;
+	}
 
   function buttonLike(el){
     if(!el || el.nodeType!==1) return false;
-    var tag=(el.tagName||"").toLowerCase();
+    var tag=(el.tagName||"");
+	tag = tag.toLowerCase();
     var role=(el.getAttribute && el.getAttribute("role")) || "";
     return tag==="button" || role==="button" || (tag==="a" && role==="button") ||
       ((tag==="div"||tag==="span") && el.getAttribute && el.getAttribute("tabindex")!==null);
@@ -66,7 +74,8 @@ This code is fully AI generated (ChatGPT 5.2 Thinking)</description>
     var testid=norm(((el.getAttribute && el.getAttribute("data-testid"))||"") + " " +
                     ((el.getAttribute && el.getAttribute("data-test-id"))||""));
     var text=norm(el.textContent);
-    var hay=(label+" "+title+" "+testid+" "+text).trim();
+    var hay=(label+" "+title+" "+testid+" "+text);
+	hay = hay.trim();
 
     var hasNowAssist = hay.indexOf("now assist")!==-1 || hay.indexOf("nowassist")!==-1;
     var hasAssist = hay.indexOf("assist")!==-1;
@@ -105,7 +114,7 @@ This code is fully AI generated (ChatGPT 5.2 Thinking)</description>
                 norm(el.textContent||"");
       if(hay.indexOf("now assist")!==-1 || hay.indexOf("nowassist")!==-1) return el;
     }
-    return pool[0];
+	return GetValue(pool,0);
   }
 
   function openStateFromBtn(btn){
@@ -197,14 +206,14 @@ This code is fully AI generated (ChatGPT 5.2 Thinking)</description>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-02-17 13:54:21</sys_created_on>
         <sys_id>57300d762b0b3e509083fe395e91bf5f</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>x_snc_devtools.ShowNowAssistPanel</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_script_57300d762b0b3e509083fe395e91bf5f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-02-17 13:54:21</sys_updated_on>
+        <sys_updated_on>2026-02-18 10:44:44</sys_updated_on>
         <ui_type>0</ui_type>
         <use_scoped_format>false</use_scoped_format>
         <x_snc_devtools_global>true</x_snc_devtools_global>
