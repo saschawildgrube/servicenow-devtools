@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.HtmlRenderIcon</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Renders a Fontawesome icon in html.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>HtmlRenderIcon</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function HtmlRenderIcon(strIcon,nSize,bSpinning)
+{
+	strIcon = GetStringValue(strIcon);
+	nSize = GetIntegerValue(nSize);
+	bSpinning = GetBoolValue(bSpinning); 
+
+	if (strIcon == '')
+	{
+		return '';
+	}
+
+	var strHtml = '';
+	strHtml += '<link type="text/css" rel="stylesheet" href="/scripts/icon-fonts/font-awesome/css/font-awesome.css"></link>';
+
+	var strClasses = 'fa fa-'+strIcon;
+	if (bSpinning == true)
+	{
+		strClasses += ' fa-spin';
+	}
+	if (nSize > 5)
+	{
+		nSize = 5;
+	}
+	if (nSize > 1)
+	{
+		strClasses += ' fa-'+nSize+'x';
+	}
+	strClasses += ' fa-fw';
+
+	strHtml += '<i class="'+strClasses+'"></i>';	
+	return strHtml;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-02-19 20:16:55</sys_created_on>
+        <sys_id>f32ba4673b037a1062bf612c95e45a5e</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>HtmlRenderIcon</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_f32ba4673b037a1062bf612c95e45a5e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-02-19 20:26:56</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+</record_update>
