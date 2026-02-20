@@ -17,6 +17,11 @@
 	{
 		return grCountry;
 	}
+
+	if (GetStringValue(vCountry) == '')
+	{
+		return false;
+	}
 	
 	var grCountry = new GlideRecord('core_country');
 	grCountry.addQuery('name','=',vCountry);
@@ -48,14 +53,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-04-16 00:20:17</sys_created_on>
         <sys_id>ec97b043db3acd10bcced03cd39619b6</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_name>GetCountryRecord</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_ec97b043db3acd10bcced03cd39619b6</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-01-14 14:07:27</sys_updated_on>
+        <sys_updated_on>2026-02-18 16:59:09</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>

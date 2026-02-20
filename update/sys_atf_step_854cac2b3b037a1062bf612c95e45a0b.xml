@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <callable_outputs/>
+        <copied_from/>
+        <description>Run Server Side Validation Script</description>
+        <display_name>Run Server Side Script</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>1</order>
+        <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-02-19 20:21:38</sys_created_on>
+        <sys_id>854cac2b3b037a1062bf612c95e45a0b</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>Run Server Side Script</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_step_854cac2b3b037a1062bf612c95e45a0b</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-02-19 20:28:40</sys_updated_on>
+        <table/>
+        <test display_value="DevTools - HtmlRenderIcon">0d4ce82b3b037a1062bf612c95e45adb</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=854cac2b3b037a1062bf612c95e45a0b"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>854cac2b3b037a1062bf612c95e45a0b</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-02-19 20:21:38</sys_created_on>
+        <sys_id>814cac2b3b037a1062bf612c95e45a11</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-02-19 20:21:38</sys_updated_on>
+        <value>3.1</value>
+        <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>854cac2b3b037a1062bf612c95e45a0b</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-02-19 20:21:38</sys_created_on>
+        <sys_id>854cac2b3b037a1062bf612c95e45a12</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-02-19 20:28:40</sys_updated_on>
+        <value>(function(outputs, steps, stepResult, assertEqual)&#13;
+{&#13;
+	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
+	&#13;
+	test.SetResult(true);&#13;
+	&#13;
+	function TestCase_HtmlRenderIcon(strIcon,nSize,bSpinning,vExpected)&#13;
+	{&#13;
+		function TestCase_HtmlRenderIcon_CheckResult(vInput,vExpected,vResult)&#13;
+		{&#13;
+			return (vExpected == vResult);&#13;
+		}&#13;
+		&#13;
+		test.TestCase(&#13;
+			'Function HtmlRenderIcon()',&#13;
+			HtmlRenderIcon,&#13;
+			{&#13;
+				'strIcon': strIcon,&#13;
+				'nSize': nSize,&#13;
+				'bSpinning': bSpinning&#13;
+			},&#13;
+			vExpected,&#13;
+			TestCase_HtmlRenderIcon_CheckResult);&#13;
+	}&#13;
+		&#13;
+	TestCase_HtmlRenderIcon(&#13;
+		null,null,null,&#13;
+		'');&#13;
+&#13;
+	TestCase_HtmlRenderIcon(&#13;
+		'external-link',0,false,&#13;
+		'&lt;link type="text/css" rel="stylesheet" href="/scripts/icon-fonts/font-awesome/css/font-awesome.css"&gt;&lt;/link&gt;&lt;i class="fa fa-external-link fa-fw"&gt;&lt;/i&gt;');&#13;
+&#13;
+	TestCase_HtmlRenderIcon(&#13;
+		'external-link',4,true,&#13;
+		'&lt;link type="text/css" rel="stylesheet" href="/scripts/icon-fonts/font-awesome/css/font-awesome.css"&gt;&lt;/link&gt;&lt;i class="fa fa-external-link fa-spin fa-4x fa-fw"&gt;&lt;/i&gt;');&#13;
+	&#13;
+&#13;
+	&#13;
+	return test.GetResult();&#13;
+	&#13;
+})(outputs, steps, stepResult, assertEqual);</value>
+        <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
+    </sys_variable_value>
+</record_update>
