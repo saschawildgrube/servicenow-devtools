@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_script">
     <sys_ui_script action="INSERT_OR_UPDATE">
-        <active>false</active>
+        <active>true</active>
         <description>Shows the Now Assist Panel (if it is not yet visible) if the current user is entitled to use it.&#13;
 If a conversation Sys Id is given, the function attempts to show the given conversation. If not it just shows the panel with the latest conversation used by the user.&#13;
 This code is fully AI generated (ChatGPT 5.2 Thinking)</description>
@@ -9,35 +9,38 @@ This code is fully AI generated (ChatGPT 5.2 Thinking)</description>
         <name>x_snc_devtools.ShowNowAssistPanel</name>
         <script><![CDATA[function ShowNowAssistPanel(strConversationSysId)
 {
-// UI16 Client-side UI Action (runs in gsft_main iframe)
-// Ensures the Now Assist panel is OPEN after execution (idempotent, no toggle-close).
-//
-// How it works:
-//  - Injects a small "top-runner" into window.top (only once)
-//  - Executes it in the top document (where the header icon exists)
-//  - The top-runner:
-//      - Detects "open" via aria-expanded/aria-pressed/active class OR visible panel heuristics
-//      - Clicks the icon ONLY when it can confidently infer "closed"
-//      - If state is unknown, it does NOT click (to avoid accidentally closing an open panel)
-//
-(function ensureNowAssistOpenFromIframe() {
-  function injectAndRunTop(fnText, callText) {
-    var topDoc = window.top.document;
+	console.log('ShowNowAssistPanel(' + strConversationSysId + ')');  
+  // UI16 Client-side UI Action (runs in gsft_main iframe)
+  // Ensures the Now Assist panel is OPEN after execution (idempotent, no toggle-close).
+  // If a conversation sys_id is provided, it attempts to switch the panel to that conversation.
+  //
+  // Notes:
+  // - Conversation switching is best-effort and relies on DOM heuristics (label/testid/data-* lookups).
+  // - Works with multiple-conversation capable Now Assist panel where chats are backed by sys_cs_conversation.
 
-    if (!window.top.__nowAssistEnsureOpenInjected) {
-      var s = topDoc.createElement("script");
-      s.type = "text/javascript";
-      s.text = "window.__nowAssistEnsureOpenInjected=true;\n" + fnText;
-      topDoc.head.appendChild(s);
+  (function ensureNowAssistOpenAndSelectConversationFromIframe() {
+    function injectAndRunTop(fnText, callText) {
+      var topDoc = window.top.document;
+
+      if (!window.top.__nowAssistPanelAutomationInjected) {
+        var s = topDoc.createElement("script");
+        s.type = "text/javascript";
+        s.text = "window.__nowAssistPanelAutomationInjected=true;\n" + fnText;
+        topDoc.head.appendChild(s);
+      }
+
+      var s2 = topDoc.createElement("script");
+      s2.type = "text/javascript";
+      s2.text = callText;
+      topDoc.head.appendChild(s2);
     }
 
-    var s2 = topDoc.createElement("script");
-    s2.type = "text/javascript";
-    s2.text = callText;
-    topDoc.head.appendChild(s2);
-  }
+    var sysId =
+      typeof strConversationSysId === "string" && /^[0-9a-f]{32}$/i.test(strConversationSysId)
+        ? strConversationSysId
+        : "";
 
-  var TOP_RUNNER = String.raw`
+    var TOP_RUNNER = String.raw`
 (function(){
   function isVisible(el){
     if(!el) return false;
@@ -48,25 +51,58 @@ This code is fully AI generated (ChatGPT 5.2 Thinking)</description>
     }catch(e){ return false; }
   }
 
-	function norm(s)
-	{
-		let str = (s||"");
-		str = str.toLowerCase();
-		str = str.replace(/\\s+/g," ");
-		str = str.trim();
-		return str;
-	}
+  function norm(s){
+    var str = (s||"") + "";
+    str = str.toLowerCase();
+    str = str.replace(/\\s+/g," ");
+    str = str.trim();
+    return str;
+  }
+
+  function isSysId(s){
+    return /^[0-9a-f]{32}$/i.test((s||"")+"");
+  }
 
   function buttonLike(el){
     if(!el || el.nodeType!==1) return false;
-    var tag=(el.tagName||"");
-	tag = tag.toLowerCase();
+    var tag=(el.tagName||"").toLowerCase();
     var role=(el.getAttribute && el.getAttribute("role")) || "";
     return tag==="button" || role==="button" || (tag==="a" && role==="button") ||
       ((tag==="div"||tag==="span") && el.getAttribute && el.getAttribute("tabindex")!==null);
   }
 
-  function looksLikeNowAssistControl(el){
+  function closestClickable(el){
+    var cur = el;
+    for(var i=0; cur && i<8; i++){
+      if(buttonLike(cur)) return cur;
+      // list items/options often use role=option or role=menuitem
+      var role = cur.getAttribute && (cur.getAttribute("role")||"");
+      role = norm(role);
+      if(role==="option" || role==="menuitem" || role==="menuitemradio" || role==="listitem") return cur;
+      cur = cur.parentElement;
+    }
+    return el;
+  }
+
+  // BFS over light DOM + OPEN shadow DOM
+  function deepWalk(root, visitor, maxNodes){
+    var q=[root], scanned=0;
+    while(q.length && scanned<maxNodes){
+      var n=q.shift(); scanned++;
+      if(!n) continue;
+
+      if(n.nodeType===1) visitor(n);
+
+      // Element children
+      if(n.children && n.children.length){
+        for(var i=0;i<n.children.length;i++) q.push(n.children[i]);
+      }
+      // Open shadow root
+      if(n.shadowRoot) q.push(n.shadowRoot);
+    }
+  }
+
+  function looksLikeNowAssistLauncher(el){
     if(!buttonLike(el)) return false;
 
     var label=norm(el.getAttribute && el.getAttribute("aria-label"));
@@ -74,8 +110,7 @@ This code is fully AI generated (ChatGPT 5.2 Thinking)</description>
     var testid=norm(((el.getAttribute && el.getAttribute("data-testid"))||"") + " " +
                     ((el.getAttribute && el.getAttribute("data-test-id"))||""));
     var text=norm(el.textContent);
-    var hay=(label+" "+title+" "+testid+" "+text);
-	hay = hay.trim();
+    var hay=(label+" "+title+" "+testid+" "+text).trim();
 
     var hasNowAssist = hay.indexOf("now assist")!==-1 || hay.indexOf("nowassist")!==-1;
     var hasAssist = hay.indexOf("assist")!==-1;
@@ -85,28 +120,18 @@ This code is fully AI generated (ChatGPT 5.2 Thinking)</description>
     return hasNowAssist || testid.indexOf("assist")!==-1 || (hasAssist && (hasNow || hasGenAi));
   }
 
-  // Walk DOM + OPEN Shadow DOM only
-  function deepFind(root, maxNodes){
-    var q=[root], c=[], scanned=0;
-    while(q.length && scanned<maxNodes){
-      var n=q.shift(); scanned++;
-      if(!n) continue;
+  function findNowAssistLauncher(doc){
+    var best = null;
+    var candidates = [];
+    deepWalk(doc.body, function(el){
+      if(looksLikeNowAssistLauncher(el)) candidates.push(el);
+    }, 20000);
 
-      if(n.children && n.children.length){
-        for(var i=0;i<n.children.length;i++) q.push(n.children[i]);
-      }
-      if(n.shadowRoot) q.push(n.shadowRoot);
+    // Prefer visible
+    var visible = candidates.filter(isVisible);
+    var pool = visible.length ? visible : candidates;
 
-      if(n.nodeType===1 && looksLikeNowAssistControl(n)) c.push(n);
-    }
-    return c;
-  }
-
-  function pickBest(cands){
-    if(!cands || !cands.length) return null;
-    var visible=cands.filter(isVisible);
-    var pool=visible.length?visible:cands;
-
+    // Prefer explicit "now assist" label
     for(var i=0;i<pool.length;i++){
       var el=pool[i];
       var hay = norm((el.getAttribute && el.getAttribute("aria-label"))||"") + " " +
@@ -114,7 +139,7 @@ This code is fully AI generated (ChatGPT 5.2 Thinking)</description>
                 norm(el.textContent||"");
       if(hay.indexOf("now assist")!==-1 || hay.indexOf("nowassist")!==-1) return el;
     }
-	return GetValue(pool,0);
+    return pool[0] || null;
   }
 
   function openStateFromBtn(btn){
@@ -136,10 +161,11 @@ This code is fully AI generated (ChatGPT 5.2 Thinking)</description>
     return {known:false, open:false};
   }
 
-  function panelVisibleHeuristic(doc){
+  function findVisibleNowAssistPanel(doc){
+    // Try common containers; return the first visible matching element.
     var sels=[
-      '[role="dialog"][aria-label*="Assist" i]',
-      '[role="complementary"][aria-label*="Assist" i]',
+      '[role="dialog"][aria-label*="assist" i]',
+      '[role="complementary"][aria-label*="assist" i]',
       '[data-testid*="assist" i]',
       '[data-test-id*="assist" i]'
     ];
@@ -147,21 +173,20 @@ This code is fully AI generated (ChatGPT 5.2 Thinking)</description>
       var els=[];
       try{ els=doc.querySelectorAll(sels[i]); }catch(e){ continue; }
       for(var j=0;j<els.length;j++){
-        if(isVisible(els[j])) return true;
+        if(isVisible(els[j])) return els[j];
       }
     }
-    return false;
+    return null;
   }
 
   function ensureOpenOnce(){
     var doc=window.document;
     if(!doc || !doc.body) return;
 
-    // If a visible panel is already present, do nothing (idempotent)
-    if(panelVisibleHeuristic(doc)) return;
+    // Idempotent: if panel already visible, do nothing
+    if(findVisibleNowAssistPanel(doc)) return;
 
-    var candidates = deepFind(doc.body, 20000);
-    var btn = pickBest(candidates);
+    var btn = findNowAssistLauncher(doc);
     if(!btn) return;
 
     // If we can infer open from button state, do nothing
@@ -177,44 +202,212 @@ This code is fully AI generated (ChatGPT 5.2 Thinking)</description>
     // Unknown state: avoid toggling closed; do nothing
   }
 
-  // Expose & run
-  window.nowAssistEnsureOpen = function(){
-    // a couple quick retries (header/panel can render after form)
-    var tries=0, max=10;
+  // -------- Conversation switching (best-effort) --------
+
+  function looksLikeAllChatsControl(el){
+    if(!buttonLike(el)) return false;
+    var label=norm(el.getAttribute && el.getAttribute("aria-label"));
+    var title=norm(el.getAttribute && el.getAttribute("title"));
+    var testid=norm(((el.getAttribute && el.getAttribute("data-testid"))||"") + " " +
+                    ((el.getAttribute && el.getAttribute("data-test-id"))||""));
+    var text=norm(el.textContent);
+    var hay=(label+" "+title+" "+testid+" "+text).trim();
+
+    // Common wording per docs/UI: "All chats"
+    if(hay.indexOf("all chats")!==-1) return true;
+    // Heuristic: sometimes icon buttons have only testid
+    if(testid.indexOf("all")!==-1 && testid.indexOf("chat")!==-1) return true;
+
+    return false;
+  }
+
+  function findAllChatsControl(panelRoot){
+    var found = null;
+    var root = panelRoot || window.document.body;
+    deepWalk(root, function(el){
+      if(found) return;
+      if(looksLikeAllChatsControl(el) && isVisible(el)) found = el;
+    }, 12000);
+    return found;
+  }
+
+  function clickShowMoreIfPresent(panelRoot){
+    var root = panelRoot || window.document.body;
+    var clicked = false;
+
+    deepWalk(root, function(el){
+      if(clicked) return;
+      if(!isVisible(el)) return;
+
+      var tag=(el.tagName||"").toLowerCase();
+      if(tag!=="a" && tag!=="button" && !buttonLike(el)) return;
+
+      var label=norm(el.getAttribute && el.getAttribute("aria-label"));
+      var title=norm(el.getAttribute && el.getAttribute("title"));
+      var text=norm(el.textContent);
+      var hay=(label+" "+title+" "+text).trim();
+
+      if(hay==="show more" || hay.indexOf("show more")!==-1){
+        try{ el.click(); clicked=true; }catch(e){}
+      }
+    }, 12000);
+
+    return clicked;
+  }
+
+  function elementMentionsSysId(el, sysIdLower){
+    if(!el || el.nodeType!==1) return false;
+
+    // Check common attributes (cheap)
+    var attrs=["data-conversation-id","data-conversationid","data-sys-id","data-sysid","data-id","id","href","value","name"];
+    for(var i=0;i<attrs.length;i++){
+      var v = el.getAttribute && el.getAttribute(attrs[i]);
+      if(v && ((""+v).toLowerCase().indexOf(sysIdLower)!==-1)) return true;
+    }
+
+    // Check dataset values
+    try{
+      if(el.dataset){
+        for(var k in el.dataset){
+          if(!Object.prototype.hasOwnProperty.call(el.dataset,k)) continue;
+          var dv = (el.dataset[k]||"")+"";
+          if(dv.toLowerCase().indexOf(sysIdLower)!==-1) return true;
+        }
+      }
+    }catch(e){}
+
+    // As a last resort, check a small slice of textContent (sys_id rarely appears in text)
+    var t = (el.textContent||"");
+    if(t && t.length <= 200 && t.toLowerCase().indexOf(sysIdLower)!==-1) return true;
+
+    return false;
+  }
+
+  function findConversationClickableBySysId(root, sysId){
+    var sysIdLower = (sysId||"").toLowerCase();
+    var hit = null;
+
+    deepWalk(root, function(el){
+      if(hit) return;
+      if(!isVisible(el)) return;
+      if(elementMentionsSysId(el, sysIdLower)){
+        hit = closestClickable(el);
+      }
+    }, 25000);
+
+    return hit;
+  }
+
+  function findScrollableList(root){
+    var scroller = null;
+    deepWalk(root, function(el){
+      if(scroller) return;
+      if(!isVisible(el)) return;
+
+      try{
+        var s = getComputedStyle(el);
+        var oy = norm(s.overflowY);
+        if((oy==="auto" || oy==="scroll") && el.scrollHeight > el.clientHeight + 50){
+          scroller = el;
+        }
+      }catch(e){}
+    }, 25000);
+    return scroller;
+  }
+
+  function trySelectConversation(sysId){
+    if(!isSysId(sysId)) return true; // nothing to do
+    var doc = window.document;
+
+    var panel = findVisibleNowAssistPanel(doc);
+    if(!panel) return false;
+
+    // 1) Try direct click by sys_id anywhere within the panel
+    var target = findConversationClickableBySysId(panel, sysId);
+    if(target){
+      try{ target.click(); }catch(e){}
+      return true;
+    }
+
+    // 2) Open "All chats" list (if available) then try again
+    var allChatsBtn = findAllChatsControl(panel) || findAllChatsControl(doc.body);
+    if(allChatsBtn){
+      try{ allChatsBtn.click(); }catch(e){}
+    }
+
+    // 3) Expand list if there's a "Show more"
+    clickShowMoreIfPresent(doc.body);
+
+    // 4) Look again (conversation list may render outside the panel container)
+    target = findConversationClickableBySysId(doc.body, sysId);
+    if(target){
+      try{ target.click(); }catch(e){}
+      return true;
+    }
+
+    // 5) If list is virtualized, scroll and let the interval retry
+    var sc = findScrollableList(doc.body);
+    if(sc){
+      try{ sc.scrollTop = sc.scrollHeight; }catch(e){}
+    }
+
+    return false;
+  }
+
+  // Expose: open panel + optionally select conversation
+  window.nowAssistOpenAndSelectConversation = function(conversationSysId){
+    // Store/override target so repeated invocations can switch while already visible
+    window.__nowAssistTargetConversationSysId = isSysId(conversationSysId) ? conversationSysId : "";
+
+    var tries=0, max=30;
     var t=setInterval(function(){
       tries++;
+
+      // keep idempotent open
       ensureOpenOnce();
-      // stop early if the panel becomes visible
-      if(panelVisibleHeuristic(window.document) || tries>=max) clearInterval(t);
+
+      var target = window.__nowAssistTargetConversationSysId;
+
+      // If no target sys_id, we only needed to ensure open.
+      if(!target){
+        if(findVisibleNowAssistPanel(window.document) || tries>=max) clearInterval(t);
+        return;
+      }
+
+      // Best-effort switching
+      var ok = trySelectConversation(target);
+
+      // Stop early if we clicked/found it (or on max tries)
+      if(ok || tries>=max) clearInterval(t);
     }, 200);
   };
 })();`;
 
-  // Run from iframe: inject into TOP and execute in TOP
-  try {
-    injectAndRunTop(TOP_RUNNER, "window.nowAssistEnsureOpen && window.nowAssistEnsureOpen();");
-  } catch (e) {
-    // Intentionally no console logging (per requirement)
-  }
-})();
-
-
-
-}
-]]></script>
+    try {
+      injectAndRunTop(
+        TOP_RUNNER,
+        "window.nowAssistOpenAndSelectConversation && window.nowAssistOpenAndSelectConversation(" +
+          JSON.stringify(sysId) +
+          ");"
+      );
+    } catch (e) {
+      // Intentionally no console logging
+    }
+  })();
+}]]></script>
         <script_name>ShowNowAssistPanel</script_name>
         <sys_class_name>sys_ui_script</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-02-17 13:54:21</sys_created_on>
         <sys_id>57300d762b0b3e509083fe395e91bf5f</sys_id>
-        <sys_mod_count>10</sys_mod_count>
+        <sys_mod_count>14</sys_mod_count>
         <sys_name>x_snc_devtools.ShowNowAssistPanel</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_script_57300d762b0b3e509083fe395e91bf5f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-02-23 15:30:46</sys_updated_on>
+        <sys_updated_on>2026-02-23 16:08:21</sys_updated_on>
         <ui_type>0</ui_type>
         <use_scoped_format>false</use_scoped_format>
         <x_snc_devtools_global>true</x_snc_devtools_global>
