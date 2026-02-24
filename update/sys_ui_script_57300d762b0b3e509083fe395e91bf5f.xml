@@ -7,25 +7,21 @@ This code is fully AI generated (ChatGPT 5.2 Thinking)</description>
         <global>true</global>
         <ignore_in_now_experience>false</ignore_in_now_experience>
         <name>x_snc_devtools.ShowNowAssistPanel</name>
-        <script><![CDATA[function ShowNowAssistPanel(strConversationSysId)
-{
-	console.log('ShowNowAssistPanel(' + strConversationSysId + ')');  
-  // UI16 Client-side UI Action (runs in gsft_main iframe)
-  // Ensures the Now Assist panel is OPEN after execution (idempotent, no toggle-close).
-  // If a conversation sys_id is provided, it attempts to switch the panel to that conversation.
-  //
-  // Notes:
-  // - Conversation switching is best-effort and relies on DOM heuristics (label/testid/data-* lookups).
-  // - Works with multiple-conversation capable Now Assist panel where chats are backed by sys_cs_conversation.
-
-  (function ensureNowAssistOpenAndSelectConversationFromIframe() {
+        <script><![CDATA[function ShowNowAssistPanel(strConversationSysId) {
+  (function () {
     function injectAndRunTop(fnText, callText) {
       var topDoc = window.top.document;
 
-      if (!window.top.__nowAssistPanelAutomationInjected) {
+      // Versioned injection so you can iterate without stale code.
+      var VERSION = "nowAssistPanelAutomation_v2_2026-02-23";
+      if (window.top.__nowAssistPanelAutomationVersion !== VERSION) {
         var s = topDoc.createElement("script");
         s.type = "text/javascript";
-        s.text = "window.__nowAssistPanelAutomationInjected=true;\n" + fnText;
+        s.text =
+          "window.__nowAssistPanelAutomationVersion=" +
+          JSON.stringify(VERSION) +
+          ";\n" +
+          fnText;
         topDoc.head.appendChild(s);
       }
 
@@ -42,13 +38,31 @@ This code is fully AI generated (ChatGPT 5.2 Thinking)</description>
 
     var TOP_RUNNER = String.raw`
 (function(){
-  function isVisible(el){
-    if(!el) return false;
+  var DEBUG = true;
+
+  function ensureLogBuffer(){
     try{
-      var r=el.getBoundingClientRect();
-      var s=getComputedStyle(el);
-      return r.width>0 && r.height>0 && s.display!=="none" && s.visibility!=="hidden" && s.opacity!=="0";
-    }catch(e){ return false; }
+      if(!window.__nowAssistDebugLogV2) window.__nowAssistDebugLogV2 = [];
+      if(!window.__nowAssistDebugDumpV2){
+        window.__nowAssistDebugDumpV2 = function(){
+          try{
+            console.log("[NowAssistPanelV2] --- DUMP (" + (window.__nowAssistDebugLogV2||[]).length + " entries) ---");
+            (window.__nowAssistDebugLogV2||[]).forEach(function(x){ console.log.apply(console, x); });
+          }catch(e){}
+        };
+      }
+    }catch(e){}
+  }
+
+  function log(){
+    if(!DEBUG) return;
+    ensureLogBuffer();
+    try{
+      var args = Array.prototype.slice.call(arguments);
+      args.unshift("[NowAssistPanelV2]");
+      console.log.apply(console, args);
+      window.__nowAssistDebugLogV2.push(args);
+    }catch(e){}
   }
 
   function norm(s){
@@ -63,6 +77,37 @@ This code is fully AI generated (ChatGPT 5.2 Thinking)</description>
     return /^[0-9a-f]{32}$/i.test((s||"")+"");
   }
 
+  function isVisible(el){
+    if(!el) return false;
+    try{
+      var r=el.getBoundingClientRect();
+      var s=getComputedStyle(el);
+      return r.width>0 && r.height>0 && s.display!=="none" && s.visibility!=="hidden" && s.opacity!=="0";
+    }catch(e){ return false; }
+  }
+
+  function describe(el){
+    if(!el) return "(null)";
+    try{
+      var tag = (el.tagName||"").toLowerCase();
+      var role = el.getAttribute && el.getAttribute("role");
+      var label = el.getAttribute && el.getAttribute("aria-label");
+      var title = el.getAttribute && el.getAttribute("title");
+      var testid = el.getAttribute && (el.getAttribute("data-testid") || el.getAttribute("data-test-id"));
+      var id = el.id;
+      var cls = (typeof el.className==="string") ? el.className : "";
+      return tag +
+        (id ? "#"+id : "") +
+        (cls ? "."+cls.split(/\\s+/).slice(0,3).join(".") : "") +
+        (role ? " role="+role : "") +
+        (label ? " aria-label="+label : "") +
+        (title ? " title="+title : "") +
+        (testid ? " testid="+testid : "");
+    }catch(e){
+      return "(unprintable element)";
+    }
+  }
+
   function buttonLike(el){
     if(!el || el.nodeType!==1) return false;
     var tag=(el.tagName||"").toLowerCase();
@@ -71,36 +116,124 @@ This code is fully AI generated (ChatGPT 5.2 Thinking)</description>
       ((tag==="div"||tag==="span") && el.getAttribute && el.getAttribute("tabindex")!==null);
   }
 
-  function closestClickable(el){
-    var cur = el;
-    for(var i=0; cur && i<8; i++){
-      if(buttonLike(cur)) return cur;
-      // list items/options often use role=option or role=menuitem
-      var role = cur.getAttribute && (cur.getAttribute("role")||"");
-      role = norm(role);
-      if(role==="option" || role==="menuitem" || role==="menuitemradio" || role==="listitem") return cur;
-      cur = cur.parentElement;
+  function realClick(el){
+    if(!el) return false;
+    try{
+      // Some Now Experience components react better to real mouse events than .click()
+      ["pointerdown","mousedown","pointerup","mouseup","click"].forEach(function(t){
+        el.dispatchEvent(new MouseEvent(t, { bubbles:true, cancelable:true, view:window }));
+      });
+      return true;
+    }catch(e){
+      try{ el.click(); return true; }catch(e2){ return false; }
     }
-    return el;
   }
 
-  // BFS over light DOM + OPEN shadow DOM
-  function deepWalk(root, visitor, maxNodes){
-    var q=[root], scanned=0;
+  // Deep walk: light DOM + OPEN shadow DOM + accessible iframes
+  function deepWalkMultiRoot(doc, visitor, maxNodes){
+    var q = [];
+    if(doc && doc.body) q.push(doc.body);
+
+    // Add iframe bodies when accessible (same-origin)
+    try{
+      var iframes = doc.querySelectorAll("iframe");
+      for(var i=0;i<iframes.length;i++){
+        try{
+          var idoc = iframes[i].contentDocument;
+          if(idoc && idoc.body) q.push(idoc.body);
+        }catch(e){}
+      }
+    }catch(e){}
+
+    var scanned=0;
     while(q.length && scanned<maxNodes){
       var n=q.shift(); scanned++;
       if(!n) continue;
 
       if(n.nodeType===1) visitor(n);
 
-      // Element children
       if(n.children && n.children.length){
-        for(var i=0;i<n.children.length;i++) q.push(n.children[i]);
+        for(var j=0;j<n.children.length;j++) q.push(n.children[j]);
       }
-      // Open shadow root
       if(n.shadowRoot) q.push(n.shadowRoot);
     }
   }
+
+  // ---------- Panel detection (fixes your “panel visible but not detected” problem) ----------
+
+  function isPinUnpinNowAssistButton(el){
+    if(!buttonLike(el)) return false;
+    var label = norm(el.getAttribute && el.getAttribute("aria-label"));
+    var title = norm(el.getAttribute && el.getAttribute("title"));
+    var text  = norm(el.textContent);
+    var hay = (label+" "+title+" "+text).trim();
+    return hay.indexOf("pin now assist") !== -1 || hay.indexOf("unpin now assist") !== -1;
+  }
+
+  function findPinUnpinButton(doc){
+    var hit = null;
+    deepWalkMultiRoot(doc, function(el){
+      if(hit) return;
+      if(!isVisible(el)) return;
+      if(isPinUnpinNowAssistButton(el)) hit = el;
+    }, 30000);
+    if(hit) log("Found Pin/Unpin control (panel strong-signal):", describe(hit));
+    return hit;
+  }
+
+  function looksLikeNowAssistPanelContainer(el){
+    if(!el || el.nodeType!==1) return false;
+    if(!isVisible(el)) return false;
+
+    var role = norm(el.getAttribute && el.getAttribute("role"));
+    var label = norm(el.getAttribute && el.getAttribute("aria-label"));
+    var testid = norm((el.getAttribute && (el.getAttribute("data-testid") || el.getAttribute("data-test-id"))) || "");
+    var cls = norm((typeof el.className==="string") ? el.className : "");
+    var tag = norm(el.tagName || "");
+
+    var roleMatch = (role === "dialog" || role === "complementary");
+    var labelMatch = (label.indexOf("assist") !== -1 || label.indexOf("now assist") !== -1);
+    var tidMatch = (testid.indexOf("assist") !== -1);
+    var clsMatch = (cls.indexOf("assist") !== -1 || cls.indexOf("now-assist") !== -1);
+    var tagMatch = (tag.indexOf("assist") !== -1);
+
+    return (roleMatch && (labelMatch || tidMatch || clsMatch || tagMatch)) || tidMatch || (tagMatch && clsMatch);
+  }
+
+  function findVisiblePanelRoot(doc){
+    var found = null;
+
+    // 1) Try direct container-like elements via deep walk
+    deepWalkMultiRoot(doc, function(el){
+      if(found) return;
+      if(looksLikeNowAssistPanelContainer(el)) found = el;
+    }, 35000);
+
+    if(found){
+      log("Panel root detected via container heuristics:", describe(found));
+      return found;
+    }
+
+    // 2) Fallback: if Pin/Unpin is visible, climb to a reasonable container
+    var pinBtn = findPinUnpinButton(doc);
+    if(pinBtn){
+      var cur = pinBtn;
+      for(var i=0; cur && i<20; i++){
+        if(looksLikeNowAssistPanelContainer(cur)) {
+          log("Panel root inferred by climbing from Pin/Unpin:", describe(cur));
+          return cur;
+        }
+        cur = cur.parentElement;
+      }
+      // last resort: return the pin button parent chain top-ish
+      log("Panel root fallback: using Pin/Unpin parent element:", describe(pinBtn.parentElement));
+      return pinBtn.parentElement || pinBtn;
+    }
+
+    return null;
+  }
+
+  // ---------- Launcher detection (avoid picking Pin/Unpin as “launcher”) ----------
 
   function looksLikeNowAssistLauncher(el){
     if(!buttonLike(el)) return false;
@@ -112,160 +245,71 @@ This code is fully AI generated (ChatGPT 5.2 Thinking)</description>
     var text=norm(el.textContent);
     var hay=(label+" "+title+" "+testid+" "+text).trim();
 
+    // Exclude panel-internal controls that confused v1
+    if(hay.indexOf("pin now assist") !== -1 || hay.indexOf("unpin now assist") !== -1) return false;
+
+    // Prefer true launcher wording; keep generic fallback
     var hasNowAssist = hay.indexOf("now assist")!==-1 || hay.indexOf("nowassist")!==-1;
+    var hasOpenClose = hay.indexOf("open now assist")!==-1 || hay.indexOf("close now assist")!==-1;
     var hasAssist = hay.indexOf("assist")!==-1;
     var hasNow = hay.indexOf("now")!==-1;
-    var hasGenAi = hay.indexOf("genai")!==-1 || hay.indexOf("gen ai")!==-1 || hay.indexOf(" ai")!==-1;
 
-    return hasNowAssist || testid.indexOf("assist")!==-1 || (hasAssist && (hasNow || hasGenAi));
+    return hasOpenClose || hasNowAssist || (hasAssist && hasNow) || (testid.indexOf("assist")!==-1);
   }
 
   function findNowAssistLauncher(doc){
-    var best = null;
     var candidates = [];
-    deepWalk(doc.body, function(el){
-      if(looksLikeNowAssistLauncher(el)) candidates.push(el);
-    }, 20000);
+    deepWalkMultiRoot(doc, function(el){
+      if(looksLikeNowAssistLauncher(el) && isVisible(el)) candidates.push(el);
+    }, 35000);
 
-    // Prefer visible
-    var visible = candidates.filter(isVisible);
-    var pool = visible.length ? visible : candidates;
+    log("Launcher candidates (filtered, visible):", candidates.length);
 
-    // Prefer explicit "now assist" label
-    for(var i=0;i<pool.length;i++){
-      var el=pool[i];
+    // Prefer "open/close now assist"
+    for(var i=0;i<candidates.length;i++){
+      var el=candidates[i];
       var hay = norm((el.getAttribute && el.getAttribute("aria-label"))||"") + " " +
-                norm((el.getAttribute && el.getAttribute("title"))||"") + " " +
-                norm(el.textContent||"");
-      if(hay.indexOf("now assist")!==-1 || hay.indexOf("nowassist")!==-1) return el;
-    }
-    return pool[0] || null;
-  }
-
-  function openStateFromBtn(btn){
-    if(!btn) return {known:false, open:false};
-
-    var exp=btn.getAttribute && btn.getAttribute("aria-expanded");
-    if(exp==="true") return {known:true, open:true};
-    if(exp==="false") return {known:true, open:false};
-
-    var prs=btn.getAttribute && btn.getAttribute("aria-pressed");
-    if(prs==="true") return {known:true, open:true};
-    if(prs==="false") return {known:true, open:false};
-
-    var cls=norm((btn.className && typeof btn.className==="string") ? btn.className : "");
-    if(cls.indexOf("active")!==-1 || cls.indexOf("selected")!==-1 || cls.indexOf("is-active")!==-1){
-      return {known:true, open:true};
-    }
-
-    return {known:false, open:false};
-  }
-
-  function findVisibleNowAssistPanel(doc){
-    // Try common containers; return the first visible matching element.
-    var sels=[
-      '[role="dialog"][aria-label*="assist" i]',
-      '[role="complementary"][aria-label*="assist" i]',
-      '[data-testid*="assist" i]',
-      '[data-test-id*="assist" i]'
-    ];
-    for(var i=0;i<sels.length;i++){
-      var els=[];
-      try{ els=doc.querySelectorAll(sels[i]); }catch(e){ continue; }
-      for(var j=0;j<els.length;j++){
-        if(isVisible(els[j])) return els[j];
+                norm((el.getAttribute && el.getAttribute("title"))||"");
+      if(hay.indexOf("open now assist")!==-1 || hay.indexOf("close now assist")!==-1){
+        log("Picked launcher (open/close label):", describe(el));
+        return el;
       }
     }
-    return null;
+
+    // Otherwise first candidate
+    if(candidates[0]) log("Picked launcher (first candidate):", describe(candidates[0]));
+    return candidates[0] || null;
   }
 
-  function ensureOpenOnce(){
-    var doc=window.document;
-    if(!doc || !doc.body) return;
-
-    // Idempotent: if panel already visible, do nothing
-    if(findVisibleNowAssistPanel(doc)) return;
+  function ensurePanelOpen(doc){
+    var panel = findVisiblePanelRoot(doc);
+    if(panel){
+      log("Panel considered OPEN (root found).");
+      return true;
+    }
 
     var btn = findNowAssistLauncher(doc);
-    if(!btn) return;
-
-    // If we can infer open from button state, do nothing
-    var st = openStateFromBtn(btn);
-    if(st.known && st.open) return;
-
-    // Click ONLY if we can confidently infer "closed"
-    if(st.known && !st.open) {
-      btn.click();
-      return;
+    if(!btn){
+      log("No launcher found; cannot open panel.");
+      return false;
     }
 
-    // Unknown state: avoid toggling closed; do nothing
+    log("Panel not detected -> clicking launcher:", describe(btn));
+    realClick(btn);
+    return false; // allow retries to detect panel after render
   }
 
-  // -------- Conversation switching (best-effort) --------
-
-  function looksLikeAllChatsControl(el){
-    if(!buttonLike(el)) return false;
-    var label=norm(el.getAttribute && el.getAttribute("aria-label"));
-    var title=norm(el.getAttribute && el.getAttribute("title"));
-    var testid=norm(((el.getAttribute && el.getAttribute("data-testid"))||"") + " " +
-                    ((el.getAttribute && el.getAttribute("data-test-id"))||""));
-    var text=norm(el.textContent);
-    var hay=(label+" "+title+" "+testid+" "+text).trim();
-
-    // Common wording per docs/UI: "All chats"
-    if(hay.indexOf("all chats")!==-1) return true;
-    // Heuristic: sometimes icon buttons have only testid
-    if(testid.indexOf("all")!==-1 && testid.indexOf("chat")!==-1) return true;
-
-    return false;
-  }
-
-  function findAllChatsControl(panelRoot){
-    var found = null;
-    var root = panelRoot || window.document.body;
-    deepWalk(root, function(el){
-      if(found) return;
-      if(looksLikeAllChatsControl(el) && isVisible(el)) found = el;
-    }, 12000);
-    return found;
-  }
-
-  function clickShowMoreIfPresent(panelRoot){
-    var root = panelRoot || window.document.body;
-    var clicked = false;
-
-    deepWalk(root, function(el){
-      if(clicked) return;
-      if(!isVisible(el)) return;
-
-      var tag=(el.tagName||"").toLowerCase();
-      if(tag!=="a" && tag!=="button" && !buttonLike(el)) return;
-
-      var label=norm(el.getAttribute && el.getAttribute("aria-label"));
-      var title=norm(el.getAttribute && el.getAttribute("title"));
-      var text=norm(el.textContent);
-      var hay=(label+" "+title+" "+text).trim();
-
-      if(hay==="show more" || hay.indexOf("show more")!==-1){
-        try{ el.click(); clicked=true; }catch(e){}
-      }
-    }, 12000);
-
-    return clicked;
-  }
+  // ---------- Conversation switching ----------
 
   function elementMentionsSysId(el, sysIdLower){
     if(!el || el.nodeType!==1) return false;
 
-    // Check common attributes (cheap)
     var attrs=["data-conversation-id","data-conversationid","data-sys-id","data-sysid","data-id","id","href","value","name"];
     for(var i=0;i<attrs.length;i++){
       var v = el.getAttribute && el.getAttribute(attrs[i]);
       if(v && ((""+v).toLowerCase().indexOf(sysIdLower)!==-1)) return true;
     }
 
-    // Check dataset values
     try{
       if(el.dataset){
         for(var k in el.dataset){
@@ -276,10 +320,6 @@ This code is fully AI generated (ChatGPT 5.2 Thinking)</description>
       }
     }catch(e){}
 
-    // As a last resort, check a small slice of textContent (sys_id rarely appears in text)
-    var t = (el.textContent||"");
-    if(t && t.length <= 200 && t.toLowerCase().indexOf(sysIdLower)!==-1) return true;
-
     return false;
   }
 
@@ -287,112 +327,174 @@ This code is fully AI generated (ChatGPT 5.2 Thinking)</description>
     var sysIdLower = (sysId||"").toLowerCase();
     var hit = null;
 
-    deepWalk(root, function(el){
+    // Scan deep under the given root (including shadow)
+    var doc = window.document;
+    deepWalkMultiRoot(doc, function(el){
       if(hit) return;
+      if(root && el !== root && !root.contains(el)) return;
       if(!isVisible(el)) return;
       if(elementMentionsSysId(el, sysIdLower)){
-        hit = closestClickable(el);
+        hit = el;
+        // climb to clickable
+        var cur = el;
+        for(var i=0; cur && i<10; i++){
+          if(buttonLike(cur)) { hit = cur; break; }
+          cur = cur.parentElement;
+        }
       }
-    }, 25000);
+    }, 50000);
 
+    log("Conversation sys_id scan hit:", hit ? describe(hit) : "(none)");
     return hit;
   }
 
-  function findScrollableList(root){
-    var scroller = null;
-    deepWalk(root, function(el){
-      if(scroller) return;
+  function looksLikeChatsControl(el){
+    if(!buttonLike(el)) return false;
+    var label=norm(el.getAttribute && el.getAttribute("aria-label"));
+    var title=norm(el.getAttribute && el.getAttribute("title"));
+    var testid=norm(((el.getAttribute && el.getAttribute("data-testid"))||"") + " " +
+                    ((el.getAttribute && el.getAttribute("data-test-id"))||""));
+    var text=norm(el.textContent);
+    var hay=(label+" "+title+" "+testid+" "+text).trim();
+
+    // “Chats” is the standard label for the control that opens “All chats”
+    if(hay.indexOf("chats") !== -1) return true;
+    if(hay.indexOf("all chats") !== -1) return true;
+    if(testid.indexOf("chat") !== -1) return true;
+    return false;
+  }
+
+  function findChatsControl(panelRoot){
+    var found = null;
+    var doc = window.document;
+
+    deepWalkMultiRoot(doc, function(el){
+      if(found) return;
+      if(panelRoot && el !== panelRoot && !panelRoot.contains(el)) return;
       if(!isVisible(el)) return;
+      if(looksLikeChatsControl(el)) found = el;
+    }, 30000);
+
+    log("Chats/All chats control:", found ? describe(found) : "(not found)");
+    return found;
+  }
+
+  function sampleAnySysIdLikeValuesWithin(panelRoot){
+    var hits = [];
+    var re = /[0-9a-f]{32}/ig;
+    var doc = window.document;
+
+    deepWalkMultiRoot(doc, function(el){
+      if(hits.length>=15) return;
+      if(panelRoot && el !== panelRoot && !panelRoot.contains(el)) return;
 
       try{
-        var s = getComputedStyle(el);
-        var oy = norm(s.overflowY);
-        if((oy==="auto" || oy==="scroll") && el.scrollHeight > el.clientHeight + 50){
-          scroller = el;
+        if(el.attributes){
+          for(var i=0;i<el.attributes.length && hits.length<15;i++){
+            var a = el.attributes[i];
+            if(!a || !a.value) continue;
+            var m = (a.value+"").match(re);
+            if(m && m.length){
+              hits.push({where:"attr:"+a.name, value:m[0], el: describe(el)});
+            }
+          }
         }
       }catch(e){}
-    }, 25000);
-    return scroller;
+
+      try{
+        if(el.dataset){
+          for(var k in el.dataset){
+            if(hits.length>=15) break;
+            var dv = (el.dataset[k]||"")+"";
+            var md = dv.match(re);
+            if(md && md.length){
+              hits.push({where:"dataset:"+k, value:md[0], el: describe(el)});
+            }
+          }
+        }
+      }catch(e){}
+    }, 60000);
+
+    return hits;
   }
 
   function trySelectConversation(sysId){
-    if(!isSysId(sysId)) return true; // nothing to do
+    if(!isSysId(sysId)) {
+      log("No valid sys_id provided -> selection skipped.");
+      return true;
+    }
+
     var doc = window.document;
+    var panelRoot = findVisiblePanelRoot(doc);
+    if(!panelRoot){
+      log("Panel root not detected yet -> cannot select conversation.");
+      return false;
+    }
 
-    var panel = findVisibleNowAssistPanel(doc);
-    if(!panel) return false;
+    // Ensure chat list is open (Chats icon -> All chats)
+    var chatsBtn = findChatsControl(panelRoot);
+    if(chatsBtn){
+      log("Clicking Chats/All chats control:", describe(chatsBtn));
+      realClick(chatsBtn);
+    } else {
+      log("No Chats control found; will still attempt sys_id scan in panel.");
+    }
 
-    // 1) Try direct click by sys_id anywhere within the panel
-    var target = findConversationClickableBySysId(panel, sysId);
+    // Try to find a clickable element that contains the sys_id
+    var target = findConversationClickableBySysId(panelRoot, sysId) || findConversationClickableBySysId(doc.body, sysId);
     if(target){
-      try{ target.click(); }catch(e){}
+      log("Clicking conversation target:", describe(target));
+      realClick(target);
       return true;
     }
 
-    // 2) Open "All chats" list (if available) then try again
-    var allChatsBtn = findAllChatsControl(panel) || findAllChatsControl(doc.body);
-    if(allChatsBtn){
-      try{ allChatsBtn.click(); }catch(e){}
-    }
-
-    // 3) Expand list if there's a "Show more"
-    clickShowMoreIfPresent(doc.body);
-
-    // 4) Look again (conversation list may render outside the panel container)
-    target = findConversationClickableBySysId(doc.body, sysId);
-    if(target){
-      try{ target.click(); }catch(e){}
-      return true;
-    }
-
-    // 5) If list is virtualized, scroll and let the interval retry
-    var sc = findScrollableList(doc.body);
-    if(sc){
-      try{ sc.scrollTop = sc.scrollHeight; }catch(e){}
+    // Diagnostics: do we see ANY sys_id-like values inside the panel?
+    var samples = sampleAnySysIdLikeValuesWithin(panelRoot);
+    if(samples && samples.length){
+      log("Found sys_id-like values inside panel (sample up to 15):", samples);
+    } else {
+      log("No sys_id-like values found inside panel. UI may not expose sys_id in DOM (or uses closed shadow DOM).");
     }
 
     return false;
   }
 
-  // Expose: open panel + optionally select conversation
-  window.nowAssistOpenAndSelectConversation = function(conversationSysId){
-    // Store/override target so repeated invocations can switch while already visible
-    window.__nowAssistTargetConversationSysId = isSysId(conversationSysId) ? conversationSysId : "";
+  window.nowAssistOpenAndSelectConversationV2 = function(conversationSysId){
+    ensureLogBuffer();
+    window.__nowAssistTargetConversationSysIdV2 = isSysId(conversationSysId) ? conversationSysId : "";
+    log("Invocation target sys_id:", window.__nowAssistTargetConversationSysIdV2 || "(none)");
 
-    var tries=0, max=30;
+    var tries=0, max=50;
     var t=setInterval(function(){
       tries++;
 
-      // keep idempotent open
-      ensureOpenOnce();
+      var openOk = ensurePanelOpen(window.document);
+      var target = window.__nowAssistTargetConversationSysIdV2;
 
-      var target = window.__nowAssistTargetConversationSysId;
-
-      // If no target sys_id, we only needed to ensure open.
       if(!target){
-        if(findVisibleNowAssistPanel(window.document) || tries>=max) clearInterval(t);
+        if(openOk || tries>=max){
+          log("Done (no target). tries:", tries);
+          clearInterval(t);
+        }
         return;
       }
 
-      // Best-effort switching
       var ok = trySelectConversation(target);
 
-      // Stop early if we clicked/found it (or on max tries)
-      if(ok || tries>=max) clearInterval(t);
-    }, 200);
+      if(ok || tries>=max){
+        log("Done. ok:", ok, "tries:", tries);
+        clearInterval(t);
+      }
+    }, 250);
   };
 })();`;
 
-    try {
-      injectAndRunTop(
-        TOP_RUNNER,
-        "window.nowAssistOpenAndSelectConversation && window.nowAssistOpenAndSelectConversation(" +
-          JSON.stringify(sysId) +
-          ");"
-      );
-    } catch (e) {
-      // Intentionally no console logging
-    }
+    injectAndRunTop(
+      TOP_RUNNER,
+      "window.nowAssistOpenAndSelectConversationV2 && window.nowAssistOpenAndSelectConversationV2(" +
+        JSON.stringify(sysId) +
+        ");"
+    );
   })();
 }]]></script>
         <script_name>ShowNowAssistPanel</script_name>
@@ -400,14 +502,14 @@ This code is fully AI generated (ChatGPT 5.2 Thinking)</description>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-02-17 13:54:21</sys_created_on>
         <sys_id>57300d762b0b3e509083fe395e91bf5f</sys_id>
-        <sys_mod_count>14</sys_mod_count>
+        <sys_mod_count>17</sys_mod_count>
         <sys_name>x_snc_devtools.ShowNowAssistPanel</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_script_57300d762b0b3e509083fe395e91bf5f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-02-23 16:08:21</sys_updated_on>
+        <sys_updated_on>2026-02-23 16:44:34</sys_updated_on>
         <ui_type>0</ui_type>
         <use_scoped_format>false</use_scoped_format>
         <x_snc_devtools_global>true</x_snc_devtools_global>
