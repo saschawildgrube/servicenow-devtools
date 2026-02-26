@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="DELETE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.Test1</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <mobile_callable>false</mobile_callable>
+        <name>Test1</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script/>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-02-26 04:01:25</sys_created_on>
+        <sys_id>6a0f41212b9ffa509083fe395e91bf45</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Test1</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_6a0f41212b9ffa509083fe395e91bf45</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-02-26 04:01:25</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>a8cbb5133b6b5e540fd412c5e4e45a1f</instance_id>
+        <instance_name>wildyokohama</instance_name>
+        <name>sys_script_include_6a0f41212b9ffa509083fe395e91bf45</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include"><sys_script_include action="INSERT_OR_UPDATE"><access>package_private</access><active>true</active><api_name>x_snc_devtools.Test1</api_name><caller_access/><client_callable>false</client_callable><description/><mobile_callable>false</mobile_callable><name>Test1</name><sandbox_callable>false</sandbox_callable><script/><sys_class_name>sys_script_include</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2026-02-26 04:01:25</sys_created_on><sys_id>6a0f41212b9ffa509083fe395e91bf45</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Test1</sys_name><sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package><sys_policy/><sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope><sys_update_name>sys_script_include_6a0f41212b9ffa509083fe395e91bf45</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-02-26 04:01:25</sys_updated_on><x_snc_devtools_sys_ui_script/></sys_script_include></record_update>]]></payload>
+        <payload_hash>403762031</payload_hash>
+        <record_name>Test1</record_name>
+        <reverted_from/>
+        <source>437e18782b1b36509083fe395e91bfa3</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-02-26 04:01:26</sys_created_on>
+        <sys_id>ba0f41212b9ffa509083fe395e91bf4c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19c981bd4a40000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-02-26 04:01:26</sys_updated_on>
+        <type>Script Include</type>
+        <update_guid>320f41214d9ffa50f56e076e75f3274b</update_guid>
+        <update_guid_history>320f41214d9ffa50f56e076e75f3274b:403762031</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-02-26 10:53:14</sys_created_on>
+        <sys_db_object display_value="" name="sys_script_include">sys_script_include</sys_db_object>
+        <sys_id>214e040f0c71465d8a87e27eebfd4b29</sys_id>
+        <sys_metadata>6a0f41212b9ffa509083fe395e91bf45</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Test1</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sys_script_include_6a0f41212b9ffa509083fe395e91bf45</sys_update_name>
+        <sys_update_version display_value="sys_script_include_6a0f41212b9ffa509083fe395e91bf45">ba0f41212b9ffa509083fe395e91bf4c</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-02-26 10:53:14</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

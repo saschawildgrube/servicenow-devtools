@@ -41,37 +41,37 @@
 				id: 'new',
 				name: 'New',
 				description: 'The initial state of a simple task. Requesters create a new tasks in the "New" state.',
-				transitions: [ 'request' ]
+				_transitions: [ 'request' ]
 			},
 			{
 				id: 'requested',
 				name: 'Requested',
 				description: 'The task is now requested and waits to be worked on by a Fulfiller.',
-				transitions: ['start_work','cancel']
+				_transitions: ['start_work','cancel']
 			},
 			{
 				id: 'work_in_progress',
 				name: 'Work in Progress',
 				description: 'The task is now being worked on by a Fulfiller.',
-				transitions: ['complete', 'cancel']
+				_transitions: ['complete', 'cancel']
 			},
 			{
 				id: 'complete',
 				name: 'Work is completed',
 				description: 'The task is considered completed by the Fulfiller.',
-				transitions: ['work_in_progress', 'close', 'cancel']
+				_transitions: ['work_in_progress', 'close', 'cancel']
 			},
 			{
 				id: 'closed',
 				name: 'Closed',
 				description: 'The task is confirmed completed and closed by the Requester.',
-				transitions: []
+				_transitions: []
 			},
 			{
 				id: 'cancelled',
 				name: 'Cancelled',
 				description: 'The task is cancelled and will no longer be worked on.',
-				transitions: []
+				_transitions: []
 			}		
 		],
 		_transitions:
@@ -80,31 +80,31 @@
 				id: 'request',
 				label: 'Request',
 				target_state: 'requested',
-				roles: [ 'requester', 'manager' ]
+				_roles: [ 'requester', 'manager' ]
 			},
 			{
 				id: 'start_work',
 				label: 'Start work',
 				target_state: 'work_in_progress',
-				roles: [ 'fulfiller', 'manager' ]
+				_roles: [ 'fulfiller', 'manager' ]
 			},
 			{
 				id: 'complete',
 				label: 'Work Completed',
 				target_state: 'complete',
-				roles: [ 'fulfiller', 'manager' ]
+				_roles: [ 'fulfiller', 'manager' ]
 			},		
 			{
 				id: 'close',
 				label: 'Close',
 				target_state: 'closed',
-				roles: [ 'requester', 'manager' ]
+				_roles: [ 'requester', 'manager' ]
 			},						
 			{
 				id: 'cancel',
 				label: 'Cancel',
 				target_state: 'cancelled',
-				roles: [ 'requester', 'manager' ]
+				_roles: [ 'requester', 'manager' ]
 			}
 		]
 	};
@@ -114,14 +114,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-02-25 08:26:40</sys_created_on>
         <sys_id>687db0993b1f729062bf612c95e45a85</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>BusinessProcessGetExample</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_687db0993b1f729062bf612c95e45a85</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-02-25 08:40:55</sys_updated_on>
+        <sys_updated_on>2026-02-26 10:44:02</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
