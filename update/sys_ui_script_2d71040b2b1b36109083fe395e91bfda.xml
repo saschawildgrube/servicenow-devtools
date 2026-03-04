@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_script">
+    <sys_ui_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Injects a mechanism that will automatically expand all messages displayed in the Now Assist Panel.</description>
+        <global>true</global>
+        <ignore_in_now_experience>false</ignore_in_now_experience>
+        <name>x_snc_devtools.NowAssistPanelMessageAuto</name>
+        <script><![CDATA[function NowAssistPanelMessageAutoExpand() {
+  console.log("NowAssistPanelMessageAutoExpand v2");
+
+  (function () {
+    var topWin;
+    try { topWin = window.top || window; } catch (e) { topWin = window; }
+
+    if (topWin.__napAutoExpandInstalledV2) return;
+    topWin.__napAutoExpandInstalledV2 = true;
+
+    // --- tuneables ---
+    var DEBUG = false;
+    var MAX_NODES_PER_SCAN = 1200;   // safety cap
+    var MAX_EXPANDS_PER_SCAN = 40;   // don’t go wild
+    var TRUNC_TOL = 2;               // px
+
+    var PANEL_SELECTORS = [
+      "sn-now-assist-panel",
+      "now-assist-panel",
+      "[data-testid*='now-assist']",
+      "[data-test-id*='now-assist']"
+    ];
+
+    function log() { if (DEBUG) console.log.apply(console, arguments); }
+
+    function isTruncated(el) {
+      if (!el) return false;
+      return (el.scrollHeight - el.clientHeight) > TRUNC_TOL || (el.scrollWidth - el.clientWidth) > TRUNC_TOL;
+    }
+
+    function looksLineClamped(el) {
+      if (!el) return false;
+      var cs = getComputedStyle(el);
+      var lc = cs.webkitLineClamp || cs.lineClamp;
+      // clamp typically comes with overflow hidden
+      return (lc && lc !== "none" && lc !== "unset" && lc !== "0") && cs.overflow === "hidden";
+    }
+
+    function unClamp(el) {
+      // override the usual clamp recipe: display:-webkit-box; -webkit-line-clamp:N; overflow:hidden;
+      try {
+        el.style.webkitLineClamp = "unset";
+        el.style.maxHeight = "none";
+        el.style.overflow = "visible";
+        // keep layout reasonably stable
+        if (getComputedStyle(el).display === "-webkit-box") el.style.display = "block";
+      } catch (e) {}
+    }
+
+    function findPanelHost(doc) {
+      for (var i = 0; i < PANEL_SELECTORS.length; i++) {
+        var el = doc.querySelector(PANEL_SELECTORS[i]);
+        if (el) return el;
+      }
+      // fallback: any custom element containing "now-assist" in tag name
+      var all = doc.querySelectorAll("*");
+      for (var j = 0; j < all.length && j < 5000; j++) {
+        var tn = (all[j].tagName || "").toLowerCase();
+        if (tn.indexOf("now-assist") > -1) return all[j];
+      }
+      return null;
+    }
+
+    function walkOpenShadowRoots(root, visitor) {
+      if (!root || !root.querySelectorAll) return;
+      visitor(root);
+
+      var all = root.querySelectorAll("*");
+      for (var i = 0; i < all.length; i++) {
+        var host = all[i];
+        if (host && host.shadowRoot) walkOpenShadowRoots(host.shadowRoot, visitor);
+      }
+    }
+
+    function clickSemanticExpanders(root) {
+      // Best-case: expander exposes aria-expanded=false (language-independent)
+      var toggles = root.querySelectorAll("button[aria-expanded='false'],[role='button'][aria-expanded='false']");
+      var clicked = 0;
+
+      for (var i = 0; i < toggles.length && clicked < MAX_EXPANDS_PER_SCAN; i++) {
+        var btn = toggles[i];
+
+        // If it controls something and that target is truncated, click
+        var id = btn.getAttribute && btn.getAttribute("aria-controls");
+        if (id) {
+          var target = root.querySelector("#" + CSS.escape(id));
+          if (target && isTruncated(target)) {
+            try { btn.click(); clicked++; } catch (e) {}
+          }
+        }
+      }
+
+      if (clicked) log("Clicked expanders:", clicked);
+      return clicked;
+    }
+
+    function removeTruncation(root) {
+      // Second strategy: remove clamp styles from truncated text nodes
+      var candidates = root.querySelectorAll("div,span,p,pre,li");
+      var touched = 0;
+
+      for (var i = 0; i < candidates.length && i < MAX_NODES_PER_SCAN && touched < MAX_EXPANDS_PER_SCAN; i++) {
+        var el = candidates[i];
+
+        // Only touch things that *look* like clamped/truncated text
+        if (looksLineClamped(el) || (isTruncated(el) && getComputedStyle(el).overflow === "hidden")) {
+          unClamp(el);
+          touched++;
+        }
+      }
+
+      if (touched) log("Unclamped nodes:", touched);
+      return touched;
+    }
+
+    function scanDoc(doc) {
+      var host = findPanelHost(doc);
+      if (!host) return false;
+
+      // Use host.shadowRoot if open; if closed, we’re stuck (can’t access internals)
+      var roots = [host];
+      if (host.shadowRoot) roots.push(host.shadowRoot);
+
+      var changed = false;
+
+      for (var r = 0; r < roots.length; r++) {
+        walkOpenShadowRoots(roots[r], function (root) {
+          // Attempt click first (cheap), then CSS unclamp
+          var c1 = clickSemanticExpanders(root);
+          var c2 = removeTruncation(root);
+          if (c1 || c2) changed = true;
+        });
+      }
+
+      return changed;
+    }
+
+    function docsToScan() {
+      var docs = [];
+      try { docs.push(topWin.document); } catch (e) {}
+      try {
+        var iframe = topWin.document.getElementById("gsft_main");
+        if (iframe && iframe.contentWindow && iframe.contentWindow.document) docs.push(iframe.contentWindow.document);
+      } catch (e) {}
+      return docs;
+    }
+
+    var queued = false;
+    function scheduleScan() {
+      if (queued) return;
+      queued = true;
+      topWin.requestAnimationFrame(function () {
+        queued = false;
+        var docs = docsToScan();
+        for (var i = 0; i < docs.length; i++) scanDoc(docs[i]);
+      });
+    }
+
+    function install() {
+      var docs = docsToScan();
+      for (var i = 0; i < docs.length; i++) {
+        (function (doc) {
+          if (!doc || !doc.body) return;
+          var obs = new MutationObserver(scheduleScan);
+          obs.observe(doc.body, { childList: true, subtree: true });
+        })(docs[i]);
+      }
+      scheduleScan();
+    }
+
+    try {
+      if (topWin.document.readyState === "loading") topWin.document.addEventListener("DOMContentLoaded", install);
+      else install();
+    } catch (e) {}
+  })();
+}]]></script>
+        <script_name>NowAssistPanelMessageAutoExpand</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-03-02 14:14:15</sys_created_on>
+        <sys_id>2d71040b2b1b36109083fe395e91bfda</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>x_snc_devtools.NowAssistPanelMessageAuto</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_ui_script_2d71040b2b1b36109083fe395e91bfda</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-03-02 14:35:39</sys_updated_on>
+        <ui_type>0</ui_type>
+        <use_scoped_format>false</use_scoped_format>
+        <x_snc_devtools_global>true</x_snc_devtools_global>
+    </sys_ui_script>
+</record_update>

@@ -7,13 +7,16 @@ This code is fully AI generated (ChatGPT 5.2 Thinking)</description>
         <global>true</global>
         <ignore_in_now_experience>false</ignore_in_now_experience>
         <name>x_snc_devtools.ShowNowAssistPanel</name>
-        <script><![CDATA[function ShowNowAssistPanel(strConversationSysId) {
+        <script><![CDATA[function ShowNowAssistPanel(strConversationSysId)
+{
+	console.log('ShowNowAssistPanel ' + strConversationSysId);
+	NowAssistPanelMessageAutoExpand();
+
   (function () {
     function injectAndRunTop(fnText, callText) {
       var topDoc = window.top.document;
 
-      // Versioned injection so you can iterate without stale code.
-      var VERSION = "nowAssistPanelAutomation_v2_2026-02-23";
+      var VERSION = "nowAssistPanelAutomation_v7_2026-03-02";
       if (window.top.__nowAssistPanelAutomationVersion !== VERSION) {
         var s = topDoc.createElement("script");
         s.type = "text/javascript";
@@ -38,44 +41,17 @@ This code is fully AI generated (ChatGPT 5.2 Thinking)</description>
 
     var TOP_RUNNER = String.raw`
 (function(){
-  var DEBUG = true;
-
-  function ensureLogBuffer(){
-    try{
-      if(!window.__nowAssistDebugLogV2) window.__nowAssistDebugLogV2 = [];
-      if(!window.__nowAssistDebugDumpV2){
-        window.__nowAssistDebugDumpV2 = function(){
-          try{
-            console.log("[NowAssistPanelV2] --- DUMP (" + (window.__nowAssistDebugLogV2||[]).length + " entries) ---");
-            (window.__nowAssistDebugLogV2||[]).forEach(function(x){ console.log.apply(console, x); });
-          }catch(e){}
-        };
-      }
-    }catch(e){}
-  }
+  var DEBUG = false; // flip to true if you want console output
 
   function log(){
     if(!DEBUG) return;
-    ensureLogBuffer();
-    try{
-      var args = Array.prototype.slice.call(arguments);
-      args.unshift("[NowAssistPanelV2]");
-      console.log.apply(console, args);
-      window.__nowAssistDebugLogV2.push(args);
-    }catch(e){}
+    try{ console.log.apply(console, ["[NowAssistPanelV7]"].concat([].slice.call(arguments))); }catch(e){}
   }
 
   function norm(s){
-    var str = (s||"") + "";
-    str = str.toLowerCase();
-    str = str.replace(/\\s+/g," ");
-    str = str.trim();
-    return str;
+    return ((s||"")+"").toLowerCase().replace(/\\s+/g," ").trim();
   }
-
-  function isSysId(s){
-    return /^[0-9a-f]{32}$/i.test((s||"")+"");
-  }
+  function isSysId(s){ return /^[0-9a-f]{32}$/i.test((s||"")+""); }
 
   function isVisible(el){
     if(!el) return false;
@@ -86,28 +62,6 @@ This code is fully AI generated (ChatGPT 5.2 Thinking)</description>
     }catch(e){ return false; }
   }
 
-  function describe(el){
-    if(!el) return "(null)";
-    try{
-      var tag = (el.tagName||"").toLowerCase();
-      var role = el.getAttribute && el.getAttribute("role");
-      var label = el.getAttribute && el.getAttribute("aria-label");
-      var title = el.getAttribute && el.getAttribute("title");
-      var testid = el.getAttribute && (el.getAttribute("data-testid") || el.getAttribute("data-test-id"));
-      var id = el.id;
-      var cls = (typeof el.className==="string") ? el.className : "";
-      return tag +
-        (id ? "#"+id : "") +
-        (cls ? "."+cls.split(/\\s+/).slice(0,3).join(".") : "") +
-        (role ? " role="+role : "") +
-        (label ? " aria-label="+label : "") +
-        (title ? " title="+title : "") +
-        (testid ? " testid="+testid : "");
-    }catch(e){
-      return "(unprintable element)";
-    }
-  }
-
   function buttonLike(el){
     if(!el || el.nodeType!==1) return false;
     var tag=(el.tagName||"").toLowerCase();
@@ -116,12 +70,22 @@ This code is fully AI generated (ChatGPT 5.2 Thinking)</description>
       ((tag==="div"||tag==="span") && el.getAttribute && el.getAttribute("tabindex")!==null);
   }
 
+  function closestClickable(el){
+    var cur=el;
+    for(var i=0; cur && i<10; i++){
+      if(buttonLike(cur)) return cur;
+      var role=norm(cur.getAttribute && (cur.getAttribute("role")||""));
+      if(role==="option"||role==="listitem"||role==="menuitem"||role==="menuitemradio") return cur;
+      cur=cur.parentElement;
+    }
+    return el;
+  }
+
   function realClick(el){
     if(!el) return false;
     try{
-      // Some Now Experience components react better to real mouse events than .click()
       ["pointerdown","mousedown","pointerup","mouseup","click"].forEach(function(t){
-        el.dispatchEvent(new MouseEvent(t, { bubbles:true, cancelable:true, view:window }));
+        el.dispatchEvent(new MouseEvent(t,{bubbles:true,cancelable:true,view:window}));
       });
       return true;
     }catch(e){
@@ -129,193 +93,149 @@ This code is fully AI generated (ChatGPT 5.2 Thinking)</description>
     }
   }
 
-  // Deep walk: light DOM + OPEN shadow DOM + accessible iframes
-  function deepWalkMultiRoot(doc, visitor, maxNodes){
-    var q = [];
-    if(doc && doc.body) q.push(doc.body);
+  function deepWalkAll(startNode, visitor, maxNodes){
+    var q=[startNode], scanned=0;
+    var seen=new WeakSet();
+    while(q.length && scanned<maxNodes){
+      var n=q.shift();
+      if(!n) continue;
+      try{ if(seen.has(n)) continue; seen.add(n); }catch(e){}
+      scanned++;
 
-    // Add iframe bodies when accessible (same-origin)
-    try{
-      var iframes = doc.querySelectorAll("iframe");
-      for(var i=0;i<iframes.length;i++){
+      if(n.nodeType===1){
+        try{ visitor(n); }catch(e){}
+      }
+
+      if(n.nodeType===1 && (n.tagName||"").toLowerCase()==="iframe"){
         try{
-          var idoc = iframes[i].contentDocument;
+          var idoc=n.contentDocument;
           if(idoc && idoc.body) q.push(idoc.body);
         }catch(e){}
       }
-    }catch(e){}
 
-    var scanned=0;
-    while(q.length && scanned<maxNodes){
-      var n=q.shift(); scanned++;
-      if(!n) continue;
-
-      if(n.nodeType===1) visitor(n);
-
-      if(n.children && n.children.length){
-        for(var j=0;j<n.children.length;j++) q.push(n.children[j]);
+      var kids=n.children||n.childNodes;
+      if(kids && kids.length){
+        for(var i=0;i<kids.length;i++) q.push(kids[i]);
       }
       if(n.shadowRoot) q.push(n.shadowRoot);
     }
   }
 
-  // ---------- Panel detection (fixes your “panel visible but not detected” problem) ----------
-
-  function isPinUnpinNowAssistButton(el){
-    if(!buttonLike(el)) return false;
-    var label = norm(el.getAttribute && el.getAttribute("aria-label"));
-    var title = norm(el.getAttribute && el.getAttribute("title"));
-    var text  = norm(el.textContent);
-    var hay = (label+" "+title+" "+text).trim();
-    return hay.indexOf("pin now assist") !== -1 || hay.indexOf("unpin now assist") !== -1;
-  }
-
-  function findPinUnpinButton(doc){
-    var hit = null;
-    deepWalkMultiRoot(doc, function(el){
+  // ===== Strong "panel open" signal =====
+  function findUnpinButton(){
+    var hit=null;
+    deepWalkAll(window.document.body,function(el){
       if(hit) return;
-      if(!isVisible(el)) return;
-      if(isPinUnpinNowAssistButton(el)) hit = el;
-    }, 30000);
-    if(hit) log("Found Pin/Unpin control (panel strong-signal):", describe(hit));
+      if(!isVisible(el) || !buttonLike(el)) return;
+      if(norm(el.getAttribute && el.getAttribute("aria-label"))==="unpin now assist") hit=el;
+    },120000);
     return hit;
   }
 
-  function looksLikeNowAssistPanelContainer(el){
-    if(!el || el.nodeType!==1) return false;
-    if(!isVisible(el)) return false;
+  function isPanelOpen(){ return !!findUnpinButton(); }
 
-    var role = norm(el.getAttribute && el.getAttribute("role"));
-    var label = norm(el.getAttribute && el.getAttribute("aria-label"));
-    var testid = norm((el.getAttribute && (el.getAttribute("data-testid") || el.getAttribute("data-test-id"))) || "");
-    var cls = norm((typeof el.className==="string") ? el.className : "");
-    var tag = norm(el.tagName || "");
-
-    var roleMatch = (role === "dialog" || role === "complementary");
-    var labelMatch = (label.indexOf("assist") !== -1 || label.indexOf("now assist") !== -1);
-    var tidMatch = (testid.indexOf("assist") !== -1);
-    var clsMatch = (cls.indexOf("assist") !== -1 || cls.indexOf("now-assist") !== -1);
-    var tagMatch = (tag.indexOf("assist") !== -1);
-
-    return (roleMatch && (labelMatch || tidMatch || clsMatch || tagMatch)) || tidMatch || (tagMatch && clsMatch);
+  function findPanelRootFromUnpin(unpinBtn){
+    if(!unpinBtn) return null;
+    var cur=unpinBtn, best=null;
+    for(var i=0; cur && i<25; i++){
+      try{
+        var r=cur.getBoundingClientRect();
+        if(isVisible(cur) && r.width>=250 && r.height>=200) best=cur;
+      }catch(e){}
+      cur=cur.parentElement;
+    }
+    return best || unpinBtn;
   }
 
-  function findVisiblePanelRoot(doc){
-    var found = null;
+  function expandRect(r, px){
+    return { left:r.left-px, right:r.right+px, top:r.top-px, bottom:r.bottom+px };
+  }
+  function rectIntersects(a,b){
+    return !(a.right<b.left || a.left>b.right || a.bottom<b.top || a.top>b.bottom);
+  }
 
-    // 1) Try direct container-like elements via deep walk
-    deepWalkMultiRoot(doc, function(el){
-      if(found) return;
-      if(looksLikeNowAssistPanelContainer(el)) found = el;
-    }, 35000);
+  // ===== Launcher (open panel) =====
+  function findLauncher(){
+    var hit=null;
+    deepWalkAll(window.document.body,function(el){
+      if(hit) return;
+      if(!isVisible(el) || !buttonLike(el)) return;
+      var cls=norm((typeof el.className==="string") ? el.className : "");
+      var lab=norm(el.getAttribute && el.getAttribute("aria-label"));
+      if(cls.indexOf("now-assist-button")!==-1 || lab==="now assist") hit=el;
+    },120000);
+    return hit;
+  }
 
-    if(found){
-      log("Panel root detected via container heuristics:", describe(found));
-      return found;
-    }
+  function launcherState(btn){
+    if(!btn) return {known:false, open:false};
+    var exp=btn.getAttribute && btn.getAttribute("aria-expanded");
+    if(exp==="true") return {known:true, open:true};
+    if(exp==="false") return {known:true, open:false};
+    var prs=btn.getAttribute && btn.getAttribute("aria-pressed");
+    if(prs==="true") return {known:true, open:true};
+    if(prs==="false") return {known:true, open:false};
+    return {known:false, open:false};
+  }
 
-    // 2) Fallback: if Pin/Unpin is visible, climb to a reasonable container
-    var pinBtn = findPinUnpinButton(doc);
-    if(pinBtn){
-      var cur = pinBtn;
-      for(var i=0; cur && i<20; i++){
-        if(looksLikeNowAssistPanelContainer(cur)) {
-          log("Panel root inferred by climbing from Pin/Unpin:", describe(cur));
-          return cur;
+  // ===== SysId-only switching strategy A: iframe URL replacement =====
+  function trySwitchViaIframe(panelRect, targetSysId){
+    var region=expandRect(panelRect, 80);
+    var frames=[];
+    deepWalkAll(window.document.body,function(el){
+      if((el.tagName||"").toLowerCase()!=="iframe") return;
+      if(!isVisible(el)) return;
+      try{
+        var r=el.getBoundingClientRect();
+        if(!rectIntersects(r, region)) return;
+      }catch(e){ return; }
+      frames.push(el);
+    },120000);
+
+    for(var i=0;i<frames.length;i++){
+      var f=frames[i];
+      try{
+        if(!f.contentWindow || !f.contentWindow.location) continue;
+        var href=""+f.contentWindow.location.href;
+        // Try to find a conversation-like id segment in URL/hash
+        var m =
+          href.match(/(conversation|chat)[^0-9a-f]{0,10}([0-9a-f]{32})/i) ||
+          href.match(/([0-9a-f]{32})/i);
+        if(!m) continue;
+
+        var currentId = (m[2] || m[1] || "").toLowerCase();
+        if(!currentId || currentId === targetSysId.toLowerCase()) {
+          // already there or unknown
+          continue;
         }
-        cur = cur.parentElement;
-      }
-      // last resort: return the pin button parent chain top-ish
-      log("Panel root fallback: using Pin/Unpin parent element:", describe(pinBtn.parentElement));
-      return pinBtn.parentElement || pinBtn;
-    }
 
-    return null;
-  }
-
-  // ---------- Launcher detection (avoid picking Pin/Unpin as “launcher”) ----------
-
-  function looksLikeNowAssistLauncher(el){
-    if(!buttonLike(el)) return false;
-
-    var label=norm(el.getAttribute && el.getAttribute("aria-label"));
-    var title=norm(el.getAttribute && el.getAttribute("title"));
-    var testid=norm(((el.getAttribute && el.getAttribute("data-testid"))||"") + " " +
-                    ((el.getAttribute && el.getAttribute("data-test-id"))||""));
-    var text=norm(el.textContent);
-    var hay=(label+" "+title+" "+testid+" "+text).trim();
-
-    // Exclude panel-internal controls that confused v1
-    if(hay.indexOf("pin now assist") !== -1 || hay.indexOf("unpin now assist") !== -1) return false;
-
-    // Prefer true launcher wording; keep generic fallback
-    var hasNowAssist = hay.indexOf("now assist")!==-1 || hay.indexOf("nowassist")!==-1;
-    var hasOpenClose = hay.indexOf("open now assist")!==-1 || hay.indexOf("close now assist")!==-1;
-    var hasAssist = hay.indexOf("assist")!==-1;
-    var hasNow = hay.indexOf("now")!==-1;
-
-    return hasOpenClose || hasNowAssist || (hasAssist && hasNow) || (testid.indexOf("assist")!==-1);
-  }
-
-  function findNowAssistLauncher(doc){
-    var candidates = [];
-    deepWalkMultiRoot(doc, function(el){
-      if(looksLikeNowAssistLauncher(el) && isVisible(el)) candidates.push(el);
-    }, 35000);
-
-    log("Launcher candidates (filtered, visible):", candidates.length);
-
-    // Prefer "open/close now assist"
-    for(var i=0;i<candidates.length;i++){
-      var el=candidates[i];
-      var hay = norm((el.getAttribute && el.getAttribute("aria-label"))||"") + " " +
-                norm((el.getAttribute && el.getAttribute("title"))||"");
-      if(hay.indexOf("open now assist")!==-1 || hay.indexOf("close now assist")!==-1){
-        log("Picked launcher (open/close label):", describe(el));
-        return el;
+        var newHref = href.replace(new RegExp(currentId, "ig"), targetSysId);
+        log("Iframe switch:", {href: href, newHref: newHref});
+        f.contentWindow.location.href = newHref;
+        return true;
+      }catch(e){
+        // ignore (cross-origin or blocked)
       }
     }
-
-    // Otherwise first candidate
-    if(candidates[0]) log("Picked launcher (first candidate):", describe(candidates[0]));
-    return candidates[0] || null;
+    return false;
   }
 
-  function ensurePanelOpen(doc){
-    var panel = findVisiblePanelRoot(doc);
-    if(panel){
-      log("Panel considered OPEN (root found).");
-      return true;
-    }
-
-    var btn = findNowAssistLauncher(doc);
-    if(!btn){
-      log("No launcher found; cannot open panel.");
-      return false;
-    }
-
-    log("Panel not detected -> clicking launcher:", describe(btn));
-    realClick(btn);
-    return false; // allow retries to detect panel after render
-  }
-
-  // ---------- Conversation switching ----------
-
-  function elementMentionsSysId(el, sysIdLower){
+  // ===== SysId-only switching strategy B: list click by sys_id in DOM =====
+  function elementHasSysId(el, targetLower){
     if(!el || el.nodeType!==1) return false;
 
     var attrs=["data-conversation-id","data-conversationid","data-sys-id","data-sysid","data-id","id","href","value","name"];
     for(var i=0;i<attrs.length;i++){
-      var v = el.getAttribute && el.getAttribute(attrs[i]);
-      if(v && ((""+v).toLowerCase().indexOf(sysIdLower)!==-1)) return true;
+      var v=el.getAttribute && el.getAttribute(attrs[i]);
+      if(v && ((""+v).toLowerCase().indexOf(targetLower)!==-1)) return true;
     }
 
     try{
       if(el.dataset){
         for(var k in el.dataset){
           if(!Object.prototype.hasOwnProperty.call(el.dataset,k)) continue;
-          var dv = (el.dataset[k]||"")+"";
-          if(dv.toLowerCase().indexOf(sysIdLower)!==-1) return true;
+          var dv=(el.dataset[k]||"")+"";
+          if(dv.toLowerCase().indexOf(targetLower)!==-1) return true;
         }
       }
     }catch(e){}
@@ -323,175 +243,241 @@ This code is fully AI generated (ChatGPT 5.2 Thinking)</description>
     return false;
   }
 
-  function findConversationClickableBySysId(root, sysId){
-    var sysIdLower = (sysId||"").toLowerCase();
+  function findConversationElementNearPanel(panelRect, targetSysId){
+    var targetLower = (targetSysId||"").toLowerCase();
+    var region = expandRect(panelRect, 80);
     var hit = null;
 
-    // Scan deep under the given root (including shadow)
-    var doc = window.document;
-    deepWalkMultiRoot(doc, function(el){
+    deepWalkAll(window.document.body,function(el){
       if(hit) return;
-      if(root && el !== root && !root.contains(el)) return;
       if(!isVisible(el)) return;
-      if(elementMentionsSysId(el, sysIdLower)){
-        hit = el;
-        // climb to clickable
-        var cur = el;
-        for(var i=0; cur && i<10; i++){
-          if(buttonLike(cur)) { hit = cur; break; }
-          cur = cur.parentElement;
-        }
-      }
-    }, 50000);
 
-    log("Conversation sys_id scan hit:", hit ? describe(hit) : "(none)");
+      try{
+        var r=el.getBoundingClientRect();
+        if(!rectIntersects(r, region)) return;
+      }catch(e){ return; }
+
+      if(elementHasSysId(el, targetLower)) hit = closestClickable(el);
+    },250000);
+
     return hit;
   }
 
-  function looksLikeChatsControl(el){
-    if(!buttonLike(el)) return false;
-    var label=norm(el.getAttribute && el.getAttribute("aria-label"));
-    var title=norm(el.getAttribute && el.getAttribute("title"));
-    var testid=norm(((el.getAttribute && el.getAttribute("data-testid"))||"") + " " +
-                    ((el.getAttribute && el.getAttribute("data-test-id"))||""));
-    var text=norm(el.textContent);
-    var hay=(label+" "+title+" "+testid+" "+text).trim();
+  function findScrollableListNearPanel(panelRect){
+    var region = expandRect(panelRect, 80);
+    var best = null;
 
-    // “Chats” is the standard label for the control that opens “All chats”
-    if(hay.indexOf("chats") !== -1) return true;
-    if(hay.indexOf("all chats") !== -1) return true;
-    if(testid.indexOf("chat") !== -1) return true;
-    return false;
-  }
-
-  function findChatsControl(panelRoot){
-    var found = null;
-    var doc = window.document;
-
-    deepWalkMultiRoot(doc, function(el){
-      if(found) return;
-      if(panelRoot && el !== panelRoot && !panelRoot.contains(el)) return;
+    deepWalkAll(window.document.body,function(el){
+      if(best) return;
       if(!isVisible(el)) return;
-      if(looksLikeChatsControl(el)) found = el;
-    }, 30000);
-
-    log("Chats/All chats control:", found ? describe(found) : "(not found)");
-    return found;
-  }
-
-  function sampleAnySysIdLikeValuesWithin(panelRoot){
-    var hits = [];
-    var re = /[0-9a-f]{32}/ig;
-    var doc = window.document;
-
-    deepWalkMultiRoot(doc, function(el){
-      if(hits.length>=15) return;
-      if(panelRoot && el !== panelRoot && !panelRoot.contains(el)) return;
 
       try{
-        if(el.attributes){
-          for(var i=0;i<el.attributes.length && hits.length<15;i++){
-            var a = el.attributes[i];
-            if(!a || !a.value) continue;
-            var m = (a.value+"").match(re);
-            if(m && m.length){
-              hits.push({where:"attr:"+a.name, value:m[0], el: describe(el)});
-            }
-          }
+        var r=el.getBoundingClientRect();
+        if(!rectIntersects(r, region)) return;
+
+        var s=getComputedStyle(el);
+        var oy=norm(s.overflowY);
+        if((oy==="auto"||oy==="scroll") && el.scrollHeight > el.clientHeight + 50){
+          best = el;
         }
       }catch(e){}
+    },250000);
 
-      try{
-        if(el.dataset){
-          for(var k in el.dataset){
-            if(hits.length>=15) break;
-            var dv = (el.dataset[k]||"")+"";
-            var md = dv.match(re);
-            if(md && md.length){
-              hits.push({where:"dataset:"+k, value:md[0], el: describe(el)});
-            }
-          }
-        }
-      }catch(e){}
-    }, 60000);
-
-    return hits;
+    return best;
   }
 
-  function trySelectConversation(sysId){
-    if(!isSysId(sysId)) {
-      log("No valid sys_id provided -> selection skipped.");
-      return true;
-    }
+  // Show list: click the leftmost header control in the “Chats” row (best effort).
+  // Docs: conversation list opened via “All chats” icon. :contentReference[oaicite:2]{index=2}
+  function ensureListVisible(panelRoot){
+    // Heuristic: if we see “Active” and “Closed” labels inside panel bounds, assume list is visible.
+    var box;
+    try{ box = panelRoot.getBoundingClientRect(); }catch(e){ return false; }
 
-    var doc = window.document;
-    var panelRoot = findVisiblePanelRoot(doc);
-    if(!panelRoot){
-      log("Panel root not detected yet -> cannot select conversation.");
-      return false;
-    }
+    var hasActive=false, hasClosed=false;
+    deepWalkAll(panelRoot,function(el){
+      if(!isVisible(el)) return;
+      var t = norm(el.textContent||"");
+      if(t==="active") hasActive=true;
+      if(t==="closed") hasClosed=true;
+    },80000);
 
-    // Ensure chat list is open (Chats icon -> All chats)
-    var chatsBtn = findChatsControl(panelRoot);
-    if(chatsBtn){
-      log("Clicking Chats/All chats control:", describe(chatsBtn));
-      realClick(chatsBtn);
-    } else {
-      log("No Chats control found; will still attempt sys_id scan in panel.");
-    }
+    if(hasActive || hasClosed) return true;
 
-    // Try to find a clickable element that contains the sys_id
-    var target = findConversationClickableBySysId(panelRoot, sysId) || findConversationClickableBySysId(doc.body, sysId);
-    if(target){
-      log("Clicking conversation target:", describe(target));
-      realClick(target);
-      return true;
-    }
+    // Find “Chats” label and click the nearest button to its left.
+    var chatsEl=null;
+    deepWalkAll(panelRoot,function(el){
+      if(chatsEl) return;
+      if(!isVisible(el)) return;
+      if(norm(el.textContent||"")==="chats") chatsEl=el;
+    },80000);
 
-    // Diagnostics: do we see ANY sys_id-like values inside the panel?
-    var samples = sampleAnySysIdLikeValuesWithin(panelRoot);
-    if(samples && samples.length){
-      log("Found sys_id-like values inside panel (sample up to 15):", samples);
-    } else {
-      log("No sys_id-like values found inside panel. UI may not expose sys_id in DOM (or uses closed shadow DOM).");
+    if(!chatsEl) return false;
+
+    var chatsRect;
+    try{ chatsRect = chatsEl.getBoundingClientRect(); }catch(e){ return false; }
+
+    var candidates=[];
+    deepWalkAll(panelRoot,function(el){
+      if(!buttonLike(el) || !isVisible(el)) return;
+      try{
+        var r=el.getBoundingClientRect();
+        // same row-ish, left of Chats, close distance
+        var sameBand = Math.abs((r.top+r.bottom)/2 - (chatsRect.top+chatsRect.bottom)/2) < 25;
+        var leftOf = r.right <= chatsRect.left + 10;
+        var close = (chatsRect.left - r.right) < 120;
+        if(sameBand && leftOf && close) candidates.push(el);
+      }catch(e){}
+    },120000);
+
+    candidates.sort(function(a,b){
+      try{ return b.getBoundingClientRect().right - a.getBoundingClientRect().right; }catch(e){ return 0; }
+    });
+
+    if(candidates[0]){
+      realClick(candidates[0]);
+      return false; // allow UI to render list then next tick sees it
     }
 
     return false;
   }
 
-  window.nowAssistOpenAndSelectConversationV2 = function(conversationSysId){
-    ensureLogBuffer();
-    window.__nowAssistTargetConversationSysIdV2 = isSysId(conversationSysId) ? conversationSysId : "";
-    log("Invocation target sys_id:", window.__nowAssistTargetConversationSysIdV2 || "(none)");
+  function trySwitchViaList(panelRoot, targetSysId){
+    var panelRect;
+    try{ panelRect = panelRoot.getBoundingClientRect(); }catch(e){ return false; }
 
-    var tries=0, max=50;
-    var t=setInterval(function(){
-      tries++;
+    // Ensure list is visible (All chats icon / hamburger)
+    ensureListVisible(panelRoot);
 
-      var openOk = ensurePanelOpen(window.document);
-      var target = window.__nowAssistTargetConversationSysIdV2;
+    // Try direct sys_id match near the panel
+    var el = findConversationElementNearPanel(panelRect, targetSysId);
+    if(el){
+      realClick(el);
+      return true;
+    }
 
-      if(!target){
-        if(openOk || tries>=max){
-          log("Done (no target). tries:", tries);
-          clearInterval(t);
+    // Virtualized list: scroll and re-scan
+    var sc = findScrollableListNearPanel(panelRect);
+    if(sc){
+      try{
+        var before = sc.scrollTop;
+        sc.scrollTop = Math.min(sc.scrollTop + sc.clientHeight * 0.8, sc.scrollHeight);
+        if(sc.scrollTop !== before) log("Scrolled list...");
+      }catch(e){}
+    }
+
+    return false;
+  }
+
+  // ===== Runner (self-terminating; respects user close) =====
+  function stop(reason){
+    try{
+      if(window.__nowAssistAutomationTimerV7){
+        clearInterval(window.__nowAssistAutomationTimerV7);
+        window.__nowAssistAutomationTimerV7=null;
+      }
+      window.__nowAssistAutomationStateV7=null;
+    }catch(e){}
+    log("STOP:", reason);
+  }
+  window.__nowAssistAutomationStopV7 = function(){ stop("manual_stop"); };
+
+  window.nowAssistOpenAndSelectConversationV7 = function(conversationSysId){
+    try{ if(window.__nowAssistAutomationTimerV7) clearInterval(window.__nowAssistAutomationTimerV7); }catch(e){}
+
+    var target = isSysId(conversationSysId) ? conversationSysId : "";
+    var startedAt = Date.now();
+
+    var state = {
+      target: target,
+      startedAt: startedAt,
+      openedAt: null,
+      seenOpen: false,
+      lastLauncherClick: 0,
+      iframeAttempted: false
+    };
+    window.__nowAssistAutomationStateV7 = state;
+
+    var MAX_OPEN_MS   = 4000;
+    var MAX_SWITCH_MS = 9000;
+
+    function tick(){
+      var now = Date.now();
+      var open = isPanelOpen();
+
+      // If user closes after we saw it open, stop and never re-open
+      if(state.seenOpen && !open){
+        stop("user_closed_after_open");
+        return;
+      }
+
+      // Open phase
+      if(!open){
+        if(now - state.startedAt > MAX_OPEN_MS){
+          stop("open_timeout");
+          return;
+        }
+
+        var launcher = findLauncher();
+        if(!launcher) return;
+
+        var st = launcherState(launcher);
+        if(st.known && st.open) return;
+
+        if(now - state.lastLauncherClick > 1200){
+          state.lastLauncherClick = now;
+          realClick(launcher);
         }
         return;
       }
 
-      var ok = trySelectConversation(target);
-
-      if(ok || tries>=max){
-        log("Done. ok:", ok, "tries:", tries);
-        clearInterval(t);
+      // Opened
+      if(!state.seenOpen){
+        state.seenOpen = true;
+        state.openedAt = now;
       }
-    }, 250);
+
+      if(!state.target){
+        stop("opened_no_target");
+        return;
+      }
+
+      if(now - state.openedAt > MAX_SWITCH_MS){
+        stop("switch_timeout");
+        return;
+      }
+
+      var unpin = findUnpinButton();
+      if(!unpin) return;
+
+      var panelRoot = findPanelRootFromUnpin(unpin);
+      if(!panelRoot) return;
+
+      var panelRect;
+      try{ panelRect = panelRoot.getBoundingClientRect(); }catch(e){ return; }
+
+      // Strategy A: iframe route replace (once)
+      if(!state.iframeAttempted){
+        state.iframeAttempted = true;
+        if(trySwitchViaIframe(panelRect, state.target)){
+          stop("switched_via_iframe");
+          return;
+        }
+      }
+
+      // Strategy B: DOM list sys_id click (repeat until timeout)
+      if(trySwitchViaList(panelRoot, state.target)){
+        stop("switched_via_list_click");
+        return;
+      }
+    }
+
+    window.__nowAssistAutomationTimerV7 = setInterval(tick, 250);
   };
 })();`;
 
     injectAndRunTop(
       TOP_RUNNER,
-      "window.nowAssistOpenAndSelectConversationV2 && window.nowAssistOpenAndSelectConversationV2(" +
+      "window.nowAssistOpenAndSelectConversationV7 && window.nowAssistOpenAndSelectConversationV7(" +
         JSON.stringify(sysId) +
         ");"
     );
@@ -502,14 +488,14 @@ This code is fully AI generated (ChatGPT 5.2 Thinking)</description>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-02-17 13:54:21</sys_created_on>
         <sys_id>57300d762b0b3e509083fe395e91bf5f</sys_id>
-        <sys_mod_count>17</sys_mod_count>
+        <sys_mod_count>25</sys_mod_count>
         <sys_name>x_snc_devtools.ShowNowAssistPanel</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_script_57300d762b0b3e509083fe395e91bf5f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-02-23 16:44:34</sys_updated_on>
+        <sys_updated_on>2026-03-02 14:26:32</sys_updated_on>
         <ui_type>0</ui_type>
         <use_scoped_format>false</use_scoped_format>
         <x_snc_devtools_global>true</x_snc_devtools_global>
