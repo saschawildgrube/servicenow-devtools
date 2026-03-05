@@ -50,7 +50,7 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 
 	if (ArrayValueExists(aSysIds,record.sys_id) == true)
 	{
-		return record;
+		return false;
 	}
 	aSysIds.push(record.sys_id);
 
@@ -386,7 +386,8 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 				var related_record = GetRelatedRecordsTree(
 					grACL,bApplicationFilesOnly,
 					nMaxLevel,
-					nLevel+1);
+					nLevel+1,
+					aSysIds);
 				if (related_record != false)
 				{
 					record._related_records.push(related_record);		
@@ -406,7 +407,8 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 				grGenAiConfig,
 				bApplicationFilesOnly,
 				nMaxLevel,
-				nLevel+1);
+				nLevel+1,
+				aSysIds);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -428,7 +430,8 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 				grAiSkill,
 				bApplicationFilesOnly,
 				nMaxLevel,
-				nLevel+1);
+				nLevel+1,
+				aSysIds);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -449,7 +452,8 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 				grAiVersion,
 				bApplicationFilesOnly,
 				nMaxLevel,
-				nLevel+1);
+				nLevel+1,
+				aSysIds);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -466,7 +470,8 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 				grTriggerConfig,
 				bApplicationFilesOnly,
 				nMaxLevel,
-				nLevel+1);
+				nLevel+1,
+				aSysIds);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -483,7 +488,8 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 				grFlow,
 				bApplicationFilesOnly,
 				nMaxLevel,
-				nLevel+1);
+				nLevel+1,
+				aSysIds);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -503,7 +509,8 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 				grFlowInput,
 				bApplicationFilesOnly,
 				nMaxLevel,
-				nLevel+1);
+				nLevel+1,
+				aSysIds);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -519,7 +526,8 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 				grDoc,
 				bApplicationFilesOnly,
 				nMaxLevel,
-				nLevel+1);
+				nLevel+1,
+				aSysIds);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -540,7 +548,8 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 				grFlowVar,
 				bApplicationFilesOnly,
 				nMaxLevel,
-				nLevel+1);
+				nLevel+1,
+				aSysIds);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -557,7 +566,8 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 				grFlowInput,
 				bApplicationFilesOnly,
 				nMaxLevel,
-				nLevel+1);
+				nLevel+1,
+				aSysIds);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -573,7 +583,8 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 				grDoc,
 				bApplicationFilesOnly,
 				nMaxLevel,
-				nLevel+1);
+				nLevel+1,
+				aSysIds);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -588,14 +599,14 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-10-29 13:29:32</sys_created_on>
         <sys_id>71c1d58b3b34f69062bf612c95e45adb</sys_id>
-        <sys_mod_count>70</sys_mod_count>
+        <sys_mod_count>72</sys_mod_count>
         <sys_name>GetRelatedRecordsTree</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_71c1d58b3b34f69062bf612c95e45adb</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-03-05 09:43:47</sys_updated_on>
+        <sys_updated_on>2026-03-05 09:51:43</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
