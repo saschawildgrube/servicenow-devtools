@@ -155,6 +155,7 @@
 		'ded607e693a1121', // ded607e693a11210f2cafff9648918c0
 		'250bd3435311111', // 250bd34353111110c271ddeeff7b12da
 		'd9c7d3fa1bea011', // d9c7d3fa1bea0110521acaa2604bcb91
+		'370039f4c0a808a', // 370039f4c0a808ae00b44eeae13c0497     
 
 	];
 	return aPatterns;
@@ -163,14 +164,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-09-13 12:47:41</sys_created_on>
         <sys_id>813dabbc1bddf110cd6153d16b4bcb3a</sys_id>
-        <sys_mod_count>136</sys_mod_count>
+        <sys_mod_count>137</sys_mod_count>
         <sys_name>GetEvaluatorErrorExceptionPatterns</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_813dabbc1bddf110cd6153d16b4bcb3a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-03-04 14:02:13</sys_updated_on>
+        <sys_updated_on>2026-03-06 12:01:25</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
