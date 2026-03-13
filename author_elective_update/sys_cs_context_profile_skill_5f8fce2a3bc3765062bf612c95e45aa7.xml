@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cs_context_profile_skill">
+    <sys_cs_context_profile_skill action="DELETE">
+        <context_profile display_value="Now Assist Panel - Platform (default)">e93cab98c7c03110b65579a988c260c4</context_profile>
+        <skill_id display_value="Antic Lab Rat">2a8f4e2a3bc3765062bf612c95e45a75</skill_id>
+        <sys_class_name>sys_cs_context_profile_skill</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-02-17 01:01:30</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_id>5f8fce2a3bc3765062bf612c95e45aa7</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_overrides/>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_cs_context_profile_skill_5f8fce2a3bc3765062bf612c95e45aa7</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-02-17 01:01:30</sys_updated_on>
+    </sys_cs_context_profile_skill>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>a8cbb5133b6b5e540fd412c5e4e45a1f</instance_id>
+        <instance_name>wildyokohama</instance_name>
+        <name>sys_cs_context_profile_skill_5f8fce2a3bc3765062bf612c95e45aa7</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cs_context_profile_skill"><sys_cs_context_profile_skill action="INSERT_OR_UPDATE"><context_profile display_value="Now Assist Panel - Platform (default)">e93cab98c7c03110b65579a988c260c4</context_profile><skill_id display_value="Antic Lab Rat">2a8f4e2a3bc3765062bf612c95e45a75</skill_id><sys_class_name>sys_cs_context_profile_skill</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2026-02-17 01:01:30</sys_created_on><sys_domain>global</sys_domain><sys_id>5f8fce2a3bc3765062bf612c95e45aa7</sys_id><sys_mod_count>0</sys_mod_count><sys_name/><sys_overrides/><sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package><sys_policy/><sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope><sys_update_name>sys_cs_context_profile_skill_5f8fce2a3bc3765062bf612c95e45aa7</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-02-17 01:01:30</sys_updated_on></sys_cs_context_profile_skill></record_update>]]></payload>
+        <payload_hash>-1095360192</payload_hash>
+        <record_name/>
+        <reverted_from/>
+        <source>bf5f78e52bc37e109083fe395e91bf14</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-02-17 01:01:30</sys_created_on>
+        <sys_id>538fce2a3bc3765062bf612c95e45aac</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19c691ddc7e0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-02-17 01:01:30</sys_updated_on>
+        <type>Profile and Skill Mapping</type>
+        <update_guid>db8fce2ab5c37650d55ab58de71e5faa</update_guid>
+        <update_guid_history>db8fce2ab5c37650d55ab58de71e5faa:-1095360192</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-03-13 18:19:18</sys_created_on>
+        <sys_db_object display_value="" name="sys_cs_context_profile_skill">sys_cs_context_profile_skill</sys_db_object>
+        <sys_id>0615debf861d48089726a5f5873ddcd9</sys_id>
+        <sys_metadata>5f8fce2a3bc3765062bf612c95e45aa7</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sys_cs_context_profile_skill_5f8fce2a3bc3765062bf612c95e45aa7</sys_update_name>
+        <sys_update_version display_value="sys_cs_context_profile_skill_5f8fce2a3bc3765062bf612c95e45aa7">538fce2a3bc3765062bf612c95e45aac</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-03-13 18:19:18</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
