@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-02-17 12:33:42</sys_created_on>
         <sys_id>c7fdecb22b473e509083fe395e91bf05</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_c7fdecb22b473e509083fe395e91bf05</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-02-17 12:35:06</sys_updated_on>
+        <sys_updated_on>2026-03-13 18:33:57</sys_updated_on>
         <table/>
         <test display_value="DevTools - IsNowAssistAIAgentsInstalled">f6fdacb22b473e509083fe395e91bfb9</test>
         <timeout/>
@@ -50,9 +50,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-02-17 12:33:42</sys_created_on>
         <sys_id>c7fdecb22b473e509083fe395e91bf0b</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-02-17 12:35:06</sys_updated_on>
+        <sys_updated_on>2026-03-13 18:33:58</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -75,10 +75,7 @@
 			TestCase_IsNowAssistAIAgentsInstalled_CheckResult);&#13;
 	}&#13;
 	&#13;
-	var grScope = new GlideRecord('sys_scope');&#13;
-	grScope.addQuery('scope','=','sn_aia');&#13;
-	grScope.query();&#13;
-	var bInstalled = grScope.hasNext();&#13;
+	var bInstalled = IsNowAssistAIAgentsInstalled();&#13;
 &#13;
 	TestCase_IsNowAssistAIAgentsInstalled(bInstalled);&#13;
 	&#13;
