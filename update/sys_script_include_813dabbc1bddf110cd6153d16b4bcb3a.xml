@@ -45,7 +45,7 @@
 		'"dependent_value" is not defined.',
 		'Cannot read property "device_type" from null',
 		'"sn_atf_tg" is not defined.',
-		'sys_security_acl.local_or_existing = sys_security_acl.security_attribute.is_localized ?',
+		'sys_security_acl.local_or_existing = sys_security_acl.security_attribute.is_localized',//  ?',
 		'"report_notification_url" is not defined.',
 		'"sn_devops" is not defined.',
 		'"sn_pace" is not defined.',
@@ -120,7 +120,7 @@
 		'Cannot read property "currentAlias" from undefined',
 
 		// Yokohama
-		"var result = dep.getED().isReadOnly() ? 'true' : 'false';",
+		"var result = dep.getED().isReadOnly() ", // ? 'true' : 'false';",
 		"var tcs = del.getAttribute('tableChoicesScript');",
 		'new SNC.AnonymizationApi()',
 		' Cannot find function canvasTopicExecutionFlow in object [object Object].',
@@ -147,7 +147,7 @@
 		'"inputvis" is not defined.',
 		"getMessage('Show less')",
 		'sn_nowassist_va.NowAssistGranularFeedbackHelper.getGranularFeedbackMetadata(deploymentId);',
-		'// Create maps from the ais_datasource and ais_child_table tables to avoid',
+		'Create maps from the ais_datasource and ais_child_table tables to avoid',
 		'9566b90ceb03110', // 9566b90ceb0311003623666cd206fe8c
 		'4659d132d723210', // 4659d132d7232100b6bddb0c8252039e
 		'64e5e4737322130', // 64e5e473732213002cb26fbc1bf6a7ef
@@ -168,14 +168,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-09-13 12:47:41</sys_created_on>
         <sys_id>813dabbc1bddf110cd6153d16b4bcb3a</sys_id>
-        <sys_mod_count>143</sys_mod_count>
+        <sys_mod_count>150</sys_mod_count>
         <sys_name>GetEvaluatorErrorExceptionPatterns</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_813dabbc1bddf110cd6153d16b4bcb3a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-03-13 19:12:41</sys_updated_on>
+        <sys_updated_on>2026-03-13 20:43:15</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
