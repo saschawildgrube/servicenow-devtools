@@ -7,300 +7,340 @@
         <name>x_snc_devtools.NowAssistPanelMessageAuto</name>
         <script><![CDATA[/**
  * Global UI Script
- * Name: NowAssistPanelMessageAutoExpand
+ * Function: NowAssistPanelMessageAutoExpand()
  *
- * Goal:
- * - If the Now Assist panel is open, force all rich-text messages to be expanded.
- * - Hide the "Show more" / "Show less" controls.
+ * What it does (continuously):
+ * - Watches the Now Assist panel DOM (incl. OPEN shadow roots)
+ * - Forces all message rich-text blocks to be expanded (display:flex etc.)
+ * - Hides "Show more" / "Show less" controls
  *
- * Notes:
- * - This runs from forms/UI Pages (typically inside an iframe like gsft_main).
- * - The Now Assist panel lives in the shell (window.top). We therefore operate on window.top
- *   and store the observer/state on window.top to ensure it keeps working as content updates.
- * - Uses deep querying into OPEN shadow roots (as shown in your screenshots).
+ * It installs ONCE in window.top (the shell) and keeps enforcing for new messages.
  */
-function NowAssistPanelMessageAutoExpand()
-{
+function NowAssistPanelMessageAutoExpand(options) {
+  // ---- pick shell window (Now Assist lives above gsft_main iframe) ----
   var shellWin = window;
   try {
     if (window.top && window.top.document) shellWin = window.top;
   } catch (e) {
-    shellWin = window; // fallback if top is not accessible
+    shellWin = window;
   }
 
-  // Install once (store state on the shell window).
-  if (shellWin.__nowAssistAutoExpand && shellWin.__nowAssistAutoExpand.installed) {
-    shellWin.__nowAssistAutoExpand.runOnce();
-    return;
+  // Reuse existing controller if already installed
+  if (shellWin.__nowAssistAutoExpandV4) {
+    shellWin.__nowAssistAutoExpandV4.start();
+    return shellWin.__nowAssistAutoExpandV4;
   }
 
-  shellWin.__nowAssistAutoExpand = (function (w) {
-    var state = {
-      installed: true,
-      scheduled: false,
-      roots: null,
-      observer: null,
-      observedShadowRoots: w.WeakSet ? new w.WeakSet() : null,
-      observedShadowRootsArr: [] // fallback if WeakSet not available
-    };
+  // ---- config ----
+  options = options || {};
+  var CFG = {
+    intervalMs: typeof options.intervalMs === "number" ? options.intervalMs : 300,       // periodic enforcement (fallback)
+    rootRefreshMs: typeof options.rootRefreshMs === "number" ? options.rootRefreshMs : 1500, // re-discover panel roots
+    debug: !!options.debug
+  };
 
-    function isObservedShadowRoot(sr) {
-      if (!sr) return true;
-      if (state.observedShadowRoots) return state.observedShadowRoots.has(sr);
-      for (var i = 0; i < state.observedShadowRootsArr.length; i++) {
-        if (state.observedShadowRootsArr[i] === sr) return true;
+  // ---- controller state ----
+  var state = {
+    running: false,
+    intervalId: null,
+    tickScheduled: false,
+    lastRootRefresh: 0,
+    searchRoots: [],
+
+    // observer bookkeeping (ES5-friendly)
+    observedTargets: [],
+    observers: []
+  };
+
+  function isObserved(target) {
+    for (var i = 0; i < state.observedTargets.length; i++) {
+      if (state.observedTargets[i] === target) return true;
+    }
+    return false;
+  }
+
+  function observe(target) {
+    if (!target || isObserved(target) || !shellWin.MutationObserver) return;
+
+    try {
+      var mo = new shellWin.MutationObserver(function () {
+        // DOM changed (new messages, re-render, style updates) -> re-apply soon
+        scheduleTick();
+      });
+
+      mo.observe(target, { childList: true, subtree: true, attributes: true });
+      state.observedTargets.push(target);
+      state.observers.push(mo);
+    } catch (e) {
+      // ignore
+    }
+  }
+
+  // ---- style injection (helps even when components re-apply non-important inline styles) ----
+  function ensureStyleInjected(doc) {
+    try {
+      if (!doc || !doc.head) return;
+      if (doc.getElementById("nowassist-autoexpand-style")) return;
+
+      var style = doc.createElement("style");
+      style.id = "nowassist-autoexpand-style";
+      style.type = "text/css";
+      style.appendChild(
+        doc.createTextNode(
+          ".nowassist-autoexpanded{display:flex !important;max-height:none !important;height:auto !important;overflow:visible !important;-webkit-line-clamp:unset !important;}" +
+          ".nowassist-hide-toggle{display:none !important;}"
+        )
+      );
+      doc.head.appendChild(style);
+    } catch (e) {}
+  }
+
+  // ---- same-origin iframe docs (sometimes shell UI uses additional iframes) ----
+  function collectDocuments(doc) {
+    var docs = [];
+    if (!doc) return docs;
+
+    docs.push(doc);
+
+    var iframes = [];
+    try { iframes = doc.querySelectorAll("iframe"); } catch (e) { iframes = []; }
+
+    for (var i = 0; i < iframes.length; i++) {
+      try {
+        var d = iframes[i].contentWindow && iframes[i].contentWindow.document;
+        if (d) docs.push(d);
+      } catch (e2) {
+        // cross-origin -> ignore
       }
+    }
+    return docs;
+  }
+
+  // ---- deep query through OPEN shadow roots (bounded by starting root) ----
+  function deepQueryAll(root, selector) {
+    var results = [];
+    if (!root) return results;
+
+    var queue = [root];
+    var seen = [];
+
+    function seenRoot(r) {
+      for (var i = 0; i < seen.length; i++) if (seen[i] === r) return true;
       return false;
     }
 
-    function markObservedShadowRoot(sr) {
-      if (!sr) return;
-      if (state.observedShadowRoots) state.observedShadowRoots.add(sr);
-      else state.observedShadowRootsArr.push(sr);
-    }
+    while (queue.length) {
+      var r = queue.shift();
+      if (!r || seenRoot(r)) continue;
+      seen.push(r);
 
-    // Throttle re-application to avoid excessive DOM work
-    function schedule() {
-      if (state.scheduled) return;
-      state.scheduled = true;
-      w.setTimeout(function () {
-        state.scheduled = false;
-        runOnce();
-      }, 50);
-    }
-
-    /**
-     * Recursively query selector across light DOM + OPEN shadow roots.
-     * Returns a flat array of matching elements.
-     */
-    function queryAllDeep(root, selector) {
-      var results = [];
-      if (!root) return results;
-
-      function scan(node) {
-        if (!node) return;
-
-        // 1) Collect matches in this root
-        try {
-          var found = node.querySelectorAll(selector);
-          for (var i = 0; i < found.length; i++) results.push(found[i]);
-        } catch (e) {}
-
-        // 2) Traverse elements to enter open shadow roots
-        var all = [];
-        try {
-          all = node.querySelectorAll("*");
-        } catch (e2) {
-          all = [];
-        }
-
-        for (var j = 0; j < all.length; j++) {
-          var el = all[j];
-          if (el && el.shadowRoot) scan(el.shadowRoot);
-        }
-      }
-
-      scan(root);
-      return results;
-    }
-
-    /**
-     * Try to find a smaller "search root" for the Now Assist panel rather than scanning the whole page.
-     * Falls back to the full document if unknown.
-     */
-    function discoverRoots(doc) {
-      var roots = [];
-
-      // Common/likely hosts (harmless if none exist)
-      var hostSelectors =
-        "sn-cs-control-chat, sn-cs-control-chat-container, sn-now-assist, sn-now-assist-panel, sn-assist-panel, now-assist, now-assist-panel";
-
+      // collect matches
       try {
-        var hosts = doc.querySelectorAll(hostSelectors);
-        for (var i = 0; i < hosts.length; i++) {
-          if (hosts[i] && hosts[i].shadowRoot) roots.push(hosts[i].shadowRoot);
-        }
+        var found = r.querySelectorAll(selector);
+        for (var f = 0; f < found.length; f++) results.push(found[f]);
       } catch (e) {}
 
-      // Heuristic fallback: find any element with an open shadowRoot containing the target classes
-      if (!roots.length) {
-        try {
-          var all = doc.querySelectorAll("*");
-          for (var j = 0; j < all.length; j++) {
-            var el = all[j];
-            if (!el || !el.shadowRoot) continue;
+      // traverse elements to enter OPEN shadow roots
+      var els = [];
+      try { els = r.querySelectorAll("*"); } catch (e2) { els = []; }
 
-            var sr = el.shadowRoot;
-            try {
-              if (
-                sr.querySelector(".sn-cs-rich-text-height-wrapper") ||
-                sr.querySelector(".sn-cs-rich-text-container") ||
-                sr.querySelector(".now-button-bar-label") ||
-                sr.querySelector("now-button-bar")
-              ) {
-                roots.push(sr);
-                // keep scanning a bit more is expensive; one good root is usually enough
-                break;
-              }
-            } catch (e2) {}
-          }
-        } catch (e3) {}
+      for (var j = 0; j < els.length; j++) {
+        var el = els[j];
+        if (el && el.shadowRoot) queue.push(el.shadowRoot);
       }
-
-      return roots.length ? roots : [doc];
     }
 
-    function forceExpandedMessage(el) {
-      if (!el || !el.style) return;
-      // The key fix from your observation: block -> flex for correct expansion,
-      // plus ensure no max-height/overflow clipping remains.
+    return results;
+  }
+
+  // ---- locate the panel roots to scan/observe (refreshed periodically) ----
+  function refreshRoots(force) {
+    var now = GetTimeNow();
+    if (!force && (now - state.lastRootRefresh) < CFG.rootRefreshMs) return;
+
+    state.lastRootRefresh = now;
+    state.searchRoots = [];
+
+    var docs = collectDocuments(shellWin.document);
+
+    for (var d = 0; d < docs.length; d++) {
+      var doc = docs[d];
+      ensureStyleInjected(doc);
+
+      // Fast paths (prefer these)
+      var direct = null;
+      try {
+        direct = doc.querySelector(
+          "sn-cs-control-chat, sn-cs-control-chat-container, sn-now-assist, sn-now-assist-panel, sn-assist-panel, now-assist, now-assist-panel"
+        );
+      } catch (e) {
+        direct = null;
+      }
+      if (direct) state.searchRoots.push(direct.shadowRoot || direct);
+
+      // Heuristic fallback: find *one* open shadow root containing our target classes
+      if (!state.searchRoots.length) {
+        var all = [];
+        try { all = doc.querySelectorAll("*"); } catch (e2) { all = []; }
+
+        for (var i = 0; i < all.length && i < 5000; i++) {
+          var el = all[i];
+          if (!el || !el.shadowRoot) continue;
+          try {
+            if (
+              el.shadowRoot.querySelector(".sn-cs-rich-text-height-wrapper") ||
+              el.shadowRoot.querySelector(".sn-cs-rich-text-container") ||
+              el.shadowRoot.querySelector(".now-button-bar-label")
+            ) {
+              state.searchRoots.push(el.shadowRoot);
+              break;
+            }
+          } catch (e3) {}
+        }
+      }
+
+      // Observe document to detect panel open/close / rerenders
+      observe(doc.documentElement || doc.body);
+    }
+
+    // Worst-case fallback
+    if (!state.searchRoots.length) state.searchRoots = [shellWin.document];
+
+  }
+
+  // ---- apply expansion + hide toggles ----
+  function forceExpand(el) {
+    if (!el) return;
+    try { el.classList.add("nowassist-autoexpanded"); } catch (e) {}
+
+    // Keep inline !important too (belt + suspenders)
+    if (el.style && el.style.setProperty) {
       try {
         el.style.setProperty("display", "flex", "important");
         el.style.setProperty("max-height", "none", "important");
         el.style.setProperty("height", "auto", "important");
         el.style.setProperty("overflow", "visible", "important");
         el.style.setProperty("-webkit-line-clamp", "unset", "important");
-      } catch (e) {}
-      try {
-        if (el.classList && !el.classList.contains("nowassist-autoexpanded"))
-          el.classList.add("nowassist-autoexpanded");
       } catch (e2) {}
     }
+  }
 
-    function hideShowMoreLessFromLabel(labelEl) {
-      if (!labelEl) return;
+  function hideShowToggle(labelEl) {
+    if (!labelEl) return;
 
-      var t = "";
-      try {
-        t = (labelEl.textContent || "").replace(/\s+/g, " ").trim().toLowerCase();
-      } catch (e) {}
+    var text = "";
+    try { text = (labelEl.textContent || "").replace(/\s+/g, " ").trim().toLowerCase(); } catch (e) {}
 
-      if (t !== "show more" && t !== "show less") return;
+    if (text !== "show more" && text !== "show less") return;
 
-      // Prefer hiding the <now-button-bar> host; fallback to button container
-      var toHide = null;
-      try {
-        if (labelEl.closest) {
-          toHide = labelEl.closest("now-button-bar") || labelEl.closest("button") || labelEl.closest(".now-button-bar");
-        }
-      } catch (e2) {}
+    var container = null;
+    try {
+      if (labelEl.closest) {
+        container = labelEl.closest("now-button-bar") ||
+                    labelEl.closest("button") ||
+                    labelEl.closest(".now-button-bar");
+      }
+    } catch (e2) {}
 
-      if (!toHide) {
-        // last resort: walk up a few levels
-        toHide = labelEl.parentNode && labelEl.parentNode.parentNode ? labelEl.parentNode.parentNode : labelEl.parentNode;
+    if (!container) container = labelEl.parentNode;
+
+    if (container && container.classList) {
+      try { container.classList.add("nowassist-hide-toggle"); } catch (e3) {}
+    }
+    if (container && container.style && container.style.setProperty) {
+      try { container.style.setProperty("display", "none", "important"); } catch (e4) {}
+    }
+  }
+
+  function enforceInRoot(root) {
+    // Expand wrappers + containers (both appear in your DOM screenshots)
+    var expandTargets = deepQueryAll(
+      root,
+      ".sn-cs-rich-text-height-wrapper.truncateable.expandable, .sn-cs-rich-text-container"
+    );
+    for (var i = 0; i < expandTargets.length; i++) forceExpand(expandTargets[i]);
+
+    // Hide Show more/less
+    var labels = deepQueryAll(root, ".now-button-bar-label");
+    for (var j = 0; j < labels.length; j++) hideShowToggle(labels[j]);
+
+    // Observe relevant OPEN shadow roots so we react instantly to new messages
+    // (we discover them by traversing within this root)
+    var all = deepQueryAll(root, "*");
+    for (var k = 0; k < all.length; k++) {
+      var el = all[k];
+      if (el && el.shadowRoot) observe(el.shadowRoot);
+    }
+
+    // Also observe the root itself if possible
+    observe(root);
+  }
+
+  // ---- scheduling ----
+  function scheduleTick() {
+    if (state.tickScheduled) return;
+    state.tickScheduled = true;
+    shellWin.setTimeout(function () {
+      state.tickScheduled = false;
+      tick();
+    }, 30);
+  }
+
+  function tick() {
+    refreshRoots(false);
+    for (var i = 0; i < state.searchRoots.length; i++) {
+      enforceInRoot(state.searchRoots[i]);
+    }
+  }
+
+  // ---- public controller ----
+  var controller = {
+    start: function () {
+      if (state.running) return;
+      state.running = true;
+
+      refreshRoots(true);
+      tick();
+
+      // Fallback polling (covers cases where re-renders happen without observable mutations in accessible roots)
+      state.intervalId = shellWin.setInterval(function () {
+        tick();
+      }, CFG.intervalMs);
+    },
+
+    stop: function () {
+      state.running = false;
+
+      if (state.intervalId) {
+        shellWin.clearInterval(state.intervalId);
+        state.intervalId = null;
       }
 
-      if (toHide && toHide.style) {
-        try {
-          toHide.style.setProperty("display", "none", "important");
-          toHide.setAttribute("aria-hidden", "true");
-        } catch (e3) {}
+      for (var i = 0; i < state.observers.length; i++) {
+        try { state.observers[i].disconnect(); } catch (e) {}
       }
+      state.observers = [];
+      state.observedTargets = [];
     }
+  };
 
-    function applyToRoot(root) {
-      // Expand both wrapper and container (matches your screenshot structure)
-      var wrappers = queryAllDeep(root, ".sn-cs-rich-text-height-wrapper.truncateable.expandable");
-      for (var i = 0; i < wrappers.length; i++) forceExpandedMessage(wrappers[i]);
-
-      var containers = queryAllDeep(root, ".sn-cs-rich-text-container");
-      for (var j = 0; j < containers.length; j++) forceExpandedMessage(containers[j]);
-
-      // Hide "Show more"/"Show less"
-      var labels = queryAllDeep(root, ".now-button-bar-label");
-      for (var k = 0; k < labels.length; k++) hideShowMoreLessFromLabel(labels[k]);
-    }
-
-    // Observe open shadow roots where the chat content lives, otherwise updates inside shadow DOM won’t trigger.
-    function observeShadowRoots(root) {
-      var shadowHosts = queryAllDeep(root, "*"); // we already traverse; use results to find shadowRoots
-      for (var i = 0; i < shadowHosts.length; i++) {
-        var el = shadowHosts[i];
-        if (!el || !el.shadowRoot) continue;
-
-        var sr = el.shadowRoot;
-        if (isObservedShadowRoot(sr)) continue;
-
-        // Only observe shadow roots that look relevant (avoid observing the whole world)
-        try {
-          if (
-            sr.querySelector(".sn-cs-rich-text-height-wrapper") ||
-            sr.querySelector(".sn-cs-rich-text-container") ||
-            sr.querySelector(".now-button-bar-label") ||
-            sr.querySelector("now-button-bar")
-          ) {
-            markObservedShadowRoot(sr);
-
-            var mo = new w.MutationObserver(function () {
-              schedule();
-            });
-            mo.observe(sr, { childList: true, subtree: true, attributes: true });
-          }
-        } catch (e) {}
-      }
-    }
-
-    function runOnce() {
-      var doc = w.document;
-      if (!doc) return;
-
-      // Discover or re-discover likely roots (panel can open/close)
-      if (!state.roots || !state.roots.length) state.roots = discoverRoots(doc);
-
-      // Apply expansion/hide controls
-      for (var i = 0; i < state.roots.length; i++) {
-        applyToRoot(state.roots[i]);
-        observeShadowRoots(state.roots[i]);
-      }
-    }
-
-    function installObserver() {
-      if (state.observer) return;
-
-      try {
-        state.observer = new w.MutationObserver(function () {
-          // Panel open/close and host changes happen in light DOM
-          // (and we separately observe relevant shadow roots once discovered)
-          schedule();
-        });
-
-        var target = w.document.documentElement || w.document.body;
-        if (target) {
-          state.observer.observe(target, {
-            childList: true,
-            subtree: true,
-            attributes: true,
-            attributeFilter: ["class", "style", "hidden", "aria-expanded"]
-          });
-        }
-      } catch (e) {}
-    }
-
-    installObserver();
-    // initial run (and will keep enforcing via observers)
-    schedule();
-
-    return {
-      installed: true,
-      runOnce: runOnce
-    };
-  })(shellWin);
-
-  shellWin.__nowAssistAutoExpand.runOnce();
+  shellWin.__nowAssistAutoExpandV4 = controller;
+  controller.start();
+  return controller;
 }]]></script>
         <script_name>NowAssistPanelMessageAutoExpand</script_name>
         <sys_class_name>sys_ui_script</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-03-02 14:14:15</sys_created_on>
         <sys_id>2d71040b2b1b36109083fe395e91bfda</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_name>x_snc_devtools.NowAssistPanelMessageAuto</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_script_2d71040b2b1b36109083fe395e91bfda</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-03-17 10:58:21</sys_updated_on>
+        <sys_updated_on>2026-03-17 12:41:53</sys_updated_on>
         <ui_type>0</ui_type>
         <use_scoped_format>false</use_scoped_format>
         <x_snc_devtools_global>true</x_snc_devtools_global>
