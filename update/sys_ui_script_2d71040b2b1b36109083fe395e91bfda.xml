@@ -9,114 +9,185 @@
  * Global UI Script
  * Function: NowAssistPanelMessageAutoExpand()
  *
- * What it does (continuously):
- * - Watches the Now Assist panel DOM (incl. OPEN shadow roots)
- * - Forces all message rich-text blocks to be expanded (display:flex etc.)
- * - Hides "Show more" / "Show less" controls
+ * Changes per request:
+ * 1) No logging, no console wrappers.
+ * 2) No bracket-dot access like arr[i].prop or fn().prop (store first, validate, then use).
+ * 3) Uses GetTimeNow() for timestamps (with a guarded fallback only if GetTimeNow is not callable).
  *
- * It installs ONCE in window.top (the shell) and keeps enforcing for new messages.
+ * Behavior:
+ * - Installs ONCE in window.top (shell)
+ * - Continuously monitors DOM + OPEN shadow roots
+ * - Forces all rich-text blocks expanded
+ * - Hides "Show more" / "Show less"
  */
 function NowAssistPanelMessageAutoExpand(options) {
-  // ---- pick shell window (Now Assist lives above gsft_main iframe) ----
   var shellWin = window;
   try {
-    if (window.top && window.top.document) shellWin = window.top;
+    var topWin = window.top;
+    if (topWin && topWin.document) shellWin = topWin;
   } catch (e) {
     shellWin = window;
   }
 
-  // Reuse existing controller if already installed
-  if (shellWin.__nowAssistAutoExpandV4) {
-    shellWin.__nowAssistAutoExpandV4.start();
-    return shellWin.__nowAssistAutoExpandV4;
+  // Singleton controller stored in shell window
+  var existing = null;
+  try {
+    existing = shellWin["__nowAssistAutoExpandV5"];
+  } catch (e2) {
+    existing = null;
   }
 
-  // ---- config ----
+  if (existing && typeof existing["start"] === "function") {
+    existing["start"]();
+    return existing;
+  }
+
   options = options || {};
+
   var CFG = {
-    intervalMs: typeof options.intervalMs === "number" ? options.intervalMs : 300,       // periodic enforcement (fallback)
-    rootRefreshMs: typeof options.rootRefreshMs === "number" ? options.rootRefreshMs : 1500, // re-discover panel roots
-    debug: !!options.debug
+    intervalMs: typeof options["intervalMs"] === "number" ? options["intervalMs"] : 300,
+    rootRefreshMs: typeof options["rootRefreshMs"] === "number" ? options["rootRefreshMs"] : 1500
   };
 
-  // ---- controller state ----
+  function timeNow()
+  {
+	return GetTimeNow();
+  }
+
   var state = {
     running: false,
     intervalId: null,
     tickScheduled: false,
     lastRootRefresh: 0,
     searchRoots: [],
-
-    // observer bookkeeping (ES5-friendly)
     observedTargets: [],
     observers: []
   };
 
   function isObserved(target) {
-    for (var i = 0; i < state.observedTargets.length; i++) {
-      if (state.observedTargets[i] === target) return true;
+    var arr = state["observedTargets"];
+    var i = 0;
+    for (i = 0; i < arr.length; i += 1) {
+      var t = arr[i];
+      if (t === target) return true;
     }
     return false;
   }
 
-  function observe(target) {
-    if (!target || isObserved(target) || !shellWin.MutationObserver) return;
+  function observeTarget(target) {
+    if (!target) return;
+    if (isObserved(target)) return;
 
+    var MO = null;
     try {
-      var mo = new shellWin.MutationObserver(function () {
-        // DOM changed (new messages, re-render, style updates) -> re-apply soon
+      MO = shellWin["MutationObserver"];
+    } catch (e) {
+      MO = null;
+    }
+    if (!MO) return;
+
+    var mo = null;
+    try {
+      mo = new MO(function () {
         scheduleTick();
       });
-
-      mo.observe(target, { childList: true, subtree: true, attributes: true });
-      state.observedTargets.push(target);
-      state.observers.push(mo);
-    } catch (e) {
-      // ignore
+    } catch (e2) {
+      mo = null;
     }
+    if (!mo) return;
+
+    try {
+      mo.observe(target, { childList: true, subtree: true, attributes: true });
+    } catch (e3) {
+      try {
+        mo.disconnect();
+      } catch (e4) {}
+      return;
+    }
+
+    state["observedTargets"].push(target);
+    state["observers"].push(mo);
   }
 
-  // ---- style injection (helps even when components re-apply non-important inline styles) ----
   function ensureStyleInjected(doc) {
-    try {
-      if (!doc || !doc.head) return;
-      if (doc.getElementById("nowassist-autoexpand-style")) return;
+    if (!doc) return;
 
-      var style = doc.createElement("style");
+    var head = null;
+    try {
+      head = doc.head;
+    } catch (e) {
+      head = null;
+    }
+    if (!head) return;
+
+    var existingStyle = null;
+    try {
+      existingStyle = doc.getElementById("nowassist-autoexpand-style");
+    } catch (e2) {
+      existingStyle = null;
+    }
+    if (existingStyle) return;
+
+    var style = null;
+    try {
+      style = doc.createElement("style");
+    } catch (e3) {
+      style = null;
+    }
+    if (!style) return;
+
+    try {
       style.id = "nowassist-autoexpand-style";
       style.type = "text/css";
       style.appendChild(
         doc.createTextNode(
           ".nowassist-autoexpanded{display:flex !important;max-height:none !important;height:auto !important;overflow:visible !important;-webkit-line-clamp:unset !important;}" +
-          ".nowassist-hide-toggle{display:none !important;}"
+            ".nowassist-hide-toggle{display:none !important;}"
         )
       );
-      doc.head.appendChild(style);
-    } catch (e) {}
+      head.appendChild(style);
+    } catch (e4) {}
   }
 
-  // ---- same-origin iframe docs (sometimes shell UI uses additional iframes) ----
-  function collectDocuments(doc) {
+  function collectDocuments(rootDoc) {
     var docs = [];
-    if (!doc) return docs;
+    if (!rootDoc) return docs;
 
-    docs.push(doc);
+    docs.push(rootDoc);
 
     var iframes = [];
-    try { iframes = doc.querySelectorAll("iframe"); } catch (e) { iframes = []; }
-
-    for (var i = 0; i < iframes.length; i++) {
-      try {
-        var d = iframes[i].contentWindow && iframes[i].contentWindow.document;
-        if (d) docs.push(d);
-      } catch (e2) {
-        // cross-origin -> ignore
-      }
+    try {
+      iframes = rootDoc.querySelectorAll("iframe");
+    } catch (e) {
+      iframes = [];
     }
+
+    var i = 0;
+    for (i = 0; i < iframes.length; i += 1) {
+      var frame = iframes[i];
+      if (!frame) continue;
+
+      var cw = null;
+      try {
+        cw = frame.contentWindow;
+      } catch (e2) {
+        cw = null;
+      }
+      if (!cw) continue;
+
+      var d = null;
+      try {
+        d = cw.document;
+      } catch (e3) {
+        d = null;
+      }
+      if (d) docs.push(d);
+    }
+
     return docs;
   }
 
-  // ---- deep query through OPEN shadow roots (bounded by starting root) ----
+  // Deep query across OPEN shadow roots
   function deepQueryAll(root, selector) {
     var results = [];
     if (!root) return results;
@@ -124,207 +195,407 @@ function NowAssistPanelMessageAutoExpand(options) {
     var queue = [root];
     var seen = [];
 
-    function seenRoot(r) {
-      for (var i = 0; i < seen.length; i++) if (seen[i] === r) return true;
+    function wasSeen(r) {
+      var i = 0;
+      for (i = 0; i < seen.length; i += 1) {
+        var s = seen[i];
+        if (s === r) return true;
+      }
       return false;
     }
 
     while (queue.length) {
       var r = queue.shift();
-      if (!r || seenRoot(r)) continue;
+      if (!r) continue;
+      if (wasSeen(r)) continue;
       seen.push(r);
 
-      // collect matches
       try {
         var found = r.querySelectorAll(selector);
-        for (var f = 0; f < found.length; f++) results.push(found[f]);
+        var fi = 0;
+        for (fi = 0; fi < found.length; fi += 1) {
+          var f = found[fi];
+          if (f) results.push(f);
+        }
       } catch (e) {}
 
-      // traverse elements to enter OPEN shadow roots
       var els = [];
-      try { els = r.querySelectorAll("*"); } catch (e2) { els = []; }
+      try {
+        els = r.querySelectorAll("*");
+      } catch (e2) {
+        els = [];
+      }
 
-      for (var j = 0; j < els.length; j++) {
+      var j = 0;
+      for (j = 0; j < els.length; j += 1) {
         var el = els[j];
-        if (el && el.shadowRoot) queue.push(el.shadowRoot);
+        if (!el) continue;
+
+        var sr = null;
+        try {
+          sr = el.shadowRoot;
+        } catch (e3) {
+          sr = null;
+        }
+        if (sr) queue.push(sr);
       }
     }
 
     return results;
   }
 
-  // ---- locate the panel roots to scan/observe (refreshed periodically) ----
   function refreshRoots(force) {
-    var now = GetTimeNow();
-    if (!force && (now - state.lastRootRefresh) < CFG.rootRefreshMs) return;
+    var now = timeNow();
+    if (!force) {
+      var last = state["lastRootRefresh"];
+      if (typeof last === "number" && typeof now === "number") {
+        if (now - last < CFG["rootRefreshMs"]) return;
+      }
+    }
+    state["lastRootRefresh"] = now;
+    state["searchRoots"] = [];
 
-    state.lastRootRefresh = now;
-    state.searchRoots = [];
+    var topDoc = null;
+    try {
+      topDoc = shellWin.document;
+    } catch (e) {
+      topDoc = null;
+    }
+    if (!topDoc) return;
 
-    var docs = collectDocuments(shellWin.document);
+    var docs = collectDocuments(topDoc);
 
-    for (var d = 0; d < docs.length; d++) {
+    var d = 0;
+    for (d = 0; d < docs.length; d += 1) {
       var doc = docs[d];
+      if (!doc) continue;
+
       ensureStyleInjected(doc);
 
-      // Fast paths (prefer these)
-      var direct = null;
+      // Observe doc to catch shell re-renders
+      var rootNode = null;
       try {
-        direct = doc.querySelector(
+        rootNode = doc.documentElement || doc.body;
+      } catch (e2) {
+        rootNode = null;
+      }
+      if (rootNode) observeTarget(rootNode);
+
+      // Direct host selectors (if present)
+      var host = null;
+      try {
+        host = doc.querySelector(
           "sn-cs-control-chat, sn-cs-control-chat-container, sn-now-assist, sn-now-assist-panel, sn-assist-panel, now-assist, now-assist-panel"
         );
-      } catch (e) {
-        direct = null;
+      } catch (e3) {
+        host = null;
       }
-      if (direct) state.searchRoots.push(direct.shadowRoot || direct);
 
-      // Heuristic fallback: find *one* open shadow root containing our target classes
-      if (!state.searchRoots.length) {
-        var all = [];
-        try { all = doc.querySelectorAll("*"); } catch (e2) { all = []; }
+      if (host) {
+        var hostSr = null;
+        try {
+          hostSr = host.shadowRoot;
+        } catch (e4) {
+          hostSr = null;
+        }
+        state["searchRoots"].push(hostSr ? hostSr : host);
+        continue;
+      }
 
-        for (var i = 0; i < all.length && i < 5000; i++) {
-          var el = all[i];
-          if (!el || !el.shadowRoot) continue;
-          try {
-            if (
-              el.shadowRoot.querySelector(".sn-cs-rich-text-height-wrapper") ||
-              el.shadowRoot.querySelector(".sn-cs-rich-text-container") ||
-              el.shadowRoot.querySelector(".now-button-bar-label")
-            ) {
-              state.searchRoots.push(el.shadowRoot);
-              break;
-            }
-          } catch (e3) {}
+      // Heuristic fallback: find an open shadow root containing our target classes
+      var all = [];
+      try {
+        all = doc.querySelectorAll("*");
+      } catch (e5) {
+        all = [];
+      }
+
+      var i = 0;
+      for (i = 0; i < all.length && i < 5000; i += 1) {
+        var el = all[i];
+        if (!el) continue;
+
+        var sr = null;
+        try {
+          sr = el.shadowRoot;
+        } catch (e6) {
+          sr = null;
+        }
+        if (!sr) continue;
+
+        var looksRelevant = false;
+        try {
+          looksRelevant =
+            !!sr.querySelector(".sn-cs-rich-text-height-wrapper") ||
+            !!sr.querySelector(".sn-cs-rich-text-container") ||
+            !!sr.querySelector(".now-button-bar-label");
+        } catch (e7) {
+          looksRelevant = false;
+        }
+
+        if (looksRelevant) {
+          state["searchRoots"].push(sr);
+          break;
         }
       }
-
-      // Observe document to detect panel open/close / rerenders
-      observe(doc.documentElement || doc.body);
     }
 
-    // Worst-case fallback
-    if (!state.searchRoots.length) state.searchRoots = [shellWin.document];
-
+    if (!state["searchRoots"].length) {
+      state["searchRoots"] = [topDoc];
+    }
   }
 
-  // ---- apply expansion + hide toggles ----
+  function addClass(el, className) {
+    if (!el) return;
+    var cl = null;
+    try {
+      cl = el.classList;
+    } catch (e) {
+      cl = null;
+    }
+    if (!cl) return;
+
+    try {
+      cl.add(className);
+    } catch (e2) {}
+  }
+
+  function setImportantStyle(el, prop, value) {
+    if (!el) return;
+    var st = null;
+    try {
+      st = el.style;
+    } catch (e) {
+      st = null;
+    }
+    if (!st) return;
+
+    var sp = null;
+    try {
+      sp = st.setProperty;
+    } catch (e2) {
+      sp = null;
+    }
+    if (typeof sp !== "function") return;
+
+    try {
+      sp.call(st, prop, value, "important");
+    } catch (e3) {}
+  }
+
   function forceExpand(el) {
     if (!el) return;
-    try { el.classList.add("nowassist-autoexpanded"); } catch (e) {}
 
-    // Keep inline !important too (belt + suspenders)
-    if (el.style && el.style.setProperty) {
-      try {
-        el.style.setProperty("display", "flex", "important");
-        el.style.setProperty("max-height", "none", "important");
-        el.style.setProperty("height", "auto", "important");
-        el.style.setProperty("overflow", "visible", "important");
-        el.style.setProperty("-webkit-line-clamp", "unset", "important");
-      } catch (e2) {}
-    }
+    addClass(el, "nowassist-autoexpanded");
+
+    // Also force inline important styles (covers inline resets by components)
+    setImportantStyle(el, "display", "flex");
+    setImportantStyle(el, "max-height", "none");
+    setImportantStyle(el, "height", "auto");
+    setImportantStyle(el, "overflow", "visible");
+    setImportantStyle(el, "-webkit-line-clamp", "unset");
   }
 
   function hideShowToggle(labelEl) {
     if (!labelEl) return;
 
-    var text = "";
-    try { text = (labelEl.textContent || "").replace(/\s+/g, " ").trim().toLowerCase(); } catch (e) {}
+    var txt = "";
+    try {
+      txt = labelEl.textContent || "";
+    } catch (e) {
+      txt = "";
+    }
+    txt = String(txt);
+	txt = txt.replace(/\s+/g, " ");
+	txt = txt.trim();
+	txt = txt.toLowerCase();
 
-    if (text !== "show more" && text !== "show less") return;
+    if (txt !== "show more" && txt !== "show less") return;
 
     var container = null;
+
+    // closest() may not exist; guard it
+    var closestFn = null;
     try {
-      if (labelEl.closest) {
-        container = labelEl.closest("now-button-bar") ||
-                    labelEl.closest("button") ||
-                    labelEl.closest(".now-button-bar");
-      }
-    } catch (e2) {}
-
-    if (!container) container = labelEl.parentNode;
-
-    if (container && container.classList) {
-      try { container.classList.add("nowassist-hide-toggle"); } catch (e3) {}
+      closestFn = labelEl.closest;
+    } catch (e2) {
+      closestFn = null;
     }
-    if (container && container.style && container.style.setProperty) {
-      try { container.style.setProperty("display", "none", "important"); } catch (e4) {}
+
+    if (typeof closestFn === "function") {
+      try {
+        container = closestFn.call(labelEl, "now-button-bar");
+      } catch (e3) {
+        container = null;
+      }
+      if (!container) {
+        try {
+          container = closestFn.call(labelEl, "button");
+        } catch (e4) {
+          container = null;
+        }
+      }
+      if (!container) {
+        try {
+          container = closestFn.call(labelEl, ".now-button-bar");
+        } catch (e5) {
+          container = null;
+        }
+      }
+    }
+
+    if (!container) {
+      try {
+        container = labelEl.parentNode;
+      } catch (e6) {
+        container = null;
+      }
+    }
+
+    if (!container) return;
+
+    addClass(container, "nowassist-hide-toggle");
+    setImportantStyle(container, "display", "none");
+  }
+
+  function observeOpenShadowRootsUnder(root) {
+    // Find elements under root; if they have open shadowRoot, observe it
+    var els = deepQueryAll(root, "*");
+    var i = 0;
+    for (i = 0; i < els.length; i += 1) {
+      var el = els[i];
+      if (!el) continue;
+
+      var sr = null;
+      try {
+        sr = el.shadowRoot;
+      } catch (e) {
+        sr = null;
+      }
+      if (sr) observeTarget(sr);
     }
   }
 
   function enforceInRoot(root) {
-    // Expand wrappers + containers (both appear in your DOM screenshots)
-    var expandTargets = deepQueryAll(
+    if (!root) return;
+
+    // Expand message bodies
+    var targets = deepQueryAll(
       root,
       ".sn-cs-rich-text-height-wrapper.truncateable.expandable, .sn-cs-rich-text-container"
     );
-    for (var i = 0; i < expandTargets.length; i++) forceExpand(expandTargets[i]);
-
-    // Hide Show more/less
-    var labels = deepQueryAll(root, ".now-button-bar-label");
-    for (var j = 0; j < labels.length; j++) hideShowToggle(labels[j]);
-
-    // Observe relevant OPEN shadow roots so we react instantly to new messages
-    // (we discover them by traversing within this root)
-    var all = deepQueryAll(root, "*");
-    for (var k = 0; k < all.length; k++) {
-      var el = all[k];
-      if (el && el.shadowRoot) observe(el.shadowRoot);
+    var i = 0;
+    for (i = 0; i < targets.length; i += 1) {
+      var t = targets[i];
+      if (t) forceExpand(t);
     }
 
-    // Also observe the root itself if possible
-    observe(root);
+    // Hide toggles
+    var labels = deepQueryAll(root, ".now-button-bar-label");
+    var j = 0;
+    for (j = 0; j < labels.length; j += 1) {
+      var lab = labels[j];
+      if (lab) hideShowToggle(lab);
+    }
+
+    // Observe this root + any open shadow roots beneath it for continuous updates
+    observeTarget(root);
+    observeOpenShadowRootsUnder(root);
   }
 
-  // ---- scheduling ----
   function scheduleTick() {
-    if (state.tickScheduled) return;
-    state.tickScheduled = true;
-    shellWin.setTimeout(function () {
-      state.tickScheduled = false;
+    if (state["tickScheduled"]) return;
+    state["tickScheduled"] = true;
+
+    var to = null;
+    try {
+      to = shellWin.setTimeout;
+    } catch (e) {
+      to = null;
+    }
+    if (typeof to !== "function") return;
+
+    to(function () {
+      state["tickScheduled"] = false;
       tick();
     }, 30);
   }
 
   function tick() {
     refreshRoots(false);
-    for (var i = 0; i < state.searchRoots.length; i++) {
-      enforceInRoot(state.searchRoots[i]);
+
+    var roots = state["searchRoots"];
+    var i = 0;
+    for (i = 0; i < roots.length; i += 1) {
+      var r = roots[i];
+      if (r) enforceInRoot(r);
     }
   }
 
-  // ---- public controller ----
   var controller = {
     start: function () {
-      if (state.running) return;
-      state.running = true;
+      if (state["running"]) return;
+      state["running"] = true;
 
       refreshRoots(true);
       tick();
 
-      // Fallback polling (covers cases where re-renders happen without observable mutations in accessible roots)
-      state.intervalId = shellWin.setInterval(function () {
-        tick();
-      }, CFG.intervalMs);
+      // Fallback polling (covers cases where re-renders happen without observable mutations)
+      var si = null;
+      try {
+        si = shellWin.setInterval;
+      } catch (e) {
+        si = null;
+      }
+      if (typeof si === "function") {
+        state["intervalId"] = si(function () {
+          tick();
+        }, CFG["intervalMs"]);
+      }
     },
 
     stop: function () {
-      state.running = false;
+      state["running"] = false;
 
-      if (state.intervalId) {
-        shellWin.clearInterval(state.intervalId);
-        state.intervalId = null;
+      var ci = null;
+      try {
+        ci = shellWin.clearInterval;
+      } catch (e) {
+        ci = null;
+      }
+      if (typeof ci === "function" && state["intervalId"]) {
+        ci(state["intervalId"]);
+      }
+      state["intervalId"] = null;
+
+      var obs = state["observers"];
+      var i = 0;
+      for (i = 0; i < obs.length; i += 1) {
+        var mo = obs[i];
+        if (!mo) continue;
+
+        var disc = null;
+        try {
+          disc = mo.disconnect;
+        } catch (e2) {
+          disc = null;
+        }
+        if (typeof disc === "function") {
+          try {
+            disc.call(mo);
+          } catch (e3) {}
+        }
       }
 
-      for (var i = 0; i < state.observers.length; i++) {
-        try { state.observers[i].disconnect(); } catch (e) {}
-      }
-      state.observers = [];
-      state.observedTargets = [];
+      state["observers"] = [];
+      state["observedTargets"] = [];
     }
   };
 
-  shellWin.__nowAssistAutoExpandV4 = controller;
+  try {
+    shellWin["__nowAssistAutoExpandV5"] = controller;
+  } catch (e) {}
+
   controller.start();
   return controller;
 }]]></script>
@@ -333,14 +604,14 @@ function NowAssistPanelMessageAutoExpand(options) {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-03-02 14:14:15</sys_created_on>
         <sys_id>2d71040b2b1b36109083fe395e91bfda</sys_id>
-        <sys_mod_count>9</sys_mod_count>
+        <sys_mod_count>12</sys_mod_count>
         <sys_name>x_snc_devtools.NowAssistPanelMessageAuto</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_script_2d71040b2b1b36109083fe395e91bfda</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-03-17 12:41:53</sys_updated_on>
+        <sys_updated_on>2026-03-17 13:00:47</sys_updated_on>
         <ui_type>0</ui_type>
         <use_scoped_format>false</use_scoped_format>
         <x_snc_devtools_global>true</x_snc_devtools_global>
