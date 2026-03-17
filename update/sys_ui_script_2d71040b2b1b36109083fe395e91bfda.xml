@@ -5,195 +5,302 @@
         <global>true</global>
         <ignore_in_now_experience>false</ignore_in_now_experience>
         <name>x_snc_devtools.NowAssistPanelMessageAuto</name>
-        <script><![CDATA[function NowAssistPanelMessageAutoExpand() {
-  console.log("NowAssistPanelMessageAutoExpand v2");
+        <script><![CDATA[/**
+ * Global UI Script
+ * Name: NowAssistPanelMessageAutoExpand
+ *
+ * Goal:
+ * - If the Now Assist panel is open, force all rich-text messages to be expanded.
+ * - Hide the "Show more" / "Show less" controls.
+ *
+ * Notes:
+ * - This runs from forms/UI Pages (typically inside an iframe like gsft_main).
+ * - The Now Assist panel lives in the shell (window.top). We therefore operate on window.top
+ *   and store the observer/state on window.top to ensure it keeps working as content updates.
+ * - Uses deep querying into OPEN shadow roots (as shown in your screenshots).
+ */
+function NowAssistPanelMessageAutoExpand()
+{
+  var shellWin = window;
+  try {
+    if (window.top && window.top.document) shellWin = window.top;
+  } catch (e) {
+    shellWin = window; // fallback if top is not accessible
+  }
 
-  (function () {
-    var topWin;
-    try { topWin = window.top || window; } catch (e) { topWin = window; }
+  // Install once (store state on the shell window).
+  if (shellWin.__nowAssistAutoExpand && shellWin.__nowAssistAutoExpand.installed) {
+    shellWin.__nowAssistAutoExpand.runOnce();
+    return;
+  }
 
-    if (topWin.__napAutoExpandInstalledV2) return;
-    topWin.__napAutoExpandInstalledV2 = true;
+  shellWin.__nowAssistAutoExpand = (function (w) {
+    var state = {
+      installed: true,
+      scheduled: false,
+      roots: null,
+      observer: null,
+      observedShadowRoots: w.WeakSet ? new w.WeakSet() : null,
+      observedShadowRootsArr: [] // fallback if WeakSet not available
+    };
 
-    // --- tuneables ---
-    var DEBUG = false;
-    var MAX_NODES_PER_SCAN = 1200;   // safety cap
-    var MAX_EXPANDS_PER_SCAN = 40;   // don’t go wild
-    var TRUNC_TOL = 2;               // px
-
-    var PANEL_SELECTORS = [
-      "sn-now-assist-panel",
-      "now-assist-panel",
-      "[data-testid*='now-assist']",
-      "[data-test-id*='now-assist']"
-    ];
-
-    function log() { if (DEBUG) console.log.apply(console, arguments); }
-
-    function isTruncated(el) {
-      if (!el) return false;
-      return (el.scrollHeight - el.clientHeight) > TRUNC_TOL || (el.scrollWidth - el.clientWidth) > TRUNC_TOL;
+    function isObservedShadowRoot(sr) {
+      if (!sr) return true;
+      if (state.observedShadowRoots) return state.observedShadowRoots.has(sr);
+      for (var i = 0; i < state.observedShadowRootsArr.length; i++) {
+        if (state.observedShadowRootsArr[i] === sr) return true;
+      }
+      return false;
     }
 
-    function looksLineClamped(el) {
-      if (!el) return false;
-      var cs = getComputedStyle(el);
-      var lc = cs.webkitLineClamp || cs.lineClamp;
-      // clamp typically comes with overflow hidden
-      return (lc && lc !== "none" && lc !== "unset" && lc !== "0") && cs.overflow === "hidden";
+    function markObservedShadowRoot(sr) {
+      if (!sr) return;
+      if (state.observedShadowRoots) state.observedShadowRoots.add(sr);
+      else state.observedShadowRootsArr.push(sr);
     }
 
-    function unClamp(el) {
-      // override the usual clamp recipe: display:-webkit-box; -webkit-line-clamp:N; overflow:hidden;
+    // Throttle re-application to avoid excessive DOM work
+    function schedule() {
+      if (state.scheduled) return;
+      state.scheduled = true;
+      w.setTimeout(function () {
+        state.scheduled = false;
+        runOnce();
+      }, 50);
+    }
+
+    /**
+     * Recursively query selector across light DOM + OPEN shadow roots.
+     * Returns a flat array of matching elements.
+     */
+    function queryAllDeep(root, selector) {
+      var results = [];
+      if (!root) return results;
+
+      function scan(node) {
+        if (!node) return;
+
+        // 1) Collect matches in this root
+        try {
+          var found = node.querySelectorAll(selector);
+          for (var i = 0; i < found.length; i++) results.push(found[i]);
+        } catch (e) {}
+
+        // 2) Traverse elements to enter open shadow roots
+        var all = [];
+        try {
+          all = node.querySelectorAll("*");
+        } catch (e2) {
+          all = [];
+        }
+
+        for (var j = 0; j < all.length; j++) {
+          var el = all[j];
+          if (el && el.shadowRoot) scan(el.shadowRoot);
+        }
+      }
+
+      scan(root);
+      return results;
+    }
+
+    /**
+     * Try to find a smaller "search root" for the Now Assist panel rather than scanning the whole page.
+     * Falls back to the full document if unknown.
+     */
+    function discoverRoots(doc) {
+      var roots = [];
+
+      // Common/likely hosts (harmless if none exist)
+      var hostSelectors =
+        "sn-cs-control-chat, sn-cs-control-chat-container, sn-now-assist, sn-now-assist-panel, sn-assist-panel, now-assist, now-assist-panel";
+
       try {
-        el.style.webkitLineClamp = "unset";
-        el.style.maxHeight = "none";
-        el.style.overflow = "visible";
-        // keep layout reasonably stable
-        if (getComputedStyle(el).display === "-webkit-box") el.style.display = "block";
+        var hosts = doc.querySelectorAll(hostSelectors);
+        for (var i = 0; i < hosts.length; i++) {
+          if (hosts[i] && hosts[i].shadowRoot) roots.push(hosts[i].shadowRoot);
+        }
       } catch (e) {}
-    }
 
-    function findPanelHost(doc) {
-      for (var i = 0; i < PANEL_SELECTORS.length; i++) {
-        var el = doc.querySelector(PANEL_SELECTORS[i]);
-        if (el) return el;
-      }
-      // fallback: any custom element containing "now-assist" in tag name
-      var all = doc.querySelectorAll("*");
-      for (var j = 0; j < all.length && j < 5000; j++) {
-        var tn = (all[j].tagName || "").toLowerCase();
-        if (tn.indexOf("now-assist") > -1) return all[j];
-      }
-      return null;
-    }
+      // Heuristic fallback: find any element with an open shadowRoot containing the target classes
+      if (!roots.length) {
+        try {
+          var all = doc.querySelectorAll("*");
+          for (var j = 0; j < all.length; j++) {
+            var el = all[j];
+            if (!el || !el.shadowRoot) continue;
 
-    function walkOpenShadowRoots(root, visitor) {
-      if (!root || !root.querySelectorAll) return;
-      visitor(root);
-
-      var all = root.querySelectorAll("*");
-      for (var i = 0; i < all.length; i++) {
-        var host = all[i];
-        if (host && host.shadowRoot) walkOpenShadowRoots(host.shadowRoot, visitor);
-      }
-    }
-
-    function clickSemanticExpanders(root) {
-      // Best-case: expander exposes aria-expanded=false (language-independent)
-      var toggles = root.querySelectorAll("button[aria-expanded='false'],[role='button'][aria-expanded='false']");
-      var clicked = 0;
-
-      for (var i = 0; i < toggles.length && clicked < MAX_EXPANDS_PER_SCAN; i++) {
-        var btn = toggles[i];
-
-        // If it controls something and that target is truncated, click
-        var id = btn.getAttribute && btn.getAttribute("aria-controls");
-        if (id) {
-          var target = root.querySelector("#" + CSS.escape(id));
-          if (target && isTruncated(target)) {
-            try { btn.click(); clicked++; } catch (e) {}
+            var sr = el.shadowRoot;
+            try {
+              if (
+                sr.querySelector(".sn-cs-rich-text-height-wrapper") ||
+                sr.querySelector(".sn-cs-rich-text-container") ||
+                sr.querySelector(".now-button-bar-label") ||
+                sr.querySelector("now-button-bar")
+              ) {
+                roots.push(sr);
+                // keep scanning a bit more is expensive; one good root is usually enough
+                break;
+              }
+            } catch (e2) {}
           }
-        }
+        } catch (e3) {}
       }
 
-      if (clicked) log("Clicked expanders:", clicked);
-      return clicked;
+      return roots.length ? roots : [doc];
     }
 
-    function removeTruncation(root) {
-      // Second strategy: remove clamp styles from truncated text nodes
-      var candidates = root.querySelectorAll("div,span,p,pre,li");
-      var touched = 0;
-
-      for (var i = 0; i < candidates.length && i < MAX_NODES_PER_SCAN && touched < MAX_EXPANDS_PER_SCAN; i++) {
-        var el = candidates[i];
-
-        // Only touch things that *look* like clamped/truncated text
-        if (looksLineClamped(el) || (isTruncated(el) && getComputedStyle(el).overflow === "hidden")) {
-          unClamp(el);
-          touched++;
-        }
-      }
-
-      if (touched) log("Unclamped nodes:", touched);
-      return touched;
-    }
-
-    function scanDoc(doc) {
-      var host = findPanelHost(doc);
-      if (!host) return false;
-
-      // Use host.shadowRoot if open; if closed, we’re stuck (can’t access internals)
-      var roots = [host];
-      if (host.shadowRoot) roots.push(host.shadowRoot);
-
-      var changed = false;
-
-      for (var r = 0; r < roots.length; r++) {
-        walkOpenShadowRoots(roots[r], function (root) {
-          // Attempt click first (cheap), then CSS unclamp
-          var c1 = clickSemanticExpanders(root);
-          var c2 = removeTruncation(root);
-          if (c1 || c2) changed = true;
-        });
-      }
-
-      return changed;
-    }
-
-    function docsToScan() {
-      var docs = [];
-      try { docs.push(topWin.document); } catch (e) {}
+    function forceExpandedMessage(el) {
+      if (!el || !el.style) return;
+      // The key fix from your observation: block -> flex for correct expansion,
+      // plus ensure no max-height/overflow clipping remains.
       try {
-        var iframe = topWin.document.getElementById("gsft_main");
-        if (iframe && iframe.contentWindow && iframe.contentWindow.document) docs.push(iframe.contentWindow.document);
+        el.style.setProperty("display", "flex", "important");
+        el.style.setProperty("max-height", "none", "important");
+        el.style.setProperty("height", "auto", "important");
+        el.style.setProperty("overflow", "visible", "important");
+        el.style.setProperty("-webkit-line-clamp", "unset", "important");
       } catch (e) {}
-      return docs;
+      try {
+        if (el.classList && !el.classList.contains("nowassist-autoexpanded"))
+          el.classList.add("nowassist-autoexpanded");
+      } catch (e2) {}
     }
 
-    var queued = false;
-    function scheduleScan() {
-      if (queued) return;
-      queued = true;
-      topWin.requestAnimationFrame(function () {
-        queued = false;
-        var docs = docsToScan();
-        for (var i = 0; i < docs.length; i++) scanDoc(docs[i]);
-      });
-    }
+    function hideShowMoreLessFromLabel(labelEl) {
+      if (!labelEl) return;
 
-    function install() {
-      var docs = docsToScan();
-      for (var i = 0; i < docs.length; i++) {
-        (function (doc) {
-          if (!doc || !doc.body) return;
-          var obs = new MutationObserver(scheduleScan);
-          obs.observe(doc.body, { childList: true, subtree: true });
-        })(docs[i]);
+      var t = "";
+      try {
+        t = (labelEl.textContent || "").replace(/\s+/g, " ").trim().toLowerCase();
+      } catch (e) {}
+
+      if (t !== "show more" && t !== "show less") return;
+
+      // Prefer hiding the <now-button-bar> host; fallback to button container
+      var toHide = null;
+      try {
+        if (labelEl.closest) {
+          toHide = labelEl.closest("now-button-bar") || labelEl.closest("button") || labelEl.closest(".now-button-bar");
+        }
+      } catch (e2) {}
+
+      if (!toHide) {
+        // last resort: walk up a few levels
+        toHide = labelEl.parentNode && labelEl.parentNode.parentNode ? labelEl.parentNode.parentNode : labelEl.parentNode;
       }
-      scheduleScan();
+
+      if (toHide && toHide.style) {
+        try {
+          toHide.style.setProperty("display", "none", "important");
+          toHide.setAttribute("aria-hidden", "true");
+        } catch (e3) {}
+      }
     }
 
-    try {
-      if (topWin.document.readyState === "loading") topWin.document.addEventListener("DOMContentLoaded", install);
-      else install();
-    } catch (e) {}
-  })();
+    function applyToRoot(root) {
+      // Expand both wrapper and container (matches your screenshot structure)
+      var wrappers = queryAllDeep(root, ".sn-cs-rich-text-height-wrapper.truncateable.expandable");
+      for (var i = 0; i < wrappers.length; i++) forceExpandedMessage(wrappers[i]);
+
+      var containers = queryAllDeep(root, ".sn-cs-rich-text-container");
+      for (var j = 0; j < containers.length; j++) forceExpandedMessage(containers[j]);
+
+      // Hide "Show more"/"Show less"
+      var labels = queryAllDeep(root, ".now-button-bar-label");
+      for (var k = 0; k < labels.length; k++) hideShowMoreLessFromLabel(labels[k]);
+    }
+
+    // Observe open shadow roots where the chat content lives, otherwise updates inside shadow DOM won’t trigger.
+    function observeShadowRoots(root) {
+      var shadowHosts = queryAllDeep(root, "*"); // we already traverse; use results to find shadowRoots
+      for (var i = 0; i < shadowHosts.length; i++) {
+        var el = shadowHosts[i];
+        if (!el || !el.shadowRoot) continue;
+
+        var sr = el.shadowRoot;
+        if (isObservedShadowRoot(sr)) continue;
+
+        // Only observe shadow roots that look relevant (avoid observing the whole world)
+        try {
+          if (
+            sr.querySelector(".sn-cs-rich-text-height-wrapper") ||
+            sr.querySelector(".sn-cs-rich-text-container") ||
+            sr.querySelector(".now-button-bar-label") ||
+            sr.querySelector("now-button-bar")
+          ) {
+            markObservedShadowRoot(sr);
+
+            var mo = new w.MutationObserver(function () {
+              schedule();
+            });
+            mo.observe(sr, { childList: true, subtree: true, attributes: true });
+          }
+        } catch (e) {}
+      }
+    }
+
+    function runOnce() {
+      var doc = w.document;
+      if (!doc) return;
+
+      // Discover or re-discover likely roots (panel can open/close)
+      if (!state.roots || !state.roots.length) state.roots = discoverRoots(doc);
+
+      // Apply expansion/hide controls
+      for (var i = 0; i < state.roots.length; i++) {
+        applyToRoot(state.roots[i]);
+        observeShadowRoots(state.roots[i]);
+      }
+    }
+
+    function installObserver() {
+      if (state.observer) return;
+
+      try {
+        state.observer = new w.MutationObserver(function () {
+          // Panel open/close and host changes happen in light DOM
+          // (and we separately observe relevant shadow roots once discovered)
+          schedule();
+        });
+
+        var target = w.document.documentElement || w.document.body;
+        if (target) {
+          state.observer.observe(target, {
+            childList: true,
+            subtree: true,
+            attributes: true,
+            attributeFilter: ["class", "style", "hidden", "aria-expanded"]
+          });
+        }
+      } catch (e) {}
+    }
+
+    installObserver();
+    // initial run (and will keep enforcing via observers)
+    schedule();
+
+    return {
+      installed: true,
+      runOnce: runOnce
+    };
+  })(shellWin);
+
+  shellWin.__nowAssistAutoExpand.runOnce();
 }]]></script>
         <script_name>NowAssistPanelMessageAutoExpand</script_name>
         <sys_class_name>sys_ui_script</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-03-02 14:14:15</sys_created_on>
         <sys_id>2d71040b2b1b36109083fe395e91bfda</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>x_snc_devtools.NowAssistPanelMessageAuto</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_script_2d71040b2b1b36109083fe395e91bfda</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-03-02 14:35:39</sys_updated_on>
+        <sys_updated_on>2026-03-17 10:58:21</sys_updated_on>
         <ui_type>0</ui_type>
         <use_scoped_format>false</use_scoped_format>
         <x_snc_devtools_global>true</x_snc_devtools_global>
