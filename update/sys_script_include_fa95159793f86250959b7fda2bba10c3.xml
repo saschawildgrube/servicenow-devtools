@@ -53,9 +53,31 @@
 	}
 
 	var strCurrentBranch = GetAppCurrentBranch(grApp);
+
+	if (IsValidVersion(strCurrentBranch) == true)
+	{
+		if (strCurrentBranch != grApp.version)
+		{
+			var strMessage = StringFormat(
+				'WARNING: The Application "{0}" is linked to branch "{1}" (which appears to be a version branch) - but the set version of the application is "{2}"!'
+				+'\n\n'
+				+'This discrepancy indicates a problem or mistake. Please ensure the branch and application version match!',
+				grApp.name,
+				strCurrentBranch,
+				grApp.version);
+				
+			strMessage = HtmlEncode(strMessage);
+			gs.addErrorMessage(strMessage);			
+		}
+	}	
+
+	if (IsAppShared(grApp) == true)
+	{
+		return;
+	}
+
 	if (strCurrentBranch != '')
 	{
-		
 		var strInstancePipelineName = GetInstancePipelineName();
 		if (strInstancePipelineName == 'dev')
 		{
@@ -71,9 +93,9 @@
 				strMessage = HtmlEncode(strMessage);
 				gs.addErrorMessage(strMessage);
 			}
-
 		}
-			
+
+	
 	}
 
 }]]></script>
@@ -81,14 +103,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-04-14 12:11:20</sys_created_on>
         <sys_id>fa95159793f86250959b7fda2bba10c3</sys_id>
-        <sys_mod_count>16</sys_mod_count>
+        <sys_mod_count>19</sys_mod_count>
         <sys_name>ExecuteBusinessRuleShowWrongBranchWarning</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_fa95159793f86250959b7fda2bba10c3</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-02-10 14:53:51</sys_updated_on>
+        <sys_updated_on>2026-03-16 13:29:23</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

@@ -5,15 +5,17 @@
         <api_name>x_snc_devtools.GetRelatedRecordsTree</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Returns a nested tree structure of related records as an object.&#13;
+        <description>Returns a nested tree structure of related records as an object - avoiding recursions.&#13;
 The input record represented in the GlideRecord object is returned as a pure object.&#13;
 The member "_related_records" is an array that contains the directly related records (these are records that reference to the given record) as objects.&#13;
 If the bApplicationFilesOnly parameter is true, only records derived from application files are considered as related records.</description>
         <mobile_callable>false</mobile_callable>
         <name>GetRelatedRecordsTree</name>
         <sandbox_callable>false</sandbox_callable>
-        <script><![CDATA[function GetRelatedRecordsTree(grRecord,bApplicationFilesOnly,nMaxLevel,nLevel)
+        <script><![CDATA[function GetRelatedRecordsTree(grRecord,bApplicationFilesOnly,nMaxLevel,nLevel,aSysIds)
 {
+	aSysIds = GetArrayValue(aSysIds);
+
 	nLevel = GetIntegerValue(nLevel);
 	if (IsValidRecord(grRecord) == false)
 	{
@@ -46,23 +48,15 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 		record.sys_class_name = GetStringValue(grRecord.getRecordClassName());
 	}
 
+	if (ArrayValueExists(aSysIds,record.sys_id) == true)
+	{
+		return false;
+	}
+	aSysIds.push(record.sys_id);
+
 
 
 	var strTable = GetStringValue(grRecord.getRecordClassName());
-
-/*
-	if (strTable == 'sn_aia_team_member')
-	{
-		aReverseRelations.push('sn_aia_team');
-	}
-*/
-
-/*
-	if (strTable == 'sn_aia_agent')
-	{
-		aReverseRelations.push('sn_aia_team_member');
-	}
-*/
 
 	if (ArrayValueExists(aReverseRelations,strTable) == false)
 	{
@@ -123,7 +117,8 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 					grRelatedRecordActual,
 					bApplicationFilesOnly,
 					nMaxLevel,
-					nLevel+1);
+					nLevel+1,
+					aSysIds);
 					
 				if (related_record != false)
 				{
@@ -157,7 +152,8 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 					grRelatedRecords,
 					bApplicationFilesOnly,
 					nMaxLevel,
-					nLevel+1);
+					nLevel+1,
+					aSysIds);
 				if (related_record != false)
 				{
 					record._related_records.push(related_record);		
@@ -177,7 +173,8 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 				grDictionary,
 				bApplicationFilesOnly,
 				nMaxLevel,
-				nLevel+1);
+				nLevel+1,
+				aSysIds);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -195,7 +192,8 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 				grACL,
 				bApplicationFilesOnly,
 				nMaxLevel,
-				nLevel+1);
+				nLevel+1,
+				aSysIds);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -215,7 +213,8 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 				grDocumentation,
 				bApplicationFilesOnly,
 				nMaxLevel,
-				nLevel+1);
+				nLevel+1,
+				aSysIds);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -241,7 +240,8 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 				grPublic,
 				bApplicationFilesOnly,
 				nMaxLevel,
-				nLevel+1);
+				nLevel+1,
+				aSysIds);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -260,7 +260,8 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 				grACL,
 				bApplicationFilesOnly,
 				nMaxLevel,
-				nLevel+1);
+				nLevel+1,
+				aSysIds);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -276,7 +277,8 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 			grAiaTool,
 			bApplicationFilesOnly,
 			nMaxLevel,
-			nLevel+1);
+			nLevel+1,
+			aSysIds);
 		if (related_record != false)
 		{
 			record._related_records.push(related_record);		
@@ -295,7 +297,8 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 				grAiaSkillMeta,
 				bApplicationFilesOnly,
 				nMaxLevel,
-				nLevel+1);
+				nLevel+1,
+				aSysIds);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -312,7 +315,8 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 				grAiaTriggerUseCase,
 				bApplicationFilesOnly,
 				nMaxLevel,
-				nLevel+1);
+				nLevel+1,
+				aSysIds);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -331,9 +335,11 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 			while (grACL.next())
 			{
 				var related_record = GetRelatedRecordsTree(
-					grACL,bApplicationFilesOnly,
+					grACL,
+					bApplicationFilesOnly,
 					nMaxLevel,
-					nLevel+1);
+					nLevel+1,
+					aSysIds);
 				if (related_record != false)
 				{
 					record._related_records.push(related_record);		
@@ -352,9 +358,11 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 		while (grAiTool.next())
 		{
 			var related_record = GetRelatedRecordsTree(
-				grAiTool,bApplicationFilesOnly,
+				grAiTool,
+				bApplicationFilesOnly,
 				nMaxLevel,
-				nLevel+1);
+				nLevel+1,
+				aSysIds);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -378,7 +386,8 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 				var related_record = GetRelatedRecordsTree(
 					grACL,bApplicationFilesOnly,
 					nMaxLevel,
-					nLevel+1);
+					nLevel+1,
+					aSysIds);
 				if (related_record != false)
 				{
 					record._related_records.push(related_record);		
@@ -398,15 +407,74 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 				grGenAiConfig,
 				bApplicationFilesOnly,
 				nMaxLevel,
-				nLevel+1);
+				nLevel+1,
+				aSysIds);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
 			}			
 		}		
 
+		var grAccessRoleConfig = new GlideRecord('sys_agent_access_role_configuration');
+		grAccessRoleConfig.addQuery('agent', '=', grRecord.sys_id);
+		grAccessRoleConfig.addQuery('agent_table', '=','sn_nowassist_skill_config');
+		GlideRecordQuery(grAccessRoleConfig);
+		while (grAccessRoleConfig.next()) {
+			var related_record = GetRelatedRecordsTree(
+				grAccessRoleConfig,
+				bApplicationFilesOnly,
+				nMaxLevel,
+				nLevel + 1,
+				aSysIds);
+			if (related_record != false) {
+				record._related_records.push(related_record);
+			}
+		}
+
 	}
 	
+	if (strTable == 'sys_one_extend_capability')
+	{
+		if (grRecord.type == 'skill')
+		{
+			var grSkillConfig = new GlideRecord('sn_nowassist_skill_config');
+			grSkillConfig.addQuery('skill_table','=','sys_one_extend_capability');
+			grSkillConfig.addQuery('skill_id','=',grRecord.sys_id);
+			GlideRecordQuery(grSkillConfig);
+			while (grSkillConfig.next())
+			{
+				var related_record = GetRelatedRecordsTree(
+					grSkillConfig,
+					bApplicationFilesOnly,
+					nMaxLevel,
+					nLevel+1,
+					aSysIds);
+				if (related_record != false)
+				{
+					record._related_records.push(related_record);		
+				}			
+			}
+		}
+
+		var grGenAiFeatureMapping = new GlideRecord('sys_gen_ai_feature_mapping');
+		grGenAiFeatureMapping.addQuery('document_table','=','sys_one_extend_capability');
+		grGenAiFeatureMapping.addQuery('document','=',grRecord.sys_id);
+		GlideRecordQuery(grGenAiFeatureMapping);
+		while (grGenAiFeatureMapping.next())
+		{
+			var related_record = GetRelatedRecordsTree(
+				grGenAiFeatureMapping,
+				bApplicationFilesOnly,
+				nMaxLevel,
+				nLevel+1,
+				aSysIds);
+			if (related_record != false)
+			{
+				record._related_records.push(related_record);		
+			}			
+		}	
+
+	}
 
 	if (strTable == 'sn_aia_skill_metadata')
 	{
@@ -420,7 +488,8 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 				grAiSkill,
 				bApplicationFilesOnly,
 				nMaxLevel,
-				nLevel+1);
+				nLevel+1,
+				aSysIds);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -441,7 +510,8 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 				grAiVersion,
 				bApplicationFilesOnly,
 				nMaxLevel,
-				nLevel+1);
+				nLevel+1,
+				aSysIds);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -458,7 +528,8 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 				grTriggerConfig,
 				bApplicationFilesOnly,
 				nMaxLevel,
-				nLevel+1);
+				nLevel+1,
+				aSysIds);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -475,7 +546,8 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 				grFlow,
 				bApplicationFilesOnly,
 				nMaxLevel,
-				nLevel+1);
+				nLevel+1,
+				aSysIds);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -495,7 +567,8 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 				grFlowInput,
 				bApplicationFilesOnly,
 				nMaxLevel,
-				nLevel+1);
+				nLevel+1,
+				aSysIds);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -511,7 +584,8 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 				grDoc,
 				bApplicationFilesOnly,
 				nMaxLevel,
-				nLevel+1);
+				nLevel+1,
+				aSysIds);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -532,7 +606,8 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 				grFlowVar,
 				bApplicationFilesOnly,
 				nMaxLevel,
-				nLevel+1);
+				nLevel+1,
+				aSysIds);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -549,7 +624,8 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 				grFlowInput,
 				bApplicationFilesOnly,
 				nMaxLevel,
-				nLevel+1);
+				nLevel+1,
+				aSysIds);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -565,7 +641,8 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
 				grDoc,
 				bApplicationFilesOnly,
 				nMaxLevel,
-				nLevel+1);
+				nLevel+1,
+				aSysIds);
 			if (related_record != false)
 			{
 				record._related_records.push(related_record);		
@@ -580,14 +657,14 @@ If the bApplicationFilesOnly parameter is true, only records derived from applic
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-10-29 13:29:32</sys_created_on>
         <sys_id>71c1d58b3b34f69062bf612c95e45adb</sys_id>
-        <sys_mod_count>66</sys_mod_count>
+        <sys_mod_count>75</sys_mod_count>
         <sys_name>GetRelatedRecordsTree</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_71c1d58b3b34f69062bf612c95e45adb</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-01-05 13:33:10</sys_updated_on>
+        <sys_updated_on>2026-03-24 11:48:07</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

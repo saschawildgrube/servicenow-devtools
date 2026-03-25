@@ -663,20 +663,72 @@ function YourLengthyProcess(strRecordSysId)
 	<h3>How to replace a deprecated function?</h3>
 	<p>Sometimes function names change or the original function is deprecated. Use this code pattern to search and replace a function (e.g. in Script Include scripts):</p>
 	<pre>
-	var grSI = new GlideRecord('sys_script_include');
+var strDeprecatedFunction = 'IsValidFunction';
+var strNewFunction = 'IsFunction'; 
+
+var grSI = new GlideRecord('sys_script_include');
 grSI.addQuery('sys_scope.scope','STARTSWITH','x_');
-grSI.addQuery('name','!=','IsValidFunction');
-grSI.addQuery('script','CONTAINS','IsValidFunction');
+grSI.addQuery('name','!=',strDeprecatedFunction);
+grSI.addQuery('script','CONTAINS',strDeprecatedFunction);
 grSI.query();
 while (grSI.next())
 {
 	gs.info(grSI.api_name);
 	var strScript = grSI.script.getValue();
 	grSI.script = strScript.replaceAll(
-		'IsValidFunction','IsFunction');
+		strDeprecatedFunction,strNewFunction);
 	x_snc_devtools.GlideRecordUpdate(grSI);
 } </pre>
 	<p>Please note that you may have to add more filters to ignore legitimate findings.</p> 
+
+	<h3>How to move (complex) Application File structures from one custom app to another?</h3>
+	<p>If a Flow, an AI Agent or another (complex) structure of Application Files should be moved from one custom application to another, follow this procedure:</p>
+
+	<p>First, validate the record (and its related records) that should be moved:</p>
+
+<pre>
+// Using an AI Agent as an example
+var grRecord = new GlideRecord('sn_aia_agent');
+// This is an OOTB agent with a protection policy - and CANNOT and SHOULD NOT be moved! 
+grRecord.get('3e0035478367121085a2c407a22bc0d0');
+
+// GetRelatedRecordsTree() identifies all related records of the given record and returns a tree-like json object.
+
+// This choice limits the identification of related records to Application Files.
+// This excludes logs files or any other non-Application File records.
+var bApplicationFilesOnly = true;
+
+gs.info(x_snc_devtools.RenderValue(x_snc_devtools.GetRelatedRecordsTree(grRecord,bApplicationFilesOnly)));
+
+// This will output the result as a list:
+gs.info(x_snc_devtools.RenderValue(x_snc_devtools.GetRelatedRecordsList(grRecord,bApplicationFilesOnly)));
+</pre>
+	<p>This will output the tree structure of records related to the given record. If the function does not cover everything, some records might have to be moved separately. Some knowledge of the underlying structure is required to identify missing records - DO NOT rely on the function to return the complete structure correctly - some new platform feature use strange ways to connect records to each other.</p>
+	<p>Once the structure is confirmed, use the following code to actually move the record from its scope to another:</p>
+
+<pre>
+// Replace table name and sys id. Only execute if you are sure what you are doing!
+var grRecord = new GlideRecord('add table here');
+grRecord.get('enter sys id here');
+
+var strTargetScope = 'enter the target scope';
+
+// Should related records from other scopes than the given record be moved?
+// "false" is the defensive option
+// If the Application Files were unintendedly "scattered" across multiple custom applications,
+// "true" might be the better option. It really depends!
+var bMoveFromAllScopes = false; 
+
+// This option specifies whether tables and column definition should be moved.
+// "false" is the defensive option.
+// Keep in mind that table defined in scoped applications contain the scope name in their name.
+// Moving such Application Files into another app may have unintended side-effects.
+// Make sure to backup your Application Files AND the data contained in these tables and columns before doing this.
+var bMoveDataModel = false;
+
+x_snc_devtools.AppBuilderMoveToScope(grRecord, strTargetScope, bMoveFromAllScopes, bMoveDataModel);
+
+</pre>
 
 	<h2>Reference</h2>
 
@@ -716,6 +768,51 @@ while (grSI.next())
 	<g2:no_escape>$[docapi.RenderLicense()]</g2:no_escape>
 	
 	<h2 toc-ignore-children="true">Release Notes</h2>
+
+	<h3>1.138.0 - 2026-03-25</h3>
+	<ol>
+		<li>Added function GetIncidentRecord().</li>
+		<li>Added function BusinessProcessGetExample().</li>
+		<li>Added function GetAgenticConversationRecord().</li>
+		<li>Added function IsAgenticConversationActive().</li>
+		<li>Added function IsAgenticConversationIdleOrInactive().</li>
+		<li>Added function WaitForAgenticConversation().</li>
+		<li>Added function GetRecentEvaluatorErrorsQuery().</li>
+		<li>Added UI Script NowAssistPanelMessageAutoExpand() which is always called by Init() to ensure all messages in the Now Assist Panel always appear expanded.</li>
+		<li>WhatRuns() now also supports Data Lookup Definitions and sorts Business Rules, Data Policies  and Data Lookup Definitions properly.</li>
+		<li>UI Script ShowNowAssistPanel() now reliably shows the provided conversation in the Now Assist Panel.</li>
+		<li>IsNowAssistAIAgentsInstalled() now considers plugin sn_genai_platform.</li>
+		<li>GetEvaluatorErrorExceptionPatterns() contained an unsupported pattern - which prevented the "Evaluator Log" link to work. This has been fixed.</li>
+		<li>HtmlRenderPageLogs() now also renders sys_user_session.</li>
+		<li>GetRelatedRecordsTree() now detects and avoids recursions.</li>
+		<li>GetRelatedRecordsTree() now supports sn_nowassist_skill_config records related to sys_one_extend_capability records.</li>
+		<li>GetRelatedRecordsTree() now supports sys_agent_access_role_configuration records related to sn_nowassist_skill_config records.</li>
+		<li>GetRelatedRecordsTree() now supports sys_gen_ai_feature_mapping records related to sys_one_extend_capability records.</li>
+		<li>HtmlRenderScriptUrl() now checks the url parameter for validity.</li>
+		<li>Added DevTools view for the "Agent Tool" form.</li>
+		<li>GetTableFromSysId() now considers sys_cs_conversation as a priority table.</li>
+		<li>AppSanity() now corrects all sys_scope vs. sys_package discrepancies.</li> 
+		<li>AppSanity() no longer deletes create ACLs on field level as there might be legitimate use cases.</li>
+		<li>AppSanity() now also moves gsw_change_log records out of the app into the global scope.</li>
+		<li>Clone() now also considers GlideRecord, GlideElement and GlideRecordSecure objects.</li>
+		<li>IsOotbRecord() now detects sys_one_extend_resource_attribute_mapping, sys_one_extend_resource_mapping, sys_one_extend_eval_strategy_metric and sys_one_extend_resource_param_value records which are created by "system" and part of a custom app (avoiding false positives on auto-generated records within custom apps).</li>
+		<li>GetParentRecord() and the "Up" button now support table sys_agent_access_role_configuration.</li>
+		<li>GetParentRecord() and the "Up" button now support table sn_aia_execution_plan.</li>
+		<li>GetParentRecord() and the "Up" button now support table sys_cs_conversation_task.</li>
+		<li>GetParentRecord() and the "Up" button now support table sys_cs_message.</li>
+		<li>GetParentRecord() and the "Up" button now support sys_update_set records that do not have a parent Update Set.</li>
+		<li>GetParentRecord() and the "Up" button now support table sn_nowassist_skill_config.</li>
+		<li>GetParentRecord() and the "Up" button now support table sn_aia_usecase_config_override.</li>
+		<li>GetParentRecord() and the "Up" button now support table sn_mcp_ai_skill_tool_definition.</li>
+		<li>Business rule "sys_metadata - prevent useless checks" now uses the x_snc_devtools scope prefix in the condition script as it seems the condition code may not be evaluated in the DevTools scope (which is unexpected behavior).</li>
+		<li>The "Shared Application" table is now fully configurable.</li>
+		<li>Resolved false negative test case in ATF for GetAgenticWorkflowRecord().</li>
+		<li>Added more patterns to GetEvaluatorErrorExceptionPatterns().</li>
+		<li>Added function IsUiActionVisibleBaselineSharedApp() and refactored UI Action "Baseline Shared App" to consider if a shared app is configured for baselining.</li>
+		<li>ExecuteBusinessRuleShowWrongBranchWarning() and the corresponding Business Rules no longer display the wrong branch warning if the app is configured as a Shared Application.</li> 
+		<li>ExecuteBusinessRuleShowWrongBranchWarning() and the corresponding Business Rules now display a warning if an application is linked to a version branch but the version of the application does not match!.</li>
+	</ol>
+
 
 	<h3>1.137.0 - 2026-02-20</h3>
 	<ol>
@@ -3156,14 +3253,14 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>2426</sys_mod_count>
+        <sys_mod_count>2479</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-02-20 12:47:36</sys_updated_on>
+        <sys_updated_on>2026-03-25 16:08:55</sys_updated_on>
     </sys_ui_page>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>e44fd7541b578450a89720a8ec4bcb8c</id>

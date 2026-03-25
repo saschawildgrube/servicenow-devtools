@@ -99,13 +99,12 @@
 	}		
 	
 	
-	Log('Checking ACLs for useless field level operations...');
+	Log('Checking ACLs for useless "delete" field level operations...');
 	var grSSA = new GlideRecord('sys_security_acl');
 	grSSA.addQuery('sys_scope','=',strAppSysId);
 	grSSA.addQuery('type','=','record'); // Type: Record
 	grSSA.addQuery('name','CONTAINS','.'); // Field level
-	var condition = grSSA.addQuery('operation','=','delete');
-	condition.addOrCondition('operation','=','create');
+	grSSA.addQuery('operation','=','delete');
 	grSSA.query();
 	while (grSSA.next())
 	{
@@ -207,7 +206,7 @@
 	Log('Checking sys_metadata records for sys_scope vs. sys_package discrepancies...');
 	var grMetaData = new GlideRecord('sys_metadata');
 	grMetaData.addQuery('sys_scope','=',strAppSysId);
-	grMetaData.addQuery('sys_package','=','global');
+	grMetaData.addQuery('sys_package','!=',strAppSysId);
 	grMetaData.query();
 	while (grMetaData.next())
 	{
@@ -298,7 +297,7 @@
 	while (grUIL.next())
 	{
 		Log('Moving record: '+ RenderRecordSummary(grUIL));
-		RecordSetValue('sys_ui_list',grUIL.sys_id,'sys_scope','global');
+		AppBuilderMoveToScope(grUIL,'global',true);
 	}		
 
 	Log('Moving sn_pipeline_environment records to the global scope...');
@@ -311,7 +310,8 @@
 		while (grPE.next())
 		{
 			Log('Moving record: '+ RenderRecordSummary(grPE));
-			RecordSetValue('sn_pipeline_environment',grPE.sys_id,'sys_scope','global');
+			AppBuilderMoveToScope(grPE,'global',true);
+
 		}		
 	}
 
@@ -324,9 +324,19 @@
 		while (grPP.next())
 		{
 			Log('Moving record: '+ RenderRecordSummary(grPP));
-			RecordSetValue('sn_pipeline_pipeline',grPP.sys_id,'sys_scope','global');
+			AppBuilderMoveToScope(grPP,'global',true);
 		}		
 	}
+
+	Log('Moving gsw_change_log records to the global scope...');
+	var grGCL = new GlideRecord('gsw_change_log');
+	grGCL.addQuery('sys_scope','=',strAppSysId);
+	grGCL.query();
+	while (grGCL.next())
+	{
+		Log('Moving record: '+ RenderRecordSummary(grGCL));
+		AppBuilderMoveToScope(grGCL,'global',true);
+	}			
 	
 	Log('Deleting sys_kmf_module_key_policy records (to counter side-effect of PRB1573372)...');
 	var grKMKP = new GlideRecord('sys_kmf_module_key_policy');
@@ -433,14 +443,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-02-23 08:18:05</sys_created_on>
         <sys_id>f5a58b38dbaee010ba15a35305961957</sys_id>
-        <sys_mod_count>107</sys_mod_count>
+        <sys_mod_count>111</sys_mod_count>
         <sys_name>AppSanity</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_f5a58b38dbaee010ba15a35305961957</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-01-08 14:51:39</sys_updated_on>
+        <sys_updated_on>2026-03-25 12:13:00</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

@@ -94,10 +94,16 @@
 							strOldPhase = strNewPhase;
 							strHtml += '<tr><th>'+RenderPhase(strNewPhase)+'</th></tr>';
 						}
+
+						var strOrder = GetStringValue(whatruns_object.order);
+						if (strOrder == '')
+						{
+							strOrder = '*';
+						}
 						
 						strHtml += '<tr>';
 						strHtml += '<td style="text-align: right; vertical-align: top; padding-right: 5px;">';
-						strHtml += whatruns_object.order;
+						strHtml += strOrder;
 						strHtml += '</td>';
 						strHtml += '<td style="vertical-align: top; padding-right: 5px;">';
 						strHtml += whatruns_object.class_display_name + ' ('+whatruns_object.table+')';
@@ -146,14 +152,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-03-29 08:13:08</sys_created_on>
         <sys_id>9f273595dba64910b652edb305961981</sys_id>
-        <sys_mod_count>59</sys_mod_count>
+        <sys_mod_count>61</sys_mod_count>
         <sys_name>HtmlRenderWhatRuns</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_9f273595dba64910b652edb305961981</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-06-08 10:22:04</sys_updated_on>
+        <sys_updated_on>2026-03-25 10:38:46</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

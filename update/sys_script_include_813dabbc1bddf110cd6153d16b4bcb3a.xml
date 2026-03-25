@@ -45,7 +45,7 @@
 		'"dependent_value" is not defined.',
 		'Cannot read property "device_type" from null',
 		'"sn_atf_tg" is not defined.',
-		'sys_security_acl.local_or_existing = sys_security_acl.security_attribute.is_localized ?',
+		'sys_security_acl.local_or_existing = sys_security_acl.security_attribute.is_localized',//  ?',
 		'"report_notification_url" is not defined.',
 		'"sn_devops" is not defined.',
 		'"sn_pace" is not defined.',
@@ -75,7 +75,7 @@
 		'd9607ab477f1211', // d9607ab477f12110eba8fe21fe5a9939
 		'af31245c7701111', // af31245c770111108bd73a91fa5a9912
 		'3b709a5353fe711', // 3b709a5353fe71104a61ddeeff7b129b
-		'af8c43f15723130', // af8c43f157231300cc25b7d4ef94f9cc     
+		'af8c43f15723130', // af8c43f157231300cc25b7d4ef94f9cc    
 		'02af2d1f77aa111', // 02af2d1f77aa1110866ea2059f5a99c8
 		'ea804ac70b61311', // ea804ac70b613110985f8a8db777b25f 
 		'5642295aff32021', // 5642295aff320210363bffffffffff5b 
@@ -107,7 +107,8 @@
 		'5fb1b0100b22120', // 5fb1b0100b2212003aa56c4d37673a60  
 		'e95109d75302b01', // e95109d75302b0109706ddeeff7b12e1
 		'ab1ffc33c331210', // ab1ffc33c3312100e6da174292d3ae3d      
-				
+
+
 		// Flow Designer
 		'"actionOrder" is not defined.',
 		'"modalTitle" is not defined.',
@@ -119,7 +120,7 @@
 		'Cannot read property "currentAlias" from undefined',
 
 		// Yokohama
-		"var result = dep.getED().isReadOnly() ? 'true' : 'false';",
+		"var result = dep.getED().isReadOnly() ", // ? 'true' : 'false';",
 		"var tcs = del.getAttribute('tableChoicesScript');",
 		'new SNC.AnonymizationApi()',
 		' Cannot find function canvasTopicExecutionFlow in object [object Object].',
@@ -137,12 +138,17 @@
 		'0a2eda18ebf1311', // 0a2eda18ebf131102b57e530695228cf
 		'5ab6e593ffe9221', // 5ab6e593ffe92210fbe7ffffffffff6b     
 		'f7c8f9e64300221', // f7c8f9e6430022101dbab69d4bb8f20
-		'bbe4e6e7531b211', // bbe4e6e7531b2110cd9bddeeff7b12c2     
+		'bbe4e6e7531b211', // bbe4e6e7531b2110cd9bddeeff7b12c2    
+		'12f6fa80ff342a1', // 12f6fa80ff342a1004ddffffffffff3a
+		'0fc97e614fd1121', // 0fc97e614fd11210726a3717b0ce0b10
+		'96ff9b33f731521', // 96ff9b33f73152107447a5ce33bfd67b
 
 		// Zurich
 		'"inputvis" is not defined.',
 		"getMessage('Show less')",
 		'sn_nowassist_va.NowAssistGranularFeedbackHelper.getGranularFeedbackMetadata(deploymentId);',
+		'Create maps from the ais_datasource and ais_child_table tables to avoid',
+		'"ModelChoiceListBuilder" is not defined.',
 		'9566b90ceb03110', // 9566b90ceb0311003623666cd206fe8c
 		'4659d132d723210', // 4659d132d7232100b6bddb0c8252039e
 		'64e5e4737322130', // 64e5e473732213002cb26fbc1bf6a7ef
@@ -153,6 +159,18 @@
 		'ded607e693a1121', // ded607e693a11210f2cafff9648918c0
 		'250bd3435311111', // 250bd34353111110c271ddeeff7b12da
 		'd9c7d3fa1bea011', // d9c7d3fa1bea0110521acaa2604bcb91
+		'370039f4c0a808a', // 370039f4c0a808ae00b44eeae13c0497     
+		'39918e93fff0221', // 39918e93fff022108534ffffffffffd5
+		'e04346844310621', // e0434684431062101dbab69d4bb8f28f    
+		'05258d82e117301', // 05258d82e1173010f87710c901e3230d
+		'30b050d7936a121', // 30b050d7936a121011f9bba17cba1019
+		'b97e71b10b12011', // b97e71b10b1201105f02818393673a21
+		'37fe52b9473cb51', // 37fe52b9473cb5103f3fd922736d43c8
+		'd44683834382121', // d446838343821210d9dedc5f6ab8f215
+		'41445411438a521', // 41445411438a5210d9dedc5f6ab8f24f
+		'8bdd2a62ffb3221', // 8bdd2a62ffb322107cc9ffffffffffa6    
+		'e7431e6843ec121', // e7431e6843ec1210e78f39603ab8f24a
+		'd12dd956ffc2221', // d12dd956ffc2221010cdffffffffffe8
 
 	];
 	return aPatterns;
@@ -161,14 +179,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-09-13 12:47:41</sys_created_on>
         <sys_id>813dabbc1bddf110cd6153d16b4bcb3a</sys_id>
-        <sys_mod_count>134</sys_mod_count>
+        <sys_mod_count>161</sys_mod_count>
         <sys_name>GetEvaluatorErrorExceptionPatterns</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_813dabbc1bddf110cd6153d16b4bcb3a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-02-18 10:26:23</sys_updated_on>
+        <sys_updated_on>2026-03-25 12:03:56</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

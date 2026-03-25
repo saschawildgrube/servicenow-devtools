@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_section caption="" section_id="8860ca673b137a1062bf612c95e45aab" sys_domain="global" table="sn_aia_agent_tool_m2m" version="3" view="devtools">
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>name</element>
+            <position>0</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-03-04 12:47:54</sys_created_on>
+            <sys_id>c911c6e73b137a1062bf612c95e45aca</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="sn_aia_agent_tool_m2m" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">8860ca673b137a1062bf612c95e45aab</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-03-04 12:47:54</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>agent</element>
+            <position>1</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-03-04 12:47:54</sys_created_on>
+            <sys_id>8511c6e73b137a1062bf612c95e45acb</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="sn_aia_agent_tool_m2m" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">8860ca673b137a1062bf612c95e45aab</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-03-04 12:47:54</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>tool</element>
+            <position>2</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-03-04 12:47:54</sys_created_on>
+            <sys_id>4111c6e73b137a1062bf612c95e45acc</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="sn_aia_agent_tool_m2m" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">8860ca673b137a1062bf612c95e45aab</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-03-04 12:47:54</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.begin_split</element>
+            <position>3</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-03-04 12:47:54</sys_created_on>
+            <sys_id>0d11c6e73b137a1062bf612c95e45acc</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="sn_aia_agent_tool_m2m" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">8860ca673b137a1062bf612c95e45aab</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-03-04 12:47:54</sys_updated_on>
+            <sys_user/>
+            <type>.begin_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>active</element>
+            <position>4</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-03-04 12:47:54</sys_created_on>
+            <sys_id>c511c6e73b137a1062bf612c95e45acd</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="sn_aia_agent_tool_m2m" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">8860ca673b137a1062bf612c95e45aab</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-03-04 12:47:54</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>pre_message</element>
+            <position>5</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-03-04 12:47:54</sys_created_on>
+            <sys_id>8111c6e73b137a1062bf612c95e45ace</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="sn_aia_agent_tool_m2m" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">8860ca673b137a1062bf612c95e45aab</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-03-04 12:47:54</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>description</element>
+            <position>6</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-03-04 12:47:54</sys_created_on>
+            <sys_id>4d11c6e73b137a1062bf612c95e45ace</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="sn_aia_agent_tool_m2m" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">8860ca673b137a1062bf612c95e45aab</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-03-04 12:47:54</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.split</element>
+            <position>7</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-03-04 12:47:54</sys_created_on>
+            <sys_id>0911c6e73b137a1062bf612c95e45acf</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="sn_aia_agent_tool_m2m" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">8860ca673b137a1062bf612c95e45aab</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-03-04 12:47:54</sys_updated_on>
+            <sys_user/>
+            <type>.split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>sys_scope</element>
+            <position>8</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-03-04 12:47:54</sys_created_on>
+            <sys_id>c111c6e73b137a1062bf612c95e45ad0</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="sn_aia_agent_tool_m2m" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">8860ca673b137a1062bf612c95e45aab</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-03-04 12:47:54</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>execution_mode</element>
+            <position>9</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-03-04 12:47:54</sys_created_on>
+            <sys_id>9d11c6e73b137a1062bf612c95e45ad0</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="sn_aia_agent_tool_m2m" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">8860ca673b137a1062bf612c95e45aab</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-03-04 12:47:54</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>max_auto_executions</element>
+            <position>10</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-03-04 12:47:54</sys_created_on>
+            <sys_id>5911c6e73b137a1062bf612c95e45ad1</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="sn_aia_agent_tool_m2m" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">8860ca673b137a1062bf612c95e45aab</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-03-04 12:47:54</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>display_output</element>
+            <position>11</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-03-04 12:47:54</sys_created_on>
+            <sys_id>1511c6e73b137a1062bf612c95e45ad2</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="sn_aia_agent_tool_m2m" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">8860ca673b137a1062bf612c95e45aab</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-03-04 12:47:54</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>output_transformation_strategy</element>
+            <position>12</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-03-04 12:47:54</sys_created_on>
+            <sys_id>dd11c6e73b137a1062bf612c95e45ad2</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="sn_aia_agent_tool_m2m" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">8860ca673b137a1062bf612c95e45aab</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-03-04 12:47:54</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>transformation_instructions</element>
+            <position>13</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-03-04 12:47:54</sys_created_on>
+            <sys_id>9911c6e73b137a1062bf612c95e45ad3</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="sn_aia_agent_tool_m2m" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">8860ca673b137a1062bf612c95e45aab</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-03-04 12:47:54</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.end_split</element>
+            <position>14</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-03-04 12:47:54</sys_created_on>
+            <sys_id>5511c6e73b137a1062bf612c95e45ad4</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="sn_aia_agent_tool_m2m" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">8860ca673b137a1062bf612c95e45aab</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-03-04 12:47:54</sys_updated_on>
+            <sys_user/>
+            <type>.end_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>inputs</element>
+            <position>15</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-03-04 12:47:54</sys_created_on>
+            <sys_id>1111c6e73b137a1062bf612c95e45ad5</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="sn_aia_agent_tool_m2m" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">8860ca673b137a1062bf612c95e45aab</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-03-04 12:47:54</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>post_processing_script</element>
+            <position>16</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-03-04 12:47:54</sys_created_on>
+            <sys_id>d911c6e73b137a1062bf612c95e45ad5</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="sn_aia_agent_tool_m2m" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">8860ca673b137a1062bf612c95e45aab</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-03-04 12:47:54</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_section action="INSERT_OR_UPDATE">
+            <caption/>
+            <header>false</header>
+            <name>sn_aia_agent_tool_m2m</name>
+            <roles/>
+            <sys_class_name>sys_ui_section</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-03-04 12:44:49</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>8860ca673b137a1062bf612c95e45aab</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>sn_aia_agent_tool_m2m</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+            <sys_update_name>sys_ui_section_8860ca673b137a1062bf612c95e45aab</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-03-04 12:44:49</sys_updated_on>
+            <sys_user/>
+            <title>false</title>
+            <view display_value="DevTools" name="devtools">75e08353dbbf0450ba15a35305961913</view>
+            <view_name/>
+        </sys_ui_section>
+    </sys_ui_section>
+</record_update>

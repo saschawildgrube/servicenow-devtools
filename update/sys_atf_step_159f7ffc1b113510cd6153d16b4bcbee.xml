@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-09-13 14:08:30</sys_created_on>
         <sys_id>159f7ffc1b113510cd6153d16b4bcbee</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_159f7ffc1b113510cd6153d16b4bcbee</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-09-13 14:08:30</sys_updated_on>
+        <sys_updated_on>2026-03-13 20:42:33</sys_updated_on>
         <table/>
         <test display_value="DevTools - GetEvaluatorErrorExceptionPatterns">798f7bfc1b113510cd6153d16b4bcbb2</test>
         <timeout/>
@@ -36,9 +36,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-09-13 14:08:30</sys_created_on>
         <sys_id>65ef3ffc1b113510cd6153d16b4bcbf3</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-09-13 14:08:30</sys_updated_on>
+        <sys_updated_on>2026-03-13 20:42:33</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -54,10 +54,17 @@
 			{&#13;
 				return false;&#13;
 			}&#13;
-			if (vResult.length &lt; 4)&#13;
+			var aPatterns = vResult;&#13;
+			for (var nPattern = 0; nPattern &lt; aPatterns.length; nPattern++)&#13;
 			{&#13;
-				return false;&#13;
+				var strPattern = aPatterns[nPattern];&#13;
+				if (strPattern.indexOf('//') != -1)&#13;
+				{&#13;
+					test.Log('Found unsupported pattern "//" in pattern "' + strPattern + '"!\nFor whatever reason GlideTinyURL::createTinyURL() does not support this)');&#13;
+					return false;&#13;
+				}&#13;
 			}&#13;
+&#13;
 			return true;&#13;
 		}&#13;
 &#13;

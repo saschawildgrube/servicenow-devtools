@@ -6,9 +6,9 @@
         <caller_access/>
         <client_scripts_access>true</client_scripts_access>
         <configuration_access>true</configuration_access>
-        <create_access>false</create_access>
+        <create_access>true</create_access>
         <create_access_controls>true</create_access_controls>
-        <delete_access>false</delete_access>
+        <delete_access>true</delete_access>
         <filter_extension/>
         <is_df_table>false</is_df_table>
         <is_extendable>false</is_extendable>
@@ -24,15 +24,15 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-09-09 06:45:22</sys_created_on>
         <sys_id>52d9aed9c3a492105a37f9070501313f</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name>Shared Application</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_db_object_52d9aed9c3a492105a37f9070501313f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-01-06 16:10:55</sys_updated_on>
-        <update_access>false</update_access>
+        <sys_updated_on>2026-03-16 10:10:15</sys_updated_on>
+        <update_access>true</update_access>
         <user_role display_value="admin" name="admin">2831a114c611228501d4ea6c309d626d</user_role>
         <ws_access>true</ws_access>
     </sys_db_object>
