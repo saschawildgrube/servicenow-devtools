@@ -16,6 +16,8 @@
 		name: 'Simple Task',
 		id: 'simple_task',
 		description: 'The Simple Task process manages work requested by the Requesters and which is done by Fulfillers. Once Fulfillers report work to be completed, Requesters can either confirm and close the task or request the continuation of the work.',
+		input: 'Details on the task to be performed.',
+		output: 'The results demanded by the requestor and documented evidence of task completion.',
 		initial_state: 'new',
 		_roles:
 		[
@@ -114,14 +116,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-02-25 08:26:40</sys_created_on>
         <sys_id>687db0993b1f729062bf612c95e45a85</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>BusinessProcessGetExample</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_687db0993b1f729062bf612c95e45a85</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-03-13 18:25:13</sys_updated_on>
+        <sys_updated_on>2026-03-25 19:27:15</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
