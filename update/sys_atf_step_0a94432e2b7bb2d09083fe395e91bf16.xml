@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <callable_outputs/>
+        <copied_from/>
+        <description>Run Server Side Validation Script</description>
+        <display_name>Run Server Side Script</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>1</order>
+        <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-03-26 11:40:20</sys_created_on>
+        <sys_id>0a94432e2b7bb2d09083fe395e91bf16</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Run Server Side Script</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_step_0a94432e2b7bb2d09083fe395e91bf16</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-03-26 11:44:58</sys_updated_on>
+        <table/>
+        <test display_value="DevTools - ArrayGetElementById">fd94032e2b7bb2d09083fe395e91bfe5</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=0a94432e2b7bb2d09083fe395e91bf16"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>0a94432e2b7bb2d09083fe395e91bf16</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-03-26 11:40:21</sys_created_on>
+        <sys_id>c694432e2b7bb2d09083fe395e91bf1b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-03-26 11:40:21</sys_updated_on>
+        <value>3.1</value>
+        <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>0a94432e2b7bb2d09083fe395e91bf16</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-03-26 11:40:21</sys_created_on>
+        <sys_id>ca94432e2b7bb2d09083fe395e91bf1c</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-03-26 11:44:58</sys_updated_on>
+        <value>(function(outputs, steps, stepResult, assertEqual)&#13;
+{&#13;
+	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
+	&#13;
+	test.SetResult(true);&#13;
+	&#13;
+	function TestCase_ArrayGetElementById(aHaystack,strNeedle,strAttribute,vExpected)&#13;
+	{&#13;
+		function TestCase_ArrayGetElementById_CheckResult(vInput,vExpected,vResult)&#13;
+		{&#13;
+			if (vExpected == false)&#13;
+			{&#13;
+				return (vExpected == vResult);&#13;
+			}&#13;
+			if (IsObject(vResult) == false)&#13;
+			{&#13;
+				return false;&#13;
+			}&#13;
+			return true;&#13;
+		}&#13;
+		&#13;
+		test.TestCase(&#13;
+			'Function ArrayGetElementById()',&#13;
+			ArrayGetElementById,&#13;
+			{&#13;
+				'aHaystack': aHaystack,&#13;
+				'strNeedle': strNeedle,&#13;
+				'strAttribute': strAttribute&#13;
+			},&#13;
+			vExpected,&#13;
+			TestCase_ArrayGetElementById_CheckResult);&#13;
+	}&#13;
+		&#13;
+	TestCase_ArrayGetElementById(null,null,null,false);&#13;
+	TestCase_ArrayGetElementById(null,'test',null,false);&#13;
+	TestCase_ArrayGetElementById([],'mars',null,false);&#13;
+&#13;
+	var aPlanets = [&#13;
+		{&#13;
+			id: 'mercury',&#13;
+			name: 'Mercury',&#13;
+			position: 1&#13;
+		},&#13;
+		{&#13;
+			id: 'venus',&#13;
+			name: 'Venus',&#13;
+			position: 2&#13;
+		},&#13;
+		{&#13;
+			id: 'earth',&#13;
+			name: 'Earth',&#13;
+			position: 3&#13;
+		},&#13;
+		{&#13;
+			id: 'mars',&#13;
+			name: 'Mars',&#13;
+			position: 4&#13;
+		}&#13;
+&#13;
+	];&#13;
+	TestCase_ArrayGetElementById(aPlanets,'melmac',null,false);&#13;
+	TestCase_ArrayGetElementById(aPlanets,'venus',null,true);&#13;
+	TestCase_ArrayGetElementById(aPlanets,'venus','short_description',false);&#13;
+	TestCase_ArrayGetElementById(aPlanets,'venus','name',false);&#13;
+	TestCase_ArrayGetElementById(aPlanets,'Venus','name',true);&#13;
+&#13;
+	&#13;
+	return test.GetResult();&#13;
+	&#13;
+})(outputs, steps, stepResult, assertEqual);</value>
+        <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
+    </sys_variable_value>
+</record_update>
