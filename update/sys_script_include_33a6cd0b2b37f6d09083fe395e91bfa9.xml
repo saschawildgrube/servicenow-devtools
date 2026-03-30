@@ -33,8 +33,23 @@
 		return false;
 	}
 
+	var strParentTable = GetStringValue(GetValue(business_process,'parent_table'));
+	if (strParentTable == '')
+	{
+		strParentTable = 'task';
+	}
+	var grParentTable = GetTableRecord(strParentTable);
+	if (IsValidRecord(grParentTable) == false)
+	{
+		LogError('AppBuilderImplementBusinessProcess: Could not load parent table: ' + strParentTable);
+		return false;
+	}
+
+
 	var strScope = GetStringValue(grApp.scope);
-	var strId = GetValue(business_process,'id');
+	var strScopeSysId = GetStringValue(grApp.sys_id);
+	var strProcessId = GetStringValue(GetValue(business_process,'id'));
+	var strProcessName = GetStringValue(GetValue(business_process,'name'));
 
 	var aRoles = GetValue(business_process,'_roles');
 
@@ -43,10 +58,20 @@
 	{
 		roleViewer = {
 			id: 'viewer',
-			description: 'A user that can view all data related to the process'
+			description: 'A user that can view all data related to the process.'
 			};
 		aRoles.push(roleViewer);
 	}
+
+	var roleManager = ArrayGetElementById(aRoles, 'manager');
+	if (IsObject(roleManager) == false)
+	{
+		roleManager = {
+			id: 'manager',
+			description: 'A user that can view and edit all data related to the process.'
+			};
+		aRoles.push(roleViewer);
+	}	
 
 	var roleAdmin = ArrayGetElementById(aRoles, 'admin');
 	if (IsObject(roleAdmin) == false)
@@ -58,34 +83,126 @@
 		aRoles.push(roleAdmin);
 	}
 
-	
+	for (var nRole = 0; nRole < aRoles.length; nRole++)
+	{
+		var role = aRoles[nRole];
+
+		var strRoleSuffix = GetStringValue(GetValue(role,'id'));
+		var strRoleName = strScope + '.' + strRoleSuffix;
+		var strRoleDescription = GetStringValue(GetValue(role,'description'));
+		
+		var strRoleSysId = RecordInsertOrUpdate(
+			'sys_user_role',
+			{
+				sys_scope: strScopeSysId,
+				suffix: strRoleSuffix,
+				name: strRoleName
+			},
+			{
+			},
+			{
+				description: strRoleDescription
+			});
+		if (IsValidSysId(strRoleSysId) == false)
+		{
+			LogError('AppBuilderImplementBusinessProcess: Could not create/update role: ' + strRoleName);
+			return false;
+		}
+		aRoles[nRole]['sys_id'] = strRoleSysId;
+	}
+
+	var roleAdmin = ArrayGetElementById(aRoles, 'admin');
+	var roleManager = ArrayGetElementById(aRoles, 'manager');
+	var roleViewer = ArrayGetElementById(aRoles, 'viewer');
 
 
-	// CHECK IF THE APP IS CLEAN
-	// roles (+ process viewer, process manager, process admin)
-	// table
-	// ui action
+	var strRoleContainsSysId = RecordInsertOrUpdate(
+		'sys_user_role_contains',
+		{
+			sys_scope: strScopeSysId,
+			role: roleAdmin.sys_id,
+			contains: roleManager.sys_id
+		},{},{});
+	if (IsValidSysId(strRoleContainsSysId) == false)
+	{
+		LogError('AppBuilderImplementBusinessProcess: Could not add role manager to role admin.');
+		return false;
+	}
 
-	// CREATE ROLES
+	for (var nRole = 0; nRole < aRoles.length; nRole++)
+	{
+		var role = aRoles[nRole];
+		var strId = role['id'];
+		if (strId != 'admin' && strId != 'viewer')
+		{
+			var strRoleContainsSysId = RecordInsertOrUpdate(
+				'sys_user_role_contains',
+				{
+					sys_scope: strScopeSysId,
+					role: role.sys_id,
+					contains: roleViewer.sys_id
+				},{},{});
+			if (IsValidSysId(strRoleContainsSysId) == false)
+			{
+				LogError('AppBuilderImplementBusinessProcess: Could not add role viewer to role '+strId+'.');
+				return false;
+			}
+		}
+	}
 
-	// CREATE TABLE
 
-	// CREATE STATE CHOICES
+	var strTableName = strScope + '_' + strProcessId;
+	var strTableLabel = strProcessName;
 
-	return false;
+
+	var strTableSysId = RecordInsertOrUpdate(
+		'sys_db_object',
+		{
+			sys_scope: strScopeSysId,
+			name: strTableName
+		},
+		{
+			super_class: grParentTable.sys_id
+		},
+		{
+			label: strTableLabel,
+			configuration_access: true,
+			create_access: true,
+			update_access: true,
+			delete_access: true
+		});
+	if (IsValidSysId(strTableSysId) == false)
+	{
+		LogError('AppBuilderImplementBusinessProcess: Could not create/update table: ' + strTableName);
+		return false;
+	}
+
+	// TODO: state choices
+	// TODO: state is ready only
+	// TODO: number is read only
+	// TODO: configure number generation
+	// TODO: create default view form
+	// TODO: create default view list
+	// TODO: create transition ui actions	
+	// TODO: add ACL for read
+	// TODO: add ACL for create
+	// TODO: add ACL for update
+	// TODO: add ACL for delete
+
+	return true;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-03-27 15:57:42</sys_created_on>
         <sys_id>33a6cd0b2b37f6d09083fe395e91bfa9</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>20</sys_mod_count>
         <sys_name>AppBuilderImplementBusinessProcess</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_33a6cd0b2b37f6d09083fe395e91bfa9</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-03-30 12:52:51</sys_updated_on>
+        <sys_updated_on>2026-03-30 15:54:16</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
