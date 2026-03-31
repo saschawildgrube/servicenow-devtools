@@ -177,9 +177,9 @@
 		return false;
 	}
 
-	// TODO: state choices
 	// TODO: state is ready only
 	// TODO: number is read only
+	// TODO: state choices
 	// TODO: configure number generation
 	// TODO: create default view form
 	// TODO: create default view list
@@ -195,14 +195,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-03-27 15:57:42</sys_created_on>
         <sys_id>33a6cd0b2b37f6d09083fe395e91bfa9</sys_id>
-        <sys_mod_count>20</sys_mod_count>
+        <sys_mod_count>21</sys_mod_count>
         <sys_name>AppBuilderImplementBusinessProcess</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_33a6cd0b2b37f6d09083fe395e91bfa9</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-03-30 15:54:16</sys_updated_on>
+        <sys_updated_on>2026-03-30 15:57:55</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
