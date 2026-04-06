@@ -110,14 +110,14 @@
 
 
 		// Flow Designer
-		'"actionOrder" is not defined.',
-		'"modalTitle" is not defined.',
-		'"subflowComponent" is not defined.',
-		'"index" is not defined.',
-		'"currentStep" is not defined.',
-		'"errMsg" is not defined.',
-		'"props" is not defined.',
-		'Cannot read property "currentAlias" from undefined',
+		'"actionOrder" is not de',
+		'"modalTitle" is not def',
+		'"subflowComponent" is not de',
+		'"index" is not de',
+		'"currentStep" is not de',
+		'"errMsg" is not de',
+		'"props" is not de',
+		'Cannot read property "currentAlias" from unde',
 
 		// Yokohama
 		"var result = dep.getED().isReadOnly() ", // ? 'true' : 'false';",
@@ -149,6 +149,7 @@
 		'sn_nowassist_va.NowAssistGranularFeedbackHelper.getGranularFeedbackMetadata(deploymentId);',
 		'Create maps from the ais_datasource and ais_child_table tables to avoid',
 		'"ModelChoiceListBuilder" is not defined.',
+		'"sysparam_citation" is not defined.',
 		'9566b90ceb03', // 9566b90ceb0311003623666cd206fe8c
 		'4659d132d723', // 4659d132d7232100b6bddb0c8252039e
 		'64e5e4737322', // 64e5e473732213002cb26fbc1bf6a7ef
@@ -182,14 +183,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-09-13 12:47:41</sys_created_on>
         <sys_id>813dabbc1bddf110cd6153d16b4bcb3a</sys_id>
-        <sys_mod_count>177</sys_mod_count>
+        <sys_mod_count>179</sys_mod_count>
         <sys_name>GetEvaluatorErrorExceptionPatterns</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_813dabbc1bddf110cd6153d16b4bcb3a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-04-02 14:04:25</sys_updated_on>
+        <sys_updated_on>2026-04-06 17:59:49</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
