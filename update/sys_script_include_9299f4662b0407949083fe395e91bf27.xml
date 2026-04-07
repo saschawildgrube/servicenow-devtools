@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.RenderDateTimeLocal</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Renders a date/time value as a local (user) timezone adjusted ISO string.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>RenderDateTimeLocal</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function RenderDateTimeLocal(vDateTime)
+{
+	if (vDateTime === false || vDateTime == null || vDateTime == undefined)
+	{
+		return '';
+	}
+	
+	if (GetType(vDateTime) == 'number')
+	{
+		var nTimeStamp = GetIntegerValue(vDateTime);
+
+		var strResult = RunScriptInGlobalScope(
+			"var tz = gs.getSession().getTimeZone();"+
+			"var gdt = new GlideDateTime();"+
+			"gdt.setValue(param1);"+
+			"gdt.setTZ(tz);"+ 
+			"result = gdt.getDisplayValueInternal();",
+			nTimeStamp);
+		return strResult;
+	}
+	
+	strDateTime = GetStringValue(vDateTime);
+	
+	var nTimestamp = ParseDateTime(strDateTime);
+	if (nTimeStamp === false)
+	{
+		return '';
+	}
+	return RenderDateTimeLocal(nTimestamp);
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-04-07 11:48:46</sys_created_on>
+        <sys_id>9299f4662b0407949083fe395e91bf27</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>RenderDateTimeLocal</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_9299f4662b0407949083fe395e91bf27</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-04-07 13:07:45</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+</record_update>
