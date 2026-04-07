@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_list parent="" relationship="" sys_domain="global" table="sys_gen_ai_usage_log" version="2" view="devtools">
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>sys_created_on</element>
+            <list_id display_value="sys_gen_ai_usage_log" element="NULL" name="sys_gen_ai_usage_log" parent="NULL" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">2626f1ee2b8c07949083fe395e91bfd6</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>0</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-04-07 16:13:23</sys_created_on>
+            <sys_id>6226f1ee2b8c07949083fe395e91bfd8</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-04-07 16:13:23</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>assists</element>
+            <list_id display_value="sys_gen_ai_usage_log" element="NULL" name="sys_gen_ai_usage_log" parent="NULL" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">2626f1ee2b8c07949083fe395e91bfd6</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>1</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-04-07 16:13:23</sys_created_on>
+            <sys_id>aa26b9ee2b8c07949083fe395e91bfb2</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-04-07 16:13:23</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>document</element>
+            <list_id display_value="sys_gen_ai_usage_log" element="NULL" name="sys_gen_ai_usage_log" parent="NULL" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">2626f1ee2b8c07949083fe395e91bfd6</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>2</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-04-07 16:13:23</sys_created_on>
+            <sys_id>2226b9ee2b8c07949083fe395e91bfb3</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-04-07 16:13:23</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>document_table</element>
+            <list_id display_value="sys_gen_ai_usage_log" element="NULL" name="sys_gen_ai_usage_log" parent="NULL" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">2626f1ee2b8c07949083fe395e91bfd6</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>3</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-04-07 16:13:23</sys_created_on>
+            <sys_id>a626b9ee2b8c07949083fe395e91bfb3</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-04-07 16:13:23</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>execution_type</element>
+            <list_id display_value="sys_gen_ai_usage_log" element="NULL" name="sys_gen_ai_usage_log" parent="NULL" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">2626f1ee2b8c07949083fe395e91bfd6</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>4</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-04-07 16:13:23</sys_created_on>
+            <sys_id>2e26b9ee2b8c07949083fe395e91bfb3</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-04-07 16:13:23</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>feature</element>
+            <list_id display_value="sys_gen_ai_usage_log" element="NULL" name="sys_gen_ai_usage_log" parent="NULL" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">2626f1ee2b8c07949083fe395e91bfd6</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>5</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-04-07 16:13:23</sys_created_on>
+            <sys_id>a226b9ee2b8c07949083fe395e91bfb4</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-04-07 16:13:23</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>license_line_item_name</element>
+            <list_id display_value="sys_gen_ai_usage_log" element="NULL" name="sys_gen_ai_usage_log" parent="NULL" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">2626f1ee2b8c07949083fe395e91bfd6</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>6</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-04-07 16:13:23</sys_created_on>
+            <sys_id>2a26b9ee2b8c07949083fe395e91bfb4</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-04-07 16:13:23</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>license_name</element>
+            <list_id display_value="sys_gen_ai_usage_log" element="NULL" name="sys_gen_ai_usage_log" parent="NULL" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">2626f1ee2b8c07949083fe395e91bfd6</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>7</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-04-07 16:13:23</sys_created_on>
+            <sys_id>ae26b9ee2b8c07949083fe395e91bfb4</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-04-07 16:13:23</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>plugin_name</element>
+            <list_id display_value="sys_gen_ai_usage_log" element="NULL" name="sys_gen_ai_usage_log" parent="NULL" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">2626f1ee2b8c07949083fe395e91bfd6</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>8</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-04-07 16:13:23</sys_created_on>
+            <sys_id>2626b9ee2b8c07949083fe395e91bfb5</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-04-07 16:13:23</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>skill_config_id</element>
+            <list_id display_value="sys_gen_ai_usage_log" element="NULL" name="sys_gen_ai_usage_log" parent="NULL" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">2626f1ee2b8c07949083fe395e91bfd6</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>9</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-04-07 16:13:23</sys_created_on>
+            <sys_id>aa26b9ee2b8c07949083fe395e91bfb5</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-04-07 16:13:23</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>status</element>
+            <list_id display_value="sys_gen_ai_usage_log" element="NULL" name="sys_gen_ai_usage_log" parent="NULL" relationship="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">2626f1ee2b8c07949083fe395e91bfd6</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>10</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-04-07 16:13:23</sys_created_on>
+            <sys_id>2226b9ee2b8c07949083fe395e91bfb6</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-04-07 16:13:23</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element/>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <name>sys_gen_ai_usage_log</name>
+            <parent/>
+            <position/>
+            <relationship/>
+            <sum>false</sum>
+            <sys_class_name>sys_ui_list</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-04-07 16:13:23</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>2626f1ee2b8c07949083fe395e91bfd6</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>sys_gen_ai_usage_log</sys_name>
+            <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+            <sys_update_name>sys_ui_list_sys_gen_ai_usage_log_devtools</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-04-07 16:13:23</sys_updated_on>
+            <sys_user/>
+            <view display_value="DevTools" name="devtools">75e08353dbbf0450ba15a35305961913</view>
+            <view_name/>
+        </sys_ui_list>
+    </sys_ui_list>
+</record_update>
