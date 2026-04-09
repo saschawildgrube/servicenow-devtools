@@ -38,13 +38,7 @@
 
   function timeNow()
   {
-    try {
-      if (typeof GetTimeNow === "function") return GetTimeNow();
-    } catch (e) {}
-    try {
-      return new Date().getTime();
-    } catch (e2) {}
-    return 0;
+    return GetTimeNow();
   }
 
   var state = {
@@ -405,12 +399,8 @@
 
     if (nodeType !== 1 && nodeType !== 9 && nodeType !== 11) return;
 
-    var tag = "";
-    try {
-      tag = String(node.tagName || "").toLowerCase();
-    } catch (e4) {
-      tag = "";
-    }
+    var tag = String(node.tagName || "");
+	tag = tag.toLowerCase();
 
     if (tag === "iframe") {
       installIframe(node);
@@ -438,12 +428,8 @@
       var el = descendants[i];
       if (!el) continue;
 
-      var subTag = "";
-      try {
-        subTag = String(el.tagName || "").toLowerCase();
-      } catch (e7) {
-        subTag = "";
-      }
+      var subTag = String(el.tagName || "");
+	  subTag = subTag.toLowerCase();
 
       if (subTag === "iframe") {
         installIframe(el);
@@ -777,14 +763,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-03-02 14:14:15</sys_created_on>
         <sys_id>2d71040b2b1b36109083fe395e91bfda</sys_id>
-        <sys_mod_count>17</sys_mod_count>
+        <sys_mod_count>23</sys_mod_count>
         <sys_name>x_snc_devtools.NowAssistPanelMessageAuto</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_script_2d71040b2b1b36109083fe395e91bfda</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-04-08 14:31:15</sys_updated_on>
+        <sys_updated_on>2026-04-09 11:34:57</sys_updated_on>
         <ui_type>0</ui_type>
         <use_scoped_format>false</use_scoped_format>
         <x_snc_devtools_global>true</x_snc_devtools_global>
