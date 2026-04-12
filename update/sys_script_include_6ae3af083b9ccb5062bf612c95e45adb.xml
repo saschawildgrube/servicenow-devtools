@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.IsValidAppIdentifierString</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns true if the given string is either a Sys Id, a scope name or a valid application name, false if not.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>IsValidAppIdentifierString</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function IsValidAppIdentifierString(strIdentifier)
+{
+	if (GetType(strIdentifier) != 'string')
+	{
+		return false;
+	}
+	if (IsValidSysId(strIdentifier) == true)
+	{
+		return true;
+	}
+	if (IsValidName(strIdentifier) == true)
+	{
+		return true;
+	}
+	if (IsSnakeCase(strIdentifier) == true)
+	{
+		return true;
+	}
+	return false;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-04-12 16:06:03</sys_created_on>
+        <sys_id>6ae3af083b9ccb5062bf612c95e45adb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>IsValidAppIdentifierString</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_6ae3af083b9ccb5062bf612c95e45adb</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-04-12 16:06:03</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>6ae3af083b9ccb5062bf612c95e45adb</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-04-12 16:05:54</sys_created_on>
+        <sys_id>8264a7883b9ccb5062bf612c95e45ae6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-04-12 16:05:54</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
