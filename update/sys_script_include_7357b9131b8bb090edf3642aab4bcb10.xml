@@ -177,7 +177,7 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 		{
 			return false;
 		}		
-		var vAppOrSysId = GetStringValue(this.getParameter('sysparm_app_or_sys_id'));
+		var vAppOrSysId = GetParam('app_or_sys_id');
 		var grSharedApp = GetSharedApplicationRecord(vAppOrSysId);
 		return MakeJson(grSharedApp);
 	},
@@ -188,7 +188,7 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 		{
 			return false;
 		}		
-		var strEmail = GetStringValue(this.getParameter('sysparm_email'));
+		var strEmail = GetParam('email',IsValidEmail);
 		var strGroups = GetProperty('devtools.createuserbyemail.groups');
 		var aGroups = GetArrayValue(strGroups);
 		var strUserSysId = CreateUserByEmail(strEmail,aGroups);
@@ -436,14 +436,14 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-12 13:47:51</sys_created_on>
         <sys_id>7357b9131b8bb090edf3642aab4bcb10</sys_id>
-        <sys_mod_count>142</sys_mod_count>
+        <sys_mod_count>143</sys_mod_count>
         <sys_name>DevToolsClientAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_7357b9131b8bb090edf3642aab4bcb10</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-04-12 09:37:08</sys_updated_on>
+        <sys_updated_on>2026-04-12 14:26:44</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
