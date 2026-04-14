@@ -444,7 +444,7 @@ progresstracker.SetResult(null,false,'Lengthy process failed!');
 		<li>Configure the WorkerAPI Script Include to be accessible from "All application scopes".</li>
 		<li>Create a Script Include and add a "ClientAPI" class (if it does not exist in the application yet). The Client API class is required to execute a server side script from the client side. Example:&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=7357b9131b8bb090edf3642aab4bcb10" target="_blank">x_snc_devtools.DevToolsClientAPI</a>.</li>
 		<li>Set the ClientAPI Script Include to be "Client callable".</li>
-		<li>Add the function "start" to the ClientAPI class. The "start" function is used to invoke lengthy processes. The function has to receive parameters (using this.getParameter()), dertermine which lengthy process is requested (using the "sysparm_ajax_processor_command" parameter), initiate the lengthy process as an asynchonous process (using the Worker API class) and return the Sys Id of the worker record back to the client. Example:&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=7357b9131b8bb090edf3642aab4bcb10" target="_blank">x_snc_devtools.DevToolsClientAPI</a>. Check out the following boilerplate code:</li>
+		<li>Add the function "start" to the ClientAPI class. The "start" function is used to invoke lengthy processes. The function has to receive parameters (using x_snc_devtools.GetParam()), dertermine which lengthy process is requested (using the "ajax_processor_command" parameter), initiate the lengthy process as an asynchonous process (using the Worker API class) and return the Sys Id of the worker record back to the client. Example:&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=7357b9131b8bb090edf3642aab4bcb10" target="_blank">x_snc_devtools.DevToolsClientAPI</a>. Check out the following boilerplate code:</li>
 <pre>
 start: function()
 {
@@ -457,11 +457,10 @@ start: function()
 	var strTrackerSourceTable = '';
 	var strTrackerType = '';
 
-	var strCommand = x_snc_devtools.GetStringValue(
-		this.getParameter("sysparm_ajax_processor_command"));
+	var strCommand = x_snc_devtools.GetParam("ajax_processor_command");
 	if (strCommand == 'your_lengthy_process')
 	{
-		var strRecordSysId = x_snc_devtools.GetStringValue(this.getParameter("sysparm_ajax_processor_record_sys_id"));
+		var strRecordSysId = x_snc_devtools.GetParam("ajax_processor_record_sys_id");
 		if (strRecordSysId == '')
 		{
 			x_snc_devtools.LogError('YourClientAPI.start(): YourLengthyProcess: no record_sys_id specified.');
@@ -768,6 +767,48 @@ x_snc_devtools.AppBuilderMoveToScope(grRecord, strTargetScope, bMoveFromAllScope
 	<g2:no_escape>$[docapi.RenderLicense()]</g2:no_escape>
 	
 	<h2 toc-ignore-children="true">Release Notes</h2>
+
+	<h3>1.139.0 - 2026-04-14</h3>
+	<ol>
+		<li>Added function ArrayGetElementById().</li>
+		<li>Added function BusinessProcessValidate().</li>
+		<li>Added function WaitForInstanceScan().</li>
+		<li>Added function IsSecureParameterValue().</li>
+		<li>Added function GroupAddUser().</li>
+		<li>Added function RenderDateTimeLocal().</li>
+		<li>Added function RenderDateLocal().</li>
+		<li>Added function RenderTimeLocal().</li>
+		<li>Added function IsString().</li>
+		<li>Added function IsValidBoolString().</li>
+		<li>Added function IsValidName().</li>
+		<li>Added function IsValidAppIdentifierString().</li>
+		<li>Added function IsValidJson().</li>
+		<li>GetParam() now checks the parameter value using the given function (or using IsSecureParameterValue() if no function is provided).</li>
+		<li>CreateTechnicalUser() now explicitly sets the identity_type to "machine".</li>
+		<li>CreateUserByEmail() now explicitly sets the identity_type to "human".</li>
+		<li>CreateTestUser() now explicitly sets the identity_type to "human".</li>
+		<li>UI Script NowAssistPanelMessageAutoExpand() now also covers the scenario of a form being loaded without the Now Assist Panel open - and the Panel is then displayed later.</li>
+		<li>GetIncidentRecord() no longer returns the first incident without a number.</li>
+		<li>GetAppRecord() no longer returns scopes that have no name (for whatever reason).</li>
+		<li>GetParentRecord() and the "Up" button now support sys_update_version.</li>
+		<li>GetParentRecord() and the "Up" button now support ACLs for AI Skills.</li>
+		<li>GetParentRecord() and the "Up" button now support sn_aia_tool.</li>
+		<li>GetParentRecord() and the "Up" button now support sn_aia_agent_tool_m2m.</li>
+		<li>Added DevTools view for sn_aia_tool and sn_aia_agent_tool_m2m.</li>
+		<li>HtmlRenderPageLogs() now also renders syslog_app_scope.</li>
+		<li>HtmlRenderPageLogs() now also renders sys_generative_ai_log.</li>
+		<li>HtmlRenderPageLogs() now also renders sys_gen_ai_usage_log.</li>
+		<li>HtmlRenderPageLogs() now sorts log entries from newest to oldest.</li>
+		<li>ATF for GetRecentEvaluatorErrorsQuery() now checks for a maximum query length of 5822 characters.</li>
+		<li>ATF for RenderRecordSummary() is now robust against task_sla record being created automatically. This seems to be a behavior change in Australia.</li>
+		<li>IsSessionInteractive() can now handle the unexpected case of "gs" not being defined properly.</li>
+		<li>BusinessProcessGetExample() now includes "input" and "output".</li>
+		<li>GetTableFromSysId() now considers sys_cs_conversation_task as a priority table.</li>
+		<li>Added snc_access_control to the link directory.</li>
+		<li>Added more patterns to GetEvaluatorErrorExceptionPatterns().</li>
+		<li>Added technical debt: "Setting the scope on system property UI pages does not work".</li>
+	</ol>
+
 
 	<h3>1.138.0 - 2026-03-25</h3>
 	<ol>
@@ -3253,14 +3294,14 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>2480</sys_mod_count>
+        <sys_mod_count>2518</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-03-25 16:44:43</sys_updated_on>
+        <sys_updated_on>2026-04-14 07:14:31</sys_updated_on>
     </sys_ui_page>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>e44fd7541b578450a89720a8ec4bcb8c</id>

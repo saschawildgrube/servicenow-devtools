@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <callable_outputs/>
+        <copied_from/>
+        <description>Run Server Side Validation Script</description>
+        <display_name>Run Server Side Script</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>1</order>
+        <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-04-07 13:29:20</sys_created_on>
+        <sys_id>2b90d9662b0807949083fe395e91bf51</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Run Server Side Script</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_step_2b90d9662b0807949083fe395e91bf51</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-04-07 13:31:28</sys_updated_on>
+        <table/>
+        <test display_value="DevTools - RenderTimeLocal">179059662b0807949083fe395e91bfec</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=2b90d9662b0807949083fe395e91bf51"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>2b90d9662b0807949083fe395e91bf51</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-04-07 13:29:20</sys_created_on>
+        <sys_id>ab90d9662b0807949083fe395e91bf53</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-04-07 13:29:20</sys_updated_on>
+        <value>3.1</value>
+        <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>2b90d9662b0807949083fe395e91bf51</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-04-07 13:29:20</sys_created_on>
+        <sys_id>eb90d9662b0807949083fe395e91bf54</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-04-07 13:31:28</sys_updated_on>
+        <value>(function(outputs, steps, stepResult, assertEqual)&#13;
+{&#13;
+	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
+	&#13;
+	test.SetResult(true);&#13;
+	&#13;
+	function TestCase_RenderTimeLocal(vDateTime)&#13;
+	{&#13;
+		function TestCase_RenderTimeLocal_CheckResult(vInput,vExpected,vResult)&#13;
+		{&#13;
+			return true;&#13;
+		}&#13;
+		&#13;
+		test.TestCase(&#13;
+			'Function RenderTimeLocal()',&#13;
+			RenderTimeLocal,&#13;
+			{&#13;
+				'vDateTime': vDateTime&#13;
+			},&#13;
+			null,&#13;
+			TestCase_RenderTimeLocal_CheckResult);&#13;
+	}&#13;
+		&#13;
+	TestCase_RenderTimeLocal(null);&#13;
+	TestCase_RenderTimeLocal(undefined);&#13;
+	TestCase_RenderTimeLocal(false);&#13;
+	TestCase_RenderTimeLocal('hello world');&#13;
+	TestCase_RenderTimeLocal('');&#13;
+	TestCase_RenderTimeLocal(0);&#13;
+	TestCase_RenderTimeLocal(123456789);&#13;
+	TestCase_RenderTimeLocal(ParseDateTime('2001-09-11 08:46:00'));&#13;
+	TestCase_RenderTimeLocal('2001-09-11 08:46:00');&#13;
+	TestCase_RenderTimeLocal('08:46');&#13;
+	TestCase_RenderTimeLocal('8:46');&#13;
+	TestCase_RenderTimeLocal('9');&#13;
+	TestCase_RenderTimeLocal('9:');&#13;
+	TestCase_RenderTimeLocal('9:1');&#13;
+	&#13;
+	return test.GetResult();&#13;
+	&#13;
+})(outputs, steps, stepResult, assertEqual);</value>
+        <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
+    </sys_variable_value>
+</record_update>

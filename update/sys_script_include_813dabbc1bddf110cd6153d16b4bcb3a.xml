@@ -57,67 +57,67 @@
 		'4b28d4f', // 4b28d4fcc78533003725756d5ec2600c
 		'b935254', // b9352546c7423010099a308dc7c260d0
 		'3b16f51', // 3b16f51f536811101c1addeeff7b1209
-		'a37ebc6173c0011', // a37ebc6173c001104a905ee515f6a780
-		'fe9616fd9f01030', // fe9616fd9f0103008e2a9be2d57fcfc6
-		'c6056d4f9fc5030', // c6056d4f9fc503008e2a9be2d57fcf74
-		'a913e4db731c230', // a913e4db731c2300cbb654eb7df6a7be    
-		'29ded71b073e511', // 29ded71b073e51102fe9f1e08c1ed044    
-		'1c8878bbd703210', // 1c8878bbd7032100b9bc43d60e6103c8   
-		'd2426c9ec0a8016', // d2426c9ec0a8016501958bf2ac79c775
-		'8fb7decb7753330', // 8fb7decb7753330033b5270bba1061b8    
-		'7c4072105f22010', // 7c4072105f220100a9ad2572f2b47750
-		'18b1356a3770300', // 18b1356a37703000158bbfc8bcbe5d65
-		'1c8878bbd703210', // 1c8878bbd7032100b9bc43d60e6103c8
-		'16a82be2ff90100', // 16a82be2ff901000dada1c57f27f9de9
-		'2e0e7d71fc38711', // 2e0e7d71fc387110f87736513ef7b26e
-		'ee3617977731111', // ee36179777311110114329354f5a991d
-		'b21bda22b4ee3c1', // b21bda22b4ee3c10f87755e926c386b9
-		'd9607ab477f1211', // d9607ab477f12110eba8fe21fe5a9939
-		'af31245c7701111', // af31245c770111108bd73a91fa5a9912
-		'3b709a5353fe711', // 3b709a5353fe71104a61ddeeff7b129b
-		'af8c43f15723130', // af8c43f157231300cc25b7d4ef94f9cc    
-		'02af2d1f77aa111', // 02af2d1f77aa1110866ea2059f5a99c8
-		'ea804ac70b61311', // ea804ac70b613110985f8a8db777b25f 
-		'5642295aff32021', // 5642295aff320210363bffffffffff5b 
-		'ab2b14c3cb00330', // ab2b14c3cb003300449b78d5634c9c27
-		'562f4c35c324161', // 562f4c35c32416105a37f90705013120
-		'1b30fd935382b01', // 1b30fd935382b0109706ddeeff7b12d4
-		'12cc48e25b36501', // 12cc48e25b3650100977ca225681c7b7     
-		'abef9ea14310211', // abef9ea1431021109fa864cec7b8f2c8
-		'bbe4bd395312101', // bbe4bd3953121010bca8ddeeff7b1208
-		'8626cb31b796301', // 8626cb31b7963010a0cde36cae11a951    
-		'2fe059e37f37021', // 2fe059e37f3702101ea008a6cc866516 
-		'18b1356a3770300', // 18b1356a37703000158bbfc8bcbe5d65
-		'b08ad3635374111', // b08ad363537411106883ddeeff7b12db
-		'2a2e54780a0a0b0', // 2a2e54780a0a0b0500957d4debce8ed6
-		'070b7693ff63210', // 070b7693ff632100956cffffffffff04
-		'0e3de1e0ff23210', // 0e3de1e0ff232100956cffffffffff94
-		'048b7dcf4343121', // 048b7dcf434312101df4f03a5ab8f286
-		'a3afad577307101', // a3afad5773071010a0a79329faf6a7f7
-		'18d763a97769211', // 18d763a9776921101b53c5ed3c5a9933
-		'1f583640c320110', // 1f583640c3201100c8b837659bba8f14   
-		'5a0573707300011', // 5a057370730001104a905ee515f6a755     
-		'8d27c0fa53b5011', // 8d27c0fa53b50110f263ddeeff7b1287 
-		'94f48f061502011', // 94f48f0615020110fa9b58a2aaf5c033      
-		'26a0441f73e0021', // 26a0441f73e00210210ea11cff148b2c     
-		'2cfea7227725111', // 2cfea72277251110b1fd4a783c5a9974    
-		'63c1671c7f09121', // 63c1671c7f091210226793db5d8665a9    
-		'fc03287b7742411', // fc03287b774241105c974a783c5a995f   
-		'afdc1fe0ffb0211', // afdc1fe0ffb02110468365d7d3b8fe85       
-		'5fb1b0100b22120', // 5fb1b0100b2212003aa56c4d37673a60  
-		'e95109d75302b01', // e95109d75302b0109706ddeeff7b12e1
-		'ab1ffc33c331210', // ab1ffc33c3312100e6da174292d3ae3d      
+		'a37ebc6173c0', // a37ebc6173c001104a905ee515f6a780
+		'fe9616fd9f01', // fe9616fd9f0103008e2a9be2d57fcfc6
+		'c6056d4f9fc5', // c6056d4f9fc503008e2a9be2d57fcf74
+		'a913e4db731c', // a913e4db731c2300cbb654eb7df6a7be    
+		'29ded71b073e', // 29ded71b073e51102fe9f1e08c1ed044    
+		'1c8878bbd703', // 1c8878bbd7032100b9bc43d60e6103c8   
+		'd2426c9ec0a8', // d2426c9ec0a8016501958bf2ac79c775
+		'8fb7decb7753', // 8fb7decb7753330033b5270bba1061b8    
+		'7c4072105f22', // 7c4072105f220100a9ad2572f2b47750
+		'18b1356a3770', // 18b1356a37703000158bbfc8bcbe5d65
+		'1c8878bbd703', // 1c8878bbd7032100b9bc43d60e6103c8
+		'16a82be2ff90', // 16a82be2ff901000dada1c57f27f9de9
+		'2e0e7d71fc38', // 2e0e7d71fc387110f87736513ef7b26e
+		'ee3617977731', // ee36179777311110114329354f5a991d
+		'b21bda22b4ee', // b21bda22b4ee3c10f87755e926c386b9
+		'd9607ab477f1', // d9607ab477f12110eba8fe21fe5a9939
+		'af31245c7701', // af31245c770111108bd73a91fa5a9912
+		'3b709a5353fe', // 3b709a5353fe71104a61ddeeff7b129b
+		'af8c43f15723', // af8c43f157231300cc25b7d4ef94f9cc    
+		'02af2d1f77aa', // 02af2d1f77aa1110866ea2059f5a99c8
+		'ea804ac70b61', // ea804ac70b613110985f8a8db777b25f 
+		'5642295aff32', // 5642295aff320210363bffffffffff5b 
+		'ab2b14c3cb00', // ab2b14c3cb003300449b78d5634c9c27
+		'562f4c35c324', // 562f4c35c32416105a37f90705013120
+		'1b30fd935382', // 1b30fd935382b0109706ddeeff7b12d4
+		'12cc48e25b36', // 12cc48e25b3650100977ca225681c7b7     
+		'abef9ea14310', // abef9ea1431021109fa864cec7b8f2c8
+		'bbe4bd395312', // bbe4bd3953121010bca8ddeeff7b1208
+		'8626cb31b796', // 8626cb31b7963010a0cde36cae11a951    
+		'2fe059e37f37', // 2fe059e37f3702101ea008a6cc866516 
+		'18b1356a3770', // 18b1356a37703000158bbfc8bcbe5d65
+		'b08ad3635374', // b08ad363537411106883ddeeff7b12db
+		'2a2e54780a0a', // 2a2e54780a0a0b0500957d4debce8ed6
+		'070b7693ff63', // 070b7693ff632100956cffffffffff04
+		'0e3de1e0ff23', // 0e3de1e0ff232100956cffffffffff94
+		'048b7dcf4343', // 048b7dcf434312101df4f03a5ab8f286
+		'a3afad577307', // a3afad5773071010a0a79329faf6a7f7
+		'18d763a97769', // 18d763a9776921101b53c5ed3c5a9933
+		'1f583640c320', // 1f583640c3201100c8b837659bba8f14   
+		'5a0573707300', // 5a057370730001104a905ee515f6a755     
+		'8d27c0fa53b5', // 8d27c0fa53b50110f263ddeeff7b1287 
+		'94f48f061502', // 94f48f0615020110fa9b58a2aaf5c033      
+		'26a0441f73e0', // 26a0441f73e00210210ea11cff148b2c     
+		'2cfea7227725', // 2cfea72277251110b1fd4a783c5a9974    
+		'63c1671c7f09', // 63c1671c7f091210226793db5d8665a9    
+		'fc03287b7742', // fc03287b774241105c974a783c5a995f   
+		'afdc1fe0ffb0', // afdc1fe0ffb02110468365d7d3b8fe85       
+		'5fb1b0100b22', // 5fb1b0100b2212003aa56c4d37673a60  
+		'e95109d75302', // e95109d75302b0109706ddeeff7b12e1
+		'ab1ffc33c331', // ab1ffc33c3312100e6da174292d3ae3d      
 
 
 		// Flow Designer
-		'"actionOrder" is not defined.',
-		'"modalTitle" is not defined.',
-		'"subflowComponent" is not defined.',
-		'"index" is not defined.',
-		'"currentStep" is not defined.',
-		'"errMsg" is not defined.',
-		'"props" is not defined.',
-		'Cannot read property "currentAlias" from undefined',
+		'"actionOrder" is not de',
+		'"modalTitle" is not def',
+		'"subflowComponent" is not de',
+		'"index" is not de',
+		'"currentStep" is not de',
+		'"errMsg" is not de',
+		'"props" is not de',
+		'Cannot read property "currentAlias" from unde',
 
 		// Yokohama
 		"var result = dep.getED().isReadOnly() ", // ? 'true' : 'false';",
@@ -125,23 +125,23 @@
 		'new SNC.AnonymizationApi()',
 		' Cannot find function canvasTopicExecutionFlow in object [object Object].',
 		'com.glide.script.RhinoEcmaError: "name" is not defined.',
-		'06a6c0b2eb20010', // 06a6c0b2eb2001006a668c505206fe63
-		'c5c370657710011', // c5c3706577100110990d94b92c5a997c
-		'324c8745d703310', // 324c8745d7033100b6bddb0c825203eb
-		'c883036f5331030', // c883036f533103001f2bddeeff7b12b9
-		'3048c6b65b3b030', // 3048c6b65b3b0300e3cc8e6541f91aaf
-		'23e4f33ce113121', // 23e4f33ce11312105590bd68cbbecb8a 
-		'ab1ffc33c331210', // ab1ffc33c3312100e6da174292d3ae3d
-		'62952a3953c2261', // 62952a3953c2261066ff68f230e5e625 
-		'4d0fd3387300230', // 4d0fd338730023009ecc234ffff6a7d3 
-		'654e325f5301021', // 654e325f53010210d344ddeeff7b1242
-		'0a2eda18ebf1311', // 0a2eda18ebf131102b57e530695228cf
-		'5ab6e593ffe9221', // 5ab6e593ffe92210fbe7ffffffffff6b     
-		'f7c8f9e64300221', // f7c8f9e6430022101dbab69d4bb8f20
-		'bbe4e6e7531b211', // bbe4e6e7531b2110cd9bddeeff7b12c2    
-		'12f6fa80ff342a1', // 12f6fa80ff342a1004ddffffffffff3a
-		'0fc97e614fd1121', // 0fc97e614fd11210726a3717b0ce0b10
-		'96ff9b33f731521', // 96ff9b33f73152107447a5ce33bfd67b
+		'06a6c0b2eb20', // 06a6c0b2eb2001006a668c505206fe63
+		'c5c370657710', // c5c3706577100110990d94b92c5a997c
+		'324c8745d703', // 324c8745d7033100b6bddb0c825203eb
+		'c883036f5331', // c883036f533103001f2bddeeff7b12b9
+		'3048c6b65b3b', // 3048c6b65b3b0300e3cc8e6541f91aaf
+		'23e4f33ce113', // 23e4f33ce11312105590bd68cbbecb8a 
+		'ab1ffc33c331', // ab1ffc33c3312100e6da174292d3ae3d
+		'62952a3953c2', // 62952a3953c2261066ff68f230e5e625 
+		'4d0fd3387300', // 4d0fd338730023009ecc234ffff6a7d3 
+		'654e325f5301', // 654e325f53010210d344ddeeff7b1242
+		'0a2eda18ebf1', // 0a2eda18ebf131102b57e530695228cf
+		'5ab6e593ffe9', // 5ab6e593ffe92210fbe7ffffffffff6b     
+		'f7c8f9e64300', // f7c8f9e6430022101dbab69d4bb8f20
+		'bbe4e6e7531b', // bbe4e6e7531b2110cd9bddeeff7b12c2    
+		'12f6fa80ff34', // 12f6fa80ff342a1004ddffffffffff3a
+		'0fc97e614fd1', // 0fc97e614fd11210726a3717b0ce0b10
+		'96ff9b33f731', // 96ff9b33f73152107447a5ce33bfd67b
 
 		// Zurich
 		'"inputvis" is not defined.',
@@ -149,28 +149,32 @@
 		'sn_nowassist_va.NowAssistGranularFeedbackHelper.getGranularFeedbackMetadata(deploymentId);',
 		'Create maps from the ais_datasource and ais_child_table tables to avoid',
 		'"ModelChoiceListBuilder" is not defined.',
-		'9566b90ceb03110', // 9566b90ceb0311003623666cd206fe8c
-		'4659d132d723210', // 4659d132d7232100b6bddb0c8252039e
-		'64e5e4737322130', // 64e5e473732213002cb26fbc1bf6a7ef
-		'28fc80a77727111', // 28fc80a7772711104cdac0c23e5a9903
-		'209fc2f1c301120', // 209fc2f1c3011200f7d1ca3adfba8f4b
-		'8f5128567740121', // 8f51285677401210e45dd86bba5a99a1
-		'bec48ba37f10621', // bec48ba37f1062105adc654edc866546 
-		'ded607e693a1121', // ded607e693a11210f2cafff9648918c0
-		'250bd3435311111', // 250bd34353111110c271ddeeff7b12da
-		'd9c7d3fa1bea011', // d9c7d3fa1bea0110521acaa2604bcb91
-		'370039f4c0a808a', // 370039f4c0a808ae00b44eeae13c0497     
-		'39918e93fff0221', // 39918e93fff022108534ffffffffffd5
-		'e04346844310621', // e0434684431062101dbab69d4bb8f28f    
-		'05258d82e117301', // 05258d82e1173010f87710c901e3230d
-		'30b050d7936a121', // 30b050d7936a121011f9bba17cba1019
-		'b97e71b10b12011', // b97e71b10b1201105f02818393673a21
-		'37fe52b9473cb51', // 37fe52b9473cb5103f3fd922736d43c8
-		'd44683834382121', // d446838343821210d9dedc5f6ab8f215
-		'41445411438a521', // 41445411438a5210d9dedc5f6ab8f24f
-		'8bdd2a62ffb3221', // 8bdd2a62ffb322107cc9ffffffffffa6    
-		'e7431e6843ec121', // e7431e6843ec1210e78f39603ab8f24a
-		'd12dd956ffc2221', // d12dd956ffc2221010cdffffffffffe8
+		'"sysparam_citation" is not defined.',
+		'9566b90ceb03', // 9566b90ceb0311003623666cd206fe8c
+		'4659d132d723', // 4659d132d7232100b6bddb0c8252039e
+		'64e5e4737322', // 64e5e473732213002cb26fbc1bf6a7ef
+		'28fc80a77727', // 28fc80a7772711104cdac0c23e5a9903
+		'209fc2f1c301', // 209fc2f1c3011200f7d1ca3adfba8f4b
+		'8f5128567740', // 8f51285677401210e45dd86bba5a99a1
+		'bec48ba37f10', // bec48ba37f1062105adc654edc866546 
+		'ded607e693a1', // ded607e693a11210f2cafff9648918c0
+		'250bd3435311', // 250bd34353111110c271ddeeff7b12da
+		'd9c7d3fa1bea', // d9c7d3fa1bea0110521acaa2604bcb91
+		'370039f4c0a8', // 370039f4c0a808ae00b44eeae13c0497     
+		'39918e93fff0', // 39918e93fff022108534ffffffffffd5
+		'e04346844310', // e0434684431062101dbab69d4bb8f28f    
+		'05258d82e117', // 05258d82e1173010f87710c901e3230d
+		'30b050d7936a', // 30b050d7936a121011f9bba17cba1019
+		'b97e71b10b12', // b97e71b10b1201105f02818393673a21
+		'37fe52b9473c', // 37fe52b9473cb5103f3fd922736d43c8
+		'd44683834382', // d446838343821210d9dedc5f6ab8f215
+		'41445411438a', // 41445411438a5210d9dedc5f6ab8f24f
+		'8bdd2a62ffb3', // 8bdd2a62ffb322107cc9ffffffffffa6    
+		'e7431e6843ec', // e7431e6843ec1210e78f39603ab8f24a
+		'd12dd956ffc2', // d12dd956ffc2221010cdffffffffffe8
+		'6a20bb8f77f5', // 6a20bb8f77f501105c974a783c5a994c
+		'40f5c29fffd1', // 40f5c29fffd12210265effffffffff44
+		'81517ff7eb22', // 81517ff7eb22101092806e216d52280f        
 
 	];
 	return aPatterns;
@@ -179,14 +183,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-09-13 12:47:41</sys_created_on>
         <sys_id>813dabbc1bddf110cd6153d16b4bcb3a</sys_id>
-        <sys_mod_count>162</sys_mod_count>
+        <sys_mod_count>179</sys_mod_count>
         <sys_name>GetEvaluatorErrorExceptionPatterns</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_813dabbc1bddf110cd6153d16b4bcb3a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-03-25 16:43:06</sys_updated_on>
+        <sys_updated_on>2026-04-06 17:59:49</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

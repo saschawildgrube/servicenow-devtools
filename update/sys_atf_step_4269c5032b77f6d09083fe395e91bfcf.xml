@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <callable_outputs/>
+        <copied_from/>
+        <description>Run Server Side Validation Script</description>
+        <display_name>Run Server Side Script</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>1</order>
+        <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-03-27 15:59:05</sys_created_on>
+        <sys_id>4269c5032b77f6d09083fe395e91bfcf</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>Run Server Side Script</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_step_4269c5032b77f6d09083fe395e91bfcf</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-03-30 14:29:40</sys_updated_on>
+        <table/>
+        <test display_value="DevTools - AppBuilderImplementBusinessProcess">7d69c5032b77f6d09083fe395e91bfac</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=4269c5032b77f6d09083fe395e91bfcf"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>4269c5032b77f6d09083fe395e91bfcf</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-03-27 15:59:05</sys_created_on>
+        <sys_id>4a69c5032b77f6d09083fe395e91bfd2</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-03-30 14:29:40</sys_updated_on>
+        <value>(function(outputs, steps, stepResult, assertEqual)&#13;
+{&#13;
+	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
+	&#13;
+	test.SetResult(true);&#13;
+	&#13;
+	function TestCase_AppBuilderImplementBusinessProcess(vApp,business_process,vExpected)&#13;
+	{&#13;
+		function TestCase_AppBuilderImplementBusinessProcess_CheckResult(vInput,vExpected,vResult)&#13;
+		{&#13;
+			if (vResult == true)&#13;
+			{&#13;
+				var grApp = GetAppRecord(vInput.vApp);&#13;
+				test.Log('All files contained in the app:');&#13;
+				var grMetadata = new GlideRecord('sys_metadata');&#13;
+				grMetadata.addQuery('sys_scope','=',grApp.sys_id);&#13;
+				grMetadata.query();&#13;
+				while (grMetadata.next())&#13;
+				{&#13;
+					test.Log(RenderRecordSummary(grMetadata));&#13;
+				}&#13;
+			}&#13;
+			return (vExpected == vResult);&#13;
+		}&#13;
+		&#13;
+		test.TestCase(&#13;
+			'Function AppBuilderImplementBusinessProcess()',&#13;
+			AppBuilderImplementBusinessProcess,&#13;
+			{&#13;
+				'vApp': vApp,&#13;
+				'business_process': business_process&#13;
+			},&#13;
+			vExpected,&#13;
+			TestCase_AppBuilderImplementBusinessProcess_CheckResult);&#13;
+	}&#13;
+		&#13;
+	TestCase_AppBuilderImplementBusinessProcess(null,null,false);&#13;
+&#13;
+	var grApp = new GlideRecord('sys_app');&#13;
+	grApp.initialize();&#13;
+	grApp.name = '_ATF_TEST_PROCESS';&#13;
+	grApp.scope = 'x_test_process';&#13;
+	GlideRecordInsert(grApp);&#13;
+&#13;
+	TestCase_AppBuilderImplementBusinessProcess(grApp,null,false);&#13;
+&#13;
+	var business_process = BusinessProcessGetExample();&#13;
+	delete business_process.id;&#13;
+	TestCase_AppBuilderImplementBusinessProcess(grApp,business_process,false);&#13;
+&#13;
+	var business_process = BusinessProcessGetExample();&#13;
+	TestCase_AppBuilderImplementBusinessProcess(grApp,business_process,true);&#13;
+&#13;
+	&#13;
+	return test.GetResult();&#13;
+	&#13;
+})(outputs, steps, stepResult, assertEqual);</value>
+        <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>4269c5032b77f6d09083fe395e91bfcf</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-03-27 15:59:05</sys_created_on>
+        <sys_id>c669c5032b77f6d09083fe395e91bfd1</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-03-27 15:59:05</sys_updated_on>
+        <value>3.1</value>
+        <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
+    </sys_variable_value>
+</record_update>

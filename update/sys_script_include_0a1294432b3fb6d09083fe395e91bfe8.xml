@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.BusinessProcessValidate</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>If bDetailed is false, the function returns true or false whether the given business process object is entirely valid and complete.&#13;
+If bDetailed is true, the function returns an object containing the validity status and arrays of errors, warnings and notes.&#13;
+The detailed response can be fed back into an AI Agent for processing.  </description>
+        <mobile_callable>false</mobile_callable>
+        <name>BusinessProcessValidate</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function BusinessProcessValidate(business_process, bDetailed)
+{
+	bDetailed = GetBoolValue(bDetailed);
+
+	var result = {};
+	result.valid = true;
+	result.errors = [];
+	result.warnings = [];
+	result.notes = [];
+
+	function GetResult()
+	{
+		if (result.errors.length > 0)
+		{
+			result.valid = false;
+		}
+		if (bDetailed == true)
+		{
+			return result;
+		}
+		return result.valid;
+	}
+
+	if (IsObject(business_process) == false)
+	{
+		result.errors.push('Provided parameter is not an object.');
+		return GetResult();
+	}
+
+	if (IsEqual(business_process,{}) == true)
+	{
+		result.errors.push('Provided object is empty.');
+		return GetResult();
+	}
+
+	var strId = GetStringValue(GetValue(business_process,'id'));
+	if (strId == '')
+	{
+		result.errors.push('No Business Process ID (i.e. technical name) was provided ("id").');		
+	}
+
+	var strName = GetStringValue(GetValue(business_process,'name'));
+	if (strName == '')
+	{
+		result.errors.push('No Business Process name was provided ("name").');		
+	}	
+	
+	var strDescription = GetStringValue(GetValue(business_process,'description'));
+	if (strDescription == '')
+	{
+		result.warnings.push('No Business Process description text has been provided ("description").');		
+	}
+
+	var aRoles = GetArrayValue(GetValue(business_process,'_roles'));
+	if (aRoles.length == 0)
+	{
+		result.errors.push('No process roles have been defined ("_roles").');
+	}
+
+	for (var nRole = 0; nRole < aRoles.length; nRole++)
+	{
+		var role = aRoles[nRole];
+		var strRoleId = GetStringValue(GetValue(role,'id'));
+		if (strRoleId == '')
+		{
+			result.errors.push('Role at index ' + nRole + ' has no id ("id").');
+		}
+	}
+
+	var aStates = GetArrayValue(GetValue(business_process,'_states'));
+	if (aStates.length == 0)
+	{
+		result.errors.push('No states have been defined ("_states").');
+	}
+	
+
+
+	return GetResult();
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-03-27 12:03:33</sys_created_on>
+        <sys_id>0a1294432b3fb6d09083fe395e91bfe8</sys_id>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_name>BusinessProcessValidate</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_0a1294432b3fb6d09083fe395e91bfe8</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-04-02 08:39:49</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>0a1294432b3fb6d09083fe395e91bfe8</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-03-27 12:03:33</sys_created_on>
+        <sys_id>6b73dc472b3fb6d09083fe395e91bf77</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-03-27 12:03:33</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

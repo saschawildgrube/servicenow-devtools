@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.AppBuilderImplementBusinessProcess</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Implements the given Business Process into the given Application.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>AppBuilderImplementBusinessProcess</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function AppBuilderImplementBusinessProcess(vApp,business_process)
+{
+	var grApp = GetAppRecord(vApp);
+
+	if (IsValidRecord(grApp) == false)
+	{
+		LogError('AppBuilderImplementBusinessProcess: App could not be loaded.');
+		return false;
+	}
+
+	if (grApp.scope == 'global')
+	{
+		LogError('AppBuilderImplementBusinessProcess: Global Apps are not supported.');
+		return false;
+	}
+
+	var result = BusinessProcessValidate(business_process,true);
+
+	if (result.valid == false)
+	{
+		LogError('AppBuilderImplementBusinessProcess: Business Process is invalid:\n' + RenderValue(result));
+		return false;
+	}
+
+	var strParentTable = GetStringValue(GetValue(business_process,'parent_table'));
+	if (strParentTable == '')
+	{
+		strParentTable = 'task';
+	}
+	var grParentTable = GetTableRecord(strParentTable);
+	if (IsValidRecord(grParentTable) == false)
+	{
+		LogError('AppBuilderImplementBusinessProcess: Could not load parent table: ' + strParentTable);
+		return false;
+	}
+
+
+	var strScope = GetStringValue(grApp.scope);
+	var strScopeSysId = GetStringValue(grApp.sys_id);
+	var strProcessId = GetStringValue(GetValue(business_process,'id'));
+	var strProcessName = GetStringValue(GetValue(business_process,'name'));
+
+	var aRoles = GetValue(business_process,'_roles');
+
+	var roleViewer = ArrayGetElementById(aRoles, 'viewer');
+	if (IsObject(roleViewer) == false)
+	{
+		roleViewer = {
+			id: 'viewer',
+			description: 'A user that can view all data related to the process.'
+			};
+		aRoles.push(roleViewer);
+	}
+
+	var roleManager = ArrayGetElementById(aRoles, 'manager');
+	if (IsObject(roleManager) == false)
+	{
+		roleManager = {
+			id: 'manager',
+			description: 'A user that can view and edit all data related to the process.'
+			};
+		aRoles.push(roleViewer);
+	}	
+
+	var roleAdmin = ArrayGetElementById(aRoles, 'admin');
+	if (IsObject(roleAdmin) == false)
+	{
+		roleAdmin = {
+			id: 'admin',
+			description: 'A user that can view, edit and delete all data related to the process.'
+			};
+		aRoles.push(roleAdmin);
+	}
+
+	for (var nRole = 0; nRole < aRoles.length; nRole++)
+	{
+		var role = aRoles[nRole];
+
+		var strRoleSuffix = GetStringValue(GetValue(role,'id'));
+		var strRoleName = strScope + '.' + strRoleSuffix;
+		var strRoleDescription = GetStringValue(GetValue(role,'description'));
+		
+		var strRoleSysId = RecordInsertOrUpdate(
+			'sys_user_role',
+			{
+				sys_scope: strScopeSysId,
+				suffix: strRoleSuffix,
+				name: strRoleName
+			},
+			{
+			},
+			{
+				description: strRoleDescription
+			});
+		if (IsValidSysId(strRoleSysId) == false)
+		{
+			LogError('AppBuilderImplementBusinessProcess: Could not create/update role: ' + strRoleName);
+			return false;
+		}
+		aRoles[nRole]['sys_id'] = strRoleSysId;
+	}
+
+	var roleAdmin = ArrayGetElementById(aRoles, 'admin');
+	var roleManager = ArrayGetElementById(aRoles, 'manager');
+	var roleViewer = ArrayGetElementById(aRoles, 'viewer');
+
+
+	var strRoleContainsSysId = RecordInsertOrUpdate(
+		'sys_user_role_contains',
+		{
+			sys_scope: strScopeSysId,
+			role: roleAdmin.sys_id,
+			contains: roleManager.sys_id
+		},{},{});
+	if (IsValidSysId(strRoleContainsSysId) == false)
+	{
+		LogError('AppBuilderImplementBusinessProcess: Could not add role manager to role admin.');
+		return false;
+	}
+
+	for (var nRole = 0; nRole < aRoles.length; nRole++)
+	{
+		var role = aRoles[nRole];
+		var strId = role['id'];
+		if (strId != 'admin' && strId != 'viewer')
+		{
+			var strRoleContainsSysId = RecordInsertOrUpdate(
+				'sys_user_role_contains',
+				{
+					sys_scope: strScopeSysId,
+					role: role.sys_id,
+					contains: roleViewer.sys_id
+				},{},{});
+			if (IsValidSysId(strRoleContainsSysId) == false)
+			{
+				LogError('AppBuilderImplementBusinessProcess: Could not add role viewer to role '+strId+'.');
+				return false;
+			}
+		}
+	}
+
+
+	var strTableName = strScope + '_' + strProcessId;
+	var strTableLabel = strProcessName;
+
+
+	var strTableSysId = RecordInsertOrUpdate(
+		'sys_db_object',
+		{
+			sys_scope: strScopeSysId,
+			name: strTableName
+		},
+		{
+			super_class: grParentTable.sys_id
+		},
+		{
+			label: strTableLabel,
+			configuration_access: true,
+			create_access: true,
+			update_access: true,
+			delete_access: true
+		});
+	if (IsValidSysId(strTableSysId) == false)
+	{
+		LogError('AppBuilderImplementBusinessProcess: Could not create/update table: ' + strTableName);
+		return false;
+	}
+
+	return true;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-03-27 15:57:42</sys_created_on>
+        <sys_id>33a6cd0b2b37f6d09083fe395e91bfa9</sys_id>
+        <sys_mod_count>23</sys_mod_count>
+        <sys_name>AppBuilderImplementBusinessProcess</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_33a6cd0b2b37f6d09083fe395e91bfa9</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-04-09 11:42:52</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>33a6cd0b2b37f6d09083fe395e91bfa9</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-03-27 15:57:41</sys_created_on>
+        <sys_id>5d19898f2b37f6d09083fe395e91bff0</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-03-27 15:57:41</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

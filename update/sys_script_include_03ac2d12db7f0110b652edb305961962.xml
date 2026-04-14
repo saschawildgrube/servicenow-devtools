@@ -5,48 +5,61 @@
         <api_name>x_snc_devtools.GetParam</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Returns the specified url parameter as a string value.</description>
+        <description>Returns the specified url parameter as a string value and validates the value using the given function.&#13;
+If no function is provided, the function IsSecureParameterValue() is used by default.</description>
         <mobile_callable>false</mobile_callable>
         <name>GetParam</name>
         <sandbox_callable>false</sandbox_callable>
-        <script><![CDATA[function GetParam(strParam)
+        <script><![CDATA[function GetParam(strParam,callbackCheckParameter)
 {
 	strParam = GetStringValue(strParam);
 	if (strParam == '')
 	{
 		return '';
 	}
+	var strInsecureValue = '';
 	if (typeof RP != 'undefined')
 	{
-		return GetStringValue(RP.getParameterValue(strParam));
+		strInsecureValue =  GetStringValue(RP.getParameterValue(strParam));
 	}
 	if (typeof gs.action.getGlideURI != 'undefined')
 	{
+		// This also covers scripted REST API endpoints
+		
 		var glideUri = RunScriptInGlobalScope('result = gs.action.getGlideURI();');
 		if (glideUri != null)
 		{
-			var strValue = GetStringValue(glideUri.get(strParam));
-			if (strValue != '')
+			strInsecureValue = GetStringValue(glideUri.get(strParam));
+			if (strInsecureValue == '')
 			{
-				return strValue;
+				strInsecureValue = GetStringValue(glideUri.get('sysparm_'+strParam));
 			}
-			return GetStringValue(glideUri.get('sysparm_'+strParam));
 		}
 	}
-	return '';
+
+	var strValue = '';
+	if (IsFunction(callbackCheckParameter) == false)
+	{
+		callbackCheckParameter = IsSecureParameterValue;
+	}
+	if (callbackCheckParameter(strInsecureValue) == true)
+	{
+		strValue = strInsecureValue;
+	}
+	return strValue;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-06-02 13:20:47</sys_created_on>
         <sys_id>03ac2d12db7f0110b652edb305961962</sys_id>
-        <sys_mod_count>27</sys_mod_count>
+        <sys_mod_count>43</sys_mod_count>
         <sys_name>GetParam</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_03ac2d12db7f0110b652edb305961962</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-03-08 20:06:11</sys_updated_on>
+        <sys_updated_on>2026-04-06 19:21:31</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>

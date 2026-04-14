@@ -9,7 +9,7 @@
         <global>true</global>
         <ignore_in_now_experience>false</ignore_in_now_experience>
         <name>x_snc_devtools.NowAssistPanelMessageAuto</name>
-        <script><![CDATA[function NowAssistPanelMessageAutoExpand(options)
+        <script><![CDATA[function NowAssistPanelMessageAutoExpand()
 {
   var shellWin = window;
   try {
@@ -19,10 +19,9 @@
     shellWin = window;
   }
 
-  // Singleton controller stored in shell window
   var existing = null;
   try {
-    existing = shellWin["__nowAssistAutoExpandV5"];
+    existing = shellWin["__nowAssistAutoExpandV7"];
   } catch (e2) {
     existing = null;
   }
@@ -32,71 +31,87 @@
     return existing;
   }
 
-  options = options || {};
-
   var CFG = {
-    intervalMs: typeof options["intervalMs"] === "number" ? options["intervalMs"] : 300,
-    rootRefreshMs: typeof options["rootRefreshMs"] === "number" ? options["rootRefreshMs"] : 1500
+    intervalMs: 250,
+    rescanMs: 2000
   };
 
   function timeNow()
   {
-	return GetTimeNow();
+    return GetTimeNow();
   }
 
   var state = {
     running: false,
     intervalId: null,
     tickScheduled: false,
-    lastRootRefresh: 0,
+    lastRescan: 0,
     searchRoots: [],
     observedTargets: [],
-    observers: []
+    observers: [],
+    installedWindows: [],
+    observedFrames: [],
+    patchedWindows: []
   };
 
-  function isObserved(target) {
-    var arr = state["observedTargets"];
+  function containsRef(arr, item) {
+    if (!arr || !item) return false;
     var i = 0;
     for (i = 0; i < arr.length; i += 1) {
-      var t = arr[i];
-      if (t === target) return true;
+      if (arr[i] === item) return true;
     }
     return false;
   }
 
-  function observeTarget(target) {
-    if (!target) return;
-    if (isObserved(target)) return;
+  function pushUnique(arr, item) {
+    if (!arr || !item) return;
+    if (containsRef(arr, item)) return;
+    arr.push(item);
+  }
 
-    var MO = null;
+  function normalizeObserveTarget(target) {
+    if (!target) return null;
+
+    var nodeType = null;
     try {
-      MO = shellWin["MutationObserver"];
+      nodeType = target.nodeType;
     } catch (e) {
-      MO = null;
+      nodeType = null;
     }
-    if (!MO) return;
 
-    var mo = null;
-    try {
-      mo = new MO(function () {
-        scheduleTick();
-      });
-    } catch (e2) {
-      mo = null;
-    }
-    if (!mo) return;
-
-    try {
-      mo.observe(target, { childList: true, subtree: true, attributes: true });
-    } catch (e3) {
+    if (nodeType === 9) {
       try {
-        mo.disconnect();
-      } catch (e4) {}
-      return;
+        return target.documentElement || target.body || null;
+      } catch (e2) {
+        return null;
+      }
     }
 
-    state["observedTargets"].push(target);
-    state["observers"].push(mo);
+    return target;
+  }
+
+  function scheduleTick() {
+    if (state["tickScheduled"]) return;
+    state["tickScheduled"] = true;
+
+    var to = null;
+    try {
+      to = shellWin.setTimeout;
+    } catch (e) {
+      to = null;
+    }
+    if (typeof to !== "function") return;
+
+    to(function () {
+      state["tickScheduled"] = false;
+      tick();
+    }, 20);
+  }
+
+  function addSearchRoot(root) {
+    if (!root) return;
+    pushUnique(state["searchRoots"], root);
+    observeTarget(root);
   }
 
   function ensureStyleInjected(doc) {
@@ -132,207 +147,11 @@
       style.appendChild(
         doc.createTextNode(
           ".nowassist-autoexpanded{display:flex !important;max-height:none !important;height:auto !important;overflow:visible !important;-webkit-line-clamp:unset !important;}" +
-            ".nowassist-hide-toggle{display:none !important;}"
+          ".nowassist-hide-toggle{display:none !important;}"
         )
       );
       head.appendChild(style);
     } catch (e4) {}
-  }
-
-  function collectDocuments(rootDoc) {
-    var docs = [];
-    if (!rootDoc) return docs;
-
-    docs.push(rootDoc);
-
-    var iframes = [];
-    try {
-      iframes = rootDoc.querySelectorAll("iframe");
-    } catch (e) {
-      iframes = [];
-    }
-
-    var i = 0;
-    for (i = 0; i < iframes.length; i += 1) {
-      var frame = iframes[i];
-      if (!frame) continue;
-
-      var cw = null;
-      try {
-        cw = frame.contentWindow;
-      } catch (e2) {
-        cw = null;
-      }
-      if (!cw) continue;
-
-      var d = null;
-      try {
-        d = cw.document;
-      } catch (e3) {
-        d = null;
-      }
-      if (d) docs.push(d);
-    }
-
-    return docs;
-  }
-
-  // Deep query across OPEN shadow roots
-  function deepQueryAll(root, selector) {
-    var results = [];
-    if (!root) return results;
-
-    var queue = [root];
-    var seen = [];
-
-    function wasSeen(r) {
-      var i = 0;
-      for (i = 0; i < seen.length; i += 1) {
-        var s = seen[i];
-        if (s === r) return true;
-      }
-      return false;
-    }
-
-    while (queue.length) {
-      var r = queue.shift();
-      if (!r) continue;
-      if (wasSeen(r)) continue;
-      seen.push(r);
-
-      try {
-        var found = r.querySelectorAll(selector);
-        var fi = 0;
-        for (fi = 0; fi < found.length; fi += 1) {
-          var f = found[fi];
-          if (f) results.push(f);
-        }
-      } catch (e) {}
-
-      var els = [];
-      try {
-        els = r.querySelectorAll("*");
-      } catch (e2) {
-        els = [];
-      }
-
-      var j = 0;
-      for (j = 0; j < els.length; j += 1) {
-        var el = els[j];
-        if (!el) continue;
-
-        var sr = null;
-        try {
-          sr = el.shadowRoot;
-        } catch (e3) {
-          sr = null;
-        }
-        if (sr) queue.push(sr);
-      }
-    }
-
-    return results;
-  }
-
-  function refreshRoots(force) {
-    var now = timeNow();
-    if (!force) {
-      var last = state["lastRootRefresh"];
-      if (typeof last === "number" && typeof now === "number") {
-        if (now - last < CFG["rootRefreshMs"]) return;
-      }
-    }
-    state["lastRootRefresh"] = now;
-    state["searchRoots"] = [];
-
-    var topDoc = null;
-    try {
-      topDoc = shellWin.document;
-    } catch (e) {
-      topDoc = null;
-    }
-    if (!topDoc) return;
-
-    var docs = collectDocuments(topDoc);
-
-    var d = 0;
-    for (d = 0; d < docs.length; d += 1) {
-      var doc = docs[d];
-      if (!doc) continue;
-
-      ensureStyleInjected(doc);
-
-      // Observe doc to catch shell re-renders
-      var rootNode = null;
-      try {
-        rootNode = doc.documentElement || doc.body;
-      } catch (e2) {
-        rootNode = null;
-      }
-      if (rootNode) observeTarget(rootNode);
-
-      // Direct host selectors (if present)
-      var host = null;
-      try {
-        host = doc.querySelector(
-          "sn-cs-control-chat, sn-cs-control-chat-container, sn-now-assist, sn-now-assist-panel, sn-assist-panel, now-assist, now-assist-panel"
-        );
-      } catch (e3) {
-        host = null;
-      }
-
-      if (host) {
-        var hostSr = null;
-        try {
-          hostSr = host.shadowRoot;
-        } catch (e4) {
-          hostSr = null;
-        }
-        state["searchRoots"].push(hostSr ? hostSr : host);
-        continue;
-      }
-
-      // Heuristic fallback: find an open shadow root containing our target classes
-      var all = [];
-      try {
-        all = doc.querySelectorAll("*");
-      } catch (e5) {
-        all = [];
-      }
-
-      var i = 0;
-      for (i = 0; i < all.length && i < 5000; i += 1) {
-        var el = all[i];
-        if (!el) continue;
-
-        var sr = null;
-        try {
-          sr = el.shadowRoot;
-        } catch (e6) {
-          sr = null;
-        }
-        if (!sr) continue;
-
-        var looksRelevant = false;
-        try {
-          looksRelevant =
-            !!sr.querySelector(".sn-cs-rich-text-height-wrapper") ||
-            !!sr.querySelector(".sn-cs-rich-text-container") ||
-            !!sr.querySelector(".now-button-bar-label");
-        } catch (e7) {
-          looksRelevant = false;
-        }
-
-        if (looksRelevant) {
-          state["searchRoots"].push(sr);
-          break;
-        }
-      }
-    }
-
-    if (!state["searchRoots"].length) {
-      state["searchRoots"] = [topDoc];
-    }
   }
 
   function addClass(el, className) {
@@ -378,7 +197,6 @@
 
     addClass(el, "nowassist-autoexpanded");
 
-    // Also force inline important styles (covers inline resets by components)
     setImportantStyle(el, "display", "flex");
     setImportantStyle(el, "max-height", "none");
     setImportantStyle(el, "height", "auto");
@@ -395,16 +213,16 @@
     } catch (e) {
       txt = "";
     }
+
     txt = String(txt);
-	txt = txt.replace(/\s+/g, " ");
-	txt = txt.trim();
-	txt = txt.toLowerCase();
+    txt = txt.replace(/\s+/g, " ");
+    txt = txt.trim();
+    txt = txt.toLowerCase();
 
     if (txt !== "show more" && txt !== "show less") return;
 
     var container = null;
 
-    // closest() may not exist; guard it
     var closestFn = null;
     try {
       closestFn = labelEl.closest;
@@ -448,8 +266,384 @@
     setImportantStyle(container, "display", "none");
   }
 
+  function deepQueryAll(root, selector) {
+    var results = [];
+    if (!root) return results;
+
+    var queue = [root];
+    var seenRoots = [];
+    var seenNodes = [];
+
+    function rootWasSeen(r) {
+      var i = 0;
+      for (i = 0; i < seenRoots.length; i += 1) {
+        if (seenRoots[i] === r) return true;
+      }
+      return false;
+    }
+
+    function addNodeUnique(node) {
+      var i = 0;
+      for (i = 0; i < seenNodes.length; i += 1) {
+        if (seenNodes[i] === node) return;
+      }
+      seenNodes.push(node);
+      results.push(node);
+    }
+
+    while (queue.length) {
+      var r = queue.shift();
+      if (!r) continue;
+      if (rootWasSeen(r)) continue;
+      seenRoots.push(r);
+
+      var found = [];
+      try {
+        found = r.querySelectorAll(selector);
+      } catch (e) {
+        found = [];
+      }
+
+      var i2 = 0;
+      for (i2 = 0; i2 < found.length; i2 += 1) {
+        if (found[i2]) addNodeUnique(found[i2]);
+      }
+
+      var els = [];
+      try {
+        els = r.querySelectorAll("*");
+      } catch (e2) {
+        els = [];
+      }
+
+      var j = 0;
+      for (j = 0; j < els.length; j += 1) {
+        var el = els[j];
+        if (!el) continue;
+
+        var sr = null;
+        try {
+          sr = el.shadowRoot;
+        } catch (e3) {
+          sr = null;
+        }
+        if (sr) queue.push(sr);
+      }
+    }
+
+    return results;
+  }
+
+  function installIframe(frame) {
+    if (!frame) return;
+
+    if (!containsRef(state["observedFrames"], frame)) {
+      var addEv = null;
+      try {
+        addEv = frame.addEventListener;
+      } catch (e) {
+        addEv = null;
+      }
+
+      if (typeof addEv === "function") {
+        try {
+          addEv.call(
+            frame,
+            "load",
+            function () {
+              try {
+                var cw = frame.contentWindow;
+                if (cw) installWindowHooks(cw);
+              } catch (e2) {}
+              scheduleTick();
+            },
+            false
+          );
+        } catch (e3) {}
+      }
+
+      state["observedFrames"].push(frame);
+    }
+
+    try {
+      var cw2 = frame.contentWindow;
+      if (cw2 && cw2.document) installWindowHooks(cw2);
+    } catch (e4) {}
+  }
+
+  function scanNode(node) {
+    if (!node) return;
+
+    var nodeType = null;
+    try {
+      nodeType = node.nodeType;
+    } catch (e) {
+      nodeType = null;
+    }
+
+    if (nodeType === 9) {
+      try {
+        ensureStyleInjected(node);
+      } catch (e2) {}
+
+      addSearchRoot(node);
+
+      var docRoot = null;
+      try {
+        docRoot = node.documentElement || node.body;
+      } catch (e3) {
+        docRoot = null;
+      }
+      if (docRoot) observeTarget(docRoot);
+    }
+
+    if (nodeType !== 1 && nodeType !== 9 && nodeType !== 11) return;
+
+    var tag = String(node.tagName || "");
+	tag = tag.toLowerCase();
+
+    if (tag === "iframe") {
+      installIframe(node);
+    }
+
+    var sr = null;
+    try {
+      sr = node.shadowRoot;
+    } catch (e5) {
+      sr = null;
+    }
+    if (sr) addSearchRoot(sr);
+
+    var descendants = [];
+    try {
+      if (typeof node.querySelectorAll === "function") {
+        descendants = node.querySelectorAll("*");
+      }
+    } catch (e6) {
+      descendants = [];
+    }
+
+    var i = 0;
+    for (i = 0; i < descendants.length; i += 1) {
+      var el = descendants[i];
+      if (!el) continue;
+
+      var subTag = String(el.tagName || "");
+	  subTag = subTag.toLowerCase();
+
+      if (subTag === "iframe") {
+        installIframe(el);
+      }
+
+      var subSr = null;
+      try {
+        subSr = el.shadowRoot;
+      } catch (e8) {
+        subSr = null;
+      }
+      if (subSr) addSearchRoot(subSr);
+    }
+  }
+
+  function handleMutations(mutations) {
+    if (!mutations || !mutations.length) return;
+
+    var i = 0;
+    for (i = 0; i < mutations.length; i += 1) {
+      var m = mutations[i];
+      if (!m) continue;
+
+      var target = null;
+      try {
+        target = m.target;
+      } catch (e) {
+        target = null;
+      }
+
+      if (target) {
+        var targetSr = null;
+        try {
+          targetSr = target.shadowRoot;
+        } catch (e2) {
+          targetSr = null;
+        }
+        if (targetSr) addSearchRoot(targetSr);
+      }
+
+      var added = null;
+      try {
+        added = m.addedNodes;
+      } catch (e3) {
+        added = null;
+      }
+
+      if (!added || !added.length) continue;
+
+      var j = 0;
+      for (j = 0; j < added.length; j += 1) {
+        var node = added[j];
+        if (!node) continue;
+        scanNode(node);
+      }
+    }
+  }
+
+  function observeTarget(target) {
+    var observeNode = normalizeObserveTarget(target);
+    if (!observeNode) return;
+    if (containsRef(state["observedTargets"], observeNode)) return;
+
+    var ownerWin = shellWin;
+    try {
+      if (observeNode.ownerDocument && observeNode.ownerDocument.defaultView) {
+        ownerWin = observeNode.ownerDocument.defaultView;
+      }
+    } catch (e) {
+      ownerWin = shellWin;
+    }
+
+    var MO = null;
+    try {
+      MO = ownerWin["MutationObserver"] || shellWin["MutationObserver"];
+    } catch (e2) {
+      MO = null;
+    }
+    if (!MO) return;
+
+    var mo = null;
+    try {
+      mo = new MO(function (mutations) {
+        handleMutations(mutations);
+        scheduleTick();
+      });
+    } catch (e3) {
+      mo = null;
+    }
+    if (!mo) return;
+
+    try {
+      mo.observe(observeNode, {
+        childList: true,
+        subtree: true,
+        attributes: true
+      });
+    } catch (e4) {
+      try {
+        mo.disconnect();
+      } catch (e5) {}
+      return;
+    }
+
+    state["observedTargets"].push(observeNode);
+    state["observers"].push(mo);
+  }
+
+  function patchAttachShadow(win) {
+    if (!win) return;
+    if (containsRef(state["patchedWindows"], win)) return;
+
+    var ElementCtor = null;
+    try {
+      ElementCtor = win.Element;
+    } catch (e) {
+      ElementCtor = null;
+    }
+    if (!ElementCtor || !ElementCtor.prototype) return;
+
+    var proto = ElementCtor.prototype;
+    var original = null;
+    try {
+      original = proto.attachShadow;
+    } catch (e2) {
+      original = null;
+    }
+    if (typeof original !== "function") {
+      state["patchedWindows"].push(win);
+      return;
+    }
+
+    try {
+      if (proto["__nowAssistAutoExpandAttachShadowPatched"]) {
+        state["patchedWindows"].push(win);
+        return;
+      }
+    } catch (e3) {}
+
+    try {
+      proto.attachShadow = function () {
+        var root = original.apply(this, arguments);
+
+        try {
+          addSearchRoot(root);
+        } catch (e4) {}
+
+        try {
+          scanNode(this);
+        } catch (e5) {}
+
+        scheduleTick();
+        return root;
+      };
+
+      try {
+        proto["__nowAssistAutoExpandAttachShadowPatched"] = true;
+      } catch (e6) {}
+
+      state["patchedWindows"].push(win);
+    } catch (e7) {}
+  }
+
+  function installWindowHooks(win) {
+    if (!win) return;
+    if (containsRef(state["installedWindows"], win)) return;
+
+    var doc = null;
+    try {
+      doc = win.document;
+    } catch (e) {
+      doc = null;
+    }
+    if (!doc) return;
+
+    state["installedWindows"].push(win);
+
+    patchAttachShadow(win);
+
+    ensureStyleInjected(doc);
+    addSearchRoot(doc);
+
+    var rootNode = null;
+    try {
+      rootNode = doc.documentElement || doc.body;
+    } catch (e2) {
+      rootNode = null;
+    }
+    if (rootNode) observeTarget(rootNode);
+
+    scanNode(doc);
+  }
+
+  function rescanInstalledWindows() {
+    var now = timeNow();
+    if (now - state["lastRescan"] < CFG["rescanMs"]) return;
+    state["lastRescan"] = now;
+
+    var i = 0;
+    for (i = 0; i < state["installedWindows"].length; i += 1) {
+      var win = state["installedWindows"][i];
+      if (!win) continue;
+
+      try {
+        patchAttachShadow(win);
+      } catch (e) {}
+
+      try {
+        if (win.document) scanNode(win.document);
+      } catch (e2) {}
+    }
+  }
+
   function observeOpenShadowRootsUnder(root) {
-    // Find elements under root; if they have open shadowRoot, observe it
     var els = deepQueryAll(root, "*");
     var i = 0;
     for (i = 0; i < els.length; i += 1) {
@@ -462,25 +656,24 @@
       } catch (e) {
         sr = null;
       }
-      if (sr) observeTarget(sr);
+      if (sr) addSearchRoot(sr);
     }
   }
 
   function enforceInRoot(root) {
     if (!root) return;
 
-    // Expand message bodies
     var targets = deepQueryAll(
       root,
       ".sn-cs-rich-text-height-wrapper.truncateable.expandable, .sn-cs-rich-text-container"
     );
+
     var i = 0;
     for (i = 0; i < targets.length; i += 1) {
       var t = targets[i];
       if (t) forceExpand(t);
     }
 
-    // Hide toggles
     var labels = deepQueryAll(root, ".now-button-bar-label");
     var j = 0;
     for (j = 0; j < labels.length; j += 1) {
@@ -488,36 +681,16 @@
       if (lab) hideShowToggle(lab);
     }
 
-    // Observe this root + any open shadow roots beneath it for continuous updates
     observeTarget(root);
     observeOpenShadowRootsUnder(root);
   }
 
-  function scheduleTick() {
-    if (state["tickScheduled"]) return;
-    state["tickScheduled"] = true;
-
-    var to = null;
-    try {
-      to = shellWin.setTimeout;
-    } catch (e) {
-      to = null;
-    }
-    if (typeof to !== "function") return;
-
-    to(function () {
-      state["tickScheduled"] = false;
-      tick();
-    }, 30);
-  }
-
   function tick() {
-    refreshRoots(false);
+    rescanInstalledWindows();
 
-    var roots = state["searchRoots"];
     var i = 0;
-    for (i = 0; i < roots.length; i += 1) {
-      var r = roots[i];
+    for (i = 0; i < state["searchRoots"].length; i += 1) {
+      var r = state["searchRoots"][i];
       if (r) enforceInRoot(r);
     }
   }
@@ -527,16 +700,16 @@
       if (state["running"]) return;
       state["running"] = true;
 
-      refreshRoots(true);
+      installWindowHooks(shellWin);
       tick();
 
-      // Fallback polling (covers cases where re-renders happen without observable mutations)
       var si = null;
       try {
         si = shellWin.setInterval;
       } catch (e) {
         si = null;
       }
+
       if (typeof si === "function") {
         state["intervalId"] = si(function () {
           tick();
@@ -558,32 +731,28 @@
       }
       state["intervalId"] = null;
 
-      var obs = state["observers"];
       var i = 0;
-      for (i = 0; i < obs.length; i += 1) {
-        var mo = obs[i];
+      for (i = 0; i < state["observers"].length; i += 1) {
+        var mo = state["observers"][i];
         if (!mo) continue;
 
-        var disc = null;
         try {
-          disc = mo.disconnect;
-        } catch (e2) {
-          disc = null;
-        }
-        if (typeof disc === "function") {
-          try {
-            disc.call(mo);
-          } catch (e3) {}
-        }
+          if (typeof mo.disconnect === "function") mo.disconnect();
+        } catch (e2) {}
       }
 
       state["observers"] = [];
       state["observedTargets"] = [];
+      state["searchRoots"] = [];
+      state["installedWindows"] = [];
+      state["observedFrames"] = [];
+      state["patchedWindows"] = [];
+      state["tickScheduled"] = false;
     }
   };
 
   try {
-    shellWin["__nowAssistAutoExpandV5"] = controller;
+    shellWin["__nowAssistAutoExpandV7"] = controller;
   } catch (e) {}
 
   controller.start();
@@ -594,14 +763,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-03-02 14:14:15</sys_created_on>
         <sys_id>2d71040b2b1b36109083fe395e91bfda</sys_id>
-        <sys_mod_count>15</sys_mod_count>
+        <sys_mod_count>23</sys_mod_count>
         <sys_name>x_snc_devtools.NowAssistPanelMessageAuto</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_script_2d71040b2b1b36109083fe395e91bfda</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-03-17 13:12:52</sys_updated_on>
+        <sys_updated_on>2026-04-09 11:34:57</sys_updated_on>
         <ui_type>0</ui_type>
         <use_scoped_format>false</use_scoped_format>
         <x_snc_devtools_global>true</x_snc_devtools_global>
