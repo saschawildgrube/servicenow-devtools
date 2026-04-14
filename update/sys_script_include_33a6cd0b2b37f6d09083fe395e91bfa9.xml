@@ -44,6 +44,11 @@
 		LogError('AppBuilderImplementBusinessProcess: Could not load parent table: ' + strParentTable);
 		return false;
 	}
+	if (strParentTable != 'task' && IsDerivedFromTable(grParentTable,'task') == false)
+	{
+		LogError('AppBuilderImplementBusinessProcess: The parent table ("' + strParentTable + '") must be "task" or derived from "task"!');
+		return false;
+	}
 
 
 	var strScope = GetStringValue(grApp.scope);
@@ -171,9 +176,31 @@
 			update_access: true,
 			delete_access: true
 		});
+	
 	if (IsValidSysId(strTableSysId) == false)
 	{
 		LogError('AppBuilderImplementBusinessProcess: Could not create/update table: ' + strTableName);
+		return false;
+	}
+
+	var strDictOverrideSysId = x_snc_devtools.RecordInsertOrUpdate(
+		'sys_dictionary_override',
+		{
+			sys_scope: strScopeSysId,
+			base_table: 'task',
+			name: strTableName,
+			element: 'state'
+		},
+		{
+		},
+		{
+			read_only_override: true,
+			read_only: true
+		});
+
+	if (IsValidSysId(strDictOverrideSysId) == false)
+	{
+		LogError('AppBuilderImplementBusinessProcess: Could not create/update dictionary override for: ' + strTableName + '.state!');
 		return false;
 	}
 
@@ -183,14 +210,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-03-27 15:57:42</sys_created_on>
         <sys_id>33a6cd0b2b37f6d09083fe395e91bfa9</sys_id>
-        <sys_mod_count>23</sys_mod_count>
+        <sys_mod_count>26</sys_mod_count>
         <sys_name>AppBuilderImplementBusinessProcess</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_33a6cd0b2b37f6d09083fe395e91bfa9</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-04-09 11:42:52</sys_updated_on>
+        <sys_updated_on>2026-04-14 13:32:36</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
