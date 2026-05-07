@@ -11,6 +11,29 @@
         <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function AppBuilderImplementBusinessProcess(vApp,business_process)
 {
+
+/*
+
+	TEST SCRIPT
+
+	var strScope = 'x_snc_test_?';
+
+	var grApp = x_snc_devtools.GetAppRecord(strScope);
+	var grMetaData = new GlideRecord('sys_metadata');
+	grMetaData.addQuery('sys_scope','=',grApp.sys_id);
+	grMetaData.query();
+	while(grMetaData.next())
+	{
+		gs.info(x_snc_devtools.RenderRecordSummary(grMetaData));
+		x_snc_devtools.GlideRecordDelete(grMetaData);
+	}
+
+	var AppBuilderImplementBusinessProcess = x_snc_devtools.AppBuilderImplementBusinessProcess;
+	AppBuilderImplementBusinessProcess(strScope,x_snc_devtools.BusinessProcessGetExample());
+
+*/
+
+
 	var grApp = GetAppRecord(vApp);
 
 	if (IsValidRecord(grApp) == false)
@@ -183,6 +206,80 @@
 		return false;
 	}
 
+
+	// Managing states
+	var aStates = GetValue(business_process,'_states');
+
+	// Prepare Values (if not set)
+	var bAllValuesSet = true;
+	for (var nState = 0; nState < aStates.length; nState++)
+	{
+		var state = aStates[nState];
+		var nStateValue = GetIntegerValue(GetValue(state,'value'));
+		if (nStateValue == 0)
+		{
+			bAllValuesSet = false;
+		}
+	}
+
+	if (bAllValuesSet == false)
+	{
+		for (var nState = 0; nState < aStates.length; nState++)
+		{
+			aStates[nState]['value'] = nState + 1;
+		}
+	}
+
+	// Creating the Choice Set
+	var strChoiceSetSysId = RecordInsertOrUpdate(
+		'sys_choice_set',
+		{
+			sys_scope: strScopeSysId,
+			table: strTableName,
+			element: 'state'
+		},
+		{
+		},
+		{
+		});
+	if (IsValidSysId(strChoiceSetSysId) == false)
+	{
+		LogError('AppBuilderImplementBusinessProcess: Could not create/update Choice Set for: ' + strTableName + '.state');
+		return false;
+	}
+
+
+
+	for (var nState = 0; nState < aStates.length; nState++)
+	{
+		var state = aStates[nState];
+		var strStateName = GetStringValue(GetValue(state,'name'));
+		var strStateDescription = GetStringValue(GetValue(state,'description'));
+		var nStateValue = GetIntegerValue(GetValue(state,'value'));
+		var strChoiceSysId = RecordInsertOrUpdate(
+			'sys_choice',
+			{
+				name: strTableName,
+				element: 'state',
+				value: GetStringValue(nStateValue), // without GetStringValue it results in "1.0"
+				language: 'en',
+			},
+			{
+			},
+			{
+				hint: strStateDescription,
+				label: strStateName,
+				sequence: nState + 1
+			});
+		if (IsValidSysId(strChoiceSysId) == false)
+		{
+			LogError('AppBuilderImplementBusinessProcess: Could not create/update choice: ' + strStateName);
+			return false;
+		}
+	}
+
+
+
 	var strDictOverrideSysId = x_snc_devtools.RecordInsertOrUpdate(
 		'sys_dictionary_override',
 		{
@@ -234,14 +331,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-03-27 15:57:42</sys_created_on>
         <sys_id>33a6cd0b2b37f6d09083fe395e91bfa9</sys_id>
-        <sys_mod_count>28</sys_mod_count>
+        <sys_mod_count>37</sys_mod_count>
         <sys_name>AppBuilderImplementBusinessProcess</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_33a6cd0b2b37f6d09083fe395e91bfa9</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-05-06 10:29:31</sys_updated_on>
+        <sys_updated_on>2026-05-07 09:42:09</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
