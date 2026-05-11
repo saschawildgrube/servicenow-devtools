@@ -39,15 +39,16 @@ For safety reasons the current date (as an iso formatted string) must be passed 
 	
 	// Deactivate Service Portals
 	var grSP = new GlideRecord('sp_portal');
+	grSP.addQuery('sys_policy','!=','read');
 	grSP.query();
 	while (grSP.next())
 	{
-		if (  grSP.title != 'Mobile Employee Service Portal'
-		   && grSP.title != 'Service Workspace Portal'
-		   && grSP.url_suffix != 'sp_config')
-		{
+//		if (  grSP.title != 'Mobile Employee Service Portal'
+//		   && grSP.title != 'Service Workspace Portal'
+//		   && grSP.url_suffix != 'sp_config')
+//		{
 			installer.ActivateServicePortal(grSP.sys_id,false);
-		}
+//		}
 	}
 
 	// Self Service Menu
@@ -103,14 +104,14 @@ For safety reasons the current date (as an iso formatted string) must be passed 
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-04-23 17:48:08</sys_created_on>
         <sys_id>6a9964a1db8b4190bcced03cd3961945</sys_id>
-        <sys_mod_count>29</sys_mod_count>
+        <sys_mod_count>30</sys_mod_count>
         <sys_name>InstanceReset</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_6a9964a1db8b4190bcced03cd3961945</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-12-21 20:04:45</sys_updated_on>
+        <sys_updated_on>2026-05-11 13:16:59</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
