@@ -68,6 +68,7 @@ For safety reasons the current date (as an iso formatted string) must be passed 
 
 	// App Engine
 	installer.ActivateAppMenu('dc61043ec34020100389006c2840dd50',false);
+	installer.ActivateAppMenu('f4da84ebb73220107517b9708e11a9b0',false);
 	
 	// Content Taxonomy
 	installer.ActivateAppMenu('4e35fb5ac7572010fedf0bcbe2c260a2',false);
@@ -91,12 +92,22 @@ For safety reasons the current date (as an iso formatted string) must be passed 
 	// Does not work due to the read-only access policy of the record. Defect filed: DEF0620647
 	installer.ActivateAppMenu('1571cf37d7213300fa6c0c12ce61038f',false);
 
-	// On-Call Schedule - Gaps and Conflicts
-	installer.ActivateNotification('5d7cfc2273602300cbb654eb7df6a7ce',false);
-	
+
 	// Platform Analytics
 	installer.ActivateAppMenu('c9c745434dd83110f877856d195aa96c',false);
 
+	// ServiceNow AI Lens
+	installer.ActivateAppMenu('0749b2a77763121022b7fdf5ec5a99dd',false);
+
+	// Collaborative Work Management
+	installer.ActivateAppMenu('15f3d09a43c04210c983e3fb48b8f218',false);
+	
+	// Authentication Factors / Soft PIN / Enroll
+	installer.ActivateModule('fdfcc649ff0032108a03ffffffffffac',false);
+
+
+	// On-Call Schedule - Gaps and Conflicts
+	installer.ActivateNotification('5d7cfc2273602300cbb654eb7df6a7ce',false);
 
 	return installer.Finish();
 }]]></script>
@@ -104,14 +115,14 @@ For safety reasons the current date (as an iso formatted string) must be passed 
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-04-23 17:48:08</sys_created_on>
         <sys_id>6a9964a1db8b4190bcced03cd3961945</sys_id>
-        <sys_mod_count>30</sys_mod_count>
+        <sys_mod_count>36</sys_mod_count>
         <sys_name>InstanceReset</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_6a9964a1db8b4190bcced03cd3961945</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-05-11 13:16:59</sys_updated_on>
+        <sys_updated_on>2026-05-11 14:59:50</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
