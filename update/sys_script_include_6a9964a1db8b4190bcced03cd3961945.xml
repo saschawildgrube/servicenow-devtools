@@ -39,15 +39,16 @@ For safety reasons the current date (as an iso formatted string) must be passed 
 	
 	// Deactivate Service Portals
 	var grSP = new GlideRecord('sp_portal');
+	grSP.addQuery('sys_policy','!=','read');
 	grSP.query();
 	while (grSP.next())
 	{
-		if (  grSP.title != 'Mobile Employee Service Portal'
-		   && grSP.title != 'Service Workspace Portal'
-		   && grSP.url_suffix != 'sp_config')
-		{
+//		if (  grSP.title != 'Mobile Employee Service Portal'
+//		   && grSP.title != 'Service Workspace Portal'
+//		   && grSP.url_suffix != 'sp_config')
+//		{
 			installer.ActivateServicePortal(grSP.sys_id,false);
-		}
+//		}
 	}
 
 	// Self Service Menu
@@ -67,6 +68,7 @@ For safety reasons the current date (as an iso formatted string) must be passed 
 
 	// App Engine
 	installer.ActivateAppMenu('dc61043ec34020100389006c2840dd50',false);
+	installer.ActivateAppMenu('f4da84ebb73220107517b9708e11a9b0',false);
 	
 	// Content Taxonomy
 	installer.ActivateAppMenu('4e35fb5ac7572010fedf0bcbe2c260a2',false);
@@ -90,12 +92,31 @@ For safety reasons the current date (as an iso formatted string) must be passed 
 	// Does not work due to the read-only access policy of the record. Defect filed: DEF0620647
 	installer.ActivateAppMenu('1571cf37d7213300fa6c0c12ce61038f',false);
 
-	// On-Call Schedule - Gaps and Conflicts
-	installer.ActivateNotification('5d7cfc2273602300cbb654eb7df6a7ce',false);
-	
+
 	// Platform Analytics
 	installer.ActivateAppMenu('c9c745434dd83110f877856d195aa96c',false);
 
+	// ServiceNow AI Lens
+	installer.ActivateAppMenu('0749b2a77763121022b7fdf5ec5a99dd',false);
+
+	// Experimentation Framework
+	installer.ActivateAppMenu('ca53d8c3ff102210c7dcffffffffff84',false);
+
+	// Documents
+	installer.ActivateAppMenu('8cad11650f31201048e74b398b767e14',false);
+
+
+
+	// Authentication Factors / Soft PIN / Enroll
+	installer.ActivateModule('fdfcc649ff0032108a03ffffffffffac',false);
+
+
+	// Process Mining Workspace
+	installer.ActivateUXApplication('ae7a921553312010e7cdddeeff7b12ec',false);
+
+
+	// On-Call Schedule - Gaps and Conflicts
+	installer.ActivateNotification('5d7cfc2273602300cbb654eb7df6a7ce',false);
 
 	return installer.Finish();
 }]]></script>
@@ -103,14 +124,14 @@ For safety reasons the current date (as an iso formatted string) must be passed 
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-04-23 17:48:08</sys_created_on>
         <sys_id>6a9964a1db8b4190bcced03cd3961945</sys_id>
-        <sys_mod_count>29</sys_mod_count>
+        <sys_mod_count>41</sys_mod_count>
         <sys_name>InstanceReset</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_6a9964a1db8b4190bcced03cd3961945</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-12-21 20:04:45</sys_updated_on>
+        <sys_updated_on>2026-05-15 08:54:20</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

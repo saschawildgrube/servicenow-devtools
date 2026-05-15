@@ -594,8 +594,20 @@
 		if (grRecord.applies_to == 'item')
 		{
 			return GetRecord('sc_cat_item',grRecord.cat_item);
-		}		
+		}
 	}
+
+	if (strTable == 'catalog_ui_policy')
+	{
+		if (grRecord.applies_to == 'set')
+		{
+			return GetRecord('item_option_new_set',grRecord.variable_set);
+		}
+		if (grRecord.applies_to == 'item')
+		{
+			return GetRecord('sc_cat_item',grRecord.catalog_item);
+		}
+	}	
 
 	if (strTable == 'ais_child_table')
 	{
@@ -669,6 +681,10 @@
 	{
 		return GetRecord('sn_aia_usecase',grRecord.usecase_configuration);
 	}	
+	if (strTable == 'sn_aia_version')
+	{
+		return GetRecord(grRecord.target_table,grRecord.target_id);
+	}
 
 	if (strTable == 'sys_one_extend_definition_attribute')
 	{
@@ -682,6 +698,14 @@
 	{
 		return GetRecord('sys_one_extend_capability',grRecord.capability);
 	}	
+	if (strTable == 'sys_one_extend_resource_attribute_mapping')
+	{
+		return GetRecord('sys_one_extend_resource_mapping',grRecord.resource_mapping);
+	}
+	if (strTable == 'sys_one_extend_eval_strategy_metric')
+	{
+		return GetRecord('sys_one_extend_eval_strategy',grRecord.eval_strategy);
+	}
 
 	if (strTable == 'sn_aia_tool')
 	{
@@ -904,14 +928,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-09-08 12:44:48</sys_created_on>
         <sys_id>9934e6141b6abc505331b8449b4bcbdd</sys_id>
-        <sys_mod_count>206</sys_mod_count>
+        <sys_mod_count>212</sys_mod_count>
         <sys_name>GetParentRecord</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_9934e6141b6abc505331b8449b4bcbdd</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-04-13 15:12:57</sys_updated_on>
+        <sys_updated_on>2026-04-19 08:22:54</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

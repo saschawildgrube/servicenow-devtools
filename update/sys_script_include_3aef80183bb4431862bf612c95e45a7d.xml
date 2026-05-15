@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.GetActiveTransactions</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns an array of objects containing the currently active running transactions.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>GetActiveTransactions</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function GetActiveTransactions()
+{
+	RunScriptInGlobalScope(
+		"var vct = new VClusterTransaction('v_cluster_transaction');"
+		+"vct.deleteTransactions();"
+		+"var id = vct.informOtherNodes();"
+		+"vct.refreshTransactions(GlideSession.get().getSessionID());");
+
+	var aTransactions = [];
+
+	var grVCT = new GlideRecord('v_cluster_transaction');
+	grVCT.query();
+	while (grVCT.next())
+	{
+		var transaction = Clone(grVCT);
+		aTransactions.push(transaction);
+	}
+	return aTransactions;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-05-07 15:50:31</sys_created_on>
+        <sys_id>3aef80183bb4431862bf612c95e45a7d</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>GetActiveTransactions</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_3aef80183bb4431862bf612c95e45a7d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-05-15 10:45:34</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>3aef80183bb4431862bf612c95e45a7d</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-05-07 15:50:30</sys_created_on>
+        <sys_id>08a01c583bb4431862bf612c95e45a9c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-05-07 15:50:30</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
