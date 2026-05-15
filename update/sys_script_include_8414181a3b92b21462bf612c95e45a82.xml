@@ -106,14 +106,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-01-09 14:38:35</sys_created_on>
         <sys_id>8414181a3b92b21462bf612c95e45a82</sys_id>
-        <sys_mod_count>16</sys_mod_count>
+        <sys_mod_count>18</sys_mod_count>
         <sys_name>StartAgenticConversation</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_8414181a3b92b21462bf612c95e45a82</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-03-04 08:32:20</sys_updated_on>
+        <sys_updated_on>2026-05-13 13:30:05</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
@@ -121,10 +121,10 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-01-09 14:38:35</sys_created_on>
         <sys_id>bf84105a3b92b21462bf612c95e45aa6</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-01-09 14:38:35</sys_updated_on>
+        <sys_updated_on>2026-05-13 13:28:54</sys_updated_on>
         <table>sys_script_include</table>
-        <use_es_latest>true</use_es_latest>
+        <use_es_latest>false</use_es_latest>
     </sys_es_latest_script>
 </record_update>
