@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-06-09 12:42:37</sys_created_on>
         <sys_id>a76a3143db6474943c6c09c2ba9619a7</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_a76a3143db6474943c6c09c2ba9619a7</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-04-18 18:59:18</sys_updated_on>
+        <sys_updated_on>2026-05-20 13:16:39</sys_updated_on>
         <table/>
         <test display_value="DevTools - GetInstanceUrl">fc3a3d03db6474943c6c09c2ba961951</test>
         <timeout/>
@@ -36,9 +36,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-06-09 12:42:38</sys_created_on>
         <sys_id>9e0b3143db6474943c6c09c2ba961924</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-04-18 18:59:18</sys_updated_on>
+        <sys_updated_on>2026-05-20 13:16:39</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -66,7 +66,14 @@
 		test.SetResult(false);&#13;
 	}&#13;
 &#13;
-	TestCase_GetInstanceUrl(gs.getProperty('glide.servlet.uri'));&#13;
+	if (GetSandboxName() == false)&#13;
+	{&#13;
+		TestCase_GetInstanceUrl(gs.getProperty('glide.servlet.uri'));&#13;
+	}&#13;
+	else&#13;
+	{&#13;
+		test.Log('GetSandboxName() returns "' + GetSandboxName()+'". This indicates this is a sandbox instance - hence glide.servlet.uri cannot be used as the "expected" value.');&#13;
+	}&#13;
 		&#13;
 	return test.GetResult();&#13;
 	&#13;
