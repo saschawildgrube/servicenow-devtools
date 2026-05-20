@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="syntax_editor_macro">
+    <syntax_editor_macro action="INSERT_OR_UPDATE">
+        <comments>This editor macro creates the code necessary to access the function contained in the GetSandboxName script include.</comments>
+        <name>GetSandboxName</name>
+        <sys_class_name>syntax_editor_macro</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-05-20 07:49:30</sys_created_on>
+        <sys_id>c53f5914ebcd0390b13dfd72bad0cdd9</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>GetSandboxName</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>syntax_editor_macro_c53f5914ebcd0390b13dfd72bad0cdd9</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-05-20 07:49:48</sys_updated_on>
+        <text>var GetSandboxName = x_snc_devtools.GetSandboxName;&#13;
+var strSandboxName = GetSandboxName();</text>
+    </syntax_editor_macro>
+</record_update>
