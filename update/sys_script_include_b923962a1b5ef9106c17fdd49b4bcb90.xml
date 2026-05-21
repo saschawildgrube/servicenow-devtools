@@ -9,7 +9,7 @@
         <mobile_callable>false</mobile_callable>
         <name>CreateTestUser</name>
         <sandbox_callable>false</sandbox_callable>
-        <script><![CDATA[function CreateTestUser(strName)
+        <script><![CDATA[function CreateTestUser(strName,vRole)
 {
 	strName = GetStringValue(strName);
 	strName = strName.trim();
@@ -17,6 +17,16 @@
 	{
 		return false;
 	}
+
+	var grRole = null;
+	if (vRole != null && vRole != '')
+	{	
+		grRole = GetRoleRecord(vRole);
+		if (IsValidRecord(grRole) == false)
+		{
+			return false;
+		}
+	}	
 	
 	
 	var strUserName = strName;
@@ -46,6 +56,15 @@
 	{
 		return false;
 	}
+
+	if (IsValidRecord(grRole) == true)
+	{
+		if (UserAddRole(grUser,grRole) == false)
+		{
+			RecordDelete('sys_user',strUserSysId);
+			return false;
+		}
+	}	
 	
 	return strUserSysId;
 }]]></script>
@@ -53,14 +72,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-11-07 09:45:32</sys_created_on>
         <sys_id>b923962a1b5ef9106c17fdd49b4bcb90</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>CreateTestUser</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_b923962a1b5ef9106c17fdd49b4bcb90</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-04-13 15:03:49</sys_updated_on>
+        <sys_updated_on>2026-05-21 13:43:07</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>
