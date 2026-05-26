@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="ignore_baseline=true" db_object_id="799fe856930547900385f7519803d606" extends="cmdb_qb_result_base" label="test-Query Results" max_length="40" name="u_cmdb_qb_result_69097898fc731e1897b16ccf5cd2330c15400c4c" type="collection">
+        <element attributes="encode_utf8=false" label="Computer Room 1" max_length="32" name="x_snc_devtools_u_computer_room_1" reference="cmdb_ci_computer_room" reference_cascade_rule="none" type="reference"/>
+    </element>
+</database>
