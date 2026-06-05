@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_wizard_answer">
+    <sys_wizard_answer action="DELETE">
+        <active>true</active>
+        <answer>New test-Query Results</answer>
+        <button_label/>
+        <dependent_value/>
+        <element/>
+        <name>test-Query Results</name>
+        <next_question/>
+        <order>100</order>
+        <payload_name/>
+        <question display_value="Query Builder Results" name="Query Builder Results">c056f7f8e15312105590bd68cbbecb91</question>
+        <roles/>
+        <script/>
+        <sys_class_name>sys_wizard_answer</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-05-26 09:29:21</sys_created_on>
+        <sys_id>069f6096930547900385f7519803d6c4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>test-Query Results</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_wizard_answer_069f6096930547900385f7519803d6c4</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-05-26 09:29:21</sys_updated_on>
+        <table/>
+        <target_url>u_cmdb_qb_result_69097898fc731e1897b16ccf5cd2330c15400c4c.do</target_url>
+        <type>1</type>
+    </sys_wizard_answer>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>a8cbb5133b6b5e540fd412c5e4e45a1f</instance_id>
+        <instance_name>wildyokohama</instance_name>
+        <name>sys_wizard_answer_069f6096930547900385f7519803d6c4</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_wizard_answer"><sys_wizard_answer action="INSERT_OR_UPDATE"><active>true</active><answer>New test-Query Results</answer><button_label/><dependent_value/><element/><name>test-Query Results</name><next_question/><order>100</order><payload_name/><question display_value="Query Builder Results" name="Query Builder Results">c056f7f8e15312105590bd68cbbecb91</question><roles/><script/><sys_class_name>sys_wizard_answer</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2026-05-26 09:29:21</sys_created_on><sys_id>069f6096930547900385f7519803d6c4</sys_id><sys_mod_count>0</sys_mod_count><sys_name>test-Query Results</sys_name><sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package><sys_policy/><sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope><sys_update_name>sys_wizard_answer_069f6096930547900385f7519803d6c4</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-05-26 09:29:21</sys_updated_on><table/><target_url>u_cmdb_qb_result_69097898fc731e1897b16ccf5cd2330c15400c4c.do</target_url><type>1</type></sys_wizard_answer></record_update>]]></payload>
+        <payload_hash>-317360878</payload_hash>
+        <record_name>test-Query Results</record_name>
+        <reverted_from/>
+        <source>ad9af9c13b10c79062bf612c95e45a5d</source>
+        <source_table>sys_update_set</source_table>
+        <state>current</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-05-26 09:29:21</sys_created_on>
+        <sys_id>0a9f6096930547900385f7519803d6ca</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19e639e093a0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-05-26 09:29:21</sys_updated_on>
+        <type>Answer</type>
+        <update_guid>829f6096a8054790f52be13e1eb47bc9</update_guid>
+        <update_guid_history>829f6096a8054790f52be13e1eb47bc9:-317360878</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-05-26 09:35:47</sys_created_on>
+        <sys_db_object display_value="" name="sys_wizard_answer">sys_wizard_answer</sys_db_object>
+        <sys_id>57b32b9384bc4990a636fbeb901e6ee4</sys_id>
+        <sys_metadata>069f6096930547900385f7519803d6c4</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>test-Query Results</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent display_value="Query Builder Results">c056f7f8e15312105590bd68cbbecb91</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sys_wizard_answer_069f6096930547900385f7519803d6c4</sys_update_name>
+        <sys_update_version display_value="sys_wizard_answer_069f6096930547900385f7519803d6c4">0a9f6096930547900385f7519803d6ca</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-05-26 09:35:47</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

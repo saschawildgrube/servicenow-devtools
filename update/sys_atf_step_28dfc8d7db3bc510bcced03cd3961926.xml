@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-06-05 09:08:04</sys_created_on>
         <sys_id>28dfc8d7db3bc510bcced03cd3961926</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_28dfc8d7db3bc510bcced03cd3961926</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-06-05 09:17:32</sys_updated_on>
+        <sys_updated_on>2026-06-02 15:36:33</sys_updated_on>
         <table/>
         <test display_value="DevTools - GetScopeSysIdFromPropertyName">cecf04d7db3bc510bcced03cd39619cf</test>
         <timeout/>
@@ -50,9 +50,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-06-05 09:08:05</sys_created_on>
         <sys_id>5fdf08d7db3bc510bcced03cd3961985</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-06-05 09:17:32</sys_updated_on>
+        <sys_updated_on>2026-06-02 15:36:33</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -84,6 +84,11 @@
 	&#13;
 	TestCase_GetScopeSysIdFromPropertyName('x_snc_devtools.this_property_does_not_exist',strDevToolsSysId); // does not exist&#13;
 	TestCase_GetScopeSysIdFromPropertyName('x_snc_devtools.logging.verbosity',strDevToolsSysId);            // exists&#13;
+&#13;
+	TestCase_GetScopeSysIdFromPropertyName('sn_flow_designer.action_picker_limit','global'); &#13;
+	TestCase_GetScopeSysIdFromPropertyName(&#13;
+		'sn_flow_designer.disable_flow_designer_workflow_studio_redirection',&#13;
+		'801cef500b312200c438ee6537673a04'); &#13;
 &#13;
 	return test.GetResult();&#13;
 	&#13;

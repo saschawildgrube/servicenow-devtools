@@ -768,6 +768,32 @@ x_snc_devtools.AppBuilderMoveToScope(grRecord, strTargetScope, bMoveFromAllScope
 	
 	<h2 toc-ignore-children="true">Release Notes</h2>
 
+	<h3>1.141.0 - 2026-06-05</h3>
+	<ol>
+		<li>Added function GetSandboxName().</li>
+		<li>Added function GetInstanceAIStatus().</li>
+		<li>GetInstanceUrl() now considers sandbox instances.</li>
+		<li>GetParam() now also considers parameters with prefix "sysparm_ajax_processor_".</li>
+		<li>DevToolsClientAPI::start() now reads parameters without explicitly using the "ajax_processor_" prefix as this is now managed by GetParam().</li>
+		<li>UserAddRole() now also accepts a GlideRecord object, user name or email address as the user parameter.</li>
+		<li>UserAddRole() now also accepts a GlideRecord object or name as the role parameter.</li> 
+		<li>CreateTechnicalUser() now also accepts a GlideRecord object or name as the role parameter.</li>
+		<li>CreateTestUser() can now also add a given role to the new user.</li>
+		<li>GetScopeSysIdFromPropertyName() now checks the scope of existing system properties and does not make any assumptions based on the name alone.</li>
+		<li>HtmlRenderLinkDirectory() now considers the "plugin" attribute and only adds a link if the defined plugin (identified by scope name) exists.</li>
+		<li>Added section for CSDM in the link directory and added the link to the "CI Class Manager", "Query Builder", "CMDB Health Dashboard", "CMDB Workspace", "Data Manager", "Unified Map", "CMDB Data Foundation Dashboard" and "CSDM Data Foundation Dashboard" and "CMDB 360".</li>
+		<li>Added links to tables life_cycle_control, life_cycle_stage and life_cycle_stage_status to section "CMDB" in the link directory.</li>
+		<li>Added section for the CSDM Ideation and Strategy Domain to the link directory.</li>
+		<li>Added section for the CSDM Design and Planning Domain to the link directory.</li>
+		<li>Added section for the CSDM Build and Integration Domain to the link directory.</li>
+		<li>Added section for the CSDM Service Delivery Domain to the link directory.</li>
+		<li>Added section for the CSDM Service Consumption Domain to the link directory.</li>
+		<li>Removed technical debt "ShowNowAssistPanel() does no longer work after a platform update.". The defect was not a real defect, rather the Now Assist Panel was not configured properly on the DEV instance.</li>
+		<li>Removed technical debt "Old code to help admins creating cross-scope sysrule_view records".</li>
+		<li>Added more missing syntax editor macros.</li>
+	</ol>
+
+
 	<h3>1.140.0 - 2026-05-15</h3>
 	<ol>
 		<li>Added function GetActiveTransactions().</li>
@@ -3324,14 +3350,14 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>2548</sys_mod_count>
+        <sys_mod_count>2577</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-05-15 10:26:07</sys_updated_on>
+        <sys_updated_on>2026-06-05 12:15:11</sys_updated_on>
     </sys_ui_page>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>e44fd7541b578450a89720a8ec4bcb8c</id>

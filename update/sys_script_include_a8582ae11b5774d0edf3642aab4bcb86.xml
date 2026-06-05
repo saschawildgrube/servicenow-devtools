@@ -659,6 +659,142 @@
 					table: 'sc_task'
 				}
 			],
+			'CSDM':
+			[
+				{
+					title: 'CI Class Manager',
+					url: '/now/nav/ui/classic/params/target/%24ciModel.do%3Fsysparm_full_theme_support%3Dtrue'
+				},
+				{
+					title: 'CMDB Workspace',
+					url: '/now/cmdb/home'
+				},
+				{
+					title: 'Data Manager',
+					url: '/now/cmdb/management/sub/data-manager/'
+				},
+				{
+					title: 'CMDB 360',
+					url: '/now/cmdb/multisource-analytics'
+				},
+				{
+					title: 'Unified Map',
+					url: '/now/cmdb/management/sub/unifiedmap/'
+				},
+				{
+					title: 'Query Builder / Saved Queries',
+					url: '/$queryBuilder.do'
+				},
+				{
+					title: 'CMDB Health Dashboard',
+					url: '/now/cmdb/health-dashboard/'
+				},
+				{
+					title: 'CMDB Data Foundation Dashboard',
+					url: '/now/platform-analytics-workspace/dashboards/params/edit/false/sys-id/2e740da85b1372651129c580866219b2',
+					plugin: 'sn_getwell'
+				},
+				{
+					title: 'CSDM Data Foundation Dashboard',
+					url: '/now/platform-analytics-workspace/dashboards/params/edit/false/sys-id/3201f505186fdf01ef3ee1a0cc7aa9c2',
+					plugin: 'sn_getwell'
+				}
+			],			
+			'CSDM Ideation & Strategy Domain':
+			[
+				{
+					title: 'Product Idea',
+					table: 'sn_align_core_product_idea'
+				},
+				{
+					title: 'Planning Item',
+					table: 'sn_align_core_planning_item'
+				},
+				{
+					title: 'Strategic Plan',
+					table: 'sn_gf_strategic_plan'
+				},
+				{
+					title: 'Strategic Priority',
+					table: 'sn_gf_strategy'
+				},
+				{
+					title: 'Goal',
+					table: 'sn_gf_goal'
+				},
+				{
+					title: 'Target',
+					table: 'sn_gf_goal_target'
+				}
+			],
+			'CSDM Design & Planning Domain':
+			[
+				{
+					title: 'Business Capability',
+					table: 'cmdb_ci_business_capability'
+				},
+				{
+					title: 'Business Application',
+					table: 'cmdb_ci_business_app'
+				},
+				{
+					title: 'Information Object',
+					table: 'cmdb_ci_information_object'
+				}
+			],
+			'CSDM Build & Integration Domain':
+			[
+				{
+					title: 'SDLC Component',
+					table: 'cmdb_ci_sdlc_component'
+				},
+				{
+					title: 'AI Digital Asset',
+					table: 'alm_ai_digital_asset'
+				}
+			],
+			'CSDM Service Delivery Domain':
+			[
+				{
+					title: 'Service Instance',
+					table: 'cmdb_ci_service_auto'
+				},
+				{
+					title: 'Technology Management Service',
+					table: 'cmdb_ci_service_technical'
+				},
+				{
+					title: 'Technology Management Offering',
+					table: 'service_offering'
+				},
+				{
+					title: 'Dynamic CI Group',
+					table: 'cmdb_ci_query_based_service'
+				}
+			],
+			'CSDM Service Consumption Domain':
+			[
+				{
+					title: 'Business Service',
+					table: 'cmdb_ci_service_business'
+				},
+				{
+					title: 'Business Service Offering',
+					table: 'service_offering'
+				},
+				{
+					title: 'Catalog',
+					table: 'sc_catalog'
+				},
+				{
+					title: 'Value Stream',
+					table: 'cmn_value_stream'
+				},
+				{
+					title: 'Product Model',
+					table: 'cmdb_model'
+				}
+			],
 			'CMDB':
 			[
 				{
@@ -669,7 +805,16 @@
 				},
 				{
 					table: 'cmdb_rel_type'
-				}				
+				},
+				{
+					table: 'life_cycle_control' 
+				},
+				{
+					table: 'life_cycle_stage'
+				},
+				{
+					table: 'life_cycle_stage_status'
+				}
 			],
 			'CMDB CI ServiceNow Apps':
 			[
@@ -1105,14 +1250,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-19 17:03:37</sys_created_on>
         <sys_id>a8582ae11b5774d0edf3642aab4bcb86</sys_id>
-        <sys_mod_count>154</sys_mod_count>
+        <sys_mod_count>176</sys_mod_count>
         <sys_name>GetLinkDirectory</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_a8582ae11b5774d0edf3642aab4bcb86</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-04-13 12:53:33</sys_updated_on>
+        <sys_updated_on>2026-06-05 11:07:12</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

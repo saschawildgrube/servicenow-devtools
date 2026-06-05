@@ -20,19 +20,27 @@ If no function is provided, the function IsSecureParameterValue() is used by def
 	var strInsecureValue = '';
 	if (typeof RP != 'undefined')
 	{
-		strInsecureValue =  GetStringValue(RP.getParameterValue(strParam));
+		strInsecureValue = GetStringValue(RP.getParameterValue(strParam));
 	}
-	if (typeof gs.action.getGlideURI != 'undefined')
+	if (strInsecureValue == '')
 	{
-		// This also covers scripted REST API endpoints
-		
-		var glideUri = RunScriptInGlobalScope('result = gs.action.getGlideURI();');
-		if (glideUri != null)
+		if (typeof gs.action.getGlideURI != 'undefined')
 		{
-			strInsecureValue = GetStringValue(glideUri.get(strParam));
-			if (strInsecureValue == '')
+			// This covers scripted REST API endpoints and client-callable Script Includes
+			
+			var glideUri = RunScriptInGlobalScope('result = gs.action.getGlideURI();');
+			if (glideUri != null)
 			{
-				strInsecureValue = GetStringValue(glideUri.get('sysparm_'+strParam));
+				strInsecureValue = GetStringValue(glideUri.get(strParam));
+				if (strInsecureValue == '')
+				{
+					strInsecureValue = GetStringValue(glideUri.get('sysparm_'+strParam));
+				}
+				if (strInsecureValue == '')
+				{
+					strInsecureValue = GetStringValue(glideUri.get('sysparm_ajax_processor_'+strParam));
+				}
+
 			}
 		}
 	}
@@ -52,14 +60,14 @@ If no function is provided, the function IsSecureParameterValue() is used by def
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-06-02 13:20:47</sys_created_on>
         <sys_id>03ac2d12db7f0110b652edb305961962</sys_id>
-        <sys_mod_count>43</sys_mod_count>
+        <sys_mod_count>48</sys_mod_count>
         <sys_name>GetParam</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_03ac2d12db7f0110b652edb305961962</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-04-06 19:21:31</sys_updated_on>
+        <sys_updated_on>2026-06-01 08:27:09</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>
