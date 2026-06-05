@@ -38,15 +38,6 @@
 	}
 
 	// Now Assist Panel - Platform (default)
-
-	/*
-<config_type/>
-<document_id>c86a62e2c7022010099a308dc7c26022</document_id>
-
-<now_assist_deployment display_value="Now Assist Panel - Platform (default)">7bd9820f14475650f87711349c1171be</now_assist_deployment>
-
-	 */
-
 	aistatus.now_assist_panel_platform = {};
 	aistatus.now_assist_panel_platform.status = false;
 	aistatus.now_assist_panel_platform.info = 'Is true if the Now Assist Panel Deployment Channel is configured for "Now Assist Panel - Platform (default)" in '+GetInstanceUrl()+'now/conversational-studio/assistants/all.';
@@ -103,14 +94,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-05-21 14:10:28</sys_created_on>
         <sys_id>258f7f20938943500385f7519803d60d</sys_id>
-        <sys_mod_count>17</sys_mod_count>
+        <sys_mod_count>18</sys_mod_count>
         <sys_name>GetInstanceAIStatus</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_258f7f20938943500385f7519803d60d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-06-05 10:50:31</sys_updated_on>
+        <sys_updated_on>2026-06-05 10:58:49</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
