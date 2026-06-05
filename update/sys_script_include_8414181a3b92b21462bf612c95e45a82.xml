@@ -121,10 +121,10 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-01-09 14:38:35</sys_created_on>
         <sys_id>bf84105a3b92b21462bf612c95e45aa6</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-05-13 13:28:54</sys_updated_on>
+        <sys_updated_on>2026-01-09 14:38:35</sys_updated_on>
         <table>sys_script_include</table>
-        <use_es_latest>false</use_es_latest>
+        <use_es_latest>true</use_es_latest>
     </sys_es_latest_script>
 </record_update>

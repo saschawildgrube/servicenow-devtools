@@ -45,7 +45,7 @@
         <update_guid_history>b123de2e91cb7a50923a74b62916dddd:-1391080317,a68f4e2adfc37650764605b118851873:-676190303</update_guid_history>
     </sys_update_version>
     <sys_metadata_delete action="INSERT_OR_UPDATE">
-        <sys_audit_delete display_value="Agentic Lab Rat">7e5465ae2bab32109083fe395e91bf55</sys_audit_delete>
+        <sys_audit_delete display_value="">7e5465ae2bab32109083fe395e91bf55</sys_audit_delete>
         <sys_class_name>sys_metadata_delete</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-03-13 18:24:10</sys_created_on>
