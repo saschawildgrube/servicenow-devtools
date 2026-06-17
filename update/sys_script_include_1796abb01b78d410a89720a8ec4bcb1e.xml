@@ -282,11 +282,15 @@ TestDataAPI.prototype =
 		
 		strPrefix = this.GetPrefix();
 
-		strUserName = strPrefix+strName;
+		strUserName = strPrefix +'.'+ strName;
+		strUserName = strUserName.toLowerCase();
 		if (bTechnical == true)
 		{
-			strUserName = 'technical.'+strUserName;
-			strUserName = strUserName.toLowerCase();
+			strUserName = 'test.technical.'+strUserName;
+		}
+		else
+		{
+			strUserName = 'test.'+strUserName;
 		}
 
 
@@ -310,10 +314,15 @@ TestDataAPI.prototype =
 			{
 				grUser.first_name = 'Test';
 			}
-			grUser.last_name = strPrefix+strName;
+			grUser.last_name = strPrefix + ' ' + strName;
 			if (bTechnical == true)
 			{
 				grUser.web_service_access_only = true;
+				grUser.identity_type = 'machine';
+			}
+			else
+			{
+				grUser.identity_type = 'human';
 			}
 			if (strEmail != '')
 			{
@@ -367,7 +376,7 @@ TestDataAPI.prototype =
 		var strPrefix = this.GetPrefix();
 		
 		var grUser = new GlideRecord('sys_user');
-		grUser.addQuery('user_name','STARTSWITH',strPrefix);
+		grUser.addQuery('user_name','CONTAINS','.' + strPrefix.toLowerCase() + '.');
 		grUser.orderBy('user_name');
 		grUser.query();
 		while (grUser.next())
@@ -1453,14 +1462,14 @@ TestDataAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-13 14:53:39</sys_created_on>
         <sys_id>1796abb01b78d410a89720a8ec4bcb1e</sys_id>
-        <sys_mod_count>199</sys_mod_count>
+        <sys_mod_count>202</sys_mod_count>
         <sys_name>TestDataAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_1796abb01b78d410a89720a8ec4bcb1e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-08-26 12:38:05</sys_updated_on>
+        <sys_updated_on>2026-06-17 10:24:44</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

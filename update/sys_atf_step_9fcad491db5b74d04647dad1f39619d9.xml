@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-18 12:06:43</sys_created_on>
         <sys_id>9fcad491db5b74d04647dad1f39619d9</sys_id>
-        <sys_mod_count>18</sys_mod_count>
+        <sys_mod_count>22</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_9fcad491db5b74d04647dad1f39619d9</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-12-01 14:32:21</sys_updated_on>
+        <sys_updated_on>2026-06-17 10:38:34</sys_updated_on>
         <table/>
         <test display_value="DevTools - TestDataAPI">41ba5491db5b74d04647dad1f396199e</test>
         <timeout/>
@@ -50,9 +50,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-18 12:06:43</sys_created_on>
         <sys_id>d51bd491db5b74d04647dad1f39619e5</sys_id>
-        <sys_mod_count>18</sys_mod_count>
+        <sys_mod_count>22</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-12-01 14:32:21</sys_updated_on>
+        <sys_updated_on>2026-06-17 10:38:34</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -76,9 +76,9 @@
 	}&#13;
 &#13;
 &#13;
-	var testdata = new TestDataAPI('_ATF_DEVTOOLS_');&#13;
+	var testdata = new TestDataAPI('ATF_DEVTOOLS');&#13;
 	&#13;
-	TestCase_GetPrefix(testdata,'_ATF_DEVTOOLS_');&#13;
+	TestCase_GetPrefix(testdata,'ATF_DEVTOOLS');&#13;
 	&#13;
 	var strSysIdTestItem1 = testdata.CreateTestItem('ITEM1','VALUE1');&#13;
 	var strSysIdTestItem2 = testdata.CreateTestItem('ITEM2','VALUE2');&#13;
@@ -93,6 +93,16 @@
 	&#13;
 	test.TestCase_RecordGetValue('x_snc_devtools_test',strSysIdTestItem1,'value','VALUE1');&#13;
 	test.TestCase_RecordGetValue('x_snc_devtools_test',strSysIdTestItem2,'value','VALUE2');&#13;
+&#13;
+	var strUserHumanSysId = testdata.CreateUser('HUMAN', ['itil'], false, 'john.doe@example.com', '1234');&#13;
+	var strUserMachineSysId = testdata.CreateUser('MACHINE', ['admin'], true, null, '1234');&#13;
+&#13;
+	//test.Log(testdata.GetUser('test.atf_devtools.human'));&#13;
+	//test.Log(testdata.GetUser('test.technical.atf_devtools.machine'));&#13;
+&#13;
+	test.TestCase_GetRecord('sys_user',strUserHumanSysId,false,true);&#13;
+	test.TestCase_GetRecord('sys_user',strUserMachineSysId,false,true);&#13;
+&#13;
 	&#13;
 	&#13;
 	test.Log(RenderValue(testdata.GetAllData()));&#13;
