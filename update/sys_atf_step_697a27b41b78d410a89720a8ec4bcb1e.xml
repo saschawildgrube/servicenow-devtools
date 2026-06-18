@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-13 15:00:25</sys_created_on>
         <sys_id>697a27b41b78d410a89720a8ec4bcb1e</sys_id>
-        <sys_mod_count>66</sys_mod_count>
+        <sys_mod_count>80</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_697a27b41b78d410a89720a8ec4bcb1e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-06-18 14:11:18</sys_updated_on>
+        <sys_updated_on>2026-06-18 14:46:51</sys_updated_on>
         <table/>
         <test display_value="DevTools - TestDataAPI - ITSM">820a6f741b78d410a89720a8ec4bcb44</test>
         <timeout/>
@@ -36,9 +36,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-13 15:00:26</sys_created_on>
         <sys_id>3e5b63f41b78d410a89720a8ec4bcb22</sys_id>
-        <sys_mod_count>26</sys_mod_count>
+        <sys_mod_count>40</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-06-18 14:11:18</sys_updated_on>
+        <sys_updated_on>2026-06-18 14:46:51</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -68,8 +68,34 @@
 &#13;
 	test.Log(RenderValue(testdata.GetAllData()));&#13;
 &#13;
-	//test.TestCase_&#13;
-	&#13;
+	test.TestCase_RecordQuery('sys_user', { user_name: 'test.atf.devtools.does_not_exist'}, false);&#13;
+&#13;
+	test.TestCase_RecordQuery('sys_user', { user_name: 'test.atf.devtools.caller'}, true);&#13;
+&#13;
+	test.TestCase_RecordQuery('sys_user', { user_name: 'test.atf.devtools.requester'}, true);&#13;
+&#13;
+	test.TestCase_RecordQuery('sys_user', { user_name: 'test.atf.devtools.opener'}, true);&#13;
+	test.TestCase_RecordQuery('sys_user_has_role',&#13;
+		{&#13;
+			user: GetUserRecord('test.atf.devtools.opener').sys_id,&#13;
+			role: GetRoleRecord('itil').sys_id&#13;
+		}, true);&#13;
+&#13;
+	test.TestCase_RecordQuery('sys_user_group', { name: 'Test ATF.DEVTOOLS TEAM_1'}, true);&#13;
+	test.TestCase_RecordQuery('sys_user_grmember',&#13;
+		{&#13;
+			user: GetUserRecord('test.atf.devtools.opener').sys_id,&#13;
+			group: GetGroupRecord(testdata.MakeName('TEAM_1')).sys_id&#13;
+		}, true);	&#13;
+&#13;
+	test.TestCase_RecordQuery('incident',&#13;
+		{&#13;
+			short_description: testdata.MakeName('INCIDENT_1'),&#13;
+			opener: GetUserRecord('test.atf.devtools.opener').sys_id,&#13;
+			caller: GetUserRecord('test.atf.devtools.caller').sys_id&#13;
+		}, true);	&#13;
+&#13;
+&#13;
 	return test.GetResult();&#13;
 	&#13;
 })(outputs, steps, stepResult, assertEqual);</value>
