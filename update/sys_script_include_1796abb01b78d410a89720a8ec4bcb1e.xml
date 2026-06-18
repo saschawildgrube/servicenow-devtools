@@ -13,6 +13,7 @@ Methods:
 * GetPrefix()
 * MakeName()
 * MakeUserName()
+* MakeTechnicalUserName()
 * GetAllData()
 * DeleteAllData()
 * GetAllRecordsFromTable()
@@ -105,12 +106,21 @@ TestDataAPI.prototype =
 
 	MakeUserName: function(strName)
 	{
-		strName = GetSrtringValue(strName);
+		strName = GetStringValue(strName);
 		strName = strName.toLowerCase();
 		var strPrefix = this.GetPrefix();
 		strPrefix = strPrefix.toLowerCase();
 		return 'test.' + strPrefix + '.' + strName;
 	},	
+
+	MakeTechnicalUserName: function(strName)
+	{
+		strName = GetStringValue(strName);
+		strName = strName.toLowerCase();
+		var strPrefix = this.GetPrefix();
+		strPrefix = strPrefix.toLowerCase();
+		return 'test.technical.' + strPrefix + '.' + strName;
+	},		
 	
 	GetAllData:function()
 	{
@@ -184,11 +194,10 @@ TestDataAPI.prototype =
 			return false;
 		}
 
-		var strPrefix = this.GetPrefix();
 		var aResult = [];
 		
 		var grRecords = new GlideRecord(strTable);
-		grRecords.addQuery(strNameColumn,'STARTSWITH','Test ' + strPrefix);
+		grRecords.addQuery(strNameColumn,'STARTSWITH',this.MakeName(''));
 		grRecords.orderBy(strNameColumn);
 		grRecords.query();
 		while (grRecords.next())
@@ -296,11 +305,7 @@ TestDataAPI.prototype =
 		
 		if (bTechnical == true)
 		{
-			strPrefix = this.GetPrefix();
-			strUserName = strPrefix +'.'+ strName;
-			strUserName = strUserName.toLowerCase();
-
-			strUserName = 'test.technical.'+strUserName;
+			strUserName = this.MakeTechnicalUserName(strName);
 		}
 		else
 		{
@@ -328,7 +333,7 @@ TestDataAPI.prototype =
 			{
 				grUser.first_name = 'Test';
 			}
-			grUser.last_name = strPrefix + ' ' + strName;
+			grUser.last_name = this.GetPrefix() + ' ' + strName;
 			if (bTechnical == true)
 			{
 				grUser.web_service_access_only = true;
@@ -361,7 +366,7 @@ TestDataAPI.prototype =
 			if (strRole != '')
 			{
 				var grUserRole = new GlideRecord('sys_user_role');
-				grUserRole.addQuery('name','=',strPrefix+strRole);
+				grUserRole.addQuery('name','=',this.GetPrefix()+strRole);
 				grUserRole.query();
 				if (grUserRole.getRowCount() == 0)
 				{
@@ -455,22 +460,22 @@ TestDataAPI.prototype =
 			return null;
 		}
 		
-		var grGroupMember = new GlideRecord('sys_user_grmember');
-		aUserNames.forEach(function(strUserName)
+		for (var nUser = 0; nUser < aUserNames.length; nUser++)
 		{
-			if (strUserName != '')
-			{
-				var grUser = new GlideRecord("sys_user");
-				if (grUser.get('user_name',this.GetUserName(strUserName)))
-				{						
-					grGroupMember.initialize();
-					grGroupMember.group = strGroupSysId;
-					grGroupMember.user = grUser.sys_id;
-					GlideRecordInsert(grGroupMember);
-				}
+			var strUserName = aUserNames[nUser];
+			strUserName = this.MakeUserName(strUserName);
 
+			var grUser = GetUserRecord(strUserName);
+			if (IsValidRecord(grUser) == true)
+			{
+				var grGroupMember = new GlideRecord('sys_user_grmember');
+				grGroupMember.initialize();
+				grGroupMember.group = strGroupSysId;
+				grGroupMember.user = grUser.sys_id;
+				GlideRecordInsert(grGroupMember);
 			}
-		});
+	
+		}
 		return strGroupSysId;
 	},
 	
@@ -671,7 +676,7 @@ TestDataAPI.prototype =
 		if (strAssignmentGroupName != '')
 		{
 			var grGroup = new GlideRecord('sys_user_group');
-			if (grGroup.get('name',strPrefix+strAssignmentGroupName))
+			if (grGroup.get('name',this.MakeName(strAssignmentGroupName)))
 			{
 				strAssignmentGroupSysId = grGroup.sys_id;
 			}
@@ -681,7 +686,7 @@ TestDataAPI.prototype =
 		if (strParentName != '')
 		{
 			var grIncident = new GlideRecord('incident');
-			if (grIncident.get('short_description',strPrefix+strParentName))
+			if (grIncident.get('short_description',this.MakeName(strParentName)))
 			{
 				strIncidentSysId = grIncident.sys_id;
 			}
@@ -738,7 +743,7 @@ TestDataAPI.prototype =
 		if (strOpenedByUserName != '')
 		{
 			var grUser = new GlideRecord("sys_user");
-			if (grUser.get('user_name',strPrefix+strOpenedByUserName))
+			if (grUser.get('user_name',this.MakeUserName(strOpenedByUserName)))
 			{
 				strOpenedByUserSysId = grUser.sys_id;
 			}
@@ -781,7 +786,6 @@ TestDataAPI.prototype =
 	GetAllChangeRequests:function()
 	{
 		var aResult = [];
-		var strPrefix = this.GetPrefix();
 		
 		var grChangeRequests = new GlideRecord('change_request');
 		grChangeRequests.addQuery('short_description','STARTSWITH',this.MakeName(''));
@@ -806,9 +810,7 @@ TestDataAPI.prototype =
 		strOpenedByUserName = GetStringValue(strOpenedByUserName);
 		strAssignmentGroupName = GetStringValue(strAssignmentGroupName);
 		
-		var strPrefix = this.GetPrefix(); 
-
-		var strShortDescription = strPrefix+strParentName+'_'+strName;
+		var strShortDescription = this.MakeName(strParentName+' - '+strName);
 		
 		var grChangeTaskToDelete = new GlideRecord('change_task');
 		grChangeTaskToDelete.addQuery('short_description','=',strShortDescription);
@@ -819,7 +821,7 @@ TestDataAPI.prototype =
 		if (strOpenedByUserName != '')
 		{
 			var grUser = new GlideRecord('sys_user');
-			if (grUser.get('user_name',strPrefix+strOpenedByUserName))
+			if (grUser.get('user_name',this.MakeUserName(strOpenedByUserName)))
 			{
 				strOpenedByUserSysId = grUser.sys_id;
 			}
@@ -829,7 +831,7 @@ TestDataAPI.prototype =
 		if (strAssignmentGroupName != '')
 		{
 			var grGroup = new GlideRecord('sys_user_group');
-			if (grGroup.get('name',strPrefix+strAssignmentGroupName))
+			if (grGroup.get('name',this.MakeName(strAssignmentGroupName)))
 			{
 				strAssignmentGroupSysId = grGroup.sys_id;
 			}
@@ -839,7 +841,7 @@ TestDataAPI.prototype =
 		if (strParentName != '')
 		{
 			var grChangeRequest = new GlideRecord('change_request');
-			if (grChangeRequest.get('short_description',strPrefix+strParentName))
+			if (grChangeRequest.get('short_description',this.MakeName(strParentName)))
 			{
 				strChangeRequestSysId = grChangeRequest.sys_id;
 			}
@@ -863,10 +865,9 @@ TestDataAPI.prototype =
 	GetAllChangeTasks:function()
 	{
 		var aChangeTasks = [];
-		var strPrefix = this.GetPrefix();
 		
 		var grChangeTasks = new GlideRecord('change_task');
-		grChangeTasks.addQuery('short_description','STARTSWITH',strPrefix);
+		grChangeTasks.addQuery('short_description','STARTSWITH',this.MakeName(''));
 		grChangeTasks.orderBy('short_description');
 		grChangeTasks.query();
 		while (grChangeTasks.next())
@@ -896,7 +897,7 @@ TestDataAPI.prototype =
 		if (strOpenedByUserName != '')
 		{
 			var grUser = new GlideRecord("sys_user");
-			if (grUser.get('user_name',strPrefix+strOpenedByUserName))
+			if (grUser.get('user_name',this.MakeUserName(strOpenedByUserName)))
 			{
 				strOpenedByUserSysId = grUser.sys_id;
 			}
@@ -906,7 +907,7 @@ TestDataAPI.prototype =
 		if (strAssignmentGroupName != '')
 		{
 			var grGroup = new GlideRecord("sys_user_group");
-			if (grGroup.get('name',strPrefix+strAssignmentGroupName))
+			if (grGroup.get('name',this.MakeName(strAssignmentGroupName)))
 			{
 				strAssignmentGroupSysId = grGroup.sys_id;
 			}
@@ -914,7 +915,7 @@ TestDataAPI.prototype =
 		
 		var grProblem = new GlideRecord('problem');
 		grProblem.initialize();
-		grProblem.short_description = strPrefix+strName;
+		grProblem.short_description = this.MakeName(strName);
 		grProblem.opened_by = strOpenedByUserSysId;
 		grProblem.assignment_group = strAssignmentGroupSysId;
 		var strProblemSysId = GlideRecordInsert(grProblem);
@@ -929,10 +930,9 @@ TestDataAPI.prototype =
 	GetAllProblems:function()
 	{
 		var aProblems = [];
-		var strPrefix = this.GetPrefix();
 		
 		var grProblem = new GlideRecord('problem');
-		grProblem.addQuery('short_description','STARTSWITH',strPrefix);
+		grProblem.addQuery('short_description','STARTSWITH',this.MakeName(''));
 		grProblem.orderBy('short_description');
 		grProblem.query();
 		while (grProblem.next())
@@ -965,7 +965,7 @@ TestDataAPI.prototype =
 		if (strOpenedByUserName != '')
 		{
 			var grUser = new GlideRecord('sys_user');
-			if (grUser.get('user_name',strPrefix+strOpenedByUserName))
+			if (grUser.get('user_name',this.MakeUserName(strOpenedByUserName)))
 			{
 				strOpenedByUserSysId = grUser.sys_id;
 			}
@@ -975,7 +975,7 @@ TestDataAPI.prototype =
 		if (strAssignmentGroupName != '')
 		{
 			var grGroup = new GlideRecord('sys_user_group');
-			if (grGroup.get('name',strPrefix+strAssignmentGroupName))
+			if (grGroup.get('name',this.MakeName(strAssignmentGroupName)))
 			{
 				strAssignmentGroupSysId = grGroup.sys_id;
 			}
@@ -1042,7 +1042,7 @@ TestDataAPI.prototype =
 		if (strOpenedByUserName != '')
 		{
 			var grUser = new GlideRecord("sys_user");
-			if (grUser.get('user_name',strPrefix+strOpenedByUserName))
+			if (grUser.get('user_name',this.MakeUserName(strOpenedByUserName)))
 			{
 				strOpenedByUserSysId = grUser.sys_id;
 			}
@@ -1062,7 +1062,7 @@ TestDataAPI.prototype =
 		if (strAssignmentGroupName != '')
 		{
 			var grGroup = new GlideRecord("sys_user_group");
-			if (grGroup.get('name',strPrefix+strAssignmentGroupName))
+			if (grGroup.get('name',this.MakeName(strAssignmentGroupName)))
 			{
 				strAssignmentGroupSysId = grGroup.sys_id;
 			}
@@ -1070,7 +1070,7 @@ TestDataAPI.prototype =
 		
 		var grRequest = new GlideRecord('sc_request');
 		grRequest.initialize();
-		grRequest.short_description = strPrefix+strName;
+		grRequest.short_description = this.MakeName(strName);
 		grRequest.opened_by = strOpenedByUserSysId;
 		grRequest.requested_for = strRequestedForUserSysId;
 		grRequest.assignment_group = strAssignmentGroupSysId;
@@ -1129,7 +1129,7 @@ TestDataAPI.prototype =
 	
 		var grRequestItem = new GlideRecord('sc_req_item');
 		grRequestItem.initialize();
-		grRequestItem.short_description = strPrefix+strName;
+		grRequestItem.short_description = this.MakeName(strName);
 		grRequestItem.opened_by = strOpenedByUserSysId;
 		grRequestItem.request = strRequestSysId;
 		grRequestItem.cat_item = strCatalogItemSysId;
@@ -1148,7 +1148,6 @@ TestDataAPI.prototype =
 		
 		var grRequestItems = new GlideRecord('sc_req_item');
 		var query = grRequestItems.addQuery('short_description','STARTSWITH',this.MakeName(''));
-		//query.addOrCondition('request.short_description','STARTSWITH',strPrefix);
 		grRequestItems.orderBy('number');
 		grRequestItems.query();
 		while (grRequestItems.next())
@@ -1178,7 +1177,7 @@ TestDataAPI.prototype =
 		if (strOpenedByUserName != '')
 		{
 			var grUser = new GlideRecord("sys_user");
-			if (grUser.get('user_name',strPrefix+strOpenedByUserName))
+			if (grUser.get('user_name',this.MakeUserName(strOpenedByUserName)))
 			{
 				strOpenedByUserSysId = grUser.sys_id;
 			}
@@ -1187,7 +1186,7 @@ TestDataAPI.prototype =
 	
 		var grRequestTask = new GlideRecord('sc_task');
 		grRequestTask.initialize();
-		grRequestTask.short_description = strPrefix+strName;
+		grRequestTask.short_description = this.MakeName(strName);
 		grRequestTask.opened_by = strOpenedByUserSysId;
 		grRequestTask.request_item = strRequestItemSysId;
 		var strRequestTaskSysId = GlideRecordInsert(grRequestTask);
@@ -1223,10 +1222,9 @@ TestDataAPI.prototype =
 	GetAllConfigurationItems:function()
 	{
 		var aResult = [];
-		var strPrefix = this.GetPrefix();
 		
 		var grRecords = new GlideRecord('cmdb_ci');
-		grRecords.addQuery('name','STARTSWITH',strPrefix);
+		grRecords.addQuery('name','STARTSWITH',this.MakeName(''));
 		grRecords.orderBy('name');
 		grRecords.query();
 		while (grRecords.next())
@@ -1453,14 +1451,14 @@ TestDataAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-13 14:53:39</sys_created_on>
         <sys_id>1796abb01b78d410a89720a8ec4bcb1e</sys_id>
-        <sys_mod_count>205</sys_mod_count>
+        <sys_mod_count>215</sys_mod_count>
         <sys_name>TestDataAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_1796abb01b78d410a89720a8ec4bcb1e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-06-18 15:03:27</sys_updated_on>
+        <sys_updated_on>2026-06-18 17:59:53</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

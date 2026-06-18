@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-13 15:00:25</sys_created_on>
         <sys_id>697a27b41b78d410a89720a8ec4bcb1e</sys_id>
-        <sys_mod_count>80</sys_mod_count>
+        <sys_mod_count>90</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_697a27b41b78d410a89720a8ec4bcb1e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-06-18 14:46:51</sys_updated_on>
+        <sys_updated_on>2026-06-18 19:15:45</sys_updated_on>
         <table/>
         <test display_value="DevTools - TestDataAPI - ITSM">820a6f741b78d410a89720a8ec4bcb44</test>
         <timeout/>
@@ -36,9 +36,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-13 15:00:26</sys_created_on>
         <sys_id>3e5b63f41b78d410a89720a8ec4bcb22</sys_id>
-        <sys_mod_count>40</sys_mod_count>
+        <sys_mod_count>50</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-06-18 14:46:51</sys_updated_on>
+        <sys_updated_on>2026-06-18 19:15:45</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -91,9 +91,124 @@
 	test.TestCase_RecordQuery('incident',&#13;
 		{&#13;
 			short_description: testdata.MakeName('INCIDENT_1'),&#13;
-			opener: GetUserRecord('test.atf.devtools.opener').sys_id,&#13;
-			caller: GetUserRecord('test.atf.devtools.caller').sys_id&#13;
+			opened_by: GetUserRecord('test.atf.devtools.opener').sys_id,&#13;
+			caller: GetUserRecord('test.atf.devtools.caller').sys_id,&#13;
+			assignment_group: GetGroupRecord(testdata.MakeName('TEAM_1')).sys_id&#13;
 		}, true);	&#13;
+&#13;
+	&#13;
+	test.TestCase_RecordQuery('incident_task',&#13;
+		{&#13;
+			short_description: testdata.MakeName('INCIDENT_1 - TASK_1'),&#13;
+			opened_by: GetUserRecord('test.atf.devtools.opener').sys_id,&#13;
+			assignment_group: GetGroupRecord(testdata.MakeName('TEAM_1')).sys_id&#13;
+		}, true);&#13;
+&#13;
+	test.TestCase_RecordQuery('change_task',&#13;
+		{&#13;
+			short_description: testdata.MakeName('CHANGE_REQUEST_1 - TASK_1'),&#13;
+			opened_by: GetUserRecord('test.atf.devtools.opener').sys_id,&#13;
+			assignment_group: GetGroupRecord(testdata.MakeName('TEAM_1')).sys_id&#13;
+		}, true);&#13;
+&#13;
+	test.TestCase_RecordQuery('problem',&#13;
+		{&#13;
+			short_description: testdata.MakeName('PROBLEM_1'),&#13;
+			opened_by: GetUserRecord('test.atf.devtools.opener').sys_id,&#13;
+			assignment_group: GetGroupRecord(testdata.MakeName('TEAM_1')).sys_id&#13;
+		}, true);&#13;
+&#13;
+	test.TestCase_RecordQuery('problem_task',&#13;
+		{&#13;
+			short_description: testdata.MakeName('PROBLEM_1 - TASK_1'),&#13;
+			opened_by: GetUserRecord('test.atf.devtools.opener').sys_id,&#13;
+			assignment_group: GetGroupRecord(testdata.MakeName('TEAM_1')).sys_id&#13;
+		}, true);&#13;
+&#13;
+	test.TestCase_RecordQuery('sc_request',&#13;
+		{&#13;
+			short_description: testdata.MakeName('REQUEST_1'),&#13;
+			opened_by: GetUserRecord('test.atf.devtools.opener').sys_id,&#13;
+			requested_for: GetUserRecord('test.atf.devtools.requester').sys_id,&#13;
+			assignment_group: GetGroupRecord(testdata.MakeName('TEAM_1')).sys_id&#13;
+		}, true);&#13;
+&#13;
+	test.TestCase_RecordQuery('sc_req_item',&#13;
+		{&#13;
+			short_description: testdata.MakeName('REQUEST_ITEM_1'), &#13;
+			opened_by: GetUserRecord('test.atf.devtools.opener').sys_id&#13;
+		}, true);&#13;
+&#13;
+	test.TestCase_RecordQuery('sc_task',&#13;
+		{&#13;
+			short_description: testdata.MakeName('REQUEST_TASK_1'),&#13;
+			opened_by: GetUserRecord('test.atf.devtools.opener').sys_id,&#13;
+			request_item: strRequestItemSysId&#13;
+		}, true);&#13;
+&#13;
+&#13;
+/*&#13;
+&#13;
+hort description = _ATF_DEVTOOLS_INCIDENT_1_TASK_1&#13;
+and Opened by = {{invalid step_id=ff71fb3c1b78d410a89720a8ec4bcbf7.}}&#13;
+and Assignment group = {{invalid step_id=d173bbbc1b78d410a89720a8ec4bcb0e.}}&#13;
+With a failure timeout of 5 Seconds	&#13;
+Incident Task [incident_task]&#13;
+&#13;
+2	true	Check for incident task INCIDENT_1_TASK_1&#13;
+&#13;
+Record Query (Deprecated)	Validate there is at least one record in 'change_task' matching query:&#13;
+Short description = _ATF_DEVTOOLS_CHANGE_REQUEST_1_TASK_1&#13;
+and Opened by = {{invalid step_id=ff71fb3c1b78d410a89720a8ec4bcbf7.}}&#13;
+and Assignment group = {{invalid step_id=d173bbbc1b78d410a89720a8ec4bcb0e.}}&#13;
+With a failure timeout of 5 Seconds	&#13;
+Change Task [change_task]&#13;
+&#13;
+3	true	Check for change task CHANGE_REQUEST_1_TASK_1&#13;
+&#13;
+Record Query (Deprecated)	Validate there is at least one record in 'problem' matching query:&#13;
+Problem statement = _ATF_DEVTOOLS_PROBLEM_1&#13;
+and Opened by = {{invalid step_id=ff71fb3c1b78d410a89720a8ec4bcbf7.}}&#13;
+and Assignment group = {{invalid step_id=d173bbbc1b78d410a89720a8ec4bcb0e.}}&#13;
+With a failure timeout of 5 Seconds	&#13;
+Problem [problem]&#13;
+&#13;
+4	true	Check for problem PROBLEM_1&#13;
+&#13;
+Record Query (Deprecated)	Validate there is at least one record in 'problem_task' matching query:&#13;
+Short description = _ATF_DEVTOOLS_PROBLEM_1_TASK_1&#13;
+and Opened by = {{invalid step_id=ff71fb3c1b78d410a89720a8ec4bcbf7.}}&#13;
+and Assignment group = {{invalid step_id=d173bbbc1b78d410a89720a8ec4bcb0e.}}&#13;
+With a failure timeout of 5 Seconds	&#13;
+Problem Task [problem_task]&#13;
+&#13;
+5	true	Check for problem task PROBLEM_1_TASK_1&#13;
+&#13;
+Record Query (Deprecated)	Validate there is at least one record in 'sc_request' matching query:&#13;
+Short description = _ATF_DEVTOOLS_REQUEST_1&#13;
+and Opened by = {{invalid step_id=ff71fb3c1b78d410a89720a8ec4bcbf7.}}&#13;
+and Requested for = {{invalid step_id=9cc66aa91b3d9050a89720a8ec4bcbd4.}}&#13;
+and Assignment group = {{invalid step_id=d173bbbc1b78d410a89720a8ec4bcb0e.}}&#13;
+With a failure timeout of 5 Seconds	&#13;
+Request [sc_request]&#13;
+&#13;
+6	true	Check for change request REQUEST_1&#13;
+&#13;
+Record Query	Validate there is at least one record in 'sc_req_item' matching query:&#13;
+Short description starts with _ATF_DEVTOOLS_&#13;
+and Opened by = {{invalid step_id=ff71fb3c1b78d410a89720a8ec4bcbf7.}}&#13;
+With a failure timeout of 5 Seconds	&#13;
+Requested Item [sc_req_item]&#13;
+&#13;
+7	true	&#13;
+&#13;
+Record Query	Validate there is at least one record in 'sc_task' matching query:&#13;
+Short description starts with _ATF_DEVTOOLS_REQUEST_TASK_1&#13;
+and Opened by = {{invalid step_id=ff71fb3c1b78d410a89720a8ec4bcbf7.}}&#13;
+and Request item = {{Step 7: Record Query.First record}}&#13;
+With a failure timeout of 5 Seconds&#13;
+&#13;
+ */&#13;
 &#13;
 &#13;
 	return test.GetResult();&#13;
