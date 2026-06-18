@@ -5,26 +5,35 @@
         <api_name>x_snc_devtools.CleanupATF</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Cleans up ATF test results and related rollback context records.</description>
+        <description>Cleans up ATF test results and related rollback context records.&#13;
+bInProgress specifies whether only records in "in progress status" should be deleted. If false, all records are deleted - but this requires that there are no unfinsished ATF tests.&#13;
+nLimit specifies the maximum rollback context and test result records to be deleted (on if bInProgress is false) - default behavior deletes all records.</description>
         <mobile_callable>false</mobile_callable>
         <name>CleanupATF</name>
         <sandbox_callable>false</sandbox_callable>
-        <script><![CDATA[function CleanupATF(nLimit)
+        <script><![CDATA[function CleanupATF(bInProgress, nLimit)
 {
-	if (IsTestRunning() == true)
+	bInProgress = GetBoolValue(bInProgress);
+	if (bInProgress == false)
 	{
-		Log('CleanupATF: An ATF test is currently running. The test must be stopped before the full cleanup can take place!');
-		return false;
+		if (IsTestRunning() == true)
+		{
+			Log('CleanupATF: An ATF test is currently running. The test must be stopped before the full cleanup can take place!');
+			return false;
+		}
 	}
 
-	var nLimit = GetIntegerValue(nLimit);
+	nLimit = GetIntegerValue(nLimit);
 
 	Log('CleanupATF: Deleting sys_rollback_context records with type=test_execution...');
 
 	var grRollbackContexts = new GlideRecord('sys_rollback_context');
 	grRollbackContexts.addQuery('type','=','test_execution');
-	//grRollbackContexts.addQuery('state','=','in_progress');
-	if (nLimit > 0)
+	if (bInProgress == true)
+	{
+		grRollbackContexts.addQuery('state','=','in_progress');
+	}
+	if (nLimit > 0 && bInProgress == false)
 	{
 		grRollbackContexts.setLimit(nLimit);
 	}
@@ -43,9 +52,13 @@
 
 	Log('CleanupATF: Deleting sys_atf_test_result records...'); 
 	var grTestResults = new GlideRecord('sys_atf_test_result');
-	if (nLimit > 0)
+	if (nLimit > 0 && bInProgress == false)
 	{
 		grTestResults.setLimit(nLimit);
+	}
+	if (bInProgress == true)
+	{
+		grTestResults.addQuery('status','=','running');
 	}
 	grTestResults.query();
 	while (grTestResults.next() == true)
@@ -67,14 +80,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-06-18 07:24:08</sys_created_on>
         <sys_id>3b1ee6edc325cfd44b4f311f05013141</sys_id>
-        <sys_mod_count>12</sys_mod_count>
+        <sys_mod_count>15</sys_mod_count>
         <sys_name>CleanupATF</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_3b1ee6edc325cfd44b4f311f05013141</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-06-18 08:13:51</sys_updated_on>
+        <sys_updated_on>2026-06-18 13:53:01</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
