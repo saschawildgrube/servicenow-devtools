@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.CleanupATF</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Cleans up ATF test results and related rollback context records.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>CleanupATF</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function CleanupATF()
+{
+	if (IsTestRunning() == true)
+	{
+		Log('An ATF test is currently running. The test must be stopped before the full cleanup can take place!');
+		return false;
+	}
+
+	var grRollbackContexts = new GlideRecord('sys_rollback_context');
+	grRollbackContexts.addQuery('type','=','test_execution');
+	//grRollbackContexts.addQuery('state','=','in_progress');
+	grRollbackContexts.setLimit(100);
+	grRollbackContexts.query();
+	while (grRollbackContexts.next() == true)
+	{
+		// GlideRecordDelete(grRollbackContexts);
+		var grRollbackSequence = new GlideRecord('sys_rollback_sequence');
+		grRollbackSequence.addQuery('context','=',grRollbackContext.sys_id);
+		grRollbackSequence.query();
+		Log(RenderRecordSummary(grRollbackContexts) + ' (' + grRollbackSequence.getRowCount() + ')');
+
+		while (grRollbackSequence.next() == true)
+		{
+
+			// GlideRecordDelete(grRollbackSequence);
+		}
+
+	}
+
+	Log('Cleanup of ATF result records has been completed.');
+	return true;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-06-18 07:24:08</sys_created_on>
+        <sys_id>3b1ee6edc325cfd44b4f311f05013141</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>CleanupATF</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_3b1ee6edc325cfd44b4f311f05013141</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-06-18 07:24:08</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>3b1ee6edc325cfd44b4f311f05013141</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-06-18 07:24:08</sys_created_on>
+        <sys_id>848f2e65c365cfd44b4f311f0501317c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-06-18 07:24:08</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
