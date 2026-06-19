@@ -10,6 +10,7 @@
         <create_access_controls>true</create_access_controls>
         <delete_access>false</delete_access>
         <filter_extension/>
+        <is_data_interface>false</is_data_interface>
         <is_df_table>false</is_df_table>
         <is_extendable>false</is_extendable>
         <label>Transporter Record</label>
@@ -19,7 +20,7 @@
         <provider_class/>
         <read_access>true</read_access>
         <scriptable_table>false</scriptable_table>
-        <super_class display_value="Application File" name="sys_metadata">e3430033e13222108bb2327e625886a2</super_class>
+        <super_class display_value="Application File" name="sys_metadata">6fb82033711332100a229b13380c8ba2</super_class>
         <sys_class_name>sys_db_object</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-11-29 14:05:30</sys_created_on>

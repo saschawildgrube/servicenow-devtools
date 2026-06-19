@@ -46,6 +46,7 @@
         <order>100</order>
         <primary>false</primary>
         <read_only>false</read_only>
+        <read_only_option/>
         <read_roles/>
         <reference display_value="" name="sys_app">sys_app</reference>
         <reference_cascade_rule/>
