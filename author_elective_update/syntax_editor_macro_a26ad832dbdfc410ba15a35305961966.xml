@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="syntax_editor_macro">
+    <syntax_editor_macro action="DELETE">
+        <comments>This is a template for a server side ATF test script.&#13;
+Replace "FunctionXXX" by the function you want to test and adapt the input and expected parameters to match the actual requirements.</comments>
+        <name>testscript</name>
+        <sys_class_name>syntax_editor_macro</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-03-05 15:21:25</sys_created_on>
+        <sys_id>a26ad832dbdfc410ba15a35305961966</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>testscript</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>syntax_editor_macro_a26ad832dbdfc410ba15a35305961966</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-09-09 14:03:08</sys_updated_on>
+        <text>var strLog = '';&#13;
+function Log(strText)&#13;
+{&#13;
+	strLog = strLog + "\n" + strText;&#13;
+}&#13;
+(function(outputs, steps, stepResult, assertEqual)&#13;
+{&#13;
+	var RenderValue = x_snc_devtools.RenderValue;&#13;
+&#13;
+	var bResult = true;&#13;
+	&#13;
+	function FunctionXXX(vInput)&#13;
+	{&#13;
+		return 'Hello '+vInput;&#13;
+	}&#13;
+&#13;
+	function TestCase_FunctionXXX(vInput, vExpected)&#13;
+	{&#13;
+		Log('TestCase_FunctionXXX');&#13;
+		Log('Input: '+RenderValue(vInput));&#13;
+		Log('Expected: '+RenderValue(vExpected));&#13;
+		var vResult = FunctionXXX(vInput);&#13;
+		Log('Result  : '+RenderValue(vResult));&#13;
+		if (vResult != vExpected)&#13;
+		{&#13;
+			bResult = false;&#13;
+			Log('Test case FAILED');&#13;
+		}&#13;
+		Log('');&#13;
+	}&#13;
+	&#13;
+	TestCase_FunctionXXX('John','Hello John');&#13;
+	TestCase_FunctionXXX('Jane','Hello Jane');&#13;
+		&#13;
+	stepResult.setOutputMessage(strLog);&#13;
+	return bResult;&#13;
+	&#13;
+})(outputs, steps, stepResult, assertEqual);</text>
+    </syntax_editor_macro>
+<sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>0e482098fb4443541feef633beefdc84</instance_id>
+        <instance_name>wildaustralia</instance_name>
+        <name>syntax_editor_macro_a26ad832dbdfc410ba15a35305961966</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="syntax_editor_macro">
+    <syntax_editor_macro action="INSERT_OR_UPDATE">
+        <comments>This is a template for a server side ATF test script.&#13;
+Replace "FunctionXXX" by the function you want to test and adapt the input and expected parameters to match the actual requirements.</comments>
+        <name>testscript</name>
+        <sys_class_name>syntax_editor_macro</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-03-05 15:21:25</sys_created_on>
+        <sys_id>a26ad832dbdfc410ba15a35305961966</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>testscript</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>syntax_editor_macro_a26ad832dbdfc410ba15a35305961966</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-09-09 14:03:08</sys_updated_on>
+        <text>var strLog = '';&#13;
+function Log(strText)&#13;
+{&#13;
+	strLog = strLog + "\n" + strText;&#13;
+}&#13;
+(function(outputs, steps, stepResult, assertEqual)&#13;
+{&#13;
+	var RenderValue = x_snc_devtools.RenderValue;&#13;
+&#13;
+	var bResult = true;&#13;
+	&#13;
+	function FunctionXXX(vInput)&#13;
+	{&#13;
+		return 'Hello '+vInput;&#13;
+	}&#13;
+&#13;
+	function TestCase_FunctionXXX(vInput, vExpected)&#13;
+	{&#13;
+		Log('TestCase_FunctionXXX');&#13;
+		Log('Input: '+RenderValue(vInput));&#13;
+		Log('Expected: '+RenderValue(vExpected));&#13;
+		var vResult = FunctionXXX(vInput);&#13;
+		Log('Result  : '+RenderValue(vResult));&#13;
+		if (vResult != vExpected)&#13;
+		{&#13;
+			bResult = false;&#13;
+			Log('Test case FAILED');&#13;
+		}&#13;
+		Log('');&#13;
+	}&#13;
+	&#13;
+	TestCase_FunctionXXX('John','Hello John');&#13;
+	TestCase_FunctionXXX('Jane','Hello Jane');&#13;
+		&#13;
+	stepResult.setOutputMessage(strLog);&#13;
+	return bResult;&#13;
+	&#13;
+})(outputs, steps, stepResult, assertEqual);</text>
+    </syntax_editor_macro>
+</record_update>]]></payload>
+        <payload_hash>809600146</payload_hash>
+        <record_name>testscript</record_name>
+        <reverted_from/>
+        <source>caca1db293808710d194b4aa6aba10b9</source>
+        <source_table>sys_upgrade_history</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-04-08 08:53:04</sys_created_on>
+        <sys_id>66fa557693808710d194b4aa6aba1042</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19d6c4b90650000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-04-08 08:53:04</sys_updated_on>
+        <type>Editor Macro</type>
+        <update_guid>26fa5576d7808710ec7a93706cdda942</update_guid>
+        <update_guid_history>26fa5576d7808710ec7a93706cdda942:809600146</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="testscript">6028b8c693614710d194b4aa6aba1075</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-06-19 11:59:35</sys_created_on>
+        <sys_db_object display_value="" name="syntax_editor_macro">syntax_editor_macro</sys_db_object>
+        <sys_id>3557a3b4a34545008fcdb2bfb2814100</sys_id>
+        <sys_metadata>a26ad832dbdfc410ba15a35305961966</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>testscript</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>syntax_editor_macro_a26ad832dbdfc410ba15a35305961966</sys_update_name>
+        <sys_update_version display_value="syntax_editor_macro_a26ad832dbdfc410ba15a35305961966">66fa557693808710d194b4aa6aba1042</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-06-19 11:59:35</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
