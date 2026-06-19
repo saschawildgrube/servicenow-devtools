@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-25 11:09:07</sys_created_on>
         <sys_id>978014ebdb5338104647dad1f3961910</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_978014ebdb5338104647dad1f3961910</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-08-18 09:36:56</sys_updated_on>
+        <sys_updated_on>2026-06-19 13:24:25</sys_updated_on>
         <table/>
         <test display_value="DevTools - GetRoleNamesFromUser">9770dcabdb5338104647dad1f396193d</test>
         <timeout/>
@@ -36,9 +36,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-25 11:09:07</sys_created_on>
         <sys_id>0601146fdb5338104647dad1f39619a7</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-08-18 09:36:56</sys_updated_on>
+        <sys_updated_on>2026-06-19 13:24:25</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -67,7 +67,7 @@
 	&#13;
 	test.SetResult(true);&#13;
 &#13;
-	var testdata = new TestDataAPI('_ATF_DEVTOOLS_');&#13;
+	var testdata = new TestDataAPI('ATF.DEVTOOLS');&#13;
 	&#13;
 	var strRoleUser = testdata.CreateRole('USER');&#13;
 	var strRoleManager = testdata.CreateRole('MANAGER');&#13;
@@ -82,18 +82,18 @@
 	&#13;
 	test.Log('User Alice has the USER role');&#13;
 	TestCase_GetRoleNamesFromUser(strUserAlice,[&#13;
-		testdata.GetPrefix()+'USER']);&#13;
+		testdata.MakeRoleName('USER')]);&#13;
 &#13;
 	test.Log('User Bob has the USER and the MANAGER role');&#13;
 	TestCase_GetRoleNamesFromUser(strUserBob,[&#13;
-		testdata.GetPrefix()+'USER',&#13;
-		testdata.GetPrefix()+'MANAGER']);&#13;
+		testdata.MakeRoleName('USER'),&#13;
+		testdata.MakeRoleName('MANAGER')]);&#13;
 	&#13;
 	test.Log('User Charlie has all roles');&#13;
 	TestCase_GetRoleNamesFromUser(strUserCharlie,[&#13;
-		testdata.GetPrefix()+'USER',&#13;
-		testdata.GetPrefix()+'MANAGER',&#13;
-		testdata.GetPrefix()+'ADMIN']);	&#13;
+		testdata.MakeRoleName('USER'),&#13;
+		testdata.MakeRoleName('MANAGER'),&#13;
+		testdata.MakeRoleName('ADMIN')]);	&#13;
 &#13;
 	&#13;
 	return test.GetResult();&#13;
