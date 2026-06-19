@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sc_cat_item_user_criteria_no_mtom">
+    <sc_cat_item_user_criteria_no_mtom action="DELETE">
+        <sc_cat_item/>
+        <sys_class_name>sc_cat_item_user_criteria_no_mtom</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-06-16 00:00:12</sys_created_on>
+        <sys_id>61b63eb4932d4bd42de3b4aa6aba109e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sc_cat_item_user_criteria_no_mtom_61b63eb4932d4bd42de3b4aa6aba109e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-06-16 00:00:12</sys_updated_on>
+        <user_criteria display_value="SNC External">66c1b50e730333009508738234f6a7c9</user_criteria>
+    </sc_cat_item_user_criteria_no_mtom>
+<sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>0e482098fb4443541feef633beefdc84</instance_id>
+        <instance_name>wildaustralia</instance_name>
+        <name>sc_cat_item_user_criteria_no_mtom_61b63eb4932d4bd42de3b4aa6aba109e</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sc_cat_item_user_criteria_no_mtom">
+    <sc_cat_item_user_criteria_no_mtom action="INSERT_OR_UPDATE">
+        <sc_cat_item/>
+        <sys_class_name>sc_cat_item_user_criteria_no_mtom</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-06-16 00:00:12</sys_created_on>
+        <sys_id>61b63eb4932d4bd42de3b4aa6aba109e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sc_cat_item_user_criteria_no_mtom_61b63eb4932d4bd42de3b4aa6aba109e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-06-16 00:00:12</sys_updated_on>
+        <user_criteria display_value="SNC External">66c1b50e730333009508738234f6a7c9</user_criteria>
+    </sc_cat_item_user_criteria_no_mtom>
+</record_update>]]></payload>
+        <payload_hash>-1568667652</payload_hash>
+        <record_name/>
+        <reverted_from/>
+        <source>edf69e9d93ed4310d194b4aa6aba10e8</source>
+        <source_table>sys_upgrade_history</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-06-17 11:01:33</sys_created_on>
+        <sys_id>8ba7da9193218310d194b4aa6aba101b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19ed53e58ca0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-06-17 11:01:33</sys_updated_on>
+        <type>Catalog Item Not Available for</type>
+        <update_guid>4ba7da91822183101eb7f486aae0961b</update_guid>
+        <update_guid_history>4ba7da91822183101eb7f486aae0961b:-1568667652</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="">4b0a18ca936d0710d194b4aa6aba1063</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-06-19 09:48:08</sys_created_on>
+        <sys_db_object display_value="" name="sc_cat_item_user_criteria_no_mtom">sc_cat_item_user_criteria_no_mtom</sys_db_object>
+        <sys_id>394f394c4d1f4020b17e9186a107e400</sys_id>
+        <sys_metadata>61b63eb4932d4bd42de3b4aa6aba109e</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sc_cat_item_user_criteria_no_mtom_61b63eb4932d4bd42de3b4aa6aba109e</sys_update_name>
+        <sys_update_version display_value="sc_cat_item_user_criteria_no_mtom_61b63eb4932d4bd42de3b4aa6aba109e">8ba7da9193218310d194b4aa6aba101b</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-06-19 09:48:08</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
