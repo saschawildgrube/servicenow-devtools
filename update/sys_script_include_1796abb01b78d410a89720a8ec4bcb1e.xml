@@ -119,7 +119,7 @@ TestDataAPI.prototype =
 		strName = strName.toLowerCase();
 		var strPrefix = this.GetPrefix();
 		strPrefix = strPrefix.toLowerCase();
-		return 'test.technical.' + strPrefix + '.' + strName;
+		return 'technical.test.' + strPrefix + '.' + strName;
 	},		
 	
 	GetAllData:function()
@@ -258,6 +258,21 @@ TestDataAPI.prototype =
 
 	GetRecord:function(strTable,strNameColumn,strName)
 	{
+		if (strTable == 'sys_user')
+		{
+			var grUser = GetUserRecord(this.MakeUserName(strName));
+			if (IsValidRecord(grUser) == true)
+			{
+				return GetStringValue(grUser.sys_id);
+			}
+			var grTechnicalUser = GetUserRecord(this.MakeTechnicalUserName(strName));
+			if (IsValidRecord(grUser) == true)
+			{
+				return GetStringValue(grUser.sys_id);
+			}
+			return false;
+		}
+
 		var query = {};
 		query[strNameColumn] = this.MakeName(strName);
 		var grRecord = RecordQuery(strTable,query);
@@ -395,7 +410,7 @@ TestDataAPI.prototype =
 		var strPrefix = this.GetPrefix();
 		
 		var grUser = new GlideRecord('sys_user');
-		grUser.addQuery('user_name','CONTAINS','.' + strPrefix.toLowerCase() + '.');
+		grUser.addQuery('user_name','CONTAINS','test.' + strPrefix.toLowerCase() + '.');
 		grUser.orderBy('user_name');
 		grUser.query();
 		while (grUser.next())
@@ -1451,14 +1466,14 @@ TestDataAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-13 14:53:39</sys_created_on>
         <sys_id>1796abb01b78d410a89720a8ec4bcb1e</sys_id>
-        <sys_mod_count>215</sys_mod_count>
+        <sys_mod_count>217</sys_mod_count>
         <sys_name>TestDataAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_1796abb01b78d410a89720a8ec4bcb1e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-06-18 17:59:53</sys_updated_on>
+        <sys_updated_on>2026-06-19 07:53:16</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
