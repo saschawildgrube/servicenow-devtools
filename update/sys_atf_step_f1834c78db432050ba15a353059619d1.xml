@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-03-19 14:41:54</sys_created_on>
         <sys_id>f1834c78db432050ba15a353059619d1</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_f1834c78db432050ba15a353059619d1</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-03-19 14:48:32</sys_updated_on>
+        <sys_updated_on>2026-06-19 08:48:48</sys_updated_on>
         <table/>
         <test display_value="DevTools - RecordBulkProcessor">72520390db4fac10ba15a35305961926</test>
         <timeout/>
@@ -50,9 +50,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-03-19 14:41:54</sys_created_on>
         <sys_id>4af38c78db432050ba15a3530596197f</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-03-19 14:48:32</sys_updated_on>
+        <sys_updated_on>2026-06-19 08:48:48</sys_updated_on>
         <value>var strLog = '';&#13;
 function Log(strText)&#13;
 {&#13;
@@ -63,7 +63,7 @@ function Log(strText)&#13;
 	var RenderValue = x_snc_devtools.RenderValue;&#13;
 	var GetType = x_snc_devtools.GetType;&#13;
 	&#13;
-	var testdata = new TestDataAPI('_ATF_DEVTOOLS_');&#13;
+	var testdata = new TestDataAPI('ATF.DEVTOOLS');&#13;
 &#13;
 	var bResult = true;&#13;
 		&#13;
@@ -137,7 +137,7 @@ function Log(strText)&#13;
 	&#13;
 	// Process all 10 records, but only allow for one second to run&#13;
 	var grRecords = new GlideRecord('x_snc_devtools_test');&#13;
-	grRecords.addQuery('name','STARTSWITH',testdata.GetPrefix());&#13;
+	grRecords.addQuery('name','STARTSWITH',testdata.MakeName());&#13;
 	TestCase_RecordBulkProcessor(&#13;
 		grRecords,&#13;
 		CallbackRecordProcessor,&#13;
