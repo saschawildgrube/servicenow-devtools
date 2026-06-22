@@ -39,7 +39,6 @@
         <next_element/>
         <primary>false</primary>
         <read_only>true</read_only>
-        <read_only_option>instance_configured</read_only_option>
         <read_roles/>
         <reference display_value="" name="x_snc_devtools_transporter_package">x_snc_devtools_transporter_package</reference>
         <reference_cascade_rule>delete</reference_cascade_rule>

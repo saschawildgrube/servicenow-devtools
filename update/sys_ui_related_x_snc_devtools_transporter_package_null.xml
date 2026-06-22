@@ -2,7 +2,6 @@
     <sys_ui_related sys_domain="global" table="x_snc_devtools_transporter_package" version="2" view="">
         <sys_ui_related_list_entry action="INSERT_OR_UPDATE">
             <filter/>
-            <group_by_field/>
             <list_id display_value="Transporter Package - Default view" name="x_snc_devtools_transporter_package" related_list="NULL" sys_domain="global" view="Default view">a1342c391bfeb9106c17fdd49b4bcbbe</list_id>
             <order_by/>
             <position>0</position>

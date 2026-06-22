@@ -10,7 +10,6 @@
         <condition>IsActive() &amp;&amp; (current.status=='success' || current.status=='success_with_warnings') &amp;&amp; sn_atf.AutomatedTestingFramework.isRunnerEnabled() &amp;&amp; !(IsUserImpersonating()) &amp;&amp; sn_atf.AutomatedTestingFramework.isTestSuiteActive(current.test_suite)</condition>
         <form_action>true</form_action>
         <form_button>true</form_button>
-        <form_button_icon/>
         <form_button_v2>false</form_button_v2>
         <form_context_menu>false</form_context_menu>
         <form_link>false</form_link>
@@ -22,7 +21,6 @@
         <list_action>false</list_action>
         <list_banner_button>false</list_banner_button>
         <list_button>false</list_button>
-        <list_button_icon/>
         <list_choice>false</list_choice>
         <list_context_menu>false</list_context_menu>
         <list_link>false</list_link>
@@ -36,9 +34,7 @@
 {
 	DoModalRunTestSuite(g_form.getValue('test_suite'));
 }]]></script>
-        <show_form_icon_only>false</show_form_icon_only>
         <show_insert>false</show_insert>
-        <show_list_icon_only>false</show_list_icon_only>
         <show_multiple_update>false</show_multiple_update>
         <show_query>false</show_query>
         <show_update>true</show_update>

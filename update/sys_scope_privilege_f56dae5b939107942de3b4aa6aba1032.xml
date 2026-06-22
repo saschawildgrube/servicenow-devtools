@@ -16,7 +16,7 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2026-06-11 07:28:38</sys_updated_on>
         <target_name>sys_generative_ai_log</target_name>
-        <target_scope display_value="Now Assist for code generation">6d99fe72474f211082179725126d4308</target_scope>
+        <target_scope display_value="">6d99fe72474f211082179725126d4308</target_scope>
         <target_type>sys_db_object</target_type>
     </sys_scope_privilege>
 </record_update>

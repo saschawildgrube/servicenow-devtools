@@ -16,7 +16,7 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2026-01-09 14:46:24</sys_updated_on>
         <target_name>AiAgentRuntimeUtil</target_name>
-        <target_scope display_value="Now Assist AI Agents">32808450431302106c3603295bb8f245</target_scope>
+        <target_scope display_value="">32808450431302106c3603295bb8f245</target_scope>
         <target_type>sys_script_include</target_type>
     </sys_scope_privilege>
 </record_update>
