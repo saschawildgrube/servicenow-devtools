@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-11-20 13:56:34</sys_created_on>
         <sys_id>0d7bea4a3b99b21062bf612c95e45aca</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_0d7bea4a3b99b21062bf612c95e45aca</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-11-20 14:10:25</sys_updated_on>
+        <sys_updated_on>2026-06-23 07:26:16</sys_updated_on>
         <table/>
         <test display_value="DevTools - IsForceScopeActiveForUser">c17bea4a3b99b21062bf612c95e45a4f</test>
         <timeout/>
@@ -50,9 +50,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-11-20 13:56:34</sys_created_on>
         <sys_id>c97bea4a3b99b21062bf612c95e45acc</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-11-20 14:10:25</sys_updated_on>
+        <sys_updated_on>2026-06-23 07:26:16</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -86,17 +86,19 @@
 	TestCase_IsForceScopeActiveForUser(null,bForceScope);&#13;
 	TestCase_IsForceScopeActiveForUser(grUser.sys_id,bForceScope);&#13;
 &#13;
-	var grUserTest = CreateTestUser('DevTools ForceScope');&#13;
+	var testdata = new TestDataAPI('ATF.DEVTOOLS');&#13;
+&#13;
+	var strUserTestSysId = testdata.CreateUser('ForceScope');&#13;
 	&#13;
 	AppSetProperty('ui.force_scope',false);&#13;
 	TestCase_IsForceScopeActiveForUser(null,false);&#13;
-	TestCase_IsForceScopeActiveForUser(grUserTest,false);&#13;
+	TestCase_IsForceScopeActiveForUser(strUserTestSysId,false);&#13;
 &#13;
 	AppSetProperty('ui.force_scope',true);&#13;
-	TestCase_IsForceScopeActiveForUser(grUserTest,true);&#13;
+	TestCase_IsForceScopeActiveForUser(strUserTestSysId,true);&#13;
 &#13;
-	SetUserPreference(grUserTest,'devtools.ui.force_scope','false');&#13;
-	TestCase_IsForceScopeActiveForUser(grUserTest,false);&#13;
+	SetUserPreference(strUserTestSysId,'devtools.ui.force_scope','false');&#13;
+	TestCase_IsForceScopeActiveForUser(strUserTestSysId,false);&#13;
 &#13;
 	&#13;
 	return test.GetResult();&#13;
