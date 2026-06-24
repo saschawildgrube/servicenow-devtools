@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.HtmlRenderPageAIStatus</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Renders a page that displays the AI configuration status of the instance.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>HtmlRenderPageAIStatus</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function HtmlRenderPageAIStatus()
+{
+	strHtml = '';
+
+	var aistatus = GetInstanceAIStatus();
+
+	if (IsObject(aistatus) == false)
+	{
+		return HtmlRenderError('Could not gather details on the AI configuration status on this instance.');
+	}
+
+	var aKeys = GetKeys(aistatus);
+
+	for (var nItem = 0; nItem < aKeys.length; nItem++)
+	{
+		var strKey = aKeys[nItem];
+		var item = GetValue(aistatus,strKey);
+		if (IsObject(item) == true)
+		{
+			var strTitle = GetStringValue(GetValue(item,'title'));
+			var strInfo = GetValue(item,'info');
+			var strUrl = GetValue(item,'url');
+			var status = GetValue(item,'status');
+			
+			if (strTitle == '')
+			{
+				strTitle = strKey;
+			}
+
+			strInnerHtml = '<b>' + strTitle + '</b><br/>';
+			strInnerHtml += strInfo + '<br/>';
+			
+			if (IsValidUrl(strUrl) == true)
+			{
+				strInnerHtml += HtmlRenderLink(strUrl,'',true);
+				strInnerHtml += '<br/>';
+			}
+
+			
+			strInnerHtml += '<b>';
+			if (status === null)
+			{
+				strInnerHtml += '<span style="color: blue">UNKNOWN</span>';
+			}
+			else
+			{
+				var bStatus = GetBoolValue(status);
+				if (bStatus == true)
+				{
+					strInnerHtml += '<span style="color: green">OK</span>';
+				}
+				else
+				{
+					strInnerHtml += '<span style="color: red">NOT OK</span>';
+				}
+			}
+			strInnerHtml += '</b>';
+
+			strHtml += HtmlRenderRoundedBox(strInnerHtml);
+
+		}
+	}
+
+	return strHtml;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-06-24 08:18:00</sys_created_on>
+        <sys_id>f025712fc3adc3104b4f311f05013128</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>HtmlRenderPageAIStatus</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_f025712fc3adc3104b4f311f05013128</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-06-24 09:11:12</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>f025712fc3adc3104b4f311f05013128</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-06-24 08:17:59</sys_created_on>
+        <sys_id>1b55792fc3adc3104b4f311f05013148</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-06-24 08:17:59</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
