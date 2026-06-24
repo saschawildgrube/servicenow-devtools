@@ -16,7 +16,7 @@
 	// Now Assist Agents is installed
 	aistatus.now_assist_agents_installation = {};
 	aistatus.now_assist_agents_installation.status = IsNowAssistAIAgentsInstalled();
-	aistatus.now_assist_agents_installation.info = 'Is true if required plugins are installed to use AI Agents.';
+	aistatus.now_assist_agents_installation.info = 'Is true if required plugins are installed to use AI Agents. The "Now Assist AI Agents" plugin can only be installed as a dependency. Installing the "Now Assist for Platform" (sn_genai_platform) is one option.';
 	aistatus.now_assist_agents_installation.url = GetInstanceUrl() + 'now/app-manager/home/app/id/32808450431302106c3603295bb8f245/';
 
 	// Now Assist Panel is active
@@ -101,14 +101,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-05-21 14:10:28</sys_created_on>
         <sys_id>258f7f20938943500385f7519803d60d</sys_id>
-        <sys_mod_count>20</sys_mod_count>
+        <sys_mod_count>21</sys_mod_count>
         <sys_name>GetInstanceAIStatus</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_258f7f20938943500385f7519803d60d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-06-24 07:29:47</sys_updated_on>
+        <sys_updated_on>2026-06-24 07:36:23</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
