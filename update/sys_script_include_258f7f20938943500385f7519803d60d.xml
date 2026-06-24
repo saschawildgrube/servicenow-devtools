@@ -17,11 +17,13 @@
 	aistatus.now_assist_agents_installation = {};
 	aistatus.now_assist_agents_installation.status = IsNowAssistAIAgentsInstalled();
 	aistatus.now_assist_agents_installation.info = 'Is true if required plugins are installed to use AI Agents.';
+	aistatus.now_assist_agents_installation.url = GetInstanceUrl() + 'now/app-manager/home/app/id/32808450431302106c3603295bb8f245/';
 
 	// Now Assist Panel is active
 	aistatus.now_assist_panel = {};
 	aistatus.now_assist_panel.status = false;
-	aistatus.now_assist_panel.info = 'True if the Now Assist Panel is "turned on" on the page '+GetInstanceUrl() +'now/now-assist-admin/now-assist-panel.';
+	aistatus.now_assist_panel.info = 'True if the Now Assist Panel is "turned on" on.';
+	aistatus.now_assist_panel.url = GetInstanceUrl() +'now/now-assist-admin/now-assist-panel.';
 
 	var grNAS = new GlideRecord('sn_nowassist_settings');
 	grNAS.addQuery('type','=','nap');
@@ -40,7 +42,8 @@
 	// Now Assist Panel - Platform (default)
 	aistatus.now_assist_panel_platform = {};
 	aistatus.now_assist_panel_platform.status = false;
-	aistatus.now_assist_panel_platform.info = 'Is true if the Now Assist Panel Deployment Channel is configured for "Now Assist Panel - Platform (default)" in '+GetInstanceUrl()+'now/conversational-studio/assistants/all.';
+	aistatus.now_assist_panel_platform.info = 'Is true if the Now Assist Panel Deployment Channel is configured for "Now Assist Panel - Platform (default)".';
+	aistatus.now_assist_panel_platform.url = GetInstanceUrl()+'now/conversational-studio/assistants/all.';
 
 	if (IsValidTable('sys_now_assist_deployment_channel') == true)
 	{
@@ -98,14 +101,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-05-21 14:10:28</sys_created_on>
         <sys_id>258f7f20938943500385f7519803d60d</sys_id>
-        <sys_mod_count>19</sys_mod_count>
+        <sys_mod_count>20</sys_mod_count>
         <sys_name>GetInstanceAIStatus</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_258f7f20938943500385f7519803d60d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-06-19 12:51:12</sys_updated_on>
+        <sys_updated_on>2026-06-24 07:29:47</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
