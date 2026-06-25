@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.AppSanityPostInstall</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Performs application cleanup AFTER application installation.&#13;
+Platform defects cause sys_wizard_answer records to be created and agentic flow triggers to become inactive. </description>
+        <mobile_callable>false</mobile_callable>
+        <name>AppSanityPostInstall</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function AppSanityPostInstall(vApp)
+{
+	function Log(vValue)
+	{
+		x_snc_devtools.Log('AppSanityPostInstall: '+RenderValue(vValue));
+	}
+
+	var grApp = GetAppRecord(vApp);
+	if (grApp == false)
+	{
+		Log('Error: App not found!');
+		return false;	
+	}
+	
+	var	strAppSysId = GetStringValue(grApp.sys_id);
+
+	Log('Deleting auto-generated sys_wizard_answer records');
+	var grRecords = new GlideRecord('sys_wizard_answer');
+	grRecords.addQuery('sys_scope','=',strAppSysId);
+	grRecords.addQuery('table','=','');
+	grRecords.query();
+	while (grRecords.next())
+	{
+		Log('Deleting record: '+ RenderRecordSummary(grRecords));
+		GlideRecordDelete(grRecords,true);
+	}
+
+	Log('Re-activating agentic usecase trigger records');
+    var grRecords = new GlideRecord("sn_aia_trigger_agent_usecase_m2m");
+	grRecords.addQuery('sys_scope','=',strAppSysId);
+	grRecords.addActiveQuery();
+	grRecords.query();
+    while (grRecords.next() == true)
+	{
+		// Deactivate the trigger
+        grRecords.active = false;
+        GlideRecordUpdate(grRecords);
+
+		// Reactivate the trigger to make it work
+        grRecords.active = true;
+        GlideRecordUpdate(grRecords);
+    }
+	
+	Log('Completed!');
+
+	return true;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-06-25 14:09:48</sys_created_on>
+        <sys_id>fc2f4cc093f98b102de3b4aa6aba10f8</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>AppSanityPostInstall</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_fc2f4cc093f98b102de3b4aa6aba10f8</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-06-25 14:26:10</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>fc2f4cc093f98b102de3b4aa6aba10f8</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-06-25 14:09:47</sys_created_on>
+        <sys_id>d27f480493f98b102de3b4aa6aba10c5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-06-25 14:09:47</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
