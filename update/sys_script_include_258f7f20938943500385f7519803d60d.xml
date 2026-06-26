@@ -14,7 +14,7 @@
 	aistatus = {};
 
 	aistatus.now_assist_agents_installation = {};
-	aistatus.now_assist_agents_installation.title = 'Now Assist AI Agents plugin installation';
+	aistatus.now_assist_agents_installation.title = 'Now Assist AI Agents Plugin';
 	aistatus.now_assist_agents_installation.type = 'boolean';
 	aistatus.now_assist_agents_installation.status = IsNowAssistAIAgentsInstalled();
 	aistatus.now_assist_agents_installation.info = 'Checks if required plugins are installed to use AI Agents. The "Now Assist AI Agents" plugin can only be installed as a dependency. Installing the "Now Assist for Creator" (sn_now_creator) is an option.';
@@ -23,7 +23,7 @@
 
 
 	aistatus.now_assist_panel = {};
-	aistatus.now_assist_panel.title = 'Now Assist Panel activation';
+	aistatus.now_assist_panel.title = 'Now Assist Panel';
 	aistatus.now_assist_panel.type = 'boolean';
 	aistatus.now_assist_panel.status = false;
 	aistatus.now_assist_panel.info = 'Checks if the Now Assist Panel is "turned on" on.';
@@ -45,7 +45,7 @@
 
 
 	aistatus.now_assist_panel_platform = {};
-	aistatus.now_assist_panel_platform.title = 'Now Assist Panel Deployment Channel configuration';
+	aistatus.now_assist_panel_platform.title = 'Now Assist Panel Deployment Channel';
 	aistatus.now_assist_panel_platform.type = 'boolean';
 	aistatus.now_assist_panel_platform.status = false;
 	aistatus.now_assist_panel_platform.info = 'Checks if the Now Assist Panel Deployment Channel is configured for "Now Assist Panel - Platform (default)".';
@@ -92,35 +92,9 @@
 	aistatus.now_assist_ignore_fulfiller_subscription_check.config_url = strUrl;
 
 
-	aistatus.llmgateway_connection = {};
-	aistatus.llmgateway_connection.title = 'LLM Gateway connection config';
-	aistatus.llmgateway_connection.type = 'boolean';
-	var strLLMGatewayUrl = 'https://llmgateway-dart-default-dart001.aus100.service-now.com';
-	var grConnection = new GlideRecord('http_connection');
-	grConnection.addQuery('name','=','Now LLM');
-	grConnection.query();
-	var bStatus = false;
-	if (grConnection.getRowCount() == 1)
-	{
-		if (grConnection.next())
-		{
-			aistatus.llmgateway_connection.config_url = GetInstanceRecordUrl('http_connection',grConnection.sys_id);
-			var strConnectionUrl = GetStringValue(grConnection.connection_url);
-			if (strConnectionUrl == strLLMGatewayUrl)
-			{
-				bStatus = true;
-			}
-		}
-	}
-	aistatus.llmgateway_connection.status = bStatus;
-	aistatus.llmgateway_connection.info =
-		'The HTTP Connection record "Now LLM" should point to "'+strLLMGatewayUrl + '". Follow instructions in KB3084849 to fix this.';
-	
-
-
 
 	aistatus.llmgateway_service = {};
-	aistatus.llmgateway_service.title = 'LLM Gateway service config';
+	aistatus.llmgateway_service.title = 'LLM Gateway Service';
 	aistatus.llmgateway_service.info = 
 		'The LLMGateway related sys_service_endpoint records should point to: "'+strLLMGatewayUrl+'". Unfortunately the status cannot be determined unless the user is maint. Follow instructions in KB3084849 to fix this.';
 	var aLLMServices = ['LLMGateway','LLMProxy','MLPredictor-Triton'];
@@ -150,12 +124,61 @@
 			aistatus.llmgateway_service.status = true;
 		}
 	}
-	
 	aistatus.llmgateway_service.config_url = GetInstanceListUrl('sys_service','',strEncodedQuery);
 
 
 
+	aistatus.llmgateway_connection = {};
+	aistatus.llmgateway_connection.title = 'LLM Gateway Connection';
+	aistatus.llmgateway_connection.type = 'boolean';
+	var strLLMGatewayUrl = 'https://llmgateway-dart-default-dart001.aus100.service-now.com';
+	var grConnection = new GlideRecord('http_connection');
+	grConnection.addQuery('name','=','Now LLM');
+	grConnection.query();
+	var bStatus = false;
+	if (grConnection.getRowCount() == 1)
+	{
+		if (grConnection.next())
+		{
+			aistatus.llmgateway_connection.config_url = GetInstanceRecordUrl('http_connection',grConnection.sys_id);
+			var strConnectionUrl = GetStringValue(grConnection.connection_url);
+			if (strConnectionUrl == strLLMGatewayUrl)
+			{
+				bStatus = true;
+			}
+		}
+	}
+	aistatus.llmgateway_connection.status = bStatus;
+	aistatus.llmgateway_connection.info =
+		'The HTTP Connection record "Now LLM" should point to "'+strLLMGatewayUrl + '". Follow instructions in KB3084849 to fix this.';
+	
 
+/*
+	aistatus.license_tier = {};
+	// https://support.servicenow.com/kb?id=kb_article_view&sysparm_article=KB2975850
+	aistatus.license_tier.title = 'Prime License Tier';
+	//var strPropName = 'sn_nowassist_admin.ignoreFulfillerSubscriptionCheck';
+	aistatus.license_tier.type = 'boolean';
+	var strPropName = '';
+	strTier = GetProperty(strPropName)
+	aistatus.license_tier.status = 
+		
+			GetProperty(strPropName));
+	aistatus.license_tier.info = 
+		'Checks if the instance has the "prime" license tier - which is required to build and run custom AI agents. The system property "' + strPropName + '" must be set to "prime".';
+	
+	var grProp = GetPropertyRecord(strPropName);
+	var strUrl = '';
+	if (IsValidRecord(grProp) == true)
+	{
+		strUrl = GetInstanceRecordUrl('sys_properties',grProp.sys_id);
+	}
+	else
+	{
+		strUrl = GetInstanceListUrl('sys_properties','','name='+strPropName,0);
+	}
+	aistatus.license_tier.config_url = strUrl;
+*/
 
 
 
@@ -166,14 +189,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-05-21 14:10:28</sys_created_on>
         <sys_id>258f7f20938943500385f7519803d60d</sys_id>
-        <sys_mod_count>40</sys_mod_count>
+        <sys_mod_count>42</sys_mod_count>
         <sys_name>GetInstanceAIStatus</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_258f7f20938943500385f7519803d60d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-06-26 09:29:34</sys_updated_on>
+        <sys_updated_on>2026-06-26 11:29:01</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
