@@ -46,7 +46,6 @@
         <order>100</order>
         <primary>false</primary>
         <read_only>false</read_only>
-        <read_only_option/>
         <read_roles/>
         <reference display_value="" name="sys_scope">sys_scope</reference>
         <reference_cascade_rule/>

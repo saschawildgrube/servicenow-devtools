@@ -19,8 +19,6 @@
         <report/>
         <require_confirmation>false</require_confirmation>
         <roles/>
-        <route/>
-        <screen/>
         <sys_class_name>sys_app_module</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-28 15:37:58</sys_created_on>
@@ -39,7 +37,6 @@
         <timeline_page/>
         <title>System Properties</title>
         <uncancelable>false</uncancelable>
-        <ux_list/>
         <view_name/>
         <window_name/>
     </sys_app_module>

@@ -15,8 +15,6 @@
         <mandatory_override>false</mandatory_override>
         <name>x_snc_devtools_cmdb_ci_appl_servicenow</name>
         <read_only>false</read_only>
-        <read_only_option/>
-        <read_only_option_override>false</read_only_option_override>
         <read_only_override>false</read_only_override>
         <reference_qual/>
         <reference_qual_override>false</reference_qual_override>

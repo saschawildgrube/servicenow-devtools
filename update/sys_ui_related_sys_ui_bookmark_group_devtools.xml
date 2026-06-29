@@ -2,7 +2,6 @@
     <sys_ui_related sys_domain="global" table="sys_ui_bookmark_group" version="2" view="devtools">
         <sys_ui_related_list_entry action="INSERT_OR_UPDATE">
             <filter/>
-            <group_by_field/>
             <list_id display_value="Bookmark Group - DevTools" name="sys_ui_bookmark_group" related_list="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">5dd26ca91b8ab1506c17fdd49b4bcb49</list_id>
             <order_by/>
             <position>0</position>
