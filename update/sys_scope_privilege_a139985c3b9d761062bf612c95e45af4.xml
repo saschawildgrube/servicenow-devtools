@@ -16,7 +16,7 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2025-11-14 16:48:16</sys_updated_on>
         <target_name>var__m_sn_nowassist_skill_config_var_c3651c8eff516210a34bffffffffff85</target_name>
-        <target_scope display_value="">78b8e8eb824d4d58a2346310cb52e064</target_scope>
+        <target_scope display_value="Now Assist in Document Management">78b8e8eb824d4d58a2346310cb52e064</target_scope>
         <target_type>sys_db_object</target_type>
     </sys_scope_privilege>
 </record_update>
