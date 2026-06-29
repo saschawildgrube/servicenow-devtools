@@ -17,6 +17,7 @@
         <menu/>
         <name>DevTools WORK IN PROGRESS</name>
         <package_json/>
+        <package_resolver_version/>
         <private>false</private>
         <restrict_table_access>false</restrict_table_access>
         <runtime_access_tracking>permissive</runtime_access_tracking>
@@ -52,6 +53,8 @@ DevTools is also the backbone for the mature development and deployment process.
         <x_snc_devtools_repo_url>https://github.com/saschawildgrube/servicenow-devtools.git</x_snc_devtools_repo_url>
         <x_snc_devtools_showstopper>false</x_snc_devtools_showstopper>
         <x_snc_devtools_showstopper_details/>
+        <x_snc_wildgrubelab_test/>
+        <x_snc_wildgrubelab_test2/>
     </sys_app>
     <sys_translated_text action="delete_multiple" query="documentkey=d689f6901bd38450a89720a8ec4bcbfd"/>
 </record_update>
