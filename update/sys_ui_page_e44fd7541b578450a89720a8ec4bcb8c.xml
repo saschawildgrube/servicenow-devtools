@@ -794,10 +794,11 @@ x_snc_devtools.AppBuilderMoveToScope(grRecord, strTargetScope, bMoveFromAllScope
 		<li>AppSanity() now moves all System Properties starting with "sn_" out of the application into the global scope.</li> 
 		<li>GlideRecordDeleteMultiple() now also supports the bGhost parameter to execute the deletion without activating workflows.</li>
 		<li>UpdateSetDelete() now uses ghost mode when deleting sys_update_xml records.</li>
+		<li>UI Action "Delete Update Set" now properly communicates that the Update Set must be in "Complete" state to be deleted.</li>
 		<li>Added more patterns to GetEvaluatorErrorExceptionPatterns().</li>
 		<li>HtmlRenderLinkDirectory() now uses GetPluginRecord() to check for plugins, too.</li>
 		<li>GetLinkDirectory() now requires plugin "com.snc.itom.discovery.license" to display the link to "CMDB 360".</li>
-		<li>Business Rule "sys_script_include - auto documentation" is now more resilient against current being null.</li>
+		<li>Business Rule "sys_script_include - auto documentation" is now more resilient against the "current" object being null.</li>
 		<li>sys_rollback_context has been added to the link directory.</li>
 		<li>Removed outdated Syntax Editor Macro "testscript".</li>
 		<li>Improved ATF "DevTools - InstanceScanCheckScriptOnly" to avoid making (temporary) changes to DevTools.</li>
@@ -3387,14 +3388,14 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>2607</sys_mod_count>
+        <sys_mod_count>2608</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-06-29 13:24:37</sys_updated_on>
+        <sys_updated_on>2026-06-29 13:43:07</sys_updated_on>
     </sys_ui_page>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>e44fd7541b578450a89720a8ec4bcb8c</id>
