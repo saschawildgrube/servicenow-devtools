@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_embedded_help_role">
+    <sys_embedded_help_role action="DELETE">
+        <order>10</order>
+        <role/>
+        <sys_class_name>sys_embedded_help_role</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-01-26 15:12:59</sys_created_on>
+        <sys_id>4268dcc4db0eac90ba15a353059619dd</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>4a68dcc4db0eac90ba15a353059619da</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_embedded_help_role_4268dcc4db0eac90ba15a353059619dd</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-01-26 15:12:59</sys_updated_on>
+    </sys_embedded_help_role>
+<sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>b265927933572a987c42c7bb9d5c7b88</instance_id>
+        <instance_name>wildzurich</instance_name>
+        <name>sys_embedded_help_role_4268dcc4db0eac90ba15a353059619dd</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_embedded_help_role">
+    <sys_embedded_help_role action="INSERT_OR_UPDATE">
+        <order>10</order>
+        <role/>
+        <sys_class_name>sys_embedded_help_role</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-01-26 15:12:59</sys_created_on>
+        <sys_id>4268dcc4db0eac90ba15a353059619dd</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>4a68dcc4db0eac90ba15a353059619da</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_embedded_help_role_4268dcc4db0eac90ba15a353059619dd</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-01-26 15:12:59</sys_updated_on>
+    </sys_embedded_help_role>
+</record_update>]]></payload>
+        <payload_hash>484744574</payload_hash>
+        <record_name/>
+        <reverted_from/>
+        <source>bf271bfe93e5c7102de3b4aa6aba108f</source>
+        <source_table>sys_upgrade_history</source_table>
+        <state>current</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-06-22 07:31:35</sys_created_on>
+        <sys_id>5c9793b69329c7102de3b4aa6aba100f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19eee3dea510000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-06-22 07:31:35</sys_updated_on>
+        <type>Embedded Help Role Priority</type>
+        <update_guid>1c9793b67e29c71027c84748415dbb0f</update_guid>
+        <update_guid_history>1c9793b67e29c71027c84748415dbb0f:484744574</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-06-29 13:14:53</sys_created_on>
+        <sys_db_object display_value="" name="sys_embedded_help_role">sys_embedded_help_role</sys_db_object>
+        <sys_id>0601c3f62b6144b681278b310fad7464</sys_id>
+        <sys_metadata>4268dcc4db0eac90ba15a353059619dd</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>4a68dcc4db0eac90ba15a353059619da</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sys_embedded_help_role_4268dcc4db0eac90ba15a353059619dd</sys_update_name>
+        <sys_update_version display_value="sys_embedded_help_role_4268dcc4db0eac90ba15a353059619dd">5c9793b69329c7102de3b4aa6aba100f</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-06-29 13:14:53</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
