@@ -122,6 +122,7 @@
 	aistatus.now_assist_ignore_fulfiller_subscription_check.config_url = strUrl;
 
 
+	var strLLMGatewayUrl = 'https://llmgateway-dart-default-dart001.aus100.service-now.com';
 
 	aistatus.llmgateway_service = {};
 	aistatus.llmgateway_service.title = 'LLM Gateway Service';
@@ -161,7 +162,6 @@
 	aistatus.llmgateway_connection = {};
 	aistatus.llmgateway_connection.title = 'LLM Gateway Connection';
 	aistatus.llmgateway_connection.type = 'boolean';
-	var strLLMGatewayUrl = 'https://llmgateway-dart-default-dart001.aus100.service-now.com';
 	var grConnection = new GlideRecord('http_connection');
 	grConnection.addQuery('name','=','Now LLM');
 	grConnection.query();
@@ -199,14 +199,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-05-21 14:10:28</sys_created_on>
         <sys_id>258f7f20938943500385f7519803d60d</sys_id>
-        <sys_mod_count>47</sys_mod_count>
+        <sys_mod_count>48</sys_mod_count>
         <sys_name>GetInstanceAIStatus</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_258f7f20938943500385f7519803d60d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-06-29 15:37:03</sys_updated_on>
+        <sys_updated_on>2026-06-29 15:47:08</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
