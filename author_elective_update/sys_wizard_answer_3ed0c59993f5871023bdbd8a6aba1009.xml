@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_wizard_answer">
+    <sys_wizard_answer action="DELETE">
+        <active>true</active>
+        <answer>Anwendung</answer>
+        <button_label/>
+        <dependent_value/>
+        <element/>
+        <name>Anwendung</name>
+        <next_question/>
+        <order>100</order>
+        <payload_name/>
+        <question display_value="Base Configuration Item" name="Base Configuration Item">746b64f7719332100a229b13380c8b73</question>
+        <roles/>
+        <script/>
+        <sys_class_name>sys_wizard_answer</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-06-29 14:57:56</sys_created_on>
+        <sys_id>3ed0c59993f5871023bdbd8a6aba1009</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Anwendung</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_wizard_answer_3ed0c59993f5871023bdbd8a6aba1009</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-06-29 14:57:56</sys_updated_on>
+        <table/>
+        <target_url>x_snc_devtools_cmdb_ci_appl_servicenow.do</target_url>
+        <type>1</type>
+    </sys_wizard_answer>
+<sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>b265927933572a987c42c7bb9d5c7b88</instance_id>
+        <instance_name>wildzurich</instance_name>
+        <name>sys_wizard_answer_3ed0c59993f5871023bdbd8a6aba1009</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_wizard_answer">
+    <sys_wizard_answer action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <answer>Anwendung</answer>
+        <button_label/>
+        <dependent_value/>
+        <element/>
+        <name>Anwendung</name>
+        <next_question/>
+        <order>100</order>
+        <payload_name/>
+        <question display_value="Base Configuration Item" name="Base Configuration Item">746b64f7719332100a229b13380c8b73</question>
+        <roles/>
+        <script/>
+        <sys_class_name>sys_wizard_answer</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-06-29 14:57:56</sys_created_on>
+        <sys_id>3ed0c59993f5871023bdbd8a6aba1009</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Anwendung</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_wizard_answer_3ed0c59993f5871023bdbd8a6aba1009</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-06-29 14:57:56</sys_updated_on>
+        <table/>
+        <target_url>x_snc_devtools_cmdb_ci_appl_servicenow.do</target_url>
+        <type>1</type>
+    </sys_wizard_answer>
+</record_update>]]></payload>
+        <payload_hash>-939377144</payload_hash>
+        <record_name>Anwendung</record_name>
+        <reverted_from/>
+        <source>9c57851993714f102de3b4aa6aba10ad</source>
+        <source_table>sys_upgrade_history</source_table>
+        <state>current</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-06-29 15:26:42</sys_created_on>
+        <sys_id>0477095993714f102de3b4aa6aba10d6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19f13fd67f00000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-06-29 15:26:42</sys_updated_on>
+        <type>Answer</type>
+        <update_guid>c07709592b714f109eac4c9b758e46d6</update_guid>
+        <update_guid_history>c07709592b714f109eac4c9b758e46d6:-939377144</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-06-30 06:20:25</sys_created_on>
+        <sys_db_object display_value="" name="sys_wizard_answer">sys_wizard_answer</sys_db_object>
+        <sys_id>37116c9eb5fc473c9145a810001d6664</sys_id>
+        <sys_metadata>3ed0c59993f5871023bdbd8a6aba1009</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Anwendung</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent display_value="Base Configuration Item">cb880dc2c3a103104b4f311f050131ee</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sys_wizard_answer_3ed0c59993f5871023bdbd8a6aba1009</sys_update_name>
+        <sys_update_version display_value="sys_wizard_answer_3ed0c59993f5871023bdbd8a6aba1009">0477095993714f102de3b4aa6aba10d6</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-06-30 06:20:25</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
