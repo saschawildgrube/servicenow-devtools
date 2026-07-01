@@ -27,7 +27,7 @@
 	if (strUrl == '')
 	{
 		// This property does not really exist. It is hardcoded in the script layer:
-		var strUrl = gs.getProperty('glide.servlet.uri');
+		strUrl = gs.getProperty('glide.servlet.uri');
 
 		// Fallback in case the instance is affected by CS7578850 / PRB1590051
 		if (strUrl == 'http://localhost:8080/glide/')
@@ -45,14 +45,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-12-05 10:12:47</sys_created_on>
         <sys_id>bde5e6e31b72f1106c17fdd49b4bcb37</sys_id>
-        <sys_mod_count>11</sys_mod_count>
+        <sys_mod_count>12</sys_mod_count>
         <sys_name>GetInstanceUrl</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_bde5e6e31b72f1106c17fdd49b4bcb37</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-05-20 13:29:01</sys_updated_on>
+        <sys_updated_on>2026-06-23 07:19:46</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

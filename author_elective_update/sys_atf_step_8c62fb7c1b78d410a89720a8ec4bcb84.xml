@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="DELETE">
+        <active>true</active>
+        <callable_outputs/>
+        <copied_from/>
+        <description>Validate there is at least one record in 'sys_user_has_role' matching query:
+User = {{invalid step_id=ff71fb3c1b78d410a89720a8ec4bcbf7.}}
+and Role = itil
+With a failure timeout of 5 Seconds</description>
+        <display_name>Record Query (Deprecated)</display_name>
+        <inputs/>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes>Check if user OPENER has the itil role</notes>
+        <order>2</order>
+        <step_config display_value="Record Query (Deprecated)">0270b8005f30220012b44adb7f46666a</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-05-13 15:31:59</sys_created_on>
+        <sys_id>8c62fb7c1b78d410a89720a8ec4bcb84</sys_id>
+        <sys_mod_count>62</sys_mod_count>
+        <sys_name>Record Query (Deprecated)</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_step_8c62fb7c1b78d410a89720a8ec4bcb84</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-06-18 14:20:44</sys_updated_on>
+        <table>sys_user_has_role</table>
+        <test display_value="DevTools - TestDataAPI - ITSM">820a6f741b78d410a89720a8ec4bcb44</test>
+        <timeout>1970-01-01 00:00:05</timeout>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="DELETE" query="document_key=8c62fb7c1b78d410a89720a8ec4bcb84"/>
+    <sys_variable_value action="DELETE">
+        <document>sys_atf_step</document>
+        <document_key>8c62fb7c1b78d410a89720a8ec4bcb84</document_key>
+        <order>400</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-05-13 15:31:59</sys_created_on>
+        <sys_id>099273bc1b78d410a89720a8ec4bcbb3</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-05-13 15:31:59</sys_updated_on>
+        <value>user={{step['ff71fb3c1b78d410a89720a8ec4bcbf7'].first_record}}^role=282bf1fac6112285017366cb5f867469^EQ</value>
+        <variable display_value="Conditions">cf167c405f30220012b44adb7f46660d</variable>
+    </sys_variable_value>
+    <sys_variable_value action="DELETE">
+        <document>sys_atf_step</document>
+        <document_key>8c62fb7c1b78d410a89720a8ec4bcb84</document_key>
+        <order>300</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-05-13 15:31:59</sys_created_on>
+        <sys_id>459273bc1b78d410a89720a8ec4bcbb3</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-05-13 15:31:59</sys_updated_on>
+        <value>sys_user_has_role</value>
+        <variable display_value="Table">6fe5f8405f30220012b44adb7f4666e4</variable>
+    </sys_variable_value>
+    <sys_variable_value action="DELETE">
+        <document>sys_atf_step</document>
+        <document_key>8c62fb7c1b78d410a89720a8ec4bcb84</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-05-13 15:31:59</sys_created_on>
+        <sys_id>819273bc1b78d410a89720a8ec4bcbb3</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-05-13 15:31:59</sys_updated_on>
+        <value>1</value>
+        <variable display_value="Enforce security">9459c28673103300f660eeadfff6a7dd</variable>
+    </sys_variable_value>
+    <sys_variable_value action="DELETE">
+        <document>sys_atf_step</document>
+        <document_key>8c62fb7c1b78d410a89720a8ec4bcb84</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-05-13 15:31:59</sys_created_on>
+        <sys_id>8d9273bc1b78d410a89720a8ec4bcbb2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-05-13 15:31:59</sys_updated_on>
+        <value>records_match_query</value>
+        <variable display_value="Assert type">dd091e22675003007ba405225685ef69</variable>
+    </sys_variable_value>
+    <sys_element_mapping action="DELETE" query="id=8c62fb7c1b78d410a89720a8ec4bcb84"/>
+    <sys_element_mapping action="DELETE">
+        <field>enforce_security</field>
+        <id>8c62fb7c1b78d410a89720a8ec4bcb84</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-05-13 15:31:59</sys_created_on>
+        <sys_id>499273bc1b78d410a89720a8ec4bcbb2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-05-13 15:31:59</sys_updated_on>
+        <table>var__m_atf_input_variable_0270b8005f30220012b44adb7f46666a</table>
+        <value/>
+    </sys_element_mapping>
+    <sys_element_mapping action="DELETE">
+        <field>field_values</field>
+        <id>8c62fb7c1b78d410a89720a8ec4bcb84</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-05-13 15:31:59</sys_created_on>
+        <sys_id>0d9273bc1b78d410a89720a8ec4bcbb2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-05-13 15:31:59</sys_updated_on>
+        <table>var__m_atf_input_variable_0270b8005f30220012b44adb7f46666a</table>
+        <value>user={{step['ff71fb3c1b78d410a89720a8ec4bcbf7'].first_record}}^role=282bf1fac6112285017366cb5f867469^EQ</value>
+    </sys_element_mapping>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>b265927933572a987c42c7bb9d5c7b88</instance_id>
+        <instance_name>wildzurich</instance_name>
+        <name>sys_atf_step_8c62fb7c1b78d410a89720a8ec4bcb84</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step"><sys_atf_step action="INSERT_OR_UPDATE"><active>true</active><callable_outputs/><copied_from/><description>Validate there is at least one record in 'sys_user_has_role' matching query:
+User = {{invalid step_id=ff71fb3c1b78d410a89720a8ec4bcbf7.}}
+and Role = itil
+With a failure timeout of 5 Seconds</description><display_name>Record Query (Deprecated)</display_name><inputs/><inputs/><mugshots_cache_json/><notes>Check if user OPENER has the itil role</notes><order>2</order><step_config display_value="Record Query (Deprecated)">0270b8005f30220012b44adb7f46666a</step_config><sys_class_name>sys_atf_step</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2020-05-13 15:31:59</sys_created_on><sys_id>8c62fb7c1b78d410a89720a8ec4bcb84</sys_id><sys_mod_count>62</sys_mod_count><sys_name>Record Query (Deprecated)</sys_name><sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package><sys_policy/><sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope><sys_update_name>sys_atf_step_8c62fb7c1b78d410a89720a8ec4bcb84</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-06-18 14:20:44</sys_updated_on><table>sys_user_has_role</table><test display_value="DevTools - TestDataAPI - ITSM">820a6f741b78d410a89720a8ec4bcb44</test><timeout>1970-01-01 00:00:05</timeout><warning_message/></sys_atf_step><sys_variable_value action="delete_multiple" query="document_key=8c62fb7c1b78d410a89720a8ec4bcb84"/><sys_variable_value action="INSERT_OR_UPDATE"><document>sys_atf_step</document><document_key>8c62fb7c1b78d410a89720a8ec4bcb84</document_key><order>400</order><sys_class_name>sys_variable_value</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2020-05-13 15:31:59</sys_created_on><sys_id>099273bc1b78d410a89720a8ec4bcbb3</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-05-13 15:31:59</sys_updated_on><value>user={{step['ff71fb3c1b78d410a89720a8ec4bcbf7'].first_record}}^role=282bf1fac6112285017366cb5f867469^EQ</value><variable display_value="Conditions">cf167c405f30220012b44adb7f46660d</variable></sys_variable_value><sys_variable_value action="INSERT_OR_UPDATE"><document>sys_atf_step</document><document_key>8c62fb7c1b78d410a89720a8ec4bcb84</document_key><order>300</order><sys_class_name>sys_variable_value</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2020-05-13 15:31:59</sys_created_on><sys_id>459273bc1b78d410a89720a8ec4bcbb3</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-05-13 15:31:59</sys_updated_on><value>sys_user_has_role</value><variable display_value="Table">6fe5f8405f30220012b44adb7f4666e4</variable></sys_variable_value><sys_variable_value action="INSERT_OR_UPDATE"><document>sys_atf_step</document><document_key>8c62fb7c1b78d410a89720a8ec4bcb84</document_key><order>100</order><sys_class_name>sys_variable_value</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2020-05-13 15:31:59</sys_created_on><sys_id>819273bc1b78d410a89720a8ec4bcbb3</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-05-13 15:31:59</sys_updated_on><value>1</value><variable display_value="Enforce security">9459c28673103300f660eeadfff6a7dd</variable></sys_variable_value><sys_variable_value action="INSERT_OR_UPDATE"><document>sys_atf_step</document><document_key>8c62fb7c1b78d410a89720a8ec4bcb84</document_key><order>200</order><sys_class_name>sys_variable_value</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2020-05-13 15:31:59</sys_created_on><sys_id>8d9273bc1b78d410a89720a8ec4bcbb2</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-05-13 15:31:59</sys_updated_on><value>records_match_query</value><variable display_value="Assert type">dd091e22675003007ba405225685ef69</variable></sys_variable_value><sys_element_mapping action="delete_multiple" query="id=8c62fb7c1b78d410a89720a8ec4bcb84"/><sys_element_mapping action="INSERT_OR_UPDATE"><field>enforce_security</field><id>8c62fb7c1b78d410a89720a8ec4bcb84</id><sys_created_by>admin</sys_created_by><sys_created_on>2020-05-13 15:31:59</sys_created_on><sys_id>499273bc1b78d410a89720a8ec4bcbb2</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-05-13 15:31:59</sys_updated_on><table>var__m_atf_input_variable_0270b8005f30220012b44adb7f46666a</table><value/></sys_element_mapping><sys_element_mapping action="INSERT_OR_UPDATE"><field>field_values</field><id>8c62fb7c1b78d410a89720a8ec4bcb84</id><sys_created_by>admin</sys_created_by><sys_created_on>2020-05-13 15:31:59</sys_created_on><sys_id>0d9273bc1b78d410a89720a8ec4bcbb2</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-05-13 15:31:59</sys_updated_on><table>var__m_atf_input_variable_0270b8005f30220012b44adb7f46666a</table><value>user={{step['ff71fb3c1b78d410a89720a8ec4bcbf7'].first_record}}^role=282bf1fac6112285017366cb5f867469^EQ</value></sys_element_mapping></record_update>]]></payload>
+        <payload_hash>-9739643</payload_hash>
+        <record_name>Record Query (Deprecated)</record_name>
+        <reverted_from/>
+        <source>5f885cabc39d43944b4f311f050131b3</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-06-18 14:20:44</sys_created_on>
+        <sys_id>3ade04f9c32903184b4f311f05013165</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19edb1b12090000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-06-18 14:20:44</sys_updated_on>
+        <type>Test Step</type>
+        <update_guid>b2de04f9672903181c7fe8c073dea13f</update_guid>
+        <update_guid_history>b2de04f9672903181c7fe8c073dea13f:-9739643,96bd01651e1d8b142cfd35d55e40a874:0,ebb8fc6da9558b14c8c78e6ad291780f:0,91eb7768704dc310a96eccc6d36bacbb:0,3fe9d87ebaf4435095b558404d2a9db9:0,6254fc65e47443106e783ef057d13ec3:0,54699430a7d88f502231570945bc56c3:0,7a4f33a060d08f508cda176f250baab3:0,08fb7e9ea5b33654828ac076ed5098f8:0,a25d6c18f0afbe10f62e951ca716956a:0,a8a4acf7cb03fa10b6aabc554c7b96eb:0,1b0f058b7f8fb210950fde1bd891626a:0,ceb35fa6f2ea32d05a680b5fdfc5079a:0,5dfb1e5a954e3690d5fe1a0f15ebe0e1:0,5c6d947ddb4ef690ecf8e414dc64127e:0,5c8b18b5dd4ef69076d0808c188c39be:0,a9b09f2db446f690c5370b0cddf59b7d:0,e281282d084a7690ec02b3c2c366e1fb:0,e87b93ced91d3610851fa69fa6a254fc:0,0e6974d1b4493a104d2baae5b9ab4cb2:0,8fd842f103a47e10fe0ac9f9e4ded9d4:0,3fe46b2a200872100ef396e011cff32e:0,1290c2f0e70032d08c8502d37f00356e:0,b23cfe176a672e1072204e976f17e996:0,90c11f7d12d322104b66a405c44c7f31:1612330147</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-06-18 14:24:50</sys_created_on>
+        <sys_db_object display_value="" name="sys_atf_step">sys_atf_step</sys_db_object>
+        <sys_id>93412aebe71540be91875c001d6a7ce4</sys_id>
+        <sys_metadata>8c62fb7c1b78d410a89720a8ec4bcb84</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Record Query (Deprecated)</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sys_atf_step_8c62fb7c1b78d410a89720a8ec4bcb84</sys_update_name>
+        <sys_update_version display_value="sys_atf_step_8c62fb7c1b78d410a89720a8ec4bcb84">3ade04f9c32903184b4f311f05013165</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-06-18 14:24:50</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

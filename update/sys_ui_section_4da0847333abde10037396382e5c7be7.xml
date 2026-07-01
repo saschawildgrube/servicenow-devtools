@@ -2,6 +2,7 @@
     <sys_ui_section caption="When to Apply" section_id="4da0847333abde10037396382e5c7be7" sys_domain="global" table="sys_ui_policy" version="3" view="devtools">
         <sys_ui_annotation action="INSERT_OR_UPDATE">
             <is_plain_text>false</is_plain_text>
+            <name/>
             <sys_created_by>admin</sys_created_by>
             <sys_created_on>2025-02-12 16:08:05</sys_created_on>
             <sys_id>3bc20c3733abde10037396382e5c7bb8</sys_id>
@@ -13,6 +14,7 @@
         </sys_ui_annotation>
         <sys_ui_annotation action="INSERT_OR_UPDATE">
             <is_plain_text>false</is_plain_text>
+            <name/>
             <sys_created_by>admin</sys_created_by>
             <sys_created_on>2025-02-12 16:08:05</sys_created_on>
             <sys_id>3fc20c3733abde10037396382e5c7bb8</sys_id>
@@ -24,6 +26,7 @@
         </sys_ui_annotation>
         <sys_ui_annotation action="INSERT_OR_UPDATE">
             <is_plain_text>false</is_plain_text>
+            <name/>
             <sys_created_by>admin</sys_created_by>
             <sys_created_on>2025-02-12 16:08:05</sys_created_on>
             <sys_id>b3c20c3733abde10037396382e5c7bb9</sys_id>
@@ -35,6 +38,7 @@
         </sys_ui_annotation>
         <sys_ui_annotation action="INSERT_OR_UPDATE">
             <is_plain_text>false</is_plain_text>
+            <name/>
             <sys_created_by>admin</sys_created_by>
             <sys_created_on>2025-02-12 16:08:05</sys_created_on>
             <sys_id>ffc20c3733abde10037396382e5c7bb8</sys_id>

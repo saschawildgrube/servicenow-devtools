@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="cmdb_multisource_query">
+    <cmdb_multisource_query action="DELETE">
+        <description/>
+        <name>test</name>
+        <query_json>{"result_type":"multisource_records","class_conditions":[{"class_name":"cmdb_ci_appl_dot_net","condition":"","allClasses":false}],"discovery_sources":["Altiris"],"excluded_discovery_source":"","is_diff":false,"diff":{"field":""},"results_filter":{"type":"none","values":[]}}</query_json>
+        <report_source/>
+        <sys_class_name>cmdb_multisource_query</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-05-28 11:37:56</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>4d30efb2eb454314b13dfd72bad0cdaf</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>test</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>cmdb_multisource_query_4d30efb2eb454314b13dfd72bad0cdaf</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-05-28 11:37:56</sys_updated_on>
+    </cmdb_multisource_query>
+<sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>0e482098fb4443541feef633beefdc84</instance_id>
+        <instance_name>wildaustralia</instance_name>
+        <name>cmdb_multisource_query_4d30efb2eb454314b13dfd72bad0cdaf</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="cmdb_multisource_query">
+    <cmdb_multisource_query action="INSERT_OR_UPDATE">
+        <description/>
+        <name>test</name>
+        <query_json>{"result_type":"multisource_records","class_conditions":[{"class_name":"cmdb_ci_appl_dot_net","condition":"","allClasses":false}],"discovery_sources":["Altiris"],"excluded_discovery_source":"","is_diff":false,"diff":{"field":""},"results_filter":{"type":"none","values":[]}}</query_json>
+        <report_source/>
+        <sys_class_name>cmdb_multisource_query</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-05-28 11:37:56</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>4d30efb2eb454314b13dfd72bad0cdaf</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>test</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>cmdb_multisource_query_4d30efb2eb454314b13dfd72bad0cdaf</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-05-28 11:37:56</sys_updated_on>
+    </cmdb_multisource_query>
+</record_update>]]></payload>
+        <payload_hash>1381171949</payload_hash>
+        <record_name>test</record_name>
+        <reverted_from/>
+        <source>97a51521939d831023bdbd8a6aba1087</source>
+        <source_table>sys_upgrade_history</source_table>
+        <state>previous</state>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2026-06-05 14:37:00</sys_created_on>
+        <sys_id>cae59d61939d831023bdbd8a6aba1073</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19e983749cd0000001</sys_recorded_at>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2026-06-05 14:37:00</sys_updated_on>
+        <type>CMDB Multisource Queries</type>
+        <update_guid>8ae59d61919d8310ed0b0e45b1397873</update_guid>
+        <update_guid_history>8ae59d61919d8310ed0b0e45b1397873:1381171949</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="">23e9304e93614710d194b4aa6aba1050</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-06-19 12:07:26</sys_created_on>
+        <sys_db_object display_value="" name="cmdb_multisource_query">cmdb_multisource_query</sys_db_object>
+        <sys_id>2c2d69ad1d0a408ea7f5ad476734bc99</sys_id>
+        <sys_metadata>4d30efb2eb454314b13dfd72bad0cdaf</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>test</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>cmdb_multisource_query_4d30efb2eb454314b13dfd72bad0cdaf</sys_update_name>
+        <sys_update_version display_value="cmdb_multisource_query_4d30efb2eb454314b13dfd72bad0cdaf">cae59d61939d831023bdbd8a6aba1073</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-06-19 12:07:26</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

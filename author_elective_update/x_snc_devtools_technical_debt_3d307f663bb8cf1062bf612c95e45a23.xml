@@ -45,7 +45,7 @@
         <update_guid_history>8d7077a63db8cf102e81fcf450727e2f:-784941940</update_guid_history>
     </sys_update_version>
     <sys_metadata_delete action="INSERT_OR_UPDATE">
-        <sys_audit_delete display_value="ShowNowAssistPanel() no longer works">704b7f24934943500385f7519803d6e3</sys_audit_delete>
+        <sys_audit_delete display_value="">704b7f24934943500385f7519803d6e3</sys_audit_delete>
         <sys_class_name>sys_metadata_delete</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-05-21 13:49:50</sys_created_on>

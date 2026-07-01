@@ -16,7 +16,7 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2025-10-29 17:40:40</sys_updated_on>
         <target_name>ga_guidance_action</target_name>
-        <target_scope display_value="Guided Decisions - Guidance">fd76ed5a3b570010119c870044efc470</target_scope>
+        <target_scope display_value="Guidance">fd76ed5a3b570010119c870044efc470</target_scope>
         <target_type>sys_db_object</target_type>
     </sys_scope_privilege>
 </record_update>

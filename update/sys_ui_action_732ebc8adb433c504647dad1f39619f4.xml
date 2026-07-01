@@ -30,16 +30,27 @@
         <name>Delete Update Set</name>
         <onclick/>
         <order>100</order>
-        <script><![CDATA[var bResult = UpdateSetDelete(current.sys_id);
-if (bResult == true)
+        <script><![CDATA[if (current.state != 'complete')
 {
-	gs.addInfoMessage('Deleted update set "'+current.name+'"');
+	gs.addErrorMessage('Update Set must be in "Complete" state to be deleted!');
+	gs.setRedirect(GetInstanceRecordUrl('sys_update_set',current.sys_id));
 }
 else
 {
-	gs.addErrorMessage('Failed to delete update set "'+current.name+'"');
-	gs.setRedirect(GetInstanceRecordURI('sys_update_set',current.sys_id));
-}]]></script>
+	var bResult = UpdateSetDelete(current.sys_id);
+	if (bResult == true)
+	{
+		gs.addInfoMessage('Deleted update set "'+current.name+'"');
+		gs.setRedirect(GetInstanceListUrl('sys_update_set'));
+	}
+	else
+	{
+		gs.addErrorMessage('Failed to delete update set "'+current.name+'"');
+		gs.setRedirect(GetInstanceRecordUrl('sys_update_set',current.sys_id));
+	}
+}
+
+]]></script>
         <show_insert>false</show_insert>
         <show_multiple_update>false</show_multiple_update>
         <show_query>false</show_query>
@@ -50,7 +61,7 @@ else
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>732ebc8adb433c504647dad1f39619f4</sys_id>
-        <sys_mod_count>20</sys_mod_count>
+        <sys_mod_count>23</sys_mod_count>
         <sys_name>Delete Update Set</sys_name>
         <sys_overrides/>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -58,7 +69,7 @@ else
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_action_732ebc8adb433c504647dad1f39619f4</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-04-09 16:23:14</sys_updated_on>
+        <sys_updated_on>2026-06-29 13:38:24</sys_updated_on>
         <table>global</table>
         <ui11_compatible>true</ui11_compatible>
         <ui16_compatible>false</ui16_compatible>

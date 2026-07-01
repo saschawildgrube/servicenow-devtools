@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_kmf_module_key_policy">
+    <sys_kmf_module_key_policy action="DELETE">
+        <crypto_module display_value="global.com_glide_oneextend_encrypter">68d3cd7693173a100183f91a2603d665</crypto_module>
+        <key_type display_value="Symmetric Key Encryption Key">ca005cf7c7103300af4d43c6f0976328</key_type>
+        <last_enforced>2026-06-24 01:00:00</last_enforced>
+        <result>reject</result>
+        <sys_class_name>sys_kmf_module_key_policy</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-06-24 01:00:00</sys_created_on>
+        <sys_id>631154a3c36583104b4f311f0501316e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_kmf_module_key_policy_631154a3c36583104b4f311f0501316e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-06-24 01:00:00</sys_updated_on>
+    </sys_kmf_module_key_policy>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>b265927933572a987c42c7bb9d5c7b88</instance_id>
+        <instance_name>wildzurich</instance_name>
+        <name>sys_kmf_module_key_policy_631154a3c36583104b4f311f0501316e</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_kmf_module_key_policy"><sys_kmf_module_key_policy action="INSERT_OR_UPDATE"><crypto_module display_value="global.com_glide_oneextend_encrypter">68d3cd7693173a100183f91a2603d665</crypto_module><key_type display_value="Symmetric Key Encryption Key">ca005cf7c7103300af4d43c6f0976328</key_type><last_enforced>2026-06-24 01:00:00</last_enforced><result>reject</result><sys_class_name>sys_kmf_module_key_policy</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2026-06-24 01:00:00</sys_created_on><sys_id>631154a3c36583104b4f311f0501316e</sys_id><sys_mod_count>0</sys_mod_count><sys_name/><sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package><sys_policy/><sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope><sys_update_name>sys_kmf_module_key_policy_631154a3c36583104b4f311f0501316e</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-06-24 01:00:00</sys_updated_on></sys_kmf_module_key_policy></record_update>]]></payload>
+        <payload_hash>867737812</payload_hash>
+        <record_name/>
+        <reverted_from/>
+        <source>3df75bfa9329c7102de3b4aa6aba103f</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-06-24 01:00:00</sys_created_on>
+        <sys_id>631154a3c36583104b4f311f050131bf</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19ef72420e00000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-06-24 01:00:00</sys_updated_on>
+        <type>Crypto Module Key Policy</type>
+        <update_guid>ef1154a3e765831027eafb5dccd71bbd</update_guid>
+        <update_guid_history>ef1154a3e765831027eafb5dccd71bbd:867737812</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-06-25 13:24:06</sys_created_on>
+        <sys_db_object display_value="" name="sys_kmf_module_key_policy">sys_kmf_module_key_policy</sys_db_object>
+        <sys_id>00d3a76ee2cf48a280e741b2194109e4</sys_id>
+        <sys_metadata>631154a3c36583104b4f311f0501316e</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sys_kmf_module_key_policy_631154a3c36583104b4f311f0501316e</sys_update_name>
+        <sys_update_version display_value="sys_kmf_module_key_policy_631154a3c36583104b4f311f0501316e">631154a3c36583104b4f311f050131bf</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-06-25 13:24:06</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

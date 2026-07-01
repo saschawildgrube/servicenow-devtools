@@ -13,16 +13,31 @@
 {
 	aistatus = {};
 
-	// Now Assist Agents is installed
 	aistatus.now_assist_agents_installation = {};
+	aistatus.now_assist_agents_installation.title = 'Now Assist AI Agents Plugin';
+	aistatus.now_assist_agents_installation.type = 'boolean';
 	aistatus.now_assist_agents_installation.status = IsNowAssistAIAgentsInstalled();
-	aistatus.now_assist_agents_installation.info = 'Is true if required plugins are installed to use AI Agents.';
+	aistatus.now_assist_agents_installation.info = 'Checks if required plugins are installed to use AI Agents. The "Now Assist AI Agents" plugin can only be installed as a dependency. Installing the "Now Assist for Creator" (sn_now_creator) is an option.';
+	aistatus.now_assist_agents_installation.config_url = GetInstanceUrl() + 'now/app-manager/home/app/id/32808450431302106c3603295bb8f245/';
 
-	// Now Assist Panel is active
+
+
+	aistatus.ai_search = {};
+	aistatus.ai_search.title = 'AI Search';
+	aistatus.ai_search.type = 'boolean';
+	aistatus.ai_search.info = 'Checks if AI Search is provisioned on the instance.';
+	aistatus.ai_search.config_url = GetInstanceUrl() + 'now/nav/ui/classic/params/target/ais_status.do';
+	aistatus.ai_search.documentation_url = 'https://support.servicenow.com/kb?id=kb_article_view&sysparm_article=KB0867751';
+	var diagnostics = GetDiagnostics();
+	aistatus.ai_search.status = GetBoolValue(GetValue(diagnostics,'ais.status','ais.enabled'));
+	
+
 	aistatus.now_assist_panel = {};
+	aistatus.now_assist_panel.title = 'Now Assist Panel';
+	aistatus.now_assist_panel.type = 'boolean';
 	aistatus.now_assist_panel.status = false;
-	aistatus.now_assist_panel.info = 'True if the Now Assist Panel is "turned on" on the page '+GetInstanceUrl() +'now/now-assist-admin/now-assist-panel.';
-
+	aistatus.now_assist_panel.info = 'Checks if the Now Assist Panel is "turned on" on.';
+	aistatus.now_assist_panel.config_url = GetInstanceUrl() +'now/now-assist-admin/now-assist-panel';
 	var grNAS = new GlideRecord('sn_nowassist_settings');
 	grNAS.addQuery('type','=','nap');
 	grNAS.addQuery('name','=','Now Assist Panel Settings');
@@ -37,56 +52,146 @@
 		}
 	}
 
-	// Now Assist Panel - Platform (default)
-	aistatus.now_assist_panel_platform = {};
-	aistatus.now_assist_panel_platform.status = false;
-	aistatus.now_assist_panel_platform.info = 'Is true if the Now Assist Panel Deployment Channel is configured for "Now Assist Panel - Platform (default)" in '+GetInstanceUrl()+'now/conversational-studio/assistants/all.';
 
-	var grNAPDC = new GlideRecord('sys_now_assist_deployment_channel');
-	grNAPDC.addQuery('active','=','true');
-	grNAPDC.addQuery('config_type','=','');
-	grNAPDC.addQuery('document_table','=','sys_ux_app');
-	grNAPDC.addQuery('experience','=','self_service_dialog'); 
-	grNAPDC.query();
-	while (grNAPDC.next() == true)
+	aistatus.now_assist_panel_platform = {};
+	aistatus.now_assist_panel_platform.title = 'Now Assist Panel - Platform (default) Activation';
+	aistatus.now_assist_panel_platform.type = 'boolean';
+	aistatus.now_assist_panel_platform.status = false;
+	aistatus.now_assist_panel_platform.info = 'Checks if the Now Assist Panel - Platform (default) is active.';
+	aistatus.now_assist_panel_platform.config_url = GetInstanceUrl()+'now/conversational-studio/assistants/all';
+	if (IsValidTable('sys_now_assist_deployment') == true)
 	{
-		if (grNAPDC.now_assist_deployment.getDisplayValue() == 'Now Assist Panel - Platform (default)')
+		var grNAD = new GlideRecord('sys_now_assist_deployment');
+		grNAD.addQuery('active','=','true');
+		grNAD.addQuery('assistant_type','=','nap');
+		grNAD.addQuery('name','=','Now Assist Panel - Platform (default)');
+		grNAD.query();
+		while (grNAD.next() == true)
 		{
 			aistatus.now_assist_panel_platform.status = true;
-		}	
+		}
 	}
-	
-	// sn_nowassist_admin.ignoreFulfillerSubscriptionCheck
+
+
+
+	aistatus.now_assist_panel_platform_deployment = {};
+	aistatus.now_assist_panel_platform_deployment.title = 'Now Assist Panel Deployment Channel';
+	aistatus.now_assist_panel_platform_deployment.type = 'boolean';
+	aistatus.now_assist_panel_platform_deployment.status = false;
+	aistatus.now_assist_panel_platform_deployment.info = 'Checks if the Now Assist Panel Deployment Channel is configured for "Now Assist Panel - Platform (default)".';
+	aistatus.now_assist_panel_platform_deployment.config_url = GetInstanceUrl()+'now/conversational-studio/assistants/all';
+	if (IsValidTable('sys_now_assist_deployment_channel') == true)
+	{
+		var grNAPDC = new GlideRecord('sys_now_assist_deployment_channel');
+		grNAPDC.addQuery('active','=','true');
+		grNAPDC.addQuery('config_type','=','');
+		grNAPDC.addQuery('document_table','=','sys_ux_app');
+		grNAPDC.addQuery('experience','=','self_service_dialog'); 
+		grNAPDC.query();
+		while (grNAPDC.next() == true)
+		{
+			if (grNAPDC.now_assist_deployment.getDisplayValue() == 'Now Assist Panel - Platform (default)')
+			{
+				aistatus.now_assist_panel_platform_deployment.status = true;
+			}	
+		}
+	}
+
+
+
 	aistatus.now_assist_ignore_fulfiller_subscription_check = {};
+	aistatus.now_assist_ignore_fulfiller_subscription_check.title = 'Ignore Fulfiller Subscription Check';
+	var strPropName = 'sn_nowassist_admin.ignoreFulfillerSubscriptionCheck';
+	aistatus.now_assist_ignore_fulfiller_subscription_check.type = 'boolean';
 	aistatus.now_assist_ignore_fulfiller_subscription_check.status = 
 		GetBoolValue(
-			GetProperty('sn_nowassist_admin.ignoreFulfillerSubscriptionCheck'));
+			GetProperty(strPropName));
 	aistatus.now_assist_ignore_fulfiller_subscription_check.info = 
-		'True if the system property sn_nowassist_admin.ignoreFulfillerSubscriptionCheck is set to "true". Setting this system property is documented as a fix to PRB1965167.';
-
-
-	// llmgateway-dart config
-	aistatus.llmgateway_config = {};
-	/*
-	var grSSE = new GlideRecord('sys_service_endpoint');
-	grSSE.addQuery('url','=','https://llmgateway-dart');
-	grSSE.query();
-	if (grSSE.getRowCount() > 0)
+		'Checks if the system property "' + strPropName + '" is set to "true". Setting this system property is documented as a fix to PRB1965167.';
+	
+	var grProp = GetPropertyRecord(strPropName);
+	var strUrl = '';
+	if (IsValidRecord(grProp) == true)
 	{
-		aistatus.llmgateway_config.status = false;
+		strUrl = GetInstanceRecordUrl('sys_properties',grProp.sys_id);
 	}
 	else
 	{
-		aistatus.llmgateway_config.status = true;
+		strUrl = GetInstanceListUrl('sys_properties','','name='+strPropName,0);
 	}
-	*/
-	/*
-	aistatus.llmgateway_config.info = 
-		'No sys_service_endpoint record should point to the outdated url: https://llmgateway-dart. The status is true, if no record points to the outdated url. If at least one record points to the outdated url, the status is false. Follow instructions in KB3024782 to fix this.';
-*/
-	aistatus.llmgateway_config.info = 
-		'No sys_service_endpoint record should point to the outdated url: https://llmgateway-dart. The status cannot be determined unless the script is executed as maint. Follow instructions in KB3024782 to fix this.';
+	aistatus.now_assist_ignore_fulfiller_subscription_check.config_url = strUrl;
 
+
+	var strLLMGatewayUrl = 'https://llmgateway-dart-default-dart001.aus100.service-now.com';
+
+	aistatus.llmgateway_service = {};
+	aistatus.llmgateway_service.title = 'LLM Gateway Service';
+	aistatus.llmgateway_service.info = 
+		'The LLMGateway related sys_service_endpoint records should point to: "'+strLLMGatewayUrl+'". Unfortunately the status cannot be determined unless the user is maint. Follow instructions in KB3084849 to fix this.';
+	var aLLMServices = ['LLMGateway','LLMProxy','MLPredictor-Triton'];
+	var strEncodedQuery = 'nameIN' + GetStringValue(aLLMServices);
+	if (IsUserMaint())
+	{
+		var aServicesSysIds = [];
+		var grSS = new GlideRecord('sys_service');
+		grSS.addEncodedQuery(strEncodedQuery);
+		grSS.query();
+		while (grSS.next() == true)
+		{
+			aServicesSysIds.push(GetStringValue(grSS.sys_id));
+		}
+				
+		aistatus.llmgateway_service.type = 'boolean';
+		var grSSE = new GlideRecord('sys_service_endpoint');
+		grSSE.addQuery('url','=','https://llmgateway-dart');
+		grSSE.addQuery('service','IN',GetStringValue(aServicesSysIds));
+		grSSE.query();
+		if (grSSE.getRowCount() > 0)
+		{
+			aistatus.llmgateway_service.status = false;
+		}
+		else
+		{
+			aistatus.llmgateway_service.status = true;
+		}
+	}
+	aistatus.llmgateway_service.config_url = GetInstanceListUrl('sys_service','',strEncodedQuery);
+
+
+
+	aistatus.llmgateway_connection = {};
+	aistatus.llmgateway_connection.title = 'LLM Gateway Connection';
+	aistatus.llmgateway_connection.type = 'boolean';
+	var grConnection = new GlideRecord('http_connection');
+	grConnection.addQuery('name','=','Now LLM');
+	grConnection.query();
+	var bStatus = false;
+	if (grConnection.getRowCount() == 1)
+	{
+		if (grConnection.next())
+		{
+			aistatus.llmgateway_connection.config_url = GetInstanceRecordUrl('http_connection',grConnection.sys_id);
+			var strConnectionUrl = GetStringValue(grConnection.connection_url);
+			if (strConnectionUrl == strLLMGatewayUrl)
+			{
+				bStatus = true;
+			}
+		}
+	}
+	aistatus.llmgateway_connection.status = bStatus;
+	aistatus.llmgateway_connection.info =
+		'The HTTP Connection record "Now LLM" should point to "'+strLLMGatewayUrl + '". Follow instructions in KB3084849 to fix this.';
+	
+
+
+	aistatus.license_tier = {};
+	// https://support.servicenow.com/kb?id=kb_article_view&sysparm_article=KB2975850
+	aistatus.license_tier.title = 'Prime License Tier';
+	aistatus.license_tier.type = 'boolean';
+	aistatus.license_tier.status = IsPrimeTierLicenseAvailable();
+	aistatus.license_tier.info = 
+		'Checks if the instance has the "prime" license tier - which is required to build and run custom AI agents. One option to enable the Prime License Tier is to install the "App Engine - Prime" subscription.';
+	aistatus.license_tier.config_url = GetInstanceUrl() + '/now/app-manager/home/product/source/store/id/14b8ddfb87ebfa90669040c8dabb35b4/details';
 
 	return aistatus;
 }]]></script>
@@ -94,14 +199,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-05-21 14:10:28</sys_created_on>
         <sys_id>258f7f20938943500385f7519803d60d</sys_id>
-        <sys_mod_count>18</sys_mod_count>
+        <sys_mod_count>48</sys_mod_count>
         <sys_name>GetInstanceAIStatus</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_258f7f20938943500385f7519803d60d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-06-05 10:58:49</sys_updated_on>
+        <sys_updated_on>2026-06-29 15:47:08</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

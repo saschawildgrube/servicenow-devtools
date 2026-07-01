@@ -2,6 +2,7 @@
     <sys_ui_section caption="" section_id="10665f121b200a100e0b2f836b4bcbb8" sys_domain="global" table="sys_ui_policy" version="3" view="devtools">
         <sys_ui_annotation action="INSERT_OR_UPDATE">
             <is_plain_text>false</is_plain_text>
+            <name/>
             <sys_created_by>admin</sys_created_by>
             <sys_created_on>2025-02-12 16:24:11</sys_created_on>
             <sys_id>3f760cbb33abde10037396382e5c7b15</sys_id>

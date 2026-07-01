@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-06-15 10:27:11</sys_created_on>
         <sys_id>3c04e8f51bba4610063ddc61ab4bcb6c</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_3c04e8f51bba4610063ddc61ab4bcb6c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-06-15 10:31:17</sys_updated_on>
+        <sys_updated_on>2026-06-19 08:00:32</sys_updated_on>
         <table/>
         <test display_value="DevTools - GetGroupRecord">dad3e4f51bba4610063ddc61ab4bcb29</test>
         <timeout/>
@@ -36,9 +36,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-06-15 10:27:13</sys_created_on>
         <sys_id>8704a8f51bba4610063ddc61ab4bcbfc</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-06-15 10:31:17</sys_updated_on>
+        <sys_updated_on>2026-06-19 08:00:33</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -68,11 +68,11 @@
 &#13;
 	TestCase_GetGroupRecord(null,false);&#13;
 	&#13;
-	var testdata = new TestDataAPI('_ATF_DEVTOOLS_');&#13;
+	var testdata = new TestDataAPI('ATF.DEVTOOLS');&#13;
 	var strGroupSysId = testdata.CreateGroup('1',[]);&#13;
 	&#13;
 	TestCase_GetGroupRecord(strGroupSysId,true);&#13;
-	TestCase_GetGroupRecord('_ATF_DEVTOOLS_1',true);&#13;
+	TestCase_GetGroupRecord('Test ATF.DEVTOOLS 1',true);&#13;
 		&#13;
 	return test.GetResult();&#13;
 	&#13;

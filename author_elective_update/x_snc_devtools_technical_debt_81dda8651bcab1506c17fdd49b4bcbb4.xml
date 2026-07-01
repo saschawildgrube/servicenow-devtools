@@ -68,7 +68,7 @@ Once the new feature is confirmed, the code should be removed.</description>
         <update_guid_history>35694df4f9afaa10d454050c346a2ce4:0,8d3f589c51df261007e1b3ef6c25f7c6:0,51ecd1449a9fe21050ccf3e94eaf349c:0,b1fe4e457cc762102bdee1ce670d78b6:0,31bf4185428362106a420f2071c4967e:0,c346bde1347ea210c5b404c1f2959300:0,ffa5a9a114faa210609467c7aa6577e9:0,91e622a6332e6250f7312dd4f75a18d0:0,19ae1e6e7daa625070eb7d800173eea4:0,e3a1a1cd3ea22a103961fd1e7d61c19e:0,a0ea1589e3622a109eb1bc36c11d7801:0,1c2ff24ac356ee1052b30c81b6093173:0,e8ec1e0a2392ee10ad3c76b604844c93:0,43de80593616aa10c5857137740f1427:0,6358cc91d5d2aa1076513e9ef58cf364:0,2fe80fe29a42e21014c9798cd0740d40:0,19715383f7656650e1faa41d97865738:0,443bcfc7b5e166503e150c1a2203e88d:0,94b57961a42d625036281978c1f58e38:0,91d3696d12696250ce7c56f5612d9028:0,2ee3c7b8412d6e1059a2ad27a04e5b20:0,71d8babc9ca96e1079ac733bcc51a7c8:0,723081c9561d2a104cdacaac68cbbf32:0,730a51bf1205a21038d0d6b583dee8aa:0,466ad6d4cb01ee1079dd70d9286e8903:0,80641e100fcdae105d68821814751017:0,d8e71ede26bc2610c94dd5b958dfffaa:0,364901cd58bc2a1061de1e8dc3f6f3f0:0,33afbd2bd0986a507cb98008fa08260f:0,f65633078d14a6502731f794f34c57a4:0,c347e57091cca6505f5859b7828c56bc:763809653</update_guid_history>
     </sys_update_version>
     <sys_metadata_delete action="INSERT_OR_UPDATE">
-        <sys_audit_delete display_value="Old code to help admins creating cross-scope sysrule_view records">adbf00e5eb550310b13dfd72bad0cdbf</sys_audit_delete>
+        <sys_audit_delete display_value="">adbf00e5eb550310b13dfd72bad0cdbf</sys_audit_delete>
         <sys_class_name>sys_metadata_delete</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-06-05 09:30:19</sys_created_on>
