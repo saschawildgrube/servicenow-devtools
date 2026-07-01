@@ -14,16 +14,16 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-06-18 14:06:17</sys_created_on>
         <sys_id>c38b44b9c3e503184b4f311f050131c2</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_c38b44b9c3e503184b4f311f050131c2</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-06-18 14:07:52</sys_updated_on>
+        <sys_updated_on>2026-07-01 11:44:09</sys_updated_on>
         <table/>
-        <test display_value="DevTools - CleanupATF">be8b44b9c3e503184b4f311f0501318d</test>
+        <test display_value="DevTools - CleanUpATF">be8b44b9c3e503184b4f311f0501318d</test>
         <timeout/>
         <warning_message/>
     </sys_atf_step>
@@ -50,35 +50,35 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-06-18 14:06:18</sys_created_on>
         <sys_id>4f8b44b9c3e503184b4f311f050131c6</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-06-18 14:07:53</sys_updated_on>
+        <sys_updated_on>2026-07-01 11:44:09</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
 	&#13;
 	test.SetResult(true);&#13;
 	&#13;
-	function TestCase_CleanupATF(bInProgress,nLimit,vExpected)&#13;
+	function TestCase_CleanUpATF(bInProgress,nLimit,vExpected)&#13;
 	{&#13;
-		function TestCase_CleanupATF_CheckResult(vInput,vExpected,vResult)&#13;
+		function TestCase_CleanUpATF_CheckResult(vInput,vExpected,vResult)&#13;
 		{&#13;
 			return (vExpected == vResult);&#13;
 		}&#13;
 		&#13;
 		test.TestCase(&#13;
-			'Function CleanupATF()',&#13;
-			CleanupATF,&#13;
+			'Function CleanUpATF()',&#13;
+			CleanUpATF,&#13;
 			{&#13;
 				'bInProgress': bInProgress,&#13;
 				'nLimit': nLimit&#13;
 			},&#13;
 			vExpected,&#13;
-			TestCase_CleanupATF_CheckResult);&#13;
+			TestCase_CleanUpATF_CheckResult);&#13;
 	}&#13;
 &#13;
-	// In regular mode, CleanupATF() returns false because a test is currently running	&#13;
-	TestCase_CleanupATF(false,100,false);&#13;
+	// In regular mode, CleanUpATF() returns false because a test is currently running	&#13;
+	TestCase_CleanUpATF(false,100,false);&#13;
 &#13;
 	// bInProgress = true cannot be tested in an ATF, because this would delete the running test's result record	&#13;
 &#13;
