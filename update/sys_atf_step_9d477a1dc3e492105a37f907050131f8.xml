@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-09-09 07:43:21</sys_created_on>
         <sys_id>9d477a1dc3e492105a37f907050131f8</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_9d477a1dc3e492105a37f907050131f8</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-09-09 07:47:41</sys_updated_on>
+        <sys_updated_on>2026-07-01 16:26:41</sys_updated_on>
         <table/>
         <test display_value="DevTools - GetSharedApplicationRecord">d2373a1dc3e492105a37f907050131bc</test>
         <timeout/>
@@ -36,9 +36,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-09-09 07:43:21</sys_created_on>
         <sys_id>5147fa1dc3e492105a37f907050131d3</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-09-09 07:47:41</sys_updated_on>
+        <sys_updated_on>2026-07-01 16:26:41</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -68,12 +68,7 @@
 &#13;
 	TestCase_GetSharedApplicationRecord(null,false);&#13;
 &#13;
-	var grApp = new GlideRecord('sys_app');&#13;
-	grApp.initialize();&#13;
-	grApp.scope = 'x_snc_testsharedapp';&#13;
-	grApp.name = 'Test Shared App';&#13;
-	var strAppSysId = GlideRecordInsert(grApp);&#13;
-&#13;
+	var strAppSysId = AppCreate('Test Shared','scoped','x_test_shared');&#13;
 	TestCase_GetSharedApplicationRecord(strAppSysId,false);&#13;
 &#13;
 	var grSharedApp = new GlideRecord('x_snc_devtools_shared_application');&#13;
