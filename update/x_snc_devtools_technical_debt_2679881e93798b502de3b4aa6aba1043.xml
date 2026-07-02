@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="x_snc_devtools_technical_debt">
+    <x_snc_devtools_technical_debt action="INSERT_OR_UPDATE">
+        <description>Functions that create test application file records should all take the scope as the first parameter. The function CreateDatabaseView() deviates from that pattern.</description>
+        <id/>
+        <related_backlog_item_url/>
+        <short_description>TestDataAPI::CreateDatabaseView parameter order</short_description>
+        <switch>false</switch>
+        <sys_class_name>x_snc_devtools_technical_debt</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-07-02 13:32:58</sys_created_on>
+        <sys_id>2679881e93798b502de3b4aa6aba1043</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>TestDataAPI::CreateDatabaseView parameter order</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>x_snc_devtools_technical_debt_2679881e93798b502de3b4aa6aba1043</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-07-02 13:32:58</sys_updated_on>
+        <type>code_pattern_outdated</type>
+    </x_snc_devtools_technical_debt>
+</record_update>
