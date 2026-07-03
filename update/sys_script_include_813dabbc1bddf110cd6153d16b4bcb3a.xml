@@ -199,7 +199,8 @@
 		// Australia
 		'3657e6665bef', // 3657e6665bef1110d9a5ce1a8581c7e0
 		'd2426c9ec0a8', // d2426c9ec0a8016501958bf2ac79c775     
-		'de5920b77113', // de5920b7711332100a229b13380c8bd2     
+		'de5920b77113', // de5920b7711332100a229b13380c8bd2   
+		'37e17073711b', // 37e17073711b32100a229b13380c8b01  
 
 	];
 	return aPatterns;
@@ -208,14 +209,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-09-13 12:47:41</sys_created_on>
         <sys_id>813dabbc1bddf110cd6153d16b4bcb3a</sys_id>
-        <sys_mod_count>201</sys_mod_count>
+        <sys_mod_count>202</sys_mod_count>
         <sys_name>GetEvaluatorErrorExceptionPatterns</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_813dabbc1bddf110cd6153d16b4bcb3a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-06-29 15:40:22</sys_updated_on>
+        <sys_updated_on>2026-07-03 12:14:42</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
