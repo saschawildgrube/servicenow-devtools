@@ -16,7 +16,7 @@
         <sys_updated_by>technical._atf_deployer_api</sys_updated_by>
         <sys_updated_on>2025-06-19 01:26:26</sys_updated_on>
         <target_name>discovery_credentials</target_name>
-        <target_scope display_value="Runbook WORK IN PROGRESS">f07a2ce1db8399106a03dad1f39619d6</target_scope>
+        <target_scope display_value="">f07a2ce1db8399106a03dad1f39619d6</target_scope>
         <target_type>sys_db_object</target_type>
     </sys_scope_privilege>
 </record_update>

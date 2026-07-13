@@ -16,7 +16,7 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2025-11-19 23:39:05</sys_updated_on>
         <target_name>sn_data_kit_synthetic_data_generation_request</target_name>
-        <target_scope display_value="Now Assist Data Kit">fae28935379b4210076ad95c24924b05</target_scope>
+        <target_scope display_value="">fae28935379b4210076ad95c24924b05</target_scope>
         <target_type>sys_db_object</target_type>
     </sys_scope_privilege>
 </record_update>

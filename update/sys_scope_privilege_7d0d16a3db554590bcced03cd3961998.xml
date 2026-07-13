@@ -16,7 +16,7 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2022-02-02 07:26:21</sys_updated_on>
         <target_name>x_snc_downloads_download</target_name>
-        <target_scope display_value="Downloads WORK IN PROGRESS">1d2ada8c1b09ec10a89720a8ec4bcb79</target_scope>
+        <target_scope display_value="">1d2ada8c1b09ec10a89720a8ec4bcb79</target_scope>
         <target_type>sys_db_object</target_type>
     </sys_scope_privilege>
 </record_update>

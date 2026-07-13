@@ -16,7 +16,7 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2023-08-05 16:41:57</sys_updated_on>
         <target_name>x_snc_fastlane_order</target_name>
-        <target_scope display_value="FastLane WORK IN PROGRESS">8494161097e32510a6a07767f053af01</target_scope>
+        <target_scope display_value="">8494161097e32510a6a07767f053af01</target_scope>
         <target_type>sys_db_object</target_type>
     </sys_scope_privilege>
 </record_update>

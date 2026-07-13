@@ -16,7 +16,7 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2025-11-19 23:39:03</sys_updated_on>
         <target_name>x_snc_workout_athlete</target_name>
-        <target_scope display_value="Workout WORK IN PROGRESS">e6590a79db5f0e10f0f1d03cd3961995</target_scope>
+        <target_scope display_value="">e6590a79db5f0e10f0f1d03cd3961995</target_scope>
         <target_type>sys_db_object</target_type>
     </sys_scope_privilege>
 </record_update>

@@ -10,6 +10,7 @@
         <condition>IsActive() &amp;&amp; RP.isRelatedList() &amp;&amp; "sys_atf_test".equals(parent.getTableName()) &amp;&amp; current.canCreate() &amp;&amp; parent.sys_policy != 'read'</condition>
         <form_action>false</form_action>
         <form_button>false</form_button>
+        <form_button_icon/>
         <form_button_v2>false</form_button_v2>
         <form_context_menu>false</form_context_menu>
         <form_link>false</form_link>
@@ -21,6 +22,7 @@
         <list_action>true</list_action>
         <list_banner_button>true</list_banner_button>
         <list_button>false</list_button>
+        <list_button_icon/>
         <list_choice>false</list_choice>
         <list_context_menu>false</list_context_menu>
         <list_link>false</list_link>
@@ -34,7 +36,9 @@
 {
 	AddScriptTestStep(g_form.getUniqueValue());
 }]]></script>
+        <show_form_icon_only>false</show_form_icon_only>
         <show_insert>false</show_insert>
+        <show_list_icon_only>false</show_list_icon_only>
         <show_multiple_update>false</show_multiple_update>
         <show_query>false</show_query>
         <show_update>true</show_update>

@@ -16,7 +16,7 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2025-11-19 23:39:03</sys_updated_on>
         <target_name>auto_chat_task</target_name>
-        <target_scope display_value="Now Assist Skill Kit">3c4af9c2cbb27fe5ddfa33fe34444568</target_scope>
+        <target_scope display_value="">3c4af9c2cbb27fe5ddfa33fe34444568</target_scope>
         <target_type>sys_db_object</target_type>
     </sys_scope_privilege>
 </record_update>

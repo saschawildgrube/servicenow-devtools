@@ -4,7 +4,7 @@
         <operation>execute</operation>
         <rca_type>real_rca</rca_type>
         <source>383008e91bf23810edf3642aab4bcb00</source>
-        <source_scope display_value="DataSilos WORK IN PROGRESS">dafbffebdbb78450ba15a353059619eb</source_scope>
+        <source_scope display_value="">dafbffebdbb78450ba15a353059619eb</source_scope>
         <source_table>sys_script_include</source_table>
         <source_type>2</source_type>
         <status>2</status>

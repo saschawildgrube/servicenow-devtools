@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_package_dependency_m2m">
     <sys_package_dependency_m2m action="INSERT_OR_UPDATE">
-        <dependency display_value="System Applications Core" source="com.snc.apps">c957cd4ec32103104b4f311f05013144</dependency>
+        <dependency display_value="System Applications Core" source="com.snc.apps">b87971102b710310a57ef37ca291bfff</dependency>
         <min_version>1.0.1</min_version>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-01-27 09:40:28</sys_created_on>

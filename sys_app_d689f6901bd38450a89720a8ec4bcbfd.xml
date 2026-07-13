@@ -17,6 +17,7 @@
         <menu/>
         <name>DevTools WORK IN PROGRESS</name>
         <package_json/>
+        <package_resolver_version/>
         <private>false</private>
         <restrict_table_access>false</restrict_table_access>
         <runtime_access_tracking>permissive</runtime_access_tracking>
@@ -28,7 +29,7 @@ DevTools contains a number of Script Includes with useful javascript functions a
 &#13;
 DevTools is also the backbone for the mature development and deployment process.</short_description>
         <source>x_snc_devtools</source>
-        <store_correlation_id/>
+        <store_correlation_id>REPOAPP0000001001</store_correlation_id>
         <store_url/>
         <subscription_entitlement/>
         <sys_class_name>sys_app</sys_class_name>
@@ -36,9 +37,9 @@ DevTools is also the backbone for the mature development and deployment process.
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 08:31:37</sys_created_on>
         <sys_id>d689f6901bd38450a89720a8ec4bcbfd</sys_id>
-        <sys_mod_count>232</sys_mod_count>
-        <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-03-25 16:45:55</sys_updated_on>
+        <sys_mod_count>233</sys_mod_count>
+        <sys_updated_by>gregory.belken@snc</sys_updated_by>
+        <sys_updated_on>2026-07-13 18:41:17</sys_updated_on>
         <template/>
         <trackable>true</trackable>
         <uninstall_blocked>false</uninstall_blocked>
@@ -46,10 +47,10 @@ DevTools is also the backbone for the mature development and deployment process.
         <vendor/>
         <vendor_prefix/>
         <version>1.143.0</version>
-        <x_snc_devtools_documentation_url>https://www.wildgrube.com/servicenow-devtools</x_snc_devtools_documentation_url>
-        <x_snc_devtools_maintainer>Sascha Wildgrube</x_snc_devtools_maintainer>
-        <x_snc_devtools_maintainer_email>sascha@wildgrube.com</x_snc_devtools_maintainer_email>
-        <x_snc_devtools_repo_url>https://github.com/saschawildgrube/servicenow-devtools.git</x_snc_devtools_repo_url>
+        <x_snc_devtools_documentation_url/>
+        <x_snc_devtools_maintainer/>
+        <x_snc_devtools_maintainer_email/>
+        <x_snc_devtools_repo_url>https://github.com/saschawildgrube/servicenow-devtools</x_snc_devtools_repo_url>
         <x_snc_devtools_showstopper>false</x_snc_devtools_showstopper>
         <x_snc_devtools_showstopper_details/>
     </sys_app>

@@ -16,7 +16,7 @@
         <sys_updated_by>test.deployer.manager</sys_updated_by>
         <sys_updated_on>2023-12-17 14:55:52</sys_updated_on>
         <target_name>x_snc_deployer_m2m_pipline_instance</target_name>
-        <target_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</target_scope>
+        <target_scope display_value="">394148f9db1c2d906a03dad1f396197a</target_scope>
         <target_type>sys_db_object</target_type>
     </sys_scope_privilege>
 </record_update>

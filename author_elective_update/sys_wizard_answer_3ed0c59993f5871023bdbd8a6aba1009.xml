@@ -71,7 +71,7 @@
         <reverted_from/>
         <source>9c57851993714f102de3b4aa6aba10ad</source>
         <source_table>sys_upgrade_history</source_table>
-        <state>current</state>
+        <state>previous</state>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-06-29 15:26:42</sys_created_on>
         <sys_id>0477095993714f102de3b4aa6aba10d6</sys_id>
@@ -94,7 +94,7 @@
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Anwendung</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
-        <sys_parent display_value="Base Configuration Item">cb880dc2c3a103104b4f311f050131ee</sys_parent>
+        <sys_parent display_value="">cb880dc2c3a103104b4f311f050131ee</sys_parent>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_wizard_answer">
+    <sys_wizard_answer action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <answer>View Rule</answer>
+        <button_label/>
+        <dependent_value/>
+        <element/>
+        <name>View Rule</name>
+        <next_question/>
+        <order>100</order>
+        <payload_name/>
+        <question display_value="Application File" name="Application File">e82f56502b310310a57ef37ca291bf8b</question>
+        <roles/>
+        <script/>
+        <sys_class_name>sys_wizard_answer</sys_class_name>
+        <sys_created_by>sascha.wildgrube</sys_created_by>
+        <sys_created_on>2026-07-13 17:53:23</sys_created_on>
+        <sys_id>994f21753b8a8710d412cedc73e45afc</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>View Rule</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_wizard_answer_994f21753b8a8710d412cedc73e45afc</sys_update_name>
+        <sys_updated_by>sascha.wildgrube</sys_updated_by>
+        <sys_updated_on>2026-07-13 17:53:23</sys_updated_on>
+        <table/>
+        <target_url>sysrule_view.do</target_url>
+        <type>1</type>
+    </sys_wizard_answer>
+</record_update>

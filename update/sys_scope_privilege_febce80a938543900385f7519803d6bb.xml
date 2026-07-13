@@ -16,7 +16,7 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2026-05-25 14:38:22</sys_updated_on>
         <target_name>x_snc_qrcode_qrcode</target_name>
-        <target_scope display_value="QRCode WORK IN PROGRESS">2b198c06930143900385f7519803d6bb</target_scope>
+        <target_scope display_value="">2b198c06930143900385f7519803d6bb</target_scope>
         <target_type>sys_db_object</target_type>
     </sys_scope_privilege>
 </record_update>

@@ -16,7 +16,7 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2022-06-12 15:39:36</sys_updated_on>
         <target_name>AppSetDefaults</target_name>
-        <target_scope display_value="CodeSanity WORK IN PROGRESS">8ed42c23dbad0510bcced03cd39619ce</target_scope>
+        <target_scope display_value="">8ed42c23dbad0510bcced03cd39619ce</target_scope>
         <target_type>sys_script_include</target_type>
     </sys_scope_privilege>
 </record_update>

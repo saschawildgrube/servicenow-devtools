@@ -4,7 +4,7 @@
         <operation>execute</operation>
         <rca_type>real_rca</rca_type>
         <source>c3d73c3b1b86ca90063ddc61ab4bcbdd</source>
-        <source_scope display_value="DataSanity WORK IN PROGRESS">e0746823dbad0510bcced03cd396198d</source_scope>
+        <source_scope display_value="">e0746823dbad0510bcced03cd396198d</source_scope>
         <source_table>sys_script_include</source_table>
         <source_type>2</source_type>
         <status>2</status>
