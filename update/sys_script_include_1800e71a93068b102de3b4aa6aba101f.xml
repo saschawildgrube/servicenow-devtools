@@ -14,39 +14,26 @@ HANDLE WITH CARE!</description>
 {
 	strTable = GetStringValue(strTable);
 
-	if (IsValidTable(strTable) == false)
+	if (IsValidTable(strTable,true) == false)
 	{
 		LogWarning('TableDelete: Table does not exist!');
 		return false;
 	}
 
-	var tableUtils = RunScriptInGlobalScope('result = new TableUtils(param1);',strTable);
-
-	if (IsObject(tableUtils) == false)
-	{
-		LogError('TableDelete: TableUtils could not be initialized!');
-		return false;
-	}
-
+	var bHasExtensions = RunScriptInGlobalScope(
+		'var tableUtils = new TableUtils(param1); result = tableUtils.hasExtensions()',
+		strTable);
 
     // Safety: do not accidentally delete an entire table hierarchy.
-    if (tableUtils.hasExtensions())
+    if (bHasExtensions == true)
 	{
 		LogError('TableDelete: Table has extending tables.');
         return false;
     }
+	
 	RunScriptInGlobalScope('var tableUtils = new TableUtils();tableUtils.dropAndClean(param1);',strTable);
 	
-
-	var nCount = 0;
-	while (IsValidTable(strTable) == true && nCount < 10)
-	{
-		Log('TableDelete: Waiting for table "'+strTable+'" to disappear.... '+ nCount);
-		nCount++;
-		Sleep(1);
-	}
-
-	if (IsValidTable(strTable) == true)
+	if (IsValidTable(strTable,true) == true)
 	{
 		LogError('TableDelete: Failed to delete table "'+strTable+'"!');
 		return false;
@@ -61,14 +48,14 @@ HANDLE WITH CARE!</description>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-07-15 15:25:03</sys_created_on>
         <sys_id>1800e71a93068b102de3b4aa6aba101f</sys_id>
-        <sys_mod_count>9</sys_mod_count>
+        <sys_mod_count>12</sys_mod_count>
         <sys_name>TableDelete</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_1800e71a93068b102de3b4aa6aba101f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-07-15 15:48:39</sys_updated_on>
+        <sys_updated_on>2026-07-15 16:31:19</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

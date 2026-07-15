@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-07-15 15:26:02</sys_created_on>
         <sys_id>12b0e7da93068b102de3b4aa6aba1056</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_12b0e7da93068b102de3b4aa6aba1056</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-07-15 15:37:17</sys_updated_on>
+        <sys_updated_on>2026-07-15 16:28:08</sys_updated_on>
         <table/>
         <test display_value="DevTools - TableDelete">d6b0a7da93068b102de3b4aa6aba10be</test>
         <timeout/>
@@ -50,9 +50,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-07-15 15:26:02</sys_created_on>
         <sys_id>a2b0e7da93068b102de3b4aa6aba1080</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-07-15 15:37:17</sys_updated_on>
+        <sys_updated_on>2026-07-15 16:28:09</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -65,7 +65,7 @@
 		{&#13;
 			if (vExpected == true)&#13;
 			{&#13;
-				if (IsValidTable(vInput['strTable']) == true)&#13;
+				if (IsValidTable(vInput['strTable'],true) == true)&#13;
 				{&#13;
 					test.Log('Table still exists!');&#13;
 					return false;&#13;
