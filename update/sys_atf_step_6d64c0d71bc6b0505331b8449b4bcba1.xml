@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-08-23 12:20:36</sys_created_on>
         <sys_id>6d64c0d71bc6b0505331b8449b4bcba1</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_6d64c0d71bc6b0505331b8449b4bcba1</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-08-23 12:27:51</sys_updated_on>
+        <sys_updated_on>2026-07-15 09:45:51</sys_updated_on>
         <table/>
         <test display_value="DevTools - PerformanceQueryMultiple">dd4480d71bc6b0505331b8449b4bcbfb</test>
         <timeout/>
@@ -36,9 +36,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-08-23 12:20:36</sys_created_on>
         <sys_id>ae3544d71bc6b0505331b8449b4bcb06</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-08-23 12:27:52</sys_updated_on>
+        <sys_updated_on>2026-07-15 09:45:51</sys_updated_on>
         <value>var strLog = '';&#13;
 function Log(strText)&#13;
 {&#13;
@@ -89,12 +89,12 @@ function Log(strText)&#13;
 	&#13;
 	TestCase_PerformanceQueryMultiple([],[],3,false);&#13;
 	&#13;
-	var testdata = new TestDataAPI('_ATF_DEVTOOLS_');&#13;
+	var testdata = new TestDataAPI('ATF.DEVTOOLS');&#13;
 	testdata.CreateUser('NOACCESS',[]);&#13;
 	testdata.CreateUser('ADMIN',['admin']);&#13;
 	&#13;
 	&#13;
-	TestCase_PerformanceQueryMultiple(aQueries,['_ATF_DEVTOOLS_NOACCESS','_ATF_DEVTOOLS_ADMIN'],3,true);&#13;
+	TestCase_PerformanceQueryMultiple(aQueries,['test.atf.devtools.noaccess','test.atf.devtools.admin'],3,true);&#13;
 		&#13;
 	stepResult.setOutputMessage(strLog);&#13;
 	return bResult;&#13;
