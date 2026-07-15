@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.TableDelete</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Deletes the given table. Returns true if the given table was deleted, false if not or the table does not exist.&#13;
+HANDLE WITH CARE!</description>
+        <mobile_callable>false</mobile_callable>
+        <name>TableDelete</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function TableDelete(strTable)
+{
+	strTable = GetStringValue(strTable);
+
+	if (IsValidTable(strTable) == false)
+	{
+		LogWarning('TableDelete: Table does not exist!');
+		return false;
+	}
+
+	var tableUtils = RunScriptInGlobalScope('result = new TableUtils(param1);',strTable);
+
+	if (IsObject(tableUtils) == false)
+	{
+		LogError('TableDelete: TableUtils could not be initialized!');
+		return false;
+	}
+
+
+    // Safety: do not accidentally delete an entire table hierarchy.
+    if (tableUtils.hasExtensions())
+	{
+		LogError('TableDelete: Table has extending tables.');
+        return false;
+    }
+	RunScriptInGlobalScope('var tableUtils = new TableUtils();tableUtils.dropAndClean(param1);',strTable);
+	
+
+	var nCount = 0;
+	while (IsValidTable(strTable) == true && nCount < 10)
+	{
+		Log('TableDelete: Waiting for table "'+strTable+'" to disappear.... '+ nCount);
+		nCount++;
+		Sleep(1);
+	}
+
+	if (IsValidTable(strTable) == true)
+	{
+		LogError('TableDelete: Failed to delete table "'+strTable+'"!');
+		return false;
+	}
+
+	Log('TableDelete: table "'+strTable+'" has been deleted.');
+    
+	return true;
+
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-07-15 15:25:03</sys_created_on>
+        <sys_id>1800e71a93068b102de3b4aa6aba101f</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>TableDelete</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_1800e71a93068b102de3b4aa6aba101f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-07-15 15:48:39</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>1800e71a93068b102de3b4aa6aba101f</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-07-15 15:25:03</sys_created_on>
+        <sys_id>7f70e35a93068b102de3b4aa6aba1053</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-07-15 15:25:03</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
