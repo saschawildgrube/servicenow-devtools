@@ -21,7 +21,7 @@
 	{
 		if (grRecord.sys_scope == 'd689f6901bd38450a89720a8ec4bcbfd')
 		{
-			LogError('GlideRecordUpdate: No one is allowed to add dependencies to DevTools');
+			LogError('GlideRecordInsert: No one is allowed to add dependencies to DevTools');
 			return false;
 		}
 	}
@@ -34,14 +34,14 @@
 				var strScope = GetStringValue(grRecord.scope);
 				if (strScope.indexOf('x_test_') != 0)
 				{
-					LogError('GlideRecordUpdate: App scope names must start with "x_test_" during test execution.');
+					LogError('GlideRecordInsert: App scope names must start with "x_test_" during test execution.');
 					return false;
 				}
 			}
 			var strName = GetStringValue(grRecord.name);
 			if (strName.indexOf('Test ') != 0)
 			{
-				LogError('GlideRecordUpdate: App names must start with "Test " during test execution.');
+				LogError('GlideRecordInsert: App names must start with "Test " during test execution.');
 				return false;
 
 			}
@@ -80,14 +80,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-06-09 14:23:34</sys_created_on>
         <sys_id>d3021acfdbe874943c6c09c2ba961923</sys_id>
-        <sys_mod_count>13</sys_mod_count>
+        <sys_mod_count>14</sys_mod_count>
         <sys_name>GlideRecordInsert</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_d3021acfdbe874943c6c09c2ba961923</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-07-16 18:10:35</sys_updated_on>
+        <sys_updated_on>2026-07-16 18:24:11</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>
