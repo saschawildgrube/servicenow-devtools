@@ -6,9 +6,9 @@
         <caller_access/>
         <client_scripts_access>true</client_scripts_access>
         <configuration_access>true</configuration_access>
-        <create_access>false</create_access>
+        <create_access>true</create_access>
         <create_access_controls>true</create_access_controls>
-        <delete_access>false</delete_access>
+        <delete_access>true</delete_access>
         <filter_extension/>
         <is_df_table>false</is_df_table>
         <is_extendable>false</is_extendable>
@@ -32,7 +32,7 @@
         <sys_update_name>sys_db_object_cef79168973b9550a6a07767f053af05</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2026-01-05 14:05:21</sys_updated_on>
-        <update_access>false</update_access>
+        <update_access>true</update_access>
         <user_role display_value="admin" name="admin">2831a114c611228501d4ea6c309d626d</user_role>
         <ws_access>true</ws_access>
     </sys_db_object>
