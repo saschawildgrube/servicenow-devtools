@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-06-11 13:24:24</sys_created_on>
         <sys_id>19de33dbc31943944b4f311f050131da</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_19de33dbc31943944b4f311f050131da</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-06-11 15:08:54</sys_updated_on>
+        <sys_updated_on>2026-07-17 07:47:55</sys_updated_on>
         <table/>
         <test display_value="DevTools - AppDelete">4dde33dbc31943944b4f311f050131b6</test>
         <timeout/>
@@ -36,9 +36,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-06-11 13:24:25</sys_created_on>
         <sys_id>51de33dbc31943944b4f311f050131ed</sys_id>
-        <sys_mod_count>10</sys_mod_count>
+        <sys_mod_count>11</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-06-11 15:08:55</sys_updated_on>
+        <sys_updated_on>2026-07-17 07:47:56</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -64,16 +64,16 @@
 		&#13;
 	TestCase_AppDelete(null,false);&#13;
 &#13;
-	var strApp1SysId = AppCreate('Test App 1 (ATF)','scoped','x_snc_testatf1');&#13;
+	var strApp1SysId = AppCreate('Test 1','scoped','x_test_1');&#13;
 	TestCase_AppDelete(strApp1SysId,true);&#13;
 &#13;
-	var strApp2SysId = AppCreate('Test App 2 (ATF)','scoped','x_snc_testatf2');&#13;
+	var strApp2SysId = AppCreate('Test 2','scoped','x_test_2');&#13;
 	var grApp2 = GetAppRecord(strApp2SysId);&#13;
 	TestCase_AppDelete(grApp2.sys_id,true);&#13;
 &#13;
-	var strApp3SysId = AppCreate('Test App 3 (ATF)','scoped','x_snc_testatf3');&#13;
+	var strApp3SysId = AppCreate('Test 3','scoped','x_test_3');&#13;
 	var grApp3 = GetAppRecord(strApp3SysId);&#13;
-	AppBuilder('x_snc_testatf3'); 	&#13;
+	AppBuilder('x_test_3'); 	&#13;
 	TestCase_AppDelete(grApp3.scope,true);&#13;
 &#13;
 	var grMeta = new GlideRecord('sys_metadata');&#13;
@@ -82,7 +82,7 @@
 	grMeta.query();&#13;
 	if (grMeta.getRowCount() &gt; 0)&#13;
 	{&#13;
-		test.Log('FAILED: There are app files left from App 3 ('+strApp3SysId+'):');&#13;
+		test.Log('FAILED: There are app files left from Test App 3 ('+strApp3SysId+'):');&#13;
 		test.SetResult(false);&#13;
 	}&#13;
 	while (grMeta.next() == true)&#13;

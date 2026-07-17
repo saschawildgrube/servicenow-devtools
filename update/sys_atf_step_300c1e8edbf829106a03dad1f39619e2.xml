@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-02-05 11:21:59</sys_created_on>
         <sys_id>300c1e8edbf829106a03dad1f39619e2</sys_id>
-        <sys_mod_count>27</sys_mod_count>
+        <sys_mod_count>29</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_300c1e8edbf829106a03dad1f39619e2</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-02-23 20:04:17</sys_updated_on>
+        <sys_updated_on>2026-07-17 07:42:32</sys_updated_on>
         <table/>
         <test display_value="DevTools - InstallApp">d9fbda8edbf829106a03dad1f396193a</test>
         <timeout/>
@@ -50,9 +50,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-02-05 11:21:59</sys_created_on>
         <sys_id>e50c5e8edbf829106a03dad1f39619b3</sys_id>
-        <sys_mod_count>27</sys_mod_count>
+        <sys_mod_count>29</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-02-23 20:04:17</sys_updated_on>
+        <sys_updated_on>2026-07-17 07:42:32</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -75,20 +75,16 @@
 &#13;
 	TestCase_InstallApp(null,false,false);&#13;
 &#13;
-	var grApp1 = new GlideRecord('sys_app');&#13;
-	grApp1.initialize();&#13;
-	grApp1.name = 'App1';&#13;
-	grApp1.scope = 'x_snc_app1';&#13;
-	var strApp1SysId = GlideRecordInsert(grApp1);&#13;
+	var grApp1 = GetAppRecord(AppCreate('Test 1','scoped','x_test_1'));&#13;
 	&#13;
 	test.Log('No AppInstall function in App1 means nothing to do, hence installation should be successful.');&#13;
 	TestCase_InstallApp(grApp1,false,true);&#13;
 	&#13;
 	var grSI = new GlideRecord('sys_script_include');&#13;
 	grSI.initialize();&#13;
-	grSI.sys_scope = strApp1SysId;&#13;
+	grSI.sys_scope = grApp1.sys_id;&#13;
 	grSI.name = 'AppInstall';&#13;
-	grSI.api_name = 'x_snc_app1.AppInstall';&#13;
+	grSI.api_name = 'x_test_1.AppInstall';&#13;
 	grSI.access = 'public';&#13;
 	grSI.script = 'function AppInstall() { gs.info("App1 AppInstall returns true"); return true; }';&#13;
 	var strAppInstall1SysId = GlideRecordInsert(grSI);&#13;
@@ -97,17 +93,13 @@
 	TestCase_InstallApp(grApp1,false,true);&#13;
 	&#13;
 	&#13;
-	var grApp2 = new GlideRecord('sys_app');&#13;
-	grApp2.initialize();&#13;
-	grApp2.name = 'App2';&#13;
-	grApp2.scope = 'x_snc_app2';&#13;
-	var strApp2SysId = GlideRecordInsert(grApp2);&#13;
+	var grApp2 = GetAppRecord(AppCreate('Test 2','scoped','x_test_2'));&#13;
 &#13;
 	var grSI = new GlideRecord('sys_script_include');&#13;
 	grSI.initialize();&#13;
-	grSI.sys_scope = strApp2SysId;&#13;
+	grSI.sys_scope = grApp2.sys_id;&#13;
 	grSI.name = 'AppInstall';&#13;
-	grSI.api_name = 'x_snc_app2.AppInstall';&#13;
+	grSI.api_name = 'x_test_2.AppInstall';&#13;
 	grSI.access = 'public';&#13;
 	grSI.script = 'function AppInstall() { gs.info("App2 AppInstall returns true"); return true; }';&#13;
 	var strAppInstall2SysId = GlideRecordInsert(grSI);&#13;
@@ -118,8 +110,8 @@
 	// App1 now depends on App2&#13;
 	var grDependency = new GlideRecord('x_snc_devtools_dependency');&#13;
 	grDependency.initialize();&#13;
-	grDependency.sys_scope = strApp1SysId;&#13;
-	grDependency.dependency = strApp2SysId;&#13;
+	grDependency.sys_scope = grApp1.sys_id;&#13;
+	grDependency.dependency = grApp2.sys_id;&#13;
 	grDependency.name = 'App2';&#13;
 	grDependency.insert();&#13;
 	test.Log('App1 and App2 AppInstall() functions return true, so the installation should be sucessful.');&#13;
@@ -127,8 +119,8 @@
 	&#13;
 	var grDependency = new GlideRecord('x_snc_devtools_dependency');&#13;
 	grDependency.initialize();&#13;
-	grDependency.sys_scope = strApp2SysId;&#13;
-	grDependency.dependency = strApp1SysId;&#13;
+	grDependency.sys_scope = grApp2.sys_id;&#13;
+	grDependency.dependency = grApp1.sys_id;&#13;
 	grDependency.name = 'App1';&#13;
 	var strDependencyCircularSysId = grDependency.insert();&#13;
 	test.Log('The installation should fail due to the circular dependency between App1 and App2.');&#13;
@@ -139,17 +131,13 @@
 	TestCase_InstallApp(grApp1,false,true);	&#13;
 	&#13;
 	&#13;
-	var grApp3 = new GlideRecord('sys_app');&#13;
-	grApp3.initialize();&#13;
-	grApp3.name = 'App3';&#13;
-	grApp3.scope = 'x_snc_app3';&#13;
-	var strApp3SysId = GlideRecordInsert(grApp3);&#13;
+	var grApp3 = GetAppRecord(AppCreate('Test 3','scoped','x_test_3'));&#13;
 &#13;
 	var grSI = new GlideRecord('sys_script_include');&#13;
 	grSI.initialize();&#13;
-	grSI.sys_scope = strApp3SysId;&#13;
+	grSI.sys_scope = grApp3.sys_id;&#13;
 	grSI.name = 'AppInstall';&#13;
-	grSI.api_name = 'x_snc_app3.AppInstall';&#13;
+	grSI.api_name = 'x_test_3.AppInstall';&#13;
 	grSI.access = 'public';&#13;
 	grSI.script = 'function AppInstall() { gs.info("App3 AppInstall returns false"); return false; }';&#13;
 	var strAppInstall3SysId = GlideRecordInsert(grSI);&#13;
@@ -159,8 +147,8 @@
 	&#13;
 	var grDependency = new GlideRecord('x_snc_devtools_dependency');&#13;
 	grDependency.initialize();&#13;
-	grDependency.sys_scope = strApp2SysId;&#13;
-	grDependency.dependency = strApp3SysId;&#13;
+	grDependency.sys_scope = grApp2.sys_id;&#13;
+	grDependency.dependency = grApp3.sys_id;&#13;
 	grDependency.name = 'App3';&#13;
 	grDependency.insert();&#13;
 	test.Log('The installation of App1 fails because it depends on App2 which depends on App3.');&#13;
@@ -169,17 +157,13 @@
 	&#13;
 	&#13;
 	&#13;
-	var grApp4 = new GlideRecord('sys_app');&#13;
-	grApp4.initialize();&#13;
-	grApp4.name = 'App4';&#13;
-	grApp4.scope = 'x_snc_app1';&#13;
-	var strApp4SysId = GlideRecordInsert(grApp4);&#13;
+	var grApp4 = GetAppRecord(AppCreate('Test 4','scoped','x_test_4'));&#13;
 	&#13;
 	var grSI = new GlideRecord('sys_script_include');&#13;
 	grSI.initialize();&#13;
-	grSI.sys_scope = strApp4SysId;&#13;
+	grSI.sys_scope = grApp4.sys_id;&#13;
 	grSI.name = 'AppInstall';&#13;
-	grSI.api_name = 'x_snc_app4.AppInstall';&#13;
+	grSI.api_name = 'x_test_4.AppInstall';&#13;
 	grSI.access = 'public';&#13;
 	grSI.script = 'function AppInstall() {'&#13;
 		+'gs.info("App4 AppInstall returns true");'&#13;
@@ -190,8 +174,8 @@
 	&#13;
 	var grDependency = new GlideRecord('x_snc_devtools_dependency');&#13;
 	grDependency.initialize();&#13;
-	grDependency.sys_scope = strApp4SysId;&#13;
-	grDependency.dependency = strApp3SysId;&#13;
+	grDependency.sys_scope = grApp4.sys_id;&#13;
+	grDependency.dependency = grApp3.sys_id;&#13;
 	grDependency.name = 'App3';&#13;
 	var strDependencySysId = grDependency.insert();&#13;
 	test.Log('The installation of App4 fails because it depends on App3 - and the AppInstall() function of App4 is NOT called.');&#13;
@@ -207,8 +191,8 @@
 	RecordDelete('x_snc_devtools_dependency',strDependencySysId); &#13;
 	var grDependency = new GlideRecord('x_snc_devtools_dependency');&#13;
 	grDependency.initialize();&#13;
-	grDependency.sys_scope = strApp4SysId;&#13;
-	grDependency.dependency = strApp2SysId;&#13;
+	grDependency.sys_scope = grApp4.sys_id;&#13;
+	grDependency.dependency = grApp2.sys_id;&#13;
 	grDependency.name = 'App2';&#13;
 		&#13;
 	test.Log('App4 is now depending on App2. The installation of App4 should now pass as the toxic dependency to App3 is removed.');&#13;
@@ -220,16 +204,12 @@
 	}	&#13;
 	&#13;
 &#13;
-	var grApp5 = new GlideRecord('sys_app');&#13;
-	grApp5.initialize();&#13;
-	grApp5.name = 'App5';&#13;
-	grApp5.scope = 'x_snc_app1';&#13;
-	var strApp5SysId = GlideRecordInsert(grApp5);&#13;
+	var grApp5 = GetAppRecord(AppCreate('Test 5','scoped','x_test_5'));&#13;
 &#13;
 	var grDependency = new GlideRecord('x_snc_devtools_dependency');&#13;
 	grDependency.initialize();&#13;
-	grDependency.sys_scope = strApp4SysId;&#13;
-	grDependency.dependency = strApp5SysId;&#13;
+	grDependency.sys_scope = grApp4.sys_id;&#13;
+	grDependency.dependency = grApp5.sys_id;&#13;
 	grDependency.name = 'App5';&#13;
 	test.Log('App4 is now also depending on App5 - which does not have an AppInstall() function. The installation of App4 should pass anyway.');&#13;
 	TestCase_InstallApp(grApp4,true,true);&#13;
