@@ -7,7 +7,7 @@
         <source_scope display_value="Dev Platform">c0f2d8b31b21f1106c17fdd49b4bcbdb</source_scope>
         <source_table>sys_script_include</source_table>
         <source_type>2</source_type>
-        <status>2</status>
+        <status>3</status>
         <sys_class_name>sys_restricted_caller_access</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-07-15 16:41:04</sys_created_on>
