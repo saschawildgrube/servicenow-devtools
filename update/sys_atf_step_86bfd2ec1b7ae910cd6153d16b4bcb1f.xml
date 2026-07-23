@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-05-11 05:54:08</sys_created_on>
         <sys_id>86bfd2ec1b7ae910cd6153d16b4bcb1f</sys_id>
-        <sys_mod_count>29</sys_mod_count>
+        <sys_mod_count>30</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_86bfd2ec1b7ae910cd6153d16b4bcb1f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-07-23 11:50:23</sys_updated_on>
+        <sys_updated_on>2026-07-23 12:37:03</sys_updated_on>
         <table/>
         <test display_value="DevTools - GlideRecordSetValue">f4dc29b91b45b8105331b8449b4bcbb0</test>
         <timeout/>
@@ -50,9 +50,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-05-11 05:54:08</sys_created_on>
         <sys_id>9d00e2ec1b7ae910cd6153d16b4bcb01</sys_id>
-        <sys_mod_count>23</sys_mod_count>
+        <sys_mod_count>24</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-07-23 11:50:24</sys_updated_on>
+        <sys_updated_on>2026-07-23 12:37:04</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -186,7 +186,7 @@
 	var grJob2 = new GlideRecord('sysauto_script');&#13;
 	grJob2.initialize();&#13;
 	grJob2.newRecord();&#13;
-	grJob.sys_scope = 'global'&#13;
+	grJob2.sys_scope = 'global'&#13;
 	grJob2.name = 'Test ATF.DEVTOOLS 2';&#13;
 	TestCase_GlideRecordSetValue_Insert(grJob2,'sys_id',GetPseudoSysId(),true);&#13;
 	&#13;
