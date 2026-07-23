@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.IsTestSession</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns true if the current script context is invoked as part of an ATF test, false if not.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>IsTestSession</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function IsTestSession()
+{
+	var aCallStack = GetCallStack();
+	var top = GetValue(aCallStack,aCallStack.length - 1);
+	var strClassName = GetStringValue(GetValue(top,'sys_class_name'));
+	if (strClassName.indexOf('sys_atf_step') == 0)
+	{
+		return true;
+	}
+	return false;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-07-23 12:06:43</sys_created_on>
+        <sys_id>549f3f74931e4f902de3b4aa6aba102e</sys_id>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_name>IsTestSession</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_549f3f74931e4f902de3b4aa6aba102e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-07-23 12:21:30</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>549f3f74931e4f902de3b4aa6aba102e</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-07-23 12:06:42</sys_created_on>
+        <sys_id>d8df3338931e4f902de3b4aa6aba108b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-07-23 12:06:42</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
