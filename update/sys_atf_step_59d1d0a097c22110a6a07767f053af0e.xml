@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-04-03 12:45:58</sys_created_on>
         <sys_id>59d1d0a097c22110a6a07767f053af0e</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_mod_count>12</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_59d1d0a097c22110a6a07767f053af0e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-12-29 17:26:12</sys_updated_on>
+        <sys_updated_on>2026-07-28 15:55:06</sys_updated_on>
         <table/>
         <test display_value="DevTools - SetAppRepo">90c1546097c22110a6a07767f053af84</test>
         <timeout/>
@@ -36,9 +36,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-04-03 12:45:58</sys_created_on>
         <sys_id>5fd1d0a097c22110a6a07767f053af47</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_mod_count>12</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-12-29 17:26:12</sys_updated_on>
+        <sys_updated_on>2026-07-28 15:55:06</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -104,10 +104,20 @@
 	}&#13;
 &#13;
 	TestCase_SetAppRepo(null,null,false);&#13;
-	TestCase_SetAppRepo('x_snc_devtools',null,false);&#13;
-	TestCase_SetAppRepo('x_snc_devtools','not_a_valid_url',false);&#13;
-	TestCase_SetAppRepo('x_snc_devtools','https://github.com/test/test.git',true);&#13;
-	TestCase_SetAppRepo('x_snc_devtools','https://github.com/saschawildgrube/servicenow-devtools.git',true);&#13;
+&#13;
+	var strAppSysId = AppCreate('Test Alpha','scoped','x_test_alpha');&#13;
+&#13;
+	var grRepoConfig = new GlideRecord('sys_repo_config');&#13;
+	grRepoConfig.initialize();&#13;
+	grRepoConfig.url = 'https://github.com/test/alpha.git'&#13;
+	grRepoConfig.sys_app = strAppSysId;&#13;
+	GlideRecordInsert(grRepoConfig);&#13;
+&#13;
+&#13;
+	TestCase_SetAppRepo(strAppSysId,null,false);&#13;
+	TestCase_SetAppRepo(strAppSysId,'not_a_valid_url',false);&#13;
+	TestCase_SetAppRepo(strAppSysId,'https://github.com/test/beta.git',true);&#13;
+	TestCase_SetAppRepo(strAppSysId,'https://github.com/test/alpha.git',true);&#13;
 		&#13;
 	return test.GetResult();&#13;
 	&#13;
