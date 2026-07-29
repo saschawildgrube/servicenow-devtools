@@ -6,15 +6,15 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-12-25 16:16:32</sys_created_on>
         <sys_id>fddee3fb832ede5000d5ccc0deaad364</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>AppCreate</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>syntax_editor_macro_fddee3fb832ede5000d5ccc0deaad364</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-07-29 12:58:48</sys_updated_on>
+        <sys_updated_on>2026-07-29 13:00:39</sys_updated_on>
         <text>var AppCreate = x_snc_devtools.AppCreate;&#13;
-strAppSysId = AppCreate('Test Alpha','scoped','x_test_alpha');</text>
+var strAppSysId = AppCreate('Test Alpha','scoped','x_test_alpha');</text>
     </syntax_editor_macro>
 </record_update>
