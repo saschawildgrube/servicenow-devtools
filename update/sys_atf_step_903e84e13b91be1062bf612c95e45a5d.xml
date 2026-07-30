@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-11-18 13:12:31</sys_created_on>
         <sys_id>903e84e13b91be1062bf612c95e45a5d</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_903e84e13b91be1062bf612c95e45a5d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-11-18 13:15:48</sys_updated_on>
+        <sys_updated_on>2026-07-30 08:09:39</sys_updated_on>
         <table/>
         <test display_value="DevTools - AppBuilderAclInsertOrUpdateForUiPage">c43e84e13b91be1062bf612c95e45a51</test>
         <timeout/>
@@ -36,9 +36,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-11-18 13:12:31</sys_created_on>
         <sys_id>103e84e13b91be1062bf612c95e45a5f</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-11-18 13:15:49</sys_updated_on>
+        <sys_updated_on>2026-07-30 08:09:39</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -72,8 +72,16 @@
 		&#13;
 	TestCase_AppBuilderAclInsertOrUpdateForUiPage(null,null,null,null,null,false);&#13;
 &#13;
+	var strAppSysId = AppCreate('Test Alpha','scoped','x_test_alpha');&#13;
+&#13;
+	var grUiPage = new GlideRecord('sys_ui_page');&#13;
+	grUiPage.initialize();&#13;
+	grUiPage.sys_scope = strAppSysId;&#13;
+	grUiPage.name = 'test1';&#13;
+	var strUiPageSysId = GlideRecordInsert(grUiPage);&#13;
+&#13;
 	TestCase_AppBuilderAclInsertOrUpdateForUiPage(&#13;
-		'e44fd7541b578450a89720a8ec4bcb8c', // DevTools manual page&#13;
+		strUiPageSysId,&#13;
 		'allow',&#13;
 		'TEST',&#13;
 		['itil'],&#13;
