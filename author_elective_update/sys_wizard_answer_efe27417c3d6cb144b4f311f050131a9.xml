@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_wizard_answer">
+    <sys_wizard_answer action="DELETE">
+        <active>true</active>
+        <answer>My Process</answer>
+        <button_label/>
+        <dependent_value/>
+        <element/>
+        <name>My Process</name>
+        <next_question/>
+        <order>100</order>
+        <payload_name/>
+        <question display_value="Task" name="Task">02874182c36103104b4f311f050131b1</question>
+        <roles/>
+        <script/>
+        <sys_class_name>sys_wizard_answer</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-07-30 15:36:20</sys_created_on>
+        <sys_id>efe27417c3d6cb144b4f311f050131a9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>My Process</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_wizard_answer_efe27417c3d6cb144b4f311f050131a9</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-07-30 15:36:20</sys_updated_on>
+        <table/>
+        <target_url>u_my_process.do</target_url>
+        <type>1</type>
+    </sys_wizard_answer>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>b265927933572a987c42c7bb9d5c7b88</instance_id>
+        <instance_name>wildzurich</instance_name>
+        <name>sys_wizard_answer_efe27417c3d6cb144b4f311f050131a9</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_wizard_answer"><sys_wizard_answer action="INSERT_OR_UPDATE"><active>true</active><answer>My Process</answer><button_label/><dependent_value/><element/><name>My Process</name><next_question/><order>100</order><payload_name/><question display_value="Task" name="Task">02874182c36103104b4f311f050131b1</question><roles/><script/><sys_class_name>sys_wizard_answer</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2026-07-30 15:36:20</sys_created_on><sys_id>efe27417c3d6cb144b4f311f050131a9</sys_id><sys_mod_count>0</sys_mod_count><sys_name>My Process</sys_name><sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package><sys_policy/><sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope><sys_update_name>sys_wizard_answer_efe27417c3d6cb144b4f311f050131a9</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-07-30 15:36:20</sys_updated_on><table/><target_url>u_my_process.do</target_url><type>1</type></sys_wizard_answer></record_update>]]></payload>
+        <payload_hash>-830904095</payload_hash>
+        <record_name>My Process</record_name>
+        <reverted_from/>
+        <source>cc897a21930203102de3b4aa6aba10ea</source>
+        <source_table>sys_upgrade_history</source_table>
+        <state>previous</state>
+        <sys_created_by/>
+        <sys_created_on>2026-07-13 04:39:13</sys_created_on>
+        <sys_id>ea2370d7c3d6cb144b4f311f05013149</sys_id>
+        <sys_mod_count/>
+        <sys_recorded_at>19f59c5a5680000000</sys_recorded_at>
+        <sys_updated_by/>
+        <sys_updated_on/>
+        <type>Answer</type>
+        <update_guid>aa2370d7a4d6cb14f11973d1142d2249</update_guid>
+        <update_guid_history>aa2370d7a4d6cb14f11973d1142d2249:-830904095</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-07-30 15:37:22</sys_created_on>
+        <sys_db_object display_value="" name="sys_wizard_answer">sys_wizard_answer</sys_db_object>
+        <sys_id>2d3236aebd3b49a8ab290bcaf16dd384</sys_id>
+        <sys_metadata>efe27417c3d6cb144b4f311f050131a9</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>My Process</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent display_value="Task">02874182c36103104b4f311f050131b1</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sys_wizard_answer_efe27417c3d6cb144b4f311f050131a9</sys_update_name>
+        <sys_update_version display_value="sys_wizard_answer_efe27417c3d6cb144b4f311f050131a9">ea2370d7c3d6cb144b4f311f05013149</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-07-30 15:37:22</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
