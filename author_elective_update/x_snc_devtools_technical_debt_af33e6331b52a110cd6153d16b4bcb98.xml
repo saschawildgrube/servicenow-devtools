@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="x_snc_devtools_technical_debt">
+    <x_snc_devtools_technical_debt action="DELETE">
+        <description>A number of functions use uppercase "URL" in their name, other use camel cased "Url" which is more consistent with the overall function naming scheme. Such functions must be renamed and proxy functions should be introduced for backward compatibility until DevTools version 2.0.</description>
+        <id/>
+        <related_backlog_item_url/>
+        <short_description>Function name inconsistency: URL vs. Url</short_description>
+        <switch>false</switch>
+        <sys_class_name>x_snc_devtools_technical_debt</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-04-26 11:57:06</sys_created_on>
+        <sys_id>af33e6331b52a110cd6153d16b4bcb98</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>Function name inconsistency: URL vs. Url</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>x_snc_devtools_technical_debt_af33e6331b52a110cd6153d16b4bcb98</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-08-11 09:30:45</sys_updated_on>
+        <type>code_naming_inconsistency</type>
+    </x_snc_devtools_technical_debt>
+<sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>b265927933572a987c42c7bb9d5c7b88</instance_id>
+        <instance_name>wildzurich</instance_name>
+        <name>x_snc_devtools_technical_debt_af33e6331b52a110cd6153d16b4bcb98</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="x_snc_devtools_technical_debt">
+    <x_snc_devtools_technical_debt action="INSERT_OR_UPDATE">
+        <description>A number of functions use uppercase "URL" in their name, other use camel cased "Url" which is more consistent with the overall function naming scheme. Such functions must be renamed and proxy functions should be introduced for backward compatibility until DevTools version 2.0.</description>
+        <id/>
+        <related_backlog_item_url/>
+        <short_description>Function name inconsistency: URL vs. Url</short_description>
+        <switch>false</switch>
+        <sys_class_name>x_snc_devtools_technical_debt</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-04-26 11:57:06</sys_created_on>
+        <sys_id>af33e6331b52a110cd6153d16b4bcb98</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>Function name inconsistency: URL vs. Url</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>x_snc_devtools_technical_debt_af33e6331b52a110cd6153d16b4bcb98</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-08-11 09:30:45</sys_updated_on>
+        <type>code_naming_inconsistency</type>
+    </x_snc_devtools_technical_debt>
+</record_update>]]></payload>
+        <payload_hash>1930776131</payload_hash>
+        <record_name>Function name inconsistency: URL vs. Url</record_name>
+        <reverted_from/>
+        <source>bf271bfe93e5c7102de3b4aa6aba108f</source>
+        <source_table>sys_upgrade_history</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-06-22 07:32:38</sys_created_on>
+        <sys_id>2bc79fba9329c7102de3b4aa6aba1076</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19eee3ee0500000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-06-22 07:32:38</sys_updated_on>
+        <type>Technical Debt</type>
+        <update_guid>e7c79fbaf629c7109e8eccd91fcea076</update_guid>
+        <update_guid_history>e7c79fbaf629c7109e8eccd91fcea076:1930776131</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Function name inconsistency: URL vs. Url">741b3bd4c3ea87104b4f311f050131d5</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-03 08:44:43</sys_created_on>
+        <sys_db_object display_value="" name="x_snc_devtools_technical_debt">x_snc_devtools_technical_debt</sys_db_object>
+        <sys_id>77c5f34d76764b58b8a5a5da39b3df39</sys_id>
+        <sys_metadata>af33e6331b52a110cd6153d16b4bcb98</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Function name inconsistency: URL vs. Url</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>x_snc_devtools_technical_debt_af33e6331b52a110cd6153d16b4bcb98</sys_update_name>
+        <sys_update_version display_value="x_snc_devtools_technical_debt_af33e6331b52a110cd6153d16b4bcb98">2bc79fba9329c7102de3b4aa6aba1076</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-03 08:44:43</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
