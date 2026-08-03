@@ -440,7 +440,7 @@ progresstracker.SetResult(null,true,'Lengthy process complete.');
 // or failure
 progresstracker.SetResult(null,false,'Lengthy process failed!');
 </pre>
-		<li>Create a Script Include and add a "WorkerAPI" class (if it does not exist in the application yet). The Worker API class is required to run a function asynchronously in a separate process. Create a member function with exactly the same name is the Script Include function that performs the lengthy process. Example:&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=6689d2abdb535d106a03dad1f396197d" target="_blank">x_snc_devtools.DevToolsWorkerAPI</a>.</li>
+		<li>Create a Script Include and add a "WorkerAPI" class (if it does not exist in the application yet). The Worker API class is required to run a function asynchronously in a separate process. Create a member function with exactly the same name as the Script Include function that performs the lengthy process. Example:&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=6689d2abdb535d106a03dad1f396197d" target="_blank">x_snc_devtools.DevToolsWorkerAPI</a>.</li>
 		<li>Configure the WorkerAPI Script Include to be accessible from "All application scopes".</li>
 		<li>Create a Script Include and add a "ClientAPI" class (if it does not exist in the application yet). The Client API class is required to execute a server side script from the client side. Example:&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=7357b9131b8bb090edf3642aab4bcb10" target="_blank">x_snc_devtools.DevToolsClientAPI</a>.</li>
 		<li>Set the ClientAPI Script Include to be "Client callable".</li>
@@ -767,6 +767,43 @@ x_snc_devtools.AppBuilderMoveToScope(grRecord, strTargetScope, bMoveFromAllScope
 	<g2:no_escape>$[docapi.RenderLicense()]</g2:no_escape>
 	
 	<h2 toc-ignore-children="true">Release Notes</h2>
+
+	<h3>1.143.0 - 2026-08-03</h3>
+	<ol>
+		<li>Added function TableCreate().</li>
+		<li>Added function TableDelete().</li>
+		<li>Added function CheckRecordData().</li>
+		<li>Added function IsTestSession().</li>
+		<li>HtmlRenderApplications() now displays if a Test Suite is currently running for an application.</li> 
+		<li>GetDefaultTechnicalUser() no longer returns the OOTB "admin" user as a fallback.</li>
+		<li>IsTechnicalUser() now also checks if the Identity Type is "Machine".</li>
+		<li>AppSanity() now ensures all custom tables are accessible and configurable.</li>
+		<li>AppSanity() no longer moves sys_one_extend_resource_mapping and related records to the global scope.</li>
+		<li>SourceControlCommitToCurrentBranch() now supports the bAppSanity parameter - and if set to true, will run the AppSanity function before committing.</li>
+		<li>GlideRecordInsert() and GlideRecordUpdate() now check if sys_scope is non-empty for sys_metadata derived records and denies the insert in that case by using CheckRecordData().</li>
+		<li>GlideRecordInsert() and GlideRecordUpdate() now prevent any changes to scoped applications where the scope name does not start with "x_test_" during ATF test execution by using CheckRecordData().</li>		
+		<li>HtmlRenderRelatedRecords() and the Related Records page now show the scope name for records derived from sys_metadata.</li>
+		<li>Added System Property "x_snc_devtools.instance_scan.prevent_useless_checks" to control the behavior of the Business Rule "sys_metadata - prevent useless checks" and updated the related ATF test.</li>
+		<li>TestDataAPI::CreateDatabaseView() now supports the strScope parameter and defaults the scope to "global". Added a technical debt as the parameter is inconsistent with other Create* functions.</li>
+		<li>GetActiveTransactions() now waits for all nodes to report their active transactions.</li> 
+		<li>GetActiveTransactions() cleans up the transaction record and removes irrelevant attributes.</li>
+		<li>GetActiveTransactions() now returns false if the transactions cannot be gathered from all nodes.</li>
+		<li>GetActiveTransactions() now returns attributes representing time spent without "1970-01-01 " in the value.</li>
+		<li>GetAppUncommittedFilesCount() now uses GlideAggregate.</li>
+		<li>WaitForWorker() was defective and did not properly wait for the execution tracker to get into a non-progress state. This has been fixed.</li>
+		<li>InstanceScanCheckOnApp() failed if the scanned app does not have any Update Sets. This has been fixed.</li>
+		<li>IsPrimeTierLicenseAvailable() failed if sn_aia.AIAgentLicensingUtil is not up-to-date. This has been fixed.</li>
+		<li>Refactored ATF tests to use scope prefix "x_test_" and name prefix "Test " for all apps created during test execution.</li>
+		<li>Added more patterns to GetEvaluatorErrorExceptionPatterns().</li>
+		<li>GetLinkDirectory() now also contains "AI Specialist" related tables.</li>
+		<li>GetLinkDirectory(): Section "Now Assist AI Agents" has been renamed to "AI Agents".</li>		
+		<li>IsValidTable() is now using the TableUtils API.</li>
+		<li>Fixed CleanUpATF syntax editor macro name.</li>
+		<li>Syntax editor macro for "AppCreate" now uses new test app naming convention.</li>
+		<li>Improved syntax editor macro for "TestDataAPI".</li>
+		<li>Removed technical debt "Function name inconsistency: URL vs. Url" as all affected functions are deprecated (and hence have their own specific technical debt records).</li> 
+	</ol>
+
 
 	<h3>1.142.0 - 2026-07-01</h3>
 	<ol>
@@ -3396,14 +3433,14 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>2621</sys_mod_count>
+        <sys_mod_count>2661</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-07-01 12:30:19</sys_updated_on>
+        <sys_updated_on>2026-08-03 09:22:06</sys_updated_on>
     </sys_ui_page>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>e44fd7541b578450a89720a8ec4bcb8c</id>

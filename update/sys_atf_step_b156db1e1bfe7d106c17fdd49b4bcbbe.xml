@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-12-01 16:33:27</sys_created_on>
         <sys_id>b156db1e1bfe7d106c17fdd49b4bcbbe</sys_id>
-        <sys_mod_count>13</sys_mod_count>
+        <sys_mod_count>15</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_b156db1e1bfe7d106c17fdd49b4bcbbe</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-12-13 21:34:12</sys_updated_on>
+        <sys_updated_on>2026-07-29 13:25:05</sys_updated_on>
         <table/>
         <test display_value="DevTools - RecordTransporterPackagePackTranslatedText">59461b1e1bfe7d106c17fdd49b4bcb5d</test>
         <timeout/>
@@ -50,9 +50,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-12-01 16:33:27</sys_created_on>
         <sys_id>d3a6535e1bfe7d106c17fdd49b4bcb42</sys_id>
-        <sys_mod_count>13</sys_mod_count>
+        <sys_mod_count>15</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-12-13 21:34:12</sys_updated_on>
+        <sys_updated_on>2026-07-29 13:25:05</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -79,37 +79,38 @@
 &#13;
 	TestCase_RecordTransporterPackagePackTranslatedText(null,null,false);&#13;
 &#13;
+	var strAppSysId = AppCreate('Test Alpha','scoped','x_test_alpha');&#13;
 &#13;
 	var grPackage = new GlideRecord('x_snc_devtools_transporter_package');	&#13;
 	grPackage.initialize();&#13;
-	grPackage.name = '_ATF_DEVTOOLS_Test1';&#13;
-	grPackage.id_suffix = 'atf_test1';&#13;
+	grPackage.name = 'Test 1';&#13;
+	grPackage.id_suffix = 'test1';&#13;
 	grApp = GetAppRecord('x_snc_devtools');&#13;
-	grPackage.sys_scope = grApp.sys_id;&#13;
-	var strPackageSysId = grPackage.insert();&#13;
+	grPackage.sys_scope = strAppSysId;&#13;
+	var strPackageSysId = GlideRecordInsert(grPackage);&#13;
 	test.Log(grPackage);&#13;
 &#13;
 	var grTranslatedText = new GlideRecord('sys_translated_text');&#13;
 	grTranslatedText.initialize();&#13;
 	grTranslatedText.tablename = 'sys_app';&#13;
-	grTranslatedText.documentkey = grApp.sys_id;&#13;
+	grTranslatedText.documentkey = strAppSysId;&#13;
 	grTranslatedText.fieldname = 'short_description';&#13;
 	grTranslatedText.language = 'de';&#13;
-	grTranslatedText.value = 'Eine kurze Beschreibung der DevTools auf deutsch...';&#13;
+	grTranslatedText.value = 'Eine kurze Beschreibung der Alpha App auf deutsch...';&#13;
 	var strTranslatedTextSysId = GlideRecordInsert(grTranslatedText);&#13;
 	test.Log(grTranslatedText);&#13;
 &#13;
 	var grTranslatedText = new GlideRecord('sys_translated_text');&#13;
 	grTranslatedText.initialize();&#13;
 	grTranslatedText.tablename = 'sys_app';&#13;
-	grTranslatedText.documentkey = grApp.sys_id;&#13;
+	grTranslatedText.documentkey = strAppSysId;&#13;
 	grTranslatedText.fieldname = 'short_description';&#13;
 	grTranslatedText.language = 'fr';&#13;
 	grTranslatedText.value = 'Et en francaise...';&#13;
 	var strTranslatedTextSysId = GlideRecordInsert(grTranslatedText);&#13;
 	test.Log(grTranslatedText);&#13;
 &#13;
-	var query = { documentkey: grApp.sys_id, language: 'de' };&#13;
+	var query = { documentkey: strAppSysId, language: 'de' };&#13;
 	TestCase_RecordTransporterPackagePackTranslatedText(grPackage,query,true);&#13;
 &#13;
 	var grTransportRecord = new GlideRecord('x_snc_devtools_transporter_record');&#13;

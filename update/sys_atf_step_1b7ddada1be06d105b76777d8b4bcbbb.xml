@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-01-24 19:51:14</sys_created_on>
         <sys_id>1b7ddada1be06d105b76777d8b4bcbbb</sys_id>
-        <sys_mod_count>23</sys_mod_count>
+        <sys_mod_count>27</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_1b7ddada1be06d105b76777d8b4bcbbb</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-05-13 12:18:09</sys_updated_on>
+        <sys_updated_on>2026-07-27 10:05:41</sys_updated_on>
         <table/>
         <test display_value="DevTools - sys_metadata - Prevent useless checks">926d52da1be06d105b76777d8b4bcbc5</test>
         <timeout/>
@@ -36,22 +36,22 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-01-24 19:51:14</sys_created_on>
         <sys_id>808d1ada1be06d105b76777d8b4bcb2e</sys_id>
-        <sys_mod_count>23</sys_mod_count>
+        <sys_mod_count>27</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-05-13 12:18:10</sys_updated_on>
+        <sys_updated_on>2026-07-27 10:05:41</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
 	&#13;
 	test.SetResult(true);&#13;
 &#13;
-	var grAppDevTools = GetAppRecord('x_snc_devtools');&#13;
+	var strAppSysId = AppCreate('Test Alpha','scoped','x_test_alpha');&#13;
 	&#13;
 	test.Log('Creating a linter check that ALWAYS produces a finding:');&#13;
 	var grLinterCheck = new GlideRecord('scan_linter_check');&#13;
 	grLinterCheck.initialize();&#13;
 	grLinterCheck.sys_scope = 'global';&#13;
-	grLinterCheck.name = 'TEST Linter Check that always triggers a finding';&#13;
+	grLinterCheck.name = 'Test - Linter Check that always triggers a finding';&#13;
 	grLinterCheck.script =&#13;
 		'(function (engine) { engine.finding.incrementWithNode(engine.rootNode); })(engine);';&#13;
 	var strLinterCheckSysId = GlideRecordInsert(grLinterCheck);&#13;
@@ -62,7 +62,7 @@
 	var grTableCheck = new GlideRecord('scan_table_check');&#13;
 	grTableCheck.initialize();&#13;
 	grTableCheck.sys_scope = 'global';&#13;
-	grTableCheck.name = 'TEST Table Check that always triggers a finding';&#13;
+	grTableCheck.name = 'Test - Table Check that always triggers a finding';&#13;
 	grTableCheck.table = 'sys_dictionary';&#13;
 	grTableCheck.advanced = true;&#13;
 	grTableCheck.script =&#13;
@@ -89,7 +89,7 @@
 	test.Log('Creating a Flow Variable has no relevant script fields - so the business rule should prevent the check from running!');&#13;
 	var grFlowVariable = new GlideRecord('sys_hub_flow_variable');&#13;
 	grFlowVariable.initialize();&#13;
-	grFlowVariable.sys_scope = grAppDevTools.sys_id;&#13;
+	grFlowVariable.sys_scope = strAppSysId;&#13;
 	var strFlowVariableSysId = GlideRecordInsert(grFlowVariable);&#13;
 	test.Log(RenderValue(grFlowVariable));&#13;
 	test.Log('\n');&#13;
@@ -97,14 +97,17 @@
 	test.Log('Creating a Data Source that has no relevant script fields - so the business rule should prevent the check from running!');&#13;
 	var grDataSource = new GlideRecord('sys_data_source');&#13;
 	grDataSource.initialize();&#13;
-	grDataSource.sys_scope = grAppDevTools.sys_id;&#13;
-	grDataSource.name = 'TEST File Data Source';&#13;
+	grDataSource.sys_scope = strAppSysId;&#13;
+	grDataSource.name = 'Test File Data Source';&#13;
 	grDataSource.type = 'File';&#13;
 	var strDataSourceSysId = GlideRecordInsert(grDataSource);&#13;
 	test.Log(RenderValue(grDataSource));&#13;
 	test.Log('\n');	&#13;
 &#13;
-	test.Log('\nThe business rule should be active and prevent the check from executing on the record.\n');&#13;
+&#13;
+	test.Log('\nThe business rule is set active and prevent the check from executing on the record.\n');&#13;
+	AppSetProperty('instancescan.prevent_useless_checks','true');&#13;
+&#13;
 &#13;
 	Sleep(5);&#13;
 &#13;
@@ -142,7 +145,7 @@
 &#13;
 &#13;
 	test.Log('\nNow, the business rule is set inactive, so the check is expected to execute and produce a finding.\n');&#13;
-	RecordSetValue('sys_script','b7fad21a1be06d105b76777d8b4bcbbe','active','false');&#13;
+	AppSetProperty('instancescan.prevent_useless_checks','false');&#13;
 &#13;
 	Sleep(5);&#13;
 	&#13;

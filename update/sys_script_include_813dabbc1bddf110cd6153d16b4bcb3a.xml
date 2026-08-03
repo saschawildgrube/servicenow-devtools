@@ -15,8 +15,9 @@
 		// this is to avoid the warning during DevTools installation ;)
 		'ShowRecentEvaluatorErrors',
 
+/*
 		// Pre-Yokohama
-		/*
+	
 		'"referrerpolicy" is not defined',
 		'browser.isMSIE11',
 		'devstudio_config.xml',
@@ -148,6 +149,7 @@
 		'12f6fa80ff34', // 12f6fa80ff342a1004ddffffffffff3a
 		'0fc97e614fd1', // 0fc97e614fd11210726a3717b0ce0b10
 		'96ff9b33f731', // 96ff9b33f73152107447a5ce33bfd67b
+		'f0446162ff39', // f0446162ff39321063e7ffffffffffda    
 
 		// Zurich
 		'"inputvis" is not defined.',
@@ -159,6 +161,7 @@
 		'"g_builddate" is not defined',
 		'new sn_ac.ACCmdbCI().getCmdbCiID();',
 		'new sn_atf_tg.DW.BrowserLicenseCheckerLibrary.BrowserLicenseChecker().getNumLicensedCloudRunners()._result;',
+		'com.glide.dev-studio/ui.jtemplates/devstudio_config.xml',
 		'9566b90ceb03', // 9566b90ceb0311003623666cd206fe8c
 		'4659d132d723', // 4659d132d7232100b6bddb0c8252039e
 		'64e5e4737322', // 64e5e473732213002cb26fbc1bf6a7ef
@@ -195,11 +198,15 @@
 		'c6cacfd6ff12', // c6cacfd6ff1222100043ffffffffffcf   
 		'a6e64546c321', // a6e64546c32103104b4f311f050131b8  
 		'd12d63cc7766', // d12d63cc77668510960ced43ba5a99da    
+		'1c8878bbd703', // 1c8878bbd7032100b9bc43d60e6103c8
+		'293eb723d723', // 293eb723d7232100b6bddb0c82520320
 
 		// Australia
 		'3657e6665bef', // 3657e6665bef1110d9a5ce1a8581c7e0
 		'd2426c9ec0a8', // d2426c9ec0a8016501958bf2ac79c775     
-		'de5920b77113', // de5920b7711332100a229b13380c8bd2     
+		'de5920b77113', // de5920b7711332100a229b13380c8bd2   
+		'37e17073711b', // 37e17073711b32100a229b13380c8b01  
+		'ea804ac70b61', // ea804ac70b613110985f8a8db777b25f    
 
 	];
 	return aPatterns;
@@ -208,14 +215,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-09-13 12:47:41</sys_created_on>
         <sys_id>813dabbc1bddf110cd6153d16b4bcb3a</sys_id>
-        <sys_mod_count>201</sys_mod_count>
+        <sys_mod_count>209</sys_mod_count>
         <sys_name>GetEvaluatorErrorExceptionPatterns</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_813dabbc1bddf110cd6153d16b4bcb3a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-06-29 15:40:22</sys_updated_on>
+        <sys_updated_on>2026-08-03 06:56:54</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

@@ -5,25 +5,58 @@
         <api_name>x_snc_devtools.GetActiveTransactions</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Returns an array of objects containing the currently active running transactions.</description>
+        <description>Returns an array of objects containing the currently active running transactions.&#13;
+Note that the function gathers active transactions from all nodes and hence may run for a while - consider calling it from an asynchonous context.&#13;
+If the transactions cannot be gathered from all nodes, returns false;</description>
         <mobile_callable>false</mobile_callable>
         <name>GetActiveTransactions</name>
         <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetActiveTransactions()
 {
-	RunScriptInGlobalScope(
+	var strExecutionTrackerId = RunScriptInGlobalScope(
 		"var vct = new VClusterTransaction('v_cluster_transaction');"
 		+"vct.deleteTransactions();"
-		+"vct.informOtherNodes();"
+		+"result = vct.informOtherNodes();"
 		+"vct.refreshTransactions(GlideSession.get().getSessionID());");
 
+	if (IsValidSysId(strExecutionTrackerId) == true)
+	{
+		WaitForTracker(strExecutionTrackerId,1);
+	}
+	else
+	{
+		return false;
+	}
+	
 	var aTransactions = [];
 
 	var grVCT = new GlideRecord('v_cluster_transaction');
 	grVCT.query();
-	while (grVCT.next())
+	while (grVCT.next() == true)
 	{
 		var transaction = Clone(grVCT);
+
+		// Useless metadata
+		delete transaction.sys_id;
+		delete transaction.sys_meta;
+		delete transaction.sys_mod_count;
+		delete transaction.sys_tags;
+
+		// The scope name is just wrong and hence misleading
+		delete transaction.initial_scope_name; 
+		delete transaction.scope_name; 
+        
+		// Date time refers to the moment the virtual transaction was identified, not started
+		delete transaction.sys_created_on; 
+		delete transaction.sys_updated_on; 
+
+		var aKeys = GetKeys(transaction);
+		for (var nKey = 0; nKey < aKeys.length; nKey++)
+		{
+			var strKey = aKeys[nKey];
+			transaction[strKey] = StringReplace(transaction[strKey],'1970-01-01 ','');
+		}
+		
 		aTransactions.push(transaction);
 	}
 	return aTransactions;
@@ -32,14 +65,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-05-07 15:50:31</sys_created_on>
         <sys_id>3aef80183bb4431862bf612c95e45a7d</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>31</sys_mod_count>
         <sys_name>GetActiveTransactions</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_3aef80183bb4431862bf612c95e45a7d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-05-15 12:48:48</sys_updated_on>
+        <sys_updated_on>2026-07-22 14:44:06</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

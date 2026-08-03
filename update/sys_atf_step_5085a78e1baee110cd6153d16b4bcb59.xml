@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-05-03 16:33:03</sys_created_on>
         <sys_id>5085a78e1baee110cd6153d16b4bcb59</sys_id>
-        <sys_mod_count>11</sys_mod_count>
+        <sys_mod_count>13</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_5085a78e1baee110cd6153d16b4bcb59</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-04-14 09:31:15</sys_updated_on>
+        <sys_updated_on>2026-08-03 11:31:19</sys_updated_on>
         <table/>
         <test display_value="DevTools - InstanceScanCheckOnApp">7365678e1baee110cd6153d16b4bcb76</test>
         <timeout/>
@@ -50,9 +50,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-05-03 16:33:03</sys_created_on>
         <sys_id>de85a78e1baee110cd6153d16b4bcbe2</sys_id>
-        <sys_mod_count>11</sys_mod_count>
+        <sys_mod_count>13</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-04-14 09:31:15</sys_updated_on>
+        <sys_updated_on>2026-08-03 11:31:20</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -96,9 +96,8 @@
 			TestCase_InstanceScanCheckOnApp_CheckResult);&#13;
 	}&#13;
 	&#13;
-	var grApp = GetAppRecord('x_snc_devtools');&#13;
 	&#13;
-	test.Log('Using a mock check against DevTools');&#13;
+	test.Log('Creating a mock check that always causes a finding in sys_script_include...');&#13;
 	var grCheck = new GlideRecord('scan_table_check');&#13;
 	grCheck.initialize();&#13;
 	grCheck.name = 'Test';&#13;
@@ -111,9 +110,14 @@
 	grCheck.sys_scope = 'global';&#13;
 	var strCheckSysId = GlideRecordInsert(grCheck);&#13;
 	test.Log(grCheck);&#13;
+	test.Log('');&#13;
+&#13;
+	var strAppSysId = AppCreate('Test Alpha','scoped','x_test_alpha');&#13;
+	var testdata = new x_snc_devtools.TestDataAPI('ATF.DEVTOOLS');&#13;
+	var strScriptIncludeSysId = testdata.CreateScriptInclude(strAppSysId, '1', 'function Test_1() {}', '', 'This is a test');&#13;
 &#13;
 	TestCase_InstanceScanCheckOnApp(null,null,false,false);&#13;
-	TestCase_InstanceScanCheckOnApp(strCheckSysId,grApp,false,true);&#13;
+	TestCase_InstanceScanCheckOnApp(strCheckSysId,strAppSysId,false,true);&#13;
 	&#13;
 	&#13;
 	return test.GetResult();&#13;

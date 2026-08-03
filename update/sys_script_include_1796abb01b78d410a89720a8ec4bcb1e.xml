@@ -94,7 +94,19 @@ TestDataAPI.prototype =
 	
 	SetPrefix:function(strPrefix)
 	{
-		this.m_strPrefix = GetStringValue(strPrefix);
+		strPrefix = GetStringValue(strPrefix);
+/*		if (strPrefix.indexOf('_') != -1)
+		{
+			Debug('TestDataAPI: No underscores allowed in prefix!');
+			throw "TestDataAPI: No underscores allowed in prefix!";
+		}
+		if (strPrefix == '')
+		{
+			Debug('TestDataAPI: prefix is empty!');
+			throw "TestDataAPI: prefix is empty!";
+		}
+*/
+		this.m_strPrefix = strPrefix;
 	},
 	
 	GetPrefix:function()
@@ -1282,13 +1294,18 @@ TestDataAPI.prototype =
 		return this.GetRecord('cmdb_ci','name',strName);
 	},		
 
-	CreateDatabaseView:function(strName, oDbView)
+	CreateDatabaseView:function(strName, oDbView, strScope)
 	{
 		strName = GetStringValue(strName);
-		
 		if (strName == '')
 		{
 			return null;
+		}
+
+		strScope = GetStringValue(strScope);
+		if (strScope == '')
+		{
+			strScope = 'global';
 		}
 		
 		if (IsObject(oDbView) == false)
@@ -1315,6 +1332,7 @@ TestDataAPI.prototype =
 		
 		var grDbView = new GlideRecord('sys_db_view');
 		grDbView.initialize();
+		grDbView.sys_scope = strScope;
 		grDbView.name = strDatabaseViewName;
 		var strDbViewSysId = GlideRecordInsert(grDbView);
 		if (strDbViewSysId == null)
@@ -1329,6 +1347,7 @@ TestDataAPI.prototype =
 			{
 				var grDbViewTable = new GlideRecord('sys_db_view_table');
 				grDbViewTable.initialize();
+				grDbViewTable.sys_scope = strScope;
 				grDbViewTable.active = true;
 				grDbViewTable.view = strDbViewSysId;
 				grDbViewTable.table = GetValue(table,'table');
@@ -1348,6 +1367,7 @@ TestDataAPI.prototype =
 						{
 							var grDbViewTableField = new GlideRecord('sys_db_view_table_field');
 							grDbViewTableField.initialize();
+							grDbViewTableField.sys_scope = strScope;
 							grDbViewTableField.field = strField;
 							grDbViewTableField.view_table = strDbViewTableSysId;
 							grDbViewTableField.table = GetValue(table,'table');
@@ -1497,14 +1517,14 @@ TestDataAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-05-13 14:53:39</sys_created_on>
         <sys_id>1796abb01b78d410a89720a8ec4bcb1e</sys_id>
-        <sys_mod_count>241</sys_mod_count>
+        <sys_mod_count>252</sys_mod_count>
         <sys_name>TestDataAPI</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_1796abb01b78d410a89720a8ec4bcb1e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-06-22 13:16:43</sys_updated_on>
+        <sys_updated_on>2026-08-03 07:15:34</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
