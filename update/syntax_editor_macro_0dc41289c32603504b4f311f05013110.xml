@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="syntax_editor_macro">
+    <syntax_editor_macro action="INSERT_OR_UPDATE">
+        <comments>This editor macro creates the code necessary to access the function contained in the InstanceDeactivateAI script include.</comments>
+        <name>InstanceDeactivateAI</name>
+        <sys_class_name>syntax_editor_macro</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-05 09:13:09</sys_created_on>
+        <sys_id>0dc41289c32603504b4f311f05013110</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>InstanceDeactivateAI</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>syntax_editor_macro_0dc41289c32603504b4f311f05013110</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-05 09:13:40</sys_updated_on>
+        <text>// WARNING: Only use in case of emergency! Requires "maint" access.&#13;
+var InstanceDeactivateAI = x_snc_devtools.InstanceDeactivateAI;&#13;
+InstanceDeactivateAI();</text>
+    </syntax_editor_macro>
+</record_update>
