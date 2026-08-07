@@ -7,7 +7,7 @@
         <hide_on_ui>false</hide_on_ui>
         <ide_created/>
         <installed_as_dependency>false</installed_as_dependency>
-        <js_level>helsinki_es5</js_level>
+        <js_level>es_latest</js_level>
         <licensable>true</licensable>
         <license/>
         <license_category>none</license_category>
@@ -36,9 +36,9 @@ DevTools is also the backbone for the mature development and deployment process.
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 08:31:37</sys_created_on>
         <sys_id>d689f6901bd38450a89720a8ec4bcbfd</sys_id>
-        <sys_mod_count>238</sys_mod_count>
+        <sys_mod_count>240</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-03 07:16:52</sys_updated_on>
+        <sys_updated_on>2026-08-07 13:25:24</sys_updated_on>
         <template/>
         <trackable>true</trackable>
         <uninstall_blocked>false</uninstall_blocked>
@@ -50,8 +50,8 @@ DevTools is also the backbone for the mature development and deployment process.
         <x_snc_devtools_maintainer>Sascha Wildgrube</x_snc_devtools_maintainer>
         <x_snc_devtools_maintainer_email>sascha@wildgrube.com</x_snc_devtools_maintainer_email>
         <x_snc_devtools_repo_url>https://github.com/saschawildgrube/servicenow-devtools.git</x_snc_devtools_repo_url>
-        <x_snc_devtools_showstopper>false</x_snc_devtools_showstopper>
-        <x_snc_devtools_showstopper_details/>
+        <x_snc_devtools_showstopper>true</x_snc_devtools_showstopper>
+        <x_snc_devtools_showstopper_details>TestAPI description does not have auto-documentation</x_snc_devtools_showstopper_details>
         <x_snc_wildgrubelab_test/>
         <x_snc_wildgrubelab_test2/>
     </sys_app>
