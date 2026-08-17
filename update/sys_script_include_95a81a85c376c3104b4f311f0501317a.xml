@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.MakeJavaScriptIdentifier</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Generates a valid JavaScript identifier based on the given string.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>MakeJavaScriptIdentifier</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function MakeJavaScriptIdentifier(strInput)
+{
+	strInput = GetStringValue(strInput);
+	strInput = strInput.trim();
+
+	if (IsValidJavaScriptIdentifier(strInput) == true)
+	{
+		return strInput;
+	}
+
+	var strIdentifier = MakePascalCase(strInput);
+
+	if (strIdentifier == '')
+	{
+		return false;
+	}
+
+	// If the first character is a digit, replace leading digits with words
+	var digitWords = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'];
+	var i = 0;
+	var prefix = '';
+	while (i < strIdentifier.length && strIdentifier.charAt(i) >= '0' && strIdentifier.charAt(i) <= '9')
+	{
+		var digit = GetIntegerValue(strIdentifier.charAt(i));
+		prefix += digitWords[digit];
+		i++;
+	}
+
+	if (prefix.length > 0)
+	{
+		// Append the rest of the string as-is (without converting digits inside)
+		// But if the next character after digits is a letter and prefix ends with a letter,
+		// and the next character is lowercase, keep it as is (for camelCase after digits)
+		// So just append substring from i without changing case
+		strIdentifier = prefix + strIdentifier.substring(i);
+	}
+
+	return strIdentifier;
+}
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-17 19:47:32</sys_created_on>
+        <sys_id>95a81a85c376c3104b4f311f0501317a</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>MakeJavaScriptIdentifier</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_95a81a85c376c3104b4f311f0501317a</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-17 20:17:19</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+</record_update>
