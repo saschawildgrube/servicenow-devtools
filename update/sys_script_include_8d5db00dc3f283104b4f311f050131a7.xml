@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.MakePascalCase</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns a PascalCase version of the input string.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>MakePascalCase</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function MakePascalCase(strInput)
+{
+	strInput = GetStringValue(strInput);
+	strInput = strInput.trim();
+	if (strInput == '')
+	{
+		return '';
+	}
+
+	if (IsPascalCase(strInput) == true)
+	{
+		return strInput;
+	}
+
+	//var words = strInput.split(/[\s_\-\.\t\/]+/);
+	var words = strInput.split(/[^\p{L}\p{N}]+/u);
+	var strPascalCase = '';
+	for (var i = 0; i < words.length; i++)
+	{
+		var word = words[i];
+		if (word.length === 0)
+			continue;
+
+		var firstChar = word.charAt(0);
+		var rest = word.substring(1);
+
+		if (firstChar >= '0' && firstChar <= '9')
+		{
+			// If first char is digit, keep as is, capitalize rest normally
+			strPascalCase += firstChar + rest.charAt(0).toUpperCase() + rest.substring(1);
+		}
+		else
+		{
+			// Preserve original casing of rest if original word is all uppercase
+			if (word === word.toUpperCase())
+			{
+				strPascalCase += firstChar.toUpperCase() + rest;
+			}
+			else
+			{
+				strPascalCase += firstChar.toUpperCase() + rest.toLowerCase();
+			}
+		}
+	}
+
+	return strPascalCase;
+}
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-17 13:08:15</sys_created_on>
+        <sys_id>8d5db00dc3f283104b4f311f050131a7</sys_id>
+        <sys_mod_count>18</sys_mod_count>
+        <sys_name>MakePascalCase</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_8d5db00dc3f283104b4f311f050131a7</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-17 18:53:00</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+</record_update>
