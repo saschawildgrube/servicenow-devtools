@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.GetWordsFromString</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Extract all words (and numbers) from a given string.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>GetWordsFromString</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function GetWordsFromString(strInput)
+{
+	strInput = GetStringValue(strInput);
+	strInput = strInput.trim();
+	var aWords = strInput.split(/[^\p{L}\p{N}]+/u);
+	if (aWords.length == 1)
+	{
+		if (GetStringValue(GetValue(aWords,0)) == '')
+		{
+			return [];
+		}
+	}
+	return aWords;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-17 19:06:24</sys_created_on>
+        <sys_id>d28e82c5c3f2c3104b4f311f0501317d</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>GetWordsFromString</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_d28e82c5c3f2c3104b4f311f0501317d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-17 19:15:14</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+</record_update>
