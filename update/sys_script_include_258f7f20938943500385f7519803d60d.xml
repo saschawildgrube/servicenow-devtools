@@ -229,20 +229,42 @@
 		'Checks if the instance has the "prime" license tier - which is required to build and run custom AI agents. One option to enable the Prime License Tier is to install the "App Engine - Prime" subscription.';
 	aistatus.license_tier.config_url = GetInstanceUrl() + '/now/app-manager/home/product/source/store/id/14b8ddfb87ebfa90669040c8dabb35b4/details';
 
+	aistatus.agentic_workflows = {};
+	aistatus.agentic_workflows.title = 'Agentic Workflows';
+	aistatus.agentic_workflows.type = 'count';
+	var grWorkflows = new GlideRecord('sn_aia_team');
+	grWorkflows.query();
+	aistatus.agentic_workflows.status = grWorkflows.getRowCount();
+	aistatus.agentic_workflows.info = 
+		'The number of Agentic Workflows available on this instance.';
+	aistatus.agentic_workflows.config_url = GetInstanceListUrl('sn_aia_team');
+
+	aistatus.ai_agents = {};
+	aistatus.ai_agents.title = 'AI Agents';
+	aistatus.ai_agents.type = 'count';
+	var grAgents = new GlideRecord('sn_aia_agent_config');
+	grAgents.addActiveQuery();
+	grAgents.query();
+	aistatus.ai_agents.status = grAgents.getRowCount();
+	aistatus.ai_agents.info = 
+		'The number of ACTIVE AI Agent Configs available on this instance.';
+	aistatus.ai_agents.config_url = GetInstanceListUrl('sn_aia_agent_config','','active=true');	
+
+
 	return aistatus;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-05-21 14:10:28</sys_created_on>
         <sys_id>258f7f20938943500385f7519803d60d</sys_id>
-        <sys_mod_count>53</sys_mod_count>
+        <sys_mod_count>58</sys_mod_count>
         <sys_name>GetInstanceAIStatus</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_258f7f20938943500385f7519803d60d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-19 13:04:24</sys_updated_on>
+        <sys_updated_on>2026-08-19 13:33:16</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
