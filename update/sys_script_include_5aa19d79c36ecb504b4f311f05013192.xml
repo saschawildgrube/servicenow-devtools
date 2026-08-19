@@ -5,12 +5,16 @@
         <api_name>x_snc_devtools.BusinessProcessAPI</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>TODO
+        <description>Serves as the abstract parent class for business process implementations.
 |
 Methods:
 * initialize()
 * GetBusinessProcess()
-* Validate()</description>
+* Validate()
+* IsValidProcessRecord()
+* _BusinessRuleBeforeInsertOrUpdate()
+* _StateChange()
+* Log()</description>
         <mobile_callable>false</mobile_callable>
         <name>BusinessProcessAPI</name>
         <sandbox_callable>false</sandbox_callable>
@@ -33,20 +37,76 @@ BusinessProcessAPI.prototype =
 		return BusinessProcessValidate(this.business_process,bDetailed);
 	},
 
-	Type: 'BusinessProcessAPI'
+/*
+	GetProcessTable: function()
+	{
+		var strTable = 
+	},
+*/
+
+	IsValidProcessRecord: function(grProcess)
+	{
+		if (IsValidRecord(grProcess) == false)
+		{
+			return false;
+		}
+		var strRecordClassName = grProcess.getRecordClassName();
+		if (strRecordClassName.endsWith('_' + this.business_process.id) == false)
+		{
+			return false;
+		}
+		return true;
+	},
+
+	_BusinessRuleBeforeInsertOrUpdate: function(grCurrent, grPrevious)
+	{
+		if (this.IsValidProcessRecord(grCurrent) == false)
+		{
+			return false;
+		}
+
+		// A change is possible
+		if (this.IsValidProcessRecord(grPrevious) == true)
+		{
+			var nOldState = GetIntegerValue(grPrevious.state);
+			var nNewState = GetIntegerValue(grCurrent.state);			
+			if (nOldState != nNewState)
+			{
+				this._StateChange(grCurrent,nOldState,nNewState);
+			}
+		}
+		return true;
+	},
+
+	_StateChange: function(grProcess,nOldState,nNewState)
+	{
+		this.Log(grProcess, 'StateChange from nOldState '+nOldState+' to nNewState '+nNewState +'.');
+
+		// is the state change valid?
+
+		this.onStateChange(grProcess,nOldState,nNewState);
+
+	},
+
+	Log: function(grProcess, vPayload)
+	{
+		Log('BusinessProcessAPI: ' + this.type + ': ' + grProcess.number + ': ' + RenderValue(vPayload));
+	},
+
+	type: 'BusinessProcessAPI'
 };]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-08-07 12:16:16</sys_created_on>
         <sys_id>5aa19d79c36ecb504b4f311f05013192</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>12</sys_mod_count>
         <sys_name>BusinessProcessAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_5aa19d79c36ecb504b4f311f05013192</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-07 14:03:53</sys_updated_on>
+        <sys_updated_on>2026-08-18 14:41:47</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
