@@ -18,6 +18,14 @@ WARNING: This cannot easily be undone. Use only in case of emergency!</descripti
 		return false;
 	}
 
+	/*
+
+		// AI search?
+		// Use case overrides?
+
+	 */
+
+
 	Log('InstanceDeactivateAI: START');
 
 
@@ -41,7 +49,7 @@ WARNING: This cannot easily be undone. Use only in case of emergency!</descripti
 	{
 		grSSE.url = '';
 		GlideRecordUpdate(grSSE);
-		Log('InstanceDeactivateAI: ' + grSSE);
+		Log('InstanceDeactivateAI: ' + RenderRecordSummary(grSSE));
 
 	}
 
@@ -56,7 +64,7 @@ WARNING: This cannot easily be undone. Use only in case of emergency!</descripti
 		grConnection.connection_url = '';
 		grConnection.host = '';
 		GlideRecordUpdate(grConnection);
-		Log('InstanceDeactivateAI: ' + grConnection);
+		Log('InstanceDeactivateAI: ' + RenderRecordSummary(grConnection));
 	}
 
 	Log('InstanceDeactivateAI: Deactivating Now Assist Deployments...');
@@ -71,7 +79,7 @@ WARNING: This cannot easily be undone. Use only in case of emergency!</descripti
 	}
 
 	Log('InstanceDeactivateAI: Deactivating all AI Agents...');
-	var grAgents = new GlideRecord('sn_aia_agent');
+	var grAgents = new GlideRecord('sn_aia_agent_config');
 	grAgents.addActiveQuery();
 	grAgents.query();
 	while (grAgents.next())
@@ -103,18 +111,9 @@ WARNING: This cannot easily be undone. Use only in case of emergency!</descripti
 	while (grOEDC.next())
 	{
 		grOEDC.active = false;
-		GlideRecordUpdate(grOEDC);
+		GlideRecordUpdate(grOEDC,true);
 		Log('InstanceDeactivateAI: ' + RenderRecordSummary(grOEDC));
 	}
-
-	/*
-
-		// AI search?
-
-		// Use case overrides?
-
-
-	 */
 
 	Log('InstanceDeactivateAI: END');
 
@@ -124,14 +123,14 @@ WARNING: This cannot easily be undone. Use only in case of emergency!</descripti
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-08-05 09:12:29</sys_created_on>
         <sys_id>3b2456c5c32603504b4f311f050131fe</sys_id>
-        <sys_mod_count>20</sys_mod_count>
+        <sys_mod_count>22</sys_mod_count>
         <sys_name>InstanceDeactivateAI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_3b2456c5c32603504b4f311f050131fe</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-19 18:26:26</sys_updated_on>
+        <sys_updated_on>2026-08-19 18:41:05</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
