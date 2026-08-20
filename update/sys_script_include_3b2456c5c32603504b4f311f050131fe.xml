@@ -6,7 +6,8 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Deactivates all (known) AI capabilities on a platform. Executing this function requires "maint" access.&#13;
-WARNING: This cannot easily be undone. Use only in case of emergency!</description>
+WARNING: This cannot be easily undone. Only use after carefully considering the consequences!&#13;
+The function may be embedded into an installation procedure that first deactivates everything and then selectively activates whitelisted capabilities.</description>
         <mobile_callable>false</mobile_callable>
         <name>InstanceDeactivateAI</name>
         <sandbox_callable>false</sandbox_callable>
@@ -115,6 +116,13 @@ WARNING: This cannot easily be undone. Use only in case of emergency!</descripti
 		Log('InstanceDeactivateAI: ' + RenderRecordSummary(grOEDC));
 	}
 
+	Log('InstanceDeactivateAI: Deactivating Now Assist Code capabilities...');
+
+	SetProperty('sn_now_assist_code.enable_code_assist','false');
+    SetProperty('sn_now_assist_code.enable_auto_complete','false');
+    SetProperty('sn_now_assist_code.enable_prompt_modal','false');
+    SetProperty('sn_now_assist_code.enable_promptless_experience','false');
+
 	Log('InstanceDeactivateAI: END');
 
 	return true;
@@ -123,14 +131,14 @@ WARNING: This cannot easily be undone. Use only in case of emergency!</descripti
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-08-05 09:12:29</sys_created_on>
         <sys_id>3b2456c5c32603504b4f311f050131fe</sys_id>
-        <sys_mod_count>22</sys_mod_count>
+        <sys_mod_count>23</sys_mod_count>
         <sys_name>InstanceDeactivateAI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_3b2456c5c32603504b4f311f050131fe</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-19 18:41:05</sys_updated_on>
+        <sys_updated_on>2026-08-20 15:29:24</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
