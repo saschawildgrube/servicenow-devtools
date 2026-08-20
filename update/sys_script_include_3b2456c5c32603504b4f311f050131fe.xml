@@ -21,9 +21,20 @@ The function may be embedded into an installation procedure that first deactivat
 
 	/*
 
-		// AI search?
-		// Use case overrides?
+		// Generative AI models	sys_generative_ai_model_config.active
 
+		// AI search?
+
+		// Now Assist skill configuration	sn_nowassist_skill_config.active
+		// Now Assist skill status	sn_nowassist_skill_config_status.active	
+		// In-product skill exposure	sn_nowassist_skill_config_status.in_product_active	
+		// Agentic workflow activation	sn_aia_usecase.active  //   this field does not exist. halo?
+		// AI Agent / workflow trigger	sn_aia_trigger_configuration.active	
+		// Trigger-to-workflow mapping	sn_aia_trigger_agent_usecase_m2m.active	
+		// Workflow override	sn_aia_usecase_config_override.active	
+		// AI Agent tools	sn_aia_tool.active	// too fine-granular?
+		// Generative AI prompts/configurations	sys_generative_ai_config.active	
+		
 	 */
 
 
@@ -131,14 +142,14 @@ The function may be embedded into an installation procedure that first deactivat
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-08-05 09:12:29</sys_created_on>
         <sys_id>3b2456c5c32603504b4f311f050131fe</sys_id>
-        <sys_mod_count>23</sys_mod_count>
+        <sys_mod_count>26</sys_mod_count>
         <sys_name>InstanceDeactivateAI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_3b2456c5c32603504b4f311f050131fe</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-20 15:29:24</sys_updated_on>
+        <sys_updated_on>2026-08-20 16:07:29</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
