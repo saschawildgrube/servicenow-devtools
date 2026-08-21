@@ -9,32 +9,122 @@
         <mobile_callable>false</mobile_callable>
         <name>BusinessProcessPrepareImplementation</name>
         <sandbox_callable>false</sandbox_callable>
-        <script><![CDATA[function BusinessProcessPrepareImplementation(business_process)
+        <script><![CDATA[function BusinessProcessPrepareImplementation(business_process, vApp)
 {
 	if (BusinessProcessValidate(business_process,false) == false)
 	{
 		return false;
 	}
+
+	// App context (optional)
+
+	var grApp = null;
+	grApp = GetAppRecord(vApp);
+
+	// Class
+
 	var strClassName = GetStringValue(business_process.class_name);
 	if (IsValidJavaScriptIdentifier(strClassName) == false)
 	{
 		strClassName = MakeJavaScriptIdentifier(business_process.name + ' Process');
 		business_process.class_name = strClassName;
 	}
+
+	// Table
+	var strTableName = '';
+	if (IsValidRecord(grApp) == true)
+	{
+		strTableName = MakeTableName(grApp,business_process.id);
+	}
+
+
+	// Identify state values from existing sys_choice records
+	var aStates = GetValue(business_process,'_states');
+	if (IsValidRecord(grApp) == true)
+	{
+		var grChoiceSet = RecordQuery('sys_choice_set',
+			{
+				sys_scope: grApp.sys_id,
+				name: strTableName,
+				element: 'state'
+			});
+
+		if (IsValidRecord(grChoiceSet) == true)
+		{
+			for (var nState = 0; nState < aStates.length; nState++)
+			{
+				var state = aStates[nState];
+				var nStateValue = GetValue(state,'value');
+				var strStateName = GetStringValue(GetValue(state,'name'));
+				if (nStateValue === null)
+				{
+					var grChoice = RecordQuery(
+						'sys_choice',
+						{
+							name: strTableName,
+							element: 'state',
+							language: 'en',
+							label: strStateName
+						});
+					if (IsValidRecord(grChoice) == true)
+					{
+						aStates[nState].value = GetIntegerValue(grChoice.value);
+					}
+				}
+			}
+		}
+	}
+
+	// Set values for states
+	var strInitialStateId = business_process.initial_state;
+	var aEndStateIds = GetArrayValue(business_process.end_states);
+	var nIndexRegular = 0;
+	var nIndexEnd = 0;
+	for (var nState = 0; nState < aStates.length; nState++)
+	{
+		var state = aStates[nState];
+		var nStateValue = GetValue(state,'value');
+		if (nStateValue === null)
+		{
+			var nValue = 0;
+			var strId = GetValue(state,'id');
+			if (strId == strInitialStateId)
+			{
+				nValue = 1;
+			}
+			else
+			{
+				if (ArrayValueExists(aEndStateIds,strId) == true)
+				{
+					nValue = 10000 + nIndexEnd * 100;
+					nIndexEnd++;
+				}
+				else
+				{
+					nIndexRegular++;
+					nValue = nIndexRegular * 100;
+				}
+			}
+			aStates[nState].value = nValue;
+		}
+	}
+	business_process._states = aStates;
+
+
 	return business_process;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-08-18 09:07:02</sys_created_on>
         <sys_id>8ede0991c3be47104b4f311f05013184</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>10</sys_mod_count>
         <sys_name>BusinessProcessPrepareImplementation</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_8ede0991c3be47104b4f311f05013184</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-19 05:48:26</sys_updated_on>
+        <sys_updated_on>2026-08-21 22:23:22</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>

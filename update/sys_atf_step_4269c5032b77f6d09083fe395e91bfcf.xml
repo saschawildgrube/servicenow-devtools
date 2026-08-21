@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-03-27 15:59:05</sys_created_on>
         <sys_id>4269c5032b77f6d09083fe395e91bfcf</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_4269c5032b77f6d09083fe395e91bfcf</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-07-17 07:35:27</sys_updated_on>
+        <sys_updated_on>2026-08-21 21:14:42</sys_updated_on>
         <table/>
         <test display_value="DevTools - AppBuilderImplementBusinessProcess">7d69c5032b77f6d09083fe395e91bfac</test>
         <timeout/>
@@ -36,9 +36,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-03-27 15:59:05</sys_created_on>
         <sys_id>4a69c5032b77f6d09083fe395e91bfd2</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_mod_count>11</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-07-17 07:35:27</sys_updated_on>
+        <sys_updated_on>2026-08-21 21:14:42</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -55,10 +55,26 @@
 				test.Log('All files contained in the app:');&#13;
 				var grMetadata = new GlideRecord('sys_metadata');&#13;
 				grMetadata.addQuery('sys_scope','=',grApp.sys_id);&#13;
+				grMetadata.orderBy('sys_class_name');&#13;
 				grMetadata.query();&#13;
 				while (grMetadata.next())&#13;
 				{&#13;
 					test.Log(RenderRecordSummary(grMetadata));&#13;
+					if (grMetadata.sys_class_name == 'sys_choice_set')&#13;
+					{&#13;
+						var grChoiceSet = GetRecord('sys_choice_set',grMetadata.sys_id);&#13;
+						if (IsValidRecord(grChoiceSet) == true)&#13;
+						{&#13;
+							var grChoice = new GlideRecord('sys_choice');&#13;
+							grChoice.addQuery('name','=',grChoiceSet.name);&#13;
+							grChoice.addQuery('element','=',grChoiceSet.element);&#13;
+							grChoice.query();&#13;
+							while (grChoice.next())&#13;
+							{&#13;
+								test.Log(RenderRecordSummary(grChoice));&#13;
+							}&#13;
+						} &#13;
+					}&#13;
 				}&#13;
 			}&#13;
 			return (vExpected == vResult);&#13;
