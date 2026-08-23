@@ -26,12 +26,12 @@
             <sequence>1</sequence>
             <synonyms/>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-08-21 22:33:06</sys_created_on>
+            <sys_created_on>2026-08-23 11:44:40</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-08-21 22:33:06</sys_updated_on>
+            <sys_updated_on>2026-08-23 11:44:40</sys_updated_on>
             <value>1</value>
         </sys_choice>
         <sys_choice action="INSERT_OR_UPDATE">
@@ -45,12 +45,12 @@
             <sequence>2</sequence>
             <synonyms/>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-08-21 22:33:06</sys_created_on>
+            <sys_created_on>2026-08-23 11:44:41</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-08-21 22:33:06</sys_updated_on>
+            <sys_updated_on>2026-08-23 11:44:41</sys_updated_on>
             <value>100</value>
         </sys_choice>
         <sys_choice action="INSERT_OR_UPDATE">
@@ -64,12 +64,12 @@
             <sequence>3</sequence>
             <synonyms/>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-08-21 22:33:06</sys_created_on>
+            <sys_created_on>2026-08-23 11:44:41</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-08-21 22:33:06</sys_updated_on>
+            <sys_updated_on>2026-08-23 11:44:41</sys_updated_on>
             <value>200</value>
         </sys_choice>
         <sys_choice action="INSERT_OR_UPDATE">
@@ -77,18 +77,18 @@
             <element>state</element>
             <hint>The task is considered completed by the Fulfiller.</hint>
             <inactive>false</inactive>
-            <label>Work is completed</label>
+            <label>Work is Completed</label>
             <language>en</language>
             <name>x_snc_test_ebp_simple_task</name>
             <sequence>4</sequence>
             <synonyms/>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-08-21 22:33:06</sys_created_on>
+            <sys_created_on>2026-08-23 11:44:41</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-08-21 22:33:06</sys_updated_on>
+            <sys_updated_on>2026-08-23 11:44:41</sys_updated_on>
             <value>300</value>
         </sys_choice>
         <sys_choice action="INSERT_OR_UPDATE">
@@ -102,12 +102,12 @@
             <sequence>5</sequence>
             <synonyms/>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-08-21 22:33:07</sys_created_on>
+            <sys_created_on>2026-08-23 11:44:41</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-08-21 22:33:07</sys_updated_on>
+            <sys_updated_on>2026-08-23 11:44:41</sys_updated_on>
             <value>10000</value>
         </sys_choice>
         <sys_choice action="INSERT_OR_UPDATE">
@@ -121,12 +121,12 @@
             <sequence>6</sequence>
             <synonyms/>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-08-21 22:33:07</sys_created_on>
+            <sys_created_on>2026-08-23 11:44:42</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-08-21 22:33:07</sys_updated_on>
+            <sys_updated_on>2026-08-23 11:44:42</sys_updated_on>
             <value>10100</value>
         </sys_choice>
     </sys_choice>
