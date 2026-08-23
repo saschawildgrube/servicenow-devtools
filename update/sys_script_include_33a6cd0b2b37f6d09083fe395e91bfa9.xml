@@ -561,18 +561,21 @@
 		}
 	}
 
+	// DEFAULT VIEW
 
-	// LIST VIEW
-
-	var aFields = [
-		'number',
-		'state',
-		'short_description'
-		];
-		
 	var grUiView = GetViewRecord('Default view');
 	if (IsValidRecord(grUiView) == true)
 	{
+
+		// LIST VIEW
+
+		var aFields = [
+			'number',
+			'state',
+			'short_description'
+			];
+		
+	
 		var grUiList = new GlideRecord('sys_ui_list');
 		grUiList.addQuery('name','=',strTableName);
 		grUiList.addQuery('view','=',grUiView.sys_id);
@@ -651,13 +654,82 @@
 			var strUiListElementSysId = GlideRecordInsert(grUiListElement);
 			if (IsValidSysId(strUiListElementSysId) == false)
 			{
-				this.Error(
-					StringFormat('Failed to re-define List (UI) for table "{0}" in view "{1}".',
-						grUiList.name,
-						grUiList.view.title));
+				LogError('AppBuilderImplementBusinessProcess: Could not add element to UI List.');
 				return false;
 			}
 	
+		}
+
+		// FORM VIEW
+
+		var aFields = [
+			'.begin_split',
+			'number',
+			'.split',
+			'state',
+			'.end_split',
+			'short_description',
+			'description',
+			'comments',
+			'activity.xml'
+			];
+
+		var grUiForm = new GlideRecord('sys_ui_form');
+		grUiForm.addQuery('name','=',strTableName);
+		grUiForm.addQuery('view','=',grUiView.sys_id);
+		grUiForm.addNullQuery('sys_user');
+		grUiForm.query();
+		if (grUiForm.getRowCount() == 0)
+		{
+			var strUiFormSysId = RecordInsert(
+				'sys_ui_form',
+				{
+					sys_scope: strScopeSysId,
+					name: strTableName,
+					view: grUiView.sys_id,
+				});
+
+			if (IsValidSysId(strUiFormSysId) == false)
+			{
+				LogError('AppBuilderImplementBusinessProcess: Could not create sys_ui_form.');
+				return false;
+			}
+
+			var strUiSectionSysId = RecordInsert(
+				'sys_ui_section',
+				{
+					sys_scope: strScopeSysId,
+					name: strTableName,
+					view: grUiView.sys_id,
+				});
+
+			if (IsValidSysId(strUiSectionSysId) == false)
+			{
+				LogError('AppBuilderImplementBusinessProcess: Could not create sys_ui_section.');
+				return false;
+			}
+
+			var strUiFormSectionSysId = RecordInsert(
+				'sys_ui_form_section',
+				{
+					sys_ui_form: strUiFormSysId,
+					sys_ui_section: strUiSectionSysId,
+					position: 0
+				});
+
+			if (IsValidSysId(strUiFormSectionSysId) == false)
+			{
+				LogError('AppBuilderImplementBusinessProcess: Could not create sys_ui_form_section.');
+				return false;
+			}
+
+			var bResult = AppBuilderDefineUiSection(strUiSectionSysId,aFields);
+
+			if (bResult == false)
+			{
+				LogError('AppBuilderImplementBusinessProcess: Could not create sys_ui_element records.');
+				return false;
+			}
 		}
 	}
 
@@ -672,14 +744,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-03-27 15:57:42</sys_created_on>
         <sys_id>33a6cd0b2b37f6d09083fe395e91bfa9</sys_id>
-        <sys_mod_count>94</sys_mod_count>
+        <sys_mod_count>101</sys_mod_count>
         <sys_name>AppBuilderImplementBusinessProcess</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_33a6cd0b2b37f6d09083fe395e91bfa9</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-23 12:26:49</sys_updated_on>
+        <sys_updated_on>2026-08-23 17:24:39</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

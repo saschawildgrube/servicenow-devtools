@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="x_snc_devtools_technical_debt">
+    <x_snc_devtools_technical_debt action="INSERT_OR_UPDATE">
+        <description>Multiple functions are referring to form sections (and use "FormSection" as part of their function names - which these in fact work on or with UI Sections.</description>
+        <id/>
+        <related_backlog_item_url/>
+        <short_description>*FormSection*()</short_description>
+        <switch>false</switch>
+        <sys_class_name>x_snc_devtools_technical_debt</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-23 17:09:21</sys_created_on>
+        <sys_id>a30eec87c37ecb104b4f311f0501319d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>*FormSection*()</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>x_snc_devtools_technical_debt_a30eec87c37ecb104b4f311f0501319d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-23 17:09:21</sys_updated_on>
+        <type>code_naming_inconsistency</type>
+    </x_snc_devtools_technical_debt>
+</record_update>
