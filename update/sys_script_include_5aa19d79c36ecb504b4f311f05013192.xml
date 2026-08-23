@@ -208,14 +208,24 @@ BusinessProcessAPI.prototype =
 					var stateCurrent = this.GetStateFromValue(nCurrentStateValue);
 					var stateTarget = this.GetStateFromValue(nTargetStateValue);
 
-					var bStateChangeConfirmed = this.onStateChange(
+					var response = this.onStateChange(
 						grCurrent,
 						stateCurrent.id,
 						stateTarget.id);
-					if (bStateChangeConfirmed == false)
+					
+					var aKeys = GetKeys(response);
+					if (aKeys.length > 0)
 					{
+						if (IsSessionInteractive() == true)
+						{
+							var strMessage = '';
+							for (var nKey = 0;nKey < aKeys.length; nKey++)
+							{
+								strMessage += GetValue(response,aKeys[nKey]) + '\n';
+							}
+							gs.addErrorMessage(strMessage);
+						}
 						grCurrent.state = nCurrentStateValue;
-						//GlideRecordSetAbortAction(grCurrent,true);
 					}
 				}
 			}
@@ -229,14 +239,14 @@ BusinessProcessAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-08-07 12:16:16</sys_created_on>
         <sys_id>5aa19d79c36ecb504b4f311f05013192</sys_id>
-        <sys_mod_count>31</sys_mod_count>
+        <sys_mod_count>32</sys_mod_count>
         <sys_name>BusinessProcessAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_5aa19d79c36ecb504b4f311f05013192</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-22 20:48:19</sys_updated_on>
+        <sys_updated_on>2026-08-23 12:01:44</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

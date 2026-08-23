@@ -155,7 +155,19 @@
 	strScript += "\tonStateChange: function(grProcess, strCurrentStateId, strTargetStateId)\n";
 	strScript += "\t{\n";
 	strScript += "\t\tgs.addInfoMessage(grProcess.number + ' changes state from \"' + strCurrentStateId + '\" to \"' + strTargetStateId + '\"');\n";
-	strScript += "\t\treturn true; // return true if the state change can proceed, false if not\n";
+	strScript += "\t\t\n";
+	strScript += "\t\tvar response = {};\n";
+	strScript += "\t\t\n";
+	strScript += "\t\t// TODO: Implement checks to validate the pending state change:\n";
+	strScript += "\t\tif (strTargetStateId == 'requested')\n";
+	strScript += "\t\t{\n";
+	strScript += "\t\t\tif (grProcess.short_description == '')\n";
+	strScript += "\t\t\t{\n";
+	strScript += "\t\t\t\tresponse.short_description = 'Short Description must not be empty!';\n";
+	strScript += "\t\t\t}\n";
+	strScript += "\t\t}\n";
+	strScript += "\t\t\n";
+	strScript += "\t\treturn response;\n";
 	strScript += "\t},\n";
 	strScript += "\t\n";
 
@@ -515,8 +527,38 @@
 			return false;
 		}
 
-		// add roles
-		// sys_ui_action_role
+		var aTransitionRoles = GetArrayValue(GetValue(transition,'_roles'));
+
+		Log(aTransitionRoles);
+
+		for (nTransitionRole = 0; nTransitionRole < aTransitionRoles.length; nTransitionRole++)
+		{
+			var strTransitionRoleId = aTransitionRoles[nTransitionRole];
+			var role = ArrayGetElementById(aRoles, strTransitionRoleId, 'id');
+			Log(role);
+			var strRoleSysId = GetStringValue(GetValue(role,'sys_id'));
+			if (IsValidSysId(strRoleSysId) == false)
+			{
+				LogError('AppBuilderImplementBusinessProcess: Could not add role "'+strTransitionRoleId+'" to UI Action "'+strActionName+'". Could not identify the role\'s sys_id.');
+				return false;
+			}
+			var strUiActionRoleSysId = RecordInsertOrUpdate(
+				'sys_ui_action_role',
+			{
+				sys_scope: strScopeSysId,
+				sys_ui_action: strUiActionSysId,
+				sys_user_role: strRoleSysId,
+			},
+			{
+			},
+			{
+			});
+			if (IsValidSysId(strUiActionRoleSysId) == false)
+			{
+				LogError('AppBuilderImplementBusinessProcess: Could not add role "'+strTransitionRoleId+'" to UI Action "'+strActionName+'".Adding or updating sys_ui_action_role record failed.');
+				return false;
+			}
+		}
 	}
 
 
@@ -630,14 +672,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-03-27 15:57:42</sys_created_on>
         <sys_id>33a6cd0b2b37f6d09083fe395e91bfa9</sys_id>
-        <sys_mod_count>86</sys_mod_count>
+        <sys_mod_count>94</sys_mod_count>
         <sys_name>AppBuilderImplementBusinessProcess</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_33a6cd0b2b37f6d09083fe395e91bfa9</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-23 10:23:52</sys_updated_on>
+        <sys_updated_on>2026-08-23 12:26:49</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
