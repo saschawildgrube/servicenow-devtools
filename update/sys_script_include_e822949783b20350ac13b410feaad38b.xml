@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.IsValidAppName</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns true if the given string is a valid application (custom or store) name, false if not.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>IsValidAppName</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function IsValidAppName(strName)
+{
+	strName = GetStringValue(strName);
+	if (strName == '')
+	{
+		return false;
+	}
+	if (strName.trim() != strName)
+	{
+		return false;
+	}
+	return StringCheckRegEx(
+		strName,
+		'^([A-Za-z\\@])([_\\-\\/A-Za-z0-9\\s]*)$');
+}
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-24 09:45:53</sys_created_on>
+        <sys_id>e822949783b20350ac13b410feaad38b</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>IsValidAppName</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_e822949783b20350ac13b410feaad38b</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-24 09:56:44</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+</record_update>
