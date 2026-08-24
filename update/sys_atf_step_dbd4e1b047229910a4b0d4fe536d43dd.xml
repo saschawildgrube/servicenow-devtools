@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-10-12 13:47:24</sys_created_on>
         <sys_id>dbd4e1b047229910a4b0d4fe536d43dd</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_dbd4e1b047229910a4b0d4fe536d43dd</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-24 11:12:06</sys_updated_on>
+        <sys_updated_on>2026-08-24 13:38:56</sys_updated_on>
         <table/>
         <test display_value="DevTools - IsSnakeCase">7ac4a1b047229910a4b0d4fe536d4396</test>
         <timeout/>
@@ -36,9 +36,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-10-12 13:47:24</sys_created_on>
         <sys_id>68e425b047229910a4b0d4fe536d4381</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-24 11:12:07</sys_updated_on>
+        <sys_updated_on>2026-08-24 13:38:56</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -72,14 +72,14 @@
 	TestCase_IsSnakeCase('AbcAbc',false);&#13;
 	TestCase_IsSnakeCase('ForThe2OfUs',false);&#13;
 	TestCase_IsSnakeCase('Abc_Abc',false);&#13;
-&#13;
+	TestCase_IsSnakeCase('test.not_ok',false);&#13;
+	TestCase_IsSnakeCase('update.not_ok',false);&#13;
+	TestCase_IsSnakeCase('rome.burns',false);&#13;
 	&#13;
-	TestCase_IsSnakeCase('a',true);&#13;
-	TestCase_IsSnakeCase('a_b',true);&#13;
-	TestCase_IsSnakeCase('abc',true);&#13;
-	TestCase_IsSnakeCase('abc_abc',true);&#13;
-	TestCase_IsSnakeCase('abc1_abc2',true);&#13;
-	TestCase_IsSnakeCase('abc1_2abc',true);&#13;
+	TestCase_IsSnakeCase('com.some_plugin',true);&#13;
+	TestCase_IsSnakeCase('com.plugin',true);&#13;
+	TestCase_IsSnakeCase('upgrade.test',true);&#13;
+	TestCase_IsSnakeCase('rome.glide.core.automation',true);&#13;
 &#13;
 	&#13;
 	return test.GetResult();&#13;
