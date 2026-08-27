@@ -203,6 +203,8 @@
 
 		// Australia
 		'"vaVars" is not defined.',
+		'new sn_flow_summary.FlowSummaryAPI().isFlowSummarizationSkillActive()',
+		'new sn_text2flow.TextToFlowUtil()',
 		'3657e6665bef', // 3657e6665bef1110d9a5ce1a8581c7e0
 		'd2426c9ec0a8', // d2426c9ec0a8016501958bf2ac79c775     
 		'de5920b77113', // de5920b7711332100a229b13380c8bd2   
@@ -211,6 +213,7 @@
 		'89c71e355393', // 89c71e355393301097a3ddeeff7b125e      
 		'cc67e6b9b701', // cc67e6b9b701230034d1da23ee11a9cd      
 		'bd1b04ae7722', // bd1b04ae772201105d57a2059f5a9915      
+		'd5ff19abebb1', // d5ff19abebb131102b57e5306952288f
 
 	];
 	return aPatterns;
@@ -219,14 +222,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-09-13 12:47:41</sys_created_on>
         <sys_id>813dabbc1bddf110cd6153d16b4bcb3a</sys_id>
-        <sys_mod_count>217</sys_mod_count>
+        <sys_mod_count>220</sys_mod_count>
         <sys_name>GetEvaluatorErrorExceptionPatterns</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_813dabbc1bddf110cd6153d16b4bcb3a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-27 11:12:31</sys_updated_on>
+        <sys_updated_on>2026-08-27 13:19:03</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
