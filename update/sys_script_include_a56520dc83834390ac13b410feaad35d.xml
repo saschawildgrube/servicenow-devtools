@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.GetStoreAppRecord</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns the given Store App record based on a Sys Id, GlideRecord object or Scope name.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>GetStoreAppRecord</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function GetStoreAppRecord(vStoreApp)
+{
+	var grStoreApp = GetRecord('sys_store_app',vStoreApp);
+	if (IsValidRecord(grStoreApp) == true)
+	{
+		return true;
+	}
+	var strStoreApp = GetStringValue(vStoreApp);
+	if (IsValidScope(strStoreApp) == true)
+	{
+		grStoreApp = RecordQuery(
+			'sys_store_app',
+			{
+				scope: strStoreApp
+			});
+		if (IsValidRecord(grStoreApp) == true)
+		{
+			return grStoreApp;
+		}
+	}
+	return false;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-27 13:45:45</sys_created_on>
+        <sys_id>a56520dc83834390ac13b410feaad35d</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>GetStoreAppRecord</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_a56520dc83834390ac13b410feaad35d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-27 13:52:16</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+</record_update>

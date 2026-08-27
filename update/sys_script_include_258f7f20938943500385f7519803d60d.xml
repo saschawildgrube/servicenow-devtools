@@ -32,11 +32,19 @@
 	aistatus.ai_search.status = GetBoolValue(GetValue(diagnostics,'ais.status','ais.enabled'));
 	
 
+	aistatus.now_assist_creator_installation = {};
+	aistatus.now_assist_creator_installation.title = 'ServiceNow Otto for Creator (Now Assist for Creator) Plugin';
+	aistatus.now_assist_creator_installation.type = 'boolean';
+	aistatus.now_assist_creator_installation.status = IsStoreAppInstalled('sn_now_creator');
+	aistatus.now_assist_creator_installation.info = 'Checks if the "ServiceNow Otto for Creator" plugin is installed. You may have to sync the store before the plugin can be found.';
+	aistatus.now_assist_creator_installation.config_url = GetInstanceUrl() + 'now/app-manager/home/app/id/8178fec0ce0431105a7c9305875b2dca/';
+	
+
 	aistatus.now_assist_panel = {};
 	aistatus.now_assist_panel.title = 'Now Assist Panel';
 	aistatus.now_assist_panel.type = 'boolean';
 	aistatus.now_assist_panel.status = false;
-	aistatus.now_assist_panel.info = 'Checks if the Now Assist Panel is "turned on" on. If no Plugin is installed yet, installing the "Now Assist for Creator" (formerly "Now Assist for Creator") (sn_now_creator) is an option.';
+	aistatus.now_assist_panel.info = 'Checks if the Now Assist Panel is "turned on" on. If no Plugin is installed yet, installing the "ServiceNow Otto for Creator" (formerly "Now Assist for Creator") (sn_now_creator) is an option.';
 	aistatus.now_assist_panel.config_url = GetInstanceUrl() +'now/now-assist-admin/now-assist-panel';
 	var grNAS = new GlideRecord('sn_nowassist_settings');
 	grNAS.addQuery('type','=','nap');
@@ -308,14 +316,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-05-21 14:10:28</sys_created_on>
         <sys_id>258f7f20938943500385f7519803d60d</sys_id>
-        <sys_mod_count>63</sys_mod_count>
+        <sys_mod_count>67</sys_mod_count>
         <sys_name>GetInstanceAIStatus</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_258f7f20938943500385f7519803d60d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-27 10:46:20</sys_updated_on>
+        <sys_updated_on>2026-08-27 13:37:56</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
