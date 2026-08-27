@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.GetAppManagerPath</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns the relative path to the Application Manager  </description>
+        <mobile_callable>false</mobile_callable>
+        <name>GetAppManagerPath</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function GetAppManagerPath(vPluginOrStoreApp)
+{
+	var grPlugin = GetPluginRecord(vPluginOrStoreApp);
+	var grStoreApp = GetStoreAppRecord(vPluginOrStoreApp);
+	var grRemoteApp = GetRecord('sys_remote_app',vPluginOrStoreApp);
+	var strPluginOrStoreApp = GetStringValue(vPluginOrStoreApp);
+
+	var strPath = 'now/app-manager/home/';
+	
+	if (IsValidRecord(grPlugin) == true)
+	{
+		strPath += 'plugin/id/'+grPlugin.source+'/details';
+	}
+	else if (IsValidRecord(grStoreApp) == true)
+	{
+		strPath += 'app/id/'+grStoreApp.sys_id+'/';
+	}
+	else if (IsValidPluginId(strPluginOrStoreApp) == true)
+	{
+		strPath += 'plugin/id/'+strPluginOrStoreApp+'/details';
+	}
+	else if (IsValidSysId(strPluginOrStoreApp) == true)
+	{
+		strPath += 'app/id/'+strPluginOrStoreApp+'/';
+	}
+	return strPath;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-27 14:40:42</sys_created_on>
+        <sys_id>7f51fc5083874390ac13b410feaad3ab</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>GetAppManagerPath</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_7f51fc5083874390ac13b410feaad3ab</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-27 14:55:53</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+</record_update>
