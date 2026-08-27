@@ -14,17 +14,21 @@
 	strName = GetStringValue(strName);
 	if (strName == '')
 	{
+		LogError('AppCreate: Name must not be empty!');
 		return false;
 	}
+	
 	var grAppDuplicate = GetAppRecord(strName);
 	if (IsValidRecord(grAppDuplicate) == true)
 	{
+		LogError('AppCreate: Name must be unique: "'+strName+'"!');	
 		return false;
 	}
 	
 	strType = GetStringValue(strType);
 	if (strType != 'global' && strType != 'scoped')
 	{
+		LogError('AppCreate: Type must be either "global" or "scoped"!');	
 		return false;
 	}
 	if (strType == 'scoped')
@@ -32,11 +36,14 @@
 		strScope = GetStringValue(strScope);
 		if (strScope == '')
 		{
+			LogError('AppCreate: Scope must not be empty!');	
+
 			return false;
 		}
 		grAppDuplicate = GetAppRecord(strScope);
 		if (IsValidRecord(grAppDuplicate) == true)
 		{
+			LogError('AppCreate: Scope must be unique: "'+strScope+'"!');	
 			return false;
 		}
 	}
@@ -54,20 +61,24 @@
 		grApp.scope = strScope;
 	}
 	var strAppSysId = GlideRecordInsert(grApp,true);
+	if (IsValidSysId(strAppSysId) == false)
+	{
+		LogError('AppCreate: Failed to create app: "'+strName+'"!');	
+	}
 	return strAppSysId;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-12-25 16:03:34</sys_created_on>
         <sys_id>7faaa377832ede5000d5ccc0deaad3d8</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_name>AppCreate</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_7faaa377832ede5000d5ccc0deaad3d8</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-07-07 18:57:20</sys_updated_on>
+        <sys_updated_on>2026-08-27 11:04:03</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
