@@ -14,33 +14,39 @@
 
 /*
 
-	TEST SCRIPT
+// TEST SCRIPT
 
-	var strScope = 'x_snc_test_process';
-	var grApp = x_snc_devtools.GetAppRecord(strScope);
-	var grMetaData = new GlideRecord('sys_metadata');
-	grMetaData.addQuery('sys_scope','=',grApp.sys_id);
-	grMetaData.query();
-	while(grMetaData.next())
+var strScope = 'x_snc_test_process';
+var grApp = x_snc_devtools.GetAppRecord(strScope);
+if (x_snc_devtools.IsValidRecord(grApp) == false)
+{
+	var strAppSysId = x_snc_devtools.AppCreate('Test Process','scoped',strScope);
+	grApp = x_snc_devtools.GetAppRecord(strAppSysId);
+}
+
+var grMetaData = new GlideRecord('sys_metadata');
+grMetaData.addQuery('sys_scope','=',grApp.sys_id);
+grMetaData.query();
+while(grMetaData.next())
+{
+	gs.info(x_snc_devtools.RenderRecordSummary(grMetaData));
+	if (grMetaData.sys_class_name == 'sys_db_object')
 	{
-		gs.info(x_snc_devtools.RenderRecordSummary(grMetaData));
-		if (grMetaData.sys_class_name == 'sys_db_object')
-		{
-			var grDbObject = GetTableRecord(grMetaData.sys_id);
-			x_snc_devtools.TableDelete(grDbObject.name);
-		}
-		else
-		{
-			x_snc_devtools.GlideRecordDelete(grMetaData,true);
-		}
+		var grDbObject = GetTableRecord(grMetaData.sys_id);
+		x_snc_devtools.TableDelete(grDbObject.name);
 	}
+	else
+	{
+		x_snc_devtools.GlideRecordDelete(grMetaData,true);
+	}
+}
 
-	var business_process = x_snc_devtools.BusinessProcessGetExample();
-	gs.info(x_snc_devtools.RenderValue(business_process));
-	
-	x_snc_devtools.AppBuilderImplementBusinessProcess(strScope,business_process);
+var business_process = x_snc_devtools.BusinessProcessGetExample();
+gs.info(x_snc_devtools.RenderValue(business_process));
 
-	// TEST CODE for Process class
+x_snc_devtools.AppBuilderImplementBusinessProcess(strScope,business_process);
+
+// TEST CODE for Process class
 
 		if (strCurrentStateId == 'new')
 		{
@@ -422,7 +428,9 @@
 		},
 		{
 			read_only_override: true,
-			read_only: true
+			read_only: true,
+			read_only_option_override: true,
+			read_only_option: 'display_read_only'
 		});
 
 	if (IsValidSysId(strDictOverrideSysId) == false)
@@ -443,7 +451,9 @@
 		},
 		{
 			read_only_override: true,
-			read_only: true
+			read_only: true,
+			read_only_option_override: true,
+			read_only_option: 'display_read_only'
 		});
 
 	if (IsValidSysId(strDictOverrideSysId) == false)
@@ -744,14 +754,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-03-27 15:57:42</sys_created_on>
         <sys_id>33a6cd0b2b37f6d09083fe395e91bfa9</sys_id>
-        <sys_mod_count>101</sys_mod_count>
+        <sys_mod_count>103</sys_mod_count>
         <sys_name>AppBuilderImplementBusinessProcess</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_33a6cd0b2b37f6d09083fe395e91bfa9</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-23 17:24:39</sys_updated_on>
+        <sys_updated_on>2026-08-27 22:01:08</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
