@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-08-27 13:40:56</sys_created_on>
         <sys_id>8e05205c83834390ac13b410feaad337</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_8e05205c83834390ac13b410feaad337</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-27 13:41:56</sys_updated_on>
+        <sys_updated_on>2026-08-28 13:00:30</sys_updated_on>
         <table/>
         <test display_value="DevTools - IsStoreAppInstalled">bd05ec1c83834390ac13b410feaad3e7</test>
         <timeout/>
@@ -36,9 +36,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-08-27 13:40:56</sys_created_on>
         <sys_id>4205205c83834390ac13b410feaad357</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-27 13:41:56</sys_updated_on>
+        <sys_updated_on>2026-08-28 13:00:30</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -69,7 +69,7 @@
 	TestCase_IsStoreAppInstalled(null,false);&#13;
 	TestCase_IsStoreAppInstalled('this_does_not_exist',false);&#13;
 &#13;
-	TestCase_IsStoreAppInstalled('sn_now_creator',false);&#13;
+	TestCase_IsStoreAppInstalled('sn_now_creator',true);&#13;
 	&#13;
 	return test.GetResult();&#13;
 	&#13;
