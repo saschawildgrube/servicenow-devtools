@@ -158,22 +158,29 @@ x_snc_devtools.AppBuilderImplementBusinessProcess(strScope,business_process);
 	strScript += "\t\n";	
 
 	// onStateChange
-	strScript += "\tonStateChange: function(grProcess, strCurrentStateId, strTargetStateId)\n";
+	strScript += "\tonStateChange: function(grProcess, strCurrentStateId, strTargetStateId, errors)\n";
 	strScript += "\t{\n";
 	strScript += "\t\tgs.addInfoMessage(grProcess.number + ' changes state from \"' + strCurrentStateId + '\" to \"' + strTargetStateId + '\"');\n";
-	strScript += "\t\t\n";
-	strScript += "\t\tvar response = {};\n";
 	strScript += "\t\t\n";
 	strScript += "\t\t// TODO: Implement checks to validate the pending state change:\n";
 	strScript += "\t\tif (strTargetStateId == 'requested')\n";
 	strScript += "\t\t{\n";
 	strScript += "\t\t\tif (grProcess.short_description == '')\n";
 	strScript += "\t\t\t{\n";
-	strScript += "\t\t\t\tresponse.short_description = 'Short Description must not be empty!';\n";
+	strScript += "\t\t\t\terrors.short_description = 'Short Description must not be empty!';\n";
 	strScript += "\t\t\t}\n";
 	strScript += "\t\t}\n";
 	strScript += "\t\t\n";
-	strScript += "\t\treturn response;\n";
+	strScript += "\t\treturn errors;\n";
+	strScript += "\t},\n";
+	strScript += "\t\n";
+
+	// onAfterStateChangeAsync
+
+	strScript += "\tonAfterStateChangeAsync: function(grProcess, strTargetStateId)\n";
+	strScript += "\t{\n";
+	strScript += "\t\tvar strLog = grProcess.number + ' changed to state \"'+strTargetStateId+'\" and initiated an async operation.';\n";
+	strScript += "\t\tgs.info(strLog);\n";
 	strScript += "\t},\n";
 	strScript += "\t\n";
 
@@ -493,6 +500,37 @@ x_snc_devtools.AppBuilderImplementBusinessProcess(strScope,business_process);
 		});
 
 
+	// BUSINESS RULE (after update state async)
+	
+	var strScript = '';
+	strScript += "(function executeRule(current, previous /*null when async*/)\n";
+	strScript += "{\n";
+	strScript += "\tvar process = new "+strProcessClassName+"();\n";
+	strScript += "\tprocess._BusinessRuleAfterUpdateStateAsync(current,previous);\n";
+	strScript += "\t\n";
+	strScript += "})(current, previous);";
+
+	var strBusinessRuleSysId = RecordInsertOrUpdate(
+		'sys_script',
+		{
+			sys_scope: strScopeSysId,
+			name: strProcessId + ' - after update state async',
+			collection: strTableName,
+		},
+		{
+		},
+		{
+			active: 'true',
+			advanced: 'true',
+			order: 99999,
+			description: 'Supports the "'+strProcessName+'" process.',
+			script: strScript,
+			when: 'async_always',
+			action_update: 'true',
+			filter_condition: 'stateVALCHANGES^EQ'
+		});
+
+
 	// UI ACTIONS
 
 	var aTransitions = GetValue(business_process,'_transitions');
@@ -754,14 +792,14 @@ x_snc_devtools.AppBuilderImplementBusinessProcess(strScope,business_process);
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-03-27 15:57:42</sys_created_on>
         <sys_id>33a6cd0b2b37f6d09083fe395e91bfa9</sys_id>
-        <sys_mod_count>103</sys_mod_count>
+        <sys_mod_count>112</sys_mod_count>
         <sys_name>AppBuilderImplementBusinessProcess</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_33a6cd0b2b37f6d09083fe395e91bfa9</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-27 22:01:08</sys_updated_on>
+        <sys_updated_on>2026-08-28 20:49:15</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
