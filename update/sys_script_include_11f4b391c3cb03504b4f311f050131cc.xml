@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.InstanceDeactivateAI</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Deactivates all (known) AI capabilities on a platform. Executing this function requires "maint" access.&#13;
+WARNING: This cannot be easily undone. Only use after carefully considering the consequences!&#13;
+The function may be embedded into an installation procedure that first deactivates everything and then selectively activates whitelisted capabilities.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>InstanceDeactivateAI</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function InstanceDeactivateAI()
+{
+
+	// Carved out functions
+
+	function GlideRecordUpdate(grRecord)
+	{
+		//grRecord.update();
+	}
+
+
+
+	if (IsUserMaint() == false)
+	{
+		LogError('InstanceDeactivateAI requires "maint" access!');
+		return false;
+	}
+
+	/*
+
+		// Generative AI models	sys_generative_ai_model_config.active
+
+		// AI search?
+
+		// Now Assist skill configuration	sn_nowassist_skill_config.active
+		// Now Assist skill status	sn_nowassist_skill_config_status.active	
+		// In-product skill exposure	sn_nowassist_skill_config_status.in_product_active	
+		// Agentic workflow activation	sn_aia_usecase.active  //   this field does not exist. halo?
+		// AI Agent / workflow trigger	sn_aia_trigger_configuration.active	
+		// Trigger-to-workflow mapping	sn_aia_trigger_agent_usecase_m2m.active	
+		// Workflow override	sn_aia_usecase_config_override.active	
+		// AI Agent tools	sn_aia_tool.active	// too fine-granular?
+		// Generative AI prompts/configurations	sys_generative_ai_config.active	
+		
+	 */
+
+
+	Log('InstanceDeactivateAI: START');
+
+
+	Log('InstanceDeactivateAI: Removing urls from LLMGateway, LLMProxy, MLPredictor-Triton services...');
+	var aLLMServices = ['LLMGateway','LLMProxy','MLPredictor-Triton'];
+	var strEncodedQuery = 'nameIN' + GetStringValue(aLLMServices);
+
+	var aServicesSysIds = [];
+	var grSS = new GlideRecord('sys_service');
+	grSS.addEncodedQuery(strEncodedQuery);
+	grSS.query();
+	while (grSS.next() == true)
+	{
+		aServicesSysIds.push(GetStringValue(grSS.sys_id));
+	}
+				
+	var grSSE = new GlideRecord('sys_service_endpoint');
+	grSSE.addQuery('service','IN',GetStringValue(aServicesSysIds));
+	grSSE.query();
+	while (grSSE.next() == true)
+	{
+		grSSE.url = '';
+		GlideRecordUpdate(grSSE);
+		Log('InstanceDeactivateAI: ' + RenderRecordSummary(grSSE));
+
+	}
+
+	Log('InstanceDeactivateAI: Removing url from Now LLM http connection...');
+
+	var grConnection = new GlideRecord('http_connection');
+	grConnection.addQuery('name','=','Now LLM');
+	grConnection.query();
+
+	while (grConnection.next() == true)
+	{
+		grConnection.connection_url = '';
+		grConnection.host = '';
+		GlideRecordUpdate(grConnection);
+		Log('InstanceDeactivateAI: ' + RenderRecordSummary(grConnection));
+	}
+
+	Log('InstanceDeactivateAI: Deactivating Now Assist Deployments...');
+	var grNAD = new GlideRecord('sys_now_assist_deployment');
+	grNAD.addActiveQuery();
+	grNAD.query();
+	while (grNAD.next())
+	{
+		grNAD.active = false;
+		GlideRecordUpdate(grNAD);
+		Log('InstanceDeactivateAI: ' + RenderRecordSummary(grNAD));
+	}
+
+	Log('InstanceDeactivateAI: Deactivating all AI Agents...');
+	var grAgents = new GlideRecord('sn_aia_agent_config');
+	grAgents.addActiveQuery();
+	grAgents.query();
+	while (grAgents.next())
+	{
+		grAgents.active = false;
+		GlideRecordUpdate(grAgents);
+		Log('InstanceDeactivateAI: ' + RenderRecordSummary(grAgents));
+	}
+
+
+	Log('InstanceDeactivateAI: Deactivating all AI Skills...');
+	var grSkills = new GlideRecord('sys_one_extend_capability');
+	grSkills.addActiveQuery();
+	grSkills.addQuery('type','=','skill');
+	grSkills.query();
+	while (grSkills.next())
+	{
+		grSkills.active = false;
+		GlideRecordUpdate(grSkills);
+		Log('InstanceDeactivateAI: ' + RenderRecordSummary(grSkills));
+	}
+
+
+	Log('InstanceDeactivateAI: Deactivating all OneExtend Definition Configs...');
+
+	var grOEDC = new GlideRecord('sys_one_extend_definition_config');
+	grOEDC.addActiveQuery();
+	grOEDC.query();
+	while (grOEDC.next())
+	{
+		grOEDC.active = false;
+		GlideRecordUpdate(grOEDC,true);
+		Log('InstanceDeactivateAI: ' + RenderRecordSummary(grOEDC));
+	}
+
+	Log('InstanceDeactivateAI: Deactivating Now Assist Code capabilities...');
+
+	SetProperty('sn_now_assist_code.enable_code_assist','false');
+    SetProperty('sn_now_assist_code.enable_auto_complete','false');
+    SetProperty('sn_now_assist_code.enable_prompt_modal','false');
+    SetProperty('sn_now_assist_code.enable_promptless_experience','false');
+
+	Log('InstanceDeactivateAI: END');
+
+	return true;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-31 07:24:34</sys_created_on>
+        <sys_id>11f4b391c3cb03504b4f311f050131cc</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>InstanceDeactivateAI</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_11f4b391c3cb03504b4f311f050131cc</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-01 07:52:57</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>11f4b391c3cb03504b4f311f050131cc</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-31 07:24:34</sys_created_on>
+        <sys_id>3b3533d1c3cb03504b4f311f05013172</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-31 07:24:34</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
