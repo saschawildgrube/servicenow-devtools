@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.WaitForStateChange</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Waits for a state change to happen on the given record. The loop will check the record every given seconds until an optional timeout is reached.&#13;
+Returns false if the record is invalid or could not be loaded or of the timeout is reached, true if the state change has been detected within the optional timeout.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>WaitForStateChange</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function WaitForStateChange(grRecord,nSleepForSeconds,nTimeoutSeconds)
+{
+	if (IsValidRecord(grRecord) == false)
+	{
+		return false;
+	}
+
+	nSleepForSeconds = GetIntegerValue(nSleepForSeconds);
+	if (nSleepForSeconds < 1)
+	{
+		nSleepForSeconds = 1;
+	}
+	nTimeoutSeconds = GetIntegerValue(nTimeoutSeconds);
+
+	var stopwatch = new StopWatch();
+	stopwatch.Start();
+
+	var nCurrentState = GetIntegerValue(grRecord.getValue('state'));
+	var nState = nCurrentState;
+
+	while (nCurrentState != nState)
+	{
+		if (nTimeoutSeconds > 0)
+		{
+			if (stopwatch.GetSeconds() > nTimeoutSeconds)
+			{
+				return false;	
+			}
+		}
+		grRecord = GetRecord(grRecord.getRecordClassName(),grRecord.sys_id);
+		if (IsValidRecord(grTracker) == false)
+		{
+			return false;
+		}
+		nState = GetIntegerValue(grRecord.getValue('state'));  
+		if (nCurrentState == nState)
+		{
+			Sleep(nSleepForSeconds);
+		}
+	}
+	
+	return false;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-02 08:04:39</sys_created_on>
+        <sys_id>24419a4ec3cb0f504b4f311f05013126</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>WaitForStateChange</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_24419a4ec3cb0f504b4f311f05013126</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-02 08:19:09</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+</record_update>
