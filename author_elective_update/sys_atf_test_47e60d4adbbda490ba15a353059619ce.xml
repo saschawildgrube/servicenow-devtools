@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_test">
+    <sys_atf_test action="DELETE">
+        <active>true</active>
+        <copied_from/>
+        <description/>
+        <enable_parameterized_testing>false</enable_parameterized_testing>
+        <fail_on_server_error>false</fail_on_server_error>
+        <name>_OLD_ DevTools - IsVersionCompatible</name>
+        <parameters/>
+        <remember/>
+        <sn_atf_tg_generated>false</sn_atf_tg_generated>
+        <sys_class_name>sys_atf_test</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-01-20 13:28:32</sys_created_on>
+        <sys_id>47e60d4adbbda490ba15a353059619ce</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>_OLD_ DevTools - IsVersionCompatible</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_test_47e60d4adbbda490ba15a353059619ce</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-02 09:15:02</sys_updated_on>
+        <test_origin/>
+    </sys_atf_test>
+    <sys_variable_value action="DELETE" query="document_key=47e60d4adbbda490ba15a353059619ce"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</application>
+        <file_path/>
+        <instance_id>b265927933572a987c42c7bb9d5c7b88</instance_id>
+        <instance_name>wildzurich</instance_name>
+        <name>sys_atf_test_47e60d4adbbda490ba15a353059619ce</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_test"><sys_atf_test action="INSERT_OR_UPDATE"><active>true</active><copied_from/><description/><enable_parameterized_testing>false</enable_parameterized_testing><fail_on_server_error>false</fail_on_server_error><name>_OLD_ DevTools - IsVersionCompatible</name><parameters/><remember/><sn_atf_tg_generated>false</sn_atf_tg_generated><sys_class_name>sys_atf_test</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2021-01-20 13:28:32</sys_created_on><sys_id>47e60d4adbbda490ba15a353059619ce</sys_id><sys_mod_count>1</sys_mod_count><sys_name>_OLD_ DevTools - IsVersionCompatible</sys_name><sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package><sys_policy/><sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope><sys_update_name>sys_atf_test_47e60d4adbbda490ba15a353059619ce</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-09-02 09:15:02</sys_updated_on><test_origin/></sys_atf_test><sys_variable_value action="delete_multiple" query="document_key=47e60d4adbbda490ba15a353059619ce"/></record_update>]]></payload>
+        <payload_hash>-940826214</payload_hash>
+        <record_name>_OLD_ DevTools - IsVersionCompatible</record_name>
+        <reverted_from/>
+        <source>25de964ac3cf0f504b4f311f050131c8</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-02 09:15:02</sys_created_on>
+        <sys_id>2db1e646c3034f504b4f311f050131e1</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1a061667f7a0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-02 09:15:02</sys_updated_on>
+        <type>Test</type>
+        <update_guid>2db1e64699034f50895c5b4cbb4304e0</update_guid>
+        <update_guid_history>2db1e64699034f50895c5b4cbb4304e0:-940826214,90879f369629c71059fc34930abf07fc:656465824</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-02 09:17:57</sys_created_on>
+        <sys_db_object display_value="" name="sys_atf_test">sys_atf_test</sys_db_object>
+        <sys_id>4d029aae1c9c400aa4ba3612e98b0464</sys_id>
+        <sys_metadata>47e60d4adbbda490ba15a353059619ce</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>_OLD_ DevTools - IsVersionCompatible</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
+        <sys_update_name>sys_atf_test_47e60d4adbbda490ba15a353059619ce</sys_update_name>
+        <sys_update_version display_value="sys_atf_test_47e60d4adbbda490ba15a353059619ce">2db1e646c3034f504b4f311f050131e1</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-02 09:17:57</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
