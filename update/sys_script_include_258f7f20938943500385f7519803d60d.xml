@@ -14,12 +14,12 @@
 	aistatus = {};
 
 	aistatus.now_assist_agents_installation = {};
-	aistatus.now_assist_agents_installation.title = 'ServiceNow Otto AI Agents (Now Assist AI Agents) Plugin';
+	aistatus.now_assist_agents_installation.title = 'ServiceNow Otto AI Agents (Now Assist AI Agents) Store App';
 	aistatus.now_assist_agents_installation.type = 'boolean';
 	aistatus.now_assist_agents_installation.status = IsNowAssistAIAgentsInstalled();
-	aistatus.now_assist_agents_installation.info = 'Checks if required plugins are installed to use AI Agents. If the "ServiceNow Otto AI Agents" (formerly "Now Assist AI Agents") plugin can only be installed as a dependency, installing the "Now Assist for Creator" (sn_now_creator) is an option. You may have to sync the store before the plugin can be found.';
+	aistatus.now_assist_agents_installation.info = 'Checks if the required Store App is installed to use AI Agents. If the "ServiceNow Otto AI Agents" (formerly "Now Assist AI Agents") Store App can only be installed as a dependency, installing the "Now Assist for Creator" (sn_now_creator) Store App is an option. You may have to sync the store before the Store App can be found.';
 	aistatus.now_assist_agents_installation.config_url =
-		GetInstanceUrl() + GetAppManagerPath('32808450431302106c3603295bb8f245');
+		GetInstanceUrl() + GetAppManagerPath('sn_aia');
 
 
 
@@ -34,13 +34,13 @@
 	
 
 	aistatus.now_assist_creator_installation = {};
-	aistatus.now_assist_creator_installation.title = 'ServiceNow Otto for Creator (Now Assist for Creator) Plugin';
+	aistatus.now_assist_creator_installation.title = 'ServiceNow Otto for Creator (Now Assist for Creator) Store App';
 	aistatus.now_assist_creator_installation.type = 'boolean';
 	aistatus.now_assist_creator_installation.status = IsStoreAppInstalled('sn_now_creator');
-	aistatus.now_assist_creator_installation.info = 'Checks if the "ServiceNow Otto for Creator" plugin is installed. You may have to sync the store before the plugin can be found.';
+	aistatus.now_assist_creator_installation.info = 'Checks if the "ServiceNow Otto for Creator" Store App is installed. You may have to sync the store before the Store App can be found.';
 	aistatus.now_assist_creator_installation.config_url = 
-		GetInstanceUrl() + GetAppManagerPath('8178fec0ce0431105a7c9305875b2dca');
-	
+		GetInstanceUrl() + GetAppManagerPath('sn_now_creator');
+
 
 	aistatus.now_assist_panel = {};
 	aistatus.now_assist_panel.title = 'ServiceNow Otto panel (Now Assist Panel)';
@@ -237,10 +237,10 @@
 	aistatus.license_tier.type = 'boolean';
 	aistatus.license_tier.status = IsPrimeTierLicenseAvailable();
 	aistatus.license_tier.info = 
-		'Checks if the instance has the "prime" license tier - which is required to build and run custom AI agents. One option to enable the Prime License Tier is to install the "App Engine - Prime" subscription.';
+		'Checks if the instance has the "prime" license tier - which is required to build and run custom AI agents. One option to enable the Prime License Tier is to install the "App Engine - Prime" Store App.';
 	aistatus.license_tier.config_url =
 		GetInstanceUrl()
-		+ '/now/app-manager/home/product/source/store/id/14b8ddfb87ebfa90669040c8dabb35b4/details';
+		+ GetAppManagerPath('sn_aeai_prime');
 
 
 	// Beancounting
@@ -324,14 +324,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-05-21 14:10:28</sys_created_on>
         <sys_id>258f7f20938943500385f7519803d60d</sys_id>
-        <sys_mod_count>71</sys_mod_count>
+        <sys_mod_count>78</sys_mod_count>
         <sys_name>GetInstanceAIStatus</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_258f7f20938943500385f7519803d60d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-28 14:59:20</sys_updated_on>
+        <sys_updated_on>2026-09-04 15:53:56</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
