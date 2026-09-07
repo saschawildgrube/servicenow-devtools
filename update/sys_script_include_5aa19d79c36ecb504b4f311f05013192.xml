@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.BusinessProcessAPI</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Serves as the abstract parent class for business process implementations.
+|
+Methods:
+* initialize()
+* GetBusinessProcess()
+* Validate()
+* Log()
+* Error()
+* IsValidProcessRecord()
+* GetStateFromValue()
+* GetStateFromId()
+* GetTransitionFromId()
+* IsValidTransitionFromTransitionId()
+* _IsUiActionVisible()
+* _UiActionTransition()
+* _BusinessRuleBeforeInsertOrUpdate()
+* _BusinessRuleAfterUpdateStateAsync()</description>
+        <mobile_callable>false</mobile_callable>
+        <name>BusinessProcessAPI</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var BusinessProcessAPI = Class.create();
+BusinessProcessAPI.prototype = 
+{
+    initialize: function()
+	{
+    },
+	
+	business_process: null,
+
+	GetBusinessProcess: function()
+	{
+		return this.business_process;
+	},
+
+	Validate: function(bDetailed)
+	{
+		return BusinessProcessValidate(this.business_process,bDetailed);
+	},
+
+/*
+	GetProcessTable: function()
+	{
+		var strTable = 
+	},
+*/
+
+	Log: function(grProcess, vPayload)
+	{
+		var strRecord = '';
+		if (IsValidRecord(grProcess) == true)
+		{
+			strRecord = grProcess.number + ': ';
+		}
+		Log('BusinessProcessAPI: ' + this.type + ': ' + strRecord + RenderValue(vPayload));
+	},
+
+	Error: function(grProcess, vPayload)
+	{
+		var strRecord = '';
+		if (IsValidRecord(grProcess) == true)
+		{
+			strRecord = grProcess.number + ': ';
+		}
+		Error('BusinessProcessAPI: ' + this.type + ': ' + strRecord + RenderValue(vPayload));		
+	},
+
+	IsValidProcessRecord: function(grProcess)
+	{
+		if (IsValidRecord(grProcess) == false)
+		{
+			return false;
+		}
+		var strRecordClassName = grProcess.getRecordClassName();
+		if (strRecordClassName.endsWith('_' + this.business_process.id) == false)
+		{
+			return false;
+		}
+		return true;
+	},
+
+	GetStateFromValue: function(nStateValue)
+	{
+		return ArrayGetElementById(this.business_process._states, nStateValue, 'value');
+	},
+
+	GetStateFromId: function(strStateId)
+	{
+		return ArrayGetElementById(this.business_process._states, strStateId, 'id');
+	},	
+
+	GetTransitionFromId: function(strTransitionId)
+	{
+		return ArrayGetElementById(this.business_process._transitions, strTransitionId, 'id');
+	},	
+
+	IsValidTransitionFromTransitionId: function(strStateId, strTransitionId)
+	{
+		var state = this.GetStateFromId(strStateId);
+		if (state == false)
+		{
+			return false;
+		}
+		if (ArrayValueExists(state._transitions,strTransitionId) != true)
+		{
+			return false;
+		}
+		return true;
+	},
+
+	_IsUiActionVisible: function(grCurrent, strTransitionId)
+	{
+		if (this.IsValidProcessRecord(grCurrent) == false)
+		{
+			this.Error('_IsUiActionVisible: Invalid current object!');
+			return false;
+		}
+		if (grCurrent.isNewRecord() == true)
+		{
+			return false;
+		}
+		var state = this.GetStateFromValue(grCurrent.state);
+		if (this.IsValidTransitionFromTransitionId(state.id,strTransitionId) == false)
+		{
+			return false;
+		}
+		return true;
+	}, 
+
+	_UiActionTransition: function(grCurrent, strTransition)
+	{
+		if (this.IsValidProcessRecord(grCurrent) == false)
+		{
+			this.Error('_UiActionTransition: Called with invalid current GlideRecord object!');
+			return false;
+		}
+
+		var transition = this.GetTransitionFromId(strTransition);
+		if (transition == false)
+		{
+			this.Error('_UiActionTransition: Invalid transition id: "' + strTransition + '"');
+			return false;		
+		}
+
+		var strTargetStateId = transition.target_state;
+
+		var state = this.GetStateFromId(strTargetStateId);
+		if (state == false)
+		{
+			this.Error('_UiActionTransition: State could not be found from id: "' + strTargetStateId + '"');
+			return false;		
+		}
+		var nTargetState = state.value;
+
+		grCurrent.state = nTargetState;
+		grCurrent.update();
+		RedirectToRecord(grCurrent);
+
+		return true;
+	},
+
+	_BusinessRuleBeforeInsertOrUpdate: function(grCurrent, grPrevious)
+	{
+		if (this.IsValidProcessRecord(grCurrent) == false)
+		{
+			this.Error('_BusinessRuleBeforeInsertOrUpdate: Called with invalid current GlideRecord object!');
+			return false;
+		}
+
+		var strOperation = BusinessRuleGetOperation(grCurrent);
+
+		// Insert
+		if (strOperation == 'insert')
+		{
+			var bProceed = this.onBeforeInsert(grCurrent);
+			if (bProceed == false)
+			{
+				GlideRecordSetAbortAction(grCurrent,true);
+			}
+			return true;
+		}
+
+		// Update
+		if (strOperation == 'update')
+		{
+			this.onBeforeUpdate(grCurrent, grPrevious);
+			if (bProceed == false)
+			{
+				GlideRecordSetAbortAction(grCurrent,true);
+				return true;
+			}
+
+			// State Change
+			if (strOperation == 'update')
+			{
+				var nCurrentStateValue = GetIntegerValue(grPrevious.state);
+				var nTargetStateValue = GetIntegerValue(grCurrent.state);
+
+				// A state change is requested			
+				if (nCurrentStateValue != nTargetStateValue)
+				{
+					var stateCurrent = this.GetStateFromValue(nCurrentStateValue);
+					var stateTarget = this.GetStateFromValue(nTargetStateValue);
+
+					var errors = {};
+
+					errors = this.onStateChange(
+						grCurrent,
+						stateCurrent.id,
+						stateTarget.id,
+						errors);
+					
+					var strErrorMessage = '';
+					if (IsObject(errors) == true)
+					{
+						var aKeys = GetKeys(errors);
+						if (aKeys.length > 0)
+						{
+							for (var nKey = 0;nKey < aKeys.length; nKey++)
+							{
+								strErrorMessage += GetValue(errors,aKeys[nKey]) + '\n';
+							}
+						}
+					}
+					else if (IsString(errors) == true)
+					{
+						strErrorMessage = errors;
+					}
+
+					if (strErrorMessage != '')
+					{
+						grCurrent.state = nCurrentStateValue;
+
+						if (IsSessionInteractive() == true)
+						{
+							gs.addErrorMessage(strErrorMessage);
+						}
+						/*else
+						{
+							this.Error(strMessage);
+						}*/
+					}
+				}
+			}
+		}
+		return true;
+	},
+
+	_BusinessRuleAfterUpdateStateAsync: function(grCurrent,grPrevious)
+	{
+		if (this.IsValidProcessRecord(grCurrent) == false)
+		{
+			this.Error('_BusinessRuleAfterUpdateStateAsync: Called with invalid current GlideRecord object!');
+			return false;
+		}
+		if (grPrevious != null)
+		{
+			this.Error('_BusinessRuleAfterUpdateStateAsync: previous parameter expected to be null!');
+			return false;
+		}
+
+		var stateTarget = this.GetStateFromValue(grCurrent.state);
+		var strTargetStateId = stateTarget.id;
+
+		this.onAfterStateChangeAsync(grCurrent, strTargetStateId);
+
+		return true;
+	},
+
+	type: 'BusinessProcessAPI'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-07 12:16:16</sys_created_on>
+        <sys_id>5aa19d79c36ecb504b4f311f05013192</sys_id>
+        <sys_mod_count>42</sys_mod_count>
+        <sys_name>BusinessProcessAPI</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_5aa19d79c36ecb504b4f311f05013192</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-28 20:35:00</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>5aa19d79c36ecb504b4f311f05013192</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-07 12:16:15</sys_created_on>
+        <sys_id>6ad199b9c36ecb504b4f311f05013154</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-07 12:16:15</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

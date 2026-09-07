@@ -14,11 +14,12 @@
 	aistatus = {};
 
 	aistatus.now_assist_agents_installation = {};
-	aistatus.now_assist_agents_installation.title = 'Now Assist AI Agents Plugin';
+	aistatus.now_assist_agents_installation.title = 'ServiceNow Otto AI Agents (Now Assist AI Agents) Store App';
 	aistatus.now_assist_agents_installation.type = 'boolean';
 	aistatus.now_assist_agents_installation.status = IsNowAssistAIAgentsInstalled();
-	aistatus.now_assist_agents_installation.info = 'Checks if required plugins are installed to use AI Agents. The "Now Assist AI Agents" plugin can only be installed as a dependency. Installing the "Now Assist for Creator" (sn_now_creator) is an option.';
-	aistatus.now_assist_agents_installation.config_url = GetInstanceUrl() + 'now/app-manager/home/app/id/32808450431302106c3603295bb8f245/';
+	aistatus.now_assist_agents_installation.info = 'Checks if the required Store App is installed to use AI Agents. If the "ServiceNow Otto AI Agents" (formerly "Now Assist AI Agents") Store App can only be installed as a dependency, installing the "Now Assist for Creator" (sn_now_creator) Store App is an option. You may have to sync the store before the Store App can be found.';
+	aistatus.now_assist_agents_installation.config_url =
+		GetInstanceUrl() + GetAppManagerPath('sn_aia');
 
 
 
@@ -32,11 +33,20 @@
 	aistatus.ai_search.status = GetBoolValue(GetValue(diagnostics,'ais.status','ais.enabled'));
 	
 
+	aistatus.now_assist_creator_installation = {};
+	aistatus.now_assist_creator_installation.title = 'ServiceNow Otto for Creator (Now Assist for Creator) Store App';
+	aistatus.now_assist_creator_installation.type = 'boolean';
+	aistatus.now_assist_creator_installation.status = IsStoreAppInstalled('sn_now_creator');
+	aistatus.now_assist_creator_installation.info = 'Checks if the "ServiceNow Otto for Creator" Store App is installed. You may have to sync the store before the Store App can be found.';
+	aistatus.now_assist_creator_installation.config_url = 
+		GetInstanceUrl() + GetAppManagerPath('sn_now_creator');
+
+
 	aistatus.now_assist_panel = {};
-	aistatus.now_assist_panel.title = 'Now Assist Panel';
+	aistatus.now_assist_panel.title = 'ServiceNow Otto panel (Now Assist Panel)';
 	aistatus.now_assist_panel.type = 'boolean';
 	aistatus.now_assist_panel.status = false;
-	aistatus.now_assist_panel.info = 'Checks if the Now Assist Panel is "turned on" on.';
+	aistatus.now_assist_panel.info = 'Checks if the ServiceNow Otto panel (formerly Now Assist Panel) is "turned on" on. If no Plugin is installed yet, installing the "ServiceNow Otto for Creator" (formerly "Now Assist for Creator") (sn_now_creator) is an option.';
 	aistatus.now_assist_panel.config_url = GetInstanceUrl() +'now/now-assist-admin/now-assist-panel';
 	var grNAS = new GlideRecord('sn_nowassist_settings');
 	grNAS.addQuery('type','=','nap');
@@ -53,22 +63,54 @@
 	}
 
 
-	aistatus.now_assist_panel_platform = {};
-	aistatus.now_assist_panel_platform.title = 'Now Assist Panel - Platform (default) Activation';
-	aistatus.now_assist_panel_platform.type = 'boolean';
-	aistatus.now_assist_panel_platform.status = false;
-	aistatus.now_assist_panel_platform.info = 'Checks if the Now Assist Panel - Platform (default) is active.';
-	aistatus.now_assist_panel_platform.config_url = GetInstanceUrl()+'now/conversational-studio/assistants/all';
+	var strPanelName = '';
 	if (IsValidTable('sys_now_assist_deployment') == true)
 	{
+		var strPanelName = 'Now Assist Panel - Platform (default)';
 		var grNAD = new GlideRecord('sys_now_assist_deployment');
-		grNAD.addQuery('active','=','true');
 		grNAD.addQuery('assistant_type','=','nap');
-		grNAD.addQuery('name','=','Now Assist Panel - Platform (default)');
+		grNAD.addQuery('name','=',strPanelName);
 		grNAD.query();
-		while (grNAD.next() == true)
+		if (grNAD.next() != true)
 		{
-			aistatus.now_assist_panel_platform.status = true;
+			strPanelName = 'ServiceNow Otto panel - Platform (default)';
+			var grNAD = new GlideRecord('sys_now_assist_deployment');
+			grNAD.addQuery('assistant_type','=','nap');
+			grNAD.addQuery('name','=',strPanelName);
+			grNAD.query();
+			if (grNAD.next() != true)
+			{
+				strPanelName = '';
+			}
+		}
+	}
+
+	aistatus.now_assist_panel_platform = {};
+	if (strPanelName == '')
+	{
+		aistatus.now_assist_panel_platform.title = 'Platform (default) Panel Activation';
+		aistatus.now_assist_panel_platform.type = 'boolean';
+		aistatus.now_assist_panel_platform.status = false;
+		aistatus.now_assist_panel_platform.info = 'Checks if a Platform default panel is active.';
+	}
+	else
+	{
+		aistatus.now_assist_panel_platform.title = strPanelName + ' Activation';
+		aistatus.now_assist_panel_platform.type = 'boolean';
+		aistatus.now_assist_panel_platform.status = false;
+		aistatus.now_assist_panel_platform.info = 'Checks if the panel "'+strPanelName+'" is active.';
+		aistatus.now_assist_panel_platform.config_url = GetInstanceUrl()+'now/conversational-studio/assistants/all';
+		if (IsValidTable('sys_now_assist_deployment') == true)
+		{
+			var grNAD = new GlideRecord('sys_now_assist_deployment');
+			grNAD.addQuery('active','=','true');
+			grNAD.addQuery('assistant_type','=','nap');
+			grNAD.addQuery('name','=',strPanelName);
+			grNAD.query();
+			while (grNAD.next() == true)
+			{
+				aistatus.now_assist_panel_platform.status = true;
+			}
 		}
 	}
 
@@ -78,8 +120,9 @@
 	aistatus.now_assist_panel_platform_deployment.title = 'Now Assist Panel Deployment Channel';
 	aistatus.now_assist_panel_platform_deployment.type = 'boolean';
 	aistatus.now_assist_panel_platform_deployment.status = false;
-	aistatus.now_assist_panel_platform_deployment.info = 'Checks if the Now Assist Panel Deployment Channel is configured for "Now Assist Panel - Platform (default)".';
-	aistatus.now_assist_panel_platform_deployment.config_url = GetInstanceUrl()+'now/conversational-studio/assistants/all';
+	aistatus.now_assist_panel_platform_deployment.info = 'Checks if the Now Assist Panel Deployment Channel is configured for "'+strPanelName+'". Navigate to "Assistant Designer" -> "'+strPanelName+'" -> "Edit" -> "Settings" -> "Display experiences".';
+	aistatus.now_assist_panel_platform_deployment.config_url =
+		GetInstanceUrl()+'now/conversational-studio/assistants/all';
 	if (IsValidTable('sys_now_assist_deployment_channel') == true)
 	{
 		var grNAPDC = new GlideRecord('sys_now_assist_deployment_channel');
@@ -90,7 +133,7 @@
 		grNAPDC.query();
 		while (grNAPDC.next() == true)
 		{
-			if (grNAPDC.now_assist_deployment.getDisplayValue() == 'Now Assist Panel - Platform (default)')
+			if (grNAPDC.now_assist_deployment.getDisplayValue() == strPanelName)
 			{
 				aistatus.now_assist_panel_platform_deployment.status = true;
 			}	
@@ -142,17 +185,21 @@
 		}
 				
 		aistatus.llmgateway_service.type = 'boolean';
+		aistatus.llmgateway_service.status = true;
 		var grSSE = new GlideRecord('sys_service_endpoint');
-		grSSE.addQuery('url','=','https://llmgateway-dart');
+		//grSSE.addQuery('url','=','https://llmgateway-dart');
 		grSSE.addQuery('service','IN',GetStringValue(aServicesSysIds));
 		grSSE.query();
-		if (grSSE.getRowCount() > 0)
+		while (grSSE.next() == true)
 		{
-			aistatus.llmgateway_service.status = false;
-		}
-		else
-		{
-			aistatus.llmgateway_service.status = true;
+			if (IsValidUrl(grSSE.url) == false)
+			{
+				aistatus.llmgateway_service.status = false;
+			}
+			else if (grSSE.url == 'https://llmgateway-dart')
+			{
+				aistatus.llmgateway_service.status = false;
+			}
 		}
 	}
 	aistatus.llmgateway_service.config_url = GetInstanceListUrl('sys_service','',strEncodedQuery);
@@ -190,8 +237,86 @@
 	aistatus.license_tier.type = 'boolean';
 	aistatus.license_tier.status = IsPrimeTierLicenseAvailable();
 	aistatus.license_tier.info = 
-		'Checks if the instance has the "prime" license tier - which is required to build and run custom AI agents. One option to enable the Prime License Tier is to install the "App Engine - Prime" subscription.';
-	aistatus.license_tier.config_url = GetInstanceUrl() + '/now/app-manager/home/product/source/store/id/14b8ddfb87ebfa90669040c8dabb35b4/details';
+		'Checks if the instance has the "prime" license tier - which is required to build and run custom AI agents. One option to enable the Prime License Tier is to install the "App Engine - Prime" Store App.';
+	aistatus.license_tier.config_url =
+		GetInstanceUrl()
+		+ GetAppManagerPath('sn_aeai_prime');
+
+
+	// Beancounting
+
+	if (IsValidTable('sys_now_assist_deployment') == true)
+	{
+		aistatus.now_assist_deployments = {};
+		aistatus.now_assist_deployments.title = 'Now Assist Deployments';
+		aistatus.now_assist_deployments.type = 'count';
+		aistatus.now_assist_deployments.info = 'The number of ACTIVE Now Assist Deployments.';
+		aistatus.now_assist_deployments.config_url = GetInstanceListUrl('sys_now_assist_deployment','','active=true');
+		var grNAD = new GlideRecord('sys_now_assist_deployment');
+		grNAD.addQuery('active','=','true');
+		grNAD.query();
+		aistatus.now_assist_deployments.status = grNAD.getRowCount();
+	}
+
+
+	if (IsValidTable('sn_aia_team') == true)
+	{
+		aistatus.agentic_workflows = {};
+		aistatus.agentic_workflows.title = 'Agentic Workflows';
+		aistatus.agentic_workflows.type = 'count';
+		var grWorkflows = new GlideRecord('sn_aia_team');
+		grWorkflows.query();
+		aistatus.agentic_workflows.status = grWorkflows.getRowCount();
+		aistatus.agentic_workflows.info = 
+			'The number of Agentic Workflows available on this instance.';
+		aistatus.agentic_workflows.config_url = GetInstanceListUrl('sn_aia_team');
+	}
+
+	if (IsValidTable('sn_aia_agent_config') == true)
+	{	
+		aistatus.ai_agents = {};
+		aistatus.ai_agents.title = 'AI Agents';
+		aistatus.ai_agents.type = 'count';
+		var grAgents = new GlideRecord('sn_aia_agent_config');
+		grAgents.addActiveQuery();
+		grAgents.query();
+		aistatus.ai_agents.status = grAgents.getRowCount();
+		aistatus.ai_agents.info = 
+			'The number of ACTIVE AI Agent Configs available on this instance.';
+		aistatus.ai_agents.config_url =
+			GetInstanceListUrl('sn_aia_agent_config','','active=true');	
+	}
+
+	if (IsValidTable('sys_one_extend_capability') == true)
+	{
+		aistatus.ai_skills = {};
+		aistatus.ai_skills.title = 'AI Skills';
+		aistatus.ai_skills.type = 'count';
+		var grSkills = new GlideRecord('sys_one_extend_capability');
+		grSkills.addActiveQuery();
+		grSkills.addQuery('type','=','skill');
+		grSkills.query();
+		aistatus.ai_skills.status = grSkills.getRowCount();
+		aistatus.ai_skills.info = 
+			'The number of ACTIVE AI Skills available on this instance.';
+		aistatus.ai_skills.config_url =
+			GetInstanceListUrl('sys_one_extend_capability','','active=true^type=skill');		
+	}
+
+	if (IsValidTable('sys_one_extend_definition_config') == true)
+	{
+		aistatus.one_extend_definition_config = {};
+		aistatus.one_extend_definition_config.title = 'OneExtend Definition Configs';
+		aistatus.one_extend_definition_config.type = 'count';
+		var grOEDC = new GlideRecord('sys_one_extend_definition_config');
+		grOEDC.addActiveQuery();
+		grOEDC.query();
+		aistatus.one_extend_definition_config.status = grOEDC.getRowCount();
+		aistatus.one_extend_definition_config.info = 
+			'The number of ACTIVE OneExtend Definition Config records on this instance. These records "bind" skills to LLM Configurations.';
+		aistatus.one_extend_definition_config.config_url =
+			GetInstanceListUrl('sys_one_extend_definition_config','','active=true');		
+	}
 
 	return aistatus;
 }]]></script>
@@ -199,14 +324,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-05-21 14:10:28</sys_created_on>
         <sys_id>258f7f20938943500385f7519803d60d</sys_id>
-        <sys_mod_count>48</sys_mod_count>
+        <sys_mod_count>78</sys_mod_count>
         <sys_name>GetInstanceAIStatus</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_258f7f20938943500385f7519803d60d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-06-29 15:47:08</sys_updated_on>
+        <sys_updated_on>2026-09-04 15:53:56</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
