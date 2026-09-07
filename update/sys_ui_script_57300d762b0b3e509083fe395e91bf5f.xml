@@ -22,9 +22,9 @@ If a conversation Sys Id is provided, the Now Assist Panel will show the provide
         <sys_id>57300d762b0b3e509083fe395e91bf5f</sys_id>
         <sys_mod_count>37</sys_mod_count>
         <sys_name>x_snc_devtools.ShowNowAssistPanel</sys_name>
-        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
-        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_script_57300d762b0b3e509083fe395e91bf5f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2026-03-17 10:20:53</sys_updated_on>
