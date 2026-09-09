@@ -12,81 +12,79 @@
         <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
         <sys_class_name>sys_atf_step</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-08-24 09:47:03</sys_created_on>
-        <sys_id>3ab2109b83b20350ac13b410feaad326</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_created_on>2026-09-08 14:37:52</sys_created_on>
+        <sys_id>c925628c83978b50ac13b410feaad319</sys_id>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
-        <sys_update_name>sys_atf_step_3ab2109b83b20350ac13b410feaad326</sys_update_name>
+        <sys_update_name>sys_atf_step_c925628c83978b50ac13b410feaad319</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-09-08 12:23:19</sys_updated_on>
+        <sys_updated_on>2026-09-08 14:39:57</sys_updated_on>
         <table/>
-        <test display_value="DevTools - IsValidAppName">26b2dc5b83b20350ac13b410feaad3ca</test>
+        <test display_value="DevTools - GetListUri">b425228c83978b50ac13b410feaad3a7</test>
         <timeout/>
         <warning_message/>
     </sys_atf_step>
-    <sys_variable_value action="delete_multiple" query="document_key=3ab2109b83b20350ac13b410feaad326"/>
+    <sys_variable_value action="delete_multiple" query="document_key=c925628c83978b50ac13b410feaad319"/>
     <sys_variable_value action="INSERT_OR_UPDATE">
         <document>sys_atf_step</document>
-        <document_key>3ab2109b83b20350ac13b410feaad326</document_key>
+        <document_key>c925628c83978b50ac13b410feaad319</document_key>
         <order>200</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-08-24 09:47:03</sys_created_on>
-        <sys_id>bab2109b83b20350ac13b410feaad343</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_created_on>2026-09-08 14:37:52</sys_created_on>
+        <sys_id>0125628c83978b50ac13b410feaad31d</sys_id>
+        <sys_mod_count>3</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-09-08 12:23:19</sys_updated_on>
+        <sys_updated_on>2026-09-08 14:39:57</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
 	&#13;
 	test.SetResult(true);&#13;
 	&#13;
-	function TestCase_IsValidAppName(strName,vExpected)&#13;
+	function TestCase_GetListUri(strTable,strView,strEncodedQuery,nFirstRow,vExpected)&#13;
 	{&#13;
-		function TestCase_IsValidAppName_CheckResult(vInput,vExpected,vResult)&#13;
+		function TestCase_GetListUri_CheckResult(vInput,vExpected,vResult)&#13;
 		{&#13;
 			return (vExpected == vResult);&#13;
 		}&#13;
 		&#13;
 		test.TestCase(&#13;
-			'Function IsValidAppName()',&#13;
-			IsValidAppName,&#13;
+			'Function GetListUri()',&#13;
+			GetListUri,&#13;
 			{&#13;
-				'strName': strName&#13;
+				'strTable': strTable,&#13;
+				'strView': strView,&#13;
+				'strEncodedQuery': strEncodedQuery,&#13;
+				'nFirstRow': nFirstRow&#13;
 			},&#13;
 			vExpected,&#13;
-			TestCase_IsValidAppName_CheckResult);&#13;
+			TestCase_GetListUri_CheckResult);&#13;
 	}&#13;
 		&#13;
-	TestCase_IsValidAppName(null,false);&#13;
-	TestCase_IsValidAppName('',false);&#13;
-	TestCase_IsValidAppName(' ',false);&#13;
-	TestCase_IsValidAppName(' My App',false);&#13;
-	TestCase_IsValidAppName('My App ',false);&#13;
-	TestCase_IsValidAppName('My App^ORactive=true ',false);&#13;
-&#13;
-	TestCase_IsValidAppName('DevTools',true);&#13;
-	TestCase_IsValidAppName('DevTools WORK IN PROGRESS',true);&#13;
-&#13;
-	TestCase_IsValidAppName('NLU Studio',true);&#13;
-	TestCase_IsValidAppName('@servicenow/now-vis-timeseries',true);&#13;
-	TestCase_IsValidAppName('Service Catalog - Service Workspace',true);&#13;
-	TestCase_IsValidAppName('sn-app-analytics-center',true);&#13;
-	TestCase_IsValidAppName('Mobile Card Builder',true);&#13;
-	TestCase_IsValidAppName('Excel (xlsx only) Parser',true);&#13;
+	TestCase_GetListUri(null,null,null,null,&#13;
+		false);&#13;
+	TestCase_GetListUri('',null,null,null,&#13;
+		false);&#13;
 	&#13;
-	var grPlugins = new GlideRecord('sys_plugins');&#13;
-	grPlugins.setLimit(100);&#13;
-	grPlugins.query();&#13;
-	while (grPlugins.next() == true)&#13;
-	{&#13;
-		TestCase_IsValidAppName(grPlugins.name,true);&#13;
-	}&#13;
+	TestCase_GetListUri('incident',null,null,0,&#13;
+		'/incident_list.do?');&#13;
+	&#13;
+	TestCase_GetListUri('incident','DevTools',null,0,&#13;
+		'/incident_list.do?&amp;sysparm_view=DevTools&amp;sysparm_view_forced=true');&#13;
+	&#13;
+	TestCase_GetListUri('incident',null,'active=true',0,&#13;
+		'/incident_list.do?&amp;sysparm_query=active%3Dtrue');&#13;
+	&#13;
+	TestCase_GetListUri('incident','DevTools','active=true',0,&#13;
+		'/incident_list.do?&amp;sysparm_view=DevTools&amp;sysparm_view_forced=true&amp;sysparm_query=active%3Dtrue');&#13;
 &#13;
+	TestCase_GetListUri('incident','DevTools','active=true',100,&#13;
+		'/incident_list.do?&amp;sysparm_view=DevTools&amp;sysparm_view_forced=true&amp;sysparm_query=active%3Dtrue&amp;sysparm_first_row=100');&#13;
+	&#13;
 	return test.GetResult();&#13;
 	&#13;
 })(outputs, steps, stepResult, assertEqual);</value>
@@ -94,15 +92,15 @@
     </sys_variable_value>
     <sys_variable_value action="INSERT_OR_UPDATE">
         <document>sys_atf_step</document>
-        <document_key>3ab2109b83b20350ac13b410feaad326</document_key>
+        <document_key>c925628c83978b50ac13b410feaad319</document_key>
         <order>100</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-08-24 09:47:03</sys_created_on>
-        <sys_id>beb2109b83b20350ac13b410feaad329</sys_id>
+        <sys_created_on>2026-09-08 14:37:52</sys_created_on>
+        <sys_id>8125628c83978b50ac13b410feaad31c</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-24 09:47:03</sys_updated_on>
+        <sys_updated_on>2026-09-08 14:37:52</sys_updated_on>
         <value>3.1</value>
         <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
     </sys_variable_value>
