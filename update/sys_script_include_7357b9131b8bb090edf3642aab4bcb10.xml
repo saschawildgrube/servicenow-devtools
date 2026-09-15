@@ -42,7 +42,7 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 		{
 			return false;
 		}			
-		var strTable = GetParam('table',IsValidTable);
+		var strTable = GetParam('table',IsValidTable,this);
 		return GetParentTable(strTable);
 	},
 	
@@ -52,7 +52,7 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 		{
 			return false;
 		}			
-		var strSysId = GetParam('sys_id',IsValidSysId);
+		var strSysId = GetParam('sys_id',IsValidSysId,this);
 		return GetTableFromSysId(strSysId);
 	},
 
@@ -62,9 +62,9 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 		{
 			return false;
 		}
-		var strTable = GetParam('table',IsValidTable);
-		var strSysId = GetParam('sys_id',IsValidSysId);
-		var strRecords = GetParam('records',IsValidJson);
+		var strTable = GetParam('table',IsValidTable,this);
+		var strSysId = GetParam('sys_id',IsValidSysId,this);
+		var strRecords = GetParam('records',IsValidJson,this);
 		if (strTable == 'syslog_app_scope')
 		{
 			return false;
@@ -87,14 +87,14 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 		{
 			return false;
 		}			
-		var bExtendingTables = GetBoolValue(GetParam('extending_tables',IsValidBoolString));
+		var bExtendingTables = GetBoolValue(GetParam('extending_tables',IsValidBoolString,this));
 		var tables = GetAllTables(bExtendingTables);
 		return MakeJson(tables);
 	},
 	
 	SetScopeForSystemPropertiesUI: function()
 	{
-		var strCategory = GetParam('category',IsValidName);
+		var strCategory = GetParam('category',IsValidName,this);
 		if (strCategory != '')
 		{
 			var grSPC = new GlideRecord('sys_properties_category');
@@ -120,9 +120,9 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 		{
 			return false;
 		}			
-		var strSuiteSysId = GetParam('suite',IsValidSysId);
-		var strAppSysId = GetParam('app',IsValidSysId);
-		var bDetailed = GetBoolValue(GetParam('detailed',IsValidBoolString));
+		var strSuiteSysId = GetParam('suite',IsValidSysId,this);
+		var strAppSysId = GetParam('app',IsValidSysId,this);
+		var bDetailed = GetBoolValue(GetParam('detailed',IsValidBoolString,this));
 		
 		var result = InstanceScanSuiteOnApp(strSuiteSysId, strAppSysId, bDetailed);
 		
@@ -141,8 +141,8 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 		{
 			return false;
 		}
-		var strTable = GetParam('table',IsValidTable);
-		var strSysId = GetParam('sys_id',IsValidSysId);
+		var strTable = GetParam('table',IsValidTable,this);
+		var strSysId = GetParam('sys_id',IsValidSysId,this);
 		var grRecord = GetRecord(strTable,strSysId);
 		if (IsValidRecord(grRecord) == false)
 		{
@@ -158,8 +158,8 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 		{
 			return false;
 		}
-		var strTable = GetParam('table',IsValidTable);
-		var strSysId = GetParam('sys_id',IsValidSysId);
+		var strTable = GetParam('table',IsValidTable,this);
+		var strSysId = GetParam('sys_id',IsValidSysId,this);
 		var grRecord = GetRecord(strTable,strSysId);
 		if (IsValidRecord(grRecord) == false)
 		{
@@ -177,7 +177,7 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 		{
 			return false;
 		}		
-		var vAppOrSysId = GetParam('app_or_sys_id',IsValidAppIdentifierString);
+		var vAppOrSysId = GetParam('app_or_sys_id',IsValidAppIdentifierString,this);
 		var grSharedApp = GetSharedApplicationRecord(vAppOrSysId);
 		return MakeJson(grSharedApp);
 	},
@@ -188,7 +188,7 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 		{
 			return false;
 		}		
-		var strEmail = GetParam('email',IsValidEmail);
+		var strEmail = GetParam('email',IsValidEmail,this);
 		var strGroups = GetProperty('devtools.createuserbyemail.groups');
 		var aGroups = GetArrayValue(strGroups);
 		var strUserSysId = CreateUserByEmail(strEmail,aGroups);
@@ -201,7 +201,7 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 		{
 			return false;
 		}
-		var strName = GetParam('user_name',IsValidName);
+		var strName = GetParam('user_name',IsValidName,this);
 		var strUserSysId = CreateTechnicalUser(strName);
 		return strUserSysId;		
 	},	
@@ -212,7 +212,7 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 		{
 			return false;
 		}
-		var strName = GetParam('user_name',IsValidName);
+		var strName = GetParam('user_name',IsValidName,this);
 		var strUserSysId = CreateTestUser(strName);
 		return strUserSysId;		
 	},		
@@ -228,7 +228,7 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 		{
 			return false;
 		}			
-		var strAppSysId = GetParam('app_sys_id',IsValidSysId);
+		var strAppSysId = GetParam('app_sys_id',IsValidSysId,this);
 		if (IsAppShared(strAppSysId) == true)
 		{
 			var strMessage = GetStringValue(AppGetProperty('baseline.sharedapp.message'));
@@ -246,7 +246,7 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 		{
 			return false;
 		}			
-		var strAppSysId = GetParam('app_sys_id',IsValidSysId);
+		var strAppSysId = GetParam('app_sys_id',IsValidSysId,this);
 		var bResult = AppVersionBaselineCheckReleaseNotes(strAppSysId);
 		return MakeJson(bResult);		
 	},	
@@ -257,7 +257,7 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 		{
 			return false;
 		}			
-		var strAppSysId = GetParam('app_sys_id',IsValidSysId);
+		var strAppSysId = GetParam('app_sys_id',IsValidSysId,this);
 		var aPollutedRecords = GetAppRecordsWithCredentialPollution(strAppSysId);
 		return MakeJson(aPollutedRecords);		
 	},	
@@ -268,7 +268,7 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 		{
 			return false;
 		}			
-		var strAppSysId = GetParam('app_sys_id',IsValidSysId);
+		var strAppSysId = GetParam('app_sys_id',IsValidSysId,this);
 		var aUncommittedFiles = GetAppUncommittedFiles(strAppSysId);
 		var strJson = MakeJson(aUncommittedFiles);
 		return strJson;		
@@ -280,7 +280,7 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 		{
 			return false;
 		}			
-		var strAppSysId = GetParam('app_sys_id',IsValidSysId);
+		var strAppSysId = GetParam('app_sys_id',IsValidSysId,this);
 		var nUncommittedFilesCount = GetAppUncommittedFilesCount(strAppSysId);
 		return MakeJson(nUncommittedFilesCount);
 	},		
@@ -291,7 +291,7 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 		{
 			return false;
 		}			
-		var strAppSysId = GetParam('app_sys_id',IsValidSysId);
+		var strAppSysId = GetParam('app_sys_id',IsValidSysId,this);
 		var aBranches = GetAppBranches(strAppSysId);
 		return MakeJson(aBranches);		
 	},	
@@ -302,7 +302,7 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 		{
 			return false;
 		}		
-		var strTestSysId = GetParam('test_sys_id',IsValidSysId);
+		var strTestSysId = GetParam('test_sys_id',IsValidSysId,this);
 		var strStepSysId = AddScriptTestStep(strTestSysId);
 		return MakeJson(strStepSysId);
 	},
@@ -318,10 +318,10 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 		var strTrackerSourceTable = '';
 		var strTrackerType = '';
 
-		var strCommand = GetParam('command',IsSnakeCase);
+		var strCommand = GetParam('command',IsSnakeCase,this);
 		if (strCommand == 'app_version_baseline')
 		{
-			var strAppSysId = GetParam('app_sys_id',IsValidSysId);
+			var strAppSysId = GetParam('app_sys_id',IsValidSysId,this);
 			if (strAppSysId == '')
 			{
 				LogError('DevToolsClientAPI.start(): AppVersionBaseline: no app_sys_id specified.');
@@ -333,7 +333,7 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 				LogError('DevToolsClientAPI.start(): AppVersionBaseline: App not found.');
 				return '';
 			}
-			var strVersion = GetParam('version',IsValidVersion);
+			var strVersion = GetParam('version',IsValidVersion,this);
 			if (strVersion != grApp.version)
 			{
 				LogError('DevToolsClientAPI.start(): AppVersionBaseline: Version mismatch.');
@@ -362,7 +362,7 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 		}
 		else if (strCommand == 'source_control_commit')
 		{
-			var strAppSysId = GetParam('app_sys_id',IsValidSysId);
+			var strAppSysId = GetParam('app_sys_id',IsValidSysId,this);
 			if (strAppSysId == '')
 			{
 				LogError('DevToolsClientAPI.start(): SourceControlCommitToCurrentBranch: no app_sys_id specified.');
@@ -375,7 +375,7 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 				return '';
 			}
 
-			var strMessage = GetParam('message');
+			var strMessage = GetParam('message',null,this);
 
 			strTrackerSourceTable = 'sys_app';
 			strTrackerType = '';
@@ -435,14 +435,14 @@ DevToolsClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-12 13:47:51</sys_created_on>
         <sys_id>7357b9131b8bb090edf3642aab4bcb10</sys_id>
-        <sys_mod_count>157</sys_mod_count>
+        <sys_mod_count>158</sys_mod_count>
         <sys_name>DevToolsClientAPI</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_7357b9131b8bb090edf3642aab4bcb10</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-07-17 15:19:44</sys_updated_on>
+        <sys_updated_on>2026-09-15 13:44:01</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
