@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.IsValidStoreAppList</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns true if the given string represents a valid list of Store App identifiers.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>IsValidStoreAppList</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function IsValidStoreAppList(strParam)
+{
+	strParam = GetStringValue(strParam);
+	var aList = GetArrayValue(strParam);
+	for (var nElement = 0; nElement < aList.length; nElement++)
+	{
+		var strElement = aList[nElement];
+		var bValid = false;
+		if (IsValidSysId(strElement) == true)
+		{
+			bValid = true;
+		}
+		else if (IsValidScope(strElement) == true)
+		{
+			bValid = true;
+		}
+		else if (IsValidAppName(strElement) == true)
+		{
+			bValid = true;
+		}
+		if (bValid == false)
+		{
+			return false;
+		}
+	}
+	return true;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-18 09:27:01</sys_created_on>
+        <sys_id>dd3d3c9f83db4310ac13b410feaad3bb</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>IsValidStoreAppList</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_dd3d3c9f83db4310ac13b410feaad3bb</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-18 09:34:28</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+</record_update>
