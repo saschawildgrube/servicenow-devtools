@@ -9,41 +9,76 @@
         <mobile_callable>false</mobile_callable>
         <name>SetAppRepo</name>
         <sandbox_callable>false</sandbox_callable>
-        <script><![CDATA[function SetAppRepo(vApp,strUrl)
+        <script><![CDATA[function SetAppRepo(vApp,strUrl,strBranch,strCredentialSysId,strMidServerSysId)
 {
-	strUrl = GetStringValue(strUrl);
-	if (IsValidUrl(strUrl) == false)
-	{
-		return false;
-	}
-	
 	var grApp = GetAppRecord(vApp);
 	if (IsValidRecord(grApp) == false)
 	{
 		return false;
 	}
-	
-	// Update the repo URL in the App record 
+
+	strUrl = GetStringValue(strUrl);
+	if (IsValidUrl(strUrl) == false)
+	{
+		return false;
+	}
+
+	strBranch = GetStringValue(strBranch);
+
+	strCredentialSysId = GetStringValue(strCredentialSysId);
+	if (strCredentialSysId != '')
+	{
+		if (IsValidSysId(strCredentialSysId) == false)
+		{
+			return false;
+		}
+	}
+
+	strMidServerSysId = GetStringValue(strMidServerSysId);
+	if (strMidServerSysId != '')
+	{
+		if (IsValidSysId(strMidServerSysId) == false)
+		{
+			return false;
+		}
+	}
+
 	grApp.x_snc_devtools_repo_url = strUrl;
 	if (GlideRecordUpdate(grApp) == false)
 	{
 		return false;
 	}	
 	
-	// Update the repo config record
-	var grRepo = new GlideRecord('sys_repo_config');
-	grRepo.addQuery('sys_app','=',grApp.sys_id);
-	grRepo.query();
-	if (grRepo.getRowCount() != 1)
+	var grOldRepoConfig = GetRepoConfigRecord(grApp);
+	if (IsValidRecord(grOldRepoConfig) == false)
 	{
 		return false;
 	}
-	if (grRepo.next() != true)
+
+	if (strBranch == '')
 	{
-		return false;
+		strBranch = GetStringValue(grOldRepoConfig.current_branch);
 	}
-	grRepo.url = strUrl;
-	if (GlideRecordUpdate(grRepo) == false)
+	if (strCredentialSysId == '')
+	{
+		strCredentialSysId = GetStringValue(grOldRepoConfig.credential);
+	}
+	if (strMidServerSysId == '')
+	{
+		strMidServerSysId = GetStringValue(grOldRepoConfig.mid_server);
+	}
+
+	GlideRecordDelete(grOldRepoConfig);
+
+	var grNewRepoConfig = new GlideRecord('sys_repo_config');
+	grNewRepoConfig.initialize();
+	grNewRepoConfig.sys_app = grApp.sys_id;
+	grNewRepoConfig.url = strUrl;
+	grNewRepoConfig.current_branch = strBranch;
+	grNewRepoConfig.credential = strCredentialSysId;
+	grNewRepoConfig.mid_server = strMidServerSysId;
+	var strRepoConfigSysId = GlideRecordInsert(grNewRepoConfig);
+	if (IsValidSysId(strRepoConfigSysId) == false)
 	{
 		return false;
 	}
@@ -73,14 +108,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-04-03 12:06:06</sys_created_on>
         <sys_id>6a27c06897822110a6a07767f053afff</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>10</sys_mod_count>
         <sys_name>SetAppRepo</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_6a27c06897822110a6a07767f053afff</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-08-28 12:58:48</sys_updated_on>
+        <sys_updated_on>2026-10-13 09:00:30</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>
