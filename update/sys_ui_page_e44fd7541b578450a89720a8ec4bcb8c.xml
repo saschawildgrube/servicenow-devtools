@@ -793,6 +793,7 @@ x_snc_devtools.AppBuilderMoveToScope(grRecord, strTargetScope, bMoveFromAllScope
 		<li>IsValidAppName() now considers the faulty Plugin name "Engine Based Notifications " as a valid name.</li>
 		<li>AppDelete() now also removes the sys_repo_config record if it exists.</li>
 		<li>Added syntax editor macro for RecordTransporterPackageReset().</li>
+		<li>Added menu items "Dependencies" and "Technical Debt".</li>
 	</ol>
 
 
@@ -3543,14 +3544,14 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>2745</sys_mod_count>
+        <sys_mod_count>2746</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-10-13 12:42:02</sys_updated_on>
+        <sys_updated_on>2026-10-14 15:11:18</sys_updated_on>
     </sys_ui_page>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>e44fd7541b578450a89720a8ec4bcb8c</id>
