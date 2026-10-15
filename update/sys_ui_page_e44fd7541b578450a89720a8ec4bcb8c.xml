@@ -149,21 +149,21 @@ while (grSuites.next())
 			]</g2:no_escape>	
 	</pre>
 	<p>The object contains base data about the process, involved roles, the states through which the process flows and the allowed transitions between the states.</p>
-	<p>The function&#160;<a href="/sys_script_include.do?sys_id=0a1294432b3fb6d09083fe395e91bfe8" target="_blank">BusinessProcessValidate()</a> - as the name suggests - validates the given object and returns eithe rtrue or false (or if bDetailed is set to true: a detailed response about what is missing or wrong).</p>
-	<p>The function&#160;<a href="/sys_script_include.do?sys_id=33a6cd0b2b37f6d09083fe395e91bfa9" target="_blank">AppBuilderImplementBusinessProcess()</a> implements the given business process in the given custom application. It creates the table (derived from task), state Choices, Roles, ACLs, Business Rules, UI Actions and other Application Files.</p>
+	<p>The function&#160;<a href="/sys_script_include.do?sys_id=0a1294432b3fb6d09083fe395e91bfe8" target="_blank">BusinessProcessValidate()</a>&#160;- as the name suggests - validates the given object and returns either true or false (or if bDetailed is set to true: a detailed response about what is missing or wrong).</p>
+	<p>The function&#160;<a href="/sys_script_include.do?sys_id=33a6cd0b2b37f6d09083fe395e91bfa9" target="_blank">AppBuilderImplementBusinessProcess()</a>&#160;implements the given business process in the given custom application. It creates the table (derived from task), state Choices, Roles, ACLs, Business Rules, UI Actions and other Application Files.</p>
 	<p>The following boilerplate code can be used to test the mechanism:</p>
 	<pre>
-	TODO
 var strScope = 'x_test_process';
 x_snc_devtools.AppDelete(strScope);
-var grApp = x_snc_devtools.GetAppRecord(strScope);
-
+x_snc_devtools.AppCreate('Test Process','scoped',strScope);
 
 var business_process = x_snc_devtools.BusinessProcessGetExample();
 gs.info(x_snc_devtools.RenderValue(business_process));
 
 x_snc_devtools.AppBuilderImplementBusinessProcess(strScope,business_process);	
 	</pre>
+	<p>The function creates various hook points (Business Rules, UI Actions, etc.) which all relay to a process class derived from the&#160;<a href="/sys_script_include.do?sys_id=5aa19d79c36ecb504b4f311f05013192" target="_blank">BusinessProcessAPI</a>&#160;class. This (derived) class is the core and heart of the business process implementation - one script to rule them all.</p>
+	<p>The derived class also contains the object that defines the business process itself - the implementation contains the definition it is based on. The pattern is opinionated and not everyone agrees to it - but it turns out that it is ideal for AI to understand and modify the process - as code and necessary context are right next to each other.</p> 
 
 	<h3>Sending a Prompt to a Large Language Model (LLM)</h3>
 
@@ -827,6 +827,7 @@ x_snc_devtools.AppBuilderMoveToScope(grRecord, strTargetScope, bMoveFromAllScope
 		<li>AppDelete() now uses TableDelete() to delete tables.</li>
 		<li>Added syntax editor macro for RecordTransporterPackageReset().</li>
 		<li>Added menu items "Dependencies" and "Technical Debt".</li>
+		<li>Added chapter "Implementing Business Processes" to the manual.</li>
 	</ol>
 
 
@@ -3577,14 +3578,14 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>2750</sys_mod_count>
+        <sys_mod_count>2755</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-10-15 14:29:56</sys_updated_on>
+        <sys_updated_on>2026-10-15 15:42:36</sys_updated_on>
     </sys_ui_page>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>e44fd7541b578450a89720a8ec4bcb8c</id>
