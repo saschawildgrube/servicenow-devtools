@@ -16,7 +16,7 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2026-10-15 14:53:51</sys_updated_on>
         <target_name>x_test_process_simple_task</target_name>
-        <target_scope display_value="Test Process">245b85c0c3c493504b4f311f0501313b</target_scope>
+        <target_scope/>
         <target_type>sys_db_object</target_type>
     </sys_scope_privilege>
 </record_update>
