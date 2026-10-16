@@ -11,19 +11,27 @@
         <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function IsValidAppName(strName)
 {
-	strName = (strName == null) ? '' : String(strName);
+	strName = GetStringValue(strName);
 	if (strName == '')
 	{
 		return false;
+	}
+
+	if (strName == 'Engine Based Notifications ') // Faulty Plugin Name
+	{
+		return true;
 	}
 	if (strName.trim() != strName)
 	{
 		return false;
 	}
+
 	// Disallow caret ^ anywhere
 	if (strName.indexOf('^') !== -1)
+	{
 		return false;
-
+	}
+	
 	// The regex allows letters, digits, spaces, and these special chars: @ _ - / ( ) . : ' ’ , ? and hyphen
 	// Colon is allowed anywhere except at start or end
 	// Also allow digits anywhere, and allow the first character to be @ or letter or digit
@@ -51,14 +59,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-08-24 09:45:53</sys_created_on>
         <sys_id>e822949783b20350ac13b410feaad38b</sys_id>
-        <sys_mod_count>27</sys_mod_count>
+        <sys_mod_count>28</sys_mod_count>
         <sys_name>IsValidAppName</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_e822949783b20350ac13b410feaad38b</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-09-08 12:31:30</sys_updated_on>
+        <sys_updated_on>2026-10-12 15:34:54</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>

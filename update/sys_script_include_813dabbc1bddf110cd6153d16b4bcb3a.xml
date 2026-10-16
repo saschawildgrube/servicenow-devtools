@@ -163,6 +163,7 @@
 		'new sn_atf_tg.DW.BrowserLicenseCheckerLibrary.BrowserLicenseChecker().getNumLicensedCloudRunners()._result;',
 		'devstudio_config.xml',
 		'"sn_mfg_common" is not defined',
+		'"sn_eam" is not defined.',
 		'9566b90ceb03', // 9566b90ceb0311003623666cd206fe8c
 		'4659d132d723', // 4659d132d7232100b6bddb0c8252039e
 		'64e5e4737322', // 64e5e473732213002cb26fbc1bf6a7ef
@@ -200,6 +201,7 @@
 		'd12d63cc7766', // d12d63cc77668510960ced43ba5a99da    
 		'1c8878bbd703', // 1c8878bbd7032100b9bc43d60e6103c8
 		'293eb723d723', // 293eb723d7232100b6bddb0c82520320
+		'af8c43f15723', // af8c43f157231300cc25b7d4ef94f9cc     
 
 		// Australia
 		'"vaVars" is not defined.',
@@ -221,6 +223,9 @@
 		'f0a369f4377d', // f0a369f4377d72102f7ab7ae64924b7c     
 		'2cc2d9372bd9', // 2cc2d9372bd907506bedf6904391bf78    
 
+		// Brazil
+		'193de9b8ba7c', // 193de9b8ba7c2597bae6de0e112b1b7c
+
 	];
 	return aPatterns;
 }]]></script>
@@ -228,14 +233,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-09-13 12:47:41</sys_created_on>
         <sys_id>813dabbc1bddf110cd6153d16b4bcb3a</sys_id>
-        <sys_mod_count>228</sys_mod_count>
+        <sys_mod_count>232</sys_mod_count>
         <sys_name>GetEvaluatorErrorExceptionPatterns</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_813dabbc1bddf110cd6153d16b4bcb3a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-09-17 14:48:40</sys_updated_on>
+        <sys_updated_on>2026-10-15 08:06:38</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

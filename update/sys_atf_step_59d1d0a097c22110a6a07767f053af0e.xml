@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-04-03 12:45:58</sys_created_on>
         <sys_id>59d1d0a097c22110a6a07767f053af0e</sys_id>
-        <sys_mod_count>12</sys_mod_count>
+        <sys_mod_count>18</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_59d1d0a097c22110a6a07767f053af0e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-07-28 15:55:06</sys_updated_on>
+        <sys_updated_on>2026-10-13 09:00:55</sys_updated_on>
         <table/>
         <test display_value="DevTools - SetAppRepo">90c1546097c22110a6a07767f053af84</test>
         <timeout/>
@@ -36,16 +36,16 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-04-03 12:45:58</sys_created_on>
         <sys_id>5fd1d0a097c22110a6a07767f053af47</sys_id>
-        <sys_mod_count>12</sys_mod_count>
+        <sys_mod_count>18</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-07-28 15:55:06</sys_updated_on>
+        <sys_updated_on>2026-10-13 09:00:56</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
 	&#13;
 	test.SetResult(true);&#13;
 &#13;
-	function TestCase_SetAppRepo(vApp, strUrl, vExpected)&#13;
+	function TestCase_SetAppRepo(vApp, strUrl, strBranch, strCredentialSysId, strMidServerSysid, vExpected)&#13;
 	{&#13;
 		function TestCase_SetAppRepo_CheckResult(vInput,vExpected,vResult)&#13;
 		{&#13;
@@ -56,36 +56,58 @@
 			if (vExpected == true)&#13;
 			{&#13;
 				var grApp = new GlideRecord('sys_app');&#13;
-				grApp.addQuery('sys_id','=',GetAppRecord(vInput['App']).sys_id);&#13;
-				grApp.addQuery('x_snc_devtools_repo_url','=',vInput['Url']);&#13;
+				grApp.addQuery('sys_id','=',GetAppRecord(vInput['vApp']).sys_id);&#13;
+				grApp.addQuery('x_snc_devtools_repo_url','=',vInput['strUrl']);&#13;
 				grApp.query();&#13;
 				if (grApp.getRowCount() != 1)&#13;
 				{&#13;
+					test.Log('x_snc_devtools_repo_url incorrect!');&#13;
 					return false;&#13;
 				}		&#13;
 				&#13;
-				var grRepo = new GlideRecord('sys_repo_config');&#13;
-				grRepo.addQuery('sys_app','=',GetAppRecord(vInput['App']).sys_id);&#13;
-				grRepo.query();&#13;
-				if (grRepo.getRowCount() == 1)&#13;
+				var grRepo = GetRepoConfigRecord(vApp);&#13;
+				if (IsValidRecord(grRepo) == false)&#13;
 				{&#13;
-					var grRepo = new GlideRecord('sys_repo_config');&#13;
-					grRepo.addQuery('sys_app','=',GetAppRecord(vInput['App']).sys_id);&#13;
-					grRepo.addQuery('url','=',vInput['Url']);&#13;
-					grRepo.query();&#13;
-					if (grRepo.getRowCount() != 1)&#13;
+					test.Log('Could not load sys_repo_config record!');&#13;
+					return false;&#13;
+				}&#13;
+				if (grRepo.url != strUrl)&#13;
+				{&#13;
+					test.Log('Unexpected url in sys_repo_config record!');&#13;
+					return false;&#13;
+				}&#13;
+				if (GetStringValue(strBranch) != '')&#13;
+				{&#13;
+					if (grRepo.current_branch != strBranch)&#13;
 					{&#13;
+						test.Log('Unexpected current_branch in sys_repo_config record!');		&#13;
 						return false;&#13;
 					}&#13;
 				}&#13;
-&#13;
+				if (GetStringValue(strCredentialSysId) != '')&#13;
+				{&#13;
+					if (grRepo.credential != strCredentialSysId)&#13;
+					{&#13;
+						test.Log('Unexpected credential in sys_repo_config record!');&#13;
+						return false;&#13;
+					}&#13;
+				}&#13;
+				if (GetStringValue(strMidServerSysid) != '')&#13;
+				{&#13;
+					if (grRepo.mid_server != strMidServerSysid)&#13;
+					{&#13;
+						test.Log('Unexpected mid_server in sys_repo_config record!');&#13;
+						return false;&#13;
+					}&#13;
+				}&#13;
 				&#13;
 				var grDependency = new GlideRecord('x_snc_devtools_dependency');&#13;
-				grDependency.addQuery('dependency','=',GetAppRecord(vInput['App']).sys_id);&#13;
-				grDependency.addQuery('repo_url','!=',vInput['Url']);&#13;
+				grDependency.addQuery('dependency','=',GetAppRecord(vInput['vApp']).sys_id);&#13;
+				grDependency.addQuery('repo_url','!=',vInput['strUrl']);&#13;
 				grDependency.query();&#13;
 				if (grDependency.getRowCount() != 0)&#13;
 				{&#13;
+					test.Log('Unexpected url in x_snc_devtools_dependency record!');&#13;
 					return false;&#13;
 				}					&#13;
 			}&#13;
@@ -96,16 +118,20 @@
 			'Function SetAppRepo()',&#13;
 			SetAppRepo,&#13;
 			{&#13;
-				'App': vApp,&#13;
-				'Url': strUrl,&#13;
+				'vApp': vApp,&#13;
+				'strUrl': strUrl,&#13;
+				'strBranch': strBranch,&#13;
+				'strCredentialSysId': strCredentialSysId,&#13;
+				'strMidServerSysid': strMidServerSysid&#13;
 			},&#13;
 			vExpected,&#13;
 			TestCase_SetAppRepo_CheckResult);&#13;
 	}&#13;
 &#13;
-	TestCase_SetAppRepo(null,null,false);&#13;
+	TestCase_SetAppRepo(null,null,null,null,null,false);&#13;
 &#13;
 	var strAppSysId = AppCreate('Test Alpha','scoped','x_test_alpha');&#13;
+	TestCase_SetAppRepo(strAppSysId,'https://github.com/test/beta.git',null,null,null,false);&#13;
 &#13;
 	var grRepoConfig = new GlideRecord('sys_repo_config');&#13;
 	grRepoConfig.initialize();&#13;
@@ -114,10 +140,11 @@
 	GlideRecordInsert(grRepoConfig);&#13;
 &#13;
 &#13;
-	TestCase_SetAppRepo(strAppSysId,null,false);&#13;
-	TestCase_SetAppRepo(strAppSysId,'not_a_valid_url',false);&#13;
-	TestCase_SetAppRepo(strAppSysId,'https://github.com/test/beta.git',true);&#13;
-	TestCase_SetAppRepo(strAppSysId,'https://github.com/test/alpha.git',true);&#13;
+	TestCase_SetAppRepo(strAppSysId,null,null,null,null,false);&#13;
+	TestCase_SetAppRepo(strAppSysId,'not_a_valid_url',null,null,null,false);&#13;
+	TestCase_SetAppRepo(strAppSysId,'https://github.com/test/beta.git',null,null,null,true);&#13;
+	TestCase_SetAppRepo(strAppSysId,'https://github.com/test/alpha.git',null,null,null,true);&#13;
+	TestCase_SetAppRepo(strAppSysId,'https://github.com/test/beta.git','dev',GetPseudoSysId(),GetPseudoSysId(),true);&#13;
 		&#13;
 	return test.GetResult();&#13;
 	&#13;
