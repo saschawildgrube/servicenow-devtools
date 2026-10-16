@@ -14,14 +14,14 @@
         <sys_id>4f9d15efdbcf8210f0f1d03cd396195d</sys_id>
         <sys_mod_count>1</sys_mod_count>
         <sys_name>394148f9db1c2d906a03dad1f396197a</sys_name>
-        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
-        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_restricted_caller_access_4f9d15efdbcf8210f0f1d03cd396195d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2024-07-03 11:28:26</sys_updated_on>
         <target>704694a81b1a74505331b8449b4bcb69</target>
-        <target_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</target_scope>
+        <target_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</target_scope>
         <target_table>sys_script_include</target_table>
         <target_type>2</target_type>
     </sys_restricted_caller_access>

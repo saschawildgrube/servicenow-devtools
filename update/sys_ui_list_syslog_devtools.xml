@@ -63,9 +63,9 @@
             <sys_id>c4a71a9f1b017510cd6153d16b4bcbf8</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_name>syslog</sys_name>
-            <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+            <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
             <sys_policy/>
-            <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+            <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
             <sys_update_name>sys_ui_list_syslog_devtools</sys_update_name>
             <sys_updated_by>admin</sys_updated_by>
             <sys_updated_on>2023-09-08 14:42:02</sys_updated_on>

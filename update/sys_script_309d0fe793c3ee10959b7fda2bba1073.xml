@@ -15,7 +15,7 @@
         <condition/>
         <description>Synchronizes the script and description to the specified UI Script.</description>
         <execute_function>false</execute_function>
-        <filter_condition table="sys_script_include">sys_scope=d689f6901bd38450a89720a8ec4bcbfd^EQ<item display_table="sys_scope" display_value="DevTools WORK IN PROGRESS" endquery="false" field="sys_scope" goto="false" newquery="false" operator="=" or="false" value="d689f6901bd38450a89720a8ec4bcbfd"/>
+        <filter_condition table="sys_script_include">sys_scope=d689f6901bd38450a89720a8ec4bcbfd^EQ<item display_table="sys_scope" display_value="DevTools" endquery="false" field="sys_scope" goto="false" newquery="false" operator="=" or="false" value="d689f6901bd38450a89720a8ec4bcbfd"/>
             <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
         </filter_condition>
         <is_rest>false</is_rest>
@@ -58,9 +58,9 @@
         <sys_mod_count>7</sys_mod_count>
         <sys_name>sys_script_include - sync to ui script</sys_name>
         <sys_overrides/>
-        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
-        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_309d0fe793c3ee10959b7fda2bba1073</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2025-08-05 13:35:19</sys_updated_on>
