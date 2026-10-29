@@ -40,7 +40,7 @@ Returns true if the given user is a valid technical user after applying fixes. F
 	var strUserName = GetStringValue(grUser.user_name)
 	if (strUserName.startsWith('technical.') == false)
 	{
-		grUser.first_name = 'technical.' + strUserName;
+		grUser.user_name = 'technical.' + strUserName;
 	}
 
 	if (grUser.first_name != 'Technical')
@@ -87,14 +87,14 @@ if (current.internal_integration_user == true)
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-10-29 14:41:49</sys_created_on>
         <sys_id>89dec5e483981750ac13b410feaad37d</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_name>FixTechnicalUser</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_89dec5e483981750ac13b410feaad37d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-10-29 16:02:32</sys_updated_on>
+        <sys_updated_on>2026-10-29 16:31:44</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>

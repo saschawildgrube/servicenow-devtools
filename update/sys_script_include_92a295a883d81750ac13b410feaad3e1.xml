@@ -45,6 +45,12 @@ E.g. the user has the "machine" identity type, or the first name starts with "Te
 		'Service',
 		'service'];
 
+	var aMatches = [
+		'User',
+		'user',
+		'Service Account',
+		];		
+
 	var strUserName = GetStringValue(grUser.user_name);
 	var strFirstName = GetStringValue(grUser.first_name);
 	var strLastName = GetStringValue(grUser.last_name);
@@ -66,20 +72,37 @@ E.g. the user has the "machine" identity type, or the first name starts with "Te
 		}		
 	}
 
+	for (var nMatch = 0; nMatch < aMatches.length; nMatch++)
+	{
+		var strMatch = aMatches[nMatch];
+		if (strUserName == strMatch)
+		{
+			return true;
+		}
+		if (strFirstName == strMatch)
+		{
+			return true;
+		}
+		if (strLastName == strMatch)
+		{
+			return true;
+		}		
+	}	
+
 	return false;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-10-29 15:01:42</sys_created_on>
         <sys_id>92a295a883d81750ac13b410feaad3e1</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_name>IsPotentialTechnicalUser</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_92a295a883d81750ac13b410feaad3e1</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-10-29 16:02:32</sys_updated_on>
+        <sys_updated_on>2026-10-29 16:38:16</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>
