@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.FixTechnicalUser</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>If the given records is a potential/invalid technical user - i.e. it has traits of a technical user but does not fully comply with technical user naming conventions - this function will fix it.&#13;
+Returns true if the given user is a valid technical user after applying fixes. False if not.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>FixTechnicalUser</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function FixTechnicalUser(vUser)
+{
+	var grUser = GetUserRecord(vUser);
+	if (IsValidRecord(grUser) == false)
+	{
+		return false;
+	}
+	if (IsTechnicalUser(grUser) == true)
+	{
+		return true;
+	}
+
+	if (IsPotentialTechnicalUser(grUser) == false)
+	{
+		return false;
+	}
+
+	if (grUser.identity_type != 'machine')
+	{
+		grUser.identity_type = 'machine';
+	}
+
+	if (grUser.internal_integration_user == false && grUser.web_service_access_only == false)
+	{
+		grUser.web_service_access_only = true;
+	}
+
+	var strUserName = GetStringValue(grUser.user_name)
+	if (strUserName.startsWith('technical.') == false)
+	{
+		grUser.first_name = 'technical.' + strUserName;
+	}
+
+	if (grUser.first_name != 'Technical')
+	{
+		if (grUser.first_name != '')
+		{
+			grUser.last_name = grUser.first_name + ' ' + grUser.last_name;
+		}
+		grUser.first_name = 'Technical';
+	}
+
+	GlideRecordUpdate(grUser);
+	return IsTechnicalUser(grUser.sys_id);
+
+/*
+if (current.internal_integration_user == true)
+	{
+		bPotential = true;
+	}
+	if (current.web_service_access_only == true)
+	{
+		bPotential = true;
+	}
+	if (current.identity_type == 'machine')
+	{
+		bPotential = true;
+	}
+	var strUserName = x_snc_devtools.GetStringValue(current.user_name);
+	if (strUserName.startsWith('technical.') == true)
+	{
+		bPotential = true;
+	}	
+	if (current.first_name == 'Technical')
+	{
+		bPotential = true;
+	}	
+*/
+
+
+	return false;
+}
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-10-29 14:41:49</sys_created_on>
+        <sys_id>89dec5e483981750ac13b410feaad37d</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>FixTechnicalUser</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_89dec5e483981750ac13b410feaad37d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-10-29 16:02:32</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+</record_update>
