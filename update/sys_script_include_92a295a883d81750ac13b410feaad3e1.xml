@@ -5,7 +5,7 @@
         <api_name>x_snc_devtools.IsPotentialTechnicalUser</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Returns true if the given user is a potential (or valid) technical user.&#13;
+        <description>Returns true if the given user is a potential (but not valid) technical user.&#13;
 "Potential" means that the user has any traits of a typical technical user, but does not fully comply with all requirements.&#13;
 E.g. the user has the "machine" identity type, or the first name starts with "Technical" or the first name starts with "technical.", etc.</description>
         <mobile_callable>false</mobile_callable>
@@ -21,7 +21,7 @@ E.g. the user has the "machine" identity type, or the first name starts with "Te
 
 	if (IsTechnicalUser(grUser) == true)
 	{
-		return true;
+		return false;
 	}
 
 	if (grUser.internal_integration_user == true)	
@@ -36,6 +36,11 @@ E.g. the user has the "machine" identity type, or the first name starts with "Te
 	{
 		return true;
 	}
+
+	if (grUser.identity_type == 'ai_agent')
+	{
+		return true;
+	}	
 
 	var aFragments = [
 		'technical',
@@ -95,14 +100,14 @@ E.g. the user has the "machine" identity type, or the first name starts with "Te
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-10-29 15:01:42</sys_created_on>
         <sys_id>92a295a883d81750ac13b410feaad3e1</sys_id>
-        <sys_mod_count>9</sys_mod_count>
+        <sys_mod_count>10</sys_mod_count>
         <sys_name>IsPotentialTechnicalUser</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_92a295a883d81750ac13b410feaad3e1</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-10-29 16:38:16</sys_updated_on>
+        <sys_updated_on>2026-11-03 11:50:28</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>
