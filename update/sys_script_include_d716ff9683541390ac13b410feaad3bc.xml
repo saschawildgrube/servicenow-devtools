@@ -9,17 +9,23 @@
         <mobile_callable>false</mobile_callable>
         <name>BusinessProcessGetMermaidState</name>
         <sandbox_callable>false</sandbox_callable>
-        <script><![CDATA[function BusinessProcessGetMermaidState(business_process)
+        <script><![CDATA[function BusinessProcessGetMermaidState(business_process,strDirection)
 {
 	if (BusinessProcessValidate(business_process,false) == false)
 	{
 		return false;
 	}
+	strDirection = GetStringValue(strDirection);
 
 	var strCode = '---\n';
 	strCode += 'title: ' + JSON.stringify(String(business_process.name)) + '\n';
 	strCode += '---\n';
 	strCode += 'stateDiagram-v2\n';
+
+	if (strDirection != '')
+	{
+		strCode += 'direction ' + strDirection + '\n';
+	}
 
 	var aStates = business_process._states;
 	var aTransitions = business_process._transitions;
@@ -63,14 +69,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-11-04 13:20:59</sys_created_on>
         <sys_id>d716ff9683541390ac13b410feaad3bc</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>BusinessProcessGetMermaidState</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_d716ff9683541390ac13b410feaad3bc</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-04 13:39:23</sys_updated_on>
+        <sys_updated_on>2026-11-04 14:08:04</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>
