@@ -15,7 +15,7 @@
 	{
 		return false;
 	}
-	
+
 	var strCode = '---\n';
 	strCode += 'title: ' + JSON.stringify(String(business_process.name)) + '\n';
 	strCode += '---\n';
@@ -23,16 +23,13 @@
 
 	var aStates = business_process._states;
 	var aTransitions = business_process._transitions;
-	var stateIds = {};
 	var transitions = {};
 
 	for (var nState = 0; nState < aStates.length; nState++)
 	{
 		var state = aStates[nState];
-		var strStateId = 'state_' + nState;
 		var strName = String(state.name).replace(/[\r\n]+/g,' ').replace(/"/g,'#quot;');
-		stateIds['$' + state.id] = strStateId;
-		strCode += '\tstate "' + strName + '" as ' + strStateId + '\n';
+		strCode += '\tstate "' + strName + '" as ' + state.id + '\n';
 	}
 
 	for (var nTransition = 0; nTransition < aTransitions.length; nTransition++)
@@ -41,7 +38,7 @@
 		transitions['$' + transition.id] = transition;
 	}
 
-	strCode += '\t[*] --> ' + stateIds['$' + business_process.initial_state] + '\n';
+	strCode += '\t[*] --> ' + business_process.initial_state + '\n';
 
 	for (var nSource = 0; nSource < aStates.length; nSource++)
 	{
@@ -50,14 +47,14 @@
 		{
 			var link = transitions['$' + source._transitions[nLink]];
 			var strLabel = String(link.label).replace(/[\r\n]+/g,' ');
-			strCode += '\t' + stateIds['$' + source.id] + ' --> ' + stateIds['$' + link.target_state] + ' : ' + strLabel + '\n';
+			strCode += '\t' + source.id + ' --> ' + link.target_state + ' : ' + strLabel + '\n';
 		}
 	}
 
 	var aEndStates = business_process.end_states;
 	for (var nEnd = 0; nEnd < aEndStates.length; nEnd++)
 	{
-		strCode += '\t' + stateIds['$' + aEndStates[nEnd]] + ' --> [*]\n';
+		strCode += '\t' + aEndStates[nEnd] + ' --> [*]\n';
 	}
 
 	return strCode;
