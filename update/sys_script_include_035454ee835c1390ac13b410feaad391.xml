@@ -11,8 +11,90 @@
         <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function DependencyTreeGetMermaid(dependency_tree)
 {
-	var strCode = '';
-	return strCode;
+    if (!dependency_tree || typeof dependency_tree != 'object')
+    {
+        return '';
+    }
+
+    var aStates = [];
+    var aTransitions = [];
+    var oStateIds = {};
+    var oTransitions = {};
+    var iNextStateId = 0;
+
+    function EscapeMermaidText(vText)
+    {
+        return String(vText == null ? '' : vText)
+            .replace(/\r?\n/g, ' ')
+            .replace(/"/g, '#quot;');
+    }
+
+    function GetStateId(oPackage)
+    {
+        // A package may occur in several branches of the dependency tree.
+        // Use its sys_id to represent it with a single Mermaid state.
+        var strSysId = String(oPackage.sys_id || '');
+        var strName = String(oPackage.name || strSysId || 'Unknown package');
+        var strKey = strSysId ? 'id:' + strSysId : 'name:' + strName;
+
+        if (Object.prototype.hasOwnProperty.call(oStateIds, strKey))
+        {
+            return oStateIds[strKey];
+        }
+
+        var strStateId = 'S' + iNextStateId++;
+        oStateIds[strKey] = strStateId;
+        aStates.push('    state "' + EscapeMermaidText(strName) + '" as ' + strStateId);
+        return strStateId;
+    }
+
+    function Visit(oPackage, aPath)
+    {
+        if (!oPackage || typeof oPackage != 'object')
+        {
+            return;
+        }
+
+        var strSourceId = GetStateId(oPackage);
+        var strSysId = String(oPackage.sys_id || '');
+        var strKey = strSysId ? 'id:' + strSysId : 'name:' + String(oPackage.name || '');
+        if (aPath.indexOf(strKey) != -1)
+        {
+            return;
+        }
+
+        var aNextPath = aPath.concat([strKey]);
+        var aDependencies = oPackage._dependencies || [];
+        if (!Array.isArray(aDependencies))
+        {
+            return;
+        }
+
+        for (var i = 0; i < aDependencies.length; i++)
+        {
+            var oDependency = aDependencies[i];
+            if (!oDependency || typeof oDependency != 'object')
+            {
+                continue;
+            }
+
+            var strTargetId = GetStateId(oDependency);
+            var strVersion = EscapeMermaidText(oDependency.compatible_versions);
+            var strTransitionKey = strSourceId + '|' + strTargetId + '|' + strVersion;
+
+            if (!Object.prototype.hasOwnProperty.call(oTransitions, strTransitionKey))
+            {
+                oTransitions[strTransitionKey] = true;
+                aTransitions.push('    ' + strSourceId + ' --> ' + strTargetId +
+                    (strVersion ? ': ' + strVersion : ''));
+            }
+
+            Visit(oDependency, aNextPath);
+        }
+    }
+
+    Visit(dependency_tree, []);
+    return ['stateDiagram-v2'].concat(aStates, aTransitions).join('\n');
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
