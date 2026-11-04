@@ -20,7 +20,7 @@
     var aTransitions = [];
     var oStateIds = {};
     var oTransitions = {};
-    var iNextStateId = 0;
+    var oUsedStateNames = {};
 
     function EscapeMermaidText(vText)
     {
@@ -31,8 +31,7 @@
 
     function GetStateId(oPackage)
     {
-        // A package may occur in several branches of the dependency tree.
-        // Use its sys_id to represent it with a single Mermaid state.
+        // Reuse states for packages that occur in more than one branch.
         var strSysId = String(oPackage.sys_id || '');
         var strName = String(oPackage.name || strSysId || 'Unknown package');
         var strKey = strSysId ? 'id:' + strSysId : 'name:' + strName;
@@ -42,9 +41,36 @@
             return oStateIds[strKey];
         }
 
-        var strStateId = 'S' + iNextStateId++;
+        // Preserve PascalCase display names; normalize other names using
+        // the existing DevTools helper. Mermaid identifiers must not start
+        // with a digit or contain punctuation.
+        var strStateId = MakePascalCase(strName);
+        if (!/^[A-Za-z_][A-Za-z0-9_]*$/.test(strStateId))
+        {
+            strStateId = 'State' + strStateId.replace(/[^A-Za-z0-9_]/g, '');
+        }
+        if (strStateId == 'State' || strStateId == '')
+        {
+            strStateId = 'State';
+        }
+
+        // Different display names can normalize to the same identifier.
+        var strBaseId = strStateId;
+        var iSuffix = 2;
+        while (Object.prototype.hasOwnProperty.call(oUsedStateNames, strStateId))
+        {
+            strStateId = strBaseId + iSuffix++;
+        }
+
+        oUsedStateNames[strStateId] = true;
         oStateIds[strKey] = strStateId;
-        aStates.push('    state "' + EscapeMermaidText(strName) + '" as ' + strStateId);
+
+        // An already valid PascalCase name needs no explicit alias.
+        if (strStateId != strName)
+        {
+            aStates.push('    state "' + EscapeMermaidText(strName) + '" as ' + strStateId);
+        }
+
         return strStateId;
     }
 
