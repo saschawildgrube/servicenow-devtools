@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.AppTouch</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Touches every contained Application File (and the app record itself) to update the last change date and time. This is to workaround issues if an app does not get updated during a Source Control-based deployment.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>AppTouch</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function AppTouch(vApp)
+{
+	var grApp = GetAppRecord(vApp);
+	if (IsValidRecord(grApp) == false)
+	{
+		return false;
+	}
+	Log('AppTouch: START: '+grApp.name);
+
+	var strLog = '';
+
+	strLog += '\nBEFORE:';
+	strLog += RenderValue(grApp);
+	var strName = GetStringValue(grApp.name);
+	RecordSetValue('sys_app',grApp.sys_id,'name','TOUCH '+strName);
+	RecordSetValue('sys_app',grApp.sys_id,'name',strName);
+	strLog += '\n\nAFTER:';
+	strLog += RenderValue(GetRecord('sys_app',grApp.sys_id));
+
+	var grMetadata = new GlideRecord('sys_metadata');
+	grMetadata.addQuery('sys_scope','=',grApp.sys_id);
+	grMetadata.query();
+	while (grMetadata.next() == true)
+	{
+		strLog += '\n\nBEFORE:';
+		strLog += RenderValue(grMetadata);
+
+		var strSysName = GetStringValue(grMetadata.sys_name);
+		RecordSetValue('sys_metadata',grMetadata.sys_id,'sys_name','TOUCH '+strSysName);
+		RecordSetValue('sys_metadata',grMetadata.sys_id,'sys_name',strSysName);
+		strLog += '\n\nAFTER:';
+		strLog += RenderValue(GetRecord('sys_metadata',grMetadata.sys_id));
+	}
+	Log(strLog);
+	Log('AppTouch: END: '+grApp.name);
+	return true;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-06 14:35:52</sys_created_on>
+        <sys_id>b155124f83949310ac13b410feaad3e2</sys_id>
+        <sys_mod_count>15</sys_mod_count>
+        <sys_name>AppTouch</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_b155124f83949310ac13b410feaad3e2</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-06 16:12:49</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+</record_update>
