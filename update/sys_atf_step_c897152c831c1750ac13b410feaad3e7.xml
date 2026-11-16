@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-10-29 15:18:40</sys_created_on>
         <sys_id>c897152c831c1750ac13b410feaad3e7</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_c897152c831c1750ac13b410feaad3e7</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-10-29 15:37:07</sys_updated_on>
+        <sys_updated_on>2026-11-16 16:12:37</sys_updated_on>
         <table/>
         <test display_value="DevTools - IsPotentialTechnicalUser">7b87d12c831c1750ac13b410feaad3d3</test>
         <timeout/>
@@ -50,9 +50,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-10-29 15:18:40</sys_created_on>
         <sys_id>8097152c831c1750ac13b410feaad3f7</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-10-29 15:37:07</sys_updated_on>
+        <sys_updated_on>2026-11-16 16:12:37</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -66,6 +66,8 @@
 			return (vExpected == vResult);&#13;
 		}&#13;
 		&#13;
+		test.Log(GetUserRecord(vUser));&#13;
+&#13;
 		test.TestCase(&#13;
 			'Function IsPotentialTechnicalUser()',&#13;
 			IsPotentialTechnicalUser,&#13;
@@ -82,7 +84,7 @@
 	TestCase_IsPotentialTechnicalUser(strUserSysId,false);&#13;
 &#13;
 	var strTechnicalUserSysId = CreateTechnicalUser('test 1',[]);&#13;
-	TestCase_IsPotentialTechnicalUser(strTechnicalUserSysId,true);&#13;
+	TestCase_IsPotentialTechnicalUser(strTechnicalUserSysId,false);&#13;
 	&#13;
 	var strTechnicalUserSysId = CreateTechnicalUser('test 2',[]);&#13;
 	RecordSetValue('sys_user',strTechnicalUserSysId,'identity_type','human');&#13;
