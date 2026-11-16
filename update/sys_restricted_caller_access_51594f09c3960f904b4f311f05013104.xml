@@ -4,7 +4,7 @@
         <operation>read</operation>
         <rca_type>real_rca</rca_type>
         <source>2a20c353ffc87610c451ffffffffff40</source>
-        <source_scope display_value="Custom App Record Summarization">1b7a050a1516e6ab7a08e388e93d5ff5</source_scope>
+        <source_scope display_value="">1b7a050a1516e6ab7a08e388e93d5ff5</source_scope>
         <source_table>sys_script</source_table>
         <source_type>0</source_type>
         <status>2</status>
