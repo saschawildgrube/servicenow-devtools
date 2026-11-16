@@ -2,6 +2,7 @@
     <sys_ui_related sys_domain="global" table="sys_app" version="2" view="devtools">
         <sys_ui_related_list_entry action="INSERT_OR_UPDATE">
             <filter/>
+            <group_by_field/>
             <list_id display_value="Custom Application - DevTools" name="sys_app" related_list="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">5e1087bb3b9cb25062bf612c95e45ac1</list_id>
             <order_by/>
             <position>0</position>
@@ -16,6 +17,7 @@
         </sys_ui_related_list_entry>
         <sys_ui_related_list_entry action="INSERT_OR_UPDATE">
             <filter/>
+            <group_by_field/>
             <list_id display_value="Custom Application - DevTools" name="sys_app" related_list="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">5e1087bb3b9cb25062bf612c95e45ac1</list_id>
             <order_by/>
             <position>1</position>
@@ -30,6 +32,7 @@
         </sys_ui_related_list_entry>
         <sys_ui_related_list_entry action="INSERT_OR_UPDATE">
             <filter/>
+            <group_by_field/>
             <list_id display_value="Custom Application - DevTools" name="sys_app" related_list="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">5e1087bb3b9cb25062bf612c95e45ac1</list_id>
             <order_by/>
             <position>2</position>
@@ -44,6 +47,7 @@
         </sys_ui_related_list_entry>
         <sys_ui_related_list_entry action="INSERT_OR_UPDATE">
             <filter/>
+            <group_by_field/>
             <list_id display_value="Custom Application - DevTools" name="sys_app" related_list="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">5e1087bb3b9cb25062bf612c95e45ac1</list_id>
             <order_by/>
             <position>3</position>
@@ -58,6 +62,7 @@
         </sys_ui_related_list_entry>
         <sys_ui_related_list_entry action="INSERT_OR_UPDATE">
             <filter/>
+            <group_by_field/>
             <list_id display_value="Custom Application - DevTools" name="sys_app" related_list="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">5e1087bb3b9cb25062bf612c95e45ac1</list_id>
             <order_by/>
             <position>4</position>
@@ -72,6 +77,7 @@
         </sys_ui_related_list_entry>
         <sys_ui_related_list_entry action="INSERT_OR_UPDATE">
             <filter/>
+            <group_by_field/>
             <list_id display_value="Custom Application - DevTools" name="sys_app" related_list="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">5e1087bb3b9cb25062bf612c95e45ac1</list_id>
             <order_by/>
             <position>5</position>
@@ -86,6 +92,7 @@
         </sys_ui_related_list_entry>
         <sys_ui_related_list_entry action="INSERT_OR_UPDATE">
             <filter/>
+            <group_by_field/>
             <list_id display_value="Custom Application - DevTools" name="sys_app" related_list="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">5e1087bb3b9cb25062bf612c95e45ac1</list_id>
             <order_by/>
             <position>6</position>
@@ -100,6 +107,7 @@
         </sys_ui_related_list_entry>
         <sys_ui_related_list_entry action="INSERT_OR_UPDATE">
             <filter/>
+            <group_by_field/>
             <list_id display_value="Custom Application - DevTools" name="sys_app" related_list="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">5e1087bb3b9cb25062bf612c95e45ac1</list_id>
             <order_by/>
             <position>7</position>
@@ -114,6 +122,7 @@
         </sys_ui_related_list_entry>
         <sys_ui_related_list_entry action="INSERT_OR_UPDATE">
             <filter/>
+            <group_by_field/>
             <list_id display_value="Custom Application - DevTools" name="sys_app" related_list="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">5e1087bb3b9cb25062bf612c95e45ac1</list_id>
             <order_by/>
             <position>8</position>
@@ -128,6 +137,7 @@
         </sys_ui_related_list_entry>
         <sys_ui_related_list_entry action="INSERT_OR_UPDATE">
             <filter/>
+            <group_by_field/>
             <list_id display_value="Custom Application - DevTools" name="sys_app" related_list="NULL" sys_domain="global" view="75e08353dbbf0450ba15a35305961913">5e1087bb3b9cb25062bf612c95e45ac1</list_id>
             <order_by/>
             <position>9</position>

@@ -16,7 +16,7 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2026-08-18 13:44:23</sys_updated_on>
         <target_name>x_snc_test_ebp_simple_task</target_name>
-        <target_scope display_value="Example Business Process">b8ce5db1c3220f504b4f311f05013180</target_scope>
+        <target_scope display_value="">b8ce5db1c3220f504b4f311f05013180</target_scope>
         <target_type>sys_db_object</target_type>
     </sys_scope_privilege>
 </record_update>
