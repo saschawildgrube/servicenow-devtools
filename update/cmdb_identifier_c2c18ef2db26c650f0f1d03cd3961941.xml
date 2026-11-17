@@ -18,4 +18,5 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2024-06-06 11:09:36</sys_updated_on>
     </cmdb_identifier>
+    <sys_translated_text action="delete_multiple" query="documentkey=c2c18ef2db26c650f0f1d03cd3961941"/>
 </record_update>

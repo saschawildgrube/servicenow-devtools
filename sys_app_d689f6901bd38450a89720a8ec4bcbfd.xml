@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_app">
     <sys_app action="INSERT_OR_UPDATE">
         <active>true</active>
+        <application_runtime_policy/>
         <can_edit_in_studio>false</can_edit_in_studio>
         <enforce_license>log</enforce_license>
         <guided_setup_guid/>
@@ -54,8 +55,6 @@ DevTools is also the backbone for the mature development and deployment process.
         <x_snc_devtools_repo_url>https://github.com/saschawildgrube/servicenow-devtools.git</x_snc_devtools_repo_url>
         <x_snc_devtools_showstopper>false</x_snc_devtools_showstopper>
         <x_snc_devtools_showstopper_details/>
-        <x_snc_wildgrubelab_test/>
-        <x_snc_wildgrubelab_test2/>
     </sys_app>
     <sys_translated_text action="delete_multiple" query="documentkey=d689f6901bd38450a89720a8ec4bcbfd"/>
 </record_update>
