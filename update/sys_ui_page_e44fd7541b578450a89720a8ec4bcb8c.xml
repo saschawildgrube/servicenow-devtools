@@ -819,6 +819,7 @@ x_snc_devtools.AppBuilderMoveToScope(grRecord, strTargetScope, bMoveFromAllScope
 		<li>IsTechnicalUser() now considers AI users (users with identity_type = "ai_agent") is technical users but does not require the technical user naming convention.</li>
 		<li>IsTechnicalUser() now accepts the following immutable OOTB technichal users: playbook.automation_runner and mid_server_default.</li>
 		<li>Added function BusinessProcessGetMermaidState().</li>
+		<li>Function NightlyQA() now also accepts a second parameter to specify the Scan Suite.</li> 
 		<li>Improved function IsClonedDictionary() to avoid Java errors regarding ambiguous function names which pops up under unclear circumstances.</li>
 		<li>Improved function BusinessProcessValidate() to avoid a false positive CodeSanity finding from Check "CodeSanity - Bracket-dot anti-pattern".</li>
 		<li>Added more patterns to GetEvaluatorErrorExceptionPatterns().</li>
@@ -3594,14 +3595,14 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>2771</sys_mod_count>
+        <sys_mod_count>2772</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-18 13:38:24</sys_updated_on>
+        <sys_updated_on>2026-11-18 16:59:59</sys_updated_on>
     </sys_ui_page>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>e44fd7541b578450a89720a8ec4bcb8c</id>
