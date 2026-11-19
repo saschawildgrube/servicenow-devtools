@@ -31,7 +31,7 @@
 		{
 			strLabel = strId;
 		}
-		return '"' + strLabel.replace(/[\r\n\t]+/g,' ').replace(/["#&<>\[\]\x60]/g,function(strCharacter)
+		return '"' + strLabel.replace(/[\r\n\t]+/g,' ').replace(/["#&<>\[\]|\x60]/g,function(strCharacter)
 		{
 			return '#' + strCharacter.charCodeAt(0) + ';';
 		}) + '"';
@@ -41,16 +41,11 @@
 	var aStates = GetArrayValue(GetValue(business_process,'_states'));
 	var aTransitions = GetArrayValue(GetValue(business_process,'_transitions'));
 	var strInitialStateId = GetStringValue(GetValue(business_process,'initial_state'));
-	var aEndStateIds = GetArrayValue(GetValue(business_process,'end_states'));
 	var mapRoleLanes = {};
 	var mapStateNodes = {};
 	var mapTransitions = {};
 	var mapNodeIds = {};
-	var laneStates = {id: 'process_states', name: 'Process states', nodes: ''};
-	var laneUnassigned = {id: 'unassigned_roles', name: 'Unassigned', nodes: ''};
-	var aLanes = [laneStates];
-	mapNodeIds['id_' + laneStates.id] = true;
-	mapNodeIds['id_' + laneUnassigned.id] = true;
+	var aLanes = [];
 
 	function GetMermaidId(strId,strPrefix)
 	{
@@ -75,45 +70,6 @@
 		return strNodeId;
 	}
 
-	function GetRoleLanes(aRoleIds)
-	{
-		var aRoleLanes = [];
-		for (var nRole = 0; nRole < aRoleIds.length; nRole++)
-		{
-			var lane = mapRoleLanes['id_' + GetStringValue(aRoleIds[nRole])];
-			if (lane && aRoleLanes.indexOf(lane) == -1)
-			{
-				aRoleLanes.push(lane);
-			}
-		}
-		return aRoleLanes;
-	}
-
-	for (var nState = 0; nState < aStates.length; nState++)
-	{
-		var strStateId = GetStringValue(GetValue(aStates[nState],'id'));
-		mapStateNodes['id_' + strStateId] = GetMermaidId(strStateId,'state_');
-	}
-
-	for (var nTransition = 0; nTransition < aTransitions.length; nTransition++)
-	{
-		var transition = aTransitions[nTransition];
-		var strTransitionId = GetStringValue(GetValue(transition,'id'));
-		var strTargetStateId = GetStringValue(GetValue(transition,'target_state'));
-		var strTargetNode = mapStateNodes['id_' + strTargetStateId];
-		if (strTargetNode)
-		{
-			mapTransitions['id_' + strTransitionId] =
-			{
-				id: GetMermaidId(strTransitionId,'transition_'),
-				label: GetStringValue(GetValue(transition,'label')) || strTransitionId,
-				role_ids: GetArrayValue(GetValue(transition,'_roles')),
-				target_node: strTargetNode,
-				source_nodes: []
-			};
-		}
-	}
-
 	for (var nRole = 0; nRole < aRoles.length; nRole++)
 	{
 		var role = aRoles[nRole];
@@ -127,73 +83,121 @@
 		mapRoleLanes['id_' + strRoleId] = lane;
 		aLanes.push(lane);
 	}
-	aLanes.push(laneUnassigned);
 
+	var aOrderedStates = [];
 	for (var nState = 0; nState < aStates.length; nState++)
 	{
 		var state = aStates[nState];
 		var strStateId = GetStringValue(GetValue(state,'id'));
-		var strStateNode = mapStateNodes['id_' + strStateId];
-		var aStateRoleLanes = GetRoleLanes(GetArrayValue(GetValue(state,'_roles')));
-		var laneOwner = aStateRoleLanes[0];
-		var aTransitionIds = GetArrayValue(GetValue(state,'_transitions'));
-
-		// Use the first outgoing transition with a known role when the state has no role.
-		for (var nSourceTransition = 0; nSourceTransition < aTransitionIds.length; nSourceTransition++)
+		var stateNode =
 		{
-			var transitionNode = mapTransitions['id_' + GetStringValue(aTransitionIds[nSourceTransition])];
-			if (transitionNode && ArrayValueExists(transitionNode.source_nodes,strStateNode) == false)
-			{
-				transitionNode.source_nodes.push(strStateNode);
-				if (!laneOwner)
-				{
-					laneOwner = GetRoleLanes(transitionNode.role_ids)[0];
-				}
-			}
+			id: GetMermaidId(strStateId,'state_'),
+			label: GetMermaidLabel(GetStringValue(GetValue(state,'name')),strStateId),
+			transition_ids: GetArrayValue(GetValue(state,'_transitions')),
+			lane: null,
+			incoming_lane: null
+		};
+		var aStateRoleIds = GetArrayValue(GetValue(state,'_roles'));
+		for (var nRole = 0; nRole < aStateRoleIds.length && !stateNode.lane; nRole++)
+		{
+			stateNode.lane = mapRoleLanes['id_' + GetStringValue(aStateRoleIds[nRole])];
 		}
-
-		var strStateLabel = GetMermaidLabel(GetStringValue(GetValue(state,'name')),strStateId);
-		if (strStateId == strInitialStateId || ArrayValueExists(aEndStateIds,strStateId) == true)
+		mapStateNodes['id_' + strStateId] = stateNode;
+		if (strStateId == strInitialStateId)
 		{
-			laneStates.nodes += '    ' + strStateNode + '([' + strStateLabel + '])\n';
+			aOrderedStates.unshift(stateNode);
 		}
 		else
 		{
-			laneOwner = laneOwner || laneUnassigned;
-			laneOwner.nodes += '    ' + strStateNode + '[' + strStateLabel + ']\n';
+			aOrderedStates.push(stateNode);
 		}
 	}
 
-	var strEdges = '';
 	for (var nTransition = 0; nTransition < aTransitions.length; nTransition++)
 	{
-		var strTransitionId = GetStringValue(GetValue(aTransitions[nTransition],'id'));
-		var transitionNode = mapTransitions['id_' + strTransitionId];
-		if (!transitionNode || transitionNode.source_nodes.length == 0)
+		var transition = aTransitions[nTransition];
+		var strTransitionId = GetStringValue(GetValue(transition,'id'));
+		var strTargetStateId = GetStringValue(GetValue(transition,'target_state'));
+		var stateTarget = mapStateNodes['id_' + strTargetStateId];
+		if (!stateTarget)
 		{
 			continue;
 		}
 
-		var aTransitionLanes = GetRoleLanes(transitionNode.role_ids);
-		var laneOwner = aTransitionLanes[0] || laneUnassigned;
-		var aAdditionalRoles = [];
-		for (var nRole = 1; nRole < aTransitionLanes.length; nRole++)
+		var aTransitionRoleIds = GetArrayValue(GetValue(transition,'_roles'));
+		var aTransitionLanes = [];
+		for (var nRole = 0; nRole < aTransitionRoleIds.length; nRole++)
 		{
-			aAdditionalRoles.push(aTransitionLanes[nRole].name);
+			var lane = mapRoleLanes['id_' + GetStringValue(aTransitionRoleIds[nRole])];
+			if (lane && aTransitionLanes.indexOf(lane) == -1)
+			{
+				aTransitionLanes.push(lane);
+			}
 		}
+		mapTransitions['id_' + strTransitionId] =
+		{
+			id: strTransitionId,
+			label: GetStringValue(GetValue(transition,'label')) || strTransitionId,
+			target: stateTarget,
+			lanes: aTransitionLanes
+		};
+	}
 
-		var strTransitionLabel = transitionNode.label;
-		if (aAdditionalRoles.length > 0)
+	for (var nState = 0; nState < aOrderedStates.length; nState++)
+	{
+		var stateNode = aOrderedStates[nState];
+		for (var nTransition = 0; nTransition < stateNode.transition_ids.length; nTransition++)
 		{
-			strTransitionLabel += ' (also: ' + aAdditionalRoles.join(', ') + ')';
+			var transition = mapTransitions['id_' + GetStringValue(stateNode.transition_ids[nTransition])];
+			if (transition && transition.lanes.length > 0)
+			{
+				// Prefer the first outgoing role. A terminal state can inherit its incoming role.
+				stateNode.lane = stateNode.lane || transition.lanes[0];
+				transition.target.incoming_lane = transition.target.incoming_lane || transition.lanes[0];
+			}
 		}
-		laneOwner.nodes += '    ' + transitionNode.id + '[' + GetMermaidLabel(strTransitionLabel,strTransitionId) + ']\n';
+	}
 
-		for (var nSource = 0; nSource < transitionNode.source_nodes.length; nSource++)
+	var strEdges = '';
+	for (var nState = 0; nState < aOrderedStates.length; nState++)
+	{
+		var stateNode = aOrderedStates[nState];
+		var lane = stateNode.lane || stateNode.incoming_lane;
+		if (!lane)
 		{
-			strEdges += '  ' + transitionNode.source_nodes[nSource] + ' --> ' + transitionNode.id + '\n';
+			return false;
 		}
-		strEdges += '  ' + transitionNode.id + ' --> ' + transitionNode.target_node + '\n';
+		if (nState == 0)
+		{
+			aLanes.splice(aLanes.indexOf(lane),1);
+			aLanes.unshift(lane);
+		}
+		lane.nodes += '    ' + stateNode.id + '[' + stateNode.label + ']\n';
+
+		var aSeenTransitionIds = [];
+		for (var nTransition = 0; nTransition < stateNode.transition_ids.length; nTransition++)
+		{
+			var strTransitionId = GetStringValue(stateNode.transition_ids[nTransition]);
+			var transition = mapTransitions['id_' + strTransitionId];
+			if (!transition || ArrayValueExists(aSeenTransitionIds,strTransitionId) == true)
+			{
+				continue;
+			}
+			aSeenTransitionIds.push(strTransitionId);
+
+			var strLabel = transition.label;
+			var aRoleNames = [];
+			for (var nRole = 0; nRole < transition.lanes.length; nRole++)
+			{
+				aRoleNames.push(transition.lanes[nRole].name);
+			}
+			if (aRoleNames.length > 1 || (aRoleNames.length == 1 && transition.lanes[0] != lane))
+			{
+				strLabel += ' (' + aRoleNames.join(', ') + ')';
+			}
+			var strEdgeId = GetMermaidId(transition.id,'transition_');
+			strEdges += '  ' + stateNode.id + ' ' + strEdgeId + '@-->|' + GetMermaidLabel(strLabel,strTransitionId) + '| ' + transition.target.id + '\n';
+		}
 	}
 
 	var strCode = 'swimlane-beta ' + strDirection + '\n';
