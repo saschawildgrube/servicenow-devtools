@@ -42,100 +42,168 @@
 	var aTransitions = GetArrayValue(GetValue(business_process,'_transitions'));
 	var strInitialStateId = GetStringValue(GetValue(business_process,'initial_state'));
 	var aEndStateIds = GetArrayValue(GetValue(business_process,'end_states'));
+	var mapRoleLanes = {};
 	var mapStateNodes = {};
-	var mapTransitionSources = {};
-	var strStateNodes = '';
+	var mapTransitions = {};
+	var mapNodeIds = {};
+	var laneStates = {id: 'process_states', name: 'Process states', nodes: ''};
+	var laneUnassigned = {id: 'unassigned_roles', name: 'Unassigned', nodes: ''};
+	var aLanes = [laneStates];
+	mapNodeIds['id_' + laneStates.id] = true;
+	mapNodeIds['id_' + laneUnassigned.id] = true;
+
+	function GetMermaidId(strId,strPrefix)
+	{
+		var strNodeId = strId.toLowerCase().replace(/[^a-z0-9_]+/g,'_');
+		if (/^[a-z_]/.test(strNodeId) == false ||
+			/^(end|subgraph|class|classdef|style|click|direction|linkstyle|acctitle|accdescr|graph|flowchart|default|call|interpolate)$/.test(strNodeId) == true)
+		{
+			strNodeId = strPrefix + strNodeId;
+		}
+		if (mapNodeIds['id_' + strNodeId] === true)
+		{
+			strNodeId = strPrefix + strNodeId;
+		}
+		var strBaseId = strNodeId;
+		var nSuffix = 2;
+		while (mapNodeIds['id_' + strNodeId] === true)
+		{
+			strNodeId = strBaseId + '_' + nSuffix;
+			nSuffix++;
+		}
+		mapNodeIds['id_' + strNodeId] = true;
+		return strNodeId;
+	}
+
+	function GetRoleLanes(aRoleIds)
+	{
+		var aRoleLanes = [];
+		for (var nRole = 0; nRole < aRoleIds.length; nRole++)
+		{
+			var lane = mapRoleLanes['id_' + GetStringValue(aRoleIds[nRole])];
+			if (lane && aRoleLanes.indexOf(lane) == -1)
+			{
+				aRoleLanes.push(lane);
+			}
+		}
+		return aRoleLanes;
+	}
 
 	for (var nState = 0; nState < aStates.length; nState++)
 	{
-		var state = aStates[nState];
-		var strStateId = GetStringValue(GetValue(state,'id'));
-		var strStateNode = 'state_' + nState;
-		var strStateLabel = GetMermaidLabel(GetStringValue(GetValue(state,'name')),strStateId);
-		mapStateNodes['id_' + strStateId] = strStateNode;
-
-		if (strStateId == strInitialStateId || ArrayValueExists(aEndStateIds,strStateId) == true)
-		{
-			strStateNodes += '    ' + strStateNode + '([' + strStateLabel + '])\n';
-		}
-		else
-		{
-			strStateNodes += '    ' + strStateNode + '[' + strStateLabel + ']\n';
-		}
-
-		var aTransitionIds = GetArrayValue(GetValue(state,'_transitions'));
-		for (var nSourceTransition = 0; nSourceTransition < aTransitionIds.length; nSourceTransition++)
-		{
-			var strTransitionKey = 'id_' + GetStringValue(aTransitionIds[nSourceTransition]);
-			if (mapTransitionSources[strTransitionKey] === undefined)
-			{
-				mapTransitionSources[strTransitionKey] = [];
-			}
-			var aSourceNodes = mapTransitionSources[strTransitionKey];
-			if (ArrayValueExists(aSourceNodes,strStateNode) == false)
-			{
-				aSourceNodes.push(strStateNode);
-			}
-		}
-	}
-
-	var aRoleNodes = [];
-	var strEdges = '';
-
-	function AddTransitionNode(strNode,strLabel,aSourceNodes,strTargetNode)
-	{
-		for (var nSource = 0; nSource < aSourceNodes.length; nSource++)
-		{
-			strEdges += '  ' + aSourceNodes[nSource] + ' --> ' + strNode + '\n';
-		}
-		strEdges += '  ' + strNode + ' --> ' + strTargetNode + '\n';
-		return '    ' + strNode + '[' + strLabel + ']\n';
-	}
-
-	for (var nRole = 0; nRole < aRoles.length; nRole++)
-	{
-		aRoleNodes.push('');
+		var strStateId = GetStringValue(GetValue(aStates[nState],'id'));
+		mapStateNodes['id_' + strStateId] = GetMermaidId(strStateId,'state_');
 	}
 
 	for (var nTransition = 0; nTransition < aTransitions.length; nTransition++)
 	{
 		var transition = aTransitions[nTransition];
 		var strTransitionId = GetStringValue(GetValue(transition,'id'));
-		var aSourceNodes = mapTransitionSources['id_' + strTransitionId];
 		var strTargetStateId = GetStringValue(GetValue(transition,'target_state'));
 		var strTargetNode = mapStateNodes['id_' + strTargetStateId];
-		if (aSourceNodes === undefined || strTargetNode === undefined)
+		if (strTargetNode)
+		{
+			mapTransitions['id_' + strTransitionId] =
+			{
+				id: GetMermaidId(strTransitionId,'transition_'),
+				label: GetStringValue(GetValue(transition,'label')) || strTransitionId,
+				role_ids: GetArrayValue(GetValue(transition,'_roles')),
+				target_node: strTargetNode,
+				source_nodes: []
+			};
+		}
+	}
+
+	for (var nRole = 0; nRole < aRoles.length; nRole++)
+	{
+		var role = aRoles[nRole];
+		var strRoleId = GetStringValue(GetValue(role,'id'));
+		var lane =
+		{
+			id: GetMermaidId('role_' + strRoleId,'role_'),
+			name: GetStringValue(GetValue(role,'name')) || strRoleId,
+			nodes: ''
+		};
+		mapRoleLanes['id_' + strRoleId] = lane;
+		aLanes.push(lane);
+	}
+	aLanes.push(laneUnassigned);
+
+	for (var nState = 0; nState < aStates.length; nState++)
+	{
+		var state = aStates[nState];
+		var strStateId = GetStringValue(GetValue(state,'id'));
+		var strStateNode = mapStateNodes['id_' + strStateId];
+		var aStateRoleLanes = GetRoleLanes(GetArrayValue(GetValue(state,'_roles')));
+		var laneOwner = aStateRoleLanes[0];
+		var aTransitionIds = GetArrayValue(GetValue(state,'_transitions'));
+
+		// Use the first outgoing transition with a known role when the state has no role.
+		for (var nSourceTransition = 0; nSourceTransition < aTransitionIds.length; nSourceTransition++)
+		{
+			var transitionNode = mapTransitions['id_' + GetStringValue(aTransitionIds[nSourceTransition])];
+			if (transitionNode && ArrayValueExists(transitionNode.source_nodes,strStateNode) == false)
+			{
+				transitionNode.source_nodes.push(strStateNode);
+				if (!laneOwner)
+				{
+					laneOwner = GetRoleLanes(transitionNode.role_ids)[0];
+				}
+			}
+		}
+
+		var strStateLabel = GetMermaidLabel(GetStringValue(GetValue(state,'name')),strStateId);
+		if (strStateId == strInitialStateId || ArrayValueExists(aEndStateIds,strStateId) == true)
+		{
+			laneStates.nodes += '    ' + strStateNode + '([' + strStateLabel + '])\n';
+		}
+		else
+		{
+			laneOwner = laneOwner || laneUnassigned;
+			laneOwner.nodes += '    ' + strStateNode + '[' + strStateLabel + ']\n';
+		}
+	}
+
+	var strEdges = '';
+	for (var nTransition = 0; nTransition < aTransitions.length; nTransition++)
+	{
+		var strTransitionId = GetStringValue(GetValue(aTransitions[nTransition],'id'));
+		var transitionNode = mapTransitions['id_' + strTransitionId];
+		if (!transitionNode || transitionNode.source_nodes.length == 0)
 		{
 			continue;
 		}
 
-		var aRoleIds = GetArrayValue(GetValue(transition,'_roles'));
-		var strTransitionLabel = GetMermaidLabel(GetStringValue(GetValue(transition,'label')),strTransitionId);
-		var strTransitionNode = 'transition_' + nTransition;
-		var bAssigned = false;
+		var aTransitionLanes = GetRoleLanes(transitionNode.role_ids);
+		var laneOwner = aTransitionLanes[0] || laneUnassigned;
+		var aAdditionalRoles = [];
+		for (var nRole = 1; nRole < aTransitionLanes.length; nRole++)
+		{
+			aAdditionalRoles.push(aTransitionLanes[nRole].name);
+		}
 
-		for (var nRole = 0; nRole < aRoles.length; nRole++)
+		var strTransitionLabel = transitionNode.label;
+		if (aAdditionalRoles.length > 0)
 		{
-			var strRoleId = GetStringValue(GetValue(aRoles[nRole],'id'));
-			if (ArrayValueExists(aRoleIds,strRoleId) == true)
-			{
-				aRoleNodes[nRole] += AddTransitionNode(strTransitionNode + '_' + nRole,strTransitionLabel,aSourceNodes,strTargetNode);
-				bAssigned = true;
-			}
+			strTransitionLabel += ' (also: ' + aAdditionalRoles.join(', ') + ')';
 		}
-		if (bAssigned == false)
+		laneOwner.nodes += '    ' + transitionNode.id + '[' + GetMermaidLabel(strTransitionLabel,strTransitionId) + ']\n';
+
+		for (var nSource = 0; nSource < transitionNode.source_nodes.length; nSource++)
 		{
-			strStateNodes += AddTransitionNode(strTransitionNode,strTransitionLabel,aSourceNodes,strTargetNode);
+			strEdges += '  ' + transitionNode.source_nodes[nSource] + ' --> ' + transitionNode.id + '\n';
 		}
+		strEdges += '  ' + transitionNode.id + ' --> ' + transitionNode.target_node + '\n';
 	}
 
 	var strCode = 'swimlane-beta ' + strDirection + '\n';
-	strCode += '  subgraph process_states ["Process states"]\n' + strStateNodes + '  end\n';
-	for (var nRole = 0; nRole < aRoles.length; nRole++)
+	for (var nLane = 0; nLane < aLanes.length; nLane++)
 	{
-		var role = aRoles[nRole];
-		var strRoleLabel = GetMermaidLabel(GetStringValue(GetValue(role,'name')),GetStringValue(GetValue(role,'id')));
-		strCode += '  subgraph role_' + nRole + ' [' + strRoleLabel + ']\n' + aRoleNodes[nRole] + '  end\n';
+		var lane = aLanes[nLane];
+		if (lane.nodes != '')
+		{
+			strCode += '  subgraph ' + lane.id + ' [' + GetMermaidLabel(lane.name,lane.id) + ']\n' + lane.nodes + '  end\n';
+		}
 	}
 	return strCode + strEdges;
 }
