@@ -15,16 +15,129 @@
 	{
 		return false;
 	}
-	strDirection = GetStringValue(strDirection);
+	strDirection = GetStringValue(strDirection).trim().toUpperCase();
 	if (strDirection == '')
 	{
 		strDirection = 'LR';
 	}
+	if (/^(TB|TD|BT|LR|RL)$/.test(strDirection) == false)
+	{
+		return false;
+	}
 
-	var strCode = '';
-	strCode += 'swimlane-beta ' + strDirection + '\n';
+	function GetMermaidLabel(strLabel,strId)
+	{
+		if (strLabel == '')
+		{
+			strLabel = strId;
+		}
+		return '"' + strLabel.replace(/[\r\n\t]+/g,' ').replace(/["#&<>\[\]\x60]/g,function(strCharacter)
+		{
+			return '#' + strCharacter.charCodeAt(0) + ';';
+		}) + '"';
+	}
 
-	return strCode;
+	var aRoles = GetArrayValue(GetValue(business_process,'_roles'));
+	var aStates = GetArrayValue(GetValue(business_process,'_states'));
+	var aTransitions = GetArrayValue(GetValue(business_process,'_transitions'));
+	var strInitialStateId = GetStringValue(GetValue(business_process,'initial_state'));
+	var aEndStateIds = GetArrayValue(GetValue(business_process,'end_states'));
+	var mapStateNodes = {};
+	var mapTransitionSources = {};
+	var strStateNodes = '';
+
+	for (var nState = 0; nState < aStates.length; nState++)
+	{
+		var state = aStates[nState];
+		var strStateId = GetStringValue(GetValue(state,'id'));
+		var strStateNode = 'state_' + nState;
+		var strStateLabel = GetMermaidLabel(GetStringValue(GetValue(state,'name')),strStateId);
+		mapStateNodes['id_' + strStateId] = strStateNode;
+
+		if (strStateId == strInitialStateId || ArrayValueExists(aEndStateIds,strStateId) == true)
+		{
+			strStateNodes += '    ' + strStateNode + '([' + strStateLabel + '])\n';
+		}
+		else
+		{
+			strStateNodes += '    ' + strStateNode + '[' + strStateLabel + ']\n';
+		}
+
+		var aTransitionIds = GetArrayValue(GetValue(state,'_transitions'));
+		for (var nSourceTransition = 0; nSourceTransition < aTransitionIds.length; nSourceTransition++)
+		{
+			var strTransitionKey = 'id_' + GetStringValue(aTransitionIds[nSourceTransition]);
+			if (mapTransitionSources[strTransitionKey] === undefined)
+			{
+				mapTransitionSources[strTransitionKey] = [];
+			}
+			var aSourceNodes = mapTransitionSources[strTransitionKey];
+			if (ArrayValueExists(aSourceNodes,strStateNode) == false)
+			{
+				aSourceNodes.push(strStateNode);
+			}
+		}
+	}
+
+	var aRoleNodes = [];
+	var strEdges = '';
+
+	function AddTransitionNode(strNode,strLabel,aSourceNodes,strTargetNode)
+	{
+		for (var nSource = 0; nSource < aSourceNodes.length; nSource++)
+		{
+			strEdges += '  ' + aSourceNodes[nSource] + ' --> ' + strNode + '\n';
+		}
+		strEdges += '  ' + strNode + ' --> ' + strTargetNode + '\n';
+		return '    ' + strNode + '[' + strLabel + ']\n';
+	}
+
+	for (var nRole = 0; nRole < aRoles.length; nRole++)
+	{
+		aRoleNodes.push('');
+	}
+
+	for (var nTransition = 0; nTransition < aTransitions.length; nTransition++)
+	{
+		var transition = aTransitions[nTransition];
+		var strTransitionId = GetStringValue(GetValue(transition,'id'));
+		var aSourceNodes = mapTransitionSources['id_' + strTransitionId];
+		var strTargetStateId = GetStringValue(GetValue(transition,'target_state'));
+		var strTargetNode = mapStateNodes['id_' + strTargetStateId];
+		if (aSourceNodes === undefined || strTargetNode === undefined)
+		{
+			continue;
+		}
+
+		var aRoleIds = GetArrayValue(GetValue(transition,'_roles'));
+		var strTransitionLabel = GetMermaidLabel(GetStringValue(GetValue(transition,'label')),strTransitionId);
+		var strTransitionNode = 'transition_' + nTransition;
+		var bAssigned = false;
+
+		for (var nRole = 0; nRole < aRoles.length; nRole++)
+		{
+			var strRoleId = GetStringValue(GetValue(aRoles[nRole],'id'));
+			if (ArrayValueExists(aRoleIds,strRoleId) == true)
+			{
+				aRoleNodes[nRole] += AddTransitionNode(strTransitionNode + '_' + nRole,strTransitionLabel,aSourceNodes,strTargetNode);
+				bAssigned = true;
+			}
+		}
+		if (bAssigned == false)
+		{
+			strStateNodes += AddTransitionNode(strTransitionNode,strTransitionLabel,aSourceNodes,strTargetNode);
+		}
+	}
+
+	var strCode = 'swimlane-beta ' + strDirection + '\n';
+	strCode += '  subgraph process_states ["Process states"]\n' + strStateNodes + '  end\n';
+	for (var nRole = 0; nRole < aRoles.length; nRole++)
+	{
+		var role = aRoles[nRole];
+		var strRoleLabel = GetMermaidLabel(GetStringValue(GetValue(role,'name')),GetStringValue(GetValue(role,'id')));
+		strCode += '  subgraph role_' + nRole + ' [' + strRoleLabel + ']\n' + aRoleNodes[nRole] + '  end\n';
+	}
+	return strCode + strEdges;
 }
 ]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
