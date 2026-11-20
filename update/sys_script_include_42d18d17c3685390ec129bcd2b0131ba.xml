@@ -15,7 +15,7 @@
 	{
 		return false;
 	}
-	strDirection = GetStringValue(strDirection).trim().toUpperCase();
+	strDirection = GetStringValue(strDirection);
 	if (strDirection == '')
 	{
 		strDirection = 'TD';
@@ -31,10 +31,12 @@
 		{
 			strLabel = strId;
 		}
-		return '"' + strLabel.replace(/[\r\n\t]+/g,' ').replace(/["#&<>\[\]|\x60]/g,function(strCharacter)
-		{
-			return '#' + strCharacter.charCodeAt(0) + ';';
-		}) + '"';
+		var strLabel = strLabel.replace(/[\r\n\t]+/g,' ');
+		strLabel = strLabel.replace(/["#&<>\[\]|\x60]/g,function(strCharacter)
+			{
+				return '#' + strCharacter.charCodeAt(0) + ';';
+			});
+		return '"' + strLabel + '"';
 	}
 
 	var aRoles = GetArrayValue(GetValue(business_process,'_roles'));
@@ -49,7 +51,8 @@
 
 	function GetMermaidId(strId,strPrefix)
 	{
-		var strNodeId = strId.toLowerCase().replace(/[^a-z0-9_]+/g,'_');
+		var strNodeId = strId.toLowerCase();
+		strNodeId = strNodeId.replace(/[^a-z0-9_]+/g,'_');
 		if (/^[a-z_]/.test(strNodeId) == false ||
 			/^(end|subgraph|class|classdef|style|click|direction|linkstyle|acctitle|accdescr|graph|flowchart|default|call|interpolate)$/.test(strNodeId) == true)
 		{
@@ -151,9 +154,10 @@
 			var transition = mapTransitions['id_' + GetStringValue(stateNode.transition_ids[nTransition])];
 			if (transition && transition.lanes.length > 0)
 			{
+				var strFirstLane = GetValue(transition,'lanes',0);
 				// Prefer the first outgoing role. A terminal state can inherit its incoming role.
-				stateNode.lane = stateNode.lane || transition.lanes[0];
-				transition.target.incoming_lane = transition.target.incoming_lane || transition.lanes[0];
+				stateNode.lane = stateNode.lane || strFirstLane;
+				transition.target.incoming_lane = transition.target.incoming_lane || strFirstLane;
 			}
 		}
 	}
@@ -191,7 +195,8 @@
 			{
 				aRoleNames.push(transition.lanes[nRole].name);
 			}
-			if (aRoleNames.length > 1 || (aRoleNames.length == 1 && transition.lanes[0] != lane))
+			var strFirstLane = GetValue(transition,'lanes',0);
+			if (aRoleNames.length > 1 || (aRoleNames.length == 1 && strFirstLane != lane))
 			{
 				strLabel += ' (' + aRoleNames.join(', ') + ')';
 			}
@@ -216,14 +221,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-11-19 13:03:42</sys_created_on>
         <sys_id>42d18d17c3685390ec129bcd2b0131ba</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>11</sys_mod_count>
         <sys_name>BusinessProcessGetMermaidSwimlanes</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_42d18d17c3685390ec129bcd2b0131ba</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-20 08:53:24</sys_updated_on>
+        <sys_updated_on>2026-11-20 10:37:45</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>
