@@ -532,6 +532,29 @@
 		GlideRecordDelete(grRecords,true);
 	}
 
+	Log('Deleting sys_choice_set records for non-existing tables and elements');
+	var grRecords = new GlideRecord('sys_choice_set');
+	grRecords.addQuery('sys_scope','=',strAppSysId);
+	grRecords.query();
+	while (grRecords.next())
+	{
+		var strTable = GetStringValue(grRecords.name);
+		var strColumn = GetStringValue(grRecords.element);
+		if (IsValidTable(strTable) == false)
+		{
+			Log('Deleting record because the table does not exist: '+ RenderRecordSummary(grRecords));
+			GlideRecordDelete(grRecords,true);	
+		}
+		else
+		{
+			if (IsValidColumn(strTable,strColumn) == false)
+			{
+				Log('Deleting record because the column does not exist: '+ RenderRecordSummary(grRecords));
+				GlideRecordDelete(grRecords,true);
+			}
+		}
+	}
+
 	Log('Completed!');
 	
 	return true;
@@ -541,14 +564,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-02-23 08:18:05</sys_created_on>
         <sys_id>f5a58b38dbaee010ba15a35305961957</sys_id>
-        <sys_mod_count>125</sys_mod_count>
+        <sys_mod_count>126</sys_mod_count>
         <sys_name>AppSanity</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_f5a58b38dbaee010ba15a35305961957</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-16 09:23:41</sys_updated_on>
+        <sys_updated_on>2026-11-20 15:19:21</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
