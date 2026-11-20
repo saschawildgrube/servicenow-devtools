@@ -18,7 +18,7 @@
 	strDirection = GetStringValue(strDirection).trim().toUpperCase();
 	if (strDirection == '')
 	{
-		strDirection = 'LR';
+		strDirection = 'TD';
 	}
 	if (/^(TB|TD|BT|LR|RL)$/.test(strDirection) == false)
 	{
@@ -216,14 +216,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-11-19 13:03:42</sys_created_on>
         <sys_id>42d18d17c3685390ec129bcd2b0131ba</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_name>BusinessProcessGetMermaidSwimlanes</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_42d18d17c3685390ec129bcd2b0131ba</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-19 14:22:59</sys_updated_on>
+        <sys_updated_on>2026-11-20 08:53:24</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>
