@@ -3,12 +3,13 @@
         <element label="Maintainer Email" max_length="100" name="x_snc_devtools_maintainer_email" type="email"/>
         <element choice="1" label="Type" max_length="40" name="x_snc_devtools_type" type="choice">
             <choice>
+                <element inactive_on_update="false" label="Entertainment" sequence="14" value="entertainment"/>
                 <element inactive_on_update="false" label="Security" sequence="9" value="security"/>
                 <element inactive_on_update="false" label="Platform" sequence="1" value="platform"/>
-                <element inactive_on_update="false" label="Operations Tooling" sequence="12" value="operations"/>
+                <element inactive_on_update="false" label="Operations" sequence="12" value="operations"/>
                 <element inactive_on_update="false" label="Developer Productivity" sequence="13" value="development"/>
                 <element inactive_on_update="false" label="Integration" sequence="3" value="integration"/>
-                <element inactive_on_update="false" label="CICD Tooling" sequence="11" value="cicd"/>
+                <element inactive_on_update="false" label="CICD" sequence="11" value="cicd"/>
                 <element inactive_on_update="false" label="Foundation" sequence="8" value="foundation"/>
                 <element inactive_on_update="false" label="Business Process" sequence="4" value="process"/>
                 <element inactive_on_update="false" label="User Interface" sequence="2" value="ui"/>

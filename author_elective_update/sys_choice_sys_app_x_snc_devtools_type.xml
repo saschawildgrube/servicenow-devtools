@@ -172,7 +172,7 @@
             <element>x_snc_devtools_type</element>
             <hint/>
             <inactive>false</inactive>
-            <label>CICD Tooling</label>
+            <label>CICD</label>
             <language>en</language>
             <name>sys_app</name>
             <sequence>11</sequence>
@@ -181,9 +181,9 @@
             <sys_created_on>2026-11-20 14:09:33</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
-            <sys_mod_count>1</sys_mod_count>
+            <sys_mod_count>2</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-11-20 14:14:45</sys_updated_on>
+            <sys_updated_on>2026-11-20 16:23:07</sys_updated_on>
             <value>cicd</value>
         </sys_choice>
         <sys_choice action="INSERT_OR_UPDATE">
@@ -191,7 +191,7 @@
             <element>x_snc_devtools_type</element>
             <hint/>
             <inactive>false</inactive>
-            <label>Operations Tooling</label>
+            <label>Operations</label>
             <language>en</language>
             <name>sys_app</name>
             <sequence>12</sequence>
@@ -200,9 +200,9 @@
             <sys_created_on>2026-11-20 14:09:48</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
-            <sys_mod_count>1</sys_mod_count>
+            <sys_mod_count>2</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-11-20 14:14:49</sys_updated_on>
+            <sys_updated_on>2026-11-20 16:23:12</sys_updated_on>
             <value>operations</value>
         </sys_choice>
         <sys_choice action="INSERT_OR_UPDATE">
@@ -219,10 +219,29 @@
             <sys_created_on>2026-11-20 14:11:38</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
-            <sys_mod_count>0</sys_mod_count>
+            <sys_mod_count>2</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-11-20 14:11:38</sys_updated_on>
+            <sys_updated_on>2026-11-20 16:26:04</sys_updated_on>
             <value>development</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>x_snc_devtools_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Entertainment</label>
+            <language>en</language>
+            <name>sys_app</name>
+            <sequence>14</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-11-20 16:26:12</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>2</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-11-20 16:26:23</sys_updated_on>
+            <value>entertainment</value>
         </sys_choice>
     </sys_choice>
 </record_update>
