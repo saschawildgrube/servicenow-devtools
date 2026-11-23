@@ -40,10 +40,13 @@
 	delete packageobject.license_model;
 	delete packageobject.logo;
 	delete packageobject.menu;
+	delete packageobject.package_json;
+	delete packageobject.package_resolver_version;
 	delete packageobject.private;
 	delete packageobject.restrict_table_access;
 	delete packageobject.runtime_access_tracking;
 	delete packageobject.scoped_administration;
+	delete packageobject.sn_managed;
 	delete packageobject.store_correlation_id;
 	delete packageobject.store_url;	
 	delete packageobject.subscription_entitlement
@@ -68,14 +71,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-11-23 11:26:32</sys_created_on>
         <sys_id>e8711da4c3745350ec129bcd2b013133</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>GetCleanPackageObject</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_e8711da4c3745350ec129bcd2b013133</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-23 11:37:35</sys_updated_on>
+        <sys_updated_on>2026-11-23 11:50:49</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>
