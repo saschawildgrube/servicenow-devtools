@@ -136,6 +136,7 @@
         <file_path/>
         <instance_id>0e482098fb4443541feef633beefdc84</instance_id>
         <instance_name>wildaustralia</instance_name>
+        <merge_base/>
         <name>sys_choice_x_snc_test_ebp_simple_task_state</name>
         <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update>
     <sys_choice action="INSERT_OR_UPDATE" field="state" table="x_snc_test_ebp_simple_task" version="3">
