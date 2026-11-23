@@ -13,7 +13,7 @@
                 <element inactive_on_update="false" label="Foundation" sequence="8" value="foundation"/>
                 <element inactive_on_update="false" label="Business Process" sequence="4" value="process"/>
                 <element inactive_on_update="false" label="User Interface" sequence="2" value="ui"/>
-                <element inactive_on_update="false" label="Domain Core" sequence="5" value="domain_core"/>
+                <element inactive_on_update="false" label="Core" sequence="5" value="core"/>
                 <element inactive_on_update="false" label="Library" sequence="6" value="library"/>
             </choice>
         </element>

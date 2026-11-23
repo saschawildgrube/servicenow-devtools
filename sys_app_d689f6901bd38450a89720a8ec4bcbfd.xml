@@ -27,6 +27,8 @@
 &#13;
 DevTools contains a number of Script Includes with useful javascript functions and classes like a GetType() function that really works. Several UI improvements like the "Re-Test" button in the test result form and shortcuts to various - sometimes hidden - views and system properties in your instance.&#13;
 &#13;
+DevTools supports implementing business processes on the ServiceNow platform.&#13;
+&#13;
 DevTools is also the backbone for the mature development and deployment process.</short_description>
         <sn_managed>false</sn_managed>
         <source>x_snc_devtools</source>
@@ -38,9 +40,9 @@ DevTools is also the backbone for the mature development and deployment process.
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 08:31:37</sys_created_on>
         <sys_id>d689f6901bd38450a89720a8ec4bcbfd</sys_id>
-        <sys_mod_count>242</sys_mod_count>
+        <sys_mod_count>243</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-20 14:14:20</sys_updated_on>
+        <sys_updated_on>2026-11-23 08:07:52</sys_updated_on>
         <template/>
         <trackable>true</trackable>
         <uninstall_blocked>false</uninstall_blocked>
