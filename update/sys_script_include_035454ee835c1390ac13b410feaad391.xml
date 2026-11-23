@@ -11,22 +11,29 @@
         <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function DependencyTreeGetMermaid(dependency_tree)
 {
-    if (!dependency_tree || typeof dependency_tree != 'object')
+    if (!dependency_tree || typeof dependency_tree !== 'object')
     {
         return '';
     }
 
+    var aHeader = ['stateDiagram-v2'];
     var aStates = [];
     var aTransitions = [];
     var oStateIds = {};
     var oTransitions = {};
     var oUsedStateNames = {};
 
+    var aRootDependencies = dependency_tree._dependencies;
+    if (Array.isArray(aRootDependencies) && aRootDependencies.length > 6)
+    {
+        aHeader.push('    direction LR');
+    }
+
     function EscapeMermaidText(vText)
     {
-        return String(vText == null ? '' : vText)
-            .replace(/\r?\n/g, ' ')
-            .replace(/"/g, '#quot;');
+        var strText = String(vText == null ? '' : vText);
+        strText = strText.replace(/\r?\n/g, ' ');
+        return strText.replace(/"/g, '#quot;');
     }
 
     function GetStateId(oPackage)
@@ -41,20 +48,13 @@
             return oStateIds[strKey];
         }
 
-        // Preserve PascalCase display names; normalize other names using
-        // the existing DevTools helper. Mermaid identifiers must not start
-        // with a digit or contain punctuation.
         var strStateId = MakePascalCase(strName);
         if (!/^[A-Za-z_][A-Za-z0-9_]*$/.test(strStateId))
         {
             strStateId = 'State' + strStateId.replace(/[^A-Za-z0-9_]/g, '');
         }
-        if (strStateId == 'State' || strStateId == '')
-        {
-            strStateId = 'State';
-        }
 
-        // Different display names can normalize to the same identifier.
+        // Different names can normalize to the same identifier.
         var strBaseId = strStateId;
         var iSuffix = 2;
         while (Object.prototype.hasOwnProperty.call(oUsedStateNames, strStateId))
@@ -65,10 +65,20 @@
         oUsedStateNames[strStateId] = true;
         oStateIds[strKey] = strStateId;
 
-        // An already valid PascalCase name needs no explicit alias.
-        if (strStateId != strName)
+        var strLabel = strName;
+        if (oPackage === dependency_tree)
         {
-            aStates.push('    state "' + EscapeMermaidText(strName) + '" as ' + strStateId);
+            var strRootVersion = String(oPackage.version == null ? '' : oPackage.version);
+            strRootVersion = strRootVersion.trim();
+            if (strRootVersion)
+            {
+                strLabel += ' ' + strRootVersion;
+            }
+        }
+
+        if (strStateId !== strLabel)
+        {
+            aStates.push('    state "' + EscapeMermaidText(strLabel) + '" as ' + strStateId);
         }
 
         return strStateId;
@@ -76,7 +86,7 @@
 
     function Visit(oPackage, aPath)
     {
-        if (!oPackage || typeof oPackage != 'object')
+        if (!oPackage || typeof oPackage !== 'object')
         {
             return;
         }
@@ -84,13 +94,13 @@
         var strSourceId = GetStateId(oPackage);
         var strSysId = String(oPackage.sys_id || '');
         var strKey = strSysId ? 'id:' + strSysId : 'name:' + String(oPackage.name || '');
-        if (aPath.indexOf(strKey) != -1)
+        if (aPath.indexOf(strKey) !== -1)
         {
             return;
         }
 
         var aNextPath = aPath.concat([strKey]);
-        var aDependencies = oPackage._dependencies || [];
+        var aDependencies = oPackage._dependencies;
         if (!Array.isArray(aDependencies))
         {
             return;
@@ -99,7 +109,7 @@
         for (var i = 0; i < aDependencies.length; i++)
         {
             var oDependency = aDependencies[i];
-            if (!oDependency || typeof oDependency != 'object')
+            if (!oDependency || typeof oDependency !== 'object')
             {
                 continue;
             }
@@ -120,20 +130,22 @@
     }
 
     Visit(dependency_tree, []);
-    return ['stateDiagram-v2'].concat(aStates, aTransitions).join('\n');
+
+    var aLines = aHeader.concat(aStates, aTransitions);
+    return aLines.join('\n');
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-11-04 15:33:36</sys_created_on>
         <sys_id>035454ee835c1390ac13b410feaad391</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>DependencyTreeGetMermaid</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_035454ee835c1390ac13b410feaad391</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-04 15:37:48</sys_updated_on>
+        <sys_updated_on>2026-11-23 14:58:34</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>

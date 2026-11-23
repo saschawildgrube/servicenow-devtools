@@ -9,8 +9,7 @@
         <mobile_callable>false</mobile_callable>
         <name>HtmlRenderMermaid</name>
         <sandbox_callable>false</sandbox_callable>
-        <script><![CDATA[
-function HtmlRenderMermaid(strCode)
+        <script><![CDATA[function HtmlRenderMermaid(strCode)
 {
 	strCode = GetStringValue(strCode);
 	if (strCode == '')
@@ -51,7 +50,7 @@ function HtmlRenderMermaid(strCode)
 	strHtml += HtmlRenderScript(`
 		if (!window.MermaidSDK)
 		{
-			const sdk = window.MermaidSDK = {
+			const sdk = {
 				library: null,
 				error: '',
 				promise: null,
@@ -60,22 +59,25 @@ function HtmlRenderMermaid(strCode)
 				sources: new Map()
 			};
 
+			window.MermaidSDK = sdk;
+
 			// Detect the active ServiceNow/page theme.
 			sdk.getTheme = function()
 			{
-				const roots = [
-					document.documentElement,
-					document.body
-				].filter(Boolean);
+				const candidates = [document.documentElement, document.body];
+				const roots = candidates.filter(Boolean);
 
 				// Recognize explicit theme indicators.
 				for (const root of roots)
 				{
-					const value = [
+					const indicators = [
 						root.getAttribute('data-theme') || '',
 						root.getAttribute('data-color-scheme') || '',
 						root.getAttribute('data-mode') || ''
-					].join(' ').toLowerCase();
+					];
+
+					const joinedIndicators = indicators.join(' ');
+					const value = joinedIndicators.toLowerCase();
 
 					if (/\\bdark\\b/.test(value))
 						return 'dark';
@@ -89,13 +91,16 @@ function HtmlRenderMermaid(strCode)
 						return 'dark';
 				}
 
-				// Check the actual computed appearance.
-				for (const root of roots.slice().reverse())
+				// Check the computed appearance, starting with the body.
+				roots.reverse();
+
+				for (const root of roots)
 				{
 					const style = getComputedStyle(root);
+					const colorSchemes = style.colorScheme.split(/\\s+/);
 
-					if (style.colorScheme.split(/\\s+/).includes('dark') &&
-						!style.colorScheme.split(/\\s+/).includes('light'))
+					if (colorSchemes.includes('dark') &&
+						!colorSchemes.includes('light'))
 						return 'dark';
 
 					const color = style.backgroundColor;
@@ -105,124 +110,138 @@ function HtmlRenderMermaid(strCode)
 
 					if (match)
 					{
-						const alpha = color.match(
+						const alphaMatch = color.match(
 							/[,\\s]+(0(?:\\.\\d+)?|1(?:\\.0+)?)\\)$/
 						);
 
-						if (!alpha || Number(alpha[1]) > 0)
+						if (alphaMatch)
 						{
-							const r = Number(match[1]);
-							const g = Number(match[2]);
-							const b = Number(match[3]);
-
-							const brightness =
-								(r * 299 + g * 587 + b * 114) / 1000;
-
-							return brightness < 128 ? 'dark' : 'default';
+							const [, alpha] = alphaMatch;
+							if (Number(alpha) <= 0)
+								continue;
 						}
+
+						const [, red, green, blue] = match;
+						const brightness = (
+							Number(red) * 299 +
+							Number(green) * 587 +
+							Number(blue) * 114
+						) / 1000;
+
+						return brightness < 128 ? 'dark' : 'default';
 					}
 				}
 
-				// Default to light mode.
 				return 'default';
 			};
 
-			sdk.promise = import('https://cdn.jsdelivr.net/npm/mermaid@12.3.0/dist/mermaid.esm.min.mjs')
-				.then(module => {
-					const mermaid = module.default;
+			const modulePromise = import(
+				'https://cdn.jsdelivr.net/npm/mermaid@12.3.0/dist/mermaid.esm.min.mjs'
+			);
 
-					mermaid.initialize({
-						startOnLoad: false,
-						securityLevel: 'strict',
-						suppressErrorRendering: true,
-						theme: sdk.getTheme(),
-						fontFamily: 'Consolas, Courier New, monospace'
-					});
+			const initializationPromise = modulePromise.then(function(module)
+			{
+				const mermaid = module.default;
 
-					sdk.library = mermaid;
-					window.dispatchEvent(new Event('mermaid-sdk-ready'));
-
-					return mermaid;
-				})
-				.catch(error => {
-					sdk.error = String(error.message || error);
-					window.dispatchEvent(new Event('mermaid-sdk-error'));
-					throw error;
+				mermaid.initialize({
+					startOnLoad: false,
+					securityLevel: 'strict',
+					suppressErrorRendering: true,
+					theme: sdk.getTheme(),
+					fontFamily: 'Consolas, Courier New, monospace'
 				});
+
+				sdk.library = mermaid;
+				window.dispatchEvent(new Event('mermaid-sdk-ready'));
+
+				return mermaid;
+			});
+
+			sdk.promise = initializationPromise.catch(function(error)
+			{
+				sdk.error = String(error.message || error);
+				window.dispatchEvent(new Event('mermaid-sdk-error'));
+				throw error;
+			});
 
 			sdk.render = function()
 			{
-				sdk.renderPromise = sdk.renderPromise
-					.catch(() => {})
-					.then(async () => {
-						const mermaid = await sdk.promise;
+				const queue = sdk.renderPromise.catch(function() {});
 
-						if (document.readyState === 'loading')
+				const rendering = queue.then(async function()
+				{
+					const mermaid = await sdk.promise;
+
+					if (document.readyState === 'loading')
+					{
+						await new Promise(function(resolve)
 						{
-							await new Promise(resolve => {
-								document.addEventListener(
-									'DOMContentLoaded',
-									resolve,
-									{ once: true }
-								);
-							});
-						}
-
-						const theme = sdk.getTheme();
-						const diagrams = Array.from(
-							document.querySelectorAll('.mermaid')
-						);
-
-						// Remember the original Mermaid source.
-						for (const element of diagrams)
-						{
-							if (!sdk.sources.has(element))
-								sdk.sources.set(element, element.textContent);
-						}
-
-						// Remove references to detached diagrams.
-						for (const element of sdk.sources.keys())
-						{
-							if (!element.isConnected)
-								sdk.sources.delete(element);
-						}
-
-						// A theme change requires fresh SVG rendering.
-						if (sdk.theme !== theme)
-						{
-							mermaid.initialize({
-								startOnLoad: false,
-								securityLevel: 'strict',
-								suppressErrorRendering: true,
-								theme: theme,
-								fontFamily: 'Consolas, Courier New, monospace'
-							});
-
-							for (const element of diagrams)
-							{
-								element.textContent = sdk.sources.get(element);
-								element.removeAttribute('data-processed');
-							}
-
-							sdk.theme = theme;
-						}
-
-						for (const element of diagrams)
-							element.dataset.mermaidTheme = theme;
-
-						await mermaid.run({
-							querySelector: '.mermaid:not([data-processed])'
+							document.addEventListener(
+								'DOMContentLoaded',
+								resolve,
+								{ once: true }
+							);
 						});
-					})
-					.catch(error => {
-						console.error('Mermaid rendering failed:', error);
+					}
+
+					const theme = sdk.getTheme();
+					const diagrams = Array.from(
+						document.querySelectorAll('.mermaid')
+					);
+
+					// Remember the original Mermaid source.
+					for (const element of diagrams)
+					{
+						if (!sdk.sources.has(element))
+							sdk.sources.set(element, element.textContent);
+					}
+
+					// Remove references to detached diagrams.
+					for (const element of sdk.sources.keys())
+					{
+						if (!element.isConnected)
+							sdk.sources.delete(element);
+					}
+
+					// A theme change requires fresh SVG rendering.
+					if (sdk.theme !== theme)
+					{
+						mermaid.initialize({
+							startOnLoad: false,
+							securityLevel: 'strict',
+							suppressErrorRendering: true,
+							theme: theme,
+							fontFamily: 'Consolas, Courier New, monospace'
+						});
+
+						for (const element of diagrams)
+						{
+							element.textContent = sdk.sources.get(element);
+							element.removeAttribute('data-processed');
+						}
+
+						sdk.theme = theme;
+					}
+
+					for (const element of diagrams)
+						element.dataset.mermaidTheme = theme;
+
+					await mermaid.run({
+						querySelector: '.mermaid:not([data-processed])'
 					});
+				});
+
+				sdk.renderPromise = rendering.catch(function(error)
+				{
+					console.error('Mermaid rendering failed:', error);
+				});
 
 				return sdk.renderPromise;
 			};
 
 			// Observe changes to page theme attributes.
-			sdk.observer = new MutationObserver(() => {
+			sdk.observer = new MutationObserver(function()
+			{
 				sdk.render();
 			});
 
@@ -239,11 +258,10 @@ function HtmlRenderMermaid(strCode)
 			});
 
 			// Also respond to OS theme changes.
-			sdk.media = window.matchMedia(
-				'(prefers-color-scheme: dark)'
-			);
+			sdk.media = window.matchMedia('(prefers-color-scheme: dark)');
 
-			sdk.media.addEventListener('change', () => {
+			sdk.media.addEventListener('change', function()
+			{
 				sdk.render();
 			});
 		}
@@ -252,20 +270,19 @@ function HtmlRenderMermaid(strCode)
 	`);
 
 	return strHtml;
-}
-]]></script>
+}]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-11-22 13:20:04</sys_created_on>
         <sys_id>ff02a8d8c3301f10ec129bcd2b0131ab</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_name>HtmlRenderMermaid</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_ff02a8d8c3301f10ec129bcd2b0131ab</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-22 14:13:46</sys_updated_on>
+        <sys_updated_on>2026-11-23 15:01:13</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>
