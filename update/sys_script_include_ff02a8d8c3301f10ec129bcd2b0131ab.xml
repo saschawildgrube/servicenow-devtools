@@ -11,278 +11,294 @@
         <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function HtmlRenderMermaid(strCode)
 {
-	strCode = GetStringValue(strCode);
-	if (strCode == '')
-	{
-		return '';
-	}
+    strCode = GetStringValue(strCode);
+    if (strCode === '')
+    {
+        return '';
+    }
 
-	var strHtml = '';
+    var strEscapedCode = GlideStringUtil.escapeHTML(strCode);
+    var strHtml = '<div class="mermaid" data-mermaid-source>\n' +
+        strEscapedCode + '\n</div>\n';
 
-	strHtml += '<div class="mermaid">\n';
-	strHtml += strCode + '\n';
-	strHtml += '</div>\n';
+    strHtml += HtmlRenderStyle(`
+        .mermaid[data-mermaid-source]
+        {
+            padding: 0;
+            border: 0;
+            background: transparent;
+            box-shadow: none;
+            text-align: center;
+        }
 
-	strHtml += HtmlRenderStyle(`
-		.mermaid
-		{
-			overflow: auto;
-			padding: .75rem;
-			background: #ffffff;
-			color: #171717;
-			text-align: center;
-			border-radius: .25rem;
-		}
+        .mermaid[data-mermaid-source] > iframe
+        {
+            display: block;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0;
+            border: 0 !important;
+            background: transparent;
+            box-shadow: none !important;
+        }
+    `);
 
-		.mermaid[data-mermaid-theme="dark"]
-		{
-			background: #252a31;
-			color: #f1f3f5;
-		}
+    strHtml += HtmlRenderScript(`
+        if (!window.MermaidSDK)
+        {
+            const sdk = {
+                library: null,
+                error: '',
+                promise: null,
+                renderPromise: Promise.resolve(),
+                theme: null,
+                sources: new Map()
+            };
 
-		.mermaid svg
-		{
-			max-width: 100%;
-			height: auto;
-		}
-	`);
+            window.MermaidSDK = sdk;
 
-	strHtml += HtmlRenderScript(`
-		if (!window.MermaidSDK)
-		{
-			const sdk = {
-				library: null,
-				error: '',
-				promise: null,
-				renderPromise: Promise.resolve(),
-				theme: null,
-				sources: new Map()
-			};
+            function initializeMermaid(mermaid, theme)
+            {
+                mermaid.initialize({
+                    startOnLoad: false,
+                    securityLevel: 'sandbox',
+                    suppressErrorRendering: true,
+                    theme: theme,
+                    fontFamily: 'Consolas, Courier New, monospace'
+                });
+            }
 
-			window.MermaidSDK = sdk;
+            function centerSandboxedDiagram(element)
+            {
+                const frame = element.querySelector(':scope > iframe[sandbox]');
+                if (!frame)
+                    return;
 
-			// Detect the active ServiceNow/page theme.
-			sdk.getTheme = function()
-			{
-				const candidates = [document.documentElement, document.body];
-				const roots = candidates.filter(Boolean);
+                const prefix = 'data:text/html;charset=UTF-8;base64,';
+                const source = frame.getAttribute('src') || '';
+                if (!source.startsWith(prefix))
+                    return;
 
-				// Recognize explicit theme indicators.
-				for (const root of roots)
-				{
-					const indicators = [
-						root.getAttribute('data-theme') || '',
-						root.getAttribute('data-color-scheme') || '',
-						root.getAttribute('data-mode') || ''
-					];
+                const markup = atob(source.slice(prefix.length));
+                const bodyOpening = '<body style="margin:0">';
+                if (!markup.startsWith(bodyOpening))
+                    return;
 
-					const joinedIndicators = indicators.join(' ');
-					const value = joinedIndicators.toLowerCase();
+                const centeredMarkup = '<body style="margin:0;text-align:center">' +
+                    markup.slice(bodyOpening.length);
 
-					if (/\\bdark\\b/.test(value))
-						return 'dark';
+                frame.setAttribute('src', prefix + btoa(centeredMarkup));
+            }
 
-					if (/\\blight\\b/.test(value))
-						return 'default';
+            sdk.getTheme = function()
+            {
+                const roots = [document.documentElement, document.body]
+                    .filter(Boolean);
 
-					if (root.classList.contains('dark') ||
-						root.classList.contains('dark-theme') ||
-						root.classList.contains('sn-dark-theme'))
-						return 'dark';
-				}
+                for (const root of roots)
+                {
+                    const indicators = [
+                        root.getAttribute('data-theme') || '',
+                        root.getAttribute('data-color-scheme') || '',
+                        root.getAttribute('data-mode') || ''
+                    ];
 
-				// Check the computed appearance, starting with the body.
-				roots.reverse();
+                    const value = indicators.join(' ').toLowerCase();
 
-				for (const root of roots)
-				{
-					const style = getComputedStyle(root);
-					const colorSchemes = style.colorScheme.split(/\\s+/);
+                    if (/\\bdark\\b/.test(value))
+                        return 'dark';
 
-					if (colorSchemes.includes('dark') &&
-						!colorSchemes.includes('light'))
-						return 'dark';
+                    if (/\\blight\\b/.test(value))
+                        return 'default';
 
-					const color = style.backgroundColor;
-					const match = color.match(
-						/^rgba?\\((\\d+)[,\\s]+(\\d+)[,\\s]+(\\d+)/
-					);
+                    if (root.classList.contains('dark') ||
+                        root.classList.contains('dark-theme') ||
+                        root.classList.contains('sn-dark-theme'))
+                        return 'dark';
+                }
 
-					if (match)
-					{
-						const alphaMatch = color.match(
-							/[,\\s]+(0(?:\\.\\d+)?|1(?:\\.0+)?)\\)$/
-						);
+                for (const root of roots.reverse())
+                {
+                    const style = getComputedStyle(root);
+                    const colorSchemes = (style.colorScheme || '').split(/\\s+/);
 
-						if (alphaMatch)
-						{
-							const [, alpha] = alphaMatch;
-							if (Number(alpha) <= 0)
-								continue;
-						}
+                    if (colorSchemes.includes('dark') &&
+                        !colorSchemes.includes('light'))
+                        return 'dark';
 
-						const [, red, green, blue] = match;
-						const brightness = (
-							Number(red) * 299 +
-							Number(green) * 587 +
-							Number(blue) * 114
-						) / 1000;
+                    const color = style.backgroundColor;
+                    const match = color.match(
+                        /^rgba?\\((\\d+)[,\\s]+(\\d+)[,\\s]+(\\d+)/
+                    );
 
-						return brightness < 128 ? 'dark' : 'default';
-					}
-				}
+                    if (!match)
+                        continue;
 
-				return 'default';
-			};
+                    const alphaMatch = color.match(
+                        /^rgba\\([^)]*[,\\s]+(0(?:\\.\\d+)?|1(?:\\.0+)?)\\)$/
+                    );
 
-			const modulePromise = import(
-				'https://cdn.jsdelivr.net/npm/mermaid@12.3.0/dist/mermaid.esm.min.mjs'
-			);
+                    if (alphaMatch && Number(alphaMatch[1]) <= 0)
+                        continue;
 
-			const initializationPromise = modulePromise.then(function(module)
-			{
-				const mermaid = module.default;
+                    const [, red, green, blue] = match;
+                    const brightness = (
+                        Number(red) * 299 +
+                        Number(green) * 587 +
+                        Number(blue) * 114
+                    ) / 1000;
 
-				mermaid.initialize({
-					startOnLoad: false,
-					securityLevel: 'strict',
-					suppressErrorRendering: true,
-					theme: sdk.getTheme(),
-					fontFamily: 'Consolas, Courier New, monospace'
-				});
+                    return brightness < 128 ? 'dark' : 'default';
+                }
 
-				sdk.library = mermaid;
-				window.dispatchEvent(new Event('mermaid-sdk-ready'));
+                return 'default';
+            };
 
-				return mermaid;
-			});
+            sdk.promise = import(
+                'https://cdn.jsdelivr.net/npm/mermaid@12.3.0/dist/mermaid.esm.min.mjs'
+            ).then(function(module)
+            {
+                const mermaid = module.default;
+                sdk.theme = sdk.getTheme();
+                initializeMermaid(mermaid, sdk.theme);
 
-			sdk.promise = initializationPromise.catch(function(error)
-			{
-				sdk.error = String(error.message || error);
-				window.dispatchEvent(new Event('mermaid-sdk-error'));
-				throw error;
-			});
+                sdk.library = mermaid;
+                window.dispatchEvent(new Event('mermaid-sdk-ready'));
 
-			sdk.render = function()
-			{
-				const queue = sdk.renderPromise.catch(function() {});
+                return mermaid;
+            }).catch(function(error)
+            {
+                sdk.error = String(error.message || error);
+                window.dispatchEvent(new Event('mermaid-sdk-error'));
+                throw error;
+            });
 
-				const rendering = queue.then(async function()
-				{
-					const mermaid = await sdk.promise;
+            sdk.render = function()
+            {
+                const rendering = sdk.renderPromise.then(async function()
+                {
+                    const mermaid = await sdk.promise;
 
-					if (document.readyState === 'loading')
-					{
-						await new Promise(function(resolve)
-						{
-							document.addEventListener(
-								'DOMContentLoaded',
-								resolve,
-								{ once: true }
-							);
-						});
-					}
+                    if (document.readyState === 'loading')
+                    {
+                        await new Promise(function(resolve)
+                        {
+                            document.addEventListener(
+                                'DOMContentLoaded',
+                                resolve,
+                                { once: true }
+                            );
+                        });
+                    }
 
-					const theme = sdk.getTheme();
-					const diagrams = Array.from(
-						document.querySelectorAll('.mermaid')
-					);
+                    const theme = sdk.getTheme();
+                    const diagrams = Array.from(document.querySelectorAll(
+                        '.mermaid[data-mermaid-source]'
+                    ));
 
-					// Remember the original Mermaid source.
-					for (const element of diagrams)
-					{
-						if (!sdk.sources.has(element))
-							sdk.sources.set(element, element.textContent);
-					}
+                    for (const element of diagrams)
+                    {
+                        if (!sdk.sources.has(element))
+                            sdk.sources.set(element, element.textContent);
+                    }
 
-					// Remove references to detached diagrams.
-					for (const element of sdk.sources.keys())
-					{
-						if (!element.isConnected)
-							sdk.sources.delete(element);
-					}
+                    for (const element of sdk.sources.keys())
+                    {
+                        if (!element.isConnected)
+                            sdk.sources.delete(element);
+                    }
 
-					// A theme change requires fresh SVG rendering.
-					if (sdk.theme !== theme)
-					{
-						mermaid.initialize({
-							startOnLoad: false,
-							securityLevel: 'strict',
-							suppressErrorRendering: true,
-							theme: theme,
-							fontFamily: 'Consolas, Courier New, monospace'
-						});
+                    if (sdk.theme !== theme)
+                    {
+                        initializeMermaid(mermaid, theme);
 
-						for (const element of diagrams)
-						{
-							element.textContent = sdk.sources.get(element);
-							element.removeAttribute('data-processed');
-						}
+                        for (const element of diagrams)
+                        {
+                            element.textContent = sdk.sources.get(element);
+                            element.removeAttribute('data-processed');
+                        }
 
-						sdk.theme = theme;
-					}
+                        sdk.theme = theme;
+                    }
 
-					for (const element of diagrams)
-						element.dataset.mermaidTheme = theme;
+                    for (const element of diagrams)
+                        element.dataset.mermaidTheme = theme;
 
-					await mermaid.run({
-						querySelector: '.mermaid:not([data-processed])'
-					});
-				});
+                    const pendingDiagrams = diagrams.filter(function(element)
+                    {
+                        return !element.hasAttribute('data-processed');
+                    });
 
-				sdk.renderPromise = rendering.catch(function(error)
-				{
-					console.error('Mermaid rendering failed:', error);
-				});
+                    if (pendingDiagrams.length > 0)
+                    {
+                        try
+                        {
+                            await mermaid.run({ nodes: pendingDiagrams });
+                        }
+                        finally
+                        {
+                            for (const element of pendingDiagrams)
+                                centerSandboxedDiagram(element);
+                        }
+                    }
+                });
 
-				return sdk.renderPromise;
-			};
+                sdk.renderPromise = rendering.catch(function(error)
+                {
+                    console.error('Mermaid rendering failed:', error);
+                });
 
-			// Observe changes to page theme attributes.
-			sdk.observer = new MutationObserver(function()
-			{
-				sdk.render();
-			});
+                return sdk.renderPromise;
+            };
 
-			sdk.observer.observe(document.documentElement, {
-				attributes: true,
-				attributeFilter: [
-					'class',
-					'style',
-					'data-theme',
-					'data-color-scheme',
-					'data-mode'
-				],
-				subtree: true
-			});
+            sdk.observer = new MutationObserver(function(mutations)
+            {
+                const themeMayHaveChanged = mutations.some(function(mutation)
+                {
+                    return mutation.target === document.documentElement ||
+                        mutation.target === document.body;
+                });
 
-			// Also respond to OS theme changes.
-			sdk.media = window.matchMedia('(prefers-color-scheme: dark)');
+                if (themeMayHaveChanged)
+                    sdk.render();
+            });
 
-			sdk.media.addEventListener('change', function()
-			{
-				sdk.render();
-			});
-		}
+            sdk.observer.observe(document.documentElement, {
+                attributes: true,
+                attributeFilter: [
+                    'class',
+                    'style',
+                    'data-theme',
+                    'data-color-scheme',
+                    'data-mode'
+                ],
+                subtree: true
+            });
 
-		window.MermaidSDK.render();
-	`);
+            sdk.media = window.matchMedia('(prefers-color-scheme: dark)');
+            sdk.media.addEventListener('change', function()
+            {
+                sdk.render();
+            });
+        }
 
-	return strHtml;
+        window.MermaidSDK.render();
+    `);
+
+    return strHtml;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-11-22 13:20:04</sys_created_on>
         <sys_id>ff02a8d8c3301f10ec129bcd2b0131ab</sys_id>
-        <sys_mod_count>9</sys_mod_count>
+        <sys_mod_count>11</sys_mod_count>
         <sys_name>HtmlRenderMermaid</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_ff02a8d8c3301f10ec129bcd2b0131ab</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-23 15:01:13</sys_updated_on>
+        <sys_updated_on>2026-11-23 16:55:06</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>
