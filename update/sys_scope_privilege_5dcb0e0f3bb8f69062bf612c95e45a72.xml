@@ -16,7 +16,7 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2025-10-29 17:40:40</sys_updated_on>
         <target_name>sn_ai_discovery_data_source_configuration</target_name>
-        <target_scope display_value="AI Discovery">5d3e9355ff3122106758ffffffffff4f</target_scope>
+        <target_scope display_value="">5d3e9355ff3122106758ffffffffff4f</target_scope>
         <target_type>sys_db_object</target_type>
     </sys_scope_privilege>
 </record_update>

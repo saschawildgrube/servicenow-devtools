@@ -179,6 +179,7 @@ The function may be embedded into an installation procedure that first deactivat
         <file_path/>
         <instance_id>b265927933572a987c42c7bb9d5c7b88</instance_id>
         <instance_name>wildzurich</instance_name>
+        <merge_base/>
         <name>sys_script_include_11f4b391c3cb03504b4f311f050131cc</name>
         <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_script_include"&gt;&lt;sys_script_include action="INSERT_OR_UPDATE"&gt;&lt;access&gt;package_private&lt;/access&gt;&lt;active&gt;true&lt;/active&gt;&lt;api_name&gt;x_snc_devtools.InstanceDeactivateAI&lt;/api_name&gt;&lt;caller_access/&gt;&lt;client_callable&gt;false&lt;/client_callable&gt;&lt;description&gt;Deactivates all (known) AI capabilities on a platform. Executing this function requires "maint" access.&amp;#13;
 WARNING: This cannot be easily undone. Only use after carefully considering the consequences!&amp;#13;

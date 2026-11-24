@@ -23,6 +23,7 @@
         <file_path/>
         <instance_id>b265927933572a987c42c7bb9d5c7b88</instance_id>
         <instance_name>wildzurich</instance_name>
+        <merge_base/>
         <name>sys_atf_test_suite_test_b9e6454adbbda490ba15a35305961988</name>
         <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_test_suite_test">
     <sys_atf_test_suite_test action="INSERT_OR_UPDATE">

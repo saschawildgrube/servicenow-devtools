@@ -16,7 +16,7 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2025-11-19 23:27:26</sys_updated_on>
         <target_name>sn_data_discovery_asset_control</target_name>
-        <target_scope display_value="Data Discovery">1ce87daf2059d110f877dbb56179e0a1</target_scope>
+        <target_scope display_value="">1ce87daf2059d110f877dbb56179e0a1</target_scope>
         <target_type>sys_db_object</target_type>
     </sys_scope_privilege>
 </record_update>
