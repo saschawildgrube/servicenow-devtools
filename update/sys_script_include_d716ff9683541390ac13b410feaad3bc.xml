@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.BusinessProcessGetMermaidState</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns the Mermaid state diagram code for the given business process object.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>BusinessProcessGetMermaidState</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function BusinessProcessGetMermaidState(business_process,strDirection)
+{
+	if (BusinessProcessValidate(business_process,false) == false)
+	{
+		return false;
+	}
+	strDirection = GetStringValue(strDirection);
+	if (strDirection == '')
+	{
+		strDirection = 'TD';
+	}
+
+	if (strDirection == 'TD')
+	{
+		strDirection = '';
+	}
+
+
+	var strCode = '---\n';
+	strCode += 'title: ' + JSON.stringify(String(business_process.name)) + '\n';
+	strCode += '---\n';
+	strCode += 'stateDiagram-v2\n';
+
+	if (strDirection != '')
+	{
+		strCode += 'direction ' + strDirection + '\n';
+	}
+
+	var aStates = business_process._states;
+	var aTransitions = business_process._transitions;
+	var transitions = {};
+
+	for (var nState = 0; nState < aStates.length; nState++)
+	{
+		var state = aStates[nState];
+		var strName = GetStringValue(state.name);
+		strName = strName.replace(/[\r\n]+/g,' ');
+		strName = strName.replace(/"/g,'#quot;');
+		strCode += '\tstate "' + strName + '" as ' + state.id + '\n';
+	}
+
+	for (var nTransition = 0; nTransition < aTransitions.length; nTransition++)
+	{
+		var transition = aTransitions[nTransition];
+		transitions['$' + transition.id] = transition;
+	}
+
+	strCode += '\t[*] --> ' + business_process.initial_state + '\n';
+
+	for (var nSource = 0; nSource < aStates.length; nSource++)
+	{
+		var source = aStates[nSource];
+		for (var nLink = 0; nLink < source._transitions.length; nLink++)
+		{
+			var link = transitions['$' + source._transitions[nLink]];
+			var strLabel = GetStringValue(link.label);
+			strLabel = strLabel.replace(/[\r\n]+/g,' ');
+			strCode += '\t' + source.id + ' --> ' + link.target_state + ' : ' + strLabel + '\n';
+		}
+	}
+
+	var aEndStates = business_process.end_states;
+	for (var nEnd = 0; nEnd < aEndStates.length; nEnd++)
+	{
+		strCode += '\t' + aEndStates[nEnd] + ' --> [*]\n';
+	}
+
+	return strCode;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-04 13:20:59</sys_created_on>
+        <sys_id>d716ff9683541390ac13b410feaad3bc</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>BusinessProcessGetMermaidState</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_d716ff9683541390ac13b410feaad3bc</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-20 10:50:17</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+</record_update>

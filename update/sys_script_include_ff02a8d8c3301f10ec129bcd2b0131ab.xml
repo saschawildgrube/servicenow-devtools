@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.HtmlRenderMermaid</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Renders a Mermaid chart.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>HtmlRenderMermaid</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function HtmlRenderMermaid(strCode)
+{
+    strCode = GetStringValue(strCode);
+    if (strCode === '')
+    {
+        return '';
+    }
+
+    var strEscapedCode = GlideStringUtil.escapeHTML(strCode);
+    var strHtml = '<div class="mermaid" data-mermaid-source>\n' +
+        strEscapedCode + '\n</div>\n';
+
+    strHtml += HtmlRenderStyle(`
+        .mermaid[data-mermaid-source]
+        {
+            padding: 0;
+            border: 0;
+            background: transparent;
+            box-shadow: none;
+            text-align: center;
+        }
+
+        .mermaid[data-mermaid-source] > iframe
+        {
+            display: block;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0;
+            border: 0 !important;
+            background: transparent;
+            box-shadow: none !important;
+        }
+    `);
+
+    strHtml += HtmlRenderScript(`
+        if (!window.MermaidSDK)
+        {
+            const sdk = {
+                library: null,
+                error: '',
+                promise: null,
+                renderPromise: Promise.resolve(),
+                theme: null,
+                sources: new Map()
+            };
+
+            window.MermaidSDK = sdk;
+
+            function initializeMermaid(mermaid, theme)
+            {
+                mermaid.initialize({
+                    startOnLoad: false,
+                    securityLevel: 'sandbox',
+                    suppressErrorRendering: true,
+                    theme: theme,
+                    fontFamily: 'Consolas, Courier New, monospace'
+                });
+            }
+
+            function centerSandboxedDiagram(element)
+            {
+                const frame = element.querySelector(':scope > iframe[sandbox]');
+                if (!frame)
+                    return;
+
+                const prefix = 'data:text/html;charset=UTF-8;base64,';
+                const source = frame.getAttribute('src') || '';
+                if (!source.startsWith(prefix))
+                    return;
+
+                const markup = atob(source.slice(prefix.length));
+                const bodyOpening = '<body style="margin:0">';
+                if (!markup.startsWith(bodyOpening))
+                    return;
+
+                const centeredMarkup = '<body style="margin:0;text-align:center">' +
+                    markup.slice(bodyOpening.length);
+
+                frame.setAttribute('src', prefix + btoa(centeredMarkup));
+            }
+
+            sdk.getTheme = function()
+            {
+                const documentRoots = [document.documentElement, document.body];
+                const roots = documentRoots.filter(Boolean);
+
+                for (const root of roots)
+                {
+                    const indicators = [
+                        root.getAttribute('data-theme') || '',
+                        root.getAttribute('data-color-scheme') || '',
+                        root.getAttribute('data-mode') || ''
+                    ];
+
+                    const indicatorText = indicators.join(' ');
+                    const value = indicatorText.toLowerCase();
+
+                    if (/\\bdark\\b/.test(value))
+                        return 'dark';
+
+                    if (/\\blight\\b/.test(value))
+                        return 'default';
+
+                    if (root.classList.contains('dark') ||
+                        root.classList.contains('dark-theme') ||
+                        root.classList.contains('sn-dark-theme'))
+                        return 'dark';
+                }
+
+                for (const root of roots.reverse())
+                {
+                    const style = getComputedStyle(root);
+                    const colorScheme = style.colorScheme || '';
+                    const colorSchemes = colorScheme.split(/\\s+/);
+
+                    if (colorSchemes.includes('dark') &&
+                        !colorSchemes.includes('light'))
+                        return 'dark';
+
+                    const color = style.backgroundColor;
+                    const match = color.match(
+                        /^rgba?\\((\\d+)[,\\s]+(\\d+)[,\\s]+(\\d+)/
+                    );
+
+                    if (!match)
+                        continue;
+
+                    const alphaMatch = color.match(
+                        /^rgba\\([^)]*[,\\s]+(0(?:\\.\\d+)?|1(?:\\.0+)?)\\)$/
+                    );
+
+                    if (alphaMatch)
+                    {
+                        const [, alpha] = alphaMatch;
+                        if (Number(alpha) <= 0)
+                            continue;
+                    }
+
+                    const [, red, green, blue] = match;
+                    const brightness = (
+                        Number(red) * 299 +
+                        Number(green) * 587 +
+                        Number(blue) * 114
+                    ) / 1000;
+
+                    return brightness < 128 ? 'dark' : 'default';
+                }
+
+                return 'default';
+            };
+
+            const importPromise = import(
+                'https://cdn.jsdelivr.net/npm/mermaid@12.3.0/dist/mermaid.esm.min.mjs'
+            );
+
+            const initializationPromise = importPromise.then(function(module)
+            {
+                const mermaid = module.default;
+                sdk.theme = sdk.getTheme();
+                initializeMermaid(mermaid, sdk.theme);
+
+                sdk.library = mermaid;
+                window.dispatchEvent(new Event('mermaid-sdk-ready'));
+
+                return mermaid;
+            });
+
+            sdk.promise = initializationPromise.catch(function(error)
+            {
+                sdk.error = String(error.message || error);
+                window.dispatchEvent(new Event('mermaid-sdk-error'));
+                throw error;
+            });
+
+            sdk.render = function()
+            {
+                const rendering = sdk.renderPromise.then(async function()
+                {
+                    const mermaid = await sdk.promise;
+
+                    if (document.readyState === 'loading')
+                    {
+                        await new Promise(function(resolve)
+                        {
+                            document.addEventListener(
+                                'DOMContentLoaded',
+                                resolve,
+                                { once: true }
+                            );
+                        });
+                    }
+
+                    const theme = sdk.getTheme();
+                    const diagramElements = document.querySelectorAll(
+                        '.mermaid[data-mermaid-source]'
+                    );
+                    const diagrams = Array.from(diagramElements);
+
+                    for (const element of diagrams)
+                    {
+                        if (!sdk.sources.has(element))
+                            sdk.sources.set(element, element.textContent);
+                    }
+
+                    for (const element of sdk.sources.keys())
+                    {
+                        if (!element.isConnected)
+                            sdk.sources.delete(element);
+                    }
+
+                    if (sdk.theme !== theme)
+                    {
+                        initializeMermaid(mermaid, theme);
+
+                        for (const element of diagrams)
+                        {
+                            element.textContent = sdk.sources.get(element);
+                            element.removeAttribute('data-processed');
+                        }
+
+                        sdk.theme = theme;
+                    }
+
+                    for (const element of diagrams)
+                        element.dataset.mermaidTheme = theme;
+
+                    const pendingDiagrams = diagrams.filter(function(element)
+                    {
+                        return !element.hasAttribute('data-processed');
+                    });
+
+                    if (pendingDiagrams.length > 0)
+                    {
+                        try
+                        {
+                            await mermaid.run({ nodes: pendingDiagrams });
+                        }
+                        finally
+                        {
+                            for (const element of pendingDiagrams)
+                                centerSandboxedDiagram(element);
+                        }
+                    }
+                });
+
+                sdk.renderPromise = rendering.catch(function(error)
+                {
+                    console.error('Mermaid rendering failed:', error);
+                });
+
+                return sdk.renderPromise;
+            };
+
+            sdk.observer = new MutationObserver(function(mutations)
+            {
+                const themeMayHaveChanged = mutations.some(function(mutation)
+                {
+                    return mutation.target === document.documentElement ||
+                        mutation.target === document.body;
+                });
+
+                if (themeMayHaveChanged)
+                    sdk.render();
+            });
+
+            sdk.observer.observe(document.documentElement, {
+                attributes: true,
+                attributeFilter: [
+                    'class',
+                    'style',
+                    'data-theme',
+                    'data-color-scheme',
+                    'data-mode'
+                ],
+                subtree: true
+            });
+
+            sdk.media = window.matchMedia('(prefers-color-scheme: dark)');
+            sdk.media.addEventListener('change', function()
+            {
+                sdk.render();
+            });
+        }
+
+        window.MermaidSDK.render();
+    `);
+
+    return strHtml;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-22 13:20:04</sys_created_on>
+        <sys_id>ff02a8d8c3301f10ec129bcd2b0131ab</sys_id>
+        <sys_mod_count>12</sys_mod_count>
+        <sys_name>HtmlRenderMermaid</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_ff02a8d8c3301f10ec129bcd2b0131ab</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-24 08:43:48</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+</record_update>

@@ -35,7 +35,7 @@
 	<ul>
 		<g2:no_escape>$[
 			docapi.RenderSystemRequirements(
-				'Zurich,Australia',
+				'Australia,Brazil',
 				true,
 				AppGetDependencies());
 		]</g2:no_escape>	
@@ -126,7 +126,6 @@ while (grSuites.next())
 	x_snc_devtools.AppBuilderPlatform('x_your_scope'); 	
 }</pre></li>
 		<li>Replace "x_your_scope" with the scope name of your (scoped) "Platform" application.</li>
-		<li>Adjust or remove the other parameters.</li>
 		<li>Run "AppBuilder()" as a background script in the scope of the application.</li>
 		<li>Check out the Application Files that have been created and adjust them as you see fit.</li>
 		<li>Add dependencies to other applications.</li>
@@ -488,10 +487,10 @@ start: function()
 	var strTrackerSourceTable = '';
 	var strTrackerType = '';
 
-	var strCommand = x_snc_devtools.GetParam("ajax_processor_command");
+	var strCommand = x_snc_devtools.GetParam("command",null,this);
 	if (strCommand == 'your_lengthy_process')
 	{
-		var strRecordSysId = x_snc_devtools.GetParam("ajax_processor_record_sys_id");
+		var strRecordSysId = x_snc_devtools.GetParam("record_sys_id",x_snc_devtools.IsValidSysId,this);
 		if (strRecordSysId == '')
 		{
 			x_snc_devtools.LogError('YourClientAPI.start(): YourLengthyProcess: no record_sys_id specified.');
@@ -809,6 +808,37 @@ x_snc_devtools.AppBuilderMoveToScope(grRecord, strTargetScope, bMoveFromAllScope
 	<g2:no_escape>$[docapi.RenderLicense()]</g2:no_escape>
 	
 	<h2 toc-ignore-children="true">Release Notes</h2>
+
+	<h3>1.148.0 - 2026-11-24</h3>
+	<ol>
+		<li>DevTools is fully tested with Brazil.</li>
+		<li>Zurich is no longer actively supported.</li>
+		<li>Added the Application "Type" field to sys_app.</li>
+		<li>The application overview now also displays the application type.</li>
+		<li>The Dependency Viewer now also displays the application type.</li>
+		<li>The Dependency Viewer now also shows the dependency graph (using the Mermaid state diagramme).</li>
+		<li>GetPackageDependencyTree() now also provides the display value of the application type.</li>
+		<li>Added function GetCleanPackageObject().</li>
+		<li>GetPackageDependencyTree() now uses GetCleanPackageObject() to reduce unnecessary data in returned dependency tree.</li>
+		<li>Added function AppTouch().</li>
+		<li>Added function IsPotentialTechnicalUser().</li>
+		<li>Added function FixTechnicalUser().</li>
+		<li>Added UI Action "Fix Technical User".</li>
+		<li>IsTechnicalUser() now considers AI users (users with identity_type = "ai_agent") is technical users but does not require the technical user naming convention.</li>
+		<li>IsTechnicalUser() now accepts the following immutable OOTB technichal users: playbook.automation_runner and mid_server_default.</li>
+		<li>Added function BusinessProcessGetMermaidState().</li>
+		<li>Added function BusinessProcessGetMermaidSwimlanes().</li>
+		<li>Added function HtmlRenderMermaid().</li>
+		<li>Function NightlyQA() now also accepts a second parameter to specify the Scan Suite.</li> 
+		<li>Improved function IsClonedDictionary() to avoid Java errors regarding ambiguous function names which pops up under unclear circumstances.</li>
+		<li>Improved the example business process returned by BusinessProcessGetExample().</li>
+		<li>Improved function BusinessProcessValidate() to avoid a false positive CodeSanity finding from Check "CodeSanity - Bracket-dot anti-pattern".</li>
+		<li>AppInstall() now sets the application maintainer, maintainer email, documentation url and repository url on initial installation.</li>
+		<li>AppSanity() now deletes sys_choice_set records for non-existing tables and elements.</li>
+		<li>Added more patterns to GetEvaluatorErrorExceptionPatterns().</li>
+		<li>Improved chapter "Building a "Platform" Application".</li>
+	</ol>
+
 
 	<h3>1.147.0 - 2026-10-16</h3>
 	<ol>
@@ -3507,7 +3537,7 @@ gs.invalidateCache();
 		<li>The ATF test "Installation" now checks if the system property glide.record.legacy_cross_scope_access_policy_in_script is set to true to avoid cross scope access policy errors. Refer to&#160;<a target="_blank" href="https://support.servicenow.com/kb?id=kb_article_view&amp;sys_kb_id=db973947db18eb48feb1a851ca9619b4">KB0711970</a>.</li>
 	</ol>
 	
-	<h3>1.5.0 - 2020-11-23</h3>
+	<h3>1.5.0 - 2020-11-23</h3> 
 	<ol>
 		<li>Added test step configuration "DevTools - Check scoped app sanity". This test step configuration takes a scoped application and checks if all its sys_properties are NOT set to private, and all ATF tests have an empty copied_from field. More checks will be added later.</li>
 		<li>Added test step configuration "DevTools - Check table cross scope access"</li>
@@ -3578,14 +3608,14 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>2756</sys_mod_count>
+        <sys_mod_count>2787</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-10-16 08:32:30</sys_updated_on>
+        <sys_updated_on>2026-11-24 08:31:55</sys_updated_on>
     </sys_ui_page>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>e44fd7541b578450a89720a8ec4bcb8c</id>

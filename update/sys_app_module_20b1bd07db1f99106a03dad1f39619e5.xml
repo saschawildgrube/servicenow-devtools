@@ -21,6 +21,8 @@
         <report/>
         <require_confirmation>false</require_confirmation>
         <roles/>
+        <route/>
+        <screen/>
         <sys_class_name>sys_app_module</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-11-25 21:17:56</sys_created_on>
@@ -39,6 +41,7 @@
         <timeline_page/>
         <title>System Log</title>
         <uncancelable>false</uncancelable>
+        <ux_list/>
         <view_name>DevTools</view_name>
         <window_name/>
     </sys_app_module>

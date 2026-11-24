@@ -10,6 +10,7 @@
         <condition>IsActive() &amp;&amp; (current.sys_id == gs.getUserID()) &amp;&amp; AppGetProperty('ui.force_scope') &amp;&amp; (GetUserPreference(current,'devtools.ui.force_scope') === null)</condition>
         <form_action>true</form_action>
         <form_button>false</form_button>
+        <form_button_icon/>
         <form_button_v2>false</form_button_v2>
         <form_context_menu>false</form_context_menu>
         <form_link>true</form_link>
@@ -21,6 +22,7 @@
         <list_action>false</list_action>
         <list_banner_button>false</list_banner_button>
         <list_button>false</list_button>
+        <list_button_icon/>
         <list_choice>false</list_choice>
         <list_context_menu>false</list_context_menu>
         <list_link>false</list_link>
@@ -33,7 +35,9 @@
         <script><![CDATA[gs.addInfoMessage('No longer showing a message when enforcing record scope when loading an Application File record!');
 SetUserPreference(current,'devtools.ui.force_scope','true');
 RedirectToRecord(current);]]></script>
+        <show_form_icon_only>false</show_form_icon_only>
         <show_insert>false</show_insert>
+        <show_list_icon_only>false</show_list_icon_only>
         <show_multiple_update>false</show_multiple_update>
         <show_query>false</show_query>
         <show_update>true</show_update>

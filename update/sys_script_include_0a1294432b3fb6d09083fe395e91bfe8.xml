@@ -70,45 +70,99 @@ The detailed response can be fed back into an AI Agent for processing.  </descri
 		result.errors.push('No process roles have been defined ("_roles").');
 	}
 
+	var aRoleIds = [];
 	for (var nRole = 0; nRole < aRoles.length; nRole++)
 	{
 		var role = aRoles[nRole];
 		var strRoleId = GetStringValue(GetValue(role,'id'));
 		if (strRoleId == '')
 		{
-			result.errors.push('Role at index ' + nRole + ' has no id ("id").');
+			result.errors.push(StringFormat('Role at index {0} has no id ("id").',nRole));
+		}
+		else
+		{
+			aRoleIds.push(strRoleId);
 		}
 	}
 
-	var aStates = GetArrayValue(GetValue(business_process,'_states'));
-	if (aStates.length == 0)
-	{
-		result.errors.push('No states have been defined ("_states").');
-	}
-	
+
 	var aTransitions = GetArrayValue(GetValue(business_process,'_transitions'));
 	if (aTransitions.length == 0)
 	{
 		result.errors.push('No transitions have been defined ("_transitions").');
 	}
 
+	var aTransitionIds = [];
 	for (var nTransition = 0; nTransition < aTransitions.length; nTransition++)
 	{
 		var transition = aTransitions[nTransition];
-		if (GetStringValue(GetValue(transition,'id')) == '')
+		var strTransitionId = GetStringValue(GetValue(transition,'id'));
+		if (strTransitionId == '')
 		{
-			result.errors.push('Transition #' + nTransition+ ' does not have an id ("id").');
+			result.errors.push(
+				StringFormat('Transition #{0} does not have an id ("id").',nTransition));
+		}
+		else
+		{
+			aTransitionIds.push(strTransitionId);
 		}
 		if (GetStringValue(GetValue(transition,'label')) == '')
 		{
-			result.errors.push('Transition #' + nTransition+ ' does not have a label ("label").');
+			result.errors.push(
+				StringFormat('Transition #{0} does not have a label ("label").',nTransition));
 		}		
 		if (GetStringValue(GetValue(transition,'description')) == '')
 		{
-			result.errors.push('Transition #' + nTransition+ ' does not have a description ("description").');
+			result.errors.push(
+				StringFormat('Transition #{0} does not have a description ("description").',nTransition));
 		}		
 	}
 
+
+
+	var aStates = GetArrayValue(GetValue(business_process,'_states'));
+	if (aStates.length == 0)
+	{
+		result.errors.push('No states have been defined ("_states").');
+	}
+
+	for (var nState = 0; nState < aStates.length; nState++)
+	{
+		var state = aStates[nState];
+		if (GetStringValue(GetValue(state,'id')) == '')
+		{
+			result.errors.push(
+				StringFormat('State #{0} does not have an id ("id").',nState));
+		}
+		if (GetStringValue(GetValue(state,'name')) == '')
+		{
+			result.errors.push(
+				StringFormat('State #{0} does not have a name ("name").',nState));
+		}		
+		if (GetStringValue(GetValue(state,'description')) == '')
+		{
+			result.errors.push(
+				StringFormat('State #{0} does not have a description ("description").',nState));
+		}
+		var aStateTransitions = GetArrayValue(GetValue(state,'_transitions'));
+		for (var nStateTransition = 0; nStateTransition < aStateTransitions.length; nStateTransition++)
+		{
+			var strStateTransitionId = aStateTransitions[nStateTransition];
+			if (ArrayValueExists(aTransitionIds,strStateTransitionId) == false)
+			{
+				result.errors.push(
+					StringFormat('State #{0} refers to a transition that does not exist: {1}.',
+						nState,
+						strStateTransitionId));
+			}
+		}
+		
+	}
+
+
+
+	
+	
 
 	return GetResult();
 }]]></script>
@@ -116,14 +170,14 @@ The detailed response can be fed back into an AI Agent for processing.  </descri
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-03-27 12:03:33</sys_created_on>
         <sys_id>0a1294432b3fb6d09083fe395e91bfe8</sys_id>
-        <sys_mod_count>11</sys_mod_count>
+        <sys_mod_count>14</sys_mod_count>
         <sys_name>BusinessProcessValidate</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_0a1294432b3fb6d09083fe395e91bfe8</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-23 10:27:38</sys_updated_on>
+        <sys_updated_on>2026-11-20 08:40:50</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

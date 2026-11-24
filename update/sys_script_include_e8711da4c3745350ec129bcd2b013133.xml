@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_devtools.GetCleanPackageObject</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Takes a package object (or GlideRecord) and removes all non-essential fields.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>GetCleanPackageObject</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function GetCleanPackageObject(vPackageObject)
+{
+	var packageobject = null;
+	
+	if (IsValidRecord(vPackageObject) == true)
+	{
+		packageobject = Clone(vPackageObject,true);
+	}
+	else
+	{
+		if (IsObject(vPackageObject) == false)
+		{
+			return false;
+		}
+		packageobject = vPackageObject;
+	}
+	
+	delete packageobject.action;
+	delete packageobject.can_edit_in_studio;
+	delete packageobject.enforce_license;
+	delete packageobject.guided_setup_guid;
+	delete packageobject.hide_on_ui;
+	delete packageobject.ide_created;
+	delete packageobject.installed_as_dependency;
+	delete packageobject.licensable;
+	delete packageobject.license;
+	delete packageobject.license_category;
+	delete packageobject.license_definition;	
+	delete packageobject.license_model;
+	delete packageobject.logo;
+	delete packageobject.menu;
+	delete packageobject.package_json;
+	delete packageobject.package_resolver_version;
+	delete packageobject.private;
+	delete packageobject.restrict_table_access;
+	delete packageobject.runtime_access_tracking;
+	delete packageobject.scoped_administration;
+	delete packageobject.sn_managed;
+	delete packageobject.store_correlation_id;
+	delete packageobject.store_url;	
+	delete packageobject.subscription_entitlement
+	delete packageobject.sys_code;	
+	delete packageobject.sys_created_by;
+	delete packageobject.sys_created_on;
+	delete packageobject.sys_meta;
+	delete packageobject.sys_mod_count;	
+	delete packageobject.sys_tags;
+	delete packageobject.sys_updated_by;	
+	delete packageobject.sys_updated_on;
+	delete packageobject.template;
+	delete packageobject.trackable;
+	delete packageobject.uninstall_blocked;	
+	delete packageobject.user_role;	
+	delete packageobject.vendor;
+	delete packageobject.vendor_prefix;
+	
+	return packageobject;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-23 11:26:32</sys_created_on>
+        <sys_id>e8711da4c3745350ec129bcd2b013133</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>GetCleanPackageObject</sys_name>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_script_include_e8711da4c3745350ec129bcd2b013133</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-23 11:50:49</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+</record_update>
