@@ -6,9 +6,9 @@
         <sys_id>48ed58ea1bf869105b76777d8b4bcb67</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Create Macro.admin</sys_name>
-        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
-        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_ui_action display_value="Create Macro">15801c5ddb0d8994bcced03cd39619c0</sys_ui_action>
         <sys_update_name>sys_ui_action_role_48ed58ea1bf869105b76777d8b4bcb67</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
