@@ -92,8 +92,8 @@
 
             sdk.getTheme = function()
             {
-                const roots = [document.documentElement, document.body]
-                    .filter(Boolean);
+                const documentRoots = [document.documentElement, document.body];
+                const roots = documentRoots.filter(Boolean);
 
                 for (const root of roots)
                 {
@@ -103,7 +103,8 @@
                         root.getAttribute('data-mode') || ''
                     ];
 
-                    const value = indicators.join(' ').toLowerCase();
+                    const indicatorText = indicators.join(' ');
+                    const value = indicatorText.toLowerCase();
 
                     if (/\\bdark\\b/.test(value))
                         return 'dark';
@@ -120,7 +121,8 @@
                 for (const root of roots.reverse())
                 {
                     const style = getComputedStyle(root);
-                    const colorSchemes = (style.colorScheme || '').split(/\\s+/);
+                    const colorScheme = style.colorScheme || '';
+                    const colorSchemes = colorScheme.split(/\\s+/);
 
                     if (colorSchemes.includes('dark') &&
                         !colorSchemes.includes('light'))
@@ -138,8 +140,12 @@
                         /^rgba\\([^)]*[,\\s]+(0(?:\\.\\d+)?|1(?:\\.0+)?)\\)$/
                     );
 
-                    if (alphaMatch && Number(alphaMatch[1]) <= 0)
-                        continue;
+                    if (alphaMatch)
+                    {
+                        const [, alpha] = alphaMatch;
+                        if (Number(alpha) <= 0)
+                            continue;
+                    }
 
                     const [, red, green, blue] = match;
                     const brightness = (
@@ -154,9 +160,11 @@
                 return 'default';
             };
 
-            sdk.promise = import(
+            const importPromise = import(
                 'https://cdn.jsdelivr.net/npm/mermaid@12.3.0/dist/mermaid.esm.min.mjs'
-            ).then(function(module)
+            );
+
+            const initializationPromise = importPromise.then(function(module)
             {
                 const mermaid = module.default;
                 sdk.theme = sdk.getTheme();
@@ -166,7 +174,9 @@
                 window.dispatchEvent(new Event('mermaid-sdk-ready'));
 
                 return mermaid;
-            }).catch(function(error)
+            });
+
+            sdk.promise = initializationPromise.catch(function(error)
             {
                 sdk.error = String(error.message || error);
                 window.dispatchEvent(new Event('mermaid-sdk-error'));
@@ -192,9 +202,10 @@
                     }
 
                     const theme = sdk.getTheme();
-                    const diagrams = Array.from(document.querySelectorAll(
+                    const diagramElements = document.querySelectorAll(
                         '.mermaid[data-mermaid-source]'
-                    ));
+                    );
+                    const diagrams = Array.from(diagramElements);
 
                     for (const element of diagrams)
                     {
@@ -291,14 +302,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-11-22 13:20:04</sys_created_on>
         <sys_id>ff02a8d8c3301f10ec129bcd2b0131ab</sys_id>
-        <sys_mod_count>11</sys_mod_count>
+        <sys_mod_count>12</sys_mod_count>
         <sys_name>HtmlRenderMermaid</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_ff02a8d8c3301f10ec129bcd2b0131ab</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-23 16:55:06</sys_updated_on>
+        <sys_updated_on>2026-11-24 08:43:48</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>

@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-11-22 13:58:06</sys_created_on>
         <sys_id>754b6854c3b01f10ec129bcd2b01314b</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_atf_step_754b6854c3b01f10ec129bcd2b01314b</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-22 14:01:39</sys_updated_on>
+        <sys_updated_on>2026-11-24 08:45:15</sys_updated_on>
         <table/>
         <test display_value="DevTools - HtmlRenderMermaid">e94b2854c3b01f10ec129bcd2b013142</test>
         <timeout/>
@@ -36,9 +36,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-11-22 13:58:06</sys_created_on>
         <sys_id>394b6854c3b01f10ec129bcd2b013151</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-22 14:01:40</sys_updated_on>
+        <sys_updated_on>2026-11-24 08:45:15</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -53,7 +53,7 @@
 			{&#13;
 				return (vResult == '');&#13;
 			}&#13;
-			if (vResult.indexOf('&lt;div class="mermaid"&gt;') == -1)&#13;
+			if (vResult.indexOf('&lt;div class="mermaid" ') == -1)&#13;
 			{&#13;
 				return false;&#13;
 			}&#13;
