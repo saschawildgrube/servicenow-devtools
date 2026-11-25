@@ -6,7 +6,7 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Cleans up ATF test results and related rollback context records.&#13;
-bInProgress specifies whether only records in "in progress status" should be deleted. If false, all records are deleted - but this requires that there are no unfinsished ATF tests.&#13;
+bInProgress specifies whether only records in "in progress status" should be deleted. If false, all records are deleted - but this requires that there are no unfinished ATF tests.&#13;
 nLimit specifies the maximum rollback context and test result records to be deleted (on if bInProgress is false) - default behavior deletes all records.</description>
         <mobile_callable>false</mobile_callable>
         <name>CleanUpATF</name>
@@ -98,14 +98,14 @@ nLimit specifies the maximum rollback context and test result records to be dele
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-06-18 07:24:08</sys_created_on>
         <sys_id>3b1ee6edc325cfd44b4f311f05013141</sys_id>
-        <sys_mod_count>19</sys_mod_count>
+        <sys_mod_count>20</sys_mod_count>
         <sys_name>CleanUpATF</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_3b1ee6edc325cfd44b4f311f05013141</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-07-01 11:44:39</sys_updated_on>
+        <sys_updated_on>2026-11-24 11:18:55</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
