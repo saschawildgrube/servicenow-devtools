@@ -53,6 +53,7 @@
         <sys_class_name>sys_dictionary</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-06-06 09:18:21</sys_created_on>
+        <sys_id>91598da383605310dcd95978beaad3c1</sys_id>
         <sys_name>x_snc_devtools_cmdb_ci_appl_servicenow</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>

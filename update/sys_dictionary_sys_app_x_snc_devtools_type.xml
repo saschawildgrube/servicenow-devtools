@@ -53,6 +53,7 @@
         <sys_class_name>sys_dictionary</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-11-20 14:05:32</sys_created_on>
+        <sys_id>129c130983349b10dcd95978beaad3d5</sys_id>
         <sys_name>Type</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>

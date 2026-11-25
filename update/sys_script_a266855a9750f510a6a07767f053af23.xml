@@ -53,7 +53,6 @@
         <sys_updated_on>2025-04-30 15:57:22</sys_updated_on>
         <template/>
         <when>before_display</when>
-        <x_snc_datasilos_created>false</x_snc_datasilos_created>
     </sys_script>
     <sys_translated_text action="delete_multiple" query="documentkey=a266855a9750f510a6a07767f053af23"/>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

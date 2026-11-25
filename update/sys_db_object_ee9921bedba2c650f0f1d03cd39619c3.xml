@@ -20,7 +20,7 @@
         <provider_class/>
         <read_access>true</read_access>
         <scriptable_table>false</scriptable_table>
-        <super_class display_value="Application" name="cmdb_ci_appl">0e6b68f7719332100a229b13380c8b2d</super_class>
+        <super_class display_value="Application" name="cmdb_ci_appl">2dfd49db83a01310dcd95978beaad3a4</super_class>
         <sys_class_name>sys_db_object</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-06-06 09:18:18</sys_created_on>

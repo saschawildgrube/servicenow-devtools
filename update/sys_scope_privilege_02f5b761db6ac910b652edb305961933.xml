@@ -16,7 +16,7 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2022-03-30 12:05:34</sys_updated_on>
         <target_name>x_snc_parcel_parcel</target_name>
-        <target_scope display_value="Parcel WORK IN PROGRESS">bd2d377cdb92cd10b652edb305961975</target_scope>
+        <target_scope display_value="">bd2d377cdb92cd10b652edb305961975</target_scope>
         <target_type>sys_db_object</target_type>
     </sys_scope_privilege>
 </record_update>

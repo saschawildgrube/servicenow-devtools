@@ -49,7 +49,6 @@
         <sys_updated_on>2025-04-30 15:59:07</sys_updated_on>
         <template/>
         <when>async_always</when>
-        <x_snc_datasilos_created>false</x_snc_datasilos_created>
     </sys_script>
     <sys_translated_text action="delete_multiple" query="documentkey=5681f0691bcab1506c17fdd49b4bcb56"/>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

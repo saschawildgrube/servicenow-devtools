@@ -4,7 +4,7 @@
         <operation>execute</operation>
         <rca_type>real_rca</rca_type>
         <source>3a80c8901b1965105b76777d8b4bcbe5</source>
-        <source_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</source_scope>
+        <source_scope display_value="">394148f9db1c2d906a03dad1f396197a</source_scope>
         <source_table>sys_script_include</source_table>
         <source_type>2</source_type>
         <status>2</status>

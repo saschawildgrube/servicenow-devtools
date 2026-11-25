@@ -4,7 +4,7 @@
         <operation>execute</operation>
         <rca_type>real_rca</rca_type>
         <source>5183d8f31b21f1106c17fdd49b4bcb7d</source>
-        <source_scope display_value="Dev Platform">c0f2d8b31b21f1106c17fdd49b4bcbdb</source_scope>
+        <source_scope display_value="">c0f2d8b31b21f1106c17fdd49b4bcbdb</source_scope>
         <source_table>sys_script_include</source_table>
         <source_type>2</source_type>
         <status>2</status>
